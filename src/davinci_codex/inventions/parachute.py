@@ -200,13 +200,18 @@ def simulate(seed: int = 0) -> Dict[str, Any]:
     axes[0, 1].axhline(y=velocities[-1], color="g", linestyle="--", alpha=0.5, label=f"Terminal ({velocities[-1]:.1f} m/s)")
     axes[0, 1].legend()
 
-    # Drag Force vs Velocity
-    axes[1, 0].plot(velocities[1:], drag_forces[1:], "g-", linewidth=2)
+    # Drag Force vs Velocity - show theoretical quadratic relationship
+    theoretical_velocities = np.linspace(0, max(velocities) * 1.2, 100)
+    theoretical_drag = 0.5 * RHO_AIR * DRAG_COEFFICIENT_PYRAMID * base_area * theoretical_velocities**2
+
+    axes[1, 0].plot(theoretical_velocities, theoretical_drag, "g-", linewidth=2, label="Drag Force")
+    axes[1, 0].scatter(velocities[::10], drag_forces[::10], c='blue', s=20, alpha=0.5, label="Simulation data")
     axes[1, 0].set_xlabel("Velocity (m/s)")
     axes[1, 0].set_ylabel("Drag Force (N)")
     axes[1, 0].set_title("Drag Characteristics")
     axes[1, 0].grid(True, alpha=0.3)
     axes[1, 0].axhline(y=total_mass * GRAVITY, color="r", linestyle="--", alpha=0.5, label=f"Weight ({total_mass * GRAVITY:.0f} N)")
+    axes[1, 0].axvline(x=velocities[-1], color="orange", linestyle=":", alpha=0.5, label=f"Terminal velocity")
     axes[1, 0].legend()
 
     # Schematic diagram
