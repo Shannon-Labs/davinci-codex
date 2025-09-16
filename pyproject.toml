@@ -17,8 +17,7 @@ dependencies = [
     "trimesh",
     "meshio",
     "pillow",
-    "rich>=13.0",
-    "pythonocc-core; sys_platform == 'linux' or sys_platform == 'win32'"
+    "rich>=13.0"
 ]
 readme = "README.md"
 license = { file = "LICENSE" }
