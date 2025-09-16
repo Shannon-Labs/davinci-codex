@@ -1,0 +1,32 @@
+{
+  "folio_id": "CA-846r",
+  "manuscript": "Codex Atlanticus",
+  "repository": "Biblioteca Ambrosiana",
+  "language": "it",
+  "mirror_script": true,
+  "lines": [
+    {
+      "index": 1,
+      "italian_mirror": "le ali devono battere come fanno gli uccelli per vincere l'aria",
+      "english": "the wings must beat as the birds do to overcome the air",
+      "confidence": 0.72,
+      "notes": "Manual transcription from mirrored script; punctuation normalized."
+    },
+    {
+      "index": 2,
+      "italian_mirror": "il pilota stia nel mezzo legato con cinghie e guidi coi piedi le aste",
+      "english": "the pilot stands in the center, bound with straps and guiding the spars with the feet",
+      "confidence": 0.68,
+      "notes": "Foot control annotations clarified from marginalia."
+    },
+    {
+      "index": 3,
+      "italian_mirror": "due molle grandi di acciaio devono sostenere il moto del battere",
+      "english": "two great springs of steel shall sustain the beating motion",
+      "confidence": 0.61,
+      "notes": "Term \"molle\" interpreted as torsion springs; context cross-checked with Ms. B 70r."
+    }
+  ],
+  "attribution": "Transcribed by Shannon Labs + Codex CLI agent from public-domain scans",
+  "last_reviewed": "2025-09-16"
+}

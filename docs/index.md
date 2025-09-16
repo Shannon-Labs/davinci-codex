@@ -1,7 +1,7 @@
 # da Vinci Codex Documentation Index
 
 ## Purpose
-The da Vinci Codex project reconstructs Leonardo da Vinci's civil, non-weapon inventions using modern engineering methods. It is co-created by Hunter M. Bown (Shannon Labs) and the GPT-5 Codex agent to keep the reconstruction process transparent and reproducible. Each module follows a consistent workflow: historical provenance, quantitative completion plan, computational implementation, feasibility and ethics review, and reproducible artifact packaging.
+The da Vinci Codex project reconstructs Leonardo da Vinci's civil, non-weapon inventions using modern engineering methods. It is co-created by Hunter Bown (Shannon Labs) and the GPT-5 Codex agent to keep the reconstruction process transparent and reproducible. Each module follows a consistent workflow: historical provenance, quantitative completion plan, computational implementation, feasibility and ethics review, and reproducible artifact packaging.
 
 ## Safety Scope
 - Only non-harmful, non-weaponizable devices are explored.
@@ -16,15 +16,29 @@ The da Vinci Codex project reconstructs Leonardo da Vinci's civil, non-weapon in
 - `sims/` — Simulation configurations, solver outputs, and logs.
 - `tests/` — Pytest suites validating math, data integrity, and deterministic behavior.
 
-## Active Modules
-- Aerial Screw Rotor Lab — Lift feasibility simulations and CAD.
-- Self-Propelled Cart — Spring-driven automaton with CAD + YAML-configured dynamics.
-- Mechanical Odometer Cart — Error modeling scripts with calibration guides.
+## 📦 Active Modules
 
-## Roadmap
-1. **Aerial Screw Rotor Lab** — Continue validating lift vs. mass with composite rotor experiments.
-2. **Self-Propelled Cart** — Prototype-ready for workshop testing; next focus on path programming instrumentation.
-3. Ornithopter Glider Study — Compare flapping and fixed-wing energy budgets for safe gliding demonstrations.
+| Module | Status | Description |
+|--------|--------|--------------|
+| **Aerial Screw Rotor Lab** | `in_progress` | Helical rotor lift feasibility using modern composites and aerodynamic simulation |
+| **Self-Propelled Cart** | `prototype_ready` | Spring-driven automaton with parametric CAD models and kinematic simulation |
+| **Mechanical Odometer** | `prototype_ready` | Survey cart with pebble-drop counter mechanism and precision calibration |
+| **Ornithopter Flight Lab** | `validated` | Bio-inspired flapping-wing aircraft with composite materials and electric actuation |
+| **Pyramid Parachute** | `validated` | Analysis and optimization of da Vinci's pyramid-shaped parachute with modern safety validation |
+
+## 🗺️ Development Roadmap
+
+### Near-term Goals
+1. **Aerial Screw Rotor Lab** — Complete lift vs. mass validation with composite rotor experiments
+2. **Self-Propelled Cart** — Workshop testing and path programming instrumentation
+3. **Pyramid Parachute** — Wind tunnel testing and scale model validation
+4. **Ornithopter Flight Lab** — Composite drivetrain implementation and flight control integration
+
+### Future Inventions
+- Hydraulic pumps and water lifting devices
+- Mechanical clock mechanisms
+- Bridge designs and structural innovations
+- Musical instruments and acoustic devices
 
 ## Provenance Logging
 Each module documents original folio references (e.g., Codex Atlanticus, folio numbers) and high-resolution scan sources with catalog identifiers. When direct image reproduction is ambiguous, descriptions and derived vector sketches are provided instead of scans.
@@ -34,5 +48,8 @@ Each module documents original folio references (e.g., Codex Atlanticus, folio n
 - Discuss new modules via `.github/ISSUE_TEMPLATE/feature.md`.
 - Prioritize transparency in assumptions, calculations, and testing.
 
-## Contact
-For questions or safety escalations, reach maintainers at `safety@davinci-codex.org`.
+## 📧 Contact & Support
+- **Issues & Features**: [GitHub Issues](https://github.com/Shannon-Labs/davinci-codex/issues)
+- **Documentation**: [Project Website](https://shannon-labs.github.io/davinci-codex/)
+- **Safety Concerns**: `safety@davinci-codex.org`
+- **Maintainer**: Hunter Bown (Shannon Labs)

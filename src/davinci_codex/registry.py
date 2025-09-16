@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
+import pkgutil
+from collections.abc import Iterable
 from dataclasses import dataclass
 from importlib import import_module
 from types import ModuleType
-from typing import Callable, Dict, Iterable, List, Protocol
-import pkgutil
+from typing import Callable, Dict, List, Protocol
 
 
 class InventionModule(Protocol):
@@ -17,17 +18,10 @@ class InventionModule(Protocol):
     STATUS: str
     SUMMARY: str
 
-    def plan() -> Dict[str, object]:
-        ...
-
-    def simulate(seed: int = 0) -> Dict[str, object]:
-        ...
-
-    def build() -> None:
-        ...
-
-    def evaluate() -> Dict[str, object]:
-        ...
+    plan: Callable[[], Dict[str, object]]
+    simulate: Callable[[int], Dict[str, object]]
+    build: Callable[[], None]
+    evaluate: Callable[[], Dict[str, object]]
 
 
 @dataclass

@@ -1,6 +1,6 @@
 """da Vinci Codex core package."""
 
-from importlib.metadata import version, PackageNotFoundError
+from importlib.metadata import PackageNotFoundError, version
 
 try:  # pragma: no cover - executed only in installed environment
     __version__ = version("davinci-codex")

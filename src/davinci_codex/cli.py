@@ -8,6 +8,7 @@ from typing import List, Optional
 import typer
 
 from . import __version__
+from .pipelines import run_ornithopter_pipeline
 from .registry import InventionSpec, get_invention, list_inventions
 
 app = typer.Typer(help="Interact with da Vinci Codex invention modules.")
@@ -60,7 +61,7 @@ def simulate(
     specs = _resolve_inventions(slug, all_flag=slug is None)
     for spec in specs:
         typer.echo(f"# Simulating {spec.title} ({spec.slug})")
-        results = spec.module.simulate(seed=seed)
+        results = spec.module.simulate(seed)
         typer.echo(json.dumps(results, indent=2, sort_keys=True))
 
 
@@ -93,9 +94,26 @@ def demo(slug: Optional[str] = typer.Option(None, help="Slug of the invention to
     specs = _resolve_inventions(slug, all_flag=slug is None)
     for spec in specs:
         typer.echo(f"# Demo {spec.title} ({spec.slug})")
-        sim = spec.module.simulate(seed=0)
+        sim = spec.module.simulate(0)
         eval_payload = spec.module.evaluate()
         typer.echo(json.dumps({"simulate": sim, "evaluate": eval_payload}, indent=2, sort_keys=True))
+
+
+@app.command("pipeline")
+def pipeline_command(
+    slug: Optional[str] = typer.Option(None, help="Slug of the invention to run as a full pipeline."),
+    seed: int = typer.Option(42, help="Random seed for stochastic steps."),
+    duration: float = typer.Option(20.0, help="Simulation duration in seconds for synthesis stage."),
+) -> None:
+    """Run multi-stage pipelines (currently ornithopter-only)."""
+    specs = _resolve_inventions(slug, all_flag=slug is None)
+    for spec in specs:
+        typer.echo(f"# Pipeline {spec.title} ({spec.slug})")
+        if spec.slug != "ornithopter":
+            typer.echo("Pipeline automation not yet implemented for this invention.")
+            continue
+        report = run_ornithopter_pipeline(seed=seed, duration_s=duration)
+        typer.echo(json.dumps(report, indent=2, sort_keys=True))
 
 
 if __name__ == "__main__":

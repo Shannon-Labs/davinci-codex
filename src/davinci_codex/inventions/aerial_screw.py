@@ -9,10 +9,11 @@ from pathlib import Path
 from typing import Dict, Optional
 
 import matplotlib
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-from matplotlib import animation, patches
 import numpy as np
+from matplotlib import animation, patches
 
 from ..artifacts import ensure_artifact_dir
 
@@ -76,6 +77,7 @@ def plan() -> Dict[str, object]:
             "drag_coefficient": DRAG_COEFFICIENT,
             "payload_mass_kg": TARGET_PAYLOAD_MASS,
             "structure_mass_kg": STRUCTURE_MASS,
+            "required_lift_newton": required_lift,
         },
         "governing_equations": [
             "T = 2 * rho * A * v_i^2 (actuator disk thrust)",

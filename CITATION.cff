@@ -1,19 +1,30 @@
 cff-version: 1.2.0
-title: da Vinci Codex
-message: If you use this project, please cite it as below.
+title: "da Vinci Codex: Modern Engineering Completions of Renaissance Inventions"
+message: "If you use this software, please cite it as below."
+type: software
 authors:
   - family-names: Bown
-    given-names: Hunter M.
+    given-names: Hunter
+    email: hunter@shannon-labs.com
     affiliation: Shannon Labs
   - name: GPT-5 Codex Agent
     affiliation: Open collaborative AI
-year: 2025
-version: 0.1.0
+abstract: >-
+  A reproducible exploration of Leonardo da Vinci's civil inventions,
+  rebuilt with modern analysis and open tooling. This project translates
+  Renaissance engineering dreams into working implementations using
+  contemporary materials, computational methods, and safety standards.
+date-released: '2025-09-16'
+version: 1.0.0
 license: MIT
-repository-code: https://github.com/davinci-codex/davinci-codex
+repository-code: https://github.com/Shannon-Labs/davinci-codex
+url: https://shannon-labs.github.io/davinci-codex/
 keywords:
-  - leonardo da vinci
-  - open hardware
+  - leonardo-da-vinci
+  - renaissance-engineering
+  - mechanical-engineering
+  - computational-design
+  - open-hardware
   - simulation
   - cad
-  - public domain
+  - educational-technology

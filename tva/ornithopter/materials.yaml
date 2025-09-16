@@ -1,0 +1,34 @@
+materials:
+  fir_spar:
+    density_kg_m3: 530
+    fatigue_strength_MPa: 35
+    fatigue_exponent: 8.5
+    allowable_stress_MPa: 45
+    section_modulus_m3: 2.2e-05
+    notes: "Fir beams laminated with linen. Values derived from Renaissance carpentry studies."
+  rawhide_hinge:
+    density_kg_m3: 970
+    shear_strength_MPa: 12
+    notes: "Rawhide hinge straps used for flank articulation."
+  steel_spring:
+    density_kg_m3: 7800
+    allowable_stress_MPa: 550
+    notes: "Best-case spring steel available circa 1500 (temper limited)."
+  carbon_spar_modern:
+    density_kg_m3: 1600
+    fatigue_strength_MPa: 210
+    fatigue_exponent: 10.5
+    allowable_stress_MPa: 600
+    section_modulus_m3: 4.8e-05
+    notes: "Reference for modern composite comparison."
+surfaces:
+  renaissance_surface_density_kg_m2: 2.7
+  modern_surface_density_kg_m2: 1.45
+springs:
+  torsion_pair:
+    max_torque_nm: 540
+    stiffness_nm_per_rad: 310
+    notes: "Estimated output for dual laminated springs depicted in Ms. B 70r."
+limits:
+  minimum_cycles_required: 500
+  sustained_power_target_w: 600

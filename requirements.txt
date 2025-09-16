@@ -11,4 +11,5 @@ pyyaml
 trimesh
 meshio
 pillow
+types-PyYAML
 pythonocc-core; sys_platform == 'linux' or sys_platform == 'win32'

@@ -1,0 +1,12 @@
+total_mass_kg: 92.0
+wing_area_m2: 14.0
+stroke_amplitude_m: 2.2
+flap_frequency_hz: 2.4
+forward_speed_ms: 12.5
+base_alpha_deg: 8.0
+alpha_amplitude_deg: 12.0
+cl_alpha_per_rad: 5.6
+base_power_w: 3400
+power_variation_w: 1900
+battery_capacity_wh: 11800
+controller_power_w: 250

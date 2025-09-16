@@ -9,11 +9,12 @@ from pathlib import Path
 from typing import Dict
 
 import matplotlib
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-from matplotlib import animation
 import numpy as np
 import yaml
+from matplotlib import animation
 
 from ..artifacts import ensure_artifact_dir
 
@@ -176,7 +177,7 @@ def _render_motion(path: Path, result: SimulationResult) -> None:
 
     def update(frame: int):
         x = result.position[min(frame, len(result.position) - 1)]
-        chassis.set_x(x)
+        chassis.set_x(float(x))
         return (chassis,)
 
     anim = animation.FuncAnimation(fig, update, frames=len(result.time), interval=40, blit=True)
