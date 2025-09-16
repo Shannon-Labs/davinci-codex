@@ -1,0 +1,14 @@
+numpy
+scipy
+sympy
+matplotlib
+pytest
+ruff
+mypy
+typer
+pydantic
+pyyaml
+trimesh
+meshio
+pillow
+pythonocc-core; sys_platform == 'linux' or sys_platform == 'win32'

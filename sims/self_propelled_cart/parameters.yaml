@@ -1,0 +1,10 @@
+mass_kg: 42.0
+wheel_radius_m: 0.18
+drag_coefficient: 0.8
+frontal_area_m2: 0.2
+spring_k_Nm: 32.0
+spring_max_theta_rad: 14.0
+rolling_coeff: 0.015
+gear_efficiency: 0.78
+timestep_s: 0.05
+duration_s: 20.0

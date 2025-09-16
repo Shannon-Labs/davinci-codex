@@ -1,0 +1,11 @@
+# Baseline simulation parameters for the aerial screw rotor study
+air_density_kg_m3: 1.225
+rotor_radius_m: 2.0
+rotor_inner_radius_m: 1.6
+helical_pitch_m: 3.5
+turns: 2.5
+slip_factor: 0.42
+drag_coefficient: 1.15
+target_payload_mass_kg: 180.0
+structure_mass_kg: 65.0
+rpm_range: [20.0, 160.0]

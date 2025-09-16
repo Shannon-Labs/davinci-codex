@@ -1,0 +1,34 @@
+[project]
+name = "davinci-codex"
+version = "0.1.0"
+description = "Open, reproducible reconstructions of Leonardo da Vinci's civil inventions."
+requires-python = ">=3.10"
+dependencies = [
+    "numpy",
+    "scipy",
+    "sympy",
+    "matplotlib",
+    "pytest",
+    "ruff",
+    "mypy",
+    "typer",
+    "pydantic",
+    "pyyaml",
+    "trimesh",
+    "meshio",
+    "pillow",
+    "pythonocc-core; sys_platform == 'linux' or sys_platform == 'win32'"
+]
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [{ name = "da Vinci Codex Contributors" }]
+
+[project.scripts]
+davinci-codex = "davinci_codex.cli:app"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[build-system]
+requires = ["setuptools>=65", "wheel"]
+build-backend = "setuptools.build_meta"

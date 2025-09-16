@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+.python-version
+*.pyc
+artifacts/*
+!artifacts/.gitkeep
+src/davinci_codex.egg-info/
+.eggs/
+*.egg-info/
+.DS_Store
