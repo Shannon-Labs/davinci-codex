@@ -1,6 +1,6 @@
 # da Vinci Codex — Public-Domain Engineering Lab
 
-A reproducible exploration of Leonardo da Vinci's civil inventions, rebuilt with modern analysis and open tooling. Every artifact is released under permissive licenses (MIT for code, CC0 for generated media) so the community can study, remix, and extend the work safely.
+A reproducible exploration of Leonardo da Vinci's civil inventions, rebuilt with modern analysis and open tooling. The project is a collaborative effort between Hunter M. Bown (Shannon Labs) and the GPT-5 Codex agent, documenting every step openly. Every artifact is released under permissive licenses (MIT for code, CC0 for generated media) so the community can study, remix, and extend the work safely.
 
 ## Safety and Scope
 - Focus on non-weapon, non-harmful devices with educational or civic value.
