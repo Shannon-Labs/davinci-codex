@@ -9,10 +9,11 @@ from pathlib import Path
 from typing import Any, Dict, cast
 
 import matplotlib
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-from matplotlib import patches
 import numpy as np
+from matplotlib import patches
 
 from ..artifacts import ensure_artifact_dir
 
@@ -233,9 +234,9 @@ def simulate(seed: int = 0) -> Dict[str, Any]:
 
     # Add annotations
     ax_diagram.annotate(f"{CANOPY_SIZE:.1f}m", xy=(-1.5, 0), xytext=(-2.5, -0.5),
-                       arrowprops=dict(arrowstyle="<->", color="red"))
+                       arrowprops={"arrowstyle": "<->", "color": "red"})
     ax_diagram.annotate(f"Height: {CANOPY_SIZE*0.866:.1f}m", xy=(0, 2.5), xytext=(1, 3),
-                       arrowprops=dict(arrowstyle="->", color="blue"))
+                       arrowprops={"arrowstyle": "->", "color": "blue"})
     ax_diagram.set_xlabel("Width (m)")
     ax_diagram.set_ylabel("Height (m)")
     ax_diagram.grid(True, alpha=0.3)

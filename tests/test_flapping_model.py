@@ -1,8 +1,8 @@
 """Tests for the synthesis ornithopter flapping model."""
 
-from pathlib import Path
-from importlib import util
 import sys
+from importlib import util
+from pathlib import Path
 
 import numpy as np
 

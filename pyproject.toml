@@ -17,12 +17,13 @@ dependencies = [
     "trimesh",
     "meshio",
     "pillow",
-    "rich>=13.0"
+    "rich>=13.0",
+    "pythonocc-core; sys_platform == 'linux' or sys_platform == 'win32'"
 ]
 readme = "README.md"
 license = { file = "LICENSE" }
 authors = [
-    { name = "Hunter Bown", email = "hunter@shannonlabs.dev" },
+    { name = "Hunter M. Bown", email = "hunter@shannon-labs.com" },
     { name = "da Vinci Codex Contributors" }
 ]
 keywords = ["leonardo", "davinci", "engineering", "renaissance", "inventions", "simulation", "CAD"]

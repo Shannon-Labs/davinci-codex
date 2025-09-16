@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
+import sys
 from importlib import util
 from pathlib import Path
 from typing import Any, Dict
 
 import numpy as np
-import sys
 
 from davinci_codex.inventions import ornithopter as ornithopter_module
 from davinci_codex.tva.ornithopter import evaluate_viability

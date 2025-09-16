@@ -12,6 +12,7 @@ import yaml
 from davinci_codex.artifacts import ensure_artifact_dir
 from davinci_codex.inventions import ornithopter
 
+
 @dataclass
 class AeroelasticParameters:
     mass_total_kg: float = 92.0

@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from pathlib import Path
 import csv
+from pathlib import Path
 
 
 def generate_ornithopter_frame(span_m: float, chord_m: float, output_dir: Path) -> None:

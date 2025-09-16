@@ -4,8 +4,8 @@ message: "If you use this software, please cite it as below."
 type: software
 authors:
   - family-names: Bown
-    given-names: Hunter
-    email: hunter@shannonlabs.dev
+    given-names: Hunter M.
+    email: hunter@shannon-labs.com
     affiliation: Shannon Labs
   - name: GPT-5 Codex Agent
     affiliation: Open collaborative AI

@@ -10,8 +10,8 @@ from typing import Any, Dict, List, Tuple
 
 import yaml
 
-from ..inventions.ornithopter import PARAM_FILE as SYNTHESIS_PARAM_FILE
 from ..inventions.ornithopter import GRAVITY
+from ..inventions.ornithopter import PARAM_FILE as SYNTHESIS_PARAM_FILE
 
 
 def _as_dict(value: Any) -> Dict[str, Any]:
