@@ -22,7 +22,7 @@ dependencies = [
 readme = "README.md"
 license = { file = "LICENSE" }
 authors = [
-    { name = "Hunter Bown", email = "hunter@shannon-labs.com" },
+    { name = "Hunter Bown", email = "hunter@shannonlabs.dev" },
     { name = "da Vinci Codex Contributors" }
 ]
 keywords = ["leonardo", "davinci", "engineering", "renaissance", "inventions", "simulation", "CAD"]

@@ -5,7 +5,7 @@ type: software
 authors:
   - family-names: Bown
     given-names: Hunter
-    email: hunter@shannon-labs.com
+    email: hunter@shannonlabs.dev
     affiliation: Shannon Labs
   - name: GPT-5 Codex Agent
     affiliation: Open collaborative AI

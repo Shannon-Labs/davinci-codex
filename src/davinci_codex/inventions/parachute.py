@@ -43,7 +43,7 @@ MAX_SAFE_VELOCITY = 7.0  # m/s landing speed
 
 
 def _cad_module():
-    root = Path(__file__).resolve().parents[2]
+    root = Path(__file__).resolve().parents[3]
     module_path = root / "cad" / SLUG / "model.py"
     spec = importlib.util.spec_from_file_location(f"cad.{SLUG}.model", module_path)
     if spec is None or spec.loader is None:  # pragma: no cover - developer error

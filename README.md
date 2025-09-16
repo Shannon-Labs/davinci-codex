@@ -305,15 +305,11 @@ This project serves as a comprehensive educational resource for:
 - **Simulation Hours**: 1,000+
 - **Documentation Pages**: 50+
 
-### Presentations & Publications
-- *Upcoming:* SIGGRAPH 2025 Technical Paper
-- *Planned:* Journal of Historical Engineering
-- *In Progress:* IEEE Computer Graphics & Applications
-
-### Media & Outreach
-- Open for collaboration with museums
-- Available for educational workshops
-- Seeking institutional partnerships
+### Project Goals
+- Develop open-source educational resources
+- Create reproducible simulations for teaching
+- Document Renaissance engineering principles
+- Provide computational validation of historical designs
 
 ---
 
@@ -363,7 +359,7 @@ CC0 1.0 Universal - Public Domain Dedication for generated content
 ### Contact
 
 **Principal Investigator**: Hunter Bown
-**Email**: hunter@shannon-labs.com
+**Email**: hunter@shannonlabs.dev
 **Institution**: Shannon Labs
 **Project Website**: https://shannon-labs.github.io/davinci-codex/
 **GitHub**: https://github.com/Shannon-Labs/davinci-codex

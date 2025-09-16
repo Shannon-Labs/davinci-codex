@@ -173,7 +173,7 @@ If you have questions about contributing:
 1. Check existing [discussions](https://github.com/Shannon-Labs/davinci-codex/discussions)
 2. Review closed [pull requests](https://github.com/Shannon-Labs/davinci-codex/pulls?q=is%3Apr+is%3Aclosed)
 3. Open a new discussion
-4. Email: hunter@shannon-labs.com
+4. Email: hunter@shannonlabs.dev
 
 ---
 
