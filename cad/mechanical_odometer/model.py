@@ -10,15 +10,16 @@ import trimesh
 
 
 def _wheel(radius: float, width: float, segments: int = 64) -> trimesh.Trimesh:
+    # Simple wheel without boolean operations
     rim = trimesh.creation.cylinder(radius=radius, height=width, sections=segments)
     hub = trimesh.creation.cylinder(radius=radius * 0.3, height=width * 1.3, sections=segments)
-    rim = rim.difference(hub)
     spokes = []
     for angle in np.linspace(0, 2 * np.pi, 8, endpoint=False):
         box = trimesh.creation.box(extents=(radius * 0.15, width * 0.9, width * 0.35))
         box.apply_translation((radius * 0.5, 0.0, 0.0))
         box.apply_transform(trimesh.transformations.rotation_matrix(angle, (0, 0, 1)))
         spokes.append(box)
+    # Concatenate all parts without boolean difference
     wheel = trimesh.util.concatenate([rim, hub] + spokes)
     wheel.merge_vertices()
     return wheel
