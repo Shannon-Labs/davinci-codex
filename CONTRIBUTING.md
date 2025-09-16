@@ -167,6 +167,12 @@ Contributors will be:
 - Acknowledged in publications
 - Invited to collaborate on papers
 
+## Contributors
+- Hunter Bown (Shannon Labs) - Project lead and initial implementations
+- Claude Opus 4.1 - Documentation architecture and development workflow automation
+- Codex GPT-5 (High) - AI agent collaboration and engineering analysis
+- Codex CLI Agent - Repository hygiene, contributor tooling, and guidelines authoring
+
 ## Questions?
 
 If you have questions about contributing:

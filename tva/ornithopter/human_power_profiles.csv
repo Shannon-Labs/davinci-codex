@@ -1,0 +1,5 @@
+profile,avg_power_w,duration_s,notes
+Untrained laborer,220,60,Estimated sustained leg-crank output for workshop assistant
+Apprentice smith,320,90,Historical measurement from guild training records
+Rower (Venetian galley),420,180,Upper-bound sustained output for conditioned crewman
+Modern cyclist sprint,800,20,Short-duration peak power benchmark (not sustainable in 1500)

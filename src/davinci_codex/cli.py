@@ -10,6 +10,7 @@ import typer
 from . import __version__
 from .pipelines import run_ornithopter_pipeline
 from .registry import InventionSpec, get_invention, list_inventions
+from .pipelines import run_ornithopter_pipeline
 
 app = typer.Typer(help="Interact with da Vinci Codex invention modules.")
 

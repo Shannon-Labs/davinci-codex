@@ -1,0 +1,12 @@
+item,description,qty,mass_kg,source
+CF-Spar,Carbon fiber wing spar tube 45mm OD,2,7.8,Rockwest Composites
+LE-Spar,Carbon fiber leading edge rod 28mm OD,2,5.2,DragonPlate
+Rib-Panel,CFRP rib panel w/ foam core,24,9.6,Custom layup
+Fuselage-Box,Carbon fiber box beam 3.6m,1,12.4,Custom layup
+Tailplane,Kevlar sandwich tailplane assembly,1,3.1,Composite vendor
+Motor,2 kW outrunner BLDC,2,8.4,Mad Components MX2000
+Gearbox,Harmonic reducer 12:1,2,6.5,Harmonic Drive LHD-20
+Servo,High-torque servo 350 Nm peak,2,4.0,ClearPath AFS350
+Battery,Li-ion pack 11.8 kWh,1,18.0,Shannon Labs pack
+Avionics,PX4 CubeOrange + sensors,1,1.4,Shannon Labs avionics
+Parachute,Ballistic parachute system,1,4.5,BRS-6UL

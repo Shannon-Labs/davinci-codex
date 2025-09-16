@@ -11,7 +11,7 @@ def test_module_attributes():
     """Verify module exports required attributes."""
     assert parachute.SLUG == "parachute"
     assert parachute.TITLE == "Pyramid Parachute"
-    assert parachute.STATUS == "validated"
+    assert parachute.STATUS == "in_progress"
     assert "pyramid" in parachute.SUMMARY.lower()
 
 

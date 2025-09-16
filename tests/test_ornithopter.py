@@ -2,8 +2,8 @@
 
 import os
 
-from davinci_codex.artifacts import ensure_artifact_dir
 from davinci_codex.inventions import ornithopter
+from davinci_codex.artifacts import ensure_artifact_dir
 
 
 def test_plan_contains_provenance():

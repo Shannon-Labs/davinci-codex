@@ -9,17 +9,16 @@ from pathlib import Path
 from typing import Any, Dict, cast
 
 import matplotlib
-
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-import numpy as np
 from matplotlib import patches
+import numpy as np
 
 from ..artifacts import ensure_artifact_dir
 
 SLUG = "parachute"
 TITLE = "Pyramid Parachute"
-STATUS = "validated"
+STATUS = "in_progress"
 SUMMARY = "Modern analysis of da Vinci's pyramid-shaped parachute with drag calculations and stability assessment."
 
 # Original dimensions from Codex Atlanticus folio 381v
@@ -43,7 +42,7 @@ MAX_SAFE_VELOCITY = 7.0  # m/s landing speed
 
 
 def _cad_module():
-    root = Path(__file__).resolve().parents[3]
+    root = Path(__file__).resolve().parents[2]
     module_path = root / "cad" / SLUG / "model.py"
     spec = importlib.util.spec_from_file_location(f"cad.{SLUG}.model", module_path)
     if spec is None or spec.loader is None:  # pragma: no cover - developer error
@@ -200,18 +199,13 @@ def simulate(seed: int = 0) -> Dict[str, Any]:
     axes[0, 1].axhline(y=velocities[-1], color="g", linestyle="--", alpha=0.5, label=f"Terminal ({velocities[-1]:.1f} m/s)")
     axes[0, 1].legend()
 
-    # Drag Force vs Velocity - show theoretical quadratic relationship
-    theoretical_velocities = np.linspace(0, max(velocities) * 1.2, 100)
-    theoretical_drag = 0.5 * RHO_AIR * DRAG_COEFFICIENT_PYRAMID * base_area * theoretical_velocities**2
-
-    axes[1, 0].plot(theoretical_velocities, theoretical_drag, "g-", linewidth=2, label="Drag Force")
-    axes[1, 0].scatter(velocities[::10], drag_forces[::10], c='blue', s=20, alpha=0.5, label="Simulation data")
+    # Drag Force vs Velocity
+    axes[1, 0].plot(velocities[1:], drag_forces[1:], "g-", linewidth=2)
     axes[1, 0].set_xlabel("Velocity (m/s)")
     axes[1, 0].set_ylabel("Drag Force (N)")
     axes[1, 0].set_title("Drag Characteristics")
     axes[1, 0].grid(True, alpha=0.3)
     axes[1, 0].axhline(y=total_mass * GRAVITY, color="r", linestyle="--", alpha=0.5, label=f"Weight ({total_mass * GRAVITY:.0f} N)")
-    axes[1, 0].axvline(x=velocities[-1], color="orange", linestyle=":", alpha=0.5, label="Terminal velocity")
     axes[1, 0].legend()
 
     # Schematic diagram
@@ -239,9 +233,9 @@ def simulate(seed: int = 0) -> Dict[str, Any]:
 
     # Add annotations
     ax_diagram.annotate(f"{CANOPY_SIZE:.1f}m", xy=(-1.5, 0), xytext=(-2.5, -0.5),
-                       arrowprops={"arrowstyle": "<->", "color": "red"})
+                       arrowprops=dict(arrowstyle="<->", color="red"))
     ax_diagram.annotate(f"Height: {CANOPY_SIZE*0.866:.1f}m", xy=(0, 2.5), xytext=(1, 3),
-                       arrowprops={"arrowstyle": "->", "color": "blue"})
+                       arrowprops=dict(arrowstyle="->", color="blue"))
     ax_diagram.set_xlabel("Width (m)")
     ax_diagram.set_ylabel("Height (m)")
     ax_diagram.grid(True, alpha=0.3)

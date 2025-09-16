@@ -10,7 +10,6 @@ from pathlib import Path
 from typing import Any, Dict, List, cast
 
 import matplotlib
-
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
@@ -20,7 +19,7 @@ from ..artifacts import ensure_artifact_dir
 
 SLUG = "ornithopter"
 TITLE = "Ornithopter Flight Lab"
-STATUS = "validated"
+STATUS = "planning"
 SUMMARY = "Flapping-wing flight modernization with composite spars and electric actuation."
 
 PARAM_FILE = Path("sims") / SLUG / "parameters.yaml"
