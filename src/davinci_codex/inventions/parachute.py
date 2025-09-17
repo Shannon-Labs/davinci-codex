@@ -211,7 +211,7 @@ def simulate(seed: int = 0) -> Dict[str, Any]:
     axes[1, 0].set_title("Drag Characteristics")
     axes[1, 0].grid(True, alpha=0.3)
     axes[1, 0].axhline(y=total_mass * GRAVITY, color="r", linestyle="--", alpha=0.5, label=f"Weight ({total_mass * GRAVITY:.0f} N)")
-    axes[1, 0].axvline(x=velocities[-1], color="orange", linestyle=":", alpha=0.5, label=f"Terminal velocity")
+    axes[1, 0].axvline(x=velocities[-1], color="orange", linestyle=":", alpha=0.5, label="Terminal velocity")
     axes[1, 0].legend()
 
     # Schematic diagram

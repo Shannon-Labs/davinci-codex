@@ -65,15 +65,17 @@ Leonardo da Vinci (1452-1519) produced over 13,000 pages of notes and drawings, 
 
 ---
 
-## 📊 Technical Results Summary
+## 📊 Simulation Results Summary
 
-| Invention | Status | Key Metrics | Safety Validation | Build Readiness |
-|-----------|--------|-------------|-------------------|-----------------|
-| **Ornithopter** | ✅ Validated | Lift: 1609N<br>Endurance: 140 min<br>Altitude: 396m | ✅ Passed | CAD Complete |
-| **Parachute** | ✅ Validated | Terminal: 6.9 m/s<br>Drag: 1245N<br>Safe landing | ✅ Passed | Prototype Ready |
-| **Self-Propelled Cart** | ✅ Prototype Ready | Range: 152m<br>Speed: 7.6 m/s avg<br>Energy: 349J | ✅ Passed | Workshop Ready |
-| **Mechanical Odometer** | ✅ Prototype Ready | Error: <17%<br>Range: 995m<br>Resolution: 13.8m | ✅ Passed | Field Testing |
-| **Aerial Screw** | 🔄 In Progress | Lift: 473N<br>Power: 81kW<br>Tip Mach: 0.098 | ⚠️ Review Needed | Scaling Required |
+**Note**: All metrics below are from computational simulations, not physical prototypes
+
+| Invention | Status | Simulated Metrics | Theoretical Safety | Development Stage |
+|-----------|--------|------------------|-------------------|------------------|
+| **Ornithopter** | ✅ Simulation Complete | Lift: 1609N (simulated)<br>Endurance: 140 min (est.)<br>Altitude: 396m (simulated) | ✅ Theory Validated | CAD Models Available |
+| **Parachute** | ✅ Simulation Complete | Terminal: 6.9 m/s (calculated)<br>Drag: 1245N (theoretical)<br>Safe landing (simulated) | ✅ Theory Validated | Design Complete |
+| **Self-Propelled Cart** | ✅ Simulation Complete | Range: 152m (simulated)<br>Speed: 7.6 m/s avg (calc.)<br>Energy: 349J (theoretical) | ✅ Theory Validated | Design Complete |
+| **Mechanical Odometer** | ✅ Simulation Complete | Error: <17% (modeled)<br>Range: 995m (calc.)<br>Resolution: 13.8m (theoretical) | ✅ Theory Validated | Design Complete |
+| **Aerial Screw** | 🔄 Analysis Ongoing | Lift: 473N (insufficient)<br>Power: 81kW (required)<br>Tip Mach: 0.098 (safe) | ⚠️ Needs Revision | Requires Scaling |
 
 ---
 
