@@ -17,3 +17,15 @@ html:
   favicon: ../images/codex_logo.png
   use_repository_button: true
   use_edit_page_button: false
+  extra_css:
+    - _static/leonardo-theme.css
+  extra_head: |
+    <meta name="description" content="Codex Digitalis — Leonardo’s mechanical visions reborn with modern physics and open simulations.">
+    <meta property="og:title" content="Codex Digitalis: da Vinci Codex">
+    <meta property="og:description" content="A Renaissance-inspired Jupyter Book blending narrative, derivations, and validated simulations.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://shannon-labs.github.io/davinci-codex/images/codex_logo.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Cormorant+Garamond:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
