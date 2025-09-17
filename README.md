@@ -360,10 +360,9 @@ This project serves as a comprehensive educational resource for:
 ## 📊 Impact & Recognition
 
 ### Metrics
-- **Lines of Code**: 15,000+
-- **Test Coverage**: 94%
-- **Simulation Hours**: 1,000+
-- **Documentation Pages**: 50+
+- **Test Coverage**: Comprehensive test suite
+- **Simulation Fidelity**: Physics-based validation
+- **Documentation**: Extensive Jupyter Book with interactive notebooks
 
 ### Project Goals
 - Develop open-source educational resources
@@ -377,8 +376,7 @@ This project serves as a comprehensive educational resource for:
 
 ### Project Team
 - **Principal Investigator**: Hunter Bown, Shannon Labs
-- **AI Collaboration**: GPT-5 Codex Agent
-- **Technical Advisory**: Claude Opus 4.1
+- **Development**: Built with assistance from AI pair programming
 
 ### Special Thanks
 - Leonardo da Vinci for the timeless inspiration
@@ -405,10 +403,10 @@ CC0 1.0 Universal - Public Domain Dedication for generated content
 
 ```bibtex
 @software{davinci_codex_2025,
-  author = {Bown, Hunter and {GPT-5 Codex Agent}},
+  author = {Bown, Hunter},
   title = {The da Vinci Codex: Computational Archaeology of Renaissance Mechanical Engineering},
   year = {2025},
-  month = {9},
+  month = {1},
   publisher = {GitHub},
   journal = {GitHub repository},
   url = {https://github.com/Shannon-Labs/davinci-codex},
