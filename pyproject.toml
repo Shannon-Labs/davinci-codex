@@ -20,12 +20,6 @@ dependencies = [
     "rich>=13.0",
 ]
 readme = "README.md"
-
-[project.optional-dependencies]
-cad = [
-    "pythonocc-core>=7.6; sys_platform == 'linux' or sys_platform == 'win32'",
-]
-readme = "README.md"
 license = { file = "LICENSE" }
 authors = [
     { name = "Hunter M. Bown", email = "hunter@shannon-labs.com" },
@@ -44,6 +38,11 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Topic :: Scientific/Engineering",
+]
+
+[project.optional-dependencies]
+cad = [
+    "pythonocc-core>=7.6; sys_platform == 'linux' or sys_platform == 'win32'",
 ]
 
 [project.scripts]
