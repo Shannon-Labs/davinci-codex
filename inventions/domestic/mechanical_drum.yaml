@@ -1,0 +1,15 @@
+folio: "CA f.837r"
+workshop_time: "6 days – requires musician"
+materials:
+  - item: "poplar frame"
+  - item: "goatskin drumhead"
+  - item: "bronze pins"
+tools_required:
+  - "frame saw"
+  - "awl"
+  - "tuning pegs"
+master_notes: |
+  Cam barrels encode rhythm; apprentices file wooden pegs following master's notation. Synchronise twin drums for call-and-response.
+variations_tried:
+  - "Single drum – limited dynamics"
+  - "Twin drum – balanced sound"

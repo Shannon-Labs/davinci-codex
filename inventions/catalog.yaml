@@ -1,0 +1,76 @@
+overview:
+  total_target: 500
+  documented: 5
+  focus_areas:
+    textile: 30
+    workshop: 40
+    hydraulic: 50
+    measurement: 25
+    agriculture: 20
+    civil: 35
+    domestic: 20
+    experimental: 10
+  notes: |
+    Catalog entries record folio provenance, material requirements, and validation status for each invention. Values list minimum target counts for the digital dissertation.
+
+inventions:
+  - slug: "bobbin_winder"
+    folio_reference: "CA f.1090r"
+    category: "textile"
+    date_estimated: "1495-1497"
+    completion_level: "detailed_with_dimensions"
+    related_sketches: ["CA f.1090v", "Madrid I f.67v"]
+    historical_precedent: "Extends Florentine silk throwing guild machinery"
+    why_overlooked: "Catalogued as workshop diagram without industrial context"
+    status:
+      simulation: "in_progress"
+      uq: "scheduled"
+      fmea: "pending"
+  - slug: "olive_oil_press"
+    folio_reference: "Madrid I f.47r"
+    category: "hydraulic"
+    date_estimated: "1493-1495"
+    completion_level: "detailed_with_dimensions"
+    related_sketches: ["Madrid I f.47v", "CA f.995r"]
+    historical_precedent: "Improves upon Tuscan screw presses"
+    why_overlooked: "Considered incremental to existing presses"
+    status:
+      simulation: "queued"
+      uq: "not_started"
+      fmea: "not_started"
+  - slug: "hygrometer"
+    folio_reference: "CA f.675r"
+    category: "measurement"
+    date_estimated: "1490-1492"
+    completion_level: "rough_sketch"
+    related_sketches: ["CA f.676v"]
+    historical_precedent: "Early humidity sensing prior to Santorio"
+    why_overlooked: "Filed among meteorological curiosities"
+    status:
+      simulation: "research"
+      uq: "not_started"
+      fmea: "not_applicable"
+  - slug: "mechanical_drum"
+    folio_reference: "CA f.837r"
+    category: "domestic"
+    date_estimated: "1494-1496"
+    completion_level: "concept_only"
+    related_sketches: ["CA f.837v"]
+    historical_precedent: "Programmable percussion for court entertainment"
+    why_overlooked: "Dismissed as musical novelty"
+    status:
+      simulation: "queued"
+      uq: "not_started"
+      fmea: "queued"
+  - slug: "spotlight_parabolic_mirror"
+    folio_reference: "CA f.87r"
+    category: "experimental"
+    date_estimated: "1492-1494"
+    completion_level: "rough_sketch"
+    related_sketches: ["CA f.87v"]
+    historical_precedent: "Precedes 17th-century stage lighting"
+    why_overlooked: "Requires precise polishing techniques"
+    status:
+      simulation: "queued"
+      uq: "not_started"
+      fmea: "risk_review"

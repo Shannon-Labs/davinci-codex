@@ -1,0 +1,19 @@
+folio: "CA f.1090r"
+workshop_time: "3 days with apprentice"
+materials:
+  - item: "seasoned walnut"
+    quantity: "2 braccia"
+  - item: "brass pins"
+    source: "wire-drawer"
+  - item: "leather cord"
+    treatment: "waxed"
+tools_required:
+  - "bow lathe"
+  - "mortise chisels"
+  - "dividers"
+master_notes: |
+  The cam profile governs traverse speed; a compound cam avoids thread bunching over long runs.
+variations_tried:
+  - "Heart cam – abrupt reversal"
+  - "Spiral cam – smooth but complex"
+  - "Compound cam – adopted solution"

@@ -1,0 +1,16 @@
+folio: "CA f.87r"
+workshop_time: "7 days – mirror polishing"
+materials:
+  - item: "polished bronze"
+    quantity: "mirror"
+  - item: "iron adjusters"
+  - item: "walnut frame"
+tools_required:
+  - "pitch lap"
+  - "abrasive slurry"
+  - "alignment rig"
+master_notes: |
+  Mirror curvature must focus candle flame at desired distance. Document polish grit sequence and reflectivity checks.
+variations_tried:
+  - "Spherical profile – diffuse"
+  - "Parabolic profile – focused"

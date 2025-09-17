@@ -1,0 +1,19 @@
+folio: "CA f.24r"
+workshop_time: "5 days with two apprentices"
+materials:
+  - item: "wrought iron plate"
+    quantity: "1"
+  - item: "hardened chisels"
+    quantity: "6"
+  - item: "tempered steel springs"
+    quantity: "2"
+tools_required:
+  - "water wheel"
+  - "stone anvil"
+  - "tempering furnace"
+master_notes: |
+  Even tooth spacing requires indexing ratchet to engage at uniform increments. Document chisel wear per batch.
+variations_tried:
+  - "Manual indexing – inconsistent"
+  - "Cam-driven hammer – excessive rebound"
+  - "Weighted drop hammer – controlled impact"

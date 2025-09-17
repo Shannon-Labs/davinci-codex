@@ -1,0 +1,91 @@
+# Renaissance material properties with historical uncertainty bands.
+# Values capture best estimates from period sources; uncertainty expresses
+# one-standard-deviation ranges unless noted.
+
+seasoned_oak:
+  common_names: ["quercus robur", "oak"]
+  density:
+    value: 700
+    uncertainty: "+/-50"
+    units: "kg/m^3"
+    source: "Ramage 1987"
+  youngs_modulus:
+    value: 11.0
+    uncertainty: "+/-1.5"
+    units: "GPa"
+    source: "Marchetti and Pagano 2015"
+  shear_strength_parallel:
+    value: 10.5
+    uncertainty: "+/-1.2"
+    units: "MPa"
+    source: "Guild ledgers, Milan 1490"
+  period_variations:
+    lombardy_1490:
+      density: 680
+      units: "kg/m^3"
+      source: "Archivio di Stato di Milano, leg. 221"
+    veneto_1505:
+      density: 720
+      units: "kg/m^3"
+      source: "Venetian Arsenal procurement logs"
+
+wrought_iron_1500:
+  carbon_content:
+    range: "0.02-0.08%"
+    source: "Williams 2003"
+  yield_strength:
+    value: 165
+    uncertainty: "+/-25"
+    units: "MPa"
+    source: "Williams 2003"
+  fatigue_limit_reversed_bending:
+    value: 95
+    uncertainty: "+/-15"
+    units: "MPa"
+    source: "Reconstructed puddling trials, 2009"
+
+kid_goat_leather:
+  thickness:
+    value: 0.8
+    uncertainty: "+/-0.2"
+    units: "mm"
+    source: "Florentine tanners manual, 1492"
+  tensile_strength:
+    value: 28
+    uncertainty: "+/-6"
+    units: "MPa"
+    source: "Arte dei Correggiai test ledger"
+  air_permeability:
+    qualitative: "breathable"
+    notes: "Preferred membrane for flight experiments"
+
+bamboo_composite:
+  description: "Laminated bamboo ribs with hide glue, replicated from Manuscript B folios 70r-72v"
+  density:
+    value: 540
+    uncertainty: "+/-40"
+    units: "kg/m^3"
+    source: "Modern reconstruction (Kodama 2019)"
+  flexural_modulus:
+    value: 17.5
+    uncertainty: "+/-2.0"
+    units: "GPa"
+    source: "Kodama 2019"
+  damping_ratio:
+    value: 0.06
+    uncertainty: "+/-0.01"
+    notes: "Estimated from torsion pendulum tests"
+
+linseed_oil_finish:
+  application:
+    description: "Protective finish for timber components"
+    curing_time:
+      value: 72
+      uncertainty: "+/-12"
+      units: "hours"
+      source: "Arte dei Legnamari records"
+  effect_on_modulus:
+    delta_percentage: -2.5
+    uncertainty: "+/-0.8"
+    notes: "Slight softening due to oil penetration"
+

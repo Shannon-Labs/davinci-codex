@@ -1,0 +1,40 @@
+folio_id: "CA f.1090r"
+canonical_name: "Automatic bobbin winder"
+category: "textile"
+archive_source:
+  repository: "Biblioteca Ambrosiana"
+  collection: "Codex Atlanticus"
+  image_id: "CA_1090r_dpi600"
+  retrieval_date: "2024-11-20"
+transcription:
+  method: "mirror OCR + human verification"
+  language: "Italian (vernacular)"
+  confidence: 0.87
+  notes: "Terms 'torcitoio' and 'ordito' confirmed by textile historian review."
+related_folios:
+  - "CA f.1090v"
+  - "Madrid I f.67v"
+  - "CA f.1091r"
+mechanical_primitives:
+  - "worm_gear"
+  - "heart_cam"
+  - "spindle"
+key_dimensions:
+  braccio_scale: 0.583
+  recovered_measurements:
+    cam_radius_mm: {value: 48, uncertainty: "+/-6"}
+    spindle_pitch_mm: {value: 32, uncertainty: "+/-4"}
+    frame_width_mm: {value: 410, uncertainty: "+/-15"}
+materials:
+  - material: "seasoned_oak"
+    usage: "frame"
+  - material: "wrought_iron_1500"
+    usage: "gear teeth reinforcement"
+interpretive_notes: |
+  Cam annotations indicate variable lift profile; Leonardo marked alternative cam lobes in faint ink. Drafting marks suggest a traverse mechanism guiding thread layering to prevent bunching.
+validation_status:
+  uq_samples: 10000
+  fmea: "scheduled"
+  v_and_v:
+    analytical_baseline: "gear ratio cross-checked with simple worm gear theory"
+    fea_study: "pending"

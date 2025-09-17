@@ -1,0 +1,32 @@
+folio_id: "Madrid I f.47r"
+canonical_name: "Olive oil press improvements"
+category: "hydraulic"
+archive_source:
+  repository: "Biblioteca Nacional de España"
+  collection: "Codex Madrid I"
+  image_id: "MADRID_I_047r_4k"
+  retrieval_date: "2024-11-18"
+transcription:
+  method: "manual diplomatic transcription"
+  language: "Italian with Latin technical glosses"
+  confidence: 0.92
+related_folios:
+  - "Madrid I f.47v"
+  - "CA f.995r"
+mechanical_primitives:
+  - "screw_jack"
+  - "lever_press"
+  - "ratchet"
+materials:
+  - material: "seasoned_oak"
+    usage: "press frame"
+  - material: "wrought_iron_1500"
+    usage: "screw"
+  - material: "linseed_oil_finish"
+    usage: "preservation"
+key_findings: |
+  Leonardo annotates pressure amplification factors and suggests replaceable press plates. The folio contains references to Lombard olive yields, enabling economic valuation studies.
+validation_status:
+  transcription_review: "completed"
+  mechanical_analysis: "in_progress"
+  economic_analysis: "queued"

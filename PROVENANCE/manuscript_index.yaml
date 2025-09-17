@@ -1,0 +1,45 @@
+codices:
+  codex_atlanticus:
+    archive: "Biblioteca Ambrosiana"
+    location: "Milan, Italy"
+    folio_count: 1119
+    reference_catalog: "Polidori 1894"
+    digital_access: "https://www.leonardodigitale.com/codex-atlanticus"
+    notes: |
+      Primary source for mechanical devices, hydraulic systems, and textile automation.
+  madrid_codices:
+    archive: "Biblioteca Nacional de España"
+    location: "Madrid, Spain"
+    folio_count: 384
+    reference_catalog: "Steinitz 1974"
+    notes: |
+      Madrid I focuses on mechanics and geometry; Madrid II emphasises machine tool design.
+  codex_leicester:
+    archive: "Private collection (Bill Gates)"
+    location: "Seattle, USA"
+    folio_count: 72
+    notes: "Water and astronomy studies informing hydraulic designs."
+  codex_arundel:
+    archive: "British Library"
+    location: "London, UK"
+    folio_count: 283
+    notes: "Mathematical and architectural treatises referencing surveying instruments."
+  paris_manuscripts:
+    archive: "Institut de France"
+    location: "Paris, France"
+    folio_count: 964
+    notes: "Mixed notebooks with military, hydraulic, and anatomical studies."
+  windsor_collection:
+    archive: "Royal Collection"
+    location: "Windsor, UK"
+    folio_count: 600
+    notes: "Anatomical and technical drawings, including musical mechanisms."
+
+index_status:
+  last_updated: "2024-11-24"
+  reviewed_by: "Digital Dissertation Planning Team"
+  completeness: "partial"
+  next_actions:
+    - "Integrate folio range metadata for Codex Atlanticus textiles (f.1090r-f.1110v)."
+    - "Add document identifiers (shelf marks, catalogue numbers)."
+    - "Attach derivative image license summaries."

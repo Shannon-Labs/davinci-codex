@@ -138,18 +138,29 @@ davinci-codex/
 │
 ├── 📚 Documentation
 │   ├── ABSTRACT.md                 # Academic abstract
-│   ├── REFERENCES.md               # Complete bibliography
-│   ├── METHODOLOGY.md              # Research methodology
+│   ├── METHODOLOGY.md              # Computational completion framework
+│   ├── ETHICS.md                   # Non-weaponisation charter
+│   ├── references.bib              # BibTeX references for dissertation citations
 │   └── docs/                       # Detailed documentation
 │       ├── index.md               # Documentation hub
 │       ├── images/                # Visualizations
 │       └── {invention}.md         # Individual analyses
+│
+├── 🧾 Provenance & Materials
+│   ├── PROVENANCE/                 # Folio-level source records
+│   │   ├── codex_atlanticus/
+│   │   ├── madrid_codices/
+│   │   └── manuscript_index.yaml
+│   └── materials/                  # Renaissance material properties with uncertainty
+│       └── renaissance_db.yaml
 │
 ├── 🔬 Source Code
 │   └── src/davinci_codex/
 │       ├── cli.py                 # CLI interface
 │       ├── registry.py            # Dynamic discovery
 │       ├── pipelines.py           # Execution framework
+│       ├── uncertainty.py         # Historical uncertainty quantification
+│       ├── safety/                # FMEA and safety tooling
 │       └── inventions/            # Invention modules
 │           ├── ornithopter.py
 │           ├── parachute.py

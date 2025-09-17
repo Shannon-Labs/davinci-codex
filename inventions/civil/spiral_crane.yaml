@@ -1,0 +1,15 @@
+folio: "CA f.132r"
+workshop_time: "8 days"
+materials:
+  - item: "oak beams"
+  - item: "hemp rope"
+  - item: "iron collars"
+tools_required:
+  - "block and tackle"
+  - "adze"
+  - "ropewalk"
+master_notes: |
+  Spiral drum lifts load smoothly; ensure apprentices inspect rope splice daily and document wear.
+variations_tried:
+  - "Single drum – uneven"
+  - "Dual drum – balanced"

@@ -1,0 +1,15 @@
+folio: "Madrid I f.65v"
+workshop_time: "5 days"
+materials:
+  - item: "spruce beam"
+  - item: "iron hopper"
+  - item: "linen chute"
+tools_required:
+  - "plow plane"
+  - "forge"
+  - "hand drill"
+master_notes: |
+  Even seed spacing requires oscillating gate; control via counter-rotating cams linked to wheel revolution.
+variations_tried:
+  - "Single gate – jams"
+  - "Dual gate – smooth feed"

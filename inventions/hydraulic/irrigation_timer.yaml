@@ -1,0 +1,18 @@
+folio: "CA f.893r"
+workshop_time: "4 days – master oversight"
+materials:
+  - item: "seasoned oak"
+    quantity: "frame"
+  - item: "bronze bell"
+    quantity: "1"
+  - item: "clay weights"
+    quantity: "2"
+tools_required:
+  - "auger set"
+  - "lathe"
+  - "balance scale"
+master_notes: |
+  Water clock bowls must be wax sealed. Synchronise gate opening with counterweights; calibrate to seasonal flow rates.
+variations_tried:
+  - "Single bowl – drifted after two hours"
+  - "Dual floats – stable"

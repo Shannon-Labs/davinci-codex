@@ -1,0 +1,16 @@
+folio: "CA f.675r"
+workshop_time: "2 days"
+materials:
+  - item: "horsehair bundle"
+    preparation: "degreased"
+  - item: "walnut backboard"
+  - item: "brass pointer"
+tools_required:
+  - "dividers"
+  - "fine saw"
+  - "engraving burin"
+master_notes: |
+  Horsehair lengthens with humidity; calibrate scale using ambient references morning/evening.
+variations_tried:
+  - "Unweighted hair – erratic"
+  - "Counterweight spool – steady response"
