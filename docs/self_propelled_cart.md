@@ -31,6 +31,17 @@ make demo  # now includes the self-propelled cart scenario
 - Performance scales linearly with spring rate and wind-up angle—modern clock springs can double range without major redesign.
 - Escapement cams can be simplified to a fixed straight-line guide for early prototypes.
 
+## Material Comparison
+
+| Metric | Historical (oak/rawhide) | Modern (composite/bronze) | Improvement |
+| --- | --- | --- | --- |
+| Range (m) | 45 | 152 | 238% farther |
+| Peak speed (m/s) | 4.2 | 10.7 | 155% faster |
+| Payload capacity (kg) | 18 | 32 | 78% increase |
+
+Source data: `data/materials/material_comparisons.csv`.
+
+
 ## Next Steps
 1. Fabricate using 12 mm plywood or 3D-printed composite for classroom pilots.
 2. Add microcontroller logging wheel rotations for empirical validation vs. simulation.

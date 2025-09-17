@@ -7,3 +7,7 @@ Historical simulation utilities mapping da Vinci designs to Renaissance material
 - `reports/` — structured summaries explaining failure points, earliest viable eras, and upgrade paths.
 
 TVA outputs feed both Synthesis (modern redesign targets) and IP Nexus (historical context in defensive publications).
+
+## Newly Seeded Validation Data
+- `ornithopter/data/fsi_modal_response.(csv|yaml)` — Coupled aeroelastic lift and bending traces comparing historical vs. modern wings.
+- `parachute/data/drop_profiles.(csv|yaml)` — Transient descent records for linen vs. ripstop pyramid canopies.

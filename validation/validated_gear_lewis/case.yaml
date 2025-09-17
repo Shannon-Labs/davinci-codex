@@ -1,0 +1,25 @@
+slug: validated_gear
+category: structural
+solver:
+  name: FEniCS
+  version: "2019.1.0"
+  url: https://fenicsproject.org
+benchmark_reference:
+  title: "AGMA 908-B89: Geometry Factors for Determining the Pitting Resistance and Bending Strength of Spur, Helical and Herringbone Gear Teeth"
+  url: https://www.agma.org/
+input_geometry:
+  description: "20-tooth spur gear, module 3 mm, face width 30 mm"
+  lewis_form_factor: 0.337
+loads:
+  torque_Nm: [120, 240]
+  boundary_conditions: "Quarter-model symmetry, rim fixed"
+metrics:
+  - name: max_bending_stress_MPa
+    tolerance_percent: 2.0
+    target: 185.0
+  - name: safety_factor
+    method: "Allowable bending stress 280 MPa"
+validation_assets:
+  convergence_curves: convergence.csv
+  report: report.md
+  scripts: ../../sims/gear/validated_lewis_fea.py

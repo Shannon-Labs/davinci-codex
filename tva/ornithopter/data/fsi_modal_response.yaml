@@ -1,0 +1,21 @@
+slug: ornithopter_fsi_modal_response
+description: |
+  Coupled fluid-structure simulation outputs comparing historical fir/rawhide wings
+  with modern carbon/Kevlar spars under identical flapping kinematics. Enables
+  direct lift and bending comparisons for TVA signoff.
+solver:
+  fluid: vortex_lattice + unsteady_viscous_correction
+  structure: nonlinear_beam (FEniCSx)
+  coupling: loose_two_way
+inputs:
+  reduced_frequency: 0.084
+  flapping_frequency_hz: 2.4
+  span_m: 7.5
+  chord_m: 0.9
+outputs:
+  csv: fsi_modal_response.csv
+  signals:
+    - historical_lift_N
+    - modern_lift_N
+    - historical_root_moment_Nm
+    - modern_root_moment_Nm

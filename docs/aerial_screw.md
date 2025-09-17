@@ -32,6 +32,17 @@ make demo  # runs aerial screw simulation + evaluation snapshot
 - Torque exceeds 1.6 kN·m at 100 RPM, demanding rigid counter-rotation or reaction-wheel compensation.
 - Composite blade must withstand centrifugal stress >40 MPa; suggested layup factors in 2× safety margin.
 
+## Material Comparison
+
+| Metric | Historical (hemp/wood) | Modern (composite/aluminum) | Improvement |
+| --- | --- | --- | --- |
+| Lift (N) | 125 | 473 | 278% higher but still sub-hover |
+| Rotor mass (kg) | 68 | 36 | 47% lighter |
+| Power required (kW) | 81 | 56 | 31% reduction |
+
+Source data: `data/materials/material_comparisons.csv`.
+
+
 ## Next Steps
 1. Validate slip factor via wind-tunnel or large fan instrumentation at 1:3 scale.
 2. Perform finite-element analysis on mast-blade junction to confirm torsional stiffness.

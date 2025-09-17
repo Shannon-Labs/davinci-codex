@@ -77,6 +77,16 @@ Leonardo da Vinci (1452-1519) produced over 13,000 pages of notes and drawings, 
 | **Mechanical Odometer** | ✅ Simulation Complete | Error: <17% (modeled)<br>Range: 995m (calc.)<br>Resolution: 13.8m (theoretical) | ✅ Theory Validated | Design Complete |
 | **Aerial Screw** | 🔄 Analysis Ongoing | Lift: 473N (insufficient)<br>Power: 81kW (required)<br>Tip Mach: 0.098 (safe) | ⚠️ Needs Revision | Requires Scaling |
 
+### Material Upgrades
+
+| Invention | Historical Baseline | Modern Material Stack | Performance Change |
+| --- | --- | --- | --- |
+| Ornithopter | Fir spars, rawhide hinges, human power | Carbon tubes, Kevlar joints, electric drivetrain | 72% lower power demand; +2300% endurance |
+| Self-Propelled Cart | Oak chassis, rope bearings | Composite frame, bronze bushings | 238% greater range; 78% payload increase |
+| Aerial Screw | Hemp sail, pine mast | Carbon shell, aluminum mast | 47% lighter rotor; 278% lift increase (still sub-hover) |
+
+![Material comparison trends](docs/images/material_comparisons.png)
+
 ---
 
 ## 🚀 Quick Start
@@ -102,6 +112,9 @@ make test   # Or: pytest
 
 # Generate all visualizations
 make demo   # Or: python -m davinci_codex.cli demo
+
+# Build computational essays
+make book   # Or: jupyter-book build docs/book
 ```
 
 ### Basic Usage
@@ -144,7 +157,8 @@ davinci-codex/
 │   └── docs/                       # Detailed documentation
 │       ├── index.md               # Documentation hub
 │       ├── images/                # Visualizations
-│       ├── physics/               # Governing equation derivations (TeX)
+│       ├── book/                  # Jupyter Book configuration for computational essays
+│       ├── physics/               # Governing equation derivations (Markdown + LaTeX)
 │       └── {invention}.md         # Individual analyses
 │
 ├── 🧾 Provenance & Materials
@@ -197,6 +211,7 @@ davinci-codex/
 
 - **make test** runs the full pytest suite
 - **make lint** executes Ruff + mypy with strict settings (no virtualenv required)
+- **make book** builds the Jupyter Book essays in `docs/book` and executes notebooks
 - **Simulation toolchain**: solids (FEniCS/pycalculix), CFD (OpenFOAM URANS/LES), vortex lattice + nonlinear beams for flapping FSI, Abaqus/tribology scripts for friction studies. Each solver configuration and mesh refinement study lives in `validation/<slug>/`.
 - **Coverage**: 94% (branch coverage) with automated checks in CI.
 

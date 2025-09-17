@@ -12,3 +12,6 @@ trimesh
 meshio
 pillow
 types-PyYAML
+
+jupyter-book
+nbformat

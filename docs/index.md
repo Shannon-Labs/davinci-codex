@@ -10,7 +10,8 @@ The da Vinci Codex project reconstructs Leonardo da Vinci's civil, non-weapon in
 
 ## Repository Guide
 - `docs/<slug>.md` — Module reports with provenance, engineering math, assumptions, and experimental proposals.
-- `notebooks/` — Optional exploratory analysis in Jupyter; exported to Markdown/HTML via CI for archival.
+- `docs/book/` — Jupyter Book configuration + build output for computational essays.
+- `notebooks/` — Curated notebooks executed through the Jupyter Book build to accompany validation results.
 - `src/davinci_codex/` — Python package delivering CLI entry points and invention APIs.
 - `cad/` — Parametric CAD scripts (OpenSCAD, FreeCAD Python, etc.).
 - `sims/` — Simulation configurations, solver outputs, and logs.

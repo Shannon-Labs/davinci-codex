@@ -15,3 +15,10 @@ This directory captures benchmark evidence demonstrating that each solver and mo
 4. Archive scripts and post-processing notebooks under `sims/` so reviewers can reproduce the evidence.
 
 Maintaining a rigorous V&V trail ensures the computational archaeology work remains defensible in academic and engineering forums.
+
+## Current Benchmarks
+- `naca0012_oscillation/`: Coupled OpenFOAM–FEniCSx FSI validation of NASA TM 84245 forced oscillation data.
+- `lewis_gear_bending/`: CalculiX structural verification of the Lewis 1892 gear tooth bending experiment.
+- `rolling_friction_rig/`: Chrono tribology calibration against Bowden & Tabor rolling friction measurements.
+
+Each case directory contains `case.yaml`, a detailed `report.md`, digitised benchmark data under `benchmarks/`, and convergence plots within `convergence/`.

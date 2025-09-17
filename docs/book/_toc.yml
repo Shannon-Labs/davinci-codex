@@ -1,0 +1,11 @@
+format: jb-book
+root: intro
+chapters:
+  - file: ../notebooks/naca0012_agard.ipynb
+    title: NACA 0012 Oscillation
+  - file: ../notebooks/gear_bending_validation.ipynb
+    title: Lewis Gear Bending
+  - file: ../notebooks/rolling_friction_validation.ipynb
+    title: Rolling Friction Rig
+appendices:
+  - file: ../physics/index.md

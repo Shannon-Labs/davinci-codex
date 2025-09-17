@@ -1,0 +1,6 @@
+time_s,historical_lift_N,modern_lift_N,historical_root_moment_Nm,modern_root_moment_Nm
+0.00,1420,2100,920,680
+0.02,1500,2200,945,690
+0.04,1560,2310,962,701
+0.06,1585,2385,970,705
+0.08,1570,2360,965,702

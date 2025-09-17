@@ -1,0 +1,19 @@
+title: "da Vinci Codex Computational Essays"
+author: "Shannon Labs & Codex"
+logo: ../images/codex_logo.png
+execute:
+  execute_notebooks: auto
+  timeout: 120
+latex:
+  latex_documents:
+    targetname: codex-essays.tex
+options:
+  numbered: true
+repository:
+  url: https://github.com/Shannon-Labs/davinci-codex
+  path_to_book: docs/book
+  branch: main
+html:
+  favicon: ../images/codex_logo.png
+  use_repository_button: true
+  use_edit_page_button: false

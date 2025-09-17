@@ -63,6 +63,19 @@ The Python simulation models descent from 1000 meters with atmospheric variation
 3. **Turbulence effects:** ±5% variation in descent rate
 4. **Landing impact:** Equivalent to jumping from 2.4 meters
 
+## Validation Dataset
+
+The TVA drop test dataset `tva/parachute/data/drop_profiles.csv` captures side-by-side velocity and acceleration histories for linen canvas and ripstop nylon canopies. Key values:
+
+| Time (s) | Linen Velocity (m/s) | Ripstop Velocity (m/s) | Linen Accel (m/s²) | Ripstop Accel (m/s²) |
+| --- | --- | --- | --- | --- |
+| 2.0 | 9.8 | 7.8 | 1.10 | 0.74 |
+| 3.0 | 10.2 | 8.0 | 0.08 | -0.05 |
+| 4.0 | 10.2 | 7.9 | 0.00 | -0.02 |
+
+Modern fabric trims peak acceleration by 32% and reduces terminal velocity by 22%.
+
+
 ## Safety Assessment
 
 ### Validated Safety Features

@@ -1,0 +1,21 @@
+slug: self_propelled_cart
+category: tribology
+experiment:
+  name: "Roller friction test"
+  source: "Archivio di Stato di Milano, Arte dei Fabbri tribology ledger"
+  temperature_C: 20
+  surface_pair: "Walnut wheel on limestone"
+solver:
+  name: "Python rolling resistance model"
+  script: ../../sims/cart/rolling_loss.py
+metrics:
+  - name: rolling_resistance_coefficient
+    reference: 0.038
+    tolerance_percent: 5.0
+  - name: energy_loss_per_cycle_J
+    reference: 28.5
+    tolerance_percent: 5.0
+validation_assets:
+  convergence_curves: load_sweep.csv
+  report: report.md
+  data_source: ../../data/tribology/cart_friction_curve.csv

@@ -1,0 +1,5 @@
+invention,metric,historical_value,modern_value,improvement_pct
+ornithopter,peak_lift_N,1580,2420,53.16
+ornithopter,endurance_min,12,31,158.33
+self_propelled_cart,range_m,152,340,123.68
+aerial_screw,lift_margin_N,-870,310,-135.63

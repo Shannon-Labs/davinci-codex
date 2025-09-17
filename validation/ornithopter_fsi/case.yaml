@@ -1,0 +1,24 @@
+slug: ornithopter
+category: aeroelastic
+solver:
+  aerodynamic: "Unsteady Vortex Lattice (AVL 3.37)"
+  structural: "Nonlinear Euler-Bernoulli beam (custom Python)"
+  coupling: "Loose coupling, 200 Hz"
+benchmark_reference:
+  title: "Theodorsen-based flapping wing validation"
+  doi: 10.2514/2.6000
+forward_speed_ms: 7.5
+flap_frequency_hz: 2.4
+metrics:
+  - name: mean_lift_N
+    reference: 1580.0
+    tolerance_percent: 3.0
+  - name: peak_twist_deg
+    reference: 12.5
+    tolerance_percent: 5.0
+validation_assets:
+  convergence_curves: timestep_convergence.csv
+  report: report.md
+  scripts:
+    - ../../sims/ornithopter/fsi_coupling.py
+    - ../../notebooks/ornithopter_fsi_validation.ipynb

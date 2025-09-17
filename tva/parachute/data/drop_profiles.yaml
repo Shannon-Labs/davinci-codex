@@ -1,0 +1,18 @@
+slug: parachute_drop_profiles
+description: |
+  Transient descent data comparing linen canvas and ripstop nylon pyramid parachutes
+  in a 120 kg all-up mass drop test. Includes velocity and acceleration time histories
+  for TVA validation and occupant load assessment.
+setup:
+  mass_kg: 120
+  canopy_edge_m: 6.7
+  release_altitude_m: 300
+  air_density: 1.18
+  solver: openfoam_piso + structural modal coupling
+outputs:
+  csv: drop_profiles.csv
+  signals:
+    - historical_velocity_ms
+    - modern_velocity_ms
+    - historical_accel_ms2
+    - modern_accel_ms2

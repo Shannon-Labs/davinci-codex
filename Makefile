@@ -20,3 +20,6 @@ demo:
 
 build:
 	@if [ -d "$(VENV)/bin" ]; then . "$(VENV)/bin/activate"; fi; python -m davinci_codex.cli build --all
+
+book:
+	@if [ -d "$(VENV)/bin" ]; then . "$(VENV)/bin/activate"; fi; jupyter-book build docs/book

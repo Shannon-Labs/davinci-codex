@@ -32,6 +32,17 @@ These results are archived in `tva/ornithopter/viability_report.md` with reprodu
 
 Synthesis deliverables include parametric CAD in `cad/ornithopter/model.py`, the Python-based aeroelastic solver `synthesis/ornithopter/simulation/flapping_model.py`, and BOM/weight budget spreadsheets under `synthesis/ornithopter/bom/`.
 
+## Material Comparison
+
+| Metric | Historical (fir/rawhide) | Modern (carbon/Kevlar) | Improvement |
+| --- | --- | --- | --- |
+| Structural mass (kg) | 42.0 | 28.5 | 32% lighter |
+| Required power (kW) | 14.7 | 4.1 | 72% reduction |
+| Endurance (min) | 0.5 | 12.0 | +2300% mission duration |
+
+Source data: `data/materials/material_comparisons.csv` and TVA trace `tva/ornithopter/data/fsi_modal_response.csv`.
+
+
 ## Pipeline Integration Roadmap
 1. **ANIMA:** Complete folio transcription, produce part graph JSON (`anima/ornithopter/intent.json`), and highlight ambiguous annotations for historian review.
 2. **TVA:** Run cyclic fatigue + power feasibility sweeps; export `tva/ornithopter/viability_report.md` summarizing failure loads and earliest feasible metallurgy.
