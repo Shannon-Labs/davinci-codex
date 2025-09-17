@@ -4,7 +4,19 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Callable, Dict, Iterable, List, Mapping, Optional, Protocol, Sequence, cast
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    Iterable,
+    List,
+    Mapping,
+    Optional,
+    Protocol,
+    Sequence,
+    Union,
+    cast,
+)
 
 import numpy as np
 import yaml
@@ -22,7 +34,7 @@ Sampler = Callable[[ProblemSpec, int], np.ndarray]
 Analyzer = Callable[[ProblemSpec, np.ndarray], Dict[str, np.ndarray]]
 
 
-def load_materials(materials_path: Optional[Path] | None = None) -> Dict[str, Dict[str, Any]]:
+def load_materials(materials_path: Optional[Path] = None) -> Dict[str, Dict[str, Any]]:
     candidate_paths: Iterable[Path]
     if materials_path:
         candidate_paths = [Path(materials_path)]
@@ -60,7 +72,7 @@ class RenaissanceUQ:
 
     def __init__(
         self,
-        materials_path: Optional[Path] | None = None,
+        materials_path: Optional[Path] = None,
         sampler: Optional[Sampler] = None,
         analyzer: Optional[Analyzer] = None,
     ) -> None:
@@ -131,7 +143,7 @@ class RenaissanceUQ:
     def _heuristic_bounds(self, value: float, spread: float) -> List[float]:
         return [float(value - spread), float(value + spread)]
 
-    def _parse_uncertainty(self, uncertainty: float | str | None, units: Optional[str]) -> float:
+    def _parse_uncertainty(self, uncertainty: Union[float, str, None], units: Optional[str]) -> float:
         if uncertainty is None:
             return 0.0
         if isinstance(uncertainty, (int, float)):

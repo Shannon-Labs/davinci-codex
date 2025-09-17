@@ -1,4 +1,5 @@
 from pathlib import Path
+from typing import Optional
 
 from davinci_codex.inventions import mechanical_odometer
 
@@ -37,7 +38,7 @@ def test_simulate_creates_artifacts(monkeypatch, tmp_path):
     )
     monkeypatch.setattr(mechanical_odometer, "PARAM_FILE", param_file)
 
-    def fake_dir(slug: str, subdir: str | None = None):
+    def fake_dir(slug: str, subdir: Optional[str] = None):
         target = tmp_path / slug
         if subdir:
             target = target / subdir
@@ -52,7 +53,7 @@ def test_simulate_creates_artifacts(monkeypatch, tmp_path):
 
 
 def test_build_exports_mesh(monkeypatch, tmp_path):
-    def fake_dir(slug: str, subdir: str | None = None):
+    def fake_dir(slug: str, subdir: Optional[str] = None):
         target = tmp_path / slug
         if subdir:
             target = target / subdir

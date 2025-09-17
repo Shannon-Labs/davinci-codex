@@ -1,4 +1,5 @@
 from pathlib import Path
+from typing import Optional
 
 from davinci_codex.inventions import aerial_screw
 
@@ -13,7 +14,7 @@ def test_plan_contains_key_metrics():
 def test_simulation_outputs_artifacts(tmp_path, monkeypatch):
     target_dir = tmp_path / "artifacts"
 
-    def fake_ensure(slug: str, subdir: str | None = None):
+    def fake_ensure(slug: str, subdir: Optional[str] = None):
         path = target_dir / slug
         if subdir:
             path = path / subdir
@@ -32,7 +33,7 @@ def test_simulation_outputs_artifacts(tmp_path, monkeypatch):
 def test_build_exports_mesh(tmp_path, monkeypatch):
     target_dir = tmp_path / "artifacts"
 
-    def fake_ensure(slug: str, subdir: str | None = None):
+    def fake_ensure(slug: str, subdir: Optional[str] = None):
         path = target_dir / slug
         if subdir:
             path = path / subdir

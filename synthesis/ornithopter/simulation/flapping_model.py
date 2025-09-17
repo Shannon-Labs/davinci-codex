@@ -5,6 +5,7 @@ from __future__ import annotations
 import math
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Optional
 
 import numpy as np
 import yaml
@@ -40,8 +41,12 @@ class FlappingState:
     endurance_min: float
 
 
-def simulate(duration_s: float = 30.0, dt: float = 0.01, seed: int | None = None,
-             params: AeroelasticParameters | None = None) -> FlappingState:
+def simulate(
+    duration_s: float = 30.0,
+    dt: float = 0.01,
+    seed: Optional[int] = None,
+    params: Optional[AeroelasticParameters] = None,
+) -> FlappingState:
     """Simulate coupled stroke/twist dynamics with quasi-steady aerodynamics."""
     rng = np.random.default_rng(seed)
     p = params or AeroelasticParameters()

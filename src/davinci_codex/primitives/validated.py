@@ -72,11 +72,11 @@ class ValidatedGear:
         path_str = None if materials_path is None else str(Path(materials_path).resolve())
         self._materials_catalog = _cached_materials(path_str)
 
-        self.bending_stress: float | None = None
-        self.converged_stress: float | None = None
-        self.discretization_error: float | None = None
-        self.allowable_bending_stress: float | None = self._fetch_allowable_bending_stress()
-        self.safety_factor: float | None = None
+        self.bending_stress: Optional[float] = None
+        self.converged_stress: Optional[float] = None
+        self.discretization_error: Optional[float] = None
+        self.allowable_bending_stress: Optional[float] = self._fetch_allowable_bending_stress()
+        self.safety_factor: Optional[float] = None
 
         self.validate_involute_profile()
         self.mesh_convergence_study()
