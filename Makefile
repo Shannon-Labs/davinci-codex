@@ -10,13 +10,13 @@ setup:
 	$(PYTHON_BIN) -m pip install -e .
 
 lint:
-	$(ACTIVATE) && ruff check . && mypy src
+	@if [ -d "$(VENV)/bin" ]; then . "$(VENV)/bin/activate"; fi; ruff check . && mypy src
 
 test:
-	$(ACTIVATE) && pytest -q
+	@if [ -d "$(VENV)/bin" ]; then . "$(VENV)/bin/activate"; fi; pytest -q
 
 demo:
-	$(ACTIVATE) && python -m davinci_codex.cli demo
+	@if [ -d "$(VENV)/bin" ]; then . "$(VENV)/bin/activate"; fi; python -m davinci_codex.cli demo
 
 build:
-	$(ACTIVATE) && python -m davinci_codex.cli build --all
+	@if [ -d "$(VENV)/bin" ]; then . "$(VENV)/bin/activate"; fi; python -m davinci_codex.cli build --all
