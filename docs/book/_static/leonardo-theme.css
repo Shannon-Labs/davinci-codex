@@ -1,6 +1,6 @@
 /*
- Leonardo’s Digital Codex – Theme CSS
- A Renaissance-inspired skin for Jupyter Book
+ Leonardo's Digital Codex – Theme CSS
+ A Renaissance-inspired skin with chiaroscuro depth
 */
 
 /* Fonts */
@@ -10,6 +10,8 @@
   --leonardo-blue:  #4682B4;  /* Steel Blue */
   --leonardo-parch: #FDF5E6;  /* Old Lace */
   --leonardo-ink:   #2F4F4F;  /* Dark Slate Gray */
+  --leonardo-shadow: #1a1a1a; /* Deep shadow */
+  --leonardo-light: #FFFAF0;  /* Floral white */
 
   --text-color: var(--leonardo-ink);
   --accent-color: var(--leonardo-gold);
@@ -17,123 +19,344 @@
 
 html, body {
   color: var(--text-color);
-  background: linear-gradient(45deg, #FDF5E6, #F5DEB3);
+  background:
+    radial-gradient(ellipse at top left, rgba(253, 245, 230, 0.9), transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(139, 69, 19, 0.1), transparent 50%),
+    linear-gradient(135deg, #FDF5E6, #F5DEB3 50%, #F0E68C);
   background-attachment: fixed;
 }
 
-/* Subtle parchment noise overlay */
+/* Subtle parchment noise overlay with vignette */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><defs><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="1" stitchTiles="stitch"/></filter></defs><rect width="100%" height="100%" filter="url(%23n)" opacity="0.035"/></svg>');
+  background:
+    radial-gradient(circle at center, transparent 40%, rgba(26, 26, 26, 0.15) 100%),
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><defs><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="1" stitchTiles="stitch"/></filter></defs><rect width="100%" height="100%" filter="url(%23n)" opacity="0.045"/></svg>');
+  mix-blend-mode: multiply;
 }
 
-/* Typography */
+/* Chiaroscuro depth overlay for dramatic lighting */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(165deg,
+      transparent 30%,
+      rgba(26, 26, 26, 0.02) 40%,
+      rgba(26, 26, 26, 0.05) 60%,
+      rgba(26, 26, 26, 0.08) 100%);
+  mix-blend-mode: multiply;
+}
+
+/* Typography with depth */
 body, .bd-content p, .bd-content li {
   font-family: 'EB Garamond', 'Crimson Text', Georgia, serif;
   font-size: 18px;
-  line-height: 1.6;
+  line-height: 1.65;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 h1, h2, h3, .bd-article h1, .bd-article h2, .bd-article h3 {
   font-family: 'Cinzel', 'Cormorant Garamond', Georgia, serif;
   color: var(--leonardo-brown);
   letter-spacing: 0.02em;
+  text-shadow:
+    1px 2px 3px rgba(0, 0, 0, 0.15),
+    0 0 20px rgba(139, 69, 19, 0.1);
 }
 
-/* Drop caps for chapter starts */
+/* Enhanced drop caps with shadow play */
 .chapter-start::first-letter {
   float: left;
-  font-size: 3.6em;
-  line-height: 0.9;
+  font-size: 3.8em;
+  line-height: 0.85;
   margin: 0.05em 0.15em 0 0;
   color: var(--leonardo-gold);
   font-family: 'Cinzel', serif;
-  text-shadow: 1px 2px 3px rgba(0,0,0,0.25);
+  text-shadow:
+    2px 3px 4px rgba(0, 0, 0, 0.3),
+    0 0 30px rgba(218, 165, 32, 0.3),
+    inset -1px -1px 2px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, var(--leonardo-gold), #B8860B);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-/* Side navigation with golden rule */
+/* Side navigation with shadow depth */
 .bd-sidebar-primary {
   border-right: 3px solid var(--leonardo-gold);
-  background: rgba(139, 69, 19, 0.05);
+  background:
+    linear-gradient(90deg, rgba(139, 69, 19, 0.08), transparent 80%),
+    rgba(253, 245, 230, 0.4);
+  box-shadow:
+    inset -5px 0 15px rgba(0, 0, 0, 0.05),
+    2px 0 10px rgba(0, 0, 0, 0.03);
 }
+
 .bd-sidebar .nav a.nav-link {
   font-family: 'Cormorant Garamond', serif;
+  transition: all 0.3s ease;
 }
 
-/* Content container width approximating a golden ratio line length */
+.bd-sidebar .nav a.nav-link:hover {
+  background: linear-gradient(90deg, rgba(218, 165, 32, 0.15), transparent);
+  padding-left: 1.2rem;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Content container with golden ratio and soft shadows */
 .bd-article-container, .bd-content .bd-article-container {
-  max-width: 65rem; /* ~1040px */
+  max-width: 65rem;
+  position: relative;
 }
 
-/* Notebook cell styling with technical drawing borders */
-/* Applies to executed cells in built Jupyter Book */
+/* Main content area with subtle paper shadow */
+.bd-article {
+  background:
+    linear-gradient(180deg,
+      rgba(255, 250, 240, 0.7) 0%,
+      rgba(253, 245, 230, 0.9) 10%,
+      rgba(253, 245, 230, 0.95) 90%,
+      rgba(245, 222, 179, 0.8) 100%);
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.08),
+    0 1px 3px rgba(0, 0, 0, 0.05),
+    inset 0 -20px 40px rgba(139, 69, 19, 0.02);
+  border-radius: 3px;
+  padding: 2rem;
+  margin: 1rem 0;
+}
+
+/* Notebook cells with dimensional depth */
 div.cell, .jp-Cell, .cell {
   border: 2px solid var(--leonardo-brown);
   border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cdefs/%3E%3Crect x='1' y='1' width='58' height='58' fill='none' stroke='%238B4513' stroke-width='2'/%3E%3Cpath d='M1 12 H59 M1 48 H59 M12 1 V59 M48 1 V59' stroke='%238B4513' stroke-width='1' fill='none' opacity='0.45'/%3E%3C/svg%3E") 30 round;
-  padding: 0.75rem;
-  margin: 1.25rem 0;
-  background: rgba(253, 245, 230, 0.35);
+  padding: 1rem;
+  margin: 1.5rem 0;
+  background:
+    linear-gradient(135deg,
+      rgba(255, 250, 240, 0.6) 0%,
+      rgba(253, 245, 230, 0.5) 50%,
+      rgba(245, 222, 179, 0.3) 100%);
+  box-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(139, 69, 19, 0.1);
+  position: relative;
+  transition: all 0.3s ease;
 }
 
-/* Code blocks on parchment */
-.highlight, pre, code {
-  background: rgba(253, 245, 230, 0.55);
+div.cell:hover, .jp-Cell:hover, .cell:hover {
+  box-shadow:
+    0 5px 20px rgba(0, 0, 0, 0.15),
+    0 2px 4px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -2px 5px rgba(139, 69, 19, 0.15);
+  transform: translateY(-2px);
 }
+
+/* Code blocks with inset shadow */
+.highlight, pre, code {
+  background:
+    linear-gradient(180deg,
+      rgba(253, 245, 230, 0.7),
+      rgba(253, 245, 230, 0.5));
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.05),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.8);
+}
+
 pre {
   border-left: 4px solid var(--leonardo-gold);
-  padding-left: 0.75rem;
+  padding: 1rem;
+  box-shadow:
+    -3px 0 10px rgba(218, 165, 32, 0.2),
+    inset 2px 2px 5px rgba(0, 0, 0, 0.03);
 }
 
-/* Tables and figures */
+/* Tables and figures with Renaissance framing */
 table.docutils {
   border-color: var(--leonardo-brown);
-}
-img, figure img {
-  border: 1px solid rgba(139,69,19,0.25);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  box-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
-/* Marginalia (Leonardo-style notes) */
+img, figure img {
+  border: 2px solid rgba(139, 69, 19, 0.3);
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.15),
+    0 2px 4px rgba(0, 0, 0, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+img:hover, figure img:hover {
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.2),
+    0 3px 8px rgba(0, 0, 0, 0.15),
+    inset 0 0 0 2px rgba(218, 165, 32, 0.3);
+  transform: scale(1.02);
+}
+
+/* Enhanced marginalia with shadow depth */
 .marginalia {
   font-family: 'Crimson Text', serif;
   font-style: italic;
   color: #704214;
-  background: rgba(139, 69, 19, 0.06);
+  background:
+    linear-gradient(135deg,
+      rgba(139, 69, 19, 0.08) 0%,
+      rgba(139, 69, 19, 0.04) 100%);
   border-left: 3px solid var(--leonardo-gold);
-  padding: 0.5rem 0.75rem;
-  margin: 1rem 0;
+  padding: 0.75rem 1rem;
+  margin: 1.5rem 0;
+  box-shadow:
+    -3px 0 8px rgba(218, 165, 32, 0.2),
+    0 2px 5px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  position: relative;
 }
 
-/* Mirror writing effects */
-.mirror { transform: scaleX(-1); display: inline-block; }
-.mirror-reveal { filter: blur(2px); transition: filter 200ms linear, transform 200ms ease; }
-.mirror-reveal:hover { filter: blur(0); transform: scaleX(-1); }
+/* Mirror writing with shadow play */
+.mirror {
+  transform: scaleX(-1);
+  display: inline-block;
+  text-shadow: -1px 1px 2px rgba(0, 0, 0, 0.2);
+}
 
-/* Wax seal accents */
+.mirror-reveal {
+  filter: blur(2px);
+  transition: filter 200ms linear, transform 200ms ease;
+  text-shadow: 0 0 5px rgba(139, 69, 19, 0.3);
+}
+
+.mirror-reveal:hover {
+  filter: blur(0);
+  transform: scaleX(-1);
+  text-shadow: -1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Enhanced wax seal with depth */
 .seal {
   display: inline-block;
-  background: radial-gradient(circle at 30% 30%, #b22222, #800000 60%);
-  color: #fff; border-radius: 50%; padding: 0.4rem 0.7rem; font-weight: 700;
-  box-shadow: inset 0 2px 4px rgba(255,255,255,0.15), 0 2px 8px rgba(0,0,0,0.25);
+  background:
+    radial-gradient(circle at 35% 35%, #d22222, #800000 60%, #4a0000 100%);
+  color: #fff;
+  border-radius: 50%;
+  padding: 0.5rem 0.8rem;
+  font-weight: 700;
+  box-shadow:
+    inset 0 3px 5px rgba(255, 255, 255, 0.2),
+    inset 0 -3px 5px rgba(0, 0, 0, 0.4),
+    0 4px 10px rgba(0, 0, 0, 0.3),
+    0 1px 2px rgba(0, 0, 0, 0.2);
   letter-spacing: 0.03em;
+  text-shadow: 0 -1px 2px rgba(0, 0, 0, 0.5);
+  position: relative;
 }
 
-/* Compass-rose style anchors */
+/* Links with subtle glow */
 a, .reference.external {
   color: var(--leonardo-blue);
+  text-decoration: none;
+  transition: all 0.3s ease;
 }
-a:hover { color: var(--leonardo-brown); }
 
-/* Subtle gear rotation for icons */
-.gear { display: inline-block; animation: turn 12s linear infinite; }
-@keyframes turn { from { transform: rotate(0deg);} to { transform: rotate(360deg);} }
+a:hover {
+  color: var(--leonardo-brown);
+  text-shadow: 0 0 8px rgba(70, 130, 180, 0.3);
+}
+
+/* Blockquotes with Renaissance elegance */
+blockquote {
+  border-left: 4px solid var(--leonardo-gold);
+  padding: 1rem 1.5rem;
+  margin: 2rem 0;
+  background:
+    linear-gradient(135deg,
+      rgba(253, 245, 230, 0.5) 0%,
+      rgba(245, 222, 179, 0.3) 100%);
+  box-shadow:
+    -3px 0 10px rgba(218, 165, 32, 0.15),
+    0 2px 8px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  font-style: italic;
+  position: relative;
+}
+
+blockquote::before {
+  content: """;
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  font-size: 4rem;
+  color: rgba(218, 165, 32, 0.3);
+  font-family: 'Cinzel', serif;
+}
+
+/* Header with shadow depth */
+.bd-header {
+  background:
+    linear-gradient(180deg,
+      rgba(253, 245, 230, 0.95) 0%,
+      rgba(245, 222, 179, 0.9) 100%);
+  box-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Footer with aged paper effect */
+.bd-footer {
+  background:
+    linear-gradient(180deg,
+      rgba(245, 222, 179, 0.9) 0%,
+      rgba(139, 69, 19, 0.15) 100%);
+  box-shadow:
+    0 -2px 10px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Admonitions with dimensional styling */
+.admonition {
+  background:
+    linear-gradient(135deg,
+      rgba(253, 245, 230, 0.7) 0%,
+      rgba(245, 222, 179, 0.5) 100%);
+  border: 1px solid rgba(139, 69, 19, 0.2);
+  border-left: 4px solid var(--leonardo-gold);
+  box-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.08),
+    -3px 0 8px rgba(218, 165, 32, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  padding: 1rem;
+  margin: 1.5rem 0;
+}
+
+/* Subtle gear rotation with shadow */
+.gear {
+  display: inline-block;
+  animation: turn 12s linear infinite;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
+}
+
+@keyframes turn {
+  from { transform: rotate(0deg);}
+  to { transform: rotate(360deg);}
+}
 
 /* Print styles for elegant PDFs */
 @media print {
   body { background: #fff; }
+  body::before, body::after { display: none; }
   .bd-sidebar, .bd-header, .bd-footer { display: none !important; }
   .bd-article-container { max-width: 100% !important; }
 }
@@ -141,5 +364,20 @@ a:hover { color: var(--leonardo-brown); }
 /* Mobile tweaks */
 @media (max-width: 960px) {
   body, .bd-content p, .bd-content li { font-size: 17px; }
+  .bd-article { padding: 1rem; }
 }
 
+/* Dark mode adjustments for accessibility */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --leonardo-parch: #2a2520;
+    --leonardo-ink: #e8dcc0;
+    --leonardo-light: #3a3530;
+    --text-color: #e8dcc0;
+  }
+
+  body::before, body::after {
+    mix-blend-mode: screen;
+    opacity: 0.3;
+  }
+}
