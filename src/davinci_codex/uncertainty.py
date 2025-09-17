@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Callable, Dict, Iterable, List, Optional, Sequence
+from typing import Any, Callable, Dict, Iterable, List, Mapping, Optional, Protocol, Sequence, cast
 
 import numpy as np
 import yaml
@@ -17,8 +17,9 @@ except ImportError:  # pragma: no cover - SALib not installed
     salib_sample = None
 
 # Type aliases
-Sampler = Callable[[Dict[str, Sequence[Sequence[float]]], int], np.ndarray]
-Analyzer = Callable[[Dict[str, Sequence[Sequence[float]]], np.ndarray], Dict[str, np.ndarray]]
+ProblemSpec = Dict[str, Any]
+Sampler = Callable[[ProblemSpec, int], np.ndarray]
+Analyzer = Callable[[ProblemSpec, np.ndarray], Dict[str, np.ndarray]]
 
 
 @dataclass(frozen=True)
@@ -51,7 +52,7 @@ class RenaissanceUQ:
         self._sampler = sampler
         self._analyzer = analyzer
 
-    def _load_materials(self, materials_path: Optional[Path]) -> Dict[str, dict]:
+    def _load_materials(self, materials_path: Optional[Path]) -> Dict[str, Dict[str, Any]]:
         candidate_paths: Iterable[Path]
         if materials_path:
             candidate_paths = [Path(materials_path)]
@@ -64,15 +65,19 @@ class RenaissanceUQ:
         for path in candidate_paths:
             if path.exists():
                 with path.open("r", encoding="utf-8") as handle:
-                    return yaml.safe_load(handle)
+                    data = yaml.safe_load(handle)
+                if not isinstance(data, Mapping):
+                    raise TypeError("Materials database must be a mapping")
+                typed = cast(Dict[str, Dict[str, Any]], data)
+                return typed
         raise FileNotFoundError(
             "Renaissance materials database not found. Provide `materials_path`."
         )
 
-    def monte_carlo_analysis(self, invention: "Simulatable", n_samples: int = 10_000) -> MonteCarloSummary:
+    def monte_carlo_analysis(self, invention: Simulatable, n_samples: int = 10_000) -> MonteCarloSummary:
         """Run Sobol-based Monte Carlo analysis with historical uncertainties."""
 
-        problem = {
+        problem: ProblemSpec = {
             "num_vars": len(self.parameter_names),
             "names": self.parameter_names,
             "bounds": self.get_historical_bounds(),
@@ -107,14 +112,19 @@ class RenaissanceUQ:
 
     def _material_bounds(self, material_key: str, property_key: str, scale: float = 1.0) -> List[float]:
         material = self.materials.get(material_key, {})
+        if not isinstance(material, Mapping):
+            raise TypeError(f"Material entry for '{material_key}' must be a mapping")
         property_meta = material.get(property_key)
-        if not property_meta:
+        if not isinstance(property_meta, Mapping):
             raise KeyError(f"Property '{property_key}' missing for material '{material_key}'")
-        value = float(property_meta.get("value"))
+        value_raw = property_meta.get("value")
+        if value_raw is None:
+            raise KeyError(f"Property '{property_key}' missing 'value' field")
+        value = float(value_raw)
         uncertainty = self._parse_uncertainty(property_meta.get("uncertainty", 0.0))
         lower = (value - uncertainty) * scale
         upper = (value + uncertainty) * scale
-        return [lower, upper]
+        return [float(lower), float(upper)]
 
     def _heuristic_bounds(self, value: float, spread: float) -> List[float]:
         return [float(value - spread), float(value + spread)]
@@ -128,7 +138,8 @@ class RenaissanceUQ:
         return float(cleaned)
 
     def _confidence_interval(self, data: np.ndarray) -> tuple[float, float]:
-        lower, upper = np.percentile(data, [2.5, 97.5])
+        percentiles = cast(List[float], np.percentile(data, [2.5, 97.5]).tolist())
+        lower, upper = percentiles
         return float(lower), float(upper)
 
     def _extract_total_sobol(self, sensitivity_indices: Dict[str, np.ndarray]) -> Dict[str, float]:
@@ -163,11 +174,11 @@ class RenaissanceUQ:
         return lambda problem, outputs: salib_analyze.sobol(problem, outputs)
 
 
-class Simulatable:
-    """Protocol-style base class for inventions participating in UQ."""
+class Simulatable(Protocol):
+    """Protocol for inventions participating in uncertainty analysis."""
 
-    def simulate(self, parameters: Sequence[float]) -> float:  # pragma: no cover - interface definition
-        raise NotImplementedError
+    def simulate(self, parameters: Sequence[float]) -> float:
+        ...
 
 
 __all__ = ["RenaissanceUQ", "MonteCarloSummary", "Simulatable"]

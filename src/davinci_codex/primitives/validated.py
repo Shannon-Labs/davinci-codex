@@ -30,9 +30,9 @@ class ValidatedGear:
         self.material = material
         self.face_width = 10.0 * module
         self.design_torque = 120.0  # N·m representative textile drive
-        self.bending_stress = None
-        self.converged_stress = None
-        self.discretization_error = None
+        self.bending_stress: float | None = None
+        self.converged_stress: float | None = None
+        self.discretization_error: float | None = None
 
         self.validate_involute_profile()
         self.mesh_convergence_study()
