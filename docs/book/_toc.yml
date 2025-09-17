@@ -23,3 +23,7 @@ parts:
     title: Gear Tooth Bending Theory
   - file: physics/tribology.md
     title: Rolling Tribology Models
+- caption: Interactive Simulations
+  chapters:
+  - file: simulator/index.md
+    title: Ornithopter Flight Lab

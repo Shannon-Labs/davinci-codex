@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Ornithopter Flight Simulator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../_static/leonardo-theme.css" />
+  <style>
+    :root {
+      color-scheme: light;
+    }
+
+    body {
+      margin: 0;
+      padding: 1.5rem;
+      font-family: 'EB Garamond', 'Crimson Text', Georgia, serif;
+    }
+
+    .page-shell {
+      max-width: 1280px;
+      margin: 0 auto;
+      background: rgba(255, 248, 240, 0.92);
+      border: 1px solid rgba(93, 58, 26, 0.35);
+      border-radius: 12px;
+      box-shadow: 0 18px 40px rgba(12, 8, 4, 0.25);
+      overflow: hidden;
+      position: relative;
+    }
+
+    header {
+      padding: 2.5rem 2.5rem 1.5rem 2.5rem;
+      background:
+        linear-gradient(135deg, rgba(255, 250, 240, 0.96), rgba(253, 245, 230, 0.92)),
+        radial-gradient(circle at top left, rgba(218, 165, 32, 0.15), transparent 60%);
+      border-bottom: 1px solid rgba(139, 69, 19, 0.25);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2.65rem;
+      letter-spacing: 0.03em;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    h1 span.badge {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(184, 134, 11, 0.18);
+      color: var(--leonardo-brown);
+      border: 1px solid rgba(184, 134, 11, 0.45);
+    }
+
+    .lede {
+      margin: 1rem 0 0 0;
+      color: rgba(28, 28, 28, 0.88);
+      font-size: 1.2rem;
+      max-width: 960px;
+      line-height: 1.6;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 0;
+      min-height: 720px;
+    }
+
+    .visual-panel {
+      padding: 2rem 2.5rem 2.5rem 2.5rem;
+      background:
+        linear-gradient(145deg, rgba(253, 246, 233, 0.95), rgba(245, 229, 207, 0.82));
+      position: relative;
+    }
+
+    .renderer-frame {
+      position: relative;
+      border: 1px solid rgba(93, 58, 26, 0.35);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow:
+        inset 0 0 18px rgba(93, 58, 26, 0.18),
+        0 14px 30px rgba(0, 0, 0, 0.22);
+      background: radial-gradient(circle at top, rgba(54, 100, 139, 0.15), transparent 65%),
+                  linear-gradient(180deg, rgba(69, 96, 128, 0.25), rgba(20, 24, 34, 0.85));
+      height: clamp(320px, 45vh, 480px);
+    }
+
+    #glCanvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .altitude-indicator {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.2rem;
+      padding: 0.65rem 1.1rem;
+      backdrop-filter: blur(10px);
+      background: rgba(21, 18, 12, 0.45);
+      color: #fefdf9;
+      border-radius: 12px;
+      font-size: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      min-width: 160px;
+    }
+
+    .altitude-indicator strong {
+      font-size: 1.45rem;
+      letter-spacing: 0.04em;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      text-transform: uppercase;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+    }
+
+    .status-pill::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #56d364;
+      box-shadow: 0 0 10px rgba(86, 211, 100, 0.8);
+    }
+
+    .graphs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .graph-card {
+      padding: 0.75rem 0.75rem 0.6rem 0.75rem;
+      border-radius: 12px;
+      border: 1px solid rgba(93, 58, 26, 0.28);
+      background:
+        linear-gradient(160deg, rgba(255, 250, 240, 0.9), rgba(252, 238, 209, 0.75));
+      box-shadow: inset 0 4px 16px rgba(250, 246, 236, 0.75);
+    }
+
+    .graph-card header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: none;
+      padding: 0;
+      margin-bottom: 0.5rem;
+      background: none;
+    }
+
+    .graph-card h2 {
+      font-size: 1rem;
+      margin: 0;
+      color: var(--leonardo-brown);
+    }
+
+    .graph-card span.units {
+      font-size: 0.78rem;
+      color: rgba(93, 58, 26, 0.65);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    canvas.telemetry {
+      width: 100%;
+      height: 120px;
+      display: block;
+    }
+
+    .controls-panel {
+      padding: 2.5rem 2.5rem 2.5rem 2rem;
+      border-left: 1px solid rgba(93, 58, 26, 0.25);
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      background:
+        linear-gradient(180deg, rgba(253, 244, 227, 0.92), rgba(245, 228, 202, 0.85));
+      position: relative;
+    }
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .control-group h3 {
+      margin: 0;
+      font-size: 1.35rem;
+    }
+
+    .control {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      background: rgba(255, 251, 243, 0.78);
+      border: 1px solid rgba(139, 69, 19, 0.18);
+      border-radius: 12px;
+      padding: 0.75rem 0.9rem;
+      box-shadow: inset 0 2px 6px rgba(252, 244, 233, 0.9);
+    }
+
+    .control label {
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .control span.value {
+      font-family: 'Cinzel', 'Cormorant Garamond', serif;
+      color: var(--leonardo-gold);
+      letter-spacing: 0.05em;
+    }
+
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(184, 134, 11, 0.55), rgba(93, 58, 26, 0.75));
+      outline: none;
+      cursor: pointer;
+      transition: filter 0.2s ease;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #fff3df;
+      border: 2px solid var(--leonardo-gold);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+    }
+
+    input[type="range"]:active {
+      filter: brightness(1.08);
+    }
+
+    select, button {
+      font-family: inherit;
+    }
+
+    select {
+      padding: 0.6rem 0.8rem;
+      border-radius: 10px;
+      border: 1px solid rgba(93, 58, 26, 0.35);
+      background: rgba(255, 249, 237, 0.9);
+      color: var(--leonardo-brown);
+      font-size: 1rem;
+    }
+
+    .launch-buttons {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    button.primary {
+      background: linear-gradient(135deg, rgba(184, 134, 11, 0.95), rgba(160, 110, 20, 0.9));
+      color: #fff9ed;
+      border: 1px solid rgba(93, 58, 26, 0.4);
+      border-radius: 999px;
+      padding: 0.65rem 1.6rem;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 8px 12px rgba(93, 58, 26, 0.25);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    button.secondary {
+      background: rgba(255, 248, 237, 0.95);
+      color: var(--leonardo-brown);
+      border: 1px solid rgba(93, 58, 26, 0.35);
+      border-radius: 999px;
+      padding: 0.65rem 1.6rem;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 6px 10px rgba(93, 58, 26, 0.18);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    button.primary:hover, button.secondary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 20px rgba(93, 58, 26, 0.25);
+    }
+
+    .performance-panel {
+      background: rgba(37, 26, 15, 0.78);
+      color: #fff4e0;
+      border-radius: 16px;
+      padding: 1.2rem 1.3rem;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: inset 0 0 18px rgba(255, 223, 168, 0.25);
+    }
+
+    .performance-panel h3 {
+      margin-top: 0;
+      font-size: 1.2rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #fde3b0;
+    }
+
+    .performance-metric {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      border-bottom: 1px dashed rgba(255, 236, 209, 0.28);
+      padding: 0.35rem 0;
+      font-size: 0.95rem;
+    }
+
+    .performance-metric:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .viability {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .viability-card {
+      background: rgba(255, 251, 243, 0.16);
+      border: 1px solid rgba(255, 236, 209, 0.35);
+      border-radius: 12px;
+      padding: 0.75rem;
+      font-size: 0.9rem;
+      min-height: 90px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .viability-card strong {
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      color: rgba(255, 229, 180, 0.95);
+    }
+
+    .share-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .share-actions button {
+      width: 100%;
+    }
+
+    .tooltip {
+      font-size: 0.85rem;
+      color: rgba(28, 28, 28, 0.72);
+      margin-top: -0.35rem;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(12, 8, 4, 0.68);
+      backdrop-filter: blur(3px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+      padding: 1.5rem;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .modal-backdrop.active {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .modal {
+      background: linear-gradient(150deg, rgba(255, 249, 237, 0.98), rgba(245, 228, 202, 0.95));
+      border-radius: 16px;
+      max-width: 640px;
+      width: 100%;
+      border: 1px solid rgba(93, 58, 26, 0.35);
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.35);
+      padding: 1.75rem 2rem;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .modal h2 {
+      margin-top: 0;
+      font-size: 1.65rem;
+    }
+
+    .modal button.close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      border: none;
+      background: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--leonardo-brown);
+    }
+
+    .fallback {
+      text-align: center;
+      padding: 4rem 2rem;
+      font-size: 1.2rem;
+    }
+
+    .notice {
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      color: rgba(93, 58, 26, 0.75);
+    }
+
+    @media (max-width: 1080px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      .controls-panel {
+        border-left: none;
+        border-top: 1px solid rgba(93, 58, 26, 0.25);
+        padding: 2rem 2.5rem;
+      }
+      .renderer-frame {
+        height: clamp(300px, 52vh, 420px);
+      }
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 1rem;
+      }
+      header {
+        padding: 2rem 1.5rem 1.2rem 1.5rem;
+      }
+      .visual-panel,
+      .controls-panel {
+        padding: 1.5rem;
+      }
+      h1 {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.4rem;
+      }
+      .launch-buttons {
+        flex-direction: column;
+      }
+      .graphs {
+        grid-template-columns: 1fr;
+      }
+      .share-actions button {
+        padding: 0.75rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <noscript>
+    <div class="fallback">
+      Enable JavaScript to explore Leonardo's ornithopter in motion.
+    </div>
+  </noscript>
+  <div class="page-shell" id="simulatorShell">
+    <header>
+      <h1>
+        Ornithopter Flight Lab
+        <span class="badge">Interactive Simulation</span>
+      </h1>
+      <p class="lede">
+        Tune Leonardo's flapping wing craft and watch the flight envelope in real time. Adjust frequency, amplitude,
+        materials, and wind to see why the original design struggled—and how modern composites bring it to life.
+      </p>
+    </header>
+    <div class="layout">
+      <section class="visual-panel">
+        <div class="renderer-frame">
+          <div class="altitude-indicator">
+            <span class="status-pill">Flight Telemetry</span>
+            <strong><span id="altitudeValue">0.0</span> m</strong>
+            <span>Vertical speed: <span id="verticalValue">0.0</span> m/s</span>
+            <span>Max altitude: <span id="maxAltitudeValue">0.0</span> m</span>
+          </div>
+          <div id="renderer"></div>
+        </div>
+        <div class="launch-buttons">
+          <button class="primary" id="launchBtn">Launch</button>
+          <button class="secondary" id="resetBtn">Reset</button>
+          <button class="secondary" id="aboutBtn">About the physics</button>
+        </div>
+        <div class="graphs">
+          <div class="graph-card">
+            <header>
+              <h2>Lift Trace</h2>
+              <span class="units">Newtons</span>
+            </header>
+            <canvas class="telemetry" id="liftGraph" width="320" height="120"></canvas>
+          </div>
+          <div class="graph-card">
+            <header>
+              <h2>Drag Trace</h2>
+              <span class="units">Newtons</span>
+            </header>
+            <canvas class="telemetry" id="dragGraph" width="320" height="120"></canvas>
+          </div>
+          <div class="graph-card">
+            <header>
+              <h2>Altitude</h2>
+              <span class="units">Meters</span>
+            </header>
+            <canvas class="telemetry" id="altitudeGraph" width="320" height="120"></canvas>
+          </div>
+        </div>
+      </section>
+      <aside class="controls-panel">
+        <div class="control-group">
+          <h3>Flight Controls</h3>
+          <div class="control">
+            <label for="freqInput">Wing frequency <span class="value"><span id="freqValue">2.4</span> Hz</span></label>
+            <input type="range" id="freqInput" min="0.5" max="5" step="0.1" value="2.4" />
+          </div>
+          <div class="control">
+            <label for="ampInput">Flap amplitude <span class="value"><span id="ampValue">30</span>&deg;</span></label>
+            <input type="range" id="ampInput" min="10" max="45" step="1" value="30" />
+          </div>
+          <div class="control">
+            <label for="speedInput">Forward airspeed <span class="value"><span id="speedValue">12.5</span> m/s</span></label>
+            <input type="range" id="speedInput" min="5" max="20" step="0.5" value="12.5" />
+          </div>
+        </div>
+        <div class="control-group">
+          <h3>Configuration</h3>
+          <div class="control">
+            <label for="materialSelect">Wing structure</label>
+            <select id="materialSelect">
+              <option value="renaissance">Renaissance (wood &amp; leather)</option>
+              <option value="modern" selected>Modern (carbon &amp; kevlar)</option>
+            </select>
+            <p class="tooltip" id="materialNotes">Composite spars, flexlam skin, brushless drivetrain.</p>
+          </div>
+          <div class="control">
+            <label for="windSelect">Wind conditions</label>
+            <select id="windSelect">
+              <option value="calm" selected>Calm</option>
+              <option value="moderate">Moderate gusts</option>
+              <option value="turbulent">Turbulent</option>
+            </select>
+            <p class="tooltip" id="windNotes">Calm air on a crisp Tuscan morning.</p>
+          </div>
+        </div>
+        <div class="performance-panel">
+          <h3>Performance Comparison</h3>
+          <div class="viability">
+            <div class="viability-card" id="historicalCard">
+              <strong>Da Vinci prototype</strong>
+              <span id="historicalStatus">Grounded &mdash; lift short of weight.</span>
+            </div>
+            <div class="viability-card" id="modernCard">
+              <strong>Modern composite build</strong>
+              <span id="modernStatus">Airborne &mdash; sustainable climb.</span>
+            </div>
+          </div>
+          <div class="performance-metric">
+            <span>Energy draw</span>
+            <span id="energyMetric">0.0 Wh (estimate)</span>
+          </div>
+          <div class="performance-metric">
+            <span>Pedalers required</span>
+            <span id="humanMetric">0.0 humans</span>
+          </div>
+          <div class="performance-metric">
+            <span>Electric motor equivalent</span>
+            <span id="motorMetric">0 W</span>
+          </div>
+          <div class="performance-metric">
+            <span>Max altitude achieved</span>
+            <span id="ceilingMetric">0.0 m</span>
+          </div>
+        </div>
+        <div class="share-actions">
+          <button class="primary" id="shareBtn">Share your flight</button>
+          <button class="secondary" id="snapshotBtn">Capture screenshot</button>
+          <p class="tooltip" id="shareStatus">Copy a link to invite your workshop.</p>
+        </div>
+        <p class="notice">Tip: every adjustment updates the URL, so you can bookmark your favorite envelope or send it to a fellow artificer.</p>
+      </aside>
+    </div>
+  </div>
+  <div class="fallback" id="fallbackMessage" hidden>
+    Your browser could not initialize WebGL. Try again on a more recent device or switch to a modern browser to fly the ornithopter.
+  </div>
+
+  <div class="modal-backdrop" id="physicsModal">
+    <article class="modal" role="dialog" aria-modal="true" aria-labelledby="physicsTitle">
+      <button class="close" id="modalClose" aria-label="Close">&times;</button>
+      <h2 id="physicsTitle">About the Physics</h2>
+      <p>
+        This interactive model distills the ornithopter flight solver used elsewhere in the Codex. It keeps the same
+        quasi-steady lift calculation, heave damping, and energy accounting, but trims the state space so it runs smoothly
+        in the browser.
+      </p>
+      <ul>
+        <li>Lift uses <em>L = ½ ρ V² S C<sub>L</sub></em> with the historical vs. modern <em>C<sub>L</sub></em> slope and wing area.</li>
+        <li>Flapping frequency and amplitude drive an induced velocity term that boosts effective airspeed.</li>
+        <li>Vertical motion integrates acceleration with a heave damping term to mimic aeroelastic energy bleed.</li>
+        <li>Power draw combines drivetrain torque harmonics with controller overhead, producing endurance estimates.</li>
+        <li>Wind profiles inject gust perturbations so you can feel why marginal lift margins were risky.</li>
+      </ul>
+      <p>
+        The full fidelity solver couples an aeroelastic beam and vortex lattice model; this version preserves the key trends
+        so you can experiment instantly without a GPU cluster.
+      </p>
+    </article>
+  </div>
+
+  <script type="module">
+    import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
+
+    const shell = document.getElementById('simulatorShell');
+    const fallback = document.getElementById('fallbackMessage');
+
+    const canvasProbe = document.createElement('canvas');
+    const gl = canvasProbe.getContext('webgl') || canvasProbe.getContext('experimental-webgl');
+    if (!gl) {
+      shell.style.display = 'none';
+      fallback.hidden = false;
+      throw new Error('WebGL not supported');
+    }
+
+    const AIR_DENSITY = 1.225;
+    const GRAVITY = 9.80665;
+    const DRAG_COEFF = 0.68;
+    const HEAVE_DAMPING = 0.55;
+    const HUMAN_POWER_W = 300;
+
+    const MATERIALS = {
+      renaissance: {
+        label: 'Renaissance (wood & leather)',
+        massKg: 128,
+        wingArea: 12.6,
+        clAlpha: 4.3,
+        basePower: 4700,
+        powerVariation: 2600,
+        controllerPower: 120,
+        efficiency: 0.32,
+        notes: 'Ash spars, linen skin, torsion springs. Heavy and lossy.'
+      },
+      modern: {
+        label: 'Modern (carbon & kevlar)',
+        massKg: 92,
+        wingArea: 14.0,
+        clAlpha: 5.6,
+        basePower: 3400,
+        powerVariation: 1900,
+        controllerPower: 250,
+        efficiency: 0.78,
+        notes: 'Composite spars, flex-laminate skin, brushless drivetrain.'
+      }
+    };
+
+    const WIND_PROFILES = {
+      calm: { label: 'Calm air', turbulence: 0.01, speedOffset: 0 },
+      moderate: { label: 'Moderate gusts', turbulence: 0.04, speedOffset: -0.5 },
+      turbulent: { label: 'Turbulent', turbulence: 0.09, speedOffset: -1.2 }
+    };
+
+    const params = {
+      freq: 2.4,
+      amplitude: 30,
+      speed: 12.5,
+      material: 'modern',
+      wind: 'calm'
+    };
+
+    const state = {
+      running: false,
+      time: 0,
+      phase: 0,
+      altitude: 0,
+      maxAltitude: 0,
+      verticalVelocity: 0,
+      lift: 0,
+      drag: 0,
+      power: 0,
+      energyWh: 0,
+      frame: 0,
+      prevTs: undefined
+    };
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setSize(0, 0);
+    renderer.domElement.id = 'glCanvas';
+    document.getElementById('renderer').appendChild(renderer.domElement);
+
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0x272932, 0.035);
+
+    const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 200);
+    camera.position.set(6, 3, 9);
+    camera.lookAt(0, 1.2, 0);
+
+    const light = new THREE.HemisphereLight(0xfff7e1, 0x1b1d2b, 0.65);
+    scene.add(light);
+
+    const keyLight = new THREE.DirectionalLight(0xffd58a, 0.95);
+    keyLight.position.set(5, 10, 5);
+    keyLight.castShadow = true;
+    scene.add(keyLight);
+
+    const floorGeo = new THREE.PlaneGeometry(80, 80, 1, 1);
+    const floorMat = new THREE.MeshStandardMaterial({
+      color: 0x231d1a,
+      roughness: 1,
+      metalness: 0
+    });
+    const floor = new THREE.Mesh(floorGeo, floorMat);
+    floor.rotation.x = -Math.PI / 2;
+    floor.position.y = -1.6;
+    floor.receiveShadow = true;
+    scene.add(floor);
+
+    const ornithopter = new THREE.Group();
+    ornithopter.position.y = 1.2;
+    scene.add(ornithopter);
+
+    const bodyGeo = new THREE.CapsuleGeometry(0.35, 2.8, 12, 24);
+    const bodyMat = new THREE.MeshStandardMaterial({ color: 0x5b3a21, roughness: 0.6, metalness: 0.1 });
+    const body = new THREE.Mesh(bodyGeo, bodyMat);
+    body.castShadow = true;
+    ornithopter.add(body);
+
+    const tailGeo = new THREE.ConeGeometry(0.3, 1.4, 16, 1);
+    const tail = new THREE.Mesh(tailGeo, new THREE.MeshStandardMaterial({ color: 0x3c2a18, roughness: 0.75 }));
+    tail.position.set(0, 0.1, -1.9);
+    tail.rotation.x = Math.PI;
+    tail.castShadow = true;
+    ornithopter.add(tail);
+
+    const wingMaterial = new THREE.MeshStandardMaterial({ color: 0xcda779, side: THREE.DoubleSide, roughness: 0.5 });
+    const wingGeometry = new THREE.PlaneGeometry(4.5, 1.4, 2, 8);
+
+    const leftWing = new THREE.Mesh(wingGeometry, wingMaterial);
+    leftWing.position.set(0.9, 0.2, 0);
+    leftWing.castShadow = true;
+    leftWing.receiveShadow = true;
+    leftWing.geometry.translate(2.25, 0, 0);
+    leftWing.rotation.z = Math.PI / 8;
+    ornithopter.add(leftWing);
+
+    const rightWing = leftWing.clone();
+    rightWing.material = wingMaterial.clone();
+    rightWing.material.color.setHex(0xc8a070);
+    rightWing.position.x = -0.9;
+    rightWing.geometry = wingGeometry.clone();
+    rightWing.geometry.translate(-2.25, 0, 0);
+    rightWing.rotation.z = -Math.PI / 8;
+    ornithopter.add(rightWing);
+
+    const ribs = [];
+    for (let i = -2; i <= 2; i++) {
+      const ribGeo = new THREE.CylinderGeometry(0.03, 0.03, 4.5, 8);
+      const ribMat = new THREE.MeshStandardMaterial({ color: 0x7a512c, roughness: 0.6 });
+      const rib = new THREE.Mesh(ribGeo, ribMat);
+      rib.rotation.z = Math.PI / 2;
+      rib.position.set(0, 0.35 + i * 0.15, 0.2 + Math.abs(i) * 0.25);
+      rib.castShadow = true;
+      ornithopter.add(rib);
+      ribs.push(rib);
+    }
+
+    const particleGeo = new THREE.BufferGeometry();
+    const particleCount = 360;
+    const positions = new Float32Array(particleCount * 3);
+    for (let i = 0; i < particleCount; i++) {
+      positions[i * 3 + 0] = (Math.random() - 0.5) * 30;
+      positions[i * 3 + 1] = Math.random() * 12 + 2;
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 30;
+    }
+    particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const particleMat = new THREE.PointsMaterial({ color: 0xf0e6ce, size: 0.12, transparent: true, opacity: 0.35 });
+    const particles = new THREE.Points(particleGeo, particleMat);
+    scene.add(particles);
+
+    function resizeRenderer() {
+      const frame = renderer.domElement.parentElement;
+      if (!frame) return;
+      const { clientWidth, clientHeight } = frame;
+      renderer.setSize(clientWidth, clientHeight);
+      camera.aspect = clientWidth / clientHeight;
+      camera.updateProjectionMatrix();
+    }
+
+    window.addEventListener('resize', resizeRenderer);
+    resizeRenderer();
+
+    const altitudeEl = document.getElementById('altitudeValue');
+    const verticalEl = document.getElementById('verticalValue');
+    const maxAltEl = document.getElementById('maxAltitudeValue');
+    const freqInput = document.getElementById('freqInput');
+    const ampInput = document.getElementById('ampInput');
+    const speedInput = document.getElementById('speedInput');
+    const freqValue = document.getElementById('freqValue');
+    const ampValue = document.getElementById('ampValue');
+    const speedValue = document.getElementById('speedValue');
+    const materialSelect = document.getElementById('materialSelect');
+    const windSelect = document.getElementById('windSelect');
+    const materialNotes = document.getElementById('materialNotes');
+    const windNotes = document.getElementById('windNotes');
+    const energyMetric = document.getElementById('energyMetric');
+    const humanMetric = document.getElementById('humanMetric');
+    const motorMetric = document.getElementById('motorMetric');
+    const ceilingMetric = document.getElementById('ceilingMetric');
+    const shareStatus = document.getElementById('shareStatus');
+    const historicalStatus = document.getElementById('historicalStatus');
+    const modernStatus = document.getElementById('modernStatus');
+
+    const liftGraph = createGraph(document.getElementById('liftGraph'), '#b8860b');
+    const dragGraph = createGraph(document.getElementById('dragGraph'), '#36648b');
+    const altitudeGraph = createGraph(document.getElementById('altitudeGraph'), '#4a2c17');
+
+    const launchBtn = document.getElementById('launchBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const shareBtn = document.getElementById('shareBtn');
+    const snapshotBtn = document.getElementById('snapshotBtn');
+    const aboutBtn = document.getElementById('aboutBtn');
+    const modal = document.getElementById('physicsModal');
+    const modalClose = document.getElementById('modalClose');
+
+    function parseParams() {
+      const search = new URLSearchParams(window.location.search);
+      const freq = Number(search.get('freq'));
+      const amp = Number(search.get('amp'));
+      const speed = Number(search.get('speed'));
+      const material = search.get('material');
+      const wind = search.get('wind');
+      if (!Number.isNaN(freq) && freq >= 0.5 && freq <= 5) params.freq = freq;
+      if (!Number.isNaN(amp) && amp >= 10 && amp <= 45) params.amplitude = amp;
+      if (!Number.isNaN(speed) && speed >= 5 && speed <= 20) params.speed = speed;
+      if (material && MATERIALS[material]) params.material = material;
+      if (wind && WIND_PROFILES[wind]) params.wind = wind;
+    }
+
+    function pushParams() {
+      const search = new URLSearchParams();
+      search.set('freq', params.freq.toFixed(1));
+      search.set('amp', params.amplitude.toFixed(0));
+      search.set('speed', params.speed.toFixed(1));
+      search.set('material', params.material);
+      search.set('wind', params.wind);
+      const newUrl = `${window.location.pathname}?${search.toString()}`;
+      window.history.replaceState(null, '', newUrl);
+    }
+
+    parseParams();
+
+    freqInput.value = params.freq.toString();
+    ampInput.value = params.amplitude.toString();
+    speedInput.value = params.speed.toString();
+    materialSelect.value = params.material;
+    windSelect.value = params.wind;
+    freqValue.textContent = params.freq.toFixed(1);
+    ampValue.textContent = params.amplitude.toFixed(0);
+    speedValue.textContent = params.speed.toFixed(1);
+    materialNotes.textContent = MATERIALS[params.material].notes;
+    windNotes.textContent = `${WIND_PROFILES[params.wind].label}.`;
+
+    function updateFromControls() {
+      params.freq = Number(freqInput.value);
+      params.amplitude = Number(ampInput.value);
+      params.speed = Number(speedInput.value);
+      params.material = materialSelect.value;
+      params.wind = windSelect.value;
+
+      freqValue.textContent = params.freq.toFixed(1);
+      ampValue.textContent = params.amplitude.toFixed(0);
+      speedValue.textContent = params.speed.toFixed(1);
+      materialNotes.textContent = MATERIALS[params.material].notes;
+      windNotes.textContent = `${WIND_PROFILES[params.wind].label}.`;
+
+      pushParams();
+      updatePerformanceCards();
+    }
+
+    freqInput.addEventListener('input', updateFromControls, { passive: true });
+    ampInput.addEventListener('input', updateFromControls, { passive: true });
+    speedInput.addEventListener('input', updateFromControls, { passive: true });
+    materialSelect.addEventListener('change', updateFromControls);
+    windSelect.addEventListener('change', updateFromControls);
+
+    launchBtn.addEventListener('click', () => {
+      if (!state.running) {
+        state.running = true;
+        shareStatus.textContent = 'Streaming telemetry...';
+      }
+    });
+
+    resetBtn.addEventListener('click', () => {
+      state.running = false;
+      Object.assign(state, {
+        running: false,
+        time: 0,
+        phase: 0,
+        altitude: 0,
+        maxAltitude: 0,
+        verticalVelocity: 0,
+        lift: 0,
+        drag: 0,
+        power: 0,
+        energyWh: 0,
+        frame: 0,
+        prevTs: undefined
+      });
+      liftGraph.clear();
+      dragGraph.clear();
+      altitudeGraph.clear();
+      altitudeGraph.push(0);
+      updateTelemetryUI();
+      shareStatus.textContent = 'Copy a link to invite your workshop.';
+    });
+
+    shareBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(window.location.href);
+        shareStatus.textContent = 'Link copied—send it to your fellow artificers!';
+      } catch (err) {
+        shareStatus.textContent = 'Copy failed. Long-press the address bar to share.';
+      }
+    });
+
+    snapshotBtn.addEventListener('click', () => {
+      renderer.render(scene, camera);
+      const dataUrl = renderer.domElement.toDataURL('image/png');
+      const link = document.createElement('a');
+      link.href = dataUrl;
+      link.download = 'ornithopter-flight.png';
+      link.click();
+      shareStatus.textContent = 'Screenshot saved. Share your sortie!';
+    });
+
+    aboutBtn.addEventListener('click', () => {
+      modal.classList.add('active');
+    });
+
+    modalClose.addEventListener('click', () => modal.classList.remove('active'));
+    modal.addEventListener('click', (evt) => {
+      if (evt.target === modal) {
+        modal.classList.remove('active');
+      }
+    });
+
+    function updateTelemetryUI() {
+      altitudeEl.textContent = state.altitude.toFixed(1);
+      verticalEl.textContent = state.verticalVelocity.toFixed(2);
+      maxAltEl.textContent = state.maxAltitude.toFixed(1);
+      const humans = state.power / HUMAN_POWER_W;
+
+      energyMetric.textContent = `${state.energyWh.toFixed(2)} Wh used`;
+      humanMetric.textContent = `${humans.toFixed(1)} humans`;
+      motorMetric.textContent = `${state.power.toFixed(0)} W draw`;
+      ceilingMetric.textContent = `${state.maxAltitude.toFixed(1)} m`;
+    }
+
+    function updatePerformanceCards() {
+      const historicalLift = estimateLift({ material: 'renaissance' });
+      const modernLift = estimateLift({ material: 'modern' });
+      const historicWeight = MATERIALS.renaissance.massKg * GRAVITY;
+      const modernWeight = MATERIALS.modern.massKg * GRAVITY;
+
+      historicalStatus.innerHTML = historicalLift > historicWeight ?
+        'Almost there, but the pilot still slips earthward.' :
+        'Grounded — insufficient aerodynamic lift.';
+      modernStatus.innerHTML = modernLift > modernWeight ?
+        'Airborne — margin for climb achieved!' :
+        'On the edge — tweak frequency for sustained flight.';
+    }
+
+    function estimateLift({ material }) {
+      const mat = MATERIALS[material];
+      const amplitudeRad = THREE.MathUtils.degToRad(params.amplitude);
+      const induced = amplitudeRad * params.freq * 8.4; // effective stroke velocity
+      const wind = WIND_PROFILES[params.wind];
+      const forward = Math.max(params.speed + wind.speedOffset, 2);
+      const effectiveSpeed = Math.sqrt(forward * forward + induced * induced * 0.35);
+      const alpha = THREE.MathUtils.degToRad(8) + amplitudeRad * 0.8;
+      const cl = Math.max(0, Math.min(mat.clAlpha * alpha, 2.1));
+      return 0.5 * AIR_DENSITY * mat.wingArea * effectiveSpeed * effectiveSpeed * cl;
+    }
+
+    function createGraph(canvas, strokeStyle) {
+      const ctx = canvas.getContext('2d');
+      const data = new Array(240).fill(0);
+      return {
+        push(value) {
+          data.push(value);
+          if (data.length > 240) {
+            data.shift();
+          }
+          draw();
+        },
+        clear() {
+          data.fill(0);
+          draw();
+        },
+        draw,
+        data
+      };
+
+      function draw() {
+        const { width, height } = canvas;
+        ctx.clearRect(0, 0, width, height);
+        ctx.fillStyle = 'rgba(255, 250, 240, 0.8)';
+        ctx.fillRect(0, 0, width, height);
+        ctx.strokeStyle = 'rgba(93, 58, 26, 0.2)';
+        ctx.lineWidth = 1;
+        const gridLines = 4;
+        for (let i = 1; i < gridLines; i++) {
+          const y = (height / gridLines) * i;
+          ctx.beginPath();
+          ctx.moveTo(0, y);
+          ctx.lineTo(width, y);
+          ctx.stroke();
+        }
+        const max = Math.max(...data, 1);
+        ctx.strokeStyle = strokeStyle;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        data.forEach((value, idx) => {
+          const x = (idx / (data.length - 1)) * width;
+          const y = height - (value / max) * (height * 0.92);
+          if (idx === 0) {
+            ctx.moveTo(x, y);
+          } else {
+            ctx.lineTo(x, y);
+          }
+        });
+        ctx.stroke();
+      }
+    }
+
+    function simulateStep(dt) {
+      const material = MATERIALS[params.material];
+      const amplitudeRad = THREE.MathUtils.degToRad(params.amplitude);
+      const wind = WIND_PROFILES[params.wind];
+
+      state.phase += dt * params.freq * Math.PI * 2;
+      state.time += dt;
+
+      const forwardSpeed = Math.max(params.speed + wind.speedOffset, 2);
+      const inducedVelocity = amplitudeRad * params.freq * 8.4;
+      const gust = wind.turbulence * (Math.sin(state.time * 3.1) + (Math.random() - 0.5) * 0.6);
+      const effectiveAlpha = THREE.MathUtils.degToRad(8) + amplitudeRad * Math.sin(state.phase + 0.35) + gust * 0.15;
+      const cl = Math.max(0, Math.min(material.clAlpha * effectiveAlpha, 2.3));
+      const effectiveSpeed = Math.sqrt(forwardSpeed * forwardSpeed + (inducedVelocity * 0.45) ** 2);
+      const lift = 0.5 * AIR_DENSITY * material.wingArea * effectiveSpeed ** 2 * cl * (1 + gust * 0.3);
+      const drag = 0.5 * AIR_DENSITY * material.wingArea * DRAG_COEFF * effectiveSpeed ** 2;
+
+      const weight = material.massKg * GRAVITY;
+      const accel = (lift - weight) / material.massKg - HEAVE_DAMPING * state.verticalVelocity;
+      state.verticalVelocity += accel * dt;
+      state.altitude = Math.max(0, state.altitude + state.verticalVelocity * dt);
+      state.maxAltitude = Math.max(state.maxAltitude, state.altitude);
+
+      const harmonic = 0.5 * (1 + Math.sin(state.phase) ** 2);
+      const power = material.basePower + material.powerVariation * harmonic + material.controllerPower;
+      state.energyWh += (power * dt) / 3600;
+
+      state.lift = lift;
+      state.drag = drag;
+      state.power = power;
+    }
+
+    function updateMeshes(dt) {
+      const amplitudeRad = THREE.MathUtils.degToRad(params.amplitude);
+      const wingAngle = amplitudeRad * Math.sin(state.phase);
+      leftWing.rotation.z = wingAngle + Math.PI / 8;
+      rightWing.rotation.z = -wingAngle - Math.PI / 8;
+      body.rotation.x = THREE.MathUtils.degToRad(-state.verticalVelocity * 12);
+      ornithopter.position.y = 1.2 + state.altitude * 0.05;
+      particles.rotation.y += dt * 0.02;
+      particles.position.z -= params.speed * dt * 0.2;
+      if (particles.position.z < -10) {
+        particles.position.z = 10;
+      }
+      ribs.forEach((rib, index) => {
+        rib.rotation.y = Math.sin(state.phase + index * 0.4) * 0.08;
+      });
+    }
+
+    function loop(now) {
+      requestAnimationFrame(loop);
+      if (!state.prevTs) state.prevTs = now;
+      const dt = Math.min((now - state.prevTs) / 1000, 0.05);
+      state.prevTs = now;
+
+      if (state.running) {
+        simulateStep(dt);
+        liftGraph.push(state.lift);
+        dragGraph.push(state.drag);
+        altitudeGraph.push(state.altitude);
+      }
+
+      updateMeshes(dt);
+      renderer.render(scene, camera);
+      updateTelemetryUI();
+    }
+
+    updatePerformanceCards();
+    liftGraph.push(0);
+    dragGraph.push(0);
+    altitudeGraph.push(0);
+    loop(performance.now());
+    pushParams();
+  </script>
+</body>
+</html>

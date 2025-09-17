@@ -72,15 +72,15 @@ Leonardo da Vinci (1452-1519) produced over 13,000 pages of notes and drawings, 
 
 ## 📊 Simulation Results Summary
 
-**Note**: All metrics below are from computational simulations, not physical prototypes
+**⚠️ Important**: All metrics below are from computational simulations using **low-order surrogate models** suitable for educational exploration and trend analysis. Results should not be used for detailed design decisions without validation. See [Physics Derivations](docs/book/physics/index.md) for model assumptions and limitations.
 
-| Invention | Status | Simulated Metrics | Theoretical Safety | Development Stage |
-|-----------|--------|------------------|-------------------|------------------|
-| **Ornithopter** | ✅ Simulation Complete | Lift: 1609N (simulated)<br>Endurance: 140 min (est.)<br>Altitude: 396m (simulated) | ✅ Theory Validated | CAD Models Available |
-| **Parachute** | ✅ Simulation Complete | Terminal: 6.9 m/s (calculated)<br>Drag: 1245N (theoretical)<br>Safe landing (simulated) | ✅ Theory Validated | Design Complete |
-| **Self-Propelled Cart** | ✅ Simulation Complete | Range: 152m (simulated)<br>Speed: 7.6 m/s avg (calc.)<br>Energy: 349J (theoretical) | ✅ Theory Validated | Design Complete |
-| **Mechanical Odometer** | ✅ Simulation Complete | Error: <17% (modeled)<br>Range: 995m (calc.)<br>Resolution: 13.8m (theoretical) | ✅ Theory Validated | Design Complete |
-| **Aerial Screw** | 🔄 Analysis Ongoing | Lift: 473N (insufficient)<br>Power: 81kW (required)<br>Tip Mach: 0.098 (safe) | ⚠️ Needs Revision | Requires Scaling |
+| Invention | Status | Simulated Metrics* | Model Fidelity | Development Stage |
+|-----------|--------|-------------------|----------------|------------------|
+| **Ornithopter** | ✅ Simulation Complete | Lift: ~1600N (surrogate)<br>Endurance: ~140 min (est.)<br>Altitude: <400m (trend) | Low-order quasi-steady | CAD Models Available |
+| **Parachute** | ✅ Simulation Complete | Terminal: 6.9 m/s (analytical)<br>Drag: ~1250N (calc.)<br>Safe landing zone | Analytical solution | Design Complete |
+| **Self-Propelled Cart** | ✅ Simulation Complete | Range: ~150m (energy-based)<br>Speed: ~7-8 m/s (calc.)<br>Energy: ~350J (spring) | Energy conservation | Design Complete |
+| **Mechanical Odometer** | ✅ Simulation Complete | Error: <17% (geometric)<br>Range: ~1km (calc.)<br>Resolution: ~14m | Kinematic analysis | Design Complete |
+| **Aerial Screw** | 🔄 Analysis Ongoing | Lift: <500N (insufficient)<br>Power: >80kW (prohibitive)<br>Tip speed: subsonic | Momentum theory | Requires Scaling |
 
 ### Material Upgrades
 

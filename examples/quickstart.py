@@ -8,13 +8,11 @@ showing how to list inventions, run simulations, and generate artifacts.
 
 import matplotlib.pyplot as plt
 
-from davinci_codex.pipelines import run_pipeline
-from davinci_codex.registry import Registry
+from davinci_codex import registry
+from davinci_codex.pipelines import run_ornithopter_pipeline
 
 
 def main():
-    # Initialize the registry
-    registry = Registry()
 
     print("Welcome to the da Vinci Codex!")
     print("=" * 50)
@@ -51,10 +49,12 @@ def main():
     print("\nRunning Full Ornithopter Pipeline...")
     print("-" * 30)
     try:
-        pipeline_results = run_pipeline("ornithopter", output_dir="artifacts/demo")
+        pipeline_results = run_ornithopter_pipeline(output_dir="artifacts/demo")
         print("Pipeline stages completed:")
-        for stage, result in pipeline_results.items():
-            print(f"  ✓ {stage}: {result.get('status', 'completed')}")
+        if pipeline_results:
+            for stage in ["planning", "TVA", "synthesis"]:
+                if stage in pipeline_results:
+                    print(f"  ✓ {stage}: completed")
     except Exception as e:
         print(f"Pipeline demo skipped: {e}")
 

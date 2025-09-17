@@ -1,4 +1,22 @@
-"""Ornithopter modernization module."""
+"""Ornithopter modernization module.
+
+NOTE: This module implements a LOW-ORDER SURROGATE MODEL for rapid exploration.
+The physics uses simplified quasi-steady aerodynamics (lift = 1/2 ρ S V² CL) with
+harmonic induced velocity approximation. For higher-fidelity results, see:
+- docs/book/physics/unsteady_aero.md for Theodorsen-based 2D theory
+- sims/ornithopter/fsi_coupling.py for FSI coupling workflow (documentation)
+- validation/ornithopter_fsi/ for convergence studies (when implemented)
+
+The current model is suitable for:
+- Quick parameter sweeps and trend analysis
+- Educational demonstrations
+- Initial feasibility assessments
+
+The current model should NOT be used for:
+- Detailed design decisions
+- Safety-critical calculations without validation
+- Claims of absolute performance without uncertainty bounds
+"""
 
 from __future__ import annotations
 
