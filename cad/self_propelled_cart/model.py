@@ -10,10 +10,8 @@ import trimesh
 
 
 def _wheel(radius: float, width: float, segments: int = 64) -> trimesh.Trimesh:
-    wheel = trimesh.creation.cylinder(radius=radius, height=width, sections=segments)
-    # add lightening cutouts for style
-    hub = trimesh.creation.cylinder(radius=radius * 0.35, height=width * 1.2, sections=segments)
-    wheel = wheel.difference(hub)
+    # annulus avoids boolean backends while providing visual accuracy
+    wheel = trimesh.creation.annulus(r_min=radius * 0.35, r_max=radius, height=width, sections=segments)
     spoke_count = 6
     spokes = []
     for idx in range(spoke_count):
