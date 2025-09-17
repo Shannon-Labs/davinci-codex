@@ -18,7 +18,11 @@ dependencies = [
     "meshio",
     "pillow",
     "rich>=13.0",
-    "pythonocc-core; sys_platform == 'linux' or sys_platform == 'win32'"
+]
+
+[project.optional-dependencies]
+cad = [
+    "pythonocc-core>=7.6; sys_platform == 'linux' or sys_platform == 'win32'",
 ]
 readme = "README.md"
 license = { file = "LICENSE" }
