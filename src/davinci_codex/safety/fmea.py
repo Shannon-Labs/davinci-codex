@@ -23,6 +23,16 @@ class FailureMode:
         """Risk priority number (RPN) defined as severity * occurrence * detection."""
         return self.severity * self.occurrence * self.detection
 
+    def __post_init__(self) -> None:
+        for attribute in ("severity", "occurrence", "detection"):
+            value = getattr(self, attribute)
+            if not isinstance(value, int):
+                raise TypeError(f"{attribute} must be an integer rating")
+            if value < 1 or value > 10:
+                raise ValueError(f"{attribute} rating {value} outside allowable range 1-10")
+        if not self.mode:
+            raise ValueError("Failure mode description must not be empty")
+
 
 class InventionFMEA:
     """Generate FMEA assessments for Renaissance mechanisms."""

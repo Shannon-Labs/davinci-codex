@@ -3,6 +3,7 @@
 This directory collates folio-level documentation for every manuscript referenced by the da Vinci Codex digital dissertation. Each subfolder corresponds to an archival source (e.g., `codex_atlanticus/`, `madrid_codices/`). Individual YAML files store structured metadata linking simulations, transcripts, and analyses to their primary evidence.
 
 ## File Schema
+- `slug`: Invention identifier aligning with `inventions/catalog.yaml`.
 - `folio_id`: Canonical identifier using archive conventions.
 - `canonical_name`: Short descriptive title for the invention.
 - `category`: High-level classification aligning with `inventions/catalog.yaml`.

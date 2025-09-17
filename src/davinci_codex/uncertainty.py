@@ -22,6 +22,29 @@ Sampler = Callable[[ProblemSpec, int], np.ndarray]
 Analyzer = Callable[[ProblemSpec, np.ndarray], Dict[str, np.ndarray]]
 
 
+def load_materials(materials_path: Optional[Path] | None = None) -> Dict[str, Dict[str, Any]]:
+    candidate_paths: Iterable[Path]
+    if materials_path:
+        candidate_paths = [Path(materials_path)]
+    else:
+        root = Path(__file__).resolve().parents[2]
+        candidate_paths = [
+            root / "materials" / "renaissance_db.yaml",
+            Path(__file__).resolve().with_name("materials.yaml"),
+        ]
+    for path in candidate_paths:
+        if path.exists():
+            with path.open("r", encoding="utf-8") as handle:
+                data = yaml.safe_load(handle)
+            if not isinstance(data, Mapping):
+                raise TypeError("Materials database must be a mapping")
+            typed = cast(Dict[str, Dict[str, Any]], data)
+            return typed
+    raise FileNotFoundError(
+        "Renaissance materials database not found. Provide `materials_path`."
+    )
+
+
 @dataclass(frozen=True)
 class MonteCarloSummary:
     """Summary statistics from a Monte Carlo campaign."""
@@ -41,7 +64,7 @@ class RenaissanceUQ:
         sampler: Optional[Sampler] = None,
         analyzer: Optional[Analyzer] = None,
     ) -> None:
-        self.materials = self._load_materials(materials_path)
+        self.materials = load_materials(materials_path)
         self.parameter_names = [
             "wood_density",
             "iron_yield",
@@ -51,28 +74,6 @@ class RenaissanceUQ:
         ]
         self._sampler = sampler
         self._analyzer = analyzer
-
-    def _load_materials(self, materials_path: Optional[Path]) -> Dict[str, Dict[str, Any]]:
-        candidate_paths: Iterable[Path]
-        if materials_path:
-            candidate_paths = [Path(materials_path)]
-        else:
-            root = Path(__file__).resolve().parents[2]
-            candidate_paths = [
-                root / "materials" / "renaissance_db.yaml",
-                Path(__file__).resolve().with_name("materials.yaml"),
-            ]
-        for path in candidate_paths:
-            if path.exists():
-                with path.open("r", encoding="utf-8") as handle:
-                    data = yaml.safe_load(handle)
-                if not isinstance(data, Mapping):
-                    raise TypeError("Materials database must be a mapping")
-                typed = cast(Dict[str, Dict[str, Any]], data)
-                return typed
-        raise FileNotFoundError(
-            "Renaissance materials database not found. Provide `materials_path`."
-        )
 
     def monte_carlo_analysis(self, invention: Simulatable, n_samples: int = 10_000) -> MonteCarloSummary:
         """Run Sobol-based Monte Carlo analysis with historical uncertainties."""
@@ -105,12 +106,12 @@ class RenaissanceUQ:
         bounds: List[List[float]] = []
         bounds.append(self._material_bounds("seasoned_oak", "density"))
         bounds.append(self._material_bounds("wrought_iron_1500", "yield_strength"))
-        bounds.append(self._heuristic_bounds(0.25, 0.05))  # rope friction coefficient
-        bounds.append(self._material_bounds("kid_goat_leather", "tensile_strength", scale=1.0e6))
-        bounds.append(self._heuristic_bounds(1.5, 0.5))  # dimensional tolerance in mm
+        bounds.append(self._heuristic_bounds(0.25, 0.05))  # rope friction coefficient (dimensionless)
+        bounds.append(self._material_bounds("kid_goat_leather", "tensile_strength"))
+        bounds.append(self._heuristic_bounds(self._convert_units(1.5, "mm"), self._convert_units(0.5, "mm")))
         return bounds
 
-    def _material_bounds(self, material_key: str, property_key: str, scale: float = 1.0) -> List[float]:
+    def _material_bounds(self, material_key: str, property_key: str) -> List[float]:
         material = self.materials.get(material_key, {})
         if not isinstance(material, Mapping):
             raise TypeError(f"Material entry for '{material_key}' must be a mapping")
@@ -120,22 +121,42 @@ class RenaissanceUQ:
         value_raw = property_meta.get("value")
         if value_raw is None:
             raise KeyError(f"Property '{property_key}' missing 'value' field")
-        value = float(value_raw)
-        uncertainty = self._parse_uncertainty(property_meta.get("uncertainty", 0.0))
-        lower = (value - uncertainty) * scale
-        upper = (value + uncertainty) * scale
+        units = property_meta.get("units")
+        value = self._convert_units(float(value_raw), units)
+        uncertainty = self._parse_uncertainty(property_meta.get("uncertainty", 0.0), units)
+        lower = value - uncertainty
+        upper = value + uncertainty
         return [float(lower), float(upper)]
 
     def _heuristic_bounds(self, value: float, spread: float) -> List[float]:
         return [float(value - spread), float(value + spread)]
 
-    def _parse_uncertainty(self, uncertainty: float | str | None) -> float:
+    def _parse_uncertainty(self, uncertainty: float | str | None, units: Optional[str]) -> float:
         if uncertainty is None:
             return 0.0
         if isinstance(uncertainty, (int, float)):
-            return float(uncertainty)
+            return self._convert_units(float(uncertainty), units)
         cleaned = str(uncertainty).replace("+/-", "").strip()
-        return float(cleaned)
+        if not cleaned:
+            return 0.0
+        numeric = float(cleaned)
+        return self._convert_units(numeric, units)
+
+    def _convert_units(self, value: float, units: Optional[str]) -> float:
+        if units is None:
+            return value
+        normalized = units.strip().lower()
+        unit_map = {
+            "kg/m^3": 1.0,
+            "kg/m3": 1.0,
+            "gpa": 1.0e9,
+            "mpa": 1.0e6,
+            "pa": 1.0,
+            "mm": 1.0e-3,
+        }
+        if normalized not in unit_map:
+            raise ValueError(f"Unsupported unit '{units}' in materials database")
+        return value * unit_map[normalized]
 
     def _confidence_interval(self, data: np.ndarray) -> tuple[float, float]:
         percentiles = cast(List[float], np.percentile(data, [2.5, 97.5]).tolist())
@@ -181,4 +202,4 @@ class Simulatable(Protocol):
         ...
 
 
-__all__ = ["RenaissanceUQ", "MonteCarloSummary", "Simulatable"]
+__all__ = ["RenaissanceUQ", "MonteCarloSummary", "Simulatable", "load_materials"]

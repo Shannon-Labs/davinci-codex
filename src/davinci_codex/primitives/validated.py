@@ -4,7 +4,35 @@ from __future__ import annotations
 
 import math
 from dataclasses import dataclass
-from typing import Iterable, List
+from functools import lru_cache
+from pathlib import Path
+from typing import Any, Dict, Iterable, List, Mapping, Optional
+
+from ..uncertainty import load_materials
+
+UNIT_FACTORS: Dict[str, float] = {
+    "kg/m^3": 1.0,
+    "kg/m3": 1.0,
+    "gpa": 1.0e9,
+    "mpa": 1.0e6,
+    "pa": 1.0,
+    "mm": 1.0e-3,
+}
+
+
+def _convert_units(value: float, units: Optional[str]) -> float:
+    if units is None:
+        return value
+    normalized = units.strip().lower()
+    if normalized not in UNIT_FACTORS:
+        raise ValueError(f"Unsupported unit '{units}' in materials database")
+    return value * UNIT_FACTORS[normalized]
+
+
+@lru_cache(maxsize=4)
+def _cached_materials(materials_path: Optional[str]) -> Dict[str, Dict[str, Any]]:
+    path = Path(materials_path) if materials_path else None
+    return load_materials(path)
 
 
 @dataclass(frozen=True)
@@ -18,27 +46,44 @@ class MeshStudyResult:
 
 
 class ValidatedGear:
-    """Gear with simplified verification aligned to Lewis/AGMA practice."""
+    """Gear with verification aligned to Lewis/AGMA practice and material limits."""
 
-    def __init__(self, teeth: int, module: float, material: str = "seasoned_oak") -> None:
+    def __init__(
+        self,
+        teeth: int,
+        module: float,
+        material: str = "seasoned_oak",
+        materials_path: Optional[Path] = None,
+        design_torque: float = 1.5,
+    ) -> None:
         if teeth < 8:
             raise ValueError("ValidatedGear requires at least 8 teeth to avoid undercutting")
         if module <= 0:
             raise ValueError("Module must be positive")
+        if design_torque <= 0:
+            raise ValueError("Design torque must be positive")
+
         self.teeth = teeth
-        self.module = module
+        self.module = module  # Module supplied in millimetres
+        self.module_m = module / 1000.0
         self.material = material
-        self.face_width = 10.0 * module
-        self.design_torque = 120.0  # N·m representative textile drive
+        self.face_width = 10.0 * self.module_m
+        self.design_torque = design_torque  # N·m representative textile load
+        path_str = None if materials_path is None else str(Path(materials_path).resolve())
+        self._materials_catalog = _cached_materials(path_str)
+
         self.bending_stress: float | None = None
         self.converged_stress: float | None = None
         self.discretization_error: float | None = None
+        self.allowable_bending_stress: float | None = self._fetch_allowable_bending_stress()
+        self.safety_factor: float | None = None
 
         self.validate_involute_profile()
         self.mesh_convergence_study()
+        self._verify_allowable_stress()
 
     def pitch_radius(self) -> float:
-        return (self.teeth * self.module) / (2 * math.pi)
+        return (self.teeth * self.module_m) / 2.0
 
     def lewis_form_factor(self) -> float:
         return 0.124 - (0.684 / self.teeth)
@@ -49,7 +94,7 @@ class ValidatedGear:
     def lewis_bending_stress(self) -> float:
         ft = self.transmitted_force()
         y = self.lewis_form_factor()
-        section_modulus = self.face_width * self.module
+        section_modulus = self.face_width * self.module_m
         return ft / (section_modulus * y)
 
     def validate_involute_profile(self) -> None:
@@ -89,6 +134,25 @@ class ValidatedGear:
         exact_solution = (factor * exact - previous) / (factor - 1)
         error_estimate = abs(exact_solution - exact)
         return MeshStudyResult(meshes=meshes, estimates=estimates, exact_solution=exact_solution, error_estimate=error_estimate)
+
+    def _fetch_allowable_bending_stress(self) -> Optional[float]:
+        material_data = self._materials_catalog.get(self.material)
+        if not isinstance(material_data, Mapping):
+            return None
+        for key in ("shear_strength_parallel", "yield_strength", "tensile_strength"):
+            entry = material_data.get(key)
+            if isinstance(entry, Mapping) and "value" in entry:
+                return _convert_units(float(entry["value"]), entry.get("units"))
+        return None
+
+    def _verify_allowable_stress(self) -> None:
+        if self.bending_stress is None or self.allowable_bending_stress is None:
+            return
+        self.safety_factor = self.allowable_bending_stress / self.bending_stress
+        if self.safety_factor < 1.5:
+            raise ValueError(
+                f"Bending stress exceeds allowable limits for {self.material}: safety factor {self.safety_factor:.2f}"
+            )
 
 
 __all__ = ["ValidatedGear", "MeshStudyResult"]

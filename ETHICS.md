@@ -26,6 +26,7 @@ The da Vinci Codex initiative seeks to honour Leonardo's principle of *dimostraz
 ## 6. Data Integrity & Reproducibility
 - Maintain versioned records of simulations, experiments, and datasets.
 - Publish uncertainty analyses (see `METHODOLOGY.md`) to prevent overstated claims.
+- Follow the `CONTRIBUTING.md` checklist: link pull requests to relevant `PROVENANCE` entries, attach FMEA updates, and pass automated lint/test/catalog validation before review.
 
 ## 7. Responsible Storytelling
 - Present reconstructions as historically informed possibilities, not definitive proofs that Leonardo physically built the machines.

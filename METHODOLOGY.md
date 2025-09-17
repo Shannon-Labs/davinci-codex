@@ -25,21 +25,27 @@ The da Vinci Codex project advances from exploratory simulation toward a digital
 - **Cross-folio consistency**: Validate that shared primitives behave consistently across inventions; deviations trigger investigations into folio-specific annotations.
 - **Physical prototyping**: When feasible, build scale or full-size prototypes using documented materials to verify mechanical viability.
 
-## 5. Uncertainty Quantification (UQ)
+## 5. Units & Parameter Distributions
+- **SI baseline**: Store all quantitative parameters in SI units (N, m, Pa, kg/m³). Document any conversions from Renaissance units (e.g., braccia, oncie) inside the associated `PROVENANCE/<codex>/<folio>.yaml` entry and configuration files.
+- **Default distributions**: Apply normal distributions for measured material properties (with historical standard deviations), triangular distributions for craft tolerances (hand-cut gears, cams), and bounded uniform distributions for friction coefficients or uncalibrated loads. Deviations must be justified in the simulation notes.
+- **Catalog alignment**: Each invention record in `inventions/catalog.yaml` must reference a `PROVENANCE` slug and cite the distribution assumptions used by `RenaissanceUQ`.
+
+## 6. Uncertainty Quantification (UQ)
 - **Input uncertainty**: Derive probability distributions for materials, fabrication tolerances, and operating conditions from historical sources.
 - **Sampling strategy**: Use Sobol/Saltelli sampling (via `RenaissanceUQ`) for global sensitivity and Monte Carlo analysis to estimate output distributions.
 - **Reporting**: All results include 95% confidence intervals, sensitivity indices, and narrative interpretation relating uncertainty to historical risk.
 
-## 6. Safety, Ethics, and FMEA
+## 7. Safety, Ethics, and FMEA
 - **Failure Mode & Effects Analysis**: Execute systematic FMEA for each invention with severity, occurrence, detection ratings, and mitigations.
 - **Non-weaponisation**: Enforce the principles described in `ETHICS.md`; mechanisms with offensive potential receive heightened scrutiny and explicit risk communication.
 
-## 7. Workflow Governance
+## 8. Workflow Governance
 1. **Version control**: Each reconstruction proceeds through design review, simulation review, and historical validation checklists before merging.
 2. **Reproducibility**: Provide deterministic scripts under `sims/` and notebooks in `notebooks/` that rebuild figures, tables, and summary statistics.
 3. **Peer review**: Engage domain experts (historians, mechanical engineers, materials scientists) for formal review cycles documented in `docs/review_logs/` (forthcoming).
+4. **Provenance compliance**: Every merge request must reference the relevant `PROVENANCE` slug(s) and pass automated catalog/provenance schema validation in CI.
 
-## 8. Dissertation Deliverables
+## 9. Dissertation Deliverables
 - **Complete catalog** with provenance, models, simulations, and analyses for 500 inventions.
 - **Textile revolution dossier** covering the first tranche of reconstructions (CA f.1090r onwards) with economic impact analysis.
 - **FSI case studies** (ornithopter, aerial screw, fluid-driven pumps) demonstrating multiphysics fidelity.

@@ -1,0 +1,28 @@
+slug: "hygrometer"
+folio_id: "CA f.675r"
+canonical_name: "Hair-tension hygrometer"
+category: "measurement"
+archive_source:
+  repository: "Biblioteca Ambrosiana"
+  collection: "Codex Atlanticus"
+  image_id: "CA_675r_dpi600"
+  retrieval_date: "2024-11-22"
+transcription:
+  method: "paleographic transcription"
+  language: "Italian"
+  confidence: 0.81
+  notes: "Term 'umore' annotated near horsehair indicator; humidity scale incomplete."
+related_folios:
+  - "CA f.676v"
+mechanical_primitives:
+  - "pointer"
+  - "suspension_weight"
+materials:
+  - material: "kid_goat_leather"
+    usage: "dial membrane"
+  - material: "seasoned_oak"
+    usage: "backboard"
+validation_status:
+  transcription_review: "in_progress"
+  simulation: "queued"
+  measurement_calibration: "planned"

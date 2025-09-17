@@ -1,0 +1,30 @@
+slug: "spotlight_parabolic_mirror"
+folio_id: "CA f.87r"
+canonical_name: "Parabolic spotlight"
+category: "experimental"
+archive_source:
+  repository: "Biblioteca Ambrosiana"
+  collection: "Codex Atlanticus"
+  image_id: "CA_087r_dpi600"
+  retrieval_date: "2024-11-18"
+transcription:
+  method: "high-contrast OCR"
+  language: "Italian with Latin annotations"
+  confidence: 0.76
+  notes: "Mirror curvature notes reference 'specchio concavo' with focal length proportional to candle height."
+related_folios:
+  - "CA f.87v"
+mechanical_primitives:
+  - "adjustable_frame"
+  - "mirror_mount"
+materials:
+  - material: "wrought_iron_1500"
+    usage: "tilt adjusters"
+  - material: "seasoned_oak"
+    usage: "support frame"
+  - material: "linseed_oil_finish"
+    usage: "wood preservation"
+validation_status:
+  optical_analysis: "planned"
+  simulation: "queued"
+  safety_review: "risk_review"
