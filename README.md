@@ -220,7 +220,7 @@ Validation artefacts live in `tests/`, `validation/`, `sims/`, and `artifacts/` 
 ## 📘 Interactive Essays
 - Execute `make book` (or `jupyter-book build docs/book`) to render the validation notebooks.
 - HTML output drops into `docs/book/_build/html/`; open `index.html` for an offline preview.
-- Planned GitHub Pages target: <https://shannon-labs.github.io/davinci-codex/book/> (pending publish toggle).
+- GitHub Pages: <https://shannon-labs.github.io/davinci-codex/> (auto-deployed from main branch).
 - Chapters cover gear bending, ornithopter FSI, rolling friction tribology, plus consolidated physics derivations.
 
 ---
@@ -418,10 +418,10 @@ CC0 1.0 Universal - Public Domain Dedication for generated content
 
 ### Contact
 
-**Principal Investigator**: Hunter Bown
-**Email**: hunter@shannonlabs.dev
-**Institution**: Shannon Labs
-**Project Website**: https://shannon-labs.github.io/davinci-codex/
+**Principal Investigator**: Hunter Bown  
+**Email**: hunter@shannonlabs.dev  
+**Institution**: Shannon Labs  
+**Project Website**: https://shannon-labs.github.io/davinci-codex/  
 **GitHub**: https://github.com/Shannon-Labs/davinci-codex
 
 ---
