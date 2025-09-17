@@ -4,7 +4,7 @@
 
 ### Codex Atlanticus
 - **Folio 846r**: Ornithopter planform with pilot cradle and crank drive mechanism
-- **Folio 381v**: Pyramid parachute with dimensions ("twelve braccia across and twelve in depth")
+- **Folio 1058v**: Pyramid parachute with dimensions ("twelve braccia across and twelve in depth")
 - **Folio 812r**: Self-propelled cart spring mechanism
 - **Digital Archive**: [Biblioteca Ambrosiana](https://www.leonardodigitale.com/)
 
