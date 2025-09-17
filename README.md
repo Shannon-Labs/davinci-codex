@@ -12,7 +12,7 @@
 
 **A Comprehensive Digital Twin Framework for Leonardo da Vinci's Mechanical Inventions**
 
-[**Abstract**](ABSTRACT.md) • [**Documentation**](docs/index.md) • [**Contributing**](CONTRIBUTING.md) • [**References**](REFERENCES.md) • [**Citation**](CITATION.cff)
+[**🌐 Live Documentation**](https://shannon-labs.github.io/davinci-codex/) • [**Abstract**](ABSTRACT.md) • [**Documentation**](docs/index.md) • [**Contributing**](CONTRIBUTING.md) • [**References**](REFERENCES.md) • [**Citation**](CITATION.cff)
 
 </div>
 
