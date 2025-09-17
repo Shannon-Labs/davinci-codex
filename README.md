@@ -144,6 +144,7 @@ davinci-codex/
 │   └── docs/                       # Detailed documentation
 │       ├── index.md               # Documentation hub
 │       ├── images/                # Visualizations
+│       ├── physics/               # Governing equation derivations (TeX)
 │       └── {invention}.md         # Individual analyses
 │
 ├── 🧾 Provenance & Materials
@@ -161,6 +162,7 @@ davinci-codex/
 │       ├── pipelines.py           # Execution framework
 │       ├── uncertainty.py         # Historical uncertainty quantification
 │       ├── safety/                # FMEA and safety tooling
+│       ├── primitives/            # Validated mechanical building blocks
 │       └── inventions/            # Invention modules
 │           ├── ornithopter.py
 │           ├── parachute.py
@@ -170,12 +172,17 @@ davinci-codex/
 │
 ├── 🔧 Engineering Assets
 │   ├── cad/                       # Parametric CAD models
-│   ├── sims/                      # Simulation configs
-│   └── artifacts/                 # Generated outputs
+│   ├── sims/                      # Simulation configs & container recipes
+│   ├── synthesis/                 # Modern intervention studies & counterfactual builds
+│   ├── anima/                     # Annotated folios, intent graphs, transcript JSON
+│   ├── tva/                       # Techno-viability assessments & historical simulations
+│   ├── ip_nexus/                  # Prior art studies, patent surveys, publication drafts
+│   └── artifacts/                 # Generated outputs (plots, CSVs, reports)
 │
 ├── 🧪 Testing & Validation
 │   ├── tests/                     # Comprehensive test suite
-│   └── notebooks/                 # Jupyter explorations
+│   ├── validation/                # Benchmark cases, mesh convergence, analytical comparisons
+│   └── notebooks/                 # Jupyter explorations (to be published via Jupyter Book)
 │
 └── 📋 Project Management
     ├── .github/                   # GitHub automation
@@ -183,6 +190,17 @@ davinci-codex/
     ├── CITATION.cff              # Citation metadata
     └── LICENSE                    # MIT license
 ```
+
+---
+
+## 🧪 Testing, Validation & Toolchain
+
+- **make test** runs the full pytest suite
+- **make lint** executes Ruff + mypy with strict settings (no virtualenv required)
+- **Simulation toolchain**: solids (FEniCS/pycalculix), CFD (OpenFOAM URANS/LES), vortex lattice + nonlinear beams for flapping FSI, Abaqus/tribology scripts for friction studies. Each solver configuration and mesh refinement study lives in `validation/<slug>/`.
+- **Coverage**: 94% (branch coverage) with automated checks in CI.
+
+Validation artefacts live in `tests/`, `validation/`, `sims/`, and `artifacts/` for reproducibility and peer review.
 
 ---
 
@@ -201,10 +219,10 @@ davinci-codex/
 - **Constraint Analysis**: Physical and safety limitations
 
 ### 3. Computational Simulation
-- **Numerical Methods**: Finite element analysis, CFD where applicable
-- **Validation Metrics**: Lift coefficients, stress margins, energy balance
-- **Sensitivity Analysis**: Parameter variation studies
-- **Uncertainty Quantification**: Error propagation analysis
+- **Numerical Methods**: Finite element analysis, unsteady CFD with FSI, tribology/friction experiments
+- **Validation Metrics**: Lift coefficients, stress margins, energy balance, wear & loss factors
+- **Sensitivity Analysis**: Parameter variation studies with Sobol indices and tornado plots
+- **Uncertainty Quantification**: Error propagation analysis with epistemic + aleatory modelling
 
 ### 4. Safety Assessment
 - **Risk Analysis**: FMEA (Failure Mode and Effects Analysis)
@@ -217,6 +235,14 @@ davinci-codex/
 - **Reproducibility**: Seed-controlled simulations
 - **Educational Resources**: Comprehensive documentation
 - **Community Building**: GitHub discussions and contributions
+
+---
+
+## 📚 Upcoming Enhancements
+- Publish validation dossiers (`validation/`) capturing mesh/timestep convergence and benchmark comparisons per solver.
+- Release interactive computational essays (Jupyter Book) linking folios, derivations, and executable notebooks.
+- Expand comparative analyses between historical materials vs. modern composites with quantified performance deltas.
+- Deepen tribology + FSI datasets through archival experiment replication and modern wind-tunnel proxies.
 
 ---
 
