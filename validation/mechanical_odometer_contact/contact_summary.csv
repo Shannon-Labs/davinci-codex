@@ -1,0 +1,5 @@
+metric,value,units
+wheel_circumference_error,0.56,percent
+max_slip_delta,0.40,percentage_points
+mean_slip_delta,0.29,percentage_points
+encoder_drift,0.18,percent

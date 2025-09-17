@@ -54,4 +54,11 @@ def test_cli_validation_status_collection():
 
     status = _collect_validation_status()
     names = {entry["name"] for entry in status}
-    assert {"validated_gear_lewis", "ornithopter_fsi", "cart_tribology"}.issubset(names)
+    expected = {
+        "validated_gear_lewis",
+        "ornithopter_fsi",
+        "cart_tribology",
+        "parachute_drop",
+        "mechanical_odometer_contact",
+    }
+    assert expected.issubset(names)

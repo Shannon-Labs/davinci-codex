@@ -1,11 +1,25 @@
 format: jb-book
 root: intro
-chapters:
-  - file: ../notebooks/naca0012_agard.ipynb
+parts:
+- caption: Validation Notebooks
+  chapters:
+  - file: notebooks/naca0012_agard.ipynb
     title: NACA 0012 Oscillation
-  - file: ../notebooks/gear_bending_validation.ipynb
+  - file: notebooks/gear_bending_validation.ipynb
     title: Lewis Gear Bending
-  - file: ../notebooks/rolling_friction_validation.ipynb
+  - file: notebooks/ornithopter_fsi_validation.ipynb
+    title: Ornithopter FSI Benchmark
+  - file: notebooks/rolling_friction_validation.ipynb
     title: Rolling Friction Rig
-appendices:
-  - file: ../physics/index.md
+  - file: notebooks/parachute_drop_validation.ipynb
+    title: Pyramid Parachute Drop
+- caption: Physics Derivations
+  chapters:
+  - file: physics/index.md
+    title: Derivation Overview
+  - file: physics/unsteady_aero.md
+    title: Unsteady Airfoil Dynamics
+  - file: physics/gear_bending.md
+    title: Gear Tooth Bending Theory
+  - file: physics/tribology.md
+    title: Rolling Tribology Models

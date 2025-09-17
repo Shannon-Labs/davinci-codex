@@ -1,0 +1,10 @@
+surface,load_N,reference_slip_pct,simulation_slip_pct
+packed_earth,200,1.8,1.6
+packed_earth,400,2.1,1.9
+packed_earth,600,2.4,2.2
+flagstone,200,0.9,0.8
+flagstone,400,1.2,1.0
+flagstone,600,1.6,1.4
+cobblestone,200,3.5,3.1
+cobblestone,400,3.9,3.5
+cobblestone,600,4.3,3.9

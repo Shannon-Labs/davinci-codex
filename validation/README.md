@@ -20,5 +20,7 @@ Maintaining a rigorous V&V trail ensures the computational archaeology work rema
 - `naca0012_oscillation/`: Coupled OpenFOAM–FEniCSx FSI validation of NASA TM 84245 forced oscillation data.
 - `lewis_gear_bending/`: CalculiX structural verification of the Lewis 1892 gear tooth bending experiment.
 - `rolling_friction_rig/`: Chrono tribology calibration against Bowden & Tabor rolling friction measurements.
+- `parachute_drop/`: OpenFOAM PISO vs. Adrian Nicholas 2000 telemetry for the pyramid parachute release.
+- `mechanical_odometer_contact/`: Chrono slip modelling for the odometer cart against packed earth, flagstone, and cobblestone measurements.
 
 Each case directory contains `case.yaml`, a detailed `report.md`, digitised benchmark data under `benchmarks/`, and convergence plots within `convergence/`.

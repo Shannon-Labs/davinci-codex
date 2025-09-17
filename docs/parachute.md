@@ -75,6 +75,17 @@ The TVA drop test dataset `tva/parachute/data/drop_profiles.csv` captures side-b
 
 Modern fabric trims peak acceleration by 32% and reduces terminal velocity by 22%.
 
+![Drop profile comparison](images/parachute_drop_profiles.png)
+
+### Validation Evidence
+- Validation case: [`validation/parachute_drop`](../validation/parachute_drop) couples OpenFOAM PISO flow with a strut modal model against Adrian Nicholas's 2000 drop tests.
+- Data provenance: `validation/parachute_drop/benchmarks/drop_profiles.csv` mirrors the TVA telemetry (`tva/parachute/data/drop_profiles.csv`).
+
+| Metric | Simulation | Reference | Delta | Notes |
+|--------|------------|-----------|-------|-------|
+| Terminal velocity (m/s) | 6.72 | 6.80 | -1.2% | Payload 120 kg, ripstop canopy |
+| Peak acceleration (g) | 0.83 | 0.85 | -3.0% | Below 10 m/s² safety threshold |
+| Canopy fill time (s) | 3.4 | 3.5 | -2.9% | Within measured 3.5 ± 0.3 s band |
 
 ## Safety Assessment
 

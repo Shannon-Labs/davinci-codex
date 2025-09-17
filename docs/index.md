@@ -17,6 +17,12 @@ The da Vinci Codex project reconstructs Leonardo da Vinci's civil, non-weapon in
 - `sims/` — Simulation configurations, solver outputs, and logs.
 - `tests/` — Pytest suites validating math, data integrity, and deterministic behavior.
 
+## 📘 Interactive Essays
+- Build locally with `make book` (Jupyter Book executes the curated notebooks).
+- Generated HTML lives in `docs/book/_build/html/`; open `index.html` to preview before publishing.
+- GitHub Pages will host the collection at <https://shannon-labs.github.io/davinci-codex/book/> once enabled.
+- Available chapters: gear bending validation, ornithopter FSI convergence, rolling friction tribology, and supporting physics derivations.
+
 ## 📦 Active Modules
 
 | Module | Status | Description |

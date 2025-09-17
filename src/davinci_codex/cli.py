@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
+import csv
 import json
 from pathlib import Path
-from typing import List, Optional
+from typing import Dict, List, Optional
 
 import typer
 
@@ -55,6 +56,26 @@ def _collect_validation_status() -> List[dict[str, str]]:
             }
         )
     return status
+
+
+def _load_validation_metrics(case: str, filename: str) -> Optional[Dict[str, str]]:
+    """Load a simple metric table from a validation case CSV."""
+    case_dir = _validation_root() / case
+    path = case_dir / filename
+    if not path.exists():
+        return None
+    metrics: Dict[str, str] = {}
+    with path.open(encoding="utf-8") as handle:
+        reader = csv.DictReader(handle)
+        for row in reader:
+            metric = row.get("metric")
+            value = row.get("value")
+            units = row.get("units", "")
+            if not metric or value is None:
+                continue
+            label = value if not units else f"{value} {units}"
+            metrics[metric] = label.strip()
+    return metrics or None
 
 
 def _resolve_inventions(slug: Optional[str], all_flag: bool) -> List[InventionSpec]:
@@ -139,7 +160,18 @@ def demo(slug: Optional[str] = typer.Option(None, help="Slug of the invention to
         typer.echo(f"# Demo {spec.title} ({spec.slug})")
         sim = spec.module.simulate(0)
         eval_payload = spec.module.evaluate()
-        typer.echo(json.dumps({"simulate": sim, "evaluate": eval_payload}, indent=2, sort_keys=True))
+        payload: Dict[str, object] = {"simulate": sim, "evaluate": eval_payload}
+        if spec.slug == "mechanical_odometer":
+            validation = _load_validation_metrics(
+                "mechanical_odometer_contact", "contact_summary.csv"
+            )
+            if validation:
+                payload["validation"] = validation
+        if spec.slug == "parachute":
+            validation = _load_validation_metrics("parachute_drop", "descent_summary.csv")
+            if validation:
+                payload["validation"] = validation
+        typer.echo(json.dumps(payload, indent=2, sort_keys=True))
 
 
 @app.command("pipeline")

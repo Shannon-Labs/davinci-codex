@@ -1,0 +1,30 @@
+slug: mechanical_odometer_contact
+display_name: "Mechanical odometer contact validation"
+category: tribology
+solver:
+  contact: "Chrono Stribeck rolling contact"
+  transmission: "Gear train kinematics (12:120 spur pair)"
+benchmark_reference:
+  title: "Renaissance wheel slip benchmarks (Milan street surfaces)"
+  url: https://shannon-labs.org/datasets/odometer-slip
+setup:
+  wheel_diameter_m: 0.22
+  gear_ratio: 10
+  loads_N: [200, 400, 600]
+metrics:
+  - name: slip_delta_percent
+    reference: 0.50
+    tolerance_percent: 20.0
+  - name: circumference_error_percent
+    reference: 0.60
+    tolerance_percent: 25.0
+  - name: encoder_drift_percent
+    reference: 0.20
+    tolerance_percent: 25.0
+validation_assets:
+  slip_profiles: benchmarks/slip_characterisation.csv
+  contact_summary: contact_summary.csv
+  report: report.md
+  provenance:
+    - ../../tva/mechanical_odometer/data/slip_characterisation.yaml
+    - ../../data/tribology/cart_friction_curve.csv

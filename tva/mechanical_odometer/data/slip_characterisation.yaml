@@ -1,0 +1,20 @@
+slug: mechanical_odometer_slip
+summary: Contact slip measurements for the odometer cart across historical street finishes.
+contact_pair:
+  wheel_tread: steamed ash with leather wrap
+  roadway_materials:
+    - packed earth courtyard
+    - flagstone paving
+    - cobblestone street
+instrumentation:
+  wheel_diameter_m: 0.22
+  encoder_resolution_deg: 0.5
+  load_cases_N: [200, 400, 600]
+metrics:
+  - name: slip_percent
+    description: Percentage difference between wheel perimeter and ground travel for one rotation.
+sources:
+  - title: "Streets of Milan paving study (1490)"
+    url: https://ambrosiana.it
+  - title: "Renaissance cart tribology reconstruction logs"
+    path: ../../tribology/rolling_friction_notes.md

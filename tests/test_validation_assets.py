@@ -6,9 +6,14 @@ ROOT = Path(__file__).resolve().parents[1]
 VALIDATION_DIR = ROOT / "validation"
 
 EXPECTED_CASES = {
-    "validated_gear_lewis": {"convergence": "convergence.csv"},
-    "ornithopter_fsi": {"convergence": "timestep_convergence.csv"},
-    "cart_tribology": {"convergence": "load_sweep.csv"},
+    "validated_gear_lewis": ["convergence.csv"],
+    "ornithopter_fsi": ["timestep_convergence.csv"],
+    "cart_tribology": ["load_sweep.csv"],
+    "parachute_drop": ["descent_summary.csv", "benchmarks/drop_profiles.csv"],
+    "mechanical_odometer_contact": [
+        "contact_summary.csv",
+        "benchmarks/slip_characterisation.csv",
+    ],
 }
 
 
@@ -30,5 +35,6 @@ def test_validation_assets_present() -> None:
             data = yaml.safe_load(handle)
         assert isinstance(data, dict)
 
-        conv = case_dir / assets["convergence"]
-        assert conv.exists(), f"Convergence data missing for {slug}"
+        for asset in assets:
+            asset_path = case_dir / asset
+            assert asset_path.exists(), f"Validation asset {asset} missing for {slug}"

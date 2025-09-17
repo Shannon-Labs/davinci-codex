@@ -1,0 +1,32 @@
+slug: parachute_drop
+display_name: "Pyramid parachute drop test"
+category: aerodynamics
+solver:
+  flow: "OpenFOAM PISO transient"
+  structure: "Modal reduced-order strut model"
+  coupling: "Loose FSI with canopy porosity adjustment"
+benchmark_reference:
+  title: "Adrian Nicholas pyramid parachute drop telemetry"
+  url: https://www.bpa.org.uk
+setup:
+  payload_mass_kg: 120.0
+  release_altitude_m: 300
+  canopy_edge_m: 6.7
+  atmosphere_density_kg_m3: 1.18
+metrics:
+  - name: terminal_velocity_mps
+    reference: 6.80
+    tolerance_percent: 5.0
+  - name: peak_accel_g
+    reference: 0.85
+    tolerance_percent: 10.0
+  - name: canopy_fill_time_s
+    reference: 3.5
+    tolerance_percent: 12.0
+validation_assets:
+  benchmark_profile: benchmarks/drop_profiles.csv
+  descent_summary: descent_summary.csv
+  report: report.md
+  provenance:
+    - ../../tva/parachute/data/drop_profiles.yaml
+    - ../../tva/parachute/data/drop_profiles.csv

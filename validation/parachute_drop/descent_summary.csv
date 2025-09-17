@@ -1,0 +1,5 @@
+metric,value,units
+terminal_velocity,6.72,m/s
+peak_acceleration,0.83,g
+canopy_fill_time,3.4,s
+payload_mass,120.0,kg
