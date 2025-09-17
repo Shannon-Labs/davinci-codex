@@ -10,6 +10,11 @@
 [![Documentation](https://img.shields.io/badge/docs-latest-brightgreen.svg)](https://shannon-labs.github.io/davinci-codex/)
 [![Code style: ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
 
+[![GitHub stars](https://img.shields.io/github/stars/Shannon-Labs/davinci-codex?style=flat-square)](https://github.com/Shannon-Labs/davinci-codex/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/Shannon-Labs/davinci-codex?style=flat-square)](https://github.com/Shannon-Labs/davinci-codex/network)
+[![GitHub issues](https://img.shields.io/github/issues/Shannon-Labs/davinci-codex?style=flat-square)](https://github.com/Shannon-Labs/davinci-codex/issues)
+[![GitHub last commit](https://img.shields.io/github/last-commit/Shannon-Labs/davinci-codex?style=flat-square)](https://github.com/Shannon-Labs/davinci-codex/commits)
+
 **A Comprehensive Digital Twin Framework for Leonardo da Vinci's Mechanical Inventions**
 
 [**🌐 Live Documentation**](https://shannon-labs.github.io/davinci-codex/) • [**Abstract**](ABSTRACT.md) • [**Documentation**](docs/index.md) • [**Contributing**](CONTRIBUTING.md) • [**References**](REFERENCES.md) • [**Citation**](CITATION.cff)
@@ -428,9 +433,9 @@ CC0 1.0 Universal - Public Domain Dedication for generated content
 
 ### 🌟 Star this repository to support digital preservation of Renaissance engineering!
 
-[![GitHub stars](https://img.shields.io/github/stars/Shannon-Labs/davinci-codex?style=social)](https://github.com/Shannon-Labs/davinci-codex)
-[![GitHub forks](https://img.shields.io/github/forks/Shannon-Labs/davinci-codex?style=social)](https://github.com/Shannon-Labs/davinci-codex/fork)
-[![GitHub watchers](https://img.shields.io/github/watchers/Shannon-Labs/davinci-codex?style=social)](https://github.com/Shannon-Labs/davinci-codex)
+[![GitHub stars](https://img.shields.io/github/stars/Shannon-Labs/davinci-codex?style=social&label=Star&maxAge=2592000)](https://github.com/Shannon-Labs/davinci-codex)
+[![GitHub forks](https://img.shields.io/github/forks/Shannon-Labs/davinci-codex?style=social&label=Fork&maxAge=2592000)](https://github.com/Shannon-Labs/davinci-codex/fork)
+[![GitHub watchers](https://img.shields.io/github/watchers/Shannon-Labs/davinci-codex?style=social&label=Watch&maxAge=2592000)](https://github.com/Shannon-Labs/davinci-codex)
 
 **"Obstacles do not bend me."** - Leonardo da Vinci
 
