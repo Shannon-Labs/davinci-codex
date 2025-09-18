@@ -1,0 +1,36 @@
+slug: ornithopter
+display_name: "Ornithopter tethered validation"
+category: flight
+tools:
+  controller: "PX4-based tethered ground rig"
+  instrumentation: "6-DOF load cell + thermal telemetry"
+solver:
+  aerodynamics: "Quasi-steady surrogate with harmonic induced velocity"
+  structure: "Modal reduction of carbon spar wing"
+benchmark_reference:
+  title: "PX4 tethered ornithopter run (May 2024)"
+  url: https://shannon-labs.org/datasets/ornithopter
+setup:
+  total_mass_kg: 92.0
+  flap_frequency_hz: 2.4
+  forward_speed_ms: 12.5
+metrics:
+  - name: thrust_margin
+    reference: 0.10
+    tolerance_percent: 20.0
+  - name: modal_ratio
+    reference: 1.50
+    tolerance_percent: 10.0
+  - name: battery_temperature_rise_C
+    reference: 25.0
+    tolerance_percent: 20.0
+  - name: telemetry_duration_s
+    reference: 60.0
+    tolerance_percent: 20.0
+validation_assets:
+  bench_dyno: bench_dyno.yaml
+  modal_survey: modal_survey.yaml
+  telemetry_summary: telemetry_summary.csv
+  report: report.md
+  provenance:
+    - ../../sims/ornithopter/parameters.yaml

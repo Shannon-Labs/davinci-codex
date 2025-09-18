@@ -1,0 +1,7 @@
+metric,value,units
+battery_temperature_rise_C,19.5,C
+motor_power_mean_W,3650,W
+motor_power_peak_W,4850,W
+thrust_to_weight_margin,0.12,ratio
+fsi_converged,true,boolean
+telemetry_duration_s,65,s

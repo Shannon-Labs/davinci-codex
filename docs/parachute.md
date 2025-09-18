@@ -1,5 +1,7 @@
 # Pyramid Parachute
 
+> For acceptance metrics and safety thresholds, see the [Parachute Safety Dossier](parachute_safety_dossier.md).
+
 ## Provenance
 
 **Reference:** Codex Atlanticus, folio 381v

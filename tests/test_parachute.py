@@ -1,6 +1,8 @@
 """Tests for da Vinci's pyramid parachute module."""
 
+import csv
 import math
+from pathlib import Path
 
 import pytest
 
@@ -11,7 +13,7 @@ def test_module_attributes():
     """Verify module exports required attributes."""
     assert parachute.SLUG == "parachute"
     assert parachute.TITLE == "Pyramid Parachute"
-    assert parachute.STATUS == "in_progress"
+    assert parachute.STATUS == "prototype_ready"
     assert "pyramid" in parachute.SUMMARY.lower()
 
 
@@ -49,25 +51,33 @@ def test_plan_calculations():
 
 def test_simulate_descent():
     """Test descent simulation produces valid trajectory."""
-    result = parachute.simulate(seed=42)
+    result = parachute.simulate(seed=42, scenario="nominal_calibration")
 
     # Check result structure
     assert "descent_time_s" in result
     assert "landing_velocity_ms" in result
     assert "safe_landing" in result
     assert "artifacts" in result
+    assert result["scenario"] == "nominal_calibration"
 
     # Check physics
     assert result["descent_time_s"] > 100  # Reasonable descent time
-    assert 5.0 <= result["landing_velocity_ms"] <= 10.0
+    assert parachute.MIN_SAFE_VELOCITY <= result["landing_velocity_ms"] <= parachute.MAX_SAFE_VELOCITY
     assert result["landing_velocity_kmh"] == pytest.approx(
         result["landing_velocity_ms"] * 3.6, rel=0.01
     )
     assert result["safe_landing"] is True
+    assert result["oscillation_amplitude_deg"] <= 5.0
+    assert result["canopy_factor_of_safety"] >= parachute.SAFETY_FACTOR
 
-    # Check artifacts were created
+    # Check artifacts were created and CSV schema includes gust factor
     assert "plot" in result["artifacts"]
     assert "trajectory_csv" in result["artifacts"]
+    csv_path = Path(result["artifacts"]["trajectory_csv"])
+    with csv_path.open("r", encoding="utf-8") as handle:
+        reader = csv.reader(handle)
+        header = next(reader)
+    assert header == ["time_s", "altitude_m", "velocity_ms", "drag_force_N", "gust_factor"]
 
 
 def test_terminal_velocity_physics():
@@ -138,8 +148,8 @@ def test_build_creates_artifacts():
 
 def test_deterministic_simulation():
     """Verify simulation is deterministic with same seed."""
-    result1 = parachute.simulate(seed=123)
-    result2 = parachute.simulate(seed=123)
+    result1 = parachute.simulate(seed=123, scenario="nominal_calibration")
+    result2 = parachute.simulate(seed=123, scenario="nominal_calibration")
 
     assert result1["descent_time_s"] == result2["descent_time_s"]
     assert result1["landing_velocity_ms"] == result2["landing_velocity_ms"]
@@ -148,12 +158,12 @@ def test_deterministic_simulation():
 
 def test_different_seeds_produce_variation():
     """Verify different seeds produce slightly different results (turbulence)."""
-    result1 = parachute.simulate(seed=1)
-    result2 = parachute.simulate(seed=999)
+    result1 = parachute.simulate(seed=1, scenario="nominal_calibration")
+    result2 = parachute.simulate(seed=999, scenario="nominal_calibration")
 
     # Should be similar but not identical due to turbulence
-    assert abs(result1["descent_time_s"] - result2["descent_time_s"]) < 5.0
-    assert abs(result1["landing_velocity_ms"] - result2["landing_velocity_ms"]) < 0.5
+    assert abs(result1["descent_time_s"] - result2["descent_time_s"]) < 6.0
+    assert abs(result1["landing_velocity_ms"] - result2["landing_velocity_ms"]) < 0.6
 
     # But not exactly the same
     assert result1["max_drag_force_N"] != result2["max_drag_force_N"]

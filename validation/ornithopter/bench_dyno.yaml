@@ -1,0 +1,24 @@
+test_id: bench_dyno_2024_05
+motor: dual axial flux outrunners
+propeller: 3.8m composite scimitar
+ambient_temp_C: 22.0
+cooling_airflow_cfm: 450
+rpm_points:
+  - rpm: 220
+    thrust_N: 780
+    power_W: 2800
+    torque_Nm: 121
+    efficiency: 0.42
+  - rpm: 260
+    thrust_N: 960
+    power_W: 3600
+    torque_Nm: 132
+    efficiency: 0.38
+  - rpm: 290
+    thrust_N: 1050
+    power_W: 4100
+    torque_Nm: 135
+    efficiency: 0.36
+notes:
+  - "Load cell calibrated with 50 kg mass prior to sweep"
+  - "Cooling airflow measured at shroud inlet"

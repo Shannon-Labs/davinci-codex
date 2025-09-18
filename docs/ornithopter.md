@@ -1,5 +1,7 @@
 # Ornithopter Modernization Dossier
 
+> Validation summaries live in the [Ornithopter Validation Log](ornithopter_validation.md).
+
 ## Source Manuscripts
 - **Codex Atlanticus, folio 846r** — Annotated planform showing pilot-in-frame, twin flapping wings, and crank-driven gearing.
 - **Manuscript B (Institut de France), folio 70r** — Side elevation with torsion springs and shoulder harness notes.

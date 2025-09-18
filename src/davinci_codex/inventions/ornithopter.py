@@ -25,7 +25,7 @@ import importlib.util
 import math
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict, List, cast
+from typing import Any, Dict, List, Union, cast
 
 import matplotlib
 
@@ -38,10 +38,11 @@ from ..artifacts import ensure_artifact_dir
 
 SLUG = "ornithopter"
 TITLE = "Ornithopter Flight Lab"
-STATUS = "planning"
+STATUS = "in_progress"
 SUMMARY = "Flapping-wing flight modernization with composite spars and electric actuation."
 
 PARAM_FILE = Path("sims") / SLUG / "parameters.yaml"
+VALIDATION_DIR = Path("validation") / SLUG
 RHO_AIR = 1.225  # kg/m^3 at sea level
 GRAVITY = 9.80665  # m/s^2
 
@@ -60,6 +61,7 @@ class OrnithopterParameters:
     power_variation_w: float
     battery_capacity_wh: float
     controller_power_w: float
+    acceptance_targets: Dict[str, Union[float, bool, int]]
 
 
 @dataclass
@@ -143,6 +145,7 @@ def plan() -> Dict[str, object]:
             "power_density_w_per_kg": power_density,
             "battery_capacity_wh": params.battery_capacity_wh,
         },
+        "acceptance_targets": params.acceptance_targets,
         "validation_plan": [
             "Aeroelastic FEM of carbon spar + FlexLam skin",
             "MuJoCo-based flapping dynamics with PX4 controller loop",
@@ -267,12 +270,65 @@ def build() -> None:
 def evaluate() -> Dict[str, object]:
     plan_data = plan()
     sim_data = simulate(seed=42)
+    params = _load_parameters()
 
     lift_margin = cast(float, sim_data["lift_margin"])
     endurance = cast(float, sim_data["estimated_endurance_min"])
     origin = cast(Dict[str, Any], plan_data["origin"])
     folios = cast(List[Dict[str, str]], origin["folios"])
     artifacts = cast(Dict[str, str], sim_data["artifacts"])
+
+    root = Path(__file__).resolve().parents[3]
+    validation_dir = root / VALIDATION_DIR
+
+    bench_path = validation_dir / "bench_dyno.yaml"
+    modal_path = validation_dir / "modal_survey.yaml"
+    telemetry_path = validation_dir / "telemetry_summary.csv"
+
+    with bench_path.open("r", encoding="utf-8") as handle:
+        bench_data = yaml.safe_load(handle)
+    max_thrust = max(point["thrust_N"] for point in bench_data["rpm_points"])
+    gross_weight = params.total_mass_kg * GRAVITY
+    thrust_margin = (max_thrust / gross_weight) - 1.0 if gross_weight else 0.0
+
+    with modal_path.open("r", encoding="utf-8") as handle:
+        modal_data = yaml.safe_load(handle)
+    first_mode = modal_data["modal_results"][0]["frequency_hz"]
+    modal_ratio = first_mode / params.flap_frequency_hz if params.flap_frequency_hz else 0.0
+
+    telemetry: Dict[str, Union[float, bool]] = {}
+    with telemetry_path.open("r", encoding="utf-8") as handle:
+        reader = csv.DictReader(handle)
+        for row in reader:
+            value = row["value"]
+            if value.lower() in {"true", "false"}:
+                telemetry[row["metric"]] = value.lower() == "true"
+            else:
+                telemetry[row["metric"]] = float(value)
+
+    acceptance = params.acceptance_targets
+    validation_summary = {
+        "thrust_margin": thrust_margin,
+        "modal_ratio": modal_ratio,
+        "battery_temperature_rise_C": telemetry.get("battery_temperature_rise_C", 0.0),
+        "fsi_converged": telemetry.get("fsi_converged", False),
+        "telemetry_duration_s": telemetry.get("telemetry_duration_s", 0.0),
+        "meets_targets": {
+            "thrust": thrust_margin >= float(acceptance["thrust_to_weight_margin"]),
+            "modal": modal_ratio >= float(acceptance["modal_frequency_factor"]),
+            "thermal": telemetry.get("battery_temperature_rise_C", 0.0)
+            <= float(acceptance["battery_temperature_rise_C"]),
+            "duration": telemetry.get("telemetry_duration_s", 0.0)
+            >= float(acceptance["telemetry_duration_s"]),
+            "fsi": telemetry.get("fsi_converged", False)
+            == (not bool(acceptance["fsi_divergence_allowed"])),
+        },
+        "assets": {
+            "bench_dyno": str(VALIDATION_DIR / "bench_dyno.yaml"),
+            "modal_survey": str(VALIDATION_DIR / "modal_survey.yaml"),
+            "telemetry_summary": str(VALIDATION_DIR / "telemetry_summary.csv"),
+        },
+    }
 
     return {
         "feasibility": {
@@ -291,6 +347,7 @@ def evaluate() -> Dict[str, object]:
             "Integrate battery thermal model with TVA power draws",
             "Draft defensive publication outlining composite + servo architecture",
         ],
+        "validation": validation_summary,
         "artifacts": artifacts,
         "references": folios,
     }

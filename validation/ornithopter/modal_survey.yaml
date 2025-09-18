@@ -1,0 +1,16 @@
+test_id: modal_survey_2024_05
+setup: laser vibrometry + shaker table
+wing_span_m: 10.5
+modal_results:
+  - mode: primary_flap_bending
+    frequency_hz: 4.2
+    damping_ratio: 0.045
+  - mode: torsional_coupled
+    frequency_hz: 6.8
+    damping_ratio: 0.055
+  - mode: tail_boom_pitch
+    frequency_hz: 9.5
+    damping_ratio: 0.070
+notes:
+  - "Primary bending mode retains 1.75x separation from flapping frequency"
+  - "Wing root strain gauges synchronized with modal survey"

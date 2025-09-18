@@ -23,23 +23,29 @@ The da Vinci Codex project reconstructs Leonardo da Vinci's civil, non-weapon in
 - GitHub Pages will host the collection at <https://shannon-labs.github.io/davinci-codex/book/> once enabled.
 - Available chapters: gear bending validation, ornithopter FSI convergence, rolling friction tribology, and supporting physics derivations.
 
+## 🧪 Validation Briefs
+- [Parachute Safety Dossier](parachute_safety_dossier.md) — turbulence scenarios, tensile coupons, and hazard analysis for prototype readiness.
+- [Revolving Bridge Modernization](revolving_bridge.md) — rotation profile CSVs, counterweight calibration workflow, and acceptance metrics.
+- [Ornithopter Validation Log](ornithopter_validation.md) — dyno, modal, and telemetry summaries satisfying acceptance targets.
+
 ## 📦 Active Modules
 
 | Module | Status | Description |
 |--------|--------|--------------|
-| **Aerial Screw Rotor Lab** | `in_progress` | Helical rotor lift feasibility using modern composites and aerodynamic simulation |
-| **Self-Propelled Cart** | `prototype_ready` | Spring-driven automaton with parametric CAD models and kinematic simulation |
-| **Mechanical Odometer** | `prototype_ready` | Survey cart with pebble-drop counter mechanism and precision calibration |
-| **Ornithopter Flight Lab** | `validated` | Bio-inspired flapping-wing aircraft with composite materials and electric actuation |
-| **Pyramid Parachute** | `validated` | Analysis and optimization of da Vinci's pyramid-shaped parachute with modern safety validation |
+| [**Aerial Screw Rotor Lab**](aerial_screw.md) | `validated` | Helical rotor lift feasibility with packaged simulation artifacts and torque-balancing frame design |
+| [**Self-Propelled Cart**](self_propelled_cart.md) | `prototype_ready` | Spring-driven automaton with parametric CAD models and kinematic simulation |
+| [**Mechanical Odometer**](mechanical_odometer.md) | `prototype_ready` | Survey cart with pebble-drop counter mechanism and precision calibration |
+| [**Pyramid Parachute**](parachute.md) | `prototype_ready` | Safety dossier with turbulence scenarios, tensile coupons, and drop telemetry linked in [Parachute Safety Dossier](parachute_safety_dossier.md) |
+| [**Self-Supporting Revolving Bridge**](revolving_bridge.md) | `in_progress` | Rotation profile CSVs, counterweight treatise, and stability proofs available for field deployment planning |
+| [**Ornithopter Flight Lab**](ornithopter.md) | `in_progress` | Validation assets (dyno, modal survey, telemetry) summarized in [Ornithopter Validation Log](ornithopter_validation.md) |
 
 ## 🗺️ Development Roadmap
 
 ### Near-term Goals
-1. **Aerial Screw Rotor Lab** — Complete lift vs. mass validation with composite rotor experiments
-2. **Self-Propelled Cart** — Workshop testing and path programming instrumentation
-3. **Pyramid Parachute** — Wind tunnel testing and scale model validation
-4. **Ornithopter Flight Lab** — Composite drivetrain implementation and flight control integration
+1. **Pyramid Parachute** — Execute full-scale drop validation and integrate reserve deployment drills into the safety dossier
+2. **Self-Supporting Revolving Bridge** — Fabricate counterweight prototypes and plan live rotation drills informed by the new rotation profile CSVs
+3. **Ornithopter Flight Lab** — Transition from tethered ground-runs to free-flight envelope expansion using logged telemetry acceptance checks
+4. **Self-Propelled Cart** — Package workshop testing scripts and path programming instrumentation for outreach deployments
 
 ### Future Inventions
 - Hydraulic pumps and water lifting devices

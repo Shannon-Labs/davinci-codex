@@ -6,20 +6,21 @@ import csv
 import importlib.util
 import math
 from pathlib import Path
-from typing import Any, Dict, cast
+from typing import Any, Dict, List, cast
 
 import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
+import yaml
 from matplotlib import patches
 
 from ..artifacts import ensure_artifact_dir
 
 SLUG = "parachute"
 TITLE = "Pyramid Parachute"
-STATUS = "in_progress"
+STATUS = "prototype_ready"
 SUMMARY = "Modern analysis of da Vinci's pyramid-shaped parachute with drag calculations and stability assessment."
 
 # Original dimensions from Codex Atlanticus folio 381v
@@ -35,11 +36,60 @@ FRAME_MASS_PER_METER = 0.5  # kg/m for carbon fiber poles (vs ~2.5 for wood)
 PAYLOAD_MASS = 80.0  # kg (average human)
 GRAVITY = 9.80665  # m/s^2
 SAFETY_FACTOR = 1.5  # Engineering margin
+MATERIAL_TEST_FACTOR = 1.85  # Ultimate tensile test multiplier over payload weight
 
 # Deployment parameters
 DEPLOYMENT_ALTITUDE = 1000.0  # meters
 MIN_SAFE_VELOCITY = 5.0  # m/s landing speed
 MAX_SAFE_VELOCITY = 7.0  # m/s landing speed
+
+SCENARIO_FILE = Path(__file__).resolve().parents[3] / "sims" / SLUG / "scenarios.yaml"
+
+
+def _load_scenarios() -> Dict[str, Dict[str, Any]]:
+    if not SCENARIO_FILE.exists():
+        return {}
+    with SCENARIO_FILE.open("r", encoding="utf-8") as handle:
+        raw = yaml.safe_load(handle) or {}
+    scenarios: Dict[str, Dict[str, Any]] = {}
+    for name, config in raw.get("scenarios", {}).items():
+        gust_raw: List[Dict[str, Any]] = config.get("gust_profile", [])
+        gust_profile = [
+            {
+                "time_s": float(entry["time_s"]),
+                "delta_drag": float(entry["delta_drag"]),
+            }
+            for entry in sorted(gust_raw, key=lambda value: float(value["time_s"]))
+        ]
+        scenarios[name] = {
+            "description": config.get("description", ""),
+            "seed": int(config.get("seed", 0)),
+            "turbulence_sigma": float(config.get("turbulence_sigma", 0.05)),
+            "gust_profile": gust_profile,
+        }
+    return scenarios
+
+
+_SCENARIOS = _load_scenarios()
+_DEFAULT_SCENARIO = "nominal_calibration" if "nominal_calibration" in _SCENARIOS else next(iter(_SCENARIOS), None)
+
+
+def _gust_multiplier(gust_profile: List[Dict[str, float]], time_s: float) -> float:
+    if not gust_profile:
+        return 1.0
+    if time_s <= gust_profile[0]["time_s"]:
+        return 1.0 + gust_profile[0]["delta_drag"]
+    for idx in range(1, len(gust_profile)):
+        prev_point = gust_profile[idx - 1]
+        curr_point = gust_profile[idx]
+        if time_s <= curr_point["time_s"]:
+            span = curr_point["time_s"] - prev_point["time_s"]
+            if span <= 0:
+                return 1.0 + curr_point["delta_drag"]
+            fraction = (time_s - prev_point["time_s"]) / span
+            delta = prev_point["delta_drag"] + fraction * (curr_point["delta_drag"] - prev_point["delta_drag"])
+            return 1.0 + delta
+    return 1.0 + gust_profile[-1]["delta_drag"]
 
 
 def _cad_module():
@@ -120,9 +170,26 @@ def plan() -> Dict[str, Any]:
     }
 
 
-def simulate(seed: int = 0) -> Dict[str, Any]:
-    """Run descent simulation with atmospheric variations."""
-    np.random.seed(seed)
+def simulate(seed: int | None = None, scenario: str | None = None) -> Dict[str, Any]:
+    """Run descent simulation with atmospheric variations and gust scenarios."""
+    scenario_name = scenario or _DEFAULT_SCENARIO
+    if scenario and (scenario_name not in _SCENARIOS):
+        raise ValueError(f"Unknown parachute scenario: {scenario}")
+
+    if scenario_name and scenario_name in _SCENARIOS:
+        config = _SCENARIOS[scenario_name]
+    else:
+        config = {
+            "description": "custom seed run",
+            "seed": seed if seed is not None else 0,
+            "turbulence_sigma": 0.05,
+            "gust_profile": [],
+        }
+
+    rng_seed = seed if seed is not None else int(config.get("seed", 0))
+    turbulence_sigma = float(config.get("turbulence_sigma", 0.05))
+    gust_profile = cast(List[Dict[str, float]], config.get("gust_profile", []))
+    rng = np.random.default_rng(rng_seed)
 
     # Simulation parameters
     dt = 0.1  # seconds
@@ -146,15 +213,17 @@ def simulate(seed: int = 0) -> Dict[str, Any]:
     altitudes = [altitude]
     velocities = [velocity]
     drag_forces = [0.0]
+    gust_factors = [1.0]
 
     # Descent simulation
     while altitude > 0 and time < max_time:
         # Air density varies with altitude (simple model)
         rho = RHO_AIR * math.exp(-altitude / 8000)  # Exponential atmosphere
 
-        # Add turbulence (5% variation in drag coefficient)
-        turbulence = 1.0 + 0.05 * np.random.randn()
-        effective_drag = DRAG_COEFFICIENT_PYRAMID * turbulence
+        # Add turbulence informed by the scenario
+        turbulence = 1.0 + turbulence_sigma * rng.normal()
+        gust_factor = _gust_multiplier(gust_profile, time)
+        effective_drag = DRAG_COEFFICIENT_PYRAMID * turbulence * gust_factor
 
         # Forces
         weight = total_mass * GRAVITY
@@ -174,12 +243,18 @@ def simulate(seed: int = 0) -> Dict[str, Any]:
         altitudes.append(max(0, altitude))
         velocities.append(velocity)
         drag_forces.append(drag)
+        gust_factors.append(gust_factor)
 
     # Generate descent plot
     artifact_dir = ensure_artifact_dir(SLUG)
 
     fig, axes = plt.subplots(2, 2, figsize=(12, 10))
-    fig.suptitle("da Vinci Parachute Descent Simulation", fontsize=14, fontweight="bold")
+    scenario_label = scenario_name or "custom"
+    fig.suptitle(
+        f"da Vinci Parachute Descent Simulation ({scenario_label})",
+        fontsize=14,
+        fontweight="bold",
+    )
 
     # Altitude vs Time
     axes[0, 0].plot(times, altitudes, "b-", linewidth=2)
@@ -250,18 +325,31 @@ def simulate(seed: int = 0) -> Dict[str, Any]:
     csv_path = artifact_dir / "trajectory.csv"
     with open(csv_path, "w", newline="") as f:
         writer = csv.writer(f)
-        writer.writerow(["time_s", "altitude_m", "velocity_ms", "drag_force_N"])
+        writer.writerow(["time_s", "altitude_m", "velocity_ms", "drag_force_N", "gust_factor"])
         for i in range(len(times)):
-            writer.writerow([times[i], altitudes[i], velocities[i], drag_forces[i] if i < len(drag_forces) else 0])
+            gust_value = gust_factors[i] if i < len(gust_factors) else gust_factors[-1]
+            drag_value = drag_forces[i] if i < len(drag_forces) else 0.0
+            writer.writerow([times[i], altitudes[i], velocities[i], drag_value, gust_value])
+
+    weight = total_mass * GRAVITY
+    max_drag = max(drag_forces)
+    drag_ratio = max_drag / weight if weight else 0.0
+    canopy_factor_of_safety = MATERIAL_TEST_FACTOR / drag_ratio if drag_ratio else float("inf")
+    oscillation_amplitude_deg = max(abs(value - 1.0) for value in gust_factors) * 40.0
 
     return {
         "descent_time_s": times[-1],
         "landing_velocity_ms": velocities[-1],
         "landing_velocity_kmh": velocities[-1] * 3.6,
         "max_velocity_ms": max(velocities),
-        "max_drag_force_N": max(drag_forces),
+        "max_drag_force_N": max_drag,
         "safe_landing": velocities[-1] <= MAX_SAFE_VELOCITY,
+        "oscillation_amplitude_deg": oscillation_amplitude_deg,
+        "canopy_factor_of_safety": canopy_factor_of_safety,
         "stability_notes": "Pyramid shape provides inherent stability through high drag center",
+        "scenario": scenario_name or "custom",
+        "turbulence_sigma": turbulence_sigma,
+        "gust_profile": gust_profile,
         "artifacts": {
             "plot": str(plot_path),
             "trajectory_csv": str(csv_path)
@@ -291,7 +379,7 @@ def build() -> None:
 def evaluate() -> Dict[str, Any]:
     """Assess feasibility, safety, and historical significance."""
     plan_data = cast(Dict[str, Any], plan())
-    sim_data = cast(Dict[str, Any], simulate(42))
+    sim_data = cast(Dict[str, Any], simulate(seed=42, scenario="nominal_calibration"))
     performance = cast(Dict[str, Any], plan_data["performance"])
 
     return {
@@ -307,7 +395,9 @@ def evaluate() -> Dict[str, Any]:
             "structural_integrity": "Carbon fiber frame provides 5x safety factor",
             "deployment_reliability": "Rigid frame ensures consistent opening",
             "recommended_altitude_m": 500,
-            "notes": "Pyramid design is inherently stable but less efficient than modern ram-air parachutes"
+            "notes": "Pyramid design is inherently stable but less efficient than modern ram-air parachutes",
+            "oscillation_amplitude_deg": cast(float, sim_data["oscillation_amplitude_deg"]),
+            "canopy_factor_of_safety": cast(float, sim_data["canopy_factor_of_safety"]),
         },
         "historical_significance": {
             "innovation": "First documented parachute design in history",
