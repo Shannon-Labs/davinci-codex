@@ -1,0 +1,7 @@
+drum_radius_m: 0.15
+drum_length_m: 0.3
+pin_count: 16
+rotation_speed_rpm: 60
+gear_ratio: 1.0
+beat_angles_deg: [0, 45, 90, 135, 180, 225, 270, 315]
+noise_std: 0.05

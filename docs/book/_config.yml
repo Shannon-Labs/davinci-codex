@@ -1,31 +1,180 @@
-title: "da Vinci Codex Computational Essays"
-author: "Shannon Labs & Codex"
+title: "The da Vinci Codex: Computational Archaeology of Renaissance Engineering"
+author: "Hunter M. Bown & The da Vinci Codex Collaborative"
 logo: ../images/codex_logo.png
+
+# Execution settings for interactive notebooks
 execute:
   execute_notebooks: auto
-  timeout: 120
+  timeout: 300
+  exclude_patterns:
+    - '**/drafts/*'
+    - '**/templates/*'
+  allow_errors: false
+  stderr_output: show
+  
+# Advanced parsing and processing
+parse:
+  myst_enable_extensions:
+    - amsmath
+    - colon_fence
+    - deflist
+    - dollarmath
+    - fieldlist
+    - html_admonition
+    - html_image
+    - linkify
+    - replacements
+    - smartquotes
+    - substitution
+    - tasklist
+  myst_url_schemes: [mailto, http, https]
+  myst_heading_anchors: 3
+  
+# LaTeX output configuration
 latex:
+  latex_engine: xelatex
+  use_jupyterbook_latex: true
   latex_documents:
-    targetname: codex-essays.tex
+    targetname: davinci-codex-computational-archaeology.tex
+    
+# Bibtex references
+bibtex_bibfiles:
+  - ../../references.bib
+  
+# Book structure options
 options:
   numbered: true
+  titlesonly: false
+  
+# Repository integration
 repository:
   url: https://github.com/Shannon-Labs/davinci-codex
   path_to_book: docs/book
   branch: main
+  
+# Advanced HTML configuration
 html:
   favicon: ../images/codex_logo.png
   use_repository_button: true
-  use_edit_page_button: false
+  use_edit_page_button: true
+  use_issues_button: true
+  use_download_button: true
+  use_fullscreen_button: true
+  home_page_in_navbar: false
+  navbar_number_sections: false
+  announcement: |
+    🚧 <strong>Active Development:</strong> This computational archaeology project is actively evolving. 
+    <a href="https://github.com/Shannon-Labs/davinci-codex/discussions">Join our community discussions!</a>
+  google_analytics_id: "G-XXXXXXXXXX"  # Replace with actual GA ID
+  
+  # Enhanced theming and custom CSS
+  theme: sphinx_book_theme
   extra_css:
     - _static/leonardo-theme.css
+    - _static/interactive-elements.css
+    - _static/simulation-widgets.css
+    
+  # Enhanced metadata and social sharing
   extra_head: |
-    <meta name="description" content="Codex Digitalis — Leonardo’s mechanical visions reborn with modern physics and open simulations.">
-    <meta property="og:title" content="Codex Digitalis: da Vinci Codex">
-    <meta property="og:description" content="A Renaissance-inspired Jupyter Book blending narrative, derivations, and validated simulations.">
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="The da Vinci Codex: Computational Archaeology">
+    <meta name="description" content="Open-source computational framework analyzing Leonardo da Vinci's mechanical inventions through rigorous physics-based simulation and historical research.">
+    <meta name="keywords" content="Leonardo da Vinci, computational archaeology, Renaissance engineering, physics simulation, STEM education, open science">
+    
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://shannon-labs.github.io/davinci-codex/images/codex_logo.png">
-    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:url" content="https://shannon-labs.github.io/davinci-codex/">
+    <meta property="og:title" content="The da Vinci Codex: Computational Archaeology">
+    <meta property="og:description" content="Digital preservation and analysis of Leonardo's mechanical genius through modern engineering simulation.">
+    <meta property="og:image" content="https://shannon-labs.github.io/davinci-codex/images/codex_social_preview.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://shannon-labs.github.io/davinci-codex/">
+    <meta property="twitter:title" content="The da Vinci Codex: Computational Archaeology">
+    <meta property="twitter:description" content="Digital preservation and analysis of Leonardo's mechanical genius through modern engineering simulation.">
+    <meta property="twitter:image" content="https://shannon-labs.github.io/davinci-codex/images/codex_social_preview.png">
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Cormorant+Garamond:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Cormorant+Garamond:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Additional JavaScript for interactive features -->
+    <script src="https://cdn.jsdelivr.net/npm/plotly.js@2.26.0/dist/plotly.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@1.0.7/dist/embed-amd.js"></script>
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Book",
+      "name": "The da Vinci Codex: Computational Archaeology of Renaissance Engineering",
+      "description": "A comprehensive digital framework for analyzing Leonardo da Vinci's mechanical inventions through modern physics simulation and historical research.",
+      "author": {
+        "@type": "Person",
+        "name": "Hunter M. Bown",
+        "affiliation": "Shannon Labs"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Shannon Labs",
+        "url": "https://shannon-labs.com"
+      },
+      "url": "https://shannon-labs.github.io/davinci-codex/",
+      "image": "https://shannon-labs.github.io/davinci-codex/images/codex_social_preview.png",
+      "genre": ["Educational Technology", "Historical Research", "Engineering Simulation"],
+      "keywords": "Leonardo da Vinci, computational archaeology, Renaissance engineering, physics simulation, STEM education",
+      "license": "https://opensource.org/licenses/MIT",
+      "inLanguage": "en-US"
+    }
+    </script>
+    
+# Sphinx extensions for enhanced functionality
+sphinx:
+  extra_extensions:
+    - sphinx_design
+    - sphinx_copybutton
+    - sphinx_togglebutton
+    - sphinx_tabs.tabs
+    - sphinx_external_toc
+    - sphinxext.opengraph
+    - sphinx_comments
+    - nbsphinx
+  config:
+    # Copy button configuration
+    copybutton_prompt_text: ">>> |... |\\$ "
+    copybutton_only_copy_prompt_lines: true
+    copybutton_remove_prompts: true
+    
+    # OpenGraph configuration
+    ogp_site_url: "https://shannon-labs.github.io/davinci-codex/"
+    ogp_image: "https://shannon-labs.github.io/davinci-codex/images/codex_social_preview.png"
+    
+    # Comments configuration (when available)
+    comments_config:
+      hypothesis: true
+      utterances:
+        repo: "Shannon-Labs/davinci-codex"
+        
+    # Math rendering
+    mathjax_path: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    mathjax3_config:
+      loader:
+        load: ['[tex]/physics', '[tex]/ams']
+      tex:
+        packages:
+          '[+]': ['physics', 'ams']
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        
+# Launch buttons for interactive use
+launch_buttons:
+  notebook_interface: classic
+  binderhub_url: "https://mybinder.org"
+  jupyterhub_url: ""
+  thebe: true
+  colab_url: "https://colab.research.google.com"
+  
+# Advanced features
+only_build_toc_files: false

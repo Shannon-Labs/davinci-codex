@@ -10,6 +10,7 @@ from typing import Dict, List, Optional
 import typer
 
 from . import __version__
+from .inventions import mechanical_ensemble as mechanical_ensemble_module
 from .pipelines import run_ornithopter_pipeline
 from .registry import InventionSpec, get_invention, list_inventions
 
@@ -189,6 +190,18 @@ def pipeline_command(
             continue
         report = run_ornithopter_pipeline(seed=seed, duration_s=duration)
         typer.echo(json.dumps(report, indent=2, sort_keys=True))
+
+
+@app.command("ensemble-demo")
+def ensemble_demo_command(
+    seed: int = typer.Option(0, help="Random seed for deterministic playback."),
+    tempo: float = typer.Option(96.0, "--tempo", help="Target tempo in beats per minute."),
+    measures: int = typer.Option(4, "--measures", help="Number of measures to generate."),
+) -> None:
+    """Generate a pseudo-score for the full mechanical ensemble."""
+
+    result = mechanical_ensemble_module.demo(seed=seed, tempo_bpm=tempo, measures=measures)
+    typer.echo(json.dumps(result, indent=2, sort_keys=True))
 
 
 @app.command("validation-status")

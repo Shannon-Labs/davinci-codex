@@ -66,3 +66,14 @@ Each module documents original folio references (e.g., Codex Atlanticus, folio n
 - **Documentation**: [Project Website](https://shannon-labs.github.io/davinci-codex/)
 - **Safety Concerns**: `safety@davinci-codex.org`
 - **Maintainer**: Hunter Bown (Shannon Labs)
+## Musical Instruments
+
+| Module | Status | Description |
+|--------|--------|-------------|
+| [**Mechanical Drum**](mechanical_drum.md) | `prototype_ready` | Programmable percussion barrel with cam-driven beat pins |
+| [**Mechanical Carillon**](mechanical_carillon.md) | `concept_reconstruction` | Drum-indexed bell strikers for civic chimes |
+| [**Mechanical Trumpeter**](mechanical_trumpeter.md) | `concept_reconstruction` | Programmable valve automaton with bellows-driven breath |
+| [**Mechanical Ensemble**](mechanical_ensemble.md) | `concept_reconstruction` | Spectral-balanced coordination with pseudo-score demo across all instruments |
+| [**Mechanical Organ**](mechanical_organ.md) | `concept_reconstruction` | Automatic pipe organ with twin bellows and pinned program barrel |
+| [**Viola Organista**](viola_organista.md) | `concept_reconstruction` | Wheel-bowed keyboard sustaining polyphonic string voices |
+| [**Programmable Flute**](programmable_flute.md) | `concept_reconstruction` | Cam-actuated recorder with automated fingering and valve control |

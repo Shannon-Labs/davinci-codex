@@ -1,6 +1,6 @@
 overview:
   total_target: 500
-  documented: 5
+  documented: 11
   focus_areas:
     textile: 30
     workshop: 40
@@ -10,72 +10,173 @@ overview:
     civil: 35
     domestic: 20
     experimental: 10
-  notes: |
-    Catalog entries record folio provenance, material requirements, and validation status for each invention. Values list minimum target counts for the digital dissertation.
+    music: 25
+  notes: 'Catalog entries record folio provenance, material requirements, and validation
+    status for each invention. Values list minimum target counts for the digital dissertation.
 
+    '
 inventions:
-  - slug: "bobbin_winder"
-    folio_reference: "CA f.1090r"
-    provenance: "PROVENANCE/codex_atlanticus/CA_f1090r.yaml"
-    category: "textile"
-    date_estimated: "1495-1497"
-    completion_level: "detailed_with_dimensions"
-    related_sketches: ["CA f.1090v", "Madrid I f.67v"]
-    historical_precedent: "Extends Florentine silk throwing guild machinery"
-    why_overlooked: "Catalogued as workshop diagram without industrial context"
-    status:
-      simulation: "in_progress"
-      uq: "scheduled"
-      fmea: "pending"
-  - slug: "olive_oil_press"
-    folio_reference: "Madrid I f.47r"
-    provenance: "PROVENANCE/madrid_codices/Madrid_I_f47r.yaml"
-    category: "hydraulic"
-    date_estimated: "1493-1495"
-    completion_level: "detailed_with_dimensions"
-    related_sketches: ["Madrid I f.47v", "CA f.995r"]
-    historical_precedent: "Improves upon Tuscan screw presses"
-    why_overlooked: "Considered incremental to existing presses"
-    status:
-      simulation: "queued"
-      uq: "not_started"
-      fmea: "not_started"
-  - slug: "hygrometer"
-    folio_reference: "CA f.675r"
-    provenance: "PROVENANCE/codex_atlanticus/CA_f675r.yaml"
-    category: "measurement"
-    date_estimated: "1490-1492"
-    completion_level: "rough_sketch"
-    related_sketches: ["CA f.676v"]
-    historical_precedent: "Early humidity sensing prior to Santorio"
-    why_overlooked: "Filed among meteorological curiosities"
-    status:
-      simulation: "research"
-      uq: "not_started"
-      fmea: "not_applicable"
-  - slug: "mechanical_drum"
-    folio_reference: "CA f.837r"
-    provenance: "PROVENANCE/codex_atlanticus/CA_f837r.yaml"
-    category: "domestic"
-    date_estimated: "1494-1496"
-    completion_level: "concept_only"
-    related_sketches: ["CA f.837v"]
-    historical_precedent: "Programmable percussion for court entertainment"
-    why_overlooked: "Dismissed as musical novelty"
-    status:
-      simulation: "queued"
-      uq: "not_started"
-      fmea: "queued"
-  - slug: "spotlight_parabolic_mirror"
-    folio_reference: "CA f.87r"
-    provenance: "PROVENANCE/codex_atlanticus/CA_f87r.yaml"
-    category: "experimental"
-    date_estimated: "1492-1494"
-    completion_level: "rough_sketch"
-    related_sketches: ["CA f.87v"]
-    historical_precedent: "Precedes 17th-century stage lighting"
-    why_overlooked: "Requires precise polishing techniques"
-    status:
-      simulation: "queued"
-      uq: "not_started"
-      fmea: "risk_review"
+- slug: bobbin_winder
+  folio_reference: CA f.1090r
+  provenance: PROVENANCE/codex_atlanticus/CA_f1090r.yaml
+  category: textile
+  date_estimated: 1495-1497
+  completion_level: detailed_with_dimensions
+  related_sketches:
+  - CA f.1090v
+  - Madrid I f.67v
+  historical_precedent: Extends Florentine silk throwing guild machinery
+  why_overlooked: Catalogued as workshop diagram without industrial context
+  status:
+    simulation: in_progress
+    uq: scheduled
+    fmea: pending
+- slug: olive_oil_press
+  folio_reference: Madrid I f.47r
+  provenance: PROVENANCE/madrid_codices/Madrid_I_f47r.yaml
+  category: hydraulic
+  date_estimated: 1493-1495
+  completion_level: detailed_with_dimensions
+  related_sketches:
+  - Madrid I f.47v
+  - CA f.995r
+  historical_precedent: Improves upon Tuscan screw presses
+  why_overlooked: Considered incremental to existing presses
+  status:
+    simulation: queued
+    uq: not_started
+    fmea: not_started
+- slug: hygrometer
+  folio_reference: CA f.675r
+  provenance: PROVENANCE/codex_atlanticus/CA_f675r.yaml
+  category: measurement
+  date_estimated: 1490-1492
+  completion_level: rough_sketch
+  related_sketches:
+  - CA f.676v
+  historical_precedent: Early humidity sensing prior to Santorio
+  why_overlooked: Filed among meteorological curiosities
+  status:
+    simulation: research
+    uq: not_started
+    fmea: not_applicable
+- slug: mechanical_drum
+  folio_reference: CA f.837r
+  provenance: PROVENANCE/codex_atlanticus/CA_f837r.yaml
+  category: domestic
+  date_estimated: 1494-1496
+  completion_level: concept_only
+  related_sketches:
+  - CA f.837v
+  historical_precedent: Programmable percussion for court entertainment
+  why_overlooked: Dismissed as musical novelty
+  status:
+    simulation: in_progress
+    uq: not_started
+    fmea: queued
+- slug: spotlight_parabolic_mirror
+  folio_reference: CA f.87r
+  provenance: PROVENANCE/codex_atlanticus/CA_f87r.yaml
+  category: experimental
+  date_estimated: 1492-1494
+  completion_level: rough_sketch
+  related_sketches:
+  - CA f.87v
+  historical_precedent: Precedes 17th-century stage lighting
+  why_overlooked: Requires precise polishing techniques
+  status:
+    simulation: queued
+    uq: not_started
+    fmea: risk_review
+- slug: mechanical_organ
+  folio_reference: CA f.80r
+  provenance: PROVENANCE/codex_atlanticus/CA_f80r.yaml
+  category: music
+  date_estimated: 1490-1495
+  completion_level: concept_only
+  related_sketches:
+  - CA f.80v
+  - Madrid I f.85r
+  historical_precedent: Extends automated organ barrels from Florentine workshops
+  why_overlooked: Complex bellows counter-rotation requirements
+  status:
+    simulation: in_progress
+    uq: not_started
+    fmea: queued
+- slug: viola_organista
+  folio_reference: CA f.93v
+  provenance: PROVENANCE/codex_atlanticus/CA_f93v.yaml
+  category: music
+  date_estimated: 1493-1495
+  completion_level: concept_only
+  related_sketches:
+  - CA f.94r
+  - Madrid II f.76r
+  historical_precedent: Combines hurdy-gurdy wheel bowing with keyboard control
+  why_overlooked: Requires precise wheel surface treatment for tone
+  status:
+    simulation: in_progress
+    uq: not_started
+    fmea: queued
+- slug: programmable_flute
+  folio_reference: CA f.572r
+  provenance: PROVENANCE/codex_atlanticus/CA_f572r.yaml
+  category: music
+  date_estimated: 1492-1495
+  completion_level: concept_only
+  related_sketches:
+  - CA f.572v
+  - Madrid I f.108r
+  historical_precedent: Builds on mechanical carillons and recorder workshops
+  why_overlooked: Automated fingering viewed as novelty
+  status:
+    simulation: in_progress
+    uq: not_started
+    fmea: queued
+- slug: mechanical_carillon
+  folio_reference: CA f.30r
+  provenance: PROVENANCE/codex_atlanticus/CA_f30r.yaml
+  category: music
+  date_estimated: 1490-1494
+  completion_level: concept_only
+  related_sketches:
+  - CA f.31v
+  - Madrid I f.96r
+  historical_precedent: Extends monastic bell carillons with programmable cams
+  why_overlooked: Tower integration seen as costly for experimentation
+  status:
+    simulation: in_progress
+    uq: not_started
+    fmea: queued
+- slug: mechanical_trumpeter
+  folio_reference: CA f.194r
+  provenance: PROVENANCE/codex_atlanticus/CA_f194r.yaml
+  category: music
+  date_estimated: 1494-1498
+  completion_level: concept_only
+  related_sketches:
+  - CA f.195v
+  - Madrid II f.12r
+  historical_precedent: Automaton trumpeters used in Renaissance civic displays
+  why_overlooked: Complex valve cams viewed as impractical for festivals
+  status:
+    simulation: in_progress
+    uq: not_started
+    fmea: queued
+- slug: mechanical_ensemble
+  folio_reference: Composite folios
+  provenance: PROVENANCE/codex_atlanticus/composite_music.yaml
+  category: music
+  date_estimated: 1490-1498
+  completion_level: concept_only
+  related_sketches:
+  - CA f.30r
+  - CA f.80r
+  - CA f.93v
+  - CA f.194r
+  historical_precedent: Combines automaton instruments for court spectacles
+  why_overlooked: Requires synchronized power transmission across inventions
+  status:
+    simulation: in_progress
+    uq: not_started
+    fmea: queued

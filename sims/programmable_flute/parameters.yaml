@@ -1,0 +1,8 @@
+pipe_lengths_m: [0.42, 0.38, 0.34, 0.31]
+hole_positions_m: [0.08, 0.12, 0.16, 0.2]
+barrel_rotation_rpm: 24.0
+cam_lobe_count: 8
+airflow_rate_lps: 7.5
+valve_latency_s: 0.08
+note_sequence: [0, 1, 2, 3, 2, 1, 0]
+air_noise_std: 0.06

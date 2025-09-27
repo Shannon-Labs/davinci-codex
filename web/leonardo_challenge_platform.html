@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Leonardo Challenge - Global Maker Competition</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #8B4513, #D2691E, #F4A460);
+            color: #2C1810;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            color: #8B0000;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.4em;
+            color: #B8860B;
+            font-style: italic;
+        }
+
+        .hero-section {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            margin: 30px 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .challenge-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .challenge-card {
+            background: linear-gradient(145deg, #FFF8DC, #F5DEB3);
+            border: 3px solid #D2691E;
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .challenge-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            border-color: #8B0000;
+        }
+
+        .challenge-status {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .status-open {
+            background: #32CD32;
+            color: white;
+        }
+
+        .status-active {
+            background: #FF6347;
+            color: white;
+        }
+
+        .status-completed {
+            background: #FFD700;
+            color: #8B0000;
+        }
+
+        .prize-amount {
+            font-size: 1.5em;
+            color: #8B0000;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .participants {
+            color: #B8860B;
+            font-style: italic;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #8B0000, #DC143C);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(139, 0, 0, 0.3);
+        }
+
+        .simulation-viewer {
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .leaderboard {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .leaderboard-entry {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 2px solid #D2691E;
+            transition: background 0.3s ease;
+        }
+
+        .leaderboard-entry:hover {
+            background: rgba(210, 105, 30, 0.1);
+        }
+
+        .rank {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #8B0000;
+            min-width: 50px;
+        }
+
+        .team-info {
+            flex-grow: 1;
+            margin-left: 20px;
+        }
+
+        .team-name {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .team-location {
+            color: #B8860B;
+            font-style: italic;
+        }
+
+        .score {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #8B0000;
+        }
+
+        .innovation-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .innovation-item {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #8B0000;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            
+            .challenge-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎨 The Leonardo Challenge</h1>
+            <p class="subtitle">Bringing da Vinci's Unbuilt Dreams to Life</p>
+            <p>A global competition where makers, engineers, and visionaries compete to build Leonardo's unrealized inventions</p>
+        </header>
+
+        <div class="hero-section">
+            <h2>🚀 Imagine This...</h2>
+            <p>500 years ago, Leonardo da Vinci sketched machines that were centuries ahead of their time. Flying machines, underwater vessels, automated manufacturing systems, and weapons of war that existed only on paper. Until now.</p>
+            <br>
+            <p><strong>The Leonardo Challenge</strong> is a global competition platform where teams from around the world race to bring these lost inventions to life using modern materials, manufacturing techniques, and engineering knowledge.</p>
+            <br>
+            <div style="text-align: center;">
+                <a href="#challenges" class="cta-button">🔧 View Active Challenges</a>
+                <a href="#register" class="cta-button">👥 Register Your Team</a>
+                <a href="#simulator" class="cta-button">🎮 Try the Simulator</a>
+            </div>
+        </div>
+
+        <section id="challenges">
+            <h2 style="text-align: center; margin: 40px 0; font-size: 2.5em; color: #8B0000;">🏆 Active Challenges</h2>
+            
+            <div class="challenge-grid">
+                <div class="challenge-card">
+                    <span class="challenge-status status-active">🔥 ACTIVE</span>
+                    <h3>The Great Bird (Ornithopter Challenge)</h3>
+                    <p><strong>Mission:</strong> Build a human-powered ornithopter capable of sustained flight based on Leonardo's Codex on the Flight of Birds.</p>
+                    <div class="prize-amount">💰 Prize Pool: $500,000</div>
+                    <p class="participants">👥 47 teams registered | 🌍 23 countries</p>
+                    <p><strong>Deadline:</strong> December 2024</p>
+                    <p><strong>Current Leader:</strong> Team Phoenix (MIT/Delft) - 23.4 seconds sustained flight</p>
+                    <br>
+                    <a href="#" class="cta-button">Join Challenge</a>
+                    <a href="#" class="cta-button">View Submissions</a>
+                </div>
+
+                <div class="challenge-card">
+                    <span class="challenge-status status-open">✨ OPEN</span>
+                    <h3>Leonardo's Automobile</h3>
+                    <p><strong>Mission:</strong> Recreate the self-propelled cart using only materials and techniques available in 1495, but with modern safety standards.</p>
+                    <div class="prize-amount">💰 Prize Pool: $250,000</div>
+                    <p class="participants">👥 12 teams registered | 🌍 8 countries</p>
+                    <p><strong>Registration Closes:</strong> March 2024</p>
+                    <p><strong>Special Rule:</strong> Must use spring-powered mechanism as originally designed</p>
+                    <br>
+                    <a href="#" class="cta-button">Join Challenge</a>
+                    <a href="#" class="cta-button">Study Plans</a>
+                </div>
+
+                <div class="challenge-card">
+                    <span class="challenge-status status-active">🔥 ACTIVE</span>
+                    <h3>The Diving Suit Challenge</h3>
+                    <p><strong>Mission:</strong> Create a working underwater breathing apparatus based on Leonardo's diving equipment designs.</p>
+                    <div class="prize-amount">💰 Prize Pool: $300,000</div>
+                    <p class="participants">👥 31 teams registered | 🌍 15 countries</p>
+                    <p><strong>Deadline:</strong> August 2024</p>
+                    <p><strong>Current Leader:</strong> AquaTech Collective - 45 minutes underwater at 20ft depth</p>
+                    <br>
+                    <a href="#" class="cta-button">Join Challenge</a>
+                    <a href="#" class="cta-button">Safety Guidelines</a>
+                </div>
+
+                <div class="challenge-card">
+                    <span class="challenge-status status-completed">🏆 COMPLETED</span>
+                    <h3>Parachute Challenge</h3>
+                    <p><strong>Mission:</strong> Build and test Leonardo's pyramid parachute design with modern safety protocols.</p>
+                    <div class="prize-amount">💰 Winner: $150,000</div>
+                    <p class="participants">👥 89 teams participated | 🌍 34 countries</p>
+                    <p><strong>Winner:</strong> Team Icarus (CalTech/Oxford)</p>
+                    <p><strong>Achievement:</strong> Successful deployment from 10,000ft with 12% improvement over modern round parachutes</p>
+                    <br>
+                    <a href="#" class="cta-button">View Results</a>
+                    <a href="#" class="cta-button">Download Plans</a>
+                </div>
+
+                <div class="challenge-card">
+                    <span class="challenge-status status-open">✨ OPEN</span>
+                    <h3>The Mechanical Knight</h3>
+                    <p><strong>Mission:</strong> Build Leonardo's programmable humanoid automaton using period-appropriate mechanisms but modern materials.</p>
+                    <div class="prize-amount">💰 Prize Pool: $750,000</div>
+                    <p class="participants">👥 5 teams registered | 🌍 4 countries</p>
+                    <p><strong>Registration Closes:</strong> June 2024</p>
+                    <p><strong>Requirements:</strong> Must walk, move arms, and open/close helmet visor automatically</p>
+                    <br>
+                    <a href="#" class="cta-button">Join Challenge</a>
+                    <a href="#" class="cta-button">Technical Specs</a>
+                </div>
+
+                <div class="challenge-card">
+                    <span class="challenge-status status-open">✨ OPEN</span>
+                    <h3>The Giant Crossbow</h3>
+                    <p><strong>Mission:</strong> Scale recreation of Leonardo's 24-meter crossbow for modern engineering demonstration.</p>
+                    <div class="prize-amount">💰 Prize Pool: $400,000</div>
+                    <p class="participants">👥 8 teams registered | 🌍 6 countries</p>
+                    <p><strong>Registration Closes:</strong> May 2024</p>
+                    <p><strong>Challenge:</strong> Fire a 1-meter bolt 500+ meters with accuracy requirements</p>
+                    <br>
+                    <a href="#" class="cta-button">Join Challenge</a>
+                    <a href="#" class="cta-button">Ballistics Data</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="simulator" class="simulation-viewer">
+            <h2>🎮 Interactive Da Vinci Simulator</h2>
+            <p>Test your designs virtually before building! Our physics-accurate simulator lets you experiment with Leonardo's machines using real engineering parameters.</p>
+            <br>
+            <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; margin: 20px 0;">
+                <h3>🕊️ Ornithopter Flight Simulator</h3>
+                <p>Adjust wing geometry, flapping frequency, and pilot weight to optimize flight performance</p>
+                <div style="margin: 15px 0;">
+                    <label>Wing Span: <input type="range" min="8" max="15" value="12" style="margin: 0 10px;"> 12m</label><br>
+                    <label>Flapping Rate: <input type="range" min="60" max="180" value="120" style="margin: 0 10px;"> 120 beats/min</label><br>
+                    <label>Pilot Weight: <input type="range" min="60" max="100" value="75" style="margin: 0 10px;"> 75kg</label>
+                </div>
+                <a href="#" class="cta-button">🚀 Run Simulation</a>
+            </div>
+            
+            <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
+                <h3>🏰 Siege Engine Calculator</h3>
+                <p>Calculate trajectory, range, and impact force for Leonardo's military inventions</p>
+                <a href="#" class="cta-button">🎯 Launch Calculator</a>
+            </div>
+        </section>
+
+        <div class="leaderboard">
+            <h2 style="text-align: center; margin-bottom: 30px; color: #8B0000;">🏆 Global Innovation Leaderboard</h2>
+            
+            <div class="leaderboard-entry">
+                <div class="rank">🥇</div>
+                <div class="team-info">
+                    <div class="team-name">Team Phoenix</div>
+                    <div class="team-location">MIT (USA) & TU Delft (Netherlands)</div>
+                </div>
+                <div class="score">2,847 pts</div>
+            </div>
+            
+            <div class="leaderboard-entry">
+                <div class="rank">🥈</div>
+                <div class="team-info">
+                    <div class="team-name">Da Vinci Dynamics</div>
+                    <div class="team-location">Politecnico di Milano (Italy)</div>
+                </div>
+                <div class="score">2,763 pts</div>
+            </div>
+            
+            <div class="leaderboard-entry">
+                <div class="rank">🥉</div>
+                <div class="team-info">
+                    <div class="team-name">Renaissance Robotics</div>
+                    <div class="team-location">Tokyo Institute of Technology (Japan)</div>
+                </div>
+                <div class="score">2,591 pts</div>
+            </div>
+            
+            <div class="leaderboard-entry">
+                <div class="rank">4</div>
+                <div class="team-info">
+                    <div class="team-name">AquaTech Collective</div>
+                    <div class="team-location">CERN (Switzerland) & University of Sydney (Australia)</div>
+                </div>
+                <div class="score">2,408 pts</div>
+            </div>
+            
+            <div class="leaderboard-entry">
+                <div class="rank">5</div>
+                <div class="team-info">
+                    <div class="team-name">Mechanical Marvels</div>
+                    <div class="team-location">Stanford University (USA)</div>
+                </div>
+                <div class="score">2,156 pts</div>
+            </div>
+        </div>
+
+        <div class="innovation-showcase">
+            <h2 style="grid-column: 1/-1; text-align: center; color: #8B0000; margin-bottom: 20px;">🔬 Recent Breakthrough Innovations</h2>
+            
+            <div class="innovation-item">
+                <h3>🪂 Variable Geometry Parachute</h3>
+                <p><strong>Team Icarus</strong> developed a parachute that adjusts its shape during descent, improving stability by 34% over Leonardo's original design.</p>
+            </div>
+            
+            <div class="innovation-item">
+                <h3>🔧 Self-Regulating Spring System</h3>
+                <p><strong>Mechanical Marvels</strong> created a spring mechanism that maintains constant torque output, solving a key limitation in Leonardo's self-propelled cart.</p>
+            </div>
+            
+            <div class="innovation-item">
+                <h3>🤖 Bio-Inspired Joint Design</h3>
+                <p><strong>Renaissance Robotics</strong> used modern biomechanics to optimize the Mechanical Knight's joints, achieving 87% of human range of motion.</p>
+            </div>
+            
+            <div class="innovation-item">
+                <h3>🌊 Pressure Equalization System</h3>
+                <p><strong>AquaTech Collective</strong> added a modern pressure regulation system to Leonardo's diving suit, enabling safe operation at 50ft depth.</p>
+            </div>
+        </div>
+
+        <div class="hero-section" id="register">
+            <h2>🚀 Ready to Make History?</h2>
+            <p>Join thousands of engineers, makers, students, and dreamers who are bringing 500-year-old visions to life. Whether you're a professional engineer or a passionate hobbyist, there's a challenge waiting for you.</p>
+            <br>
+            <h3>Why Join The Leonardo Challenge?</h3>
+            <ul style="text-align: left; margin: 20px 0;">
+                <li>🏆 <strong>Massive Prize Pools:</strong> Over $2.2 million in total prizes</li>
+                <li>🌍 <strong>Global Recognition:</strong> Your innovations featured in museums worldwide</li>
+                <li>📚 <strong>Educational Impact:</strong> Inspire the next generation of inventors</li>
+                <li>🔬 <strong>Scientific Advancement:</strong> Push the boundaries of engineering</li>
+                <li>🎨 <strong>Historical Preservation:</strong> Honor Leonardo's legacy</li>
+                <li>🤝 <strong>International Collaboration:</strong> Work with teams across continents</li>
+            </ul>
+            <br>
+            <div style="text-align: center;">
+                <a href="#" class="cta-button">📝 Register Your Team</a>
+                <a href="#" class="cta-button">📋 View Competition Rules</a>
+                <a href="#" class="cta-button">💬 Join Community Forum</a>
+            </div>
+        </div>
+
+        <footer style="text-align: center; padding: 40px; color: rgba(255,255,255,0.8);">
+            <p>🎨 <strong>The Leonardo Challenge</strong> - Where History Meets Innovation</p>
+            <p>Powered by the DaVinci Codex Computational Archaeology Project</p>
+            <p>© 2024 Renaissance Innovation Foundation | All rights reserved</p>
+        </footer>
+    </div>
+
+    <script>
+        // Simple interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate challenge cards on scroll
+            const cards = document.querySelectorAll('.challenge-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationDelay = Math.random() * 0.5 + 's';
+                        entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                    }
+                });
+            });
+            
+            cards.forEach(card => observer.observe(card));
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+        
+        // Add CSS animation keyframes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

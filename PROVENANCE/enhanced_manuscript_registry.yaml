@@ -1,0 +1,287 @@
+# Enhanced Digital Manuscript Registry
+# Comprehensive provenance tracking for computational archaeology
+
+metadata:
+  schema_version: "2.0"
+  last_updated: "2025-01-01"
+  maintainer: "DaVinci Codex Collaborative"
+  license: "CC0 1.0 Universal (Public Domain)"
+  standards_compliance:
+    - "Dublin Core Metadata Initiative"
+    - "CIDOC-CRM for Cultural Heritage"
+    - "FAIR Data Principles"
+
+digital_archives:
+  leonardo_digitale:
+    name: "Leonardo Digitale"
+    url: "https://www.leonardodigitale.com"
+    api_endpoint: "https://api.leonardodigitale.com/v1"
+    authentication: "api_key"
+    access_level: "public"
+    update_frequency: "monthly"
+    image_formats: ["JPEG 2000", "TIFF", "PNG"]
+    metadata_formats: ["MODS", "Dublin Core", "CIDOC-CRM"]
+    
+  universal_leonardo:
+    name: "Universal Leonardo"
+    url: "https://www.universalleonardo.org"
+    access_level: "public"
+    specialization: "cross-referencing and scholarly commentary"
+    image_quality: "high_resolution"
+    
+  british_library:
+    name: "British Library Digitised Manuscripts"
+    url: "https://www.bl.uk/manuscripts"
+    api_endpoint: "https://api.bl.uk/metadata/doubleday"
+    access_level: "public"
+    special_collections: ["Arundel manuscripts"]
+    
+  gallica_bnf:
+    name: "Gallica - Bibliothèque nationale de France"
+    url: "https://gallica.bnf.fr"
+    api_endpoint: "https://gallica.bnf.fr/services"
+    access_level: "public"
+    formats: ["IIIF", "OAI-PMH"]
+
+codices:
+  codex_atlanticus:
+    official_name: "Codice Atlantico"
+    archive:
+      institution: "Veneranda Biblioteca Ambrosiana"
+      location: "Milan, Italy"
+      contact: "biblioteca@ambrosiana.it"
+      catalog_number: "Ambr. 01"
+      shelf_mark: "Cod. Atl."
+    
+    physical_description:
+      folio_count: 1119
+      dimensions: "645 × 435 mm"
+      material: "paper"
+      binding: "modern (1972-1979 restoration)"
+      condition: "excellent (post-restoration)"
+      
+    historical_context:
+      creation_period: "1478-1519"
+      compilation_date: "16th-17th century"
+      previous_owners: ["Pompeo Leoni", "Count Galeazzo Arconati"]
+      acquisition_date: "1637"
+      
+    digitization:
+      project: "Leonardo Digitale"
+      completion_date: "2019"
+      image_count: 2238
+      resolution: "300 DPI minimum"
+      color_management: "sRGB profile"
+      metadata_standard: "MODS + Dublin Core"
+      
+    access_information:
+      digital_collection: "https://www.leonardodigitale.com/codex-atlanticus"
+      license: "Educational use permitted"
+      restrictions: "Commercial use requires permission"
+      api_access: true
+      bulk_download: false
+      
+    research_aids:
+      transcriptions: "partial (major folios)"
+      translations: ["Italian", "English", "French"]
+      scholarly_editions: 
+        - "Polidori, G. (1894-1904)"
+        - "Marinoni, A. (1975-1980)"
+        - "Pedretti, C. (1987-)"
+      
+    invention_mappings:
+      mechanical_engineering:
+        - folio: "f.858r"
+          invention: "ornithopter"
+          description: "Flying machine with articulated wings"
+          image_url: "codex_atlanticus/f858r_v1.jpg"
+          transcription_confidence: 0.85
+          
+        - folio: "f.87r"
+          invention: "aerial_screw"
+          description: "Helicopter-like flying machine"
+          image_url: "codex_atlanticus/f87r_v1.jpg"
+          transcription_confidence: 0.90
+          
+        - folio: "f.1090r"
+          invention: "mechanical_loom"
+          description: "Automated textile production"
+          image_url: "codex_atlanticus/f1090r_v1.jpg"
+          transcription_confidence: 0.75
+          notes: "Part of textile automation series"
+          
+      hydraulic_systems:
+        - folio: "f.675r"
+          invention: "irrigation_timer"
+          description: "Water clock for agricultural timing"
+          image_url: "codex_atlanticus/f675r_v1.jpg"
+          
+      measurement_instruments:
+        - folio: "f.837r"
+          invention: "hygrometer"
+          description: "Humidity measurement device"
+          image_url: "codex_atlanticus/f837r_v1.jpg"
+
+  madrid_codices:
+    official_name: "Códices de Madrid"
+    archive:
+      institution: "Biblioteca Nacional de España"
+      location: "Madrid, Spain"
+      catalog_number: "MSS/8936-8937"
+      
+    manuscripts:
+      madrid_i:
+        folio_count: 192
+        focus: "mechanics and mathematics"
+        key_inventions:
+          - folio: "f.47r"
+            invention: "gear_systems"
+            description: "Advanced gear train mechanisms"
+            
+      madrid_ii:
+        folio_count: 157
+        focus: "military engineering and fortification"
+        
+    digitization:
+      project: "Biblioteca Digital Hispánica"
+      completion_date: "2005"
+      updates: "ongoing"
+      
+  codex_leicester:
+    official_name: "Codex Leicester (formerly Hammer)"
+    archive:
+      institution: "Private Collection"
+      owner: "Bill and Melinda Gates Foundation"
+      previous_name: "Codex Hammer"
+      
+    physical_description:
+      folio_count: 72
+      dimensions: "292 × 220 mm"
+      focus: "water studies and astronomy"
+      
+    public_access:
+      exhibitions: "periodic public display"
+      digital_access: "limited (selected folios)"
+      research_access: "by appointment"
+      
+  codex_arundel:
+    official_name: "Codex Arundel"
+    archive:
+      institution: "British Library"
+      location: "London, UK"
+      catalog_number: "Arundel MS 263"
+      
+    digitization:
+      project: "Digitised Manuscripts"
+      url: "http://www.bl.uk/manuscripts/FullDisplay.aspx?ref=Arundel_MS_263"
+      completion_date: "2013"
+      
+  paris_manuscripts:
+    official_name: "Manuscrits de l'Institut de France"
+    archive:
+      institution: "Bibliothèque de l'Institut de France"
+      location: "Paris, France"
+      collection: "Manuscrits A-M"
+      
+    manuscripts:
+      manuscript_b:
+        catalog_number: "MS B 2173"
+        folio_count: 100
+        focus: "architectural and military machines"
+        key_folios:
+          - "f.83v-84r: Flying machines and parachute"
+          - "f.88r: Helicopter designs"
+
+# Advanced Provenance Tracking
+provenance_validation:
+  digital_signatures:
+    enabled: true
+    algorithm: "SHA-256"
+    certificate_authority: "DigiCert Academic"
+    
+  chain_of_custody:
+    required_fields:
+      - "source_institution"
+      - "digitization_date"
+      - "resolution_dpi"
+      - "color_profile"
+      - "file_format"
+      - "processing_software"
+      - "operator_id"
+      
+  authenticity_verification:
+    watermark_detection: true
+    paper_analysis: "multispectral imaging"
+    ink_analysis: "reflectance spectroscopy"
+    
+# Research Integration
+computational_archaeology:
+  ocr_processing:
+    engine: "Tesseract 5.0 + Custom Leonardo Model"
+    accuracy_threshold: 0.75
+    manual_verification: "required for key passages"
+    
+  dimensional_extraction:
+    method: "computer vision + manual verification"
+    units: "braccia (58.36 cm) -> meters"
+    uncertainty_tracking: true
+    
+  cross_reference_system:
+    folio_linkage: "automatic detection of related designs"
+    modern_comparisons: "contemporary engineering equivalents"
+    citation_network: "scholarly reference mapping"
+    
+# Quality Assurance
+metadata_validation:
+  schema_compliance: "strict"
+  required_fields: 95
+  optional_fields: 45
+  automatic_checks:
+    - "URL accessibility"
+    - "Image format validation"
+    - "Date format consistency"
+    - "Catalog number uniqueness"
+    
+  manual_review:
+    frequency: "quarterly"
+    reviewers: ["art historians", "engineering historians", "archivists"]
+    approval_required: true
+    
+# Future Enhancements
+roadmap:
+  phase_1:
+    - "Complete Codex Atlanticus textile folio integration"
+    - "Implement automated API synchronization"
+    - "Develop blockchain provenance tracking"
+    
+  phase_2:
+    - "Machine learning for automatic transcription"
+    - "3D manuscript reconstruction"
+    - "Virtual reality manuscript exploration"
+    
+  phase_3:
+    - "Collaborative annotation platform"
+    - "Real-time scholarly discussion integration"
+    - "Automated translation services"
+
+# Integration Interfaces
+api_specifications:
+  rest_endpoints:
+    base_url: "https://api.davinci-codex.org/provenance/v2"
+    endpoints:
+      - "/manuscripts": "List all manuscripts"
+      - "/manuscripts/{codex}": "Get codex details"
+      - "/manuscripts/{codex}/folios": "List folios in codex"
+      - "/manuscripts/{codex}/folios/{folio}": "Get folio details"
+      - "/inventions/{invention}/provenance": "Get invention sources"
+      - "/search": "Search across all manuscripts"
+      
+  authentication:
+    method: "API key + OAuth 2.0"
+    rate_limits: "1000 requests/hour"
+    premium_access: "unlimited for academic institutions"
+    
+  data_formats:
+    response_format: "JSON-LD"
+    linked_data: "CIDOC-CRM compliant"
+    image_delivery: "IIIF Image API 3.0"

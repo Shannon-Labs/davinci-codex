@@ -1,0 +1,553 @@
+/* Interactive Elements CSS for da Vinci Codex */
+/* Enhances user interaction and visual feedback */
+
+/* ============================================================================
+   Interactive Simulation Controls
+   ============================================================================ */
+
+.simulation-controls {
+    background: linear-gradient(145deg, #f5f5dc, #f0f0d0);
+    border: 2px solid #d4af37;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.1),
+        inset 0 1px 3px rgba(212, 175, 55, 0.2);
+}
+
+.simulation-controls h3 {
+    color: #8b4513;
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+.parameter-slider {
+    margin: 1rem 0;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+}
+
+.parameter-slider label {
+    display: block;
+    font-weight: 600;
+    color: #5c5c5c;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.parameter-slider input[type="range"] {
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: linear-gradient(to right, #d4af37, #e8c547);
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.parameter-slider input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #8b4513;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.parameter-slider input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #8b4513;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.parameter-value {
+    display: inline-block;
+    background: #8b4513;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    min-width: 60px;
+    text-align: center;
+}
+
+/* ============================================================================
+   Interactive Buttons and Controls
+   ============================================================================ */
+
+.interactive-button {
+    background: linear-gradient(145deg, #d4af37, #b8941f);
+    color: #2c2c2c;
+    border: 2px solid #8b4513;
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    font-family: 'Cormorant Garamond', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    margin: 0.5rem 0.5rem 0.5rem 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.interactive-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(145deg, #e8c547, #d4af37);
+    text-decoration: none;
+    color: #2c2c2c;
+}
+
+.interactive-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.interactive-button.primary {
+    background: linear-gradient(145deg, #4169e1, #0000cd);
+    color: white;
+}
+
+.interactive-button.primary:hover {
+    background: linear-gradient(145deg, #6495ed, #4169e1);
+    color: white;
+}
+
+.interactive-button.success {
+    background: linear-gradient(145deg, #228b22, #006400);
+    color: white;
+}
+
+.interactive-button.success:hover {
+    background: linear-gradient(145deg, #32cd32, #228b22);
+    color: white;
+}
+
+.interactive-button.warning {
+    background: linear-gradient(145deg, #ff8c00, #ff7f00);
+    color: white;
+}
+
+.interactive-button.warning:hover {
+    background: linear-gradient(145deg, #ffa500, #ff8c00);
+    color: white;
+}
+
+.interactive-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ============================================================================
+   Progress Indicators and Loading States
+   ============================================================================ */
+
+.simulation-progress {
+    width: 100%;
+    height: 8px;
+    background: #e9ecef;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 1rem 0;
+}
+
+.simulation-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #d4af37, #e8c547, #d4af37);
+    background-size: 200% 100%;
+    animation: progressShimmer 2s ease-in-out infinite;
+    transition: width 0.3s ease;
+}
+
+@keyframes progressShimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #d4af37;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: 0.5rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ============================================================================
+   Interactive Tabs and Toggles
+   ============================================================================ */
+
+.interactive-tabs {
+    margin: 1.5rem 0;
+}
+
+.tab-buttons {
+    display: flex;
+    background: #f8f9fa;
+    border-radius: 8px 8px 0 0;
+    border: 2px solid #dee2e6;
+    border-bottom: none;
+    overflow: hidden;
+}
+
+.tab-button {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 1rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    color: #5c5c5c;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-right: 1px solid #dee2e6;
+}
+
+.tab-button:last-child {
+    border-right: none;
+}
+
+.tab-button:hover {
+    background: rgba(212, 175, 55, 0.1);
+    color: #8b4513;
+}
+
+.tab-button.active {
+    background: linear-gradient(145deg, #d4af37, #e8c547);
+    color: #2c2c2c;
+    font-weight: 700;
+}
+
+.tab-content {
+    background: white;
+    border: 2px solid #dee2e6;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    padding: 1.5rem;
+    min-height: 200px;
+}
+
+.tab-panel {
+    display: none;
+}
+
+.tab-panel.active {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================================
+   Interactive Tooltips and Popovers
+   ============================================================================ */
+
+.interactive-tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: help;
+}
+
+.interactive-tooltip .tooltip-text {
+    visibility: hidden;
+    width: 200px;
+    background: rgba(44, 44, 44, 0.95);
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 0.75rem;
+    position: absolute;
+    z-index: 1000;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.interactive-tooltip .tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: rgba(44, 44, 44, 0.95) transparent transparent transparent;
+}
+
+.interactive-tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* ============================================================================
+   Interactive Cards and Panels
+   ============================================================================ */
+
+.interactive-card {
+    background: white;
+    border: 2px solid #dee2e6;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.interactive-card:hover {
+    border-color: #d4af37;
+    box-shadow: 0 8px 16px rgba(212, 175, 55, 0.15);
+    transform: translateY(-2px);
+}
+
+.interactive-card.expanded {
+    border-color: #8b4513;
+    box-shadow: 0 8px 24px rgba(139, 69, 19, 0.2);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.card-title {
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+    color: #8b4513;
+    margin: 0;
+}
+
+.card-toggle {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #8b4513;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.card-toggle.expanded {
+    transform: rotate(180deg);
+}
+
+.card-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.card-content.expanded {
+    max-height: 1000px;
+}
+
+/* ============================================================================
+   Interactive Alerts and Notifications
+   ============================================================================ */
+
+.interactive-alert {
+    padding: 1rem 1.5rem;
+    margin: 1rem 0;
+    border-radius: 8px;
+    border-left: 4px solid;
+    position: relative;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(-20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.interactive-alert.info {
+    background: rgba(65, 105, 225, 0.1);
+    border-color: #4169e1;
+    color: #0000cd;
+}
+
+.interactive-alert.success {
+    background: rgba(34, 139, 34, 0.1);
+    border-color: #228b22;
+    color: #006400;
+}
+
+.interactive-alert.warning {
+    background: rgba(255, 140, 0, 0.1);
+    border-color: #ff8c00;
+    color: #ff7f00;
+}
+
+.interactive-alert.error {
+    background: rgba(220, 20, 60, 0.1);
+    border-color: #dc143c;
+    color: #b22222;
+}
+
+.alert-dismiss {
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.alert-dismiss:hover {
+    opacity: 1;
+}
+
+/* ============================================================================
+   Responsive Design for Interactive Elements
+   ============================================================================ */
+
+@media (max-width: 768px) {
+    .simulation-controls {
+        padding: 1rem;
+        margin: 1rem 0;
+    }
+    
+    .tab-buttons {
+        flex-direction: column;
+    }
+    
+    .tab-button {
+        border-right: none;
+        border-bottom: 1px solid #dee2e6;
+    }
+    
+    .tab-button:last-child {
+        border-bottom: none;
+    }
+    
+    .interactive-tooltip .tooltip-text {
+        width: 150px;
+        margin-left: -75px;
+    }
+    
+    .interactive-button {
+        display: block;
+        width: 100%;
+        margin: 0.5rem 0;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .simulation-controls {
+        padding: 0.75rem;
+    }
+    
+    .parameter-slider {
+        margin: 0.75rem 0;
+        padding: 0.25rem;
+    }
+    
+    .card-content {
+        padding: 0 0.5rem;
+    }
+}
+
+/* ============================================================================
+   Accessibility Enhancements
+   ============================================================================ */
+
+.interactive-button:focus,
+.tab-button:focus,
+.parameter-slider input:focus {
+    outline: 2px solid #4169e1;
+    outline-offset: 2px;
+}
+
+.interactive-card:focus {
+    outline: 2px solid #4169e1;
+    outline-offset: 4px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .interactive-button {
+        border-width: 3px;
+    }
+    
+    .interactive-card {
+        border-width: 3px;
+    }
+    
+    .simulation-controls {
+        border-width: 3px;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .interactive-button,
+    .interactive-card,
+    .tab-panel,
+    .card-content,
+    .interactive-alert {
+        transition: none;
+        animation: none;
+    }
+    
+    .simulation-progress-bar {
+        animation: none;
+    }
+    
+    .loading-spinner {
+        animation: none;
+        border-top-color: transparent;
+    }
+}
+
+/* ============================================================================
+   Print Styles
+   ============================================================================ */
+
+@media print {
+    .interactive-button,
+    .simulation-controls,
+    .loading-spinner {
+        display: none;
+    }
+    
+    .interactive-card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+    
+    .tab-content {
+        border: 1px solid #ccc;
+    }
+}

@@ -1,0 +1,8 @@
+bore_length_m: 1.35
+bell_diameter_m: 0.12
+mouthpiece_length_m: 0.14
+plenum_pressure_kpa: 8.0
+valve_latencies_s: [0.12, 0.1, 0.14, 0.11, 0.09]
+note_sequence: [0, 2, 4, 5, 7]
+breath_profile: [1.0, 0.95, 1.05, 1.0, 0.9]
+timbre_noise_std: 0.04

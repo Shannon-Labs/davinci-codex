@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leonardo's AI Codex Explorer - Interactive Journey Through Genius</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #1a1a1a, #2c1810, #8B4513);
+            color: #f5f5f5;
+            overflow-x: hidden;
+        }
+
+        .codex-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .ai-header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(45deg, rgba(139, 69, 19, 0.9), rgba(0, 0, 0, 0.8));
+            border-radius: 20px;
+            margin-bottom: 30px;
+            border: 3px solid #FFD700;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+        }
+
+        .codex-title {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #FFD700, #FFA500, #FF6347);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .ai-subtitle {
+            font-size: 1.3em;
+            color: #D2691E;
+            margin-bottom: 20px;
+        }
+
+        .ai-companion-intro {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px auto;
+            max-width: 800px;
+            border-left: 5px solid #32CD32;
+        }
+
+        .stats-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.2);
+            border-color: #FFD700;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #32CD32;
+        }
+
+        .stat-label {
+            font-size: 1.1em;
+            color: #D2691E;
+            margin-top: 5px;
+        }
+
+        .exploration-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .category-card {
+            background: linear-gradient(145deg, rgba(139, 69, 19, 0.3), rgba(0, 0, 0, 0.6));
+            border: 2px solid #8B4513;
+            border-radius: 20px;
+            padding: 25px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .category-card:hover::before {
+            left: 100%;
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px);
+            border-color: #FFD700;
+            box-shadow: 0 15px 35px rgba(255, 215, 0, 0.3);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .category-icon {
+            font-size: 2.5em;
+            margin-right: 15px;
+        }
+
+        .category-title {
+            font-size: 1.8em;
+            color: #FFD700;
+        }
+
+        .category-subtitle {
+            color: #D2691E;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .invention-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .invention-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.9em;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .invention-item:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: scale(1.05);
+        }
+
+        .completion-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .complete { background: #32CD32; }
+        .partial { background: #FFD700; }
+        .placeholder { background: #FF6347; }
+
+        .ai-features {
+            background: linear-gradient(135deg, rgba(50, 205, 50, 0.1), rgba(0, 0, 0, 0.6));
+            padding: 30px;
+            border-radius: 20px;
+            margin: 40px 0;
+            border: 2px solid #32CD32;
+        }
+
+        .ai-features h3 {
+            color: #32CD32;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #32CD32;
+        }
+
+        .cta-section {
+            text-align: center;
+            margin: 50px 0;
+            padding: 40px;
+            background: linear-gradient(45deg, rgba(255, 215, 0, 0.1), rgba(255, 99, 71, 0.1));
+            border-radius: 20px;
+            border: 3px solid #FFD700;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #32CD32, #228B22);
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.3em;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 25px rgba(50, 205, 50, 0.4);
+        }
+
+        .cta-secondary {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #000;
+        }
+
+        .cta-secondary:hover {
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.4);
+        }
+
+        .community-section {
+            background: linear-gradient(135deg, rgba(255, 99, 71, 0.1), rgba(0, 0, 0, 0.6));
+            padding: 30px;
+            border-radius: 20px;
+            margin: 40px 0;
+            border: 2px solid #FF6347;
+        }
+
+        .user-onboarding {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 2px solid #32CD32;
+        }
+
+        .onboarding-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            color: #FFD700;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group select, .form-group input {
+            padding: 10px;
+            border: 2px solid #8B4513;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 1em;
+        }
+
+        .progress-visualization {
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 15px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #32CD32, #FFD700, #FF6347);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+
+        .ai-thinking {
+            animation: pulse 2s infinite;
+            color: #32CD32;
+        }
+
+        @media (max-width: 768px) {
+            .codex-title {
+                font-size: 2.5em;
+            }
+            
+            .exploration-categories {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-dashboard {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="codex-container">
+        <header class="ai-header">
+            <h1 class="codex-title">🎨 Leonardo's AI Codex Explorer</h1>
+            <p class="ai-subtitle">The World's First Intelligent Journey Through da Vinci's Complete Works</p>
+            <div class="ai-companion-intro">
+                <p>🤖 <strong>Meet Your AI Guide:</strong> I'm here to create a completely personalized exploration of Leonardo's genius, adapting to your interests, learning style, and knowledge level in real-time. Together, we'll discover inventions that were centuries ahead of their time!</p>
+            </div>
+        </header>
+
+        <section class="user-onboarding">
+            <h3 style="color: #32CD32; text-align: center; margin-bottom: 20px;">🚀 Personalize Your Journey</h3>
+            <div class="onboarding-form">
+                <div class="form-group">
+                    <label for="learning-style">Learning Style</label>
+                    <select id="learning-style">
+                        <option value="visual">Visual (see it in action)</option>
+                        <option value="hands-on">Hands-on (build and experiment)</option>
+                        <option value="theoretical">Theoretical (understand the science)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="knowledge-level">Knowledge Level</label>
+                    <select id="knowledge-level">
+                        <option value="beginner">Beginner (new to engineering)</option>
+                        <option value="intermediate">Intermediate (some technical knowledge)</option>
+                        <option value="advanced">Advanced (strong technical background)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="interests">Primary Interests</label>
+                    <select id="interests" multiple>
+                        <option value="engineering">Engineering & Mechanics</option>
+                        <option value="flight">Flight & Aerodynamics</option>
+                        <option value="art">Art & Design</option>
+                        <option value="history">History & Culture</option>
+                        <option value="science">Science & Physics</option>
+                        <option value="military">Military Technology</option>
+                        <option value="music">Music & Instruments</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="age-group">Age Group</label>
+                    <select id="age-group">
+                        <option value="teen">Teen (13-17)</option>
+                        <option value="adult">Adult (18-60)</option>
+                        <option value="senior">Senior (60+)</option>
+                    </select>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="cta-button" onclick="startPersonalizedJourney()">🎯 Create My Personal Journey</button>
+            </div>
+        </section>
+
+        <section class="stats-dashboard">
+            <div class="stat-card">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Leonardo's Inventions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">6</div>
+                <div class="stat-label">Fully Interactive</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">15</div>
+                <div class="stat-label">Partially Built</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">29</div>
+                <div class="stat-label">Awaiting Discovery</div>
+            </div>
+        </section>
+
+        <div class="progress-visualization">
+            <h3 style="color: #FFD700;">🏗️ Codex Completion Progress</h3>
+            <p>See how the community is bringing Leonardo's genius to life:</p>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 42%"></div>
+            </div>
+            <p style="color: #D2691E; font-size: 0.9em;">42% Complete - Join the mission to unlock Leonardo's complete legacy!</p>
+        </div>
+
+        <section class="exploration-categories">
+            <div class="category-card">
+                <div class="category-header">
+                    <div class="category-icon">🕊️</div>
+                    <div>
+                        <div class="category-title">Ready to Explore</div>
+                        <div class="category-subtitle">Fully interactive experiences</div>
+                    </div>
+                </div>
+                <div class="invention-grid">
+                    <div class="invention-item">
+                        <span class="completion-indicator complete"></span>
+                        Flying Machine
+                    </div>
+                    <div class="invention-item">
+                        <span class="completion-indicator complete"></span>
+                        Self-Propelled Cart
+                    </div>
+                    <div class="invention-item">
+                        <span class="completion-indicator complete"></span>
+                        Parachute
+                    </div>
+                    <div class="invention-item">
+                        <span class="completion-indicator complete"></span>
+                        Aerial Screw
+                    </div>
+                    <div class="invention-item">
+                        <span class="completion-indicator complete"></span>
+                        Mechanical Knight
+                    </div>
+                    <div class="invention-item">
+                        <span class="completion-indicator complete"></span>
+                        Giant Crossbow
+                    </div>
+                </div>
+                <button class="cta-button" onclick="exploreComplete()">🚀 Start Exploring</button>
+            </div>
+
+            <div class="category-card">
+                <div class="category-header">
+                    <div class="category-icon">🔧</div>
+                    <div>
+                        <div class="category-title">Partially Built</div>
+                        <div class="category-subtitle">Some features + AI assistance</div>
+                    </div>
+                </div>
+                <div class="invention-grid">
+                    <div class="invention-item">
+                        <span class="completion-indicator partial"></span>
+                        Revolving Bridge
+                    </div>
+                    <div class="invention-item">
+                        <span class="completion-indicator partial"></span>
+                        Armored Vehicle
+                    </div>
+                    <div class="invention-item">
+                        <span class="completion-indicator partial"></span>
+                        Viola Organista
+                    </div>
+                    <div class="invention-item">
+                        <span class="completion-indicator partial"></span>
+                        Ideal City
+                    </div>
+                    <div class="invention-item">
+                        <span class="completion-indicator partial"></span>
+                        Canal Locks
+                    </div>
+                </div>
+                <button class="cta-button cta-secondary" onclick="explorePartial()">🔍 Explore with AI</button>
+            </div>
+
+            <div class="category-card">
+                <div class="category-header">
+                    <div class="category-icon">💎</div>
+                    <div>
+                        <div class="category-title">Awaiting Discovery</div>
+                        <div class="category-subtitle">Hidden gems ready for exploration</div>
+                    </div>
+                </div>
+                <div class="invention-grid">
+                    <div class="invention-item">
+                        <span class="completion-indicator placeholder"></span>
+                        Water Clock
+                    </div>
+                    <div class="invention-item">
+                        <span class="completion-indicator placeholder"></span>
+                        Mechanical Saw
+                    </div>
+                    <div class="invention-item">
+                        <span class="completion-indicator placeholder"></span>
+                        Submarine
+                    </div>
+                    <div class="invention-item">
+                        <span class="completion-indicator placeholder"></span>
+                        Steam Cannon
+                    </div>
+                    <div class="invention-item">
+                        <span class="completion-indicator placeholder"></span>
+                        Spinning Machine
+                    </div>
+                    <div class="invention-item">
+                        <span class="completion-indicator placeholder"></span>
+                        Ball Bearings
+                    </div>
+                </div>
+                <button class="cta-button" style="background: linear-gradient(45deg, #FF6347, #DC143C);" onclick="discoverNew()">
+                    🌟 Help Discover These!
+                </button>
+            </div>
+        </section>
+
+        <section class="ai-features">
+            <h3>🤖 AI-Powered Features (Only Possible With AI!)</h3>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h4 style="color: #32CD32;">🧠 Adaptive Learning</h4>
+                    <p>AI adjusts explanations, pacing, and content complexity in real-time based on your understanding and engagement.</p>
+                </div>
+                <div class="feature-item">
+                    <h4 style="color: #32CD32;">🎯 Personalized Paths</h4>
+                    <p>Every journey is unique - AI creates exploration routes based on your interests, learning style, and goals.</p>
+                </div>
+                <div class="feature-item">
+                    <h4 style="color: #32CD32;">💡 Intelligent Explanations</h4>
+                    <p>AI generates custom explanations, analogies, and examples that match your knowledge level and interests.</p>
+                </div>
+                <div class="feature-item">
+                    <h4 style="color: #32CD32;">🔮 Gap Filling</h4>
+                    <p>Where content isn't complete yet, AI uses Leonardo's principles to explain what would be there.</p>
+                </div>
+                <div class="feature-item">
+                    <h4 style="color: #32CD32;">🌟 Discovery Suggestions</h4>
+                    <p>AI recommends unexplored inventions based on your progress and emerging interests.</p>
+                </div>
+                <div class="feature-item">
+                    <h4 style="color: #32CD32;">⚡ Real-time Adaptation</h4>
+                    <p>Every interaction teaches the AI more about you, making each session better than the last.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="community-section">
+            <h3 style="color: #FF6347; text-align: center; margin-bottom: 20px;">🌍 Join the Global Community</h3>
+            <p style="text-align: center; margin-bottom: 30px;">
+                Help bring Leonardo's complete genius to life! This is a living platform where researchers, educators, students, and makers worldwide collaborate to implement da Vinci's unbuilt inventions.
+            </p>
+            
+            <div class="feature-grid">
+                <div class="feature-item" style="border-left-color: #FF6347;">
+                    <h4 style="color: #FF6347;">🔬 Research Contributions</h4>
+                    <p>Study Leonardo's manuscripts and help implement accurate simulations and 3D models.</p>
+                </div>
+                <div class="feature-item" style="border-left-color: #FF6347;">
+                    <h4 style="color: #FF6347;">🎓 Educational Content</h4>
+                    <p>Create lesson plans, assessments, and educational materials for different age groups.</p>
+                </div>
+                <div class="feature-item" style="border-left-color: #FF6347;">
+                    <h4 style="color: #FF6347;">⚙️ Technical Implementation</h4>
+                    <p>Build interactive simulations, 3D models, and physics engines for Leonardo's designs.</p>
+                </div>
+                <div class="feature-item" style="border-left-color: #FF6347;">
+                    <h4 style="color: #FF6347;">🏆 Global Challenges</h4>
+                    <p>Participate in competitions to build working versions of Leonardo's inventions!</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <h2 style="color: #FFD700; margin-bottom: 20px;">Ready to Experience Leonardo Like Never Before?</h2>
+            <p style="font-size: 1.2em; margin-bottom: 30px;">
+                This is just the beginning. We're building something that's never existed before - an AI that truly understands both Leonardo's genius AND you as a learner.
+            </p>
+            
+            <a href="#" class="cta-button" onclick="beginJourney()">🎨 Begin My AI-Guided Journey</a>
+            <a href="#" class="cta-button cta-secondary" onclick="joinCommunity()">🤝 Join the Community</a>
+            <a href="#" class="cta-button" style="background: linear-gradient(45deg, #8A2BE2, #4B0082);" onclick="viewRoadmap()">
+                🗺️ View Full Roadmap
+            </a>
+        </section>
+    </div>
+
+    <script>
+        function startPersonalizedJourney() {
+            const learningStyle = document.getElementById('learning-style').value;
+            const knowledgeLevel = document.getElementById('knowledge-level').value;
+            const interests = Array.from(document.getElementById('interests').selectedOptions).map(option => option.value);
+            const ageGroup = document.getElementById('age-group').value;
+            
+            // Create user profile
+            const profile = {
+                learning_style: learningStyle,
+                knowledge_level: knowledgeLevel,
+                interests: interests,
+                age_group: ageGroup
+            };
+            
+            // Simulate AI personalization
+            showAIPersonalization(profile);
+        }
+        
+        function showAIPersonalization(profile) {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.9);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+            `;
+            
+            const content = document.createElement('div');
+            content.style.cssText = `
+                background: linear-gradient(145deg, #2c1810, #1a1a1a);
+                padding: 40px;
+                border-radius: 20px;
+                max-width: 600px;
+                text-align: center;
+                border: 3px solid #32CD32;
+                color: white;
+            `;
+            
+            content.innerHTML = `
+                <h2 style="color: #32CD32; margin-bottom: 20px;">🤖 AI Crafting Your Journey...</h2>
+                <div class="ai-thinking" style="font-size: 1.2em; margin: 20px 0;">
+                    <p>Analyzing your ${profile.knowledge_level} level...</p>
+                    <p>Optimizing for ${profile.learning_style} learning style...</p>
+                    <p>Customizing for interests: ${profile.interests.join(', ')}...</p>
+                    <p>Adapting interface for ${profile.age_group} experience...</p>
+                </div>
+                <div style="margin: 30px 0;">
+                    <div style="background: rgba(50, 205, 50, 0.1); padding: 20px; border-radius: 10px; border-left: 4px solid #32CD32;">
+                        <h3 style="color: #32CD32;">Your Personalized Journey Ready!</h3>
+                        <p>I've selected 8 inventions perfect for your profile, starting with the ${profile.interests.includes('flight') ? 'Flying Machine' : 'Self-Propelled Cart'}</p>
+                        <p>Estimated journey time: ${profile.knowledge_level === 'beginner' ? '3-4 hours' : '2-3 hours'}</p>
+                        <p>Difficulty will adapt as we explore together!</p>
+                    </div>
+                </div>
+                <button onclick="closeModal()" style="background: linear-gradient(45deg, #32CD32, #228B22); color: white; padding: 15px 30px; border: none; border-radius: 25px; font-size: 1.1em; cursor: pointer;">
+                    🚀 Start My Journey!
+                </button>
+            `;
+            
+            modal.appendChild(content);
+            document.body.appendChild(modal);
+            
+            window.closeModal = function() {
+                document.body.removeChild(modal);
+                // In real implementation, would navigate to personalized experience
+                alert("🎨 Welcome to your personalized Leonardo experience! In the full version, you'd now begin your custom AI-guided journey through da Vinci's genius.");
+            };
+        }
+        
+        function exploreComplete() {
+            alert("🕊️ Entering fully interactive mode! You'd now see:\n\n• 3D models you can rotate and examine\n• Physics simulations you can control\n• AI explanations adapted to your level\n• Historical context and modern connections\n• Hands-on building challenges\n\nThis is where Leonardo's genius comes alive!");
+        }
+        
+        function explorePartial() {
+            alert("🔧 Exploring with AI assistance! You'd experience:\n\n• Available interactive elements\n• AI-generated explanations for
