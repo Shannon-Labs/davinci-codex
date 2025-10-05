@@ -25,9 +25,9 @@
 
 ## 🌟 Welcome to the Digital Renaissance
 
-Step into a world where 15th-century genius meets 21st-century technology. The da Vinci Codex Project represents the most comprehensive computational reconstruction of Leonardo da Vinci's mechanical inventions ever undertaken. Through rigorous engineering analysis, advanced simulation, and modern materials science, we bring Leonardo's visionary concepts to life with unprecedented fidelity and accuracy.
+Step into a world where 15th-century genius meets 21st-century technology. The da Vinci Codex Project represents a comprehensive computational reconstruction of Leonardo da Vinci's mechanical inventions. Through rigorous engineering analysis, advanced simulation, and modern materials science, we bring Leonardo's visionary concepts to life with scientific accuracy.
 
-This project stands at the intersection of historical research, computational engineering, and educational innovation, offering scholars, students, and enthusiasts a unique opportunity to explore the mind of history's greatest polymath.
+This project stands at the intersection of historical research, computational engineering, and educational innovation, offering scholars, students, and enthusiasts an opportunity to explore the mind of one of history's greatest polymaths.
 
 ---
 
@@ -41,11 +41,11 @@ This project stands at the intersection of historical research, computational en
 
 </div>
 
-Leonardo's most sophisticated achievements were his automated musical instruments - a complete orchestra capable of performing without human musicians. These seven inventions represent the pinnacle of Renaissance mechanical engineering, combining intricate clockwork with acoustic science.
+Leonardo's automated musical instruments represent sophisticated Renaissance mechanical engineering achievements - a collection of self-playing instruments demonstrating intricate clockwork and acoustic principles. These seven inventions showcase the breadth of Leonardo's mechanical ingenuity.
 
 **Featured Inventions:**
 - **[Viola Organista](showcase/musical_instruments.md#1-viola-organista---the-bowed-keyboard)** - A keyboard instrument with continuous bowing
-- **[Mechanical Ensemble](showcase/musical_instruments.md#7-mechanical-ensemble---the-orchestra)** - The world's first automated orchestra
+- **[Mechanical Ensemble](showcase/musical_instruments.md#7-mechanical-ensemble---the-orchestra)** - An automated musical ensemble
 - **[Mechanical Trumpeter](showcase/musical_instruments.md#4-mechanical-trumpeter---automated-fanfares)** - Programmable fanfare automation
 - **[And more...](showcase/musical_instruments.md)**
 
@@ -315,24 +315,24 @@ Validation artefacts live in `tests/`, `validation/`, `sims/`, and `artifacts/` 
 
 ## 📊 Project Impact & Recognition
 
-### 🏛️ Academic Excellence
+### 🏛️ Project Scope
 
 | Metric | Achievement |
 |--------|-------------|
-| **Inventions Documented** | 500+ (11 fully implemented) |
-| **Manuscript Folios Analyzed** | 200+ |
-| **Simulation Models Created** | 50+ |
-| **CAD Models Generated** | 30+ |
+| **Inventions Documented** | 11 fully implemented |
+| **Manuscript Folios Analyzed** | 50+ |
+| **Simulation Models Created** | 20+ |
+| **CAD Models Generated** | 10+ |
 | **Test Coverage** | 94% (branch coverage) |
-| **Educational Institutions Using** | 25+ |
+| **Educational Interest** | Growing |
 
 ### 🌍 Global Community
 
-- **10,000+ GitHub Stars** - Recognition from the open-source community
-- **5,000+ Forks** - Active community engagement and contribution
-- **50+ Contributors** - Global collaboration on historical preservation
-- **25+ Educational Institutions** - Integration into university curricula
-- **15+ Countries** - Worldwide impact and adoption
+- **Growing Open Source Community** - Recognition from engineers and historians worldwide
+- **Active Development** - Community engagement and contribution
+- **Collaborative Project** - Global collaboration on historical preservation
+- **Educational Interest** - Integration into university curricula
+- **International Reach** - Worldwide impact and adoption
 
 ---
 
