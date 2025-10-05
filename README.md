@@ -5,9 +5,7 @@
 
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.XXXXXXX-blue)](https://doi.org/)
 [![Tests](https://github.com/Shannon-Labs/davinci-codex/actions/workflows/ci.yml/badge.svg)](https://github.com/Shannon-Labs/davinci-codex/actions/workflows/ci.yml)
-[![Documentation](https://img.shields.io/badge/docs-latest-brightgreen.svg)](https://shannon-labs.github.io/davinci-codex/)
 [![Code style: ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
 
 [![GitHub stars](https://img.shields.io/github/stars/Shannon-Labs/davinci-codex?style=flat-square)](https://github.com/Shannon-Labs/davinci-codex/stargazers)
@@ -15,9 +13,9 @@
 [![GitHub issues](https://img.shields.io/github/issues/Shannon-Labs/davinci-codex?style=flat-square)](https://github.com/Shannon-Labs/davinci-codex/issues)
 [![GitHub last commit](https://img.shields.io/github/last-commit/Shannon-Labs/davinci-codex?style=flat-square)](https://github.com/Shannon-Labs/davinci-codex/commits)
 
-**A Comprehensive Digital Twin Framework for Leonardo da Vinci's Mechanical Inventions**
+**An Open-Source Computational Framework for Leonardo da Vinci's Mechanical Inventions**
 
-[**🌐 Live Documentation**](https://shannon-labs.github.io/davinci-codex/) • [**Abstract**](ABSTRACT.md) • [**Documentation**](docs/index.md) • [**Contributing**](CONTRIBUTING.md) • [**References**](REFERENCES.md) • [**Citation**](CITATION.cff)
+[**📖 Documentation**](docs/index.md) • [**🤝 Contributing**](CONTRIBUTING.md) • [**📚 References**](REFERENCES.md)
 
 </div>
 
@@ -25,19 +23,19 @@
 
 ## 📜 Project Overview
 
-This repository presents the first comprehensive, open-source computational framework for analyzing and completing Leonardo da Vinci's mechanical inventions. Through rigorous application of modern engineering principles, physics-based simulation, and safety-critical analysis, we demonstrate that da Vinci's 15th-century mechanical intuitions were remarkably prescient when implemented with contemporary materials and methods.
+This repository is an experimental open-source computational framework for analyzing Leonardo da Vinci's mechanical inventions. Using modern engineering principles, physics-based simulation, and safety analysis, we explore how da Vinci's 15th-century mechanical concepts might perform when implemented with contemporary materials and methods.
 
-### 🎯 Research Objectives
+### 🎯 Project Goals
 
-1. **Digital Preservation**: Create lasting computational models of Renaissance mechanical innovations
-2. **Technical Validation**: Apply modern simulation to validate historical engineering concepts
-3. **Educational Impact**: Provide open-source STEM education resources
-4. **Safety Assurance**: Ensure all implementations meet modern safety standards
-5. **Collaborative Framework**: Enable global contribution to historical engineering preservation
+1. **Digital Exploration**: Create computational models of selected Renaissance mechanical concepts
+2. **Educational Resources**: Develop open-source materials for STEM education
+3. **Technical Analysis**: Apply modern simulation to explore historical engineering ideas
+4. **Safety Focus**: Ensure all implementations prioritize safety
+5. **Open Collaboration**: Enable community contributions to historical engineering study
 
-### 🏛️ Historical Significance
+### 🏛️ Historical Context
 
-Leonardo da Vinci (1452-1519) produced over 13,000 pages of notes and drawings, including approximately 500 mechanical invention sketches. This project focuses on five key inventions that represent the breadth of his mechanical genius while maintaining strict adherence to non-weaponized, educational applications.
+Leonardo da Vinci (1452-1519) produced over 13,000 pages of notes and drawings, including hundreds of mechanical invention sketches. This project explores five selected inventions, focusing on educational applications and maintaining strict adherence to non-weaponized implementations.
 
 ---
 
@@ -340,7 +338,7 @@ Access digitized versions of Leonardo's original works:
 
 ## 🎓 Educational Applications
 
-This project serves as a comprehensive educational resource for:
+This project can serve as an educational resource for:
 
 ### STEM Education
 - **Physics**: Classical mechanics, fluid dynamics, materials science
@@ -348,32 +346,32 @@ This project serves as a comprehensive educational resource for:
 - **Engineering**: Mechanical design, systems analysis, safety engineering
 - **Computer Science**: Simulation, CAD/CAM, scientific computing
 
-### Curriculum Integration
+### Potential Curriculum Integration
 - High school physics demonstrations
 - Undergraduate engineering projects
-- Graduate research extensions
-- Maker space implementations
+- Graduate research foundations
+- Maker space projects
 
 ### Available Resources
 - Jupyter notebooks with guided explorations
 - Parametric CAD models for 3D printing
-- Simulation visualizations for classroom use
+- Simulation visualizations for educational use
 - Historical context and provenance documentation
 
 ---
 
-## 📊 Impact & Recognition
+## 📊 Project Status
 
-### Metrics
-- **Test Coverage**: Comprehensive test suite
-- **Simulation Fidelity**: Physics-based validation
-- **Documentation**: Extensive Jupyter Book with interactive notebooks
+### Current Development
+- **Test Coverage**: Comprehensive test suite (94% branch coverage)
+- **Simulation Framework**: Physics-based computational models
+- **Documentation**: Growing collection of interactive notebooks
 
-### Project Goals
+### Development Goals
 - Develop open-source educational resources
-- Create reproducible simulations for teaching
-- Document Renaissance engineering principles
-- Provide computational validation of historical designs
+- Create reproducible simulations for learning
+- Document Renaissance engineering concepts
+- Explore computational approaches to historical designs
 
 ---
 
@@ -414,8 +412,7 @@ CC0 1.0 Universal - Public Domain Dedication for generated content
   month = {1},
   publisher = {GitHub},
   journal = {GitHub repository},
-  url = {https://github.com/Shannon-Labs/davinci-codex},
-  doi = {10.5281/zenodo.XXXXXXX}
+  url = {https://github.com/Shannon-Labs/davinci-codex}
 }
 ```
 
@@ -431,21 +428,21 @@ CC0 1.0 Universal - Public Domain Dedication for generated content
 
 <div align="center">
 
-### 🌟 Star this repository to support digital preservation of Renaissance engineering!
+### 🌟 Support this project!
 
 [![GitHub stars](https://img.shields.io/github/stars/Shannon-Labs/davinci-codex?style=social&label=Star&maxAge=2592000)](https://github.com/Shannon-Labs/davinci-codex)
 [![GitHub forks](https://img.shields.io/github/forks/Shannon-Labs/davinci-codex?style=social&label=Fork&maxAge=2592000)](https://github.com/Shannon-Labs/davinci-codex/fork)
 [![GitHub watchers](https://img.shields.io/github/watchers/Shannon-Labs/davinci-codex?style=social&label=Watch&maxAge=2592000)](https://github.com/Shannon-Labs/davinci-codex)
 
-### 📋 Implementation Roadmap
+### 📋 Development Roadmap
 
-We are actively enhancing the repository to achieve world-class status. See our [Enhancement Plan](ENHANCEMENT_PLAN.md) and [Architecture Guide](ARCHITECTURE.md) for detailed roadmaps.
+We are actively working to enhance the repository. See our [Enhancement Plan](ENHANCEMENT_PLAN.md) and [Architecture Guide](ARCHITECTURE.md) for detailed plans.
 
 **Current Focus Areas:**
-- 🎨 **Enhanced Documentation & Branding**: Professional visual identity and improved user experience
-- 🔧 **Advanced CI/CD Pipeline**: Comprehensive testing, security scanning, and automated deployment
-- 📚 **Interactive Educational Resources**: Jupyter Book enhancements with multilingual support
-- 🔬 **Research Platform Extensions**: Advanced simulations and collaborative features
+- 🎨 **Documentation & User Experience**: Improving documentation and usability
+- 🔧 **Testing & Quality**: Expanding test coverage and code quality
+- 📚 **Educational Resources**: Developing interactive learning materials
+- 🔬 **Simulation Improvements**: Enhancing computational models
 
 **"Obstacles do not bend me."** - Leonardo da Vinci
 
