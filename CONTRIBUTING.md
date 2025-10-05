@@ -148,9 +148,9 @@ Develop learning materials:
 ## Community
 
 ### Communication Channels
-- **GitHub Discussions**: General questions and ideas
-- **Issues**: Bug reports and feature requests
+- **GitHub Issues**: Bug reports, feature requests, and general questions
 - **Pull Requests**: Code contributions
+- **Email**: Direct communication with project maintainers
 
 ### Code of Conduct
 - Be respectful and inclusive
@@ -176,9 +176,9 @@ Contributors will be:
 ## Questions?
 
 If you have questions about contributing:
-1. Check existing [discussions](https://github.com/Shannon-Labs/davinci-codex/discussions)
+1. Check existing [issues](https://github.com/Shannon-Labs/davinci-codex/issues) and discussions
 2. Review closed [pull requests](https://github.com/Shannon-Labs/davinci-codex/pulls?q=is%3Apr+is%3Aclosed)
-3. Open a new discussion
+3. Open a new issue for questions or suggestions
 4. Email: hunter@shannonlabs.dev
 
 ---

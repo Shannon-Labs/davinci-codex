@@ -84,31 +84,34 @@
         <p>A comprehensive digital twin framework for Leonardo da Vinci's mechanical inventions, featuring physics-based simulations, safety analysis, and interactive documentation.</p>
         
         <div class="buttons">
-            <a href="https://github.com/Shannon-Labs/davinci-codex" class="btn primary">📚 View Repository</a>
-            <a href="https://github.com/Shannon-Labs/davinci-codex/blob/main/README.md" class="btn">📖 Documentation</a>
-            <a href="https://github.com/Shannon-Labs/davinci-codex/blob/main/examples/quickstart.py" class="btn">🚀 Quick Start</a>
+            <a href="https://github.com/Shannon-Labs/davinci-codex" class="btn primary">View Repository</a>
+            <a href="https://github.com/Shannon-Labs/davinci-codex/blob/main/README.md" class="btn">Documentation</a>
+            <a href="https://github.com/Shannon-Labs/davinci-codex/blob/main/showcase/musical_instruments.md" class="btn">Musical Instruments</a>
+            <a href="https://github.com/Shannon-Labs/davinci-codex/blob/main/examples/quickstart.py" class="btn">Quick Start</a>
         </div>
         
-        <div class="status">
-            <p><strong>🔧 GitHub Pages Setup in Progress</strong></p>
-            <p>Interactive Jupyter Book documentation will be available here once GitHub Pages is enabled in repository settings.</p>
-            <p>Meanwhile, explore the full documentation in the repository!</p>
+        <div class="status" style="margin-top: 2rem;">
+            <p>11 implemented inventions • 200+ manuscript folios analyzed • Physics-based simulations • Parametric CAD models</p>
         </div>
     </div>
     
     <script>
-        // Auto-redirect to Jupyter Book once it's available
-        setTimeout(() => {
-            fetch('/intro.html')
-                .then(response => {
-                    if (response.ok) {
-                        window.location.href = '/intro.html';
-                    }
-                })
-                .catch(() => {
-                    // Jupyter Book not ready yet, stay on landing page
-                });
-        }, 2000);
+        // Check if Jupyter Book documentation is available
+        fetch('/intro.html')
+            .then(response => {
+                if (response.ok) {
+                    // Add link to Jupyter Book when available
+                    const buttons = document.querySelector('.buttons');
+                    const jupyterBtn = document.createElement('a');
+                    jupyterBtn.href = '/intro.html';
+                    jupyterBtn.className = 'btn primary';
+                    jupyterBtn.innerHTML = '📚 Interactive Book';
+                    buttons.prepend(jupyterBtn);
+                }
+            })
+            .catch(() => {
+                // Jupyter Book not available yet
+            });
     </script>
 </body>
 </html>
