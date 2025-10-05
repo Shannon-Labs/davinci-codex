@@ -14,6 +14,10 @@ abstract: >-
   rebuilt with modern analysis and open tooling. This project translates
   Renaissance engineering dreams into working implementations using
   contemporary materials, computational methods, and safety standards.
+  
+  Original designs and concepts by Leonardo da Vinci (1452-1519) are in the public domain.
+  This project builds upon da Vinci's genius to create modern implementations
+  for educational and research purposes.
 date-released: '2025-09-16'
 version: 1.0.0
 license: MIT
@@ -28,3 +32,6 @@ keywords:
   - simulation
   - cad
   - educational-technology
+  - musical-instruments
+  - flight-inventions
+  - mechanical-inventions

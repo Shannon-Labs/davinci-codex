@@ -581,7 +581,8 @@ data_usage_guidelines:
     - "Data represents average Renaissance technology"
     - "Regional variations may be significant"
     - "Individual craftsman skill highly variable"
-    - "Environmental degradation not fully characterized" 12% moisture"
+    - "Environmental degradation not fully characterized at 12% moisture"
+  
   shear_strength_parallel:
     value: 10.5
     uncertainty: "+/-1.2"
