@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The da Vinci Codex - Computational Archaeology of Renaissance Engineering</title>
+    <meta name="description" content="Explore Leonardo da Vinci's mechanical inventions through interactive simulations, computational archaeology, and historical research.">
+    <meta name="keywords" content="Leonardo da Vinci, computational archaeology, Renaissance engineering, physics simulation, STEM education, open science">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://shannon-labs.github.io/davinci-codex/">
+    <meta property="og:title" content="The da Vinci Codex: Computational Archaeology">
+    <meta property="og:description" content="Digital preservation and analysis of Leonardo's mechanical genius through modern engineering simulation.">
+    <meta property="og:image" content="../images/codex_social_preview.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://shannon-labs.github.io/davinci-codex/">
+    <meta property="twitter:title" content="The da Vinci Codex: Computational Archaeology">
+    <meta property="twitter:description" content="Digital preservation and analysis of Leonardo's mechanical genius through modern engineering simulation.">
+    <meta property="twitter:image" content="../images/codex_social_preview.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Cormorant+Garamond:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles/landing-page.css">
+    <link rel="icon" href="../images/codex_logo.png" type="image/png">
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p>Preparing Leonardo's Workshop...</p>
+        </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="../images/codex_logo.png" alt="da Vinci Codex Logo" class="nav-logo">
+                <span class="nav-title">The da Vinci Codex</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="#overview" class="nav-link">Overview</a>
+                <a href="#documentation" class="nav-link">Documentation</a>
+                <a href="#demonstrations" class="nav-link">Interactive Demos</a>
+                <a href="#simulations" class="nav-link">Simulations</a>
+                <a href="#community" class="nav-link">Community</a>
+                <a href="intro.html" class="nav-link">Jupyter Book</a>
+            </nav>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <div class="manuscript-texture"></div>
+            <div class="geometric-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="title-main">Codex Digitalis</span>
+                    <span class="title-sub">Leonardo's Mechanical Visions Reborn</span>
+                </h1>
+                <p class="hero-description">
+                    In the flickering candlelight of his workshop, Leonardo sketched machines that would not fly for another 400 years. 
+                    This digital codex bridges five centuries, using verifiable physics and open simulations to test and illuminate the 
+                    mechanical intuitions of history's greatest polymath.
+                </p>
+                <div class="hero-actions">
+                    <a href="#demonstrations" class="btn btn-primary">Explore Interactive Demos</a>
+                    <a href="intro.html" class="btn btn-secondary">Read Documentation</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-elements">
+                    <div class="element gear-1"></div>
+                    <div class="element gear-2"></div>
+                    <div class="element wing"></div>
+                    <div class="element feather"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section id="overview" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Bridging Renaissance Genius with Modern Computation</h2>
+                <p class="section-subtitle">A comprehensive digital framework for analyzing Leonardo da Vinci's mechanical inventions</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📜</div>
+                    <h3>Historical Accuracy</h3>
+                    <p>Rigorous analysis of Leonardo's original manuscripts and sketches, maintaining historical context while applying modern engineering principles.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔬</div>
+                    <h3>Physics-Based Simulation</h3>
+                    <p>Verifiable computational models that test Leonardo's designs against real-world physics, from aerodynamics to mechanical stress analysis.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎓</div>
+                    <h3>Educational Impact</h3>
+                    <p>Interactive learning experiences that bring Renaissance engineering to life for students, educators, and enthusiasts worldwide.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Open Science</h3>
+                    <p>Completely open-source framework with reproducible results, fostering collaboration and advancing computational archaeology.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documentation Section -->
+    <section id="documentation" class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Academic Documentation</h2>
+                <p class="section-subtitle">Comprehensive research and analysis in Jupyter Book format</p>
+            </div>
+            
+            <div class="doc-grid">
+                <div class="doc-card">
+                    <h3>Physics Derivations</h3>
+                    <p>Mathematical foundations for our simulation models</p>
+                    <ul>
+                        <li>Unsteady Airfoil Dynamics</li>
+                        <li>Gear Tooth Bending Theory</li>
+                        <li>Rolling Tribology Models</li>
+                    </ul>
+                    <a href="physics/index.html" class="doc-link">Explore Physics →</a>
+                </div>
+                
+                <div class="doc-card">
+                    <h3>Validation Notebooks</h3>
+                    <p>Experimental validation of our computational models</p>
+                    <ul>
+                        <li>Ornithopter FSI Benchmark</li>
+                        <li>Pyramid Parachute Drop</li>
+                        <li>Lewis Gear Bending</li>
+                    </ul>
+                    <a href="notebooks/naca0012_agard.ipynb" class="doc-link">View Validations →</a>
+                </div>
+                
+                <div class="doc-card">
+                    <h3>Interactive Simulations</h3>
+                    <p>Hands-on exploration of Leonardo's machines</p>
+                    <ul>
+                        <li>Ornithopter Flight Lab</li>
+                        <li>Interactive Parameter Studies</li>
+                        <li>Real-time Visualization</li>
+                    </ul>
+                    <a href="simulator/index.html" class="doc-link">Try Simulations →</a>
+                </div>
+            </div>
+            
+            <div class="cta-center">
+                <a href="intro.html" class="btn btn-primary btn-large">Enter the Jupyter Book</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Demos Section -->
+    <section id="demonstrations" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Interactive Demonstrations</h2>
+                <p class="section-subtitle">Experience Leonardo's inventions through modern web technology</p>
+            </div>
+            
+            <div class="demo-grid">
+                <div class="demo-card featured">
+                    <div class="demo-image">
+                        <div class="demo-placeholder renaissance-ensemble">
+                            <div class="instrument-icons">
+                                <span>🎵</span>
+                                <span>🎹</span>
+                                <span>🎺</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="demo-content">
+                        <h3>Renaissance Mechanical Ensemble</h3>
+                        <p>Experience Leonardo's musical inventions in an interactive Renaissance court setting. Six mechanical instruments come to life with synchronized animations and authentic music.</p>
+                        <div class="demo-features">
+                            <span class="feature-tag">Interactive</span>
+                            <span class="feature-tag">Audio</span>
+                            <span class="feature-tag">Educational</span>
+                        </div>
+                        <a href="../../web/renaissance_ensemble/index.html" class="demo-link">Launch Experience →</a>
+                    </div>
+                </div>
+                
+                <div class="demo-card">
+                    <div class="demo-image">
+                        <div class="demo-placeholder ai-explorer">
+                            <div class="ai-icon">🤖</div>
+                        </div>
+                    </div>
+                    <div class="demo-content">
+                        <h3>AI Codex Explorer</h3>
+                        <p>Your personalized AI guide through Leonardo's complete works. Adaptive learning paths tailored to your interests and knowledge level.</p>
+                        <div class="demo-features">
+                            <span class="feature-tag">AI-Powered</span>
+                            <span class="feature-tag">Personalized</span>
+                        </div>
+                        <a href="../../web/ai_codex_explorer.html" class="demo-link">Start Exploring →</a>
+                    </div>
+                </div>
+                
+                <div class="demo-card">
+                    <div class="demo-image">
+                        <div class="demo-placeholder challenge-platform">
+                            <div class="challenge-icon">🏆</div>
+                        </div>
+                    </div>
+                    <div class="demo-content">
+                        <h3>Leonardo Challenge Platform</h3>
+                        <p>Global maker competition where teams race to build Leonardo's unrealized inventions using modern materials and techniques.</p>
+                        <div class="demo-features">
+                            <span class="feature-tag">Competition</span>
+                            <span class="feature-tag">Community</span>
+                        </div>
+                        <a href="../../web/leonardo_challenge_platform.html" class="demo-link">View Challenges →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inventions Gallery -->
+    <section id="simulations" class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Gallery of Machines</h2>
+                <p class="section-subtitle">Leonardo's inventions validated through modern engineering</p>
+            </div>
+            
+            <div class="inventions-grid">
+                <div class="invention-item">
+                    <div class="invention-icon">🕊️</div>
+                    <h3>Ornithopter</h3>
+                    <p>Unsteady aerodynamics meet living kinematics</p>
+                    <a href="notebooks/interactive_ornithopter.ipynb" class="invention-link">Explore →</a>
+                </div>
+                
+                <div class="invention-item">
+                    <div class="invention-icon">🪂</div>
+                    <h3>Pyramid Parachute</h3>
+                    <p>Canopy inflation and descent analysis</p>
+                    <a href="notebooks/interactive_parachute.ipynb" class="invention-link">Explore →</a>
+                </div>
+                
+                <div class="invention-item">
+                    <div class="invention-icon">🚗</div>
+                    <h3>Self-Propelled Cart</h3>
+                    <p>Spring-powered autonomous vehicle</p>
+                    <a href="notebooks/interactive_cart.ipynb" class="invention-link">Explore →</a>
+                </div>
+                
+                <div class="invention-item">
+                    <div class="invention-icon">🎵</div>
+                    <h3>Mechanical Ensemble</h3>
+                    <p>Automated musical instruments</p>
+                    <a href="../../web/renaissance_ensemble/index.html" class="invention-link">Explore →</a>
+                </div>
+                
+                <div class="invention-item">
+                    <div class="invention-icon">⚙️</div>
+                    <h3>Gear Systems</h3>
+                    <p>Lewis bending theory validation</p>
+                    <a href="notebooks/gear_bending_validation.ipynb" class="invention-link">Explore →</a>
+                </div>
+                
+                <div class="invention-item">
+                    <div class="invention-icon">🔄</div>
+                    <h3>Revolving Bridge</h3>
+                    <p>Military engineering innovation</p>
+                    <a href="../revolving_bridge.html" class="invention-link">Explore →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section id="community" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Join the Community</h2>
+                <p class="section-subtitle">Collaborate with researchers, educators, and makers worldwide</p>
+            </div>
+            
+            <div class="community-grid">
+                <div class="community-card">
+                    <div class="community-icon">🔬</div>
+                    <h3>Research Contributions</h3>
+                    <p>Study Leonardo's manuscripts and help implement accurate simulations and 3D models.</p>
+                    <a href="https://github.com/Shannon-Labs/davinci-codex" class="community-link">Contribute on GitHub →</a>
+                </div>
+                
+                <div class="community-card">
+                    <div class="community-icon">🎓</div>
+                    <h3>Educational Content</h3>
+                    <p>Create lesson plans, assessments, and educational materials for different age groups.</p>
+                    <a href="https://github.com/Shannon-Labs/davinci-codex/discussions" class="community-link">Join Discussion →</a>
+                </div>
+                
+                <div class="community-card">
+                    <div class="community-icon">⚙️</div>
+                    <h3>Technical Implementation</h3>
+                    <p>Build interactive simulations, 3D models, and physics engines for Leonardo's designs.</p>
+                    <a href="https://github.com/Shannon-Labs/davinci-codex/issues" class="community-link">View Issues →</a>
+                </div>
+            </div>
+            
+            <div class="community-stats">
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Inventions</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">15</div>
+                    <div class="stat-label">Interactive Simulations</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">GitHub Stars</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Contributors</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>The da Vinci Codex</h4>
+                    <p>Computational archaeology of Renaissance engineering, bringing Leonardo's genius to life through modern simulation technology.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Explore</h4>
+                    <ul>
+                        <li><a href="intro.html">Documentation</a></li>
+                        <li><a href="#demonstrations">Interactive Demos</a></li>
+                        <li><a href="#simulations">Simulations</a></li>
+                        <li><a href="https://github.com/Shannon-Labs/davinci-codex">GitHub Repository</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="https://github.com/Shannon-Labs/davinci-codex/discussions">Community Forum</a></li>
+                        <li><a href="https://github.com/Shannon-Labs/davinci-codex/issues">Report Issues</a></li>
+                        <li><a href="https://github.com/Shannon-Labs/davinci-codex/pulls">Contributions</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Shannon Labs & The da Vinci Codex Collaborative. Open source under MIT license.</p>
+                <p>"Learning never exhausts the mind." — Leonardo da Vinci</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="scripts/landing-page.js"></script>
+</body>
+</html>

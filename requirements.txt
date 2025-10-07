@@ -1,17 +1,35 @@
-numpy
-scipy
+# Main dependencies from pyproject.toml
+numpy>=1.24
+scipy>=1.10
 sympy
-matplotlib
-pytest
-ruff
-mypy
+matplotlib>=3.6
+pytest>=7.2
+pytest-benchmark>=4.0
+ruff>=0.3
+mypy>=1.0
 typer
-pydantic
-pyyaml
+pydantic>=2.0
+pyyaml>=6.0
 trimesh
 meshio
 pillow
-types-PyYAML
+rich>=13.0
 
-jupyter-book
-nbformat
+# Optional CAD dependencies
+pythonocc-core>=7.6; sys_platform == 'linux' or sys_platform == 'win32'
+
+# Jupyter Book dependencies for documentation
+jupyter-book>=1.0
+sphinx>=5.0
+sphinx-book-theme>=1.0
+myst-parser>=0.18
+nbclient>=0.7
+jupyter-client>=7.0
+ipykernel>=6.0
+ipywidgets>=8.0
+plotly>=5.0
+pandas>=1.5
+
+# Build dependencies
+setuptools>=65
+wheel

@@ -1,15 +1,28 @@
-span_length_m: 12.0
-load_capacity_kg: 5000.0
-rotation_time_limit_s: 120.0
-structure_mass_kg: 3200.0
-counterweight_tank_volume_m3: 7.5
-counterweight_fluid_density_kg_m3: 1000.0
-youngs_modulus_pa: 200000000000.0
-moment_of_inertia_m4: 0.045
-truss_depth_m: 2.6
-deck_width_m: 4.0
+# Leonardo da Vinci's Revolving Bridge - Enhanced Parameters
+# Based on Codex Atlanticus folio 855r with modern engineering analysis
+
+span_length_m: 12.0  # Leonardo's original design: 12-16m spans
+load_capacity_kg: 5000.0  # Equivalent to ~50 soldiers with equipment
+rotation_time_limit_s: 120.0  # Rapid deployment for military use
+structure_mass_kg: 3200.0  # Lightweight timber construction
+counterweight_tank_volume_m3: 7.5  # Water-filled counterweights (Leonardo's innovation)
+counterweight_fluid_density_kg_m3: 1000.0  # Water density
+youngs_modulus_pa: 200000000000.0  # Modern steel equivalent (Leonardo used oak)
+moment_of_inertia_m4: 0.045  # Warren truss configuration
+truss_depth_m: 2.6  # Optimal depth-to-span ratio
+deck_width_m: 4.0  # Wide enough for cart traffic
 angle_samples_deg: [0, 15, 30, 45, 60, 75, 90]
-gravity_m_s2: 9.80665
-safety_factor_target: 3.0
-counterweight_arm_fraction: 0.5
+gravity_m_s2: 9.80665  # Standard gravity
+safety_factor_target: 3.0  # Military engineering standard
+counterweight_arm_fraction: 0.5  # Optimal lever arm ratio
 load_distribution_factor: 1.0
+
+# Enhanced parameters for advanced mechanical simulation
+bearing_friction_coefficient: 0.015  # Modern bearing technology
+wind_speed_design_ms: 15.0  # Moderate wind conditions
+air_density_kg_m3: 1.225  # Standard air density at sea level
+drag_coefficient: 1.2  # Bluff body aerodynamics
+bearing_damping_ratio: 0.1  # Critical damping for smooth operation
+counterweight_efficiency_curve: [1.0, 0.95, 0.85, 0.7, 0.5, 0.3, 0.15]  # Fluid dynamics effects
+gyroscopic_coupling_factor: 0.05  # Small gyroscopic effects
+structural_damping_ratio: 0.02  # Inherent structural damping

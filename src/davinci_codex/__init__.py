@@ -7,4 +7,9 @@ try:  # pragma: no cover - executed only in installed environment
 except PackageNotFoundError:  # pragma: no cover - fallback for development
     __version__ = "0.1.0"
 
-__all__ = ["__version__"]
+from . import renaissance_music
+
+__all__ = [
+    "__version__",
+    "renaissance_music",
+]

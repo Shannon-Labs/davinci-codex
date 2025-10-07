@@ -13,11 +13,11 @@ This framework enables high-fidelity simulation of Renaissance engineering
 concepts using modern computational methods.
 """
 
-from .core import MultiPhysicsSimulator
 from .aerodynamics import AerodynamicsModule
-from .structures import StructuralModule
+from .core import MultiPhysicsSimulator
 from .materials import MaterialsModule
 from .optimization import OptimizationEngine
+from .structures import StructuralModule
 from .validation import ValidationSuite
 
 __version__ = "1.0.0"
@@ -25,7 +25,7 @@ __author__ = "DaVinci Codex Research Team"
 
 __all__ = [
     "MultiPhysicsSimulator",
-    "AerodynamicsModule", 
+    "AerodynamicsModule",
     "StructuralModule",
     "MaterialsModule",
     "OptimizationEngine",

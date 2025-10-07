@@ -25,6 +25,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch full history for proper git-based features
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -44,6 +46,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install -e .
+
+      - name: Clean previous build
+        run: |
+          rm -rf docs/book/_build
 
       - name: Build Jupyter Book
         run: |

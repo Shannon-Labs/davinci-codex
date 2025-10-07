@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leonardo's Musical Workshop - Interactive Demonstration</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #f5e6d3 0%, #e8d4b0 100%);
+            color: #3a3a3a;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+            color: #f5e6d3;
+            padding: 30px 0;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            font-style: italic;
+            color: #f5e6d3;
+        }
+
+        .workshop-intro {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .instruments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .instrument-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .instrument-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .instrument-header {
+            background: linear-gradient(135deg, #d4a574 0%, #b8935f 100%);
+            color: #3a3a3a;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .instrument-title {
+            font-size: 1.8em;
+            margin-bottom: 8px;
+        }
+
+        .instrument-period {
+            font-style: italic;
+            color: #5a5a5a;
+        }
+
+        .instrument-content {
+            padding: 20px;
+        }
+
+        .instrument-description {
+            margin-bottom: 15px;
+            color: #4a4a4a;
+        }
+
+        .demonstrations {
+            margin-top: 20px;
+        }
+
+        .demo-button {
+            background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+            color: #f5e6d3;
+            border: none;
+            padding: 12px 20px;
+            margin: 5px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+
+        .demo-button:hover {
+            background: linear-gradient(135deg, #a0522d 0%, #8b4513 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .demo-button:active {
+            transform: translateY(0);
+        }
+
+        .acoustic-info {
+            background: #f9f5f0;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid #8b4513;
+        }
+
+        .acoustic-title {
+            font-weight: bold;
+            color: #8b4513;
+            margin-bottom: 8px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        .modal-content {
+            background-color: #f5e6d3;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .close {
+            color: #8b4513;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #a0522d;
+        }
+
+        .demo-player {
+            background: #3a3a3a;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .player-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .control-button {
+            background: #8b4513;
+            color: #f5e6d3;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+        }
+
+        .control-button:hover {
+            background: #a0522d;
+            transform: scale(1.1);
+        }
+
+        .visualization {
+            background: #2a2a2a;
+            height: 100px;
+            border-radius: 8px;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #f5e6d3;
+        }
+
+        .feature-list {
+            background: #e8f4f8;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .feature-list h4 {
+            color: #2c5aa0;
+            margin-bottom: 10px;
+        }
+
+        .feature-list ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .feature-list li {
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .feature-list li:before {
+            content: "♦";
+            color: #8b4513;
+            position: absolute;
+            left: 0;
+        }
+
+        .historical-note {
+            background: #fff8dc;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #daa520;
+        }
+
+        .historical-note h4 {
+            color: #b8860b;
+            margin-bottom: 8px;
+        }
+
+        .timeline {
+            background: #f0f0f0;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 15px;
+        }
+
+        .timeline-year {
+            font-weight: bold;
+            color: #8b4513;
+            min-width: 80px;
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        footer {
+            background: #3a3a3a;
+            color: #f5e6d3;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .instruments-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .container {
+                padding: 10px;
+            }
+        }
+
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #8b4513;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .tech-challenge {
+            background: #ffe4e1;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #cd5c5c;
+        }
+
+        .tech-challenge h4 {
+            color: #b22222;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Leonardo's Musical Workshop</h1>
+            <div class="subtitle">Interactive Demonstration of Renaissance Mechanical Instruments</div>
+            <div class="subtitle">Phase 3: Cultural Revival</div>
+        </header>
+
+        <section class="workshop-intro">
+            <h2>Welcome to Leonardo's Musical Workshop</h2>
+            <p>Step into the fascinating world of Leonardo da Vinci's mechanical musical instruments. This interactive workshop showcases six remarkable inventions that combine Renaissance artistry with innovative engineering, created during Leonardo's time at the Sforza court in Milan (1482-1499).</p>
+
+            <p>Each instrument represents Leonardo's attempt to push the boundaries of musical performance through automation, extended capabilities, and mechanical precision. Click on any instrument below to explore its unique features, listen to demonstrations, and learn about the technical innovations that made these instruments centuries ahead of their time.</p>
+
+            <div class="timeline">
+                <h3>Leonardo's Musical Innovation Timeline</h3>
+                <div class="timeline-item">
+                    <div class="timeline-year">c. 1485</div>
+                    <div class="timeline-content">Mechanical Organ design - Early exploration of automated music</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">c. 1488</div>
+                    <div class="timeline-content">Programmable Flute - Innovation in wind instrument automation</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">c. 1490</div>
+                    <div class="timeline-content">Viola Organista & Mechanical Drum - String and percussion innovations</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">c. 1493</div>
+                    <div class="timeline-content">Mechanical Carillon - Large-scale public music system</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">c. 1495</div>
+                    <div class="timeline-content">Mechanical Trumpeter - Military and ceremonial applications</div>
+                </div>
+            </div>
+        </section>
+
+        <main class="instruments-grid">
+            <!-- Instruments will be dynamically generated here -->
+        </main>
+
+        <footer>
+            <p>Leonardo's Musical Workshop - da Vinci Codex Project</p>
+            <p>Phase 3: Cultural Revival - Bringing Renaissance Musical Innovation to Life</p>
+        </footer>
+    </div>
+
+    <!-- Modal for detailed demonstrations -->
+    <div id="instrumentModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalContent">
+                <!-- Content will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Instrument data
+        const instruments = [
+            {
+                id: 'viola_organista',
+                name: 'Viola Organista',
+                period: 'c. 1490',
+                description: 'A revolutionary bowed keyboard instrument combining the sustain of an organ with the expressive tone of a viola da gamba. This was perhaps Leonardo\'s most innovative musical invention.',
+                mechanism: 'Keyboard action pushes spinning wheels (rosined cylinders) against strings, creating continuous bowing action without human intervention.',
+                features: [
+                    'Continuous sustain without manual bowing',
+                    'Dynamic control through keyboard pressure',
+                    'Polyphonic capability unlike traditional viols',
+                    'Organ-like sustain with string timbre'
+                ],
+                acoustic: {
+                    range: 'C3-G6 (130.81-1568.0 Hz)',
+                    timbre: 'Warm, mellow tone with string complexity and organ sustain',
+                    dynamics: '50-90 dB',
+                    special: 'Continuous sustain without vibrato decay'
+                },
+                historical: 'Leonardo\'s solution to the challenge of creating sustained polyphonic string music. This instrument would have revolutionized ensemble music performance.',
+                challenges: [
+                    'Precise wheel rosin application for consistent tone',
+                    'String tension and wheel pressure calibration',
+                    'Keyboard action mechanism complexity',
+                    'Maintaining intonation across the range'
+                ]
+            },
+            {
+                id: 'mechanical_organ',
+                name: 'Mechanical Organ',
+                period: 'c. 1485-1490',
+                description: 'An automated pipe organ with programmable music using pinned barrels and complex windchest design, representing Leonardo\'s fascination with automation.',
+                mechanism: 'Pinned wooden cylinders control valve actions, directing air to specific pipes. Wind pressure regulated by water-weight bellows.',
+                features: [
+                    'Automated performance without human intervention',
+                    'Complex polyphonic capability',
+                    'Dynamic registration control',
+                    'Programmable music sequences'
+                ],
+                acoustic: {
+                    range: 'C2-C7 (65.41-2093.0 Hz)',
+                    timbre: 'Clear, bright tone with pipe organ character',
+                    dynamics: '60-100 dB',
+                    special: 'Polyphonic capability with registration control'
+                },
+                historical: 'Part of Leonardo\'s broader interest in automation and mechanical music. Would have provided entertainment for Sforza court gatherings.',
+                challenges: [
+                    'Precise pin placement on barrels',
+                    'Windchest leak prevention',
+                    'Pipe tuning stability',
+                    'Bellows pressure regulation'
+                ]
+            },
+            {
+                id: 'programmable_flute',
+                name: 'Programmable Flute',
+                period: 'c. 1488',
+                description: 'A mechanical flute system with automated finger holes and breath control, capable of complex melodic passages beyond human capability.',
+                mechanism: 'Cam-driven mechanisms cover and uncover tone holes, while bellows provide controlled air pressure. Complex linkage system for rapid fingering.',
+                features: [
+                    'Rapid fingering beyond human capability',
+                    'Precise breath control',
+                    'Complex ornamentation capability',
+                    'Consistent tone production'
+                ],
+                acoustic: {
+                    range: 'C4-G6 (261.63-1568.0 Hz)',
+                    timbre: 'Bright, focused tone with air noise component',
+                    dynamics: '40-80 dB',
+                    special: 'Rapid articulation beyond human capability'
+                },
+                historical: 'Leonardo\'s exploration of wind instrument automation, inspired by the popularity of flute music in Renaissance courts.',
+                challenges: [
+                    'Precise hole sealing for clean tone',
+                    'Breath pressure modulation',
+                    'Cam profile design for musical phrasing',
+                    'Material selection for durability'
+                ]
+            },
+            {
+                id: 'mechanical_trumpeter',
+                name: 'Mechanical Trumpeter',
+                period: 'c. 1495',
+                description: 'An automated brass instrument with mechanical lips and slide positioning, capable of fanfares and military calls.',
+                mechanism: 'Articulated mechanical lips create vibration, while adjustable slide mechanism changes pitch. Air supplied by regulated bellows.',
+                features: [
+                    'Mechanical lip vibration simulation',
+                    'Dynamic control through pressure variation',
+                    'Rapid articulation capability',
+                    'Fanfare and military call patterns'
+                ],
+                acoustic: {
+                    range: 'E3-B5 (164.81-987.77 Hz)',
+                    timbre: 'Brassy, bright tone with mechanical lip character',
+                    dynamics: '70-110 dB',
+                    special: 'Mechanical lip simulation with fanfare capability'
+                },
+                historical: 'Designed for military and ceremonial use, reflecting Leonardo\'s work on military engineering for the Sforza court.',
+                challenges: [
+                    'Lip material and vibration characteristics',
+                    'Slide mechanism precision',
+                    'Air pressure and lip synchronization',
+                    'Timbre quality optimization'
+                ]
+            },
+            {
+                id: 'mechanical_drum',
+                name: 'Mechanical Drum',
+                period: 'c. 1490',
+                description: 'A percussion system with multiple drumheads and automated striking mechanisms for rhythmic patterns, essential for dance and military music.',
+                mechanism: 'Cam-driven beaters strike tuned drumheads with precise timing. Multiple drum sizes provide pitch variation.',
+                features: [
+                    'Complex polyrhythmic capability',
+                    'Multiple drum sizes for pitch variety',
+                    'Programmable rhythmic patterns',
+                    'Consistent strike force'
+                ],
+                acoustic: {
+                    range: '80-400 Hz (fundamental frequencies)',
+                    timbre: 'Percussive attack with resonant body tone',
+                    dynamics: '80-120 dB',
+                    special: 'Programmable rhythmic patterns with multiple drum sizes'
+                },
+                historical: 'Essential for dance music and military applications, demonstrating Leonardo\'s understanding of rhythm and movement.',
+                challenges: [
+                    'Drumhead tension and tuning',
+                    'Beater material and rebound characteristics',
+                    'Cam design for rhythmic patterns',
+                    'Multiple drum coordination'
+                ]
+            },
+            {
+                id: 'mechanical_carillon',
+                name: 'Mechanical Carillon',
+                period: 'c. 1493',
+                description: 'A bell ensemble with automated striking mechanism, capable of harmonic progression and melody for civic and religious buildings.',
+                mechanism: 'Large bells struck by hammers controlled by pinned barrels. Multiple bell sizes provide full harmonic range.',
+                features: [
+                    'Full harmonic and melodic capability',
+                    'Sustained resonance for harmonic support',
+                    'Powerful projection for outdoor use',
+                    'Complex polyphonic music'
+                ],
+                acoustic: {
+                    range: 'G2-G7 (196.0-3920.0 Hz)',
+                    timbre: 'Rich, complex tone with bell harmonics and long sustain',
+                    dynamics: '90-130 dB',
+                    special: 'Long resonance suitable for harmonic support'
+                },
+                historical: 'Designed for civic and religious buildings, representing Leonardo\'s interest in public art and urban design.',
+                challenges: [
+                    'Bell casting and tuning precision',
+                    'Hammer striking force optimization',
+                    'Resonance management',
+                    'Structural support for large bells'
+                ]
+            }
+        ];
+
+        // Demo types
+        const demoTypes = [
+            { name: 'Technical Capabilities', description: 'Showcase the instrument\'s unique mechanical features and technical possibilities' },
+            { name: 'Renaissance Performance', description: 'Historically appropriate musical contexts using authentic Renaissance forms' },
+            { name: 'Extended Techniques', description: 'Full range of capabilities including features impossible for human performers' }
+        ];
+
+        // Initialize the workshop
+        document.addEventListener('DOMContentLoaded', function() {
+            renderInstruments();
+            setupModal();
+        });
+
+        function renderInstruments() {
+            const grid = document.querySelector('.instruments-grid');
+
+            instruments.forEach(instrument => {
+                const card = document.createElement('div');
+                card.className = 'instrument-card';
+                card.innerHTML = `
+                    <div class="instrument-header">
+                        <div class="instrument-title">${instrument.name}</div>
+                        <div class="instrument-period">${instrument.period}</div>
+                    </div>
+                    <div class="instrument-content">
+                        <p class="instrument-description">${instrument.description}</p>
+
+                        <div class="feature-list">
+                            <h4>Unique Features</h4>
+                            <ul>
+                                ${instrument.features.map(feature => `<li>${feature}</li>`).join('')}
+                            </ul>
+                        </div>
+
+                        <div class="acoustic-info">
+                            <div class="acoustic-title">Acoustic Properties</div>
+                            <p><strong>Range:</strong> ${instrument.acoustic.range}</p>
+                            <p><strong>Timbre:</strong> ${instrument.acoustic.timbre}</p>
+                            <p><strong>Special:</strong> ${instrument.acoustic.special}</p>
+                        </div>
+
+                        <div class="demonstrations">
+                            <h4>Interactive Demonstrations</h4>
+                            ${demoTypes.map(demo => `
+                                <button class="demo-button" onclick="openDemo('${instrument.id}', '${demo.name}')">
+                                    ${demo.name}
+                                </button>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        function setupModal() {
+            const modal = document.getElementById('instrumentModal');
+            const closeBtn = document.querySelector('.close');
+
+            closeBtn.onclick = function() {
+                modal.style.display = 'none';
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            }
+        }
+
+        function openDemo(instrumentId, demoType) {
+            const instrument = instruments.find(i => i.id === instrumentId);
+            const modal = document.getElementById('instrumentModal');
+            const modalContent = document.getElementById('modalContent');
+
+            modalContent.innerHTML = `
+                <h2>${instrument.name} - ${demoType}</h2>
+
+                <div class="historical-note">
+                    <h4>Historical Context</h4>
+                    <p>${instrument.historical}</p>
+                </div>
+
+                <div class="demo-player">
+                    <h3>Interactive Demonstration Player</h3>
+                    <div class="player-controls">
+                        <button class="control-button" onclick="playDemo()">▶</button>
+                        <button class="control-button" onclick="pauseDemo()">⏸</button>
+                        <button class="control-button" onclick="stopDemo()">⏹</button>
+                    </div>
+                    <div class="visualization" id="visualization">
+                        <p>Click play to start the demonstration</p>
+                    </div>
+                </div>
+
+                <div class="tech-challenge">
+                    <h4>Technical Innovation</h4>
+                    <p><strong>Mechanism:</strong> ${instrument.mechanism}</p>
+                    <h5>Key Challenges Leonardo Faced:</h5>
+                    <ul>
+                        ${instrument.challenges.map(challenge => `<li>${challenge}</li>`).join('')}
+                    </ul>
+                </div>
+
+                <div class="acoustic-info">
+                    <h4>Acoustic Analysis</h4>
+                    <p><strong>Pitch Range:</strong> ${instrument.acoustic.range}</p>
+                    <p><strong>Dynamic Range:</strong> ${instrument.acoustic.dynamics}</p>
+                    <p><strong>Timbre Characteristics:</strong> ${instrument.acoustic.timbre}</p>
+                    <p><strong>Special Features:</strong> ${instrument.acoustic.special}</p>
+                </div>
+
+                <div class="feature-list">
+                    <h4>Musical Capabilities</h4>
+                    <ul>
+                        ${instrument.features.map(feature => `<li>${feature}</li>`).join('')}
+                    </ul>
+                </div>
+            `;
+
+            modal.style.display = 'block';
+        }
+
+        // Mock demonstration player functions
+        let isPlaying = false;
+        let currentDemo = null;
+
+        function playDemo() {
+            isPlaying = true;
+            const visualization = document.getElementById('visualization');
+            visualization.innerHTML = '<div class="loading-spinner"></div><p>Playing demonstration...</p>';
+
+            // Simulate playing
+            setTimeout(() => {
+                if (isPlaying) {
+                    visualization.innerHTML = '<p>🎵 Demonstration in progress...</p>';
+                }
+            }, 1000);
+        }
+
+        function pauseDemo() {
+            isPlaying = false;
+            const visualization = document.getElementById('visualization');
+            visualization.innerHTML = '<p>⏸ Paused - Click play to continue</p>';
+        }
+
+        function stopDemo() {
+            isPlaying = false;
+            const visualization = document.getElementById('visualization');
+            visualization.innerHTML = '<p>⏹ Stopped - Click play to restart</p>';
+        }
+    </script>
+</body>
+</html>

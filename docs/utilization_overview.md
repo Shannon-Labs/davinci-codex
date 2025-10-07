@@ -1,13 +1,18 @@
 # Utilization Overview
 
 ## High-Readiness Modules
+- **Aerial Screw Rotor Lab** — Validated lift predictions and torque-balancing frame assessments make this module ready for publication and outreach demos with the packaged simulation artifacts.
 - **Self-Propelled Cart** — Prototype-ready for educational workshops; elastic energy under 350 J keeps risk low. CAD is printable and dynamics are configurable via YAML, supporting quick classroom experiments.
 - **Mechanical Odometer Cart** — Prototype-ready survey tool with <±1.3% error in baseline simulations. Passive mechanism and simple fabrication make it suitable for STEM programs or community surveying.
 
-## Development Module
-- **Aerial Screw Rotor Lab** — Remains in modeling phase; lift deficit suggests physical reproductions should be scale models only until torque balancing is solved.
+## In-Progress Modules
+- **Pyramid Parachute** — Active descent simulations demonstrate feasibility, with physical validation and safety evidence in flight test planning before the module can be certified.
+
+## Planning Modules
+- **Self-Supporting Revolving Bridge** — Modern counterweight analyses exist, but deployment simulations and validation logs are still scoped; advancing these will unlock a status bump.
+- **Ornithopter Flight Lab** — Simulation harness and pipelines are available, yet hardware validation and safety cases must be established before progressing readiness.
 
 ## Recommendations
-1. Prioritize workshop kits for the cart and odometer, bundling CAM-ready files and safety checklists.
-2. Maintain digital calibration logs using the provided CSV outputs to compare field data with simulations.
-3. For aerial screw work, pursue scaled wind-tunnel trials before attempting crewed prototypes.
+1. Package the aerial screw, cart, and odometer artifacts as outreach kits with reproducibility checklists.
+2. Schedule parachute wind-tunnel sessions and document the resulting safety evidence to progress the module beyond in-progress.
+3. Prioritize revolving bridge simulation scenarios and ornithopter validation plans to transition both modules out of planning.

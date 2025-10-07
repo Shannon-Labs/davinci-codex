@@ -1,9 +1,28 @@
-wheel_radius_m: 0.22
-wheel_width_m: 0.05
-drive_gear_teeth: 120
-counter_gear_teeth: 12
-bucket_capacity: 100
-pebbles_per_drop: 1
-slip_std_percent: 0.4
-calibration_error_percent: 0.2
+# Leonardo da Vinci's Mechanical Odometer - Enhanced Parameters
+# Based on Codex Atlanticus folio 1r (c. 1487-1490)
+
+# Wheel specifications (typical Renaissance survey cart)
+wheel_radius_m: 0.22  # 44cm diameter - standard cart wheel size
+wheel_width_m: 0.05   # 5cm width for stability on varied terrain
+wheel_wood_type: "oak"  # Dense, stable hardwood for minimal expansion
+
+# Gear mechanism (Leonardo's cascade design)
+drive_gear_teeth: 120    # Large gear on wheel axle
+counter_gear_teeth: 12   # Small gear driving pebble mechanism
+gear_material: "bronze"  # Renaissance-era gear material
+
+# Pebble counting system
+bucket_capacity: 100     # Maximum pebbles before refill
+pebbles_per_drop: 1      # Single pebble per activation
+pebble_shape: "rounded"  # Minimizes bounce and scatter
+
+# Operating conditions
+terrain_type: "packed_earth"  # Typical Renaissance road surface
+weather_conditions: "dry"     # Standard operating conditions
+
+# Error sources and tolerances
+slip_std_percent: 0.4         # Wheel slip on packed earth
+calibration_error_percent: 0.2  # Initial manufacturing tolerance
+
+# Test distances (meters) - spans from urban surveying to land mapping
 distance_grid_m: [50, 100, 250, 500, 750, 1000]

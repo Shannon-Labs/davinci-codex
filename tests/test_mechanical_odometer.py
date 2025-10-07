@@ -35,6 +35,11 @@ def test_simulate_creates_artifacts(monkeypatch, tmp_path):
         "slip_std_percent: 0.3\n"
         "calibration_error_percent: 0.1\n"
         "distance_grid_m: [100, 200]\n"
+        "wheel_wood_type: oak\n"
+        "gear_material: bronze\n"
+        "terrain_type: packed_earth\n"
+        "pebble_shape: rounded\n"
+        "weather_conditions: dry\n"
     )
     monkeypatch.setattr(mechanical_odometer, "PARAM_FILE", param_file)
 
@@ -49,7 +54,10 @@ def test_simulate_creates_artifacts(monkeypatch, tmp_path):
     result = mechanical_odometer.simulate(seed=42)
     for artifact in result["artifacts"]:
         assert Path(artifact).exists()
-    assert result["max_percent_error"] >= 0
+    # Updated to use new nested structure
+    assert result["performance_metrics"]["max_error_percent"] >= 0
+    assert "performance_grade" in result["performance_metrics"]
+    assert "educational_notes" in result
 
 
 def test_build_exports_mesh(monkeypatch, tmp_path):
@@ -84,8 +92,16 @@ def test_evaluate_flags_accuracy(monkeypatch, tmp_path):
         "slip_std_percent: 0.4\n"
         "calibration_error_percent: 0.2\n"
         "distance_grid_m: [50, 100, 150]\n"
+        "wheel_wood_type: oak\n"
+        "gear_material: bronze\n"
+        "terrain_type: packed_earth\n"
+        "pebble_shape: rounded\n"
+        "weather_conditions: dry\n"
     )
     monkeypatch.setattr(mechanical_odometer, "PARAM_FILE", param_file)
     payload = mechanical_odometer.evaluate()
-    assert payload["practicality"]["max_error_percent"] >= 0
-    assert isinstance(payload["validated"]["within_two_percent"], bool)
+    # Updated to use new nested structure
+    assert payload["practicality"]["measurement_accuracy"]["max_error_percent"] >= 0
+    assert isinstance(payload["validation_status"]["performance_targets"]["within_two_percent"], bool)
+    assert "educational_value" in payload
+    assert "safety_and_ethics" in payload

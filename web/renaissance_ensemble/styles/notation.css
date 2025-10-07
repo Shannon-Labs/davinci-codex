@@ -1,0 +1,522 @@
+/* Music Notation and Visualization Styles */
+
+/* Education Panels */
+.education-panels {
+    background: var(--bg-panel);
+    border: 2px solid var(--color-secondary);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    box-shadow: var(--shadow-lg);
+}
+
+.info-tabs {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-lg);
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    background: var(--color-secondary);
+    color: var(--text-on-dark);
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    font-family: var(--font-secondary);
+    font-size: 0.9rem;
+    position: relative;
+}
+
+.tab-btn:hover {
+    background: var(--color-primary);
+    transform: translateY(-2px);
+}
+
+.tab-btn.active {
+    background: var(--color-accent);
+    color: var(--color-ink);
+    font-weight: 600;
+}
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid var(--color-accent);
+}
+
+.tab-content {
+    position: relative;
+    min-height: 200px;
+}
+
+.tab-panel {
+    display: none;
+    animation: fadeIn var(--transition-medium) ease-in;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+.tab-panel h3 {
+    font-family: var(--font-primary);
+    color: var(--color-primary);
+    font-size: 1.4rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.tab-panel p {
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.7;
+}
+
+.tab-panel ul {
+    margin: var(--spacing-sm) 0;
+    padding-left: var(--spacing-lg);
+}
+
+.tab-panel li {
+    margin-bottom: var(--spacing-xs);
+}
+
+/* Music Notation Display */
+.notation-canvas {
+    background: var(--color-parchment);
+    border: 1px solid var(--color-secondary);
+    border-radius: var(--radius-sm);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Staff Line Styling */
+.staff-line {
+    stroke: var(--color-ink);
+    stroke-width: 1;
+    opacity: 0.8;
+}
+
+.staff-line.highlighted {
+    stroke: var(--color-accent);
+    stroke-width: 2;
+    opacity: 1;
+}
+
+/* Note Styling */
+.note-head {
+    fill: var(--color-ink);
+    stroke: var(--color-ink);
+    stroke-width: 1;
+}
+
+.note-head.active {
+    fill: var(--color-accent);
+    stroke: var(--color-accent-dark);
+    stroke-width: 2;
+    filter: drop-shadow(0 0 3px rgba(255, 215, 0, 0.5));
+}
+
+.note-stem {
+    stroke: var(--color-ink);
+    stroke-width: 2;
+}
+
+.note-stem.active {
+    stroke: var(--color-accent-dark);
+    stroke-width: 3;
+}
+
+.note-flag {
+    fill: var(--color-ink);
+}
+
+.note-flag.active {
+    fill: var(--color-accent);
+}
+
+/* Rest Styling */
+.rest-symbol {
+    fill: var(--color-ink);
+    opacity: 0.8;
+}
+
+.rest-symbol.active {
+    fill: var(--color-accent);
+    opacity: 1;
+}
+
+/* Clef and Key Signature */
+.clef-symbol {
+    fill: var(--color-ink);
+    font-size: 48px;
+    font-family: 'Bravura', 'Maestro', serif;
+}
+
+.key-signature {
+    fill: var(--color-ink);
+    font-size: 32px;
+    font-family: 'Bravura', 'Maestro', serif;
+}
+
+.time-signature {
+    fill: var(--color-ink);
+    font-size: 36px;
+    font-family: 'Bravura', 'Maestro', serif;
+    font-weight: bold;
+}
+
+/* Bar Lines */
+.bar-line {
+    stroke: var(--color-ink);
+    stroke-width: 2;
+}
+
+.bar-line.double {
+    stroke-width: 1;
+}
+
+.bar-line.final {
+    stroke-width: 3;
+}
+
+/* Tempo and Dynamics Indicators */
+.tempo-marking {
+    fill: var(--color-crimson);
+    font-size: 18px;
+    font-family: var(--font-secondary);
+    font-style: italic;
+}
+
+.dynamic-marking {
+    fill: var(--color-crimson);
+    font-size: 24px;
+    font-family: 'Bravura', 'Maestro', serif;
+}
+
+/* Instrument Part Indicators */
+.instrument-part {
+    fill: var(--color-ink);
+    font-size: 14px;
+    font-family: var(--font-secondary);
+    font-weight: 600;
+}
+
+.instrument-part.carillon {
+    fill: var(--color-secondary);
+}
+
+.instrument-part.drum {
+    fill: var(--color-primary);
+}
+
+.instrument-part.organ {
+    fill: var(--color-sage);
+}
+
+.instrument-part.trumpeter {
+    fill: var(--color-accent-dark);
+}
+
+.instrument-part.flute {
+    fill: var(--color-crimson-light);
+}
+
+.instrument-part.viola {
+    fill: var(--color-sage-light);
+}
+
+/* Playback Position Indicator */
+.playback-line {
+    stroke: var(--color-crimson);
+    stroke-width: 3;
+    opacity: 0.8;
+    animation: playbackPulse 1s ease-in-out infinite;
+}
+
+@keyframes playbackPulse {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+}
+
+.playback-head {
+    fill: var(--color-crimson);
+    filter: drop-shadow(0 0 4px rgba(139, 0, 0, 0.5));
+}
+
+/* Measure Highlighting */
+.measure-highlight {
+    fill: rgba(255, 215, 0, 0.1);
+    stroke: var(--color-accent);
+    stroke-width: 1;
+    stroke-dasharray: 5, 5;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.measure-highlight.active {
+    opacity: 1;
+    animation: measureGlow 2s ease-in-out infinite;
+}
+
+@keyframes measureGlow {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+}
+
+/* Note Connection Lines (for chords) */
+.chord-line {
+    stroke: var(--color-ink);
+    stroke-width: 1;
+    opacity: 0.6;
+}
+
+.chord-line.active {
+    stroke: var(--color-accent);
+    stroke-width: 2;
+    opacity: 1;
+}
+
+/* Slur and Tie Styling */
+.slur {
+    fill: none;
+    stroke: var(--color-ink);
+    stroke-width: 2;
+    opacity: 0.8;
+}
+
+.slur.active {
+    stroke: var(--color-accent);
+    stroke-width: 3;
+    opacity: 1;
+}
+
+.tie {
+    fill: none;
+    stroke: var(--color-ink);
+    stroke-width: 1.5;
+    opacity: 0.7;
+}
+
+.tie.active {
+    stroke: var(--color-accent);
+    stroke-width: 2;
+    opacity: 1;
+}
+
+/* Articulation Markings */
+.staccato-dot {
+    fill: var(--color-ink);
+}
+
+.staccato-dot.active {
+    fill: var(--color-accent);
+}
+
+.accent-mark {
+    fill: var(--color-ink);
+}
+
+.accent-mark.active {
+    fill: var(--color-accent);
+}
+
+/* Ornamentation */
+.trill-mark {
+    fill: var(--color-ink);
+    font-size: 16px;
+    font-family: 'Bravura', 'Maestro', serif;
+}
+
+.trill-mark.active {
+    fill: var(--color-accent);
+}
+
+.mordent-mark {
+    fill: var(--color-ink);
+    font-size: 16px;
+    font-family: 'Bravura', 'Maestro', serif;
+}
+
+.mordent-mark.active {
+    fill: var(--color-accent);
+}
+
+/* Lyrics and Text */
+.lyric-text {
+    fill: var(--color-ink);
+    font-size: 12px;
+    font-family: var(--font-secondary);
+    font-style: italic;
+}
+
+.lyric-text.active {
+    fill: var(--color-accent);
+    font-weight: 600;
+}
+
+.direction-text {
+    fill: var(--color-crimson);
+    font-size: 14px;
+    font-family: var(--font-secondary);
+    font-style: italic;
+}
+
+/* Responsive Notation Display */
+@media (max-width: 768px) {
+    .notation-canvas {
+        height: 200px;
+    }
+    
+    .clef-symbol {
+        font-size: 36px;
+    }
+    
+    .key-signature {
+        font-size: 24px;
+    }
+    
+    .time-signature {
+        font-size: 28px;
+    }
+    
+    .tempo-marking {
+        font-size: 14px;
+    }
+    
+    .dynamic-marking {
+        font-size: 18px;
+    }
+    
+    .instrument-part {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .notation-canvas {
+        height: 150px;
+    }
+    
+    .clef-symbol {
+        font-size: 28px;
+    }
+    
+    .key-signature {
+        font-size: 20px;
+    }
+    
+    .time-signature {
+        font-size: 24px;
+    }
+    
+    .tempo-marking {
+        font-size: 12px;
+    }
+    
+    .dynamic-marking {
+        font-size: 16px;
+    }
+    
+    .instrument-part {
+        font-size: 10px;
+    }
+    
+    .lyric-text {
+        font-size: 10px;
+    }
+    
+    .direction-text {
+        font-size: 12px;
+    }
+}
+
+/* Notation Loading State */
+.notation-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.notation-loading::before {
+    content: '🎼';
+    font-size: 2rem;
+    margin-right: var(--spacing-sm);
+    animation: spin 2s linear infinite;
+}
+
+/* Notation Error State */
+.notation-error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    color: var(--color-crimson);
+    text-align: center;
+    padding: var(--spacing-md);
+}
+
+.notation-error::before {
+    content: '⚠️';
+    font-size: 2rem;
+    margin-right: var(--spacing-sm);
+}
+
+/* Accessibility Enhancements */
+.notation-canvas:focus {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+.note-head:focus,
+.rest-symbol:focus {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 1px;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    .staff-line {
+        stroke: var(--color-ink);
+        stroke-width: 2;
+        opacity: 1;
+    }
+    
+    .note-head {
+        stroke-width: 2;
+    }
+    
+    .note-stem {
+        stroke-width: 3;
+    }
+    
+    .bar-line {
+        stroke-width: 3;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    .playback-line {
+        animation: none;
+    }
+    
+    .measure-highlight.active {
+        animation: none;
+    }
+    
+    .notation-loading::before {
+        animation: none;
+    }
+}

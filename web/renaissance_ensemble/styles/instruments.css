@@ -1,0 +1,440 @@
+/* Instrument-Specific Styling for Leonardo's Mechanical Ensemble */
+
+/* Instrument Controls Section */
+.instrument-controls {
+    background: var(--bg-panel);
+    border: 2px solid var(--color-secondary);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    box-shadow: var(--shadow-lg);
+}
+
+.instrument-controls h2 {
+    font-family: var(--font-primary);
+    color: var(--color-primary);
+    font-size: 1.8rem;
+    margin-bottom: var(--spacing-md);
+    text-align: center;
+}
+
+.instrument-mixers {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.instrument-mixer {
+    background: linear-gradient(145deg, 
+        rgba(255, 255, 255, 0.9) 0%, 
+        rgba(244, 228, 193, 0.8) 100%);
+    border: 2px solid var(--color-secondary);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-md);
+    transition: all var(--transition-medium);
+    position: relative;
+    overflow: hidden;
+}
+
+.instrument-mixer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 215, 0, 0.1), 
+        transparent);
+    transition: left 0.6s ease;
+}
+
+.instrument-mixer:hover::before {
+    left: 100%;
+}
+
+.instrument-mixer:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-accent);
+}
+
+.instrument-mixer.muted {
+    opacity: 0.6;
+    border-color: var(--color-secondary);
+}
+
+.instrument-mixer.muted::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(44, 24, 16, 0.1) 10px,
+        rgba(44, 24, 16, 0.1) 20px
+    );
+    pointer-events: none;
+}
+
+.instrument-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+}
+
+.instrument-info h3 {
+    font-family: var(--font-primary);
+    color: var(--color-primary);
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.instrument-status {
+    font-size: 0.8rem;
+    color: var(--color-sage);
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    background: rgba(135, 169, 107, 0.1);
+}
+
+.instrument-status.playing {
+    color: var(--color-accent);
+    background: rgba(255, 215, 0, 0.2);
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.mixer-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.mute-btn {
+    background: var(--color-secondary);
+    color: var(--text-on-dark);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.mute-btn:hover {
+    background: var(--color-primary);
+    transform: scale(1.1);
+}
+
+.mute-btn.muted {
+    background: var(--color-crimson);
+}
+
+.volume-slider {
+    flex: 1;
+    height: 6px;
+    background: var(--color-secondary);
+    border-radius: 3px;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    background: var(--color-accent);
+    border: 2px solid var(--color-primary);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.volume-slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: var(--color-accent);
+    border: 2px solid var(--color-primary);
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
+
+.volume-display {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    min-width: 45px;
+    text-align: center;
+}
+
+/* Individual Instrument Visual Enhancements */
+
+/* Carillon-specific styling */
+.carillon-container {
+    background: linear-gradient(145deg, 
+        rgba(255, 215, 0, 0.1) 0%, 
+        rgba(244, 228, 193, 0.9) 100%);
+}
+
+.carillon-container .instrument-canvas {
+    background: linear-gradient(135deg, 
+        rgba(255, 215, 0, 0.05) 0%, 
+        rgba(255, 255, 255, 0.8) 100%);
+}
+
+/* Drum-specific styling */
+.drum-container {
+    background: linear-gradient(145deg, 
+        rgba(139, 69, 19, 0.1) 0%, 
+        rgba(244, 228, 193, 0.9) 100%);
+}
+
+.drum-container .instrument-canvas {
+    background: linear-gradient(135deg, 
+        rgba(139, 69, 19, 0.05) 0%, 
+        rgba(255, 255, 255, 0.8) 100%);
+}
+
+/* Organ-specific styling */
+.organ-container {
+    background: linear-gradient(145deg, 
+        rgba(70, 130, 180, 0.1) 0%, 
+        rgba(244, 228, 193, 0.9) 100%);
+}
+
+.organ-container .instrument-canvas {
+    background: linear-gradient(135deg, 
+        rgba(70, 130, 180, 0.05) 0%, 
+        rgba(255, 255, 255, 0.8) 100%);
+}
+
+/* Trumpeter-specific styling */
+.trumpeter-container {
+    background: linear-gradient(145deg, 
+        rgba(255, 215, 0, 0.15) 0%, 
+        rgba(244, 228, 193, 0.9) 100%);
+}
+
+.trumpeter-container .instrument-canvas {
+    background: linear-gradient(135deg, 
+        rgba(255, 215, 0, 0.08) 0%, 
+        rgba(255, 255, 255, 0.8) 100%);
+}
+
+/* Flute-specific styling */
+.flute-container {
+    background: linear-gradient(145deg, 
+        rgba(144, 238, 144, 0.1) 0%, 
+        rgba(244, 228, 193, 0.9) 100%);
+}
+
+.flute-container .instrument-canvas {
+    background: linear-gradient(135deg, 
+        rgba(144, 238, 144, 0.05) 0%, 
+        rgba(255, 255, 255, 0.8) 100%);
+}
+
+/* Viola Organista-specific styling */
+.viola-container {
+    background: linear-gradient(145deg, 
+        rgba(139, 0, 139, 0.1) 0%, 
+        rgba(244, 228, 193, 0.9) 100%);
+}
+
+.viola-container .instrument-canvas {
+    background: linear-gradient(135deg, 
+        rgba(139, 0, 139, 0.05) 0%, 
+        rgba(255, 255, 255, 0.8) 100%);
+}
+
+/* Instrument Animation States */
+.instrument-container.animating {
+    animation: instrumentGlow 2s ease-in-out infinite;
+}
+
+@keyframes instrumentGlow {
+    0%, 100% { 
+        box-shadow: 0 4px 8px rgba(44, 24, 16, 0.15);
+        transform: scale(1);
+    }
+    50% { 
+        box-shadow: 0 8px 16px rgba(255, 215, 0, 0.3);
+        transform: scale(1.02);
+    }
+}
+
+/* Instrument-specific animations based on their playing state */
+.carillon-container.playing .instrument-canvas::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, 
+        rgba(255, 215, 0, 0.8) 0%, 
+        transparent 70%);
+    border-radius: 50%;
+    animation: bellRing 0.5s ease-in-out infinite;
+}
+
+@keyframes bellRing {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.3); opacity: 0.4; }
+}
+
+.drum-container.playing .instrument-canvas::after {
+    content: '';
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(139, 69, 19, 0.6), 
+        transparent);
+    animation: drumBeat 0.3s ease-in-out infinite;
+}
+
+@keyframes drumBeat {
+    0%, 100% { transform: translateX(-50%) scaleX(1); }
+    50% { transform: translateX(-50%) scaleX(1.2); }
+}
+
+.organ-container.playing .instrument-canvas::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle, 
+        rgba(70, 130, 180, 0.3) 0%, 
+        transparent 70%);
+    border-radius: 50%;
+    animation: organBellow 2s ease-in-out infinite;
+}
+
+@keyframes organBellow {
+    0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.3; }
+    50% { transform: translateX(-50%) scale(1.2); opacity: 0.6; }
+}
+
+.trumpeter-container.playing .instrument-canvas::after {
+    content: '';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle, 
+        rgba(255, 215, 0, 0.4) 0%, 
+        transparent 70%);
+    border-radius: 50%;
+    animation: trumpetBlow 1s ease-in-out infinite;
+}
+
+@keyframes trumpetBlow {
+    0%, 100% { transform: scale(1); opacity: 0.4; }
+    50% { transform: scale(1.4); opacity: 0.7; }
+}
+
+.flute-container.playing .instrument-canvas::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 25px;
+    height: 25px;
+    background: radial-gradient(circle, 
+        rgba(144, 238, 144, 0.5) 0%, 
+        transparent 70%);
+    border-radius: 50%;
+    animation: fluteAir 1.5s ease-in-out infinite;
+}
+
+@keyframes fluteAir {
+    0%, 100% { transform: translateY(-50%) scale(1); opacity: 0.5; }
+    50% { transform: translateY(-50%) scale(1.3); opacity: 0.8; }
+}
+
+.viola-container.playing .instrument-canvas::after {
+    content: '';
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 20px;
+    background: radial-gradient(ellipse, 
+        rgba(139, 0, 139, 0.3) 0%, 
+        transparent 70%);
+    animation: violaBow 3s ease-in-out infinite;
+}
+
+@keyframes violaBow {
+    0%, 100% { transform: translateX(-50%) scaleX(1); opacity: 0.3; }
+    50% { transform: translateX(-50%) scaleX(1.3); opacity: 0.6; }
+}
+
+/* Responsive adjustments for instrument containers */
+@media (max-width: 768px) {
+    .instruments-stage {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: var(--spacing-md);
+    }
+    
+    .instrument-mixers {
+        grid-template-columns: 1fr;
+    }
+    
+    .instrument-canvas {
+        max-width: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .instruments-stage {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+    }
+    
+    .instrument-container {
+        padding: var(--spacing-sm);
+    }
+    
+    .instrument-canvas {
+        max-width: 200px;
+    }
+    
+    .mixer-controls {
+        flex-wrap: wrap;
+        gap: var(--spacing-xs);
+    }
+    
+    .volume-slider {
+        order: 3;
+        width: 100%;
+        margin-top: var(--spacing-xs);
+    }
+}

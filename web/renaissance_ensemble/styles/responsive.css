@@ -1,0 +1,877 @@
+/* Responsive Design for Leonardo's Mechanical Ensemble */
+
+/* Base Responsive Variables */
+:root {
+    --responsive-max-width: 1400px;
+    --responsive-large: 1200px;
+    --responsive-medium: 768px;
+    --responsive-small: 480px;
+    --responsive-xsmall: 320px;
+}
+
+/* Large Desktop Optimization */
+@media (min-width: 1200px) {
+    .court-main {
+        max-width: var(--responsive-max-width);
+        padding: var(--spacing-xl) var(--spacing-lg);
+    }
+    
+    .instruments-stage {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--spacing-xl);
+    }
+    
+    .instrument-mixers {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .control-panel {
+        padding: var(--spacing-xl);
+        gap: var(--spacing-xl);
+    }
+    
+    .page-title {
+        font-size: 3.5rem;
+    }
+    
+    .subtitle {
+        font-size: 1.4rem;
+    }
+    
+    .instrument-canvas {
+        max-width: 350px;
+        max-height: 450px;
+    }
+    
+    .notation-canvas {
+        height: 400px;
+    }
+}
+
+/* Medium Desktop and Large Tablet */
+@media (max-width: 1199px) and (min-width: 769px) {
+    .court-main {
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+    
+    .instruments-stage {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-lg);
+    }
+    
+    .instrument-mixers {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .control-panel {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .tempo-control {
+        flex: 1;
+        min-width: 300px;
+    }
+    
+    .composition-selector {
+        min-width: 280px;
+    }
+    
+    .instrument-canvas {
+        max-width: 300px;
+        max-height: 380px;
+    }
+    
+    .notation-canvas {
+        height: 350px;
+    }
+    
+    .info-tabs {
+        gap: var(--spacing-sm);
+    }
+    
+    .tab-btn {
+        padding: var(--spacing-sm) var(--spacing-lg);
+        font-size: 1rem;
+    }
+}
+
+/* Tablet Landscape */
+@media (max-width: 992px) and (min-width: 769px) {
+    .court-scene {
+        padding: var(--spacing-lg);
+    }
+    
+    .instruments-stage {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-md);
+    }
+    
+    .control-panel {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--spacing-md);
+    }
+    
+    .playback-controls {
+        justify-content: center;
+        order: 1;
+    }
+    
+    .tempo-control {
+        order: 2;
+    }
+    
+    .composition-selector {
+        order: 3;
+    }
+    
+    .notation-header {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        text-align: center;
+    }
+    
+    .view-controls {
+        justify-content: center;
+    }
+    
+    .timeline-container {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    
+    .time-display {
+        text-align: center;
+    }
+}
+
+/* Tablet Portrait */
+@media (max-width: 768px) and (min-width: 481px) {
+    .court-main {
+        padding: var(--spacing-md) var(--spacing-sm);
+    }
+    
+    .court-header {
+        padding: var(--spacing-md) var(--spacing-sm);
+    }
+    
+    .page-title {
+        font-size: 2.5rem;
+    }
+    
+    .subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .court-scene {
+        padding: var(--spacing-md);
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .instruments-stage {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-md);
+    }
+    
+    .instrument-container {
+        padding: var(--spacing-sm);
+    }
+    
+    .instrument-canvas {
+        max-width: 280px;
+        max-height: 350px;
+    }
+    
+    .instrument-label h3 {
+        font-size: 1.1rem;
+    }
+    
+    .instrument-description {
+        font-size: 0.8rem;
+    }
+    
+    .music-visualization {
+        padding: var(--spacing-md);
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .notation-canvas {
+        height: 300px;
+    }
+    
+    .control-panel {
+        padding: var(--spacing-md);
+        gap: var(--spacing-md);
+        flex-direction: column;
+    }
+    
+    .playback-controls {
+        justify-content: center;
+        gap: var(--spacing-sm);
+    }
+    
+    .control-btn {
+        width: 55px;
+        height: 55px;
+        font-size: 1.3rem;
+    }
+    
+    .tempo-control {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        text-align: center;
+        min-width: 100%;
+    }
+    
+    .tempo-control label {
+        min-width: auto;
+    }
+    
+    .composition-selector {
+        min-width: 100%;
+    }
+    
+    .instrument-controls {
+        padding: var(--spacing-md);
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .instrument-mixers {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-sm);
+    }
+    
+    .instrument-mixer {
+        padding: var(--spacing-sm);
+    }
+    
+    .mixer-controls {
+        flex-wrap: wrap;
+        gap: var(--spacing-xs);
+    }
+    
+    .volume-slider {
+        order: 3;
+        width: 100%;
+        margin-top: var(--spacing-xs);
+    }
+    
+    .education-panels {
+        padding: var(--spacing-md);
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .info-tabs {
+        flex-wrap: wrap;
+        gap: var(--spacing-xs);
+        justify-content: center;
+    }
+    
+    .tab-btn {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: 0.9rem;
+        flex: 1;
+        min-width: 120px;
+    }
+    
+    .tab-panel h3 {
+        font-size: 1.3rem;
+    }
+    
+    .tab-panel p {
+        font-size: 0.95rem;
+    }
+    
+    .timeline-container {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    
+    .time-display {
+        text-align: center;
+        font-size: 0.9rem;
+    }
+}
+
+/* Mobile Phone */
+@media (max-width: 480px) {
+    .court-main {
+        padding: var(--spacing-sm);
+    }
+    
+    .court-header {
+        padding: var(--spacing-md) var(--spacing-sm);
+    }
+    
+    .header-decoration {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    
+    .fleur-de-lis {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .page-title {
+        font-size: 2rem;
+        line-height: 1.2;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    .court-scene {
+        padding: var(--spacing-sm);
+        margin-bottom: var(--spacing-sm);
+        border-radius: var(--radius-lg);
+    }
+    
+    .tapestry {
+        width: 60px;
+        height: 80px;
+    }
+    
+    .instruments-stage {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+        margin-top: var(--spacing-md);
+    }
+    
+    .instrument-container {
+        padding: var(--spacing-sm);
+        border-radius: var(--radius-md);
+    }
+    
+    .instrument-canvas {
+        max-width: 250px;
+        max-height: 300px;
+    }
+    
+    .instrument-label h3 {
+        font-size: 1rem;
+    }
+    
+    .instrument-description {
+        font-size: 0.8rem;
+        margin: var(--spacing-xs) 0;
+    }
+    
+    .music-visualization {
+        padding: var(--spacing-sm);
+        margin-bottom: var(--spacing-sm);
+        border-radius: var(--radius-lg);
+    }
+    
+    .notation-header {
+        flex-direction: column;
+        gap: var(--spacing-xs);
+        text-align: center;
+    }
+    
+    .notation-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .view-controls {
+        justify-content: center;
+        gap: var(--spacing-xs);
+    }
+    
+    .view-btn {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: 0.8rem;
+        min-width: 80px;
+    }
+    
+    .notation-display {
+        padding: var(--spacing-xs);
+        border-radius: var(--radius-sm);
+    }
+    
+    .notation-canvas {
+        height: 250px;
+    }
+    
+    .timeline-container {
+        flex-direction: column;
+        gap: var(--spacing-xs);
+    }
+    
+    .timeline-track {
+        height: 6px;
+    }
+    
+    .timeline-marker {
+        width: 14px;
+        height: 14px;
+        top: -4px;
+    }
+    
+    .time-display {
+        text-align: center;
+        font-size: 0.8rem;
+        min-width: 80px;
+    }
+    
+    .control-panel {
+        padding: var(--spacing-sm);
+        gap: var(--spacing-sm);
+        border-radius: var(--radius-lg);
+    }
+    
+    .playback-controls {
+        gap: var(--spacing-xs);
+        justify-content: center;
+    }
+    
+    .control-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.1rem;
+        border-width: 1px;
+    }
+    
+    .tempo-control {
+        padding: var(--spacing-xs);
+        border-radius: var(--radius-md);
+        min-width: 100%;
+    }
+    
+    .tempo-control label {
+        font-size: 0.9rem;
+        min-width: auto;
+    }
+    
+    .tempo-control input[type="range"] {
+        height: 6px;
+    }
+    
+    .tempo-control input[type="range"]::-webkit-slider-thumb {
+        width: 18px;
+        height: 18px;
+        border-width: 2px;
+    }
+    
+    .tempo-display {
+        font-size: 0.8rem;
+        min-width: 70px;
+        padding: var(--spacing-xs);
+    }
+    
+    .composition-selector {
+        padding: var(--spacing-xs);
+        border-radius: var(--radius-md);
+        min-width: 100%;
+    }
+    
+    .composition-selector label {
+        font-size: 0.9rem;
+    }
+    
+    .composition-selector select {
+        padding: var(--spacing-xs);
+        font-size: 0.9rem;
+        border-width: 1px;
+    }
+    
+    .instrument-controls {
+        padding: var(--spacing-sm);
+        margin-bottom: var(--spacing-sm);
+        border-radius: var(--radius-lg);
+    }
+    
+    .instrument-controls h2 {
+        font-size: 1.5rem;
+    }
+    
+    .instrument-mixers {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xs);
+    }
+    
+    .instrument-mixer {
+        padding: var(--spacing-xs);
+        border-radius: var(--radius-md);
+    }
+    
+    .instrument-info h3 {
+        font-size: 1rem;
+    }
+    
+    .instrument-status {
+        font-size: 0.7rem;
+        padding: 2px 6px;
+    }
+    
+    .mixer-controls {
+        gap: var(--spacing-xs);
+        align-items: center;
+    }
+    
+    .mute-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+        border-width: 1px;
+    }
+    
+    .volume-slider {
+        height: 4px;
+    }
+    
+    .volume-slider::-webkit-slider-thumb {
+        width: 14px;
+        height: 14px;
+        border-width: 1px;
+    }
+    
+    .volume-display {
+        font-size: 0.8rem;
+        min-width: 40px;
+    }
+    
+    .education-panels {
+        padding: var(--spacing-sm);
+        margin-bottom: var(--spacing-sm);
+        border-radius: var(--radius-lg);
+    }
+    
+    .info-tabs {
+        gap: var(--spacing-xs);
+        justify-content: stretch;
+    }
+    
+    .tab-btn {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: 0.8rem;
+        flex: 1;
+        min-width: 80px;
+        border-width: 1px;
+    }
+    
+    .tab-panel {
+        min-height: 150px;
+    }
+    
+    .tab-panel h3 {
+        font-size: 1.2rem;
+    }
+    
+    .tab-panel p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+    
+    .tab-panel ul {
+        padding-left: var(--spacing-md);
+    }
+    
+    .tab-panel li {
+        font-size: 0.9rem;
+        margin-bottom: var(--spacing-xs);
+    }
+    
+    .court-footer {
+        padding: var(--spacing-md) var(--spacing-sm);
+        font-size: 0.9rem;
+    }
+    
+    .footer-content p {
+        margin: var(--spacing-xs) 0;
+        font-size: 0.8rem;
+    }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 320px) {
+    .court-main {
+        padding: var(--spacing-xs);
+    }
+    
+    .page-title {
+        font-size: 1.8rem;
+    }
+    
+    .subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .instrument-canvas {
+        max-width: 220px;
+        max-height: 280px;
+    }
+    
+    .notation-canvas {
+        height: 200px;
+    }
+    
+    .control-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
+    }
+    
+    .mute-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+    }
+    
+    .tab-btn {
+        font-size: 0.7rem;
+        padding: var(--spacing-xs);
+        min-width: 70px;
+    }
+}
+
+/* Landscape Orientation Optimizations */
+@media (max-height: 600px) and (orientation: landscape) {
+    .court-header {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+    
+    .header-decoration {
+        gap: var(--spacing-sm);
+    }
+    
+    .fleur-de-lis {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .page-title {
+        font-size: 2rem;
+        margin-bottom: var(--spacing-xs);
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    .court-scene {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+    
+    .instruments-stage {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--spacing-sm);
+        margin-top: var(--spacing-sm);
+    }
+    
+    .instrument-container {
+        padding: var(--spacing-xs);
+    }
+    
+    .instrument-canvas {
+        max-width: 200px;
+        max-height: 250px;
+    }
+    
+    .instrument-label {
+        margin-top: var(--spacing-xs);
+    }
+    
+    .instrument-label h3 {
+        font-size: 0.9rem;
+    }
+    
+    .instrument-description {
+        font-size: 0.7rem;
+    }
+    
+    .music-visualization {
+        padding: var(--spacing-sm);
+    }
+    
+    .notation-canvas {
+        height: 180px;
+    }
+    
+    .control-panel {
+        padding: var(--spacing-sm);
+        gap: var(--spacing-sm);
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    
+    .tempo-control {
+        flex: 1;
+        min-width: 200px;
+        flex-direction: row;
+    }
+    
+    .composition-selector {
+        min-width: 200px;
+    }
+    
+    .instrument-controls {
+        padding: var(--spacing-sm);
+    }
+    
+    .instrument-mixers {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--spacing-xs);
+    }
+    
+    .education-panels {
+        padding: var(--spacing-sm);
+    }
+    
+    .tab-panel {
+        min-height: 120px;
+    }
+    
+    .tab-panel h3 {
+        font-size: 1.1rem;
+        margin-bottom: var(--spacing-xs);
+    }
+    
+    .tab-panel p {
+        font-size: 0.85rem;
+        margin-bottom: var(--spacing-xs);
+    }
+}
+
+/* High DPI/Retina Display Optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .instrument-canvas,
+    .notation-canvas {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+    
+    .control-btn,
+    .mute-btn,
+    .view-btn,
+    .tab-btn {
+        border-width: 0.5px;
+    }
+    
+    .timeline-track {
+        height: 4px;
+    }
+    
+    .timeline-marker {
+        width: 12px;
+        height: 12px;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .court-header {
+        background: none;
+        color: var(--text-primary);
+        border-bottom: 2px solid var(--color-primary);
+    }
+    
+    .control-panel,
+    .instrument-controls {
+        display: none;
+    }
+    
+    .court-scene {
+        background: white;
+        border: 1px solid var(--color-primary);
+        box-shadow: none;
+    }
+    
+    .instrument-container {
+        border: 1px solid var(--color-secondary);
+        break-inside: avoid;
+    }
+    
+    .music-visualization {
+        background: white;
+        border: 1px solid var(--color-secondary);
+    }
+    
+    .education-panels {
+        background: white;
+        border: 1px solid var(--color-secondary);
+    }
+    
+    .tab-panel {
+        display: block !important;
+    }
+    
+    .tab-btn {
+        display: none;
+    }
+}
+
+/* Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+    .instrument-container:hover {
+        transform: none;
+    }
+    
+    .control-btn:hover:not(:disabled) {
+        transform: none;
+    }
+    
+    .mute-btn:hover {
+        transform: none;
+    }
+    
+    .tab-btn:hover {
+        transform: none;
+    }
+    
+    .instrument-mixer:hover {
+        transform: none;
+    }
+    
+    .loading-spinner {
+        animation: none;
+    }
+    
+    @keyframes spin {
+        /* Disabled animation */
+    }
+}
+
+/* Dark Mode Support (Future Enhancement) */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-primary: #1a1a1a;
+        --bg-secondary: #2d2d2d;
+        --bg-court: linear-gradient(135deg, #2d2d2d, #1a1a1a, #0d0d0d);
+        --bg-panel: rgba(45, 45, 45, 0.95);
+        --text-primary: #f0f0f0;
+        --text-secondary: #b0b0b0;
+        --color-parchment: #3d3d3d;
+        --color-parchment-dark: #2d2d2d;
+    }
+    
+    .court-header {
+        background: linear-gradient(135deg, 
+            var(--color-primary) 0%, 
+            var(--color-secondary) 50%, 
+            var(--color-primary) 100%);
+    }
+    
+    .instrument-container {
+        background: var(--bg-panel);
+        border-color: var(--color-secondary);
+    }
+    
+    .control-panel {
+        background: var(--bg-panel);
+        border-color: var(--color-secondary);
+    }
+    
+    .music-visualization {
+        background: var(--bg-panel);
+        border-color: var(--color-secondary);
+    }
+    
+    .notation-display {
+        background: var(--color-parchment);
+        border-color: var(--color-secondary);
+    }
+}

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leonardo's Mechanical Ensemble - Interactive Renaissance Court Music</title>
+    <meta name="description" content="Experience Leonardo da Vinci's mechanical musical instruments in an interactive Renaissance court setting">
+    <link rel="stylesheet" href="styles/renaissance-ensemble.css">
+    <link rel="stylesheet" href="styles/instruments.css">
+    <link rel="stylesheet" href="styles/notation.css">
+    <link rel="stylesheet" href="styles/controls.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app" class="renaissance-court">
+        <!-- Header with Renaissance styling -->
+        <header class="court-header">
+            <div class="header-decoration">
+                <div class="fleur-de-lis"></div>
+                <h1 class="page-title">Leonardo's Mechanical Ensemble</h1>
+                <div class="fleur-de-lis"></div>
+            </div>
+            <p class="subtitle">An Interactive Journey Through Renaissance Musical Innovation</p>
+        </header>
+
+        <!-- Main visualization area -->
+        <main class="court-main">
+            <!-- Court setting background -->
+            <section class="court-scene" aria-label="Renaissance court setting with mechanical instruments">
+                <div class="court-floor"></div>
+                <div class="court-walls">
+                    <div class="tapestry left-tapestry" aria-hidden="true"></div>
+                    <div class="tapestry right-tapestry" aria-hidden="true"></div>
+                </div>
+                
+                <!-- Instrument containers -->
+                <div class="instruments-stage">
+                    <!-- Mechanical Carillon -->
+                    <div class="instrument-container carillon-container" data-instrument="carillon">
+                        <canvas id="carillon-canvas" class="instrument-canvas" width="300" height="400" aria-label="Mechanical Carillon animation"></canvas>
+                        <div class="instrument-label">
+                            <h3>Mechanical Carillon</h3>
+                            <p class="instrument-description">Clock-driven bell system with rotating drum</p>
+                        </div>
+                    </div>
+
+                    <!-- Mechanical Drum -->
+                    <div class="instrument-container drum-container" data-instrument="drum">
+                        <canvas id="drum-canvas" class="instrument-canvas" width="250" height="300" aria-label="Mechanical Drum animation"></canvas>
+                        <div class="instrument-label">
+                            <h3>Mechanical Drum</h3>
+                            <p class="instrument-description">Pinned barrel percussion device</p>
+                        </div>
+                    </div>
+
+                    <!-- Mechanical Organ -->
+                    <div class="instrument-container organ-container" data-instrument="organ">
+                        <canvas id="organ-canvas" class="instrument-canvas" width="350" height="450" aria-label="Mechanical Organ animation"></canvas>
+                        <div class="instrument-label">
+                            <h3>Mechanical Organ</h3>
+                            <p class="instrument-description">Automatic pipe organ with bellows</p>
+                        </div>
+                    </div>
+
+                    <!-- Mechanical Trumpeter -->
+                    <div class="instrument-container trumpeter-container" data-instrument="trumpeter">
+                        <canvas id="trumpeter-canvas" class="instrument-canvas" width="280" height="380" aria-label="Mechanical Trumpeter animation"></canvas>
+                        <div class="instrument-label">
+                            <h3>Mechanical Trumpeter</h3>
+                            <p class="instrument-description">Automated trumpet with valve system</p>
+                        </div>
+                    </div>
+
+                    <!-- Programmable Flute -->
+                    <div class="instrument-container flute-container" data-instrument="flute">
+                        <canvas id="flute-canvas" class="instrument-canvas" width="260" height="320" aria-label="Programmable Flute animation"></canvas>
+                        <div class="instrument-label">
+                            <h3>Programmable Flute</h3>
+                            <p class="instrument-description">Cam-driven recorder with automated fingering</p>
+                        </div>
+                    </div>
+
+                    <!-- Viola Organista -->
+                    <div class="instrument-container viola-container" data-instrument="viola">
+                        <canvas id="viola-canvas" class="instrument-canvas" width="320" height="400" aria-label="Viola Organista animation"></canvas>
+                        <div class="instrument-label">
+                            <h3>Viola Organista</h3>
+                            <p class="instrument-description">Keyboard with rosined wheel bowing</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Music notation and timeline -->
+            <section class="music-visualization" aria-label="Music notation and timeline">
+                <div class="notation-container">
+                    <div class="notation-header">
+                        <h2>Musical Score</h2>
+                        <div class="view-controls">
+                            <button id="view-notation" class="view-btn active" aria-pressed="true">Notation</button>
+                            <button id="view-animation" class="view-btn" aria-pressed="false">Animation</button>
+                            <button id="view-both" class="view-btn" aria-pressed="false">Both</button>
+                        </div>
+                    </div>
+                    
+                    <div class="notation-display" id="notation-display">
+                        <canvas id="notation-canvas" class="notation-canvas" width="1200" height="300" aria-label="Musical notation display"></canvas>
+                    </div>
+                    
+                    <div class="timeline-container">
+                        <div class="timeline-track">
+                            <div class="timeline-progress" id="timeline-progress"></div>
+                            <div class="timeline-marker" id="timeline-marker"></div>
+                        </div>
+                        <div class="time-display">
+                            <span id="current-time">0:00</span> / <span id="total-time">3:45</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Control panel -->
+            <section class="control-panel" aria-label="Ensemble controls">
+                <div class="playback-controls">
+                    <button id="play-btn" class="control-btn play-btn" aria-label="Play">
+                        <span class="icon">▶</span>
+                    </button>
+                    <button id="pause-btn" class="control-btn pause-btn" aria-label="Pause" disabled>
+                        <span class="icon">⏸</span>
+                    </button>
+                    <button id="stop-btn" class="control-btn stop-btn" aria-label="Stop" disabled>
+                        <span class="icon">⏹</span>
+                    </button>
+                </div>
+
+                <div class="tempo-control">
+                    <label for="tempo-slider">Tempo</label>
+                    <input type="range" id="tempo-slider" min="40" max="200" value="120" aria-label="Tempo adjustment">
+                    <span id="tempo-display">120 BPM</span>
+                </div>
+
+                <div class="composition-selector">
+                    <label for="composition-select">Composition</label>
+                    <select id="composition-select" aria-label="Select composition">
+                        <option value="renaissance-dance">Renaissance Court Dance</option>
+                        <option value="madrigal">Madrigal in D Minor</option>
+                        <option value="galliard">Galliard for Six Instruments</option>
+                        <option value="pavane">Pavane for Mechanical Ensemble</option>
+                    </select>
+                </div>
+            </section>
+
+            <!-- Instrument controls -->
+            <section class="instrument-controls" aria-label="Individual instrument controls">
+                <h2>Instrument Controls</h2>
+                <div class="instrument-mixers">
+                    <div class="instrument-mixer" data-instrument="carillon">
+                        <div class="instrument-info">
+                            <h3>Carillon</h3>
+                            <span class="instrument-status">Ready</span>
+                        </div>
+                        <div class="mixer-controls">
+                            <button class="mute-btn" aria-label="Mute/Unmute Carillon">🔔</button>
+                            <input type="range" class="volume-slider" min="0" max="100" value="80" aria-label="Carillon volume">
+                            <span class="volume-display">80%</span>
+                        </div>
+                    </div>
+
+                    <div class="instrument-mixer" data-instrument="drum">
+                        <div class="instrument-info">
+                            <h3>Drum</h3>
+                            <span class="instrument-status">Ready</span>
+                        </div>
+                        <div class="mixer-controls">
+                            <button class="mute-btn" aria-label="Mute/Unmute Drum">🥁</button>
+                            <input type="range" class="volume-slider" min="0" max="100" value="70" aria-label="Drum volume">
+                            <span class="volume-display">70%</span>
+                        </div>
+                    </div>
+
+                    <div class="instrument-mixer" data-instrument="organ">
+                        <div class="instrument-info">
+                            <h3>Organ</h3>
+                            <span class="instrument-status">Ready</span>
+                        </div>
+                        <div class="mixer-controls">
+                            <button class="mute-btn" aria-label="Mute/Unmute Organ">🎹</button>
+                            <input type="range" class="volume-slider" min="0" max="100" value="75" aria-label="Organ volume">
+                            <span class="volume-display">75%</span>
+                        </div>
+                    </div>
+
+                    <div class="instrument-mixer" data-instrument="trumpeter">
+                        <div class="instrument-info">
+                            <h3>Trumpeter</h3>
+                            <span class="instrument-status">Ready</span>
+                        </div>
+                        <div class="mixer-controls">
+                            <button class="mute-btn" aria-label="Mute/Unmute Trumpeter">🎺</button>
+                            <input type="range" class="volume-slider" min="0" max="100" value="65" aria-label="Trumpeter volume">
+                            <span class="volume-display">65%</span>
+                        </div>
+                    </div>
+
+                    <div class="instrument-mixer" data-instrument="flute">
+                        <div class="instrument-info">
+                            <h3>Flute</h3>
+                            <span class="instrument-status">Ready</span>
+                        </div>
+                        <div class="mixer-controls">
+                            <button class="mute-btn" aria-label="Mute/Unmute Flute">🎵</button>
+                            <input type="range" class="volume-slider" min="0" max="100" value="60" aria-label="Flute volume">
+                            <span class="volume-display">60%</span>
+                        </div>
+                    </div>
+
+                    <div class="instrument-mixer" data-instrument="viola">
+                        <div class="instrument-info">
+                            <h3>Viola Organista</h3>
+                            <span class="instrument-status">Ready</span>
+                        </div>
+                        <div class="mixer-controls">
+                            <button class="mute-btn" aria-label="Mute/Unmute Viola">🎻</button>
+                            <input type="range" class="volume-slider" min="0" max="100" value="70" aria-label="Viola volume">
+                            <span class="volume-display">70%</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Educational information panels -->
+            <section class="education-panels" aria-label="Educational information">
+                <div class="info-tabs">
+                    <button class="tab-btn active" data-tab="history" aria-selected="true">Historical Context</button>
+                    <button class="tab-btn" data-tab="mechanics" aria-selected="false">Mechanical Design</button>
+                    <button class="tab-btn" data-tab="adaptation" aria-selected="false">Modern Adaptation</button>
+                    <button class="tab-btn" data-tab="leonardo" aria-selected="false">About Leonardo</button>
+                </div>
+
+                <div class="tab-content">
+                    <div class="tab-panel active" id="history-panel">
+                        <h3>Renaissance Court Entertainment</h3>
+                        <p>Leonardo's mechanical instruments were designed for the sophisticated courts of Renaissance Italy, where musical innovation was a sign of cultural refinement and technical mastery.</p>
+                        <p>These automata represented the perfect fusion of art and engineering, capable of performing complex musical compositions without human musicians - a marvel that would have astonished contemporary audiences.</p>
+                    </div>
+
+                    <div class="tab-panel" id="mechanics-panel">
+                        <h3>Engineering Principles</h3>
+                        <p>Leonardo's mechanical instruments relied on several key innovations:</p>
+                        <ul>
+                            <li><strong>Pinned Cylinders:</strong> Rotating barrels with strategically placed pins to trigger mechanical actions</li>
+                            <li><strong>Cam Mechanisms:</strong> Precisely shaped profiles to convert rotary motion into complex movements</li>
+                            <li><strong>Bellows Systems:</strong> Automated air pressure regulation for wind instruments</li>
+                            <li><strong>Gear Trains:</strong> Complex gearing for timing and synchronization</li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-panel" id="adaptation-panel">
+                        <h3>From Renaissance to Modern</h3>
+                        <p>This visualization demonstrates how Leonardo's original concepts have been adapted using modern computational methods while preserving the essential mechanical principles.</p>
+                        <p>The AI composition system generates music that respects both the technical constraints of the original mechanisms and the musical aesthetics of the Renaissance period.</p>
+                    </div>
+
+                    <div class="tab-panel" id="leonardo-panel">
+                        <h3>Leonardo da Vinci (1452-1519)</h3>
+                        <p>Leonardo's musical inventions represent some of his most sophisticated mechanical designs, combining his deep understanding of acoustics with his innovative approach to automation.</p>
+                        <p>Working in the courts of Milan and Florence, Leonardo designed these instruments as both practical entertainment and demonstrations of engineering prowess.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="court-footer">
+            <div class="footer-content">
+                <p>© 2024 Leonardo's Mechanical Ensemble - Interactive Visualization</p>
+                <p>Built with modern web technologies to bring Renaissance innovation to life</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Loading overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p>Preparing Leonardo's Mechanical Ensemble...</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/utils.js"></script>
+    <script src="js/instrument-base.js"></script>
+    <script src="js/carillon.js"></script>
+    <script src="js/drum.js"></script>
+    <script src="js/organ.js"></script>
+    <script src="js/trumpeter.js"></script>
+    <script src="js/flute.js"></script>
+    <script src="js/viola-organista.js"></script>
+    <script src="js/notation-renderer.js"></script>
+    <script src="js/music-engine.js"></script>
+    <script src="js/ensemble-controller.js"></script>
+    <script src="js/ui-controller.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
