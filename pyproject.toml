@@ -9,6 +9,7 @@ dependencies = [
     "sympy",
     "matplotlib>=3.6",
     "pytest>=7.2",
+    "pytest-benchmark>=4.0",
     "ruff>=0.3",
     "mypy>=1.0",
     "typer",
@@ -22,8 +23,7 @@ dependencies = [
 readme = "README.md"
 license = { file = "LICENSE" }
 authors = [
-    { name = "Hunter M. Bown", email = "hunter@shannon-labs.com" },
-    { name = "da Vinci Codex Contributors" }
+    { name = "Hunter M. Bown", email = "hunter@shannon-labs.com" }
 ]
 keywords = ["leonardo", "davinci", "engineering", "renaissance", "inventions", "simulation", "CAD"]
 classifiers = [

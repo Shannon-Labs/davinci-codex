@@ -8,10 +8,6 @@
 [![Tests](https://github.com/Shannon-Labs/davinci-codex/actions/workflows/ci.yml/badge.svg)](https://github.com/Shannon-Labs/davinci-codex/actions/workflows/ci.yml)
 [![Code style: ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
 
-[![GitHub stars](https://img.shields.io/github/stars/Shannon-Labs/davinci-codex?style=flat-square)](https://github.com/Shannon-Labs/davinci-codex/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/Shannon-Labs/davinci-codex?style=flat-square)](https://github.com/Shannon-Labs/davinci-codex/network)
-[![GitHub issues](https://img.shields.io/github/issues/Shannon-Labs/davinci-codex?style=flat-square)](https://github.com/Shannon-Labs/davinci-codex/issues)
-[![GitHub last commit](https://img.shields.io/github/last-commit/Shannon-Labs/davinci-codex?style=flat-square)](https://github.com/Shannon-Labs/davinci-codex/commits)
 
 **An Open-Source Computational Framework for Leonardo da Vinci's Mechanical Inventions**
 
@@ -216,7 +212,7 @@ davinci-codex/
 - **make lint** executes Ruff + mypy with strict settings (no virtualenv required)
 - **make book** builds the Jupyter Book essays in `docs/book` and executes notebooks
 - **Simulation toolchain**: solids (FEniCS/pycalculix), CFD (OpenFOAM URANS/LES), vortex lattice + nonlinear beams for flapping FSI, Abaqus/tribology scripts for friction studies. Each solver configuration and mesh refinement study lives in `validation/<slug>/`.
-- **Coverage**: 94% (branch coverage) with automated checks in CI.
+- **Coverage**: Automated checks in CI.
 
 Validation artefacts live in `tests/`, `validation/`, `sims/`, and `artifacts/` for reproducibility and peer review.
 
@@ -363,7 +359,7 @@ This project can serve as an educational resource for:
 ## 📊 Project Status
 
 ### Current Development
-- **Test Coverage**: Comprehensive test suite (94% branch coverage)
+- **Test Coverage**: Comprehensive test suite
 - **Simulation Framework**: Physics-based computational models
 - **Documentation**: Growing collection of interactive notebooks
 
@@ -377,15 +373,15 @@ This project can serve as an educational resource for:
 
 ## 🏆 Acknowledgments
 
-### Project Team
-- **Principal Investigator**: Hunter Bown, Shannon Labs
-- **Development**: Built with assistance from AI pair programming
+### Project Author
+- **Author**: Hunter Bown, Shannon Labs
+- **Development**: Built with AI assistance for code generation and documentation
 
 ### Special Thanks
 - Leonardo da Vinci for the timeless inspiration
 - Open source community for foundational tools
 - Digital archives for manuscript access
-- Early contributors and testers
+- Early testers and feedback providers
 
 ### Institutional Support
 - Shannon Labs for computational resources
@@ -428,15 +424,10 @@ CC0 1.0 Universal - Public Domain Dedication for generated content
 
 <div align="center">
 
-### 🌟 Support this project!
-
-[![GitHub stars](https://img.shields.io/github/stars/Shannon-Labs/davinci-codex?style=social&label=Star&maxAge=2592000)](https://github.com/Shannon-Labs/davinci-codex)
-[![GitHub forks](https://img.shields.io/github/forks/Shannon-Labs/davinci-codex?style=social&label=Fork&maxAge=2592000)](https://github.com/Shannon-Labs/davinci-codex/fork)
-[![GitHub watchers](https://img.shields.io/github/watchers/Shannon-Labs/davinci-codex?style=social&label=Watch&maxAge=2592000)](https://github.com/Shannon-Labs/davinci-codex)
 
 ### 📋 Development Roadmap
 
-We are actively working to enhance the repository. See our [Enhancement Plan](ENHANCEMENT_PLAN.md) and [Architecture Guide](ARCHITECTURE.md) for detailed plans.
+I am actively working to enhance the repository. See our [Enhancement Plan](ENHANCEMENT_PLAN.md) and [Architecture Guide](ARCHITECTURE.md) for detailed plans.
 
 **Current Focus Areas:**
 - 🎨 **Documentation & User Experience**: Improving documentation and usability
