@@ -13,10 +13,11 @@ Historical Constraints:
 
 from __future__ import annotations
 
-import numpy as np
-from typing import Dict, List, Tuple, Optional
-from dataclasses import dataclass
 import logging
+from dataclasses import dataclass
+from typing import Dict, Optional, Tuple
+
+import numpy as np
 
 logger = logging.getLogger(__name__)
 
@@ -172,7 +173,7 @@ class BladeElementMomentumTheory:
         """Initialize induced velocities using simple momentum theory."""
 
         omega = 2 * np.pi * rpm / 60.0
-        disk_area = np.pi * (self.geometry.rotor_radius**2 - self.geometry.inner_radius**2)
+        np.pi * (self.geometry.rotor_radius**2 - self.geometry.inner_radius**2)
 
         # Estimate induced velocity from momentum theory
         # T = 2 * rho * A * v_i^2
@@ -463,7 +464,6 @@ class BladeElementMomentumTheory:
 
         # Human power constraints
         human_power_sustained = 150  # Watts
-        human_power_peak = 300  # Watts
         assessments['human_power_feasible'] = performance['power_W'] < human_power_sustained
 
         # Material stress constraints (wood)
@@ -521,7 +521,7 @@ if __name__ == "__main__":
     # Create analysis instance
     analysis = create_enhanced_aerial_screw_analysis()
 
-    print(f"Rotor Configuration:")
+    print("Rotor Configuration:")
     print(f"  Radius: {analysis.geometry.rotor_radius} m")
     print(f"  Inner radius: {analysis.geometry.inner_radius} m")
     print(f"  Helical pitch: {analysis.geometry.helical_pitch} m")
@@ -529,7 +529,7 @@ if __name__ == "__main__":
     print(f"  Blade chord: {analysis.geometry.blade_chord} m")
 
     # Performance at design conditions
-    print(f"\nPerformance at Design Conditions (100 RPM):")
+    print("\nPerformance at Design Conditions (100 RPM):")
     performance = analysis.compute_rotor_performance(rpm=100.0, collective_pitch=0.0)
 
     print(f"  Thrust: {performance['thrust_N']:.1f} N")
@@ -540,13 +540,13 @@ if __name__ == "__main__":
 
     # Historical feasibility assessment
     feasibility = analysis.assess_historical_feasibility(performance)
-    print(f"\nHistorical Feasibility Assessment:")
+    print("\nHistorical Feasibility Assessment:")
     for criterion, feasible in feasibility.items():
         status = "✓" if feasible else "✗"
         print(f"  {criterion.replace('_', ' ').title()}: {status}")
 
     # Performance map
-    print(f"\nGenerating Performance Map...")
+    print("\nGenerating Performance Map...")
     perf_map = analysis.compute_performance_map((50, 150), (-10, 10))
 
     # Find optimal operating point
@@ -555,7 +555,7 @@ if __name__ == "__main__":
     optimal_rpm = perf_map['rpm_values'][max_fm_idx[1]]
     optimal_collective = perf_map['collective_values'][max_fm_idx[0]]
 
-    print(f"Optimal Operating Point:")
+    print("Optimal Operating Point:")
     print(f"  RPM: {optimal_rpm:.0f}")
     print(f"  Collective: {optimal_collective:.1f}°")
     print(f"  Max Figure of Merit: {fm_map[max_fm_idx]:.3f}")
@@ -570,7 +570,7 @@ if __name__ == "__main__":
     machine_mass = 65  # kg (estimated from Leonardo's design)
     required_lift = (human_mass + machine_mass) * 9.81
 
-    print(f"\nLift Capability:")
+    print("\nLift Capability:")
     print(f"  Required lift: {required_lift:.1f} N")
     print(f"  Available lift: {optimal_performance['thrust_N']:.1f} N")
     print(f"  Lift margin: {(optimal_performance['thrust_N']/required_lift - 1)*100:.1f}%")

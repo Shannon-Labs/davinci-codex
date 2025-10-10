@@ -8,19 +8,19 @@ Leonardo da Vinci's mechanical instruments, showcasing both technical
 brilliance and cultural significance.
 """
 
-import sys
 import json
-import math
+import sys
 from pathlib import Path
-from typing import Dict, List, Tuple, Optional
+from typing import Dict, List
 
 # Add the src directory to the path
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
+from davinci_codex.artifacts import ensure_artifact_dir
 from davinci_codex.renaissance_music import (
     MechanicalEnsembleIntegrator,
     RenaissanceCompositionGenerator,
-    RenaissancePatternLibrary
+    RenaissancePatternLibrary,
 )
 from davinci_codex.renaissance_music.models import (
     InstrumentType,
@@ -30,7 +30,6 @@ from davinci_codex.renaissance_music.models import (
     RenaissanceMode,
     Voice,
 )
-from davinci_codex.artifacts import ensure_artifact_dir
 
 
 class RenaissancePerformanceSuite:
@@ -258,10 +257,7 @@ class RenaissancePerformanceSuite:
 
         for i, pitch in enumerate(pitches):
             # Pavane rhythm: predominantly half notes with some quarter notes
-            if i % 4 in [0, 2]:  # Half notes on beats 1 and 3
-                duration = beat_duration * 2
-            else:  # Quarter notes on beats 2 and 4
-                duration = beat_duration
+            duration = beat_duration * 2 if i % 4 in [0, 2] else beat_duration
 
             # Adjust for voice characteristics
             if voice_name == "bass":
@@ -357,12 +353,7 @@ class RenaissancePerformanceSuite:
         # Galliard harmony: lively, with more rhythmic interest
 
         for i, pitch in enumerate(melody):
-            if i % 2 == 0:
-                # Third below melody
-                harmony_pitch = pitch / (2 ** (4/12))
-            else:
-                # Fifth below melody
-                harmony_pitch = pitch / (2 ** (7/12))
+            harmony_pitch = pitch / (2 ** (4 / 12)) if i % 2 == 0 else pitch / (2 ** (7 / 12))
 
             # Adjust range
             while harmony_pitch < 200.0:
@@ -390,7 +381,7 @@ class RenaissancePerformanceSuite:
             ]
 
             # Repeat pattern for several measures
-            for measure in range(8):
+            for _measure in range(8):
                 for offset, duration in pattern:
                     note = Note(
                         pitch=150.0,  # Low percussion pitch
@@ -434,16 +425,10 @@ class RenaissancePerformanceSuite:
         for i, pitch in enumerate(pitches):
             if voice_name == "Melody":
                 # Melody with characteristic galliard rhythm
-                if i % 4 in [0, 2]:
-                    duration = beat_duration  # Quarter note
-                else:
-                    duration = beat_duration * 0.5  # Eighth note
+                duration = beat_duration if i % 4 in [0, 2] else beat_duration * 0.5  # Eighth note
             elif voice_name == "Bass":
                 # Bass emphasizes main beats
-                if i % 2 == 0:
-                    duration = beat_duration * 1.5  # Dotted quarter
-                else:
-                    duration = beat_duration * 0.5  # Eighth note
+                duration = beat_duration * 1.5 if i % 2 == 0 else beat_duration * 0.5  # Eighth note
             else:
                 duration = beat_duration  # Default quarter note
 
@@ -496,9 +481,7 @@ class RenaissancePerformanceSuite:
             print(f"\nAdapting {piece_name.replace('_', ' ').title()}...")
 
             # Choose appropriate ensemble configuration
-            if piece_name == "pavane":
-                config = self.ensemble_configurations["chamber_ensemble"]
-            elif piece_name == "basse_danse":
+            if piece_name == "pavane" or piece_name == "basse_danse":
                 config = self.ensemble_configurations["chamber_ensemble"]
             else:  # galliard
                 config = self.ensemble_configurations["dance_ensemble"]
@@ -688,7 +671,7 @@ The late 15th century in Milan was a period of extraordinary cultural flowering 
                 voice_name = score.voices[voice_idx].name
                 program += f"- {voice_name}: {instrument.value}\n"
 
-            program += f"""
+            program += """
 **Historical Notes**:
 """
 

@@ -11,8 +11,8 @@ This test suite validates the enhanced aerial screw functionality including:
 
 from pathlib import Path
 from typing import Optional
+
 import numpy as np
-import pytest
 
 from davinci_codex.inventions import aerial_screw
 

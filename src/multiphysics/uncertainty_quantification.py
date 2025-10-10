@@ -11,14 +11,12 @@ maintaining historical authenticity.
 
 from __future__ import annotations
 
-import dataclasses
-from dataclasses import dataclass, field
-from typing import Dict, List, Tuple, Any, Optional, Callable, Union
+import logging
+from dataclasses import dataclass
+from typing import Any, Callable, Dict, List, Optional, Tuple
+
 import numpy as np
 import numpy.random as random
-from scipy import stats
-from scipy.optimize import minimize
-import logging
 
 logger = logging.getLogger(__name__)
 
@@ -403,7 +401,7 @@ class HistoricalUncertaintyQuantification:
         perturbation_factor = 0.05
 
         # Compute nominal performance
-        nominal_performance = performance_function(nominal_parameters)
+        performance_function(nominal_parameters)
 
         for source in uncertainty_sources:
             if source.parameter_name in nominal_parameters:
@@ -663,23 +661,23 @@ if __name__ == "__main__":
         sampling_method='monte_carlo'
     )
 
-    print(f"\nUncertainty Analysis Results:")
+    print("\nUncertainty Analysis Results:")
     print(f"Total Performance Variance: {report.total_variance:.2e}")
     print(f"Historical Confidence: {report.historical_confidence_assessment}")
 
-    print(f"\nDominant Uncertainty Sources:")
+    print("\nDominant Uncertainty Sources:")
     for source in report.dominant_uncertainties:
         print(f"  • {source}")
 
-    print(f"\nReliability Metrics:")
+    print("\nReliability Metrics:")
     for metric, value in report.reliability_metrics.items():
         print(f"  {metric.replace('_', ' ').title()}: {value:.3f}")
 
-    print(f"\nDesign Recommendations:")
+    print("\nDesign Recommendations:")
     for rec in report.design_recommendations:
         print(f"  • {rec}")
 
-    print(f"\nIndividual Parameter Uncertainties:")
+    print("\nIndividual Parameter Uncertainties:")
     for result in report.uncertainty_results[:5]:  # Show top 5
         print(f"  {result.parameter_name}:")
         print(f"    Std Dev: {result.std_deviation:.2e}")
@@ -690,8 +688,8 @@ if __name__ == "__main__":
     # Generate tornado diagram data
     tornado_data = uq.generate_tornado_diagram_data(report.uncertainty_results)
 
-    print(f"\nTornado Diagram Data:")
-    print(f"Parameters sorted by contribution:")
+    print("\nTornado Diagram Data:")
+    print("Parameters sorted by contribution:")
     for i, param in enumerate(tornado_data['parameters'][:5]):
         contrib = tornado_data['contributions'][i]
         percent = tornado_data['percentages'][i]

@@ -283,7 +283,6 @@ def compute_counterweight_dynamics(params: RotationParameters, angles_rad: np.nd
 
     for i, angle in enumerate(angles_rad):
         # Calculate fluid surface angle relative to tank
-        fluid_surface_angle = angle  # Fluid surface remains horizontal
 
         # Effective fluid depth in rotated tank
         if angle < np.pi/2:  # 0 to 90 degrees
@@ -392,7 +391,6 @@ def compute_structural_analysis(params: RotationParameters, rotation: Dict[str, 
 
     # 3. Buckling Analysis
     # Critical buckling stress for compression members
-    effective_length_factor = 1.0  # Pin-ended condition
     slenderness_ratio = 120  # Typical for truss members
     euler_buckling_stress = (np.pi**2 * params.youngs_modulus_pa) / (slenderness_ratio**2)
 

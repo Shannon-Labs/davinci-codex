@@ -1,0 +1,443 @@
+===============================================================================
+LEONARDO'S MECHANICAL LION - DETAILED MATERIAL SPECIFICATIONS
+===============================================================================
+
+Royal Commission for King Francis I of France - 1515
+Prepared by: Leonardo da Vinci, Master Engineer and Artist
+Date: January 1515
+
+===============================================================================
+TABLE OF CONTENTS
+===============================================================================
+
+1. EXECUTIVE SUMMARY
+2. MATERIAL SELECTION CRITERIA
+3. COMPONENT SPECIFICATIONS
+4. QUALITY STANDARDS AND TESTING
+5. SUPPLIER REQUIREMENTS
+6. PROCESSING SPECIFICATIONS
+7. FINISHING AND PROTECTION
+8. SAFETY AND RELIABILITY REQUIREMENTS
+9. MAINTENANCE AND LONGEVITY
+10. HISTORICAL AUTHENTICITY REQUIREMENTS
+
+===============================================================================
+1. EXECUTIVE SUMMARY
+===============================================================================
+
+This document outlines the material specifications for Leonardo's Mechanical Lion,
+a groundbreaking automaton commissioned for the royal entry of King Francis I into
+Lyon. The materials selected represent the pinnacle of Renaissance material science,
+balancing structural performance, aesthetic excellence, and practical constructability
+within 16th-century technological constraints.
+
+Key Principles:
+- Utilize finest available materials befitting royal commission
+- Ensure structural integrity with safety factors exceeding 2.0
+- Maintain authentic Renaissance construction methods
+- Optimize for reliability and ceremonial performance
+- Balance cost with royal prestige requirements
+
+Total Material Categories: 8 primary material families
+Total Components: 22 major assemblies
+Construction Timeline: 6 months
+Royal Performance Date: July 1515
+
+===============================================================================
+2. MATERIAL SELECTION CRITERIA
+===============================================================================
+
+2.1 STRUCTURAL PERFORMANCE CRITERIA
+- Minimum safety factor: 2.0 for all structural components
+- Fatigue life: Minimum 500 performance cycles
+- Deflection limits: Less than 1/300 of span under full load
+- Impact resistance: Withstand drops from 0.5 meters
+
+2.2 ENVIRONMENTAL REQUIREMENTS
+- Operating temperature: 5°C to 35°C (typical palace conditions)
+- Humidity range: 40% to 70% relative humidity
+- Storage conditions: Protected from direct sunlight and moisture
+- Service life: Minimum 10 years with proper maintenance
+
+2.3 AESTHETIC REQUIREMENTS
+- Surface finish: Suitable for royal presentation
+- Color accuracy: Historically appropriate pigments and gilding
+- Craftsmanship: Master artisan quality throughout
+- Symbolic elements: Clear fleurs-de-lis representation
+
+2.4 MANUFACTURING CONSTRAINTS
+- Tool requirements: Compatible with Renaissance workshop equipment
+- Joinery methods: Traditional mortise-and-tenon, dovetail, and metal fastenings
+- Assembly sequence: Logical progression allowing for adjustment and testing
+- Quality control: Inspectable at each major assembly stage
+
+===============================================================================
+3. COMPONENT SPECIFICATIONS
+===============================================================================
+
+3.1 MAIN STRUCTURAL FRAME
+
+Material: Tuscan Oak (Quercus robur, Casentine forests)
+- Density: 750 ± 75 kg/m³
+- Moisture content: 12-15% (seasoned 3 years minimum)
+- Grain orientation: Primarily quarter-sawn for dimensional stability
+- Defect criteria: No knots larger than 20mm in critical areas
+- Strength requirements: Minimum 40 MPa tensile, 50 MPa compressive
+
+Supplier: Arte dei Maestri di Pietra e Legname
+Quality assurance: Master carpenter inspection and approval
+Processing: Rough-cut to size, final machining after 6-month acclimation
+
+Components:
+- Main spine beams: 150mm × 100mm × 2400mm (4 pieces)
+- Body frame ribs: 100mm × 80mm × 800mm (8 pieces)
+- Cross-bracing: 80mm × 60mm × 600mm (12 pieces)
+
+Joinery: Mortise and tenon with oak dowels (25mm diameter)
+Fasteners: Hand-forged iron bolts with bronze washers
+
+3.2 LEG MECHANISM COMPONENTS
+
+3.2.1 Upper Leg Beams
+Material: Slavonian Oak (premium grade)
+- Density: 780 ± 60 kg/m³
+- Straight grain requirement: Maximum 5° deviation
+- Bending strength: Minimum 45 MPa
+- Surface finish: Planed to 0.5mm tolerance
+
+Dimensions per leg:
+- Femur/Humerus section: 80mm × 60mm × 400mm
+- Grain alignment: Longitudinal with load direction
+
+3.2.2 Joint Bearings
+Material: Florentine Bronze (88% Cu, 12% Sn)
+- Hardness: 80-90 HB
+- Tensile strength: Minimum 200 MPa
+- Machining tolerance: ±0.1mm on bearing surfaces
+- Surface finish: Polished to 0.8μm Ra
+
+Bearing specifications:
+- Inner diameter: 20mm (shaft) to 50mm (main joints)
+- Wall thickness: 5mm minimum
+- Lubrication: Beeswax and linseed oil mixture
+
+3.2.3 Cam Drums
+Material: Seasoned Tuscan Oak with bronze bushings
+- Drum dimensions: 300mm diameter × 200mm length
+- Cam profile tolerance: ±0.2mm
+- Surface hardness: Oil-treated for wear resistance
+- Balance: Static balance within 1g at 100mm radius
+
+Cam profiles:
+- Lift cams: Sinusoidal profile for smooth motion
+- Timing cams: Stepwise profile for gait sequencing
+- Material: Hardened oak with optional bronze facing
+
+3.3 POWER SYSTEM COMPONENTS
+
+3.3.1 Main Power Springs
+Material: Florentine Steel (high-carbon spring steel)
+- Carbon content: 0.8-1.0%
+- Tensile strength: Minimum 400 MPa
+- Elastic limit: 80% of tensile strength
+- Wire diameter: 3mm ± 0.05mm
+- Coil diameter: 50mm ± 1mm
+- Free length: 300mm ± 5mm
+
+Heat treatment:
+- Hardening: Heat to 800°C, quench in oil
+- Tempering: Heat to 300°C, air cool
+- Surface finish: Polished, no scale
+- Testing: 100 compression cycles before acceptance
+
+3.3.2 Spring Housings
+Material: Bronze casting with reinforced design
+- Wall thickness: 8mm minimum
+- End caps: Bronze with gasket seals
+- Fasteners: Bronze bolts with lock washers
+- Safety factor: 3.0 minimum
+
+3.4 CHEST REVEAL MECHANISM
+
+3.4.1 Chest Panels
+Material: Premium oak with decorative veneer
+- Panel dimensions: 400mm × 300mm × 20mm (per panel)
+- Grain orientation: Book-matched for aesthetic consistency
+- Edge treatment: Rounded with bronze hinges
+- Opening angle: 60° maximum
+
+Decorative elements:
+- Gold leaf: 23 karat, 0.1μm thickness
+- Application: Oil gilding on prepared surface
+- Pattern: Florentine arabesque borders
+- Symbolism: Fleur-de-lis motifs integrated
+
+3.4.2 Lily Platform
+Material: Lightweight oak construction
+- Platform dimensions: 600mm diameter × 40mm thick
+- Lifting mechanism: Bronze screw jack
+- Capacity: 5kg load (lilies and mechanism)
+- Travel: 150mm elevation
+
+Fleur-de-lis specifications:
+- Material: Gilded bronze
+- Height: 150mm each
+- Quantity: 3 pieces
+- Mounting: Removable for cleaning
+
+3.5 DECORATIVE AND SYMBOLIC ELEMENTS
+
+3.5.1 Gold Leaf Application
+Material: 23 karat gold leaf
+- Thickness: 0.1μm (100 nanometers)
+- Coverage: Approximately 5 m² total
+- Application: Oil gilding technique
+- Base preparation: Red clay bole
+- Burnishing: Agate tool for mirror finish
+
+Application areas:
+- Mane elements and crown
+- Royal insignia on chest
+- Decorative borders and trim
+- Fleur-de-lis symbols
+
+3.5.2 Surface Finishing
+Primary finish: Linseed oil and beeswax mixture
+- Formula: 70% boiled linseed oil, 30% beeswax
+- Application: 3 coats with hand rubbing
+- Curing time: Minimum 48 hours between coats
+- Final finish: Hand-rubbed to satin sheen
+
+Color accents:
+- Vermilion (HgS) for royal symbolism
+- Ultramarine (lapis lazuli) for prestige elements
+- Earth pigments for natural tones
+
+3.6 FUNCTIONAL COMPONENTS
+
+3.6.1 Cable Systems
+Material: Hemp rope with bronze fittings
+- Rope diameter: 8mm
+- Breaking strength: Minimum 1000 N
+- Construction: 3-strand twisted
+- Treatment: Wax impregnation for weather resistance
+
+3.6.2 Seals and Gaskets
+Material: Calf leather
+- Thickness: 2mm
+- Tanning: Vegetable tanned
+- Waterproofing: Beeswax treatment
+- Life expectancy: 2 years with maintenance
+
+===============================================================================
+4. QUALITY STANDARDS AND TESTING
+===============================================================================
+
+4.1 MATERIAL TESTING REQUIREMENTS
+
+4.1.1 Wood Testing
+- Moisture content: Verify with hygrometer (12-15%)
+- Strength testing: Sample testing for compressive strength
+- Defect inspection: Visual inspection for knots, splits, warping
+- Dimensional accuracy: Caliper measurement ±0.5mm
+
+4.1.2 Metal Testing
+- Bronze composition: Spark test for tin content verification
+- Steel hardness: File test for spring temper verification
+- Surface finish: Visual inspection at 3× magnification
+- Dimensional tolerance: Caliper measurement ±0.1mm
+
+4.2 COMPONENT TESTING
+
+4.2.1 Load Testing
+- Static load test: 2× design load for 1 hour
+- Dynamic test: 500 cycles of operation
+- Deflection measurement: Maximum allowable deflection verification
+- Fastener torque: Verify proper tightening
+
+4.2.2 Functional Testing
+- Walking mechanism: Test on level surface for 10 meters
+- Chest reveal: Verify smooth opening and lily presentation
+- Power system: Verify full operation on single winding
+- Noise level: Maximum 60 dB at 10 meters
+
+===============================================================================
+5. SUPPLIER REQUIREMENTS
+===============================================================================
+
+5.1 GENERAL REQUIREMENTS
+- Minimum 5 years in business for all primary suppliers
+- References from at least 3 previous royal commissions
+- Quality certification from respective guilds
+- Financial stability verified by Medici bank
+
+5.2 SPECIFIC SUPPLIER REQUIREMENTS
+
+5.2.1 Timber Suppliers
+- Sustainable forest management practices
+- Proper seasoning facilities (3-year minimum)
+- Quality grading system
+- Delivery guarantee with replacement clause
+
+5.2.2 Metal Suppliers
+- Alloy composition verification
+- Heat treatment capability
+- Precision machining capability
+- Non-destructive testing capability
+
+5.2.3 Decorative Material Suppliers
+- Purity certification for precious metals
+- Traditional craftsmanship methods
+- Historical accuracy verification
+- Artistic quality standards
+
+===============================================================================
+6. PROCESSING SPECIFICATIONS
+===============================================================================
+
+6.1 WOODWORKING SPECIFICATIONS
+
+6.1.1 Preparation
+- Rough cutting: Allow 5mm for final machining
+- Acclimation: Store in workshop 2 weeks before final processing
+- Moisture equalization: Verify stability before final assembly
+
+6.1.2 Joinery Standards
+- Mortise and tenon: 1/3 thickness tenons, 0.2mm clearance
+- Dovetail joints: 1:8 slope, tight fit without gaps
+- Dowel joints: 0.1mm interference fit
+- Glue application: Animal glue, full coverage, 30-minute clamp time
+
+6.2 METALWORKING SPECIFICATIONS
+
+6.2.1 Bronze Casting
+- Mold material: Sand casting with fine silica sand
+- Pouring temperature: 1100°C ± 50°C
+- Cooling time: Minimum 4 hours before demolding
+- Finish machining: 0.5mm allowance for final surfaces
+
+6.2.2 Steel Working
+- Forging temperature: 900°C - 1200°C
+- Hammer control: Minimum 3 passes for grain refinement
+- Heat treatment: Controlled atmosphere furnace preferred
+- Tempering: Oil bath with temperature monitoring
+
+===============================================================================
+7. FINISHING AND PROTECTION
+===============================================================================
+
+7.1 SURFACE PREPARATION
+- Sanding sequence: 80, 120, 220 grit
+- Dust removal: Compressed air and clean cloths
+- Moisture check: Verify <15% before finishing
+- Temperature requirements: 18°C - 24°C for application
+
+7.2 PROTECTIVE COATINGS
+- Wood protection: 3 coats oil/wax mixture
+- Metal protection: Beeswax for moving parts
+- Exterior protection: Additional linseed oil coat
+- Maintenance schedule: Annual inspection and recoating
+
+===============================================================================
+8. SAFETY AND RELIABILITY REQUIREMENTS
+===============================================================================
+
+8.1 STRUCTURAL SAFETY
+- Minimum safety factor: 2.0 for all components
+- Redundancy: Critical systems have backup mechanisms
+- Failure analysis: Single-point failure elimination
+- Testing requirements: 100% functional testing
+
+8.2 OPERATIONAL SAFETY
+- Pinch point protection: Guard all moving mechanisms
+- Spring safety: Containment system for spring failure
+- Stability: Center of gravity analysis for all positions
+- Emergency stops: Manual release mechanisms
+
+8.3 MAINTENANCE SAFETY
+- Access points: Designed for safe maintenance access
+- Tool requirements: Standard Renaissance workshop tools
+- Weight limits: No component over 50kg for individual handling
+- Clearances: Minimum 25mm working clearance
+
+===============================================================================
+9. MAINTENANCE AND LONGEVITY
+===============================================================================
+
+9.1 ROUTINE MAINTENANCE
+- Daily: Visual inspection, lubrication check
+- Weekly: Detailed mechanism inspection
+- Monthly: Deep cleaning and lubrication
+- Annual: Complete disassembly and refurbishment
+
+9.2 COMPONENT LIFE EXPECTANCY
+- Structural wood: 20+ years with proper care
+- Bronze bearings: 10 years with regular lubrication
+- Steel springs: 5 years maximum, replace annually
+- Decorative finishes: 3 years, touch-up as needed
+
+9.3 SPARE PARTS REQUIREMENTS
+- Critical components: Full spare set available
+- Wear items: 3× annual requirement
+- Specialized tools: Complete maintenance toolkit
+- Documentation: Detailed maintenance manuals
+
+===============================================================================
+10. HISTORICAL AUTHENTICITY REQUIREMENTS
+===============================================================================
+
+10.1 MATERIAL AUTHENTICITY
+- Use only materials available in 16th-century Italy
+- Processing methods consistent with Renaissance practices
+- Tool marks and finishing appropriate to period
+- Construction techniques historically accurate
+
+10.2 ARTISTIC AUTHENTICITY
+- Decorative elements appropriate to royal commission
+- Symbolism correct for French-Italian alliance
+- Artistic style consistent with Leonardo's other works
+- Quality befitting royal presentation
+
+10.3 TECHNICAL AUTHENTICITY
+- Mechanisms consistent with Renaissance technology
+- Power systems appropriate to period capabilities
+- Control systems using period-accurate methods
+- Performance standards achievable with 1515 technology
+
+===============================================================================
+APPROVALS
+===============================================================================
+
+Leonardo da Vinci - Master Engineer and Artist
+_____________________________
+Date: January 1515
+
+Guild Approval - Arte dei Maestri di Pietra e Legname
+_____________________________
+Date: January 1515
+
+Guild Approval - Arte dei Fabbri
+_____________________________
+Date: January 1515
+
+Medici Bank - Financial Approval
+_____________________________
+Date: January 1515
+
+Royal Commission Representative
+_____________________________
+Date: January 1515
+
+===============================================================================
+DOCUMENT CONTROL
+===============================================================================
+
+Document Version: 1.0
+Issue Date: January 1515
+Next Review: March 1515
+Classification: Royal Commission - Confidential
+Distribution: Leonardo's Workshop, Guild Masters, Royal Representatives
+
+===============================================================================
+END OF SPECIFICATIONS
+===============================================================================

@@ -20,7 +20,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 import yaml
 from matplotlib import animation
-from scipy.integrate import solve_ivp
 
 from ..artifacts import ensure_artifact_dir
 
@@ -502,8 +501,8 @@ def _plot_profiles(path: Path, result: SimulationResult) -> None:
     # Panel 1: Position and Velocity
     ax1 = axes[0, 0]
     ax1_twin = ax1.twinx()
-    line1 = ax1.plot(result.time, result.position, 'b-', linewidth=2, label='Position')
-    line2 = ax1_twin.plot(result.time, result.velocity, 'r-', linewidth=2, label='Velocity')
+    ax1.plot(result.time, result.position, 'b-', linewidth=2, label='Position')
+    ax1_twin.plot(result.time, result.velocity, 'r-', linewidth=2, label='Velocity')
     ax1.set_ylabel('Position (m)', color='b', fontsize=10)
     ax1_twin.set_ylabel('Velocity (m/s)', color='r', fontsize=10)
     ax1.set_xlabel('Time (s)')
@@ -515,8 +514,8 @@ def _plot_profiles(path: Path, result: SimulationResult) -> None:
     # Panel 2: Spring Dynamics
     ax2 = axes[0, 1]
     ax2_twin = ax2.twinx()
-    line3 = ax2.plot(result.time, result.spring_theta, 'g-', linewidth=2, label='Spring Angle')
-    line4 = ax2_twin.plot(result.time, result.spring_torque, 'm-', linewidth=2, label='Spring Torque')
+    ax2.plot(result.time, result.spring_theta, 'g-', linewidth=2, label='Spring Angle')
+    ax2_twin.plot(result.time, result.spring_torque, 'm-', linewidth=2, label='Spring Torque')
     ax2.set_ylabel('Spring Angle (rad)', color='g', fontsize=10)
     ax2_twin.set_ylabel('Spring Torque (Nm)', color='m', fontsize=10)
     ax2.set_xlabel('Time (s)')
@@ -591,7 +590,6 @@ def _render_motion(path: Path, result: SimulationResult) -> None:
     # Cart components
     chassis_width, chassis_height = 0.6, 0.25
     wheel_radius = 0.12
-    wheel_width = 0.04
 
     # Initialize cart components
     chassis = plt.Rectangle((0, wheel_radius), chassis_width, chassis_height,
@@ -620,14 +618,14 @@ def _render_motion(path: Path, result: SimulationResult) -> None:
     ax_info.axis('off')
     info_text = ax_info.text(0.5, 0.5, '', transform=ax_info.transAxes,
                              fontsize=9, ha='center', va='center',
-                             bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.8))
+                             bbox={"boxstyle": 'round', "facecolor": 'wheat', "alpha": 0.8})
 
     # Energy bars
     energy_ax = fig.add_axes([0.15, 0.02, 0.3, 0.06])
     energy_ax.set_xlim(0, 1)
     energy_ax.set_ylim(0, 1)
     energy_ax.axis('off')
-    energy_bar_bg = energy_ax.barh(0.5, 1, height=0.3, color='lightgray', alpha=0.5)
+    energy_ax.barh(0.5, 1, height=0.3, color='lightgray', alpha=0.5)
     energy_bar_spring = energy_ax.barh(0.5, 0, height=0.3, color='blue', alpha=0.7)
     energy_ax.text(0.5, -0.1, 'Spring Energy', ha='center', fontsize=8)
 
@@ -644,8 +642,8 @@ def _render_motion(path: Path, result: SimulationResult) -> None:
         chassis.set_x(x)
 
         # Update wheels
-        wheel_rotation = x / wheel_radius  # Rotation angle based on distance
-        for i, (wheel, (wx, wy)) in enumerate(zip(wheels, wheel_positions)):
+        x / wheel_radius  # Rotation angle based on distance
+        for _i, (wheel, (wx, wy)) in enumerate(zip(wheels, wheel_positions)):
             wheel.center = (x + wx, wy)
 
         # Update spring drum color based on energy

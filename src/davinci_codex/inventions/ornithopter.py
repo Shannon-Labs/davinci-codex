@@ -276,10 +276,7 @@ def _clap_and_fling_lift(kinematics: Dict[str, float],
         separation_angle = 2 * (1 - abs(stroke_position)) * params.kinematics.stroke_amplitude
 
         # Lift enhancement depends on wing separation
-        if separation_angle < 0.1:  # Nearly clapped
-            enhancement = 0.3 * np.exp(-separation_angle / 0.05)
-        else:
-            enhancement = 0.0
+        enhancement = 0.3 * np.exp(-separation_angle / 0.05) if separation_angle < 0.1 else 0.0
 
         return enhancement
 
@@ -433,6 +430,12 @@ def _load_parameters() -> OrnithopterParameters:
     with PARAM_FILE.open("r", encoding="utf-8") as stream:
         raw = yaml.safe_load(stream)
 
+    acceptance_targets = raw.get('acceptance_targets', {})
+    acceptance_file = PARAM_FILE.with_name("acceptance.yaml")
+    if acceptance_file.exists():
+        with acceptance_file.open("r", encoding="utf-8") as handle:
+            acceptance_targets = yaml.safe_load(handle) or {}
+
     # Calculate derived parameters
     wing_span_m = np.sqrt(raw['wing_area_m2'] * 4.0)  # Assuming AR = 4
     mean_chord_m = raw['wing_area_m2'] / wing_span_m
@@ -484,7 +487,7 @@ def _load_parameters() -> OrnithopterParameters:
         kinematics=kinematics,
         structure=structure,
         unsteady_aero=unsteady_aero,
-        acceptance_targets=raw['acceptance_targets']
+        acceptance_targets=acceptance_targets
     )
 
 
@@ -916,7 +919,7 @@ Bio-inspired Flapping Flight:
 
     ax8.text(0.05, 0.95, educational_text, transform=ax8.transAxes,
             fontsize=9, verticalalignment='top', fontfamily='monospace',
-            bbox=dict(boxstyle="round,pad=0.5", facecolor="lightblue", alpha=0.3))
+            bbox={"boxstyle": "round,pad=0.5", "facecolor": "lightblue", "alpha": 0.3})
 
     plt.suptitle("Bio-inspired Ornithopter Flight Dynamics\nLeonardo's Dream Meets Modern Aerodynamics",
                  fontsize=14, fontweight='bold', y=0.98)

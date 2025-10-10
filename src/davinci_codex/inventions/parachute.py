@@ -32,7 +32,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 import yaml
 from matplotlib import patches
-from matplotlib.patches import FancyBboxPatch
 
 from ..artifacts import ensure_artifact_dir
 
@@ -520,7 +519,7 @@ def simulate(seed: int | None = None, scenario: str | None = None) -> Dict[str, 
 
         # Update position
         altitude -= vertical_velocity * dt
-        horizontal_displacement = horizontal_velocity * dt
+        horizontal_velocity * dt
         time += dt
 
         # Store comprehensive data
@@ -560,7 +559,7 @@ def simulate(seed: int | None = None, scenario: str | None = None) -> Dict[str, 
     ax1.legend()
 
     # Add stability shading
-    for i, (t, angle) in enumerate(zip(times, sway_angles)):
+    for _i, (t, angle) in enumerate(zip(times, sway_angles)):
         if abs(angle) > MAX_SWAY_ANGLE * 0.7:  # Near dangerous sway
             ax1.axvspan(t - dt/2, t + dt/2, alpha=0.1, color="orange")
 
@@ -616,7 +615,7 @@ def simulate(seed: int | None = None, scenario: str | None = None) -> Dict[str, 
 
     # Combine legends
     lines = line1 + line2
-    labels = [l.get_label() for l in lines]
+    labels = [line.get_label() for line in lines]
     ax4.legend(lines, labels, loc="upper right")
 
     # 5. Atmospheric Conditions
@@ -639,7 +638,7 @@ def simulate(seed: int | None = None, scenario: str | None = None) -> Dict[str, 
 
     # Combine legends
     lines = line1 + line2
-    labels = [l.get_label() for l in lines]
+    labels = [line.get_label() for line in lines]
     ax5.legend(lines, labels, loc="upper right")
 
     # 6. Educational Design Schematic with Physics Annotations
@@ -873,7 +872,7 @@ def evaluate() -> Dict[str, Any]:
             "testing": "Ultimate tensile strength validation required"
         },
         "stability": {
-            "requirement": f"Controlled descent with minimal oscillation",
+            "requirement": "Controlled descent with minimal oscillation",
             "measured": f"Max sway: {sim_data['stability_assessment']['max_sway_angle_deg']:.1f}°",
             "compliance": "PASS",
             "rating": sim_data['stability_assessment']['stability_rating']

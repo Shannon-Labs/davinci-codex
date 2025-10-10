@@ -13,10 +13,11 @@ Historical Constraints:
 
 from __future__ import annotations
 
+from dataclasses import dataclass
+from typing import Dict, Tuple
+
 import numpy as np
 import scipy.special as sp
-from typing import Dict, Tuple, Optional
-from dataclasses import dataclass
 
 from ..multiphysics.aerodynamics import AerodynamicsModule
 from ..multiphysics.core import SimulationParameters
@@ -76,7 +77,7 @@ class TheodorsenUnsteadyAero(AerodynamicsModule):
 
         # Historical operating conditions
         self.reynolds_number = 0.0
-        self reduced_frequency = 0.0
+        self.reduced_frequency = 0.0
 
     def initialize(self, geometry: OrnithopterGeometry, materials, boundary_conditions):
         """Initialize unsteady aerodynamics with Leonardo's wing design."""
@@ -316,7 +317,7 @@ class TheodorsenUnsteadyAero(AerodynamicsModule):
 
             # Apply Theodorsen function for unsteady effects
             C_real = np.real(self.theodorsen_C)
-            C_imag = np.imag(self.theodorsen_C)
+            np.imag(self.theodorsen_C)
 
             circulatory_section = dynamic_pressure * section_area * cl_quasi_steady * C_real
             circulatory_lift += circulatory_section
@@ -370,7 +371,7 @@ class TheodorsenUnsteadyAero(AerodynamicsModule):
             # Mass, stiffness, damping
             mass = self.structural_mass[section_idx]
             stiffness = self.structural_stiffness[section_idx]
-            damping = 2 * damping_ratio * np.sqrt(mass * stiffness)
+            2 * damping_ratio * np.sqrt(mass * stiffness)
 
             # Natural frequency of this section
             omega_n = np.sqrt(stiffness / mass)
@@ -548,7 +549,7 @@ def create_enhanced_ornithopter_sim() -> TheodorsenUnsteadyAero:
     )
 
     # Leonardo's wing geometry
-    geometry = OrnithopterGeometry(
+    OrnithopterGeometry(
         wingspan=12.0,
         root_chord=2.0,
         tip_chord=1.0,
@@ -607,12 +608,12 @@ if __name__ == "__main__":
 
     # Performance metrics
     metrics = sim.compute_performance_metrics()
-    print(f"\nPerformance Metrics:")
+    print("\nPerformance Metrics:")
     print(f"Propulsive efficiency: {metrics['propulsive_efficiency']:.3f}")
     print(f"Power required: {metrics['power_required_watts']:.1f} W")
     print(f"Human power factor: {metrics['human_power_factor']:.2f}")
     print(f"Max structural stress: {metrics['max_structural_stress_pa']/1e6:.1f} MPa")
 
-    print(f"\nHistorical Compliance:")
+    print("\nHistorical Compliance:")
     print(f"Human power feasible: {'✓' if metrics['human_power_factor'] < 1.0 else '✗'}")
     print(f"Wood stress safe: {'✓' if metrics['max_structural_stress_pa'] < 40e6 else '✗'}")

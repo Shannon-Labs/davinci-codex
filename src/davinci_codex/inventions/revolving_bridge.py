@@ -471,10 +471,10 @@ def _render_plots(base_dir: Path, rotation: Dict[str, np.ndarray], load_curve: D
     # Add educational annotations
     ax.annotate('Leonardo\'s insight:\nWater counterweight\nprovides stable balance',
                 xy=(0, 0.8), xytext=(15, 0.9), fontsize=9,
-                arrowprops=dict(arrowstyle='->', color='black', alpha=0.5))
+                arrowprops={"arrowstyle": '->', "color": 'black', "alpha": 0.5})
     ax.annotate('Maximum torque\nrequired at start\nof rotation',
                 xy=(0, 0.3), xytext=(20, 0.2), fontsize=9,
-                arrowprops=dict(arrowstyle='->', color='black', alpha=0.5))
+                arrowprops={"arrowstyle": '->', "color": 'black', "alpha": 0.5})
 
     summary_plot = base_dir / "leonardo_innovation_summary.png"
     fig5.tight_layout()
@@ -594,7 +594,7 @@ def _render_animation(path: Path) -> None:
             f"Phase: {'Initial' if angles[frame] < 30 else 'Intermediate' if angles[frame] < 60 else 'Final'}"
         )
         ax_info.text(0.1, 0.5, info_text, fontsize=10, verticalalignment='center',
-                    bbox=dict(boxstyle="round,pad=0.3", facecolor="lightgray", alpha=0.8))
+                    bbox={"boxstyle": "round,pad=0.3", "facecolor": "lightgray", "alpha": 0.8})
 
         # Update physics diagram
         ax_physics.clear()
@@ -615,7 +615,7 @@ def _render_animation(path: Path) -> None:
 
         # Moment balance equation
         ax_physics.text(0, 0.8, "M₁ × d₁ = M₂ × d₂", fontsize=9, ha='center',
-                       bbox=dict(boxstyle="round,pad=0.2", facecolor="yellow", alpha=0.7))
+                       bbox={"boxstyle": "round,pad=0.2", "facecolor": "yellow", "alpha": 0.7})
 
         return [bridge_line, water_indicator] + truss_lines
 

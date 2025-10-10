@@ -3,12 +3,11 @@
 from __future__ import annotations
 
 import json
-import math
+from dataclasses import asdict, dataclass
 from datetime import datetime, timedelta
-from pathlib import Path
-from typing import Dict, List, Optional, Any, Union, Tuple
-from dataclasses import dataclass, asdict
 from enum import Enum
+from pathlib import Path
+from typing import Any, Dict, List
 
 from ..artifacts import ensure_artifact_dir
 
@@ -186,7 +185,7 @@ class ImpactAnalyticsSystem:
             }
         }
 
-    def plan() -> Dict[str, object]:
+    def plan(self) -> Dict[str, object]:
         """Comprehensive impact measurement and scaling analytics plan."""
         return {
             "impact_measurement_framework": {
@@ -372,9 +371,9 @@ class ImpactAnalyticsSystem:
                     "data_sources": "Energy consumption data, transportation logs, manufacturing data",
                     "frequency": "Quarterly measurement and reporting",
                     "benchmarks": {
-                        "industry_average": 100 tons CO2/year,
-                        "best_practice": 50 tons CO2/year,
-                        "leadership_level": 10 tons CO2/year"
+                        "industry_average": "100 tons CO2/year",
+                        "best_practice": "50 tons CO2/year",
+                        "leadership_level": "10 tons CO2/year"
                     }
                 },
                 "water_efficiency": {
@@ -384,9 +383,9 @@ class ImpactAnalyticsSystem:
                     "data_sources": "Utility bills, flow meters, efficiency monitoring systems",
                     "frequency": "Monthly measurement and reporting",
                     "benchmarks": {
-                        "industry_average": 1000 liters/day",
-                        "best_practice": 500 liters/day",
-                        "leadership_level": 200 liters/day"
+                        "industry_average": "1000 liters/day",
+                        "best_practice": "500 liters/day",
+                        "leadership_level": "200 liters/day"
                     }
                 },
                 "waste_reduction": {
@@ -396,9 +395,9 @@ class ImpactAnalyticsSystem:
                     "data_sources": "Waste management records, recycling reports, circular economy data",
                     "frequency": "Quarterly measurement and reporting",
                     "benchmarks": {
-                        "industry_average": 50% waste diversion",
-                        "best_practice": 75% waste diversion",
-                        "leadership_level": 90% waste diversion"
+                        "industry_average": "50% waste diversion",
+                        "best_practice": "75% waste diversion",
+                        "leadership_level": "90% waste diversion"
                     }
                 },
                 "energy_efficiency": {
@@ -408,9 +407,9 @@ class ImpactAnalyticsSystem:
                     "data_sources": "Energy bills, monitoring systems, performance data",
                     "frequency": "Monthly measurement and reporting",
                     "benchmarks": {
-                        "industry_average": 10% improvement",
-                        "best_practice": 25% improvement",
-                        "leadership_level": 50% improvement"
+                        "industry_average": "10% improvement",
+                        "best_practice": "25% improvement",
+                        "leadership_level": "50% improvement"
                     }
                 }
             },
@@ -422,9 +421,9 @@ class ImpactAnalyticsSystem:
                     "data_sources": "User registration data, beneficiary surveys, program records",
                     "frequency": "Quarterly measurement and reporting",
                     "benchmarks": {
-                        "pilot": 100-1,000 people,
-                        "growth": 1,000-10,000 people,
-                        "maturity": 10,000+ people
+                        "pilot": "100-1,000 people",
+                        "growth": "1,000-10,000 people",
+                        "maturity": "10,000+ people"
                     }
                 },
                 "quality_of_life": {
@@ -436,7 +435,7 @@ class ImpactAnalyticsSystem:
                     "benchmarks": {
                         "baseline": 5.0,
                         "target": 7.0,
-                        "excellence": 8.5+
+                        "excellence": "8.5+"
                     }
                 },
                 "education_access": {
@@ -446,9 +445,9 @@ class ImpactAnalyticsSystem:
                     "data_sources": "Program records, participation data, access metrics",
                     "frequency": "Quarterly measurement and reporting",
                     "benchmarks": {
-                        "pilot": 50-200 participants,
-                        "growth": 200-1,000 participants,
-                        "maturity": 1,000+ participants
+                        "pilot": "50-200 participants",
+                        "growth": "200-1,000 participants",
+                        "maturity": "1,000+ participants"
                     }
                 },
                 "community_development": {
@@ -460,7 +459,7 @@ class ImpactAnalyticsSystem:
                     "benchmarks": {
                         "baseline": 3.0,
                         "target": 6.0,
-                        "excellence": 8.0+
+                        "excellence": "8.0+"
                     }
                 }
             },
@@ -472,9 +471,9 @@ class ImpactAnalyticsSystem:
                     "data_sources": "Financial records, market data, economic analysis",
                     "frequency": "Quarterly measurement and reporting",
                     "benchmarks": {
-                        "pilot": $10,000-$100,000,
-                        "growth": $100,000-$1,000,000,
-                        "maturity": $1,000,000+
+                        "pilot": "$10,000-$100,000",
+                        "growth": "$100,000-$1,000,000",
+                        "maturity": "$1,000,000+"
                     }
                 },
                 "job_creation": {
@@ -484,9 +483,9 @@ class ImpactAnalyticsSystem:
                     "data_sources": "Employment records, economic data, impact studies",
                     "frequency": "Quarterly measurement and reporting",
                     "benchmarks": {
-                        "pilot": 1-5 jobs,
-                        "growth": 5-25 jobs,
-                        "maturity": 25+ jobs
+                        "pilot": "1-5 jobs",
+                        "growth": "5-25 jobs",
+                        "maturity": "25+ jobs"
                     }
                 },
                 "cost_savings": {
@@ -496,9 +495,9 @@ class ImpactAnalyticsSystem:
                     "data_sources": "Financial records, cost data, efficiency measurements",
                     "frequency": "Quarterly measurement and reporting",
                     "benchmarks": {
-                        "pilot": 10-20% cost savings,
-                        "growth": 20-40% cost savings,
-                        "maturity": 40%+ cost savings
+                        "pilot": "10-20% cost savings",
+                        "growth": "20-40% cost savings",
+                        "maturity": "40%+ cost savings"
                     }
                 },
                 "productivity_improvement": {
@@ -508,9 +507,9 @@ class ImpactAnalyticsSystem:
                     "data_sources": "Performance data, productivity metrics, efficiency measurements",
                     "frequency": "Quarterly measurement and reporting",
                     "benchmarks": {
-                        "pilot": 10-25% improvement,
-                        "growth": 25-50% improvement,
-                        "maturity": 50%+ improvement
+                        "pilot": "10-25% improvement",
+                        "growth": "25-50% improvement",
+                        "maturity": "50%+ improvement"
                     }
                 }
             }
@@ -712,14 +711,6 @@ class ImpactAnalyticsSystem:
         """Generate scaling projection for innovation."""
 
         # Stage progression mapping (months per stage)
-        stage_progression = {
-            ScalingStage.PROTOTYPE: 0,
-            ScalingStage.PILOT: 6,
-            ScalingStage.EARLY_ADOPTION: 18,
-            ScalingStage.GROWTH: 36,
-            ScalingStage.MATURITY: 60,
-            ScalingStage.GLOBAL_EXPANSION: 84
-        }
 
         # Growth factors by stage
         growth_factors = {
@@ -1179,7 +1170,7 @@ class ImpactAnalyticsSystem:
                     "financial": sum(proj.resource_requirements.get("financial_capital", 0) for proj in scaling_projections.values()),
                     "human_resources": sum(proj.resource_requirements.get("human_resources", 0) for proj in scaling_projections.values())
                 },
-                "risk_factors": list(set(risk for proj in scaling_projections.values() for risk in proj.risk_factors))
+                "risk_factors": list({risk for proj in scaling_projections.values() for risk in proj.risk_factors})
             },
             "recommendations": [
                 "Focus on scaling innovations with highest impact scores",
@@ -1278,7 +1269,7 @@ class ImpactAnalyticsSystem:
             # Skip visualization if matplotlib not available
             pass
 
-    def build() -> None:
+    def build(self) -> None:
         """Build impact analytics framework artifacts."""
         artifacts_dir = ensure_artifact_dir(SLUG, subdir="analytics_framework")
 
@@ -1317,7 +1308,7 @@ class ImpactAnalyticsSystem:
         with sdg_path.open("w", encoding="utf-8") as f:
             json.dump(self.sdg_mapping, f, indent=2)
 
-    def evaluate() -> Dict[str, object]:
+    def evaluate(self) -> Dict[str, object]:
         """Evaluate impact analytics system readiness and effectiveness."""
         return {
             "framework_completeness": {

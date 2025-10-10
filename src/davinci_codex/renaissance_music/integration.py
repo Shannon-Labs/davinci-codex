@@ -262,7 +262,6 @@ class MechanicalEnsembleIntegrator:
         artifacts = []
 
         # Save the ensemble score
-        from ..artifacts import ensure_artifact_dir
         demo_dir = ensure_artifact_dir("renaissance_music", subdir="demo")
         score_path = demo_dir / "adapted_ensemble_score.json"
 

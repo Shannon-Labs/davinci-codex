@@ -18,8 +18,7 @@ import csv
 import importlib.util
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, List, Tuple
-import json
+from typing import Dict, List
 
 import matplotlib
 
@@ -528,7 +527,7 @@ def simulate(seed: int = 0) -> Dict[str, object]:
             f"Use {params.pebble_shape} pebbles to minimize bounce and scatter",
             f"Consider terrain correction factor for {params.terrain_type} conditions",
             f"Monitor gear wear after {params.bucket_capacity * distance_per_drop:.0f}m of operation",
-            f"Record environmental conditions for improved accuracy"
+            "Record environmental conditions for improved accuracy"
         ]
     }
 

@@ -1,0 +1,220 @@
+LEONARDO DA VINCI'S AERIAL SCREW
+RENAISSANCE FABRICATION GUIDE
+Milan Workshop - Circa 1485-1490
+═══════════════════════════════════════════════════════════════
+
+MATERIALS PREPARATION
+─────────────────────
+
+1. OAK BLADE CORES (Recommended)
+   • Source: Northern Italian forests, winter-cut timber
+   • Seasoning: 2 years minimum, covered storage
+   • Dimensions: 40mm × 80mm × helical length
+   • Grain selection: Straight grain, minimal knots
+   • Tools: Frame saw, drawknife, hand planes
+
+2. LINEN COVERING (Primary choice)
+   • Source: Flemish linen, highest quality available
+   • Treatment: Boiled in linseed oil, stretched while wet
+   • Attachment: Waterproof glue + bronze rivets (20mm spacing)
+   • Seams: Overlap 50mm, double-stitched with waxed thread
+
+3. BRONZE MECHANICAL COMPONENTS
+   • Bearings: Cast bronze bushings, reamed to fit
+   • Hub: Lost-wax casting, machine-finished mounting surfaces
+   • Gears: Bronze gear set, 15:1 reduction ratio
+   • Fasteners: Bronze bolts with hand-cut threads
+
+WORKSHOP PROCESSES
+──────────────────
+
+BLADE FABRICATION
+1. Layout helical pattern on workshop floor (full-scale template)
+2. Rough-cut oak beams to +5mm dimensions
+3. Steam-bend beams using wooden forms (8 weeks minimum)
+4. Allow to cool and set for 2 weeks
+5. Final shaping with hand planes to final dimensions
+6. Drill attachment holes (bronze-reinforced)
+7. Apply linseed oil treatment (3 coats)
+
+COVERING APPLICATION
+1. Cut linen panels with 100mm overlap all edges
+2. Pre-stretch on wooden frames (tensioning devices)
+3. Apply waterproof glue to oak surface
+4. Position linen, work from center outward
+5. Install bronze rivets while glue is wet
+6. Apply final linseed oil sealant
+
+MECHANICAL ASSEMBLY
+1. Cast bronze hub in sections (workshop furnace)
+2. Machine mounting surfaces with hand tools
+3. Install bronze bearings (reamed to tolerance)
+4. Assemble gear train (15:1 reduction)
+5. Install crank mechanism (oak handles, bronze axles)
+6. Test rotation by hand (smooth operation required)
+
+QUALITY CONTROL
+────────────────
+
+DIMENSIONAL ACCURACY
+• Blade thickness: ±2mm tolerance
+• Helical pitch: ±5mm per meter
+• Mounting holes: ±1mm tolerance
+• Overall diameter: ±10mm tolerance
+
+STRUCTURAL TESTING
+• Load test: 2× design weight (static)
+• Rotation test: 150% design RPM (5 minutes)
+• Vibration test: No excessive vibration at operating speed
+• Alignment test: True rotation within 2mm
+
+MATERIAL INSPECTION
+• Oak: No cracks, knots, or grain deviation
+• Linen: No tears, consistent weave, proper oil treatment
+• Bronze: No casting defects, proper hardness
+• Joinery: Tight fits, no gaps, proper adhesive coverage
+
+TOOLS REQUIRED
+──────────────
+
+WOODWORKING
+• Frame saws (various sizes)
+• Hand planes (jack, jointer, smoothing)
+• Drawknives and spokeshaves
+• Augers and hand drills
+• Mallets and chisels
+
+METALWORKING
+• Casting furnace (clay-lined)
+• Bellows (hand-operated)
+• Anvils and hammers
+• Files and rasps
+• Thread-cutting tools
+
+TEXTILE WORK
+• Large work tables
+• Tensioning frames
+• Needles and awls
+• Waxing pots
+• Measuring devices
+
+SAFETY CONSIDERATIONS
+────────────────────
+
+PERSONAL PROTECTION
+• Leather aprons (cured)
+• Eye protection (ground quartz)
+• Heat-resistant gloves (metalworking)
+• Ventilation (furnace operation)
+
+WORKSHOP SAFETY
+• Clear work areas (trip hazards)
+• Proper tool storage
+• Fire safety (water buckets, sand)
+• Material handling (team lifting for heavy components)
+
+CONSTRUCTION TIMELINE
+─────────────────────
+
+Phase 1: Material Procurement (4 weeks)
+• Timber selection and acquisition
+• Metal sourcing and preparation
+• Textile import and inspection
+
+Phase 2: Material Preparation (8 weeks)
+• Timber seasoning and initial shaping
+• Metal casting and machining
+• Textile treatment and cutting
+
+Phase 3: Component Fabrication (12 weeks)
+• Blade core construction
+• Mechanical component machining
+• Covering panel preparation
+
+Phase 4: Assembly (6 weeks)
+• Sub-assembly preparation
+• Final assembly and alignment
+• Integration testing
+
+Phase 5: Testing and Refinement (4 weeks)
+• Static testing
+• Operational testing
+• Performance optimization
+• Final adjustments
+
+Total Estimated Time: 34 weeks (approximately 8 months)
+
+COST ANALYSIS
+─────────────
+
+MATERIAL COSTS (Relative to Oak = 1.0)
+• Oak timber: 1.0 × required volume
+• Linen covering: 2.0 × surface area
+• Bronze components: 15.0 × component mass
+• Hardware and fasteners: 5.0 × quantity
+• Miscellaneous supplies: 3.0 × project size
+
+LABOR COSTS
+• Master craftsman: 40% of total
+• Journeyman: 35% of total
+• Apprentices: 25% of total
+
+ESTIMATED TOTAL COST
+Equivalent to: 3 fully equipped warhorses
+Or: 2 years of workshop operation
+Or: Master craftsman's 5-year salary
+
+PERFORMANCE EXPECTATIONS
+────────────────────────
+
+Based on material analysis and workshop capabilities:
+
+MAXIMUM PERFORMANCE
+• Lift capacity: 180 kg (pilot + fuel)
+• Operating RPM: 120 RPM maximum
+• Flight duration: 5 minutes (human power)
+• Service life: 10 years (with maintenance)
+
+LIMITING FACTORS
+• Human power output (primary limitation)
+• Material strength (secondary limitation)
+• Control mechanisms (not addressed in original design)
+• Weather conditions (wind, rain limitations)
+
+MAINTENANCE REQUIREMENTS
+────────────────────────
+
+ROUTINE MAINTENANCE
+• Weekly: Linen tension inspection
+• Monthly: Bronze bearing lubrication
+• Quarterly: Wood integrity inspection
+• Annually: Complete disassembly and refinishing
+
+REPLACEMENT SCHEDULE
+• Linen covering: Every 3-5 years
+• Bronze bearings: Every 8-10 years
+• Wood components: Every 15-20 years
+• Mechanical components: Every 12-15 years
+
+CONCLUSION
+───────────
+
+This aerial screw represents the pinnacle of Renaissance engineering,
+pushing the boundaries of what is possible with 15th century technology.
+While human power limitations prevent sustained flight, the construction
+itself would be a remarkable achievement, demonstrating:
+
+• Advanced understanding of aerodynamics
+• Sophisticated material selection
+• Masterful craftsmanship
+• Innovative mechanical design
+
+The project serves both as a technological demonstration and as
+educational inspiration for future generations of engineers and artisans.
+
+═══════════════════════════════════════════════════════════════
+Compiled by: Leonardo da Vinci
+Workshop: Milan, Italy
+Date: Circa 1485-1490
+Based on: Codex Atlanticus, Folio 869r
+═══════════════════════════════════════════════════════════════

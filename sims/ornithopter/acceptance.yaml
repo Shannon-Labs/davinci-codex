@@ -1,0 +1,5 @@
+thrust_to_weight_margin: 0.10
+battery_temperature_rise_C: 25.0
+modal_frequency_factor: 1.5
+fsi_divergence_allowed: false
+telemetry_duration_s: 60

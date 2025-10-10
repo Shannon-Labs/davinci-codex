@@ -3,16 +3,16 @@
 from __future__ import annotations
 
 import csv
-import math
-from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List
 
 import matplotlib
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 
 from ..artifacts import ensure_artifact_dir
+
 
 # Modern Invention 1: Biomimetic Wind Harvester
 class BiomimeticWindHarvester:
@@ -160,7 +160,7 @@ class BiomimeticWindHarvester:
         # CAD integration would go here
         param_file = artifacts_dir / "design_parameters.txt"
         with param_file.open("w") as f:
-            f.write(f"Biomimetic Wind Harvester Design Parameters\n")
+            f.write("Biomimetic Wind Harvester Design Parameters\n")
             f.write(f"Rotor Height: {cls.ROTOR_HEIGHT} m\n")
             f.write(f"Rotor Diameter: {cls.ROTOR_DIAMETER} m\n")
             f.write(f"Blade Count: {cls.BLADE_COUNT}\n")
@@ -274,7 +274,7 @@ class AdaptiveBridgeSystem:
 
         # Deployment simulation
         deployment_phases = np.linspace(0, cls.DEPLOYMENT_TIME, 20)
-        deployment_progress = np.array([min(phase / cls.DEPLOYMENT_TIME, 1.0) for phase in deployment_phases])
+        np.array([min(phase / cls.DEPLOYMENT_TIME, 1.0) for phase in deployment_phases])
 
         # Save structural analysis data
         csv_path = artifacts_dir / "structural_analysis.csv"
@@ -328,7 +328,7 @@ class AdaptiveBridgeSystem:
         artifacts_dir = ensure_artifact_dir(cls.SLUG, subdir="cad")
         param_file = artifacts_dir / "bridge_specifications.txt"
         with param_file.open("w") as f:
-            f.write(f"Adaptive Bridge System Specifications\n")
+            f.write("Adaptive Bridge System Specifications\n")
             f.write(f"Span Length: {cls.SPAN_LENGTH} m\n")
             f.write(f"Load Capacity: {cls.LOAD_CAPACITY/1000} tons\n")
             f.write(f"Deployment Time: {cls.DEPLOYMENT_TIME} minutes\n")
@@ -499,7 +499,7 @@ class HumanPoweredWaterPurification:
         artifacts_dir = ensure_artifact_dir(cls.SLUG, subdir="cad")
         spec_file = artifacts_dir / "purification_system_specs.txt"
         with spec_file.open("w") as f:
-            f.write(f"Human-Powered Water Purification System\n")
+            f.write("Human-Powered Water Purification System\n")
             f.write(f"Flow Rate: {cls.FLOW_RATE} L/min\n")
             f.write(f"Purification Efficiency: {cls.PURIFICATION_EFFICIENCY*100}%\n")
             f.write(f"Power Requirement: {cls.POWER_REQUIREMENT} W\n")
@@ -706,7 +706,7 @@ class RegenerativeCargoTransport:
         artifacts_dir = ensure_artifact_dir(cls.SLUG, subdir="cad")
         spec_file = artifacts_dir / "cargo_transport_specs.txt"
         with spec_file.open("w") as f:
-            f.write(f"Regenerative Cargo Transport System\n")
+            f.write("Regenerative Cargo Transport System\n")
             f.write(f"Cargo Capacity: {cls.CARGO_CAPACITY} kg\n")
             f.write(f"Max Speed: {cls.MAX_SPEED} km/h\n")
             f.write(f"Regeneration Efficiency: {cls.REGENERATION_EFFICIENCY*100}%\n")
@@ -899,7 +899,7 @@ class PrecisionAgricultureTool:
         artifacts_dir = ensure_artifact_dir(cls.SLUG, subdir="cad")
         spec_file = artifacts_dir / "agriculture_tool_specs.txt"
         with spec_file.open("w") as f:
-            f.write(f"Precision Agriculture Tool System\n")
+            f.write("Precision Agriculture Tool System\n")
             f.write(f"Soil Analysis Depth: {cls.SOIL_ANALYSIS_DEPTH} m\n")
             f.write(f"Seeding Precision: ±{cls.SEEDING_PRECISION} m\n")
             f.write(f"Yield Improvement: {cls.YIELD_IMPROVEMENT*100}%\n")

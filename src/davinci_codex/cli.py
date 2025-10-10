@@ -5,14 +5,16 @@ from __future__ import annotations
 import csv
 import json
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Sequence
 
 import typer
 
 from . import __version__
+from .artifacts import ensure_artifact_dir
 from .inventions import mechanical_ensemble as mechanical_ensemble_module
 from .pipelines import run_ornithopter_pipeline
 from .registry import InventionSpec, get_invention, list_inventions
+from .sweeps import run_parameter_sweep
 
 app = typer.Typer(help="Interact with da Vinci Codex invention modules.")
 
@@ -89,6 +91,19 @@ def _resolve_inventions(slug: Optional[str], all_flag: bool) -> List[InventionSp
     return []
 
 
+def _load_acceptance_targets(slug: str) -> Dict[str, object]:
+    path = Path("sims") / slug / "acceptance.yaml"
+    if not path.exists():
+        return {}
+    import yaml  # local, heavy dependency optional
+
+    with path.open("r", encoding="utf-8") as handle:
+        data = yaml.safe_load(handle) or {}
+    if not isinstance(data, dict):
+        return {}
+    return {str(key): value for key, value in data.items()}
+
+
 @app.callback()
 def main(version: bool = typer.Option(False, "--version", is_eager=True, help="Show version and exit.")) -> None:
     if version:
@@ -121,12 +136,20 @@ def plan(slug: Optional[str] = typer.Option(None, help="Slug of the invention to
 def simulate(
     slug: Optional[str] = typer.Option(None, help="Slug of the invention to simulate."),
     seed: int = typer.Option(0, help="Random seed for deterministic simulations."),
+    fidelity: Optional[str] = typer.Option(None, help="Optional fidelity level (e.g. educational, advanced)."),
 ) -> None:
     """Run simulations and persist artifacts for the selected inventions."""
     specs = _resolve_inventions(slug, all_flag=slug is None)
     for spec in specs:
         typer.echo(f"# Simulating {spec.title} ({spec.slug})")
-        results = spec.module.simulate(seed)
+        kwargs: Dict[str, object] = {"seed": seed}
+        if fidelity:
+            kwargs["fidelity"] = fidelity
+        try:
+            results = spec.module.simulate(**kwargs)  # type: ignore[misc]
+        except TypeError:
+            kwargs.pop("fidelity", None)
+            results = spec.module.simulate(**kwargs)  # type: ignore[misc]
         typer.echo(json.dumps(results, indent=2, sort_keys=True))
 
 
@@ -173,6 +196,93 @@ def demo(slug: Optional[str] = typer.Option(None, help="Slug of the invention to
             if validation:
                 payload["validation"] = validation
         typer.echo(json.dumps(payload, indent=2, sort_keys=True))
+
+
+@app.command()
+def sweep(
+    slug: Optional[str] = typer.Option(None, help="Slug of the invention to sweep."),
+    runs: int = typer.Option(5, help="Number of seeds to sample when explicit seeds are not provided."),
+    seed: Optional[List[int]] = typer.Option(None, "--seed", multiple=True, help="Explicit seed values to run."),
+    fidelity: Optional[str] = typer.Option(None, help="Optional fidelity level."),
+    label: Optional[str] = typer.Option(None, help="Optional label used for cache grouping."),
+    reuse_cache: bool = typer.Option(True, help="Skip reruns when cached results are available."),
+) -> None:
+    """Run repeated simulations and summarise aggregated statistics."""
+    if not slug:
+        raise typer.BadParameter("Provide --slug to select an invention for sweeping.")
+    spec = get_invention(slug)
+
+    if seed:
+        seeds: Sequence[int] = [int(value) for value in seed]
+    else:
+        seeds = list(range(runs))
+
+    typer.echo(f"# Sweep {spec.title} ({spec.slug})")
+    summary = run_parameter_sweep(
+        spec,
+        fidelity=fidelity,
+        seeds=seeds,
+        label=label,
+        reuse_cache=reuse_cache,
+    )
+    typer.echo(json.dumps(summary, indent=2, sort_keys=True))
+
+
+@app.command()
+def validate(
+    slug: Optional[str] = typer.Option(None, help="Slug of the invention to validate."),
+    fidelity: Optional[str] = typer.Option(None, help="Optional fidelity level for evaluation."),
+) -> None:
+    """Evaluate acceptance targets and record validation summaries."""
+    specs = _resolve_inventions(slug, all_flag=slug is None)
+    for spec in specs:
+        typer.echo(f"# Validating {spec.title} ({spec.slug})")
+        evaluation_kwargs: Dict[str, object] = {}
+        if fidelity:
+            evaluation_kwargs["fidelity"] = fidelity
+        try:
+            evaluation = spec.module.evaluate(**evaluation_kwargs)  # type: ignore[misc]
+        except TypeError:
+            evaluation = spec.module.evaluate()  # type: ignore[misc]
+
+        meets_targets: Dict[str, bool] = {}
+        metrics: Dict[str, float] = {}
+
+        if isinstance(evaluation, dict):
+            validation_block = evaluation.get("validation")
+            if isinstance(validation_block, dict):
+                meets = validation_block.get("meets_targets")
+                if isinstance(meets, dict):
+                    meets_targets = {key: bool(value) for key, value in meets.items()}
+                candidate_metrics = validation_block.get("metrics")
+                if isinstance(candidate_metrics, dict):
+                    for key, value in candidate_metrics.items():
+                        if isinstance(value, (int, float)):
+                            metrics[key] = float(value)
+        overall_pass = all(meets_targets.values()) if meets_targets else False
+
+        summary = {
+            "slug": spec.slug,
+            "overall_pass": overall_pass,
+            "meets_targets": meets_targets,
+            "metrics": metrics,
+            "targets": _load_acceptance_targets(spec.slug),
+        }
+        typer.echo(json.dumps(summary, indent=2, sort_keys=True))
+
+        artifact_dir = ensure_artifact_dir(spec.slug, subdir="validation")
+        with (artifact_dir / "validation_summary.json").open("w", encoding="utf-8") as handle:
+            json.dump(summary, handle, indent=2, sort_keys=True)
+
+
+@app.command("gallery")
+def gallery_command() -> None:
+    """Regenerate static simulation gallery assets."""
+    from scripts.generate_simulation_gallery import main as gallery_main  # pylint: disable=import-outside-toplevel
+
+    typer.echo("# Regenerating gallery")
+    gallery_main()
+    typer.echo("done")
 
 
 @app.command("pipeline")

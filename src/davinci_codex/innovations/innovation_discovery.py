@@ -3,15 +3,12 @@
 from __future__ import annotations
 
 import json
-import math
-from pathlib import Path
-from typing import Dict, List, Optional, Tuple, Any
+from typing import Any, Dict, List
 
-import numpy as np
 import yaml
 
-from ..registry import discover_inventions, InventionSpec
 from ..artifacts import ensure_artifact_dir
+from ..registry import InventionSpec, discover_inventions
 
 SLUG = "innovation_discovery"
 TITLE = "Innovation Discovery & Modern Applications Engine"
@@ -117,7 +114,7 @@ def plan() -> Dict[str, object]:
 def _extract_core_principles(invention_spec: InventionSpec) -> Dict[str, Any]:
     """Extract transferable engineering principles from an invention."""
     plan_data = invention_spec.module.plan()
-    eval_data = invention_spec.module.evaluate()
+    invention_spec.module.evaluate()
 
     principles = {
         "efficiency_mechanisms": [],
@@ -152,7 +149,7 @@ def _extract_core_principles(invention_spec: InventionSpec) -> Dict[str, Any]:
 
     # Extract from assumptions
     assumptions = plan_data.get("assumptions", {})
-    for key, value in assumptions.items():
+    for key, _value in assumptions.items():
         if "efficiency" in key.lower():
             principles["efficiency_mechanisms"].append("performance_optimization")
         if "density" in key.lower() or "mass" in key.lower():
@@ -257,13 +254,13 @@ def _generate_innovation_concepts(invention_spec: InventionSpec, principles: Dic
     concepts = []
 
     # Get invention characteristics
-    plan_data = invention_spec.module.plan()
-    eval_data = invention_spec.module.evaluate()
+    invention_spec.module.plan()
+    invention_spec.module.evaluate()
 
     # High-impact concept generator
     for principle_category, principle_list in principles.items():
         if principle_category in applications and applications[principle_category]:
-            for i, application in enumerate(applications[principle_category][:3]):  # Top 3 applications
+            for _i, application in enumerate(applications[principle_category][:3]):  # Top 3 applications
                 concept = {
                     "title": f"{invention_spec.title.replace(' ', '')} Innovation: {application.replace('_', ' ').title()}",
                     "base_invention": invention_spec.slug,
@@ -383,7 +380,7 @@ def _calculate_sdg_coverage(sdg_alignments: Dict[str, Dict[str, float]]) -> floa
 
     for invention_alignment in sdg_alignments.values():
         for principle_alignment in invention_alignment.values():
-            for sdg in principle_alignment.keys():
+            for sdg in principle_alignment:
                 all_sdgs.add(sdg)
                 if principle_alignment[sdg] > 0.5:  # Significant alignment
                     covered_sdgs.add(sdg)

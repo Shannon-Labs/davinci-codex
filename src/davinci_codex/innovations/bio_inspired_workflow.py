@@ -3,8 +3,7 @@
 from __future__ import annotations
 
 import json
-from pathlib import Path
-from typing import Dict, List, Optional, Tuple, Any
+from typing import Any, Dict, List
 
 from ..artifacts import ensure_artifact_dir
 
@@ -39,7 +38,7 @@ class BioInspiredWorkflow:
             "efficiency_optimization"
         ]
 
-    def plan() -> Dict[str, object]:
+    def plan(self) -> Dict[str, object]:
         """Comprehensive bio-inspired innovation methodology."""
         return {
             "leonardo_methodology": {
@@ -183,7 +182,7 @@ class BioInspiredWorkflow:
                     "atp_production": "Chemical energy storage and release system",
                     "thermoregulation": "Passive and active temperature control",
                     "muscle_contraction": "Chemical to mechanical energy conversion"
-                ],
+                },
                 "mathematical_foundations": [
                     "thermodynamic principles",
                     "chemical kinetics",
@@ -203,7 +202,7 @@ class BioInspiredWorkflow:
                     "nacre": "Brick-and-mortar structure for toughness",
                     "lotus_leaf": "Hydrophobic surface for self-cleaning",
                     "bone_adaptation": "Dynamic remodeling based on stress"
-                ],
+                },
                 "mathematical_foundations": [
                     "composite material theory",
                     "surface chemistry principles",
@@ -686,7 +685,6 @@ class BioInspiredWorkflow:
         domains_with_innovations = 0
 
         innovation_potential_by_domain = {}
-        challenges_by_domain = {}
 
         for domain, domain_results in results.items():
             if domain_results:
@@ -727,7 +725,7 @@ class BioInspiredWorkflow:
             "implementation_readiness": "Framework validated across multiple domains"
         }
 
-    def build() -> None:
+    def build(self) -> None:
         """Build bio-inspired innovation workflow artifacts."""
         artifacts_dir = ensure_artifact_dir(SLUG, subdir="workflow_framework")
 
@@ -775,7 +773,7 @@ class BioInspiredWorkflow:
         with template_path.open("w", encoding="utf-8") as f:
             json.dump(template_content, f, indent=2)
 
-    def evaluate() -> Dict[str, object]:
+    def evaluate(self) -> Dict[str, object]:
         """Evaluate bio-inspired innovation workflow effectiveness."""
         return {
             "methodology_assessment": {

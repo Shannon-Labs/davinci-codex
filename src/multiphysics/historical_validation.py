@@ -10,11 +10,11 @@ while providing scientific rigor.
 
 from __future__ import annotations
 
-import dataclasses
-from dataclasses import dataclass, field
-from typing import Dict, List, Tuple, Any, Optional, Union
-import numpy as np
 import logging
+from dataclasses import dataclass
+from typing import Any, Dict, List, Optional
+
+import numpy as np
 
 logger = logging.getLogger(__name__)
 
@@ -535,8 +535,8 @@ class HistoricalValidator:
 
                 elif 'manufacturing' in constraint.constraint_type:
                     recommendations.append(
-                        f"Simplify design to meet Renaissance manufacturing capabilities. "
-                        f"Current complexity exceeds historical standards."
+                        "Simplify design to meet Renaissance manufacturing capabilities. "
+                        "Current complexity exceeds historical standards."
                     )
 
         # Add general recommendations if no specific ones
@@ -687,26 +687,26 @@ if __name__ == "__main__":
     print("Validating Ornithopter Design...")
     report = validator.validate_invention('ornithopter', ornithopter_results)
 
-    print(f"\nValidation Results:")
+    print("\nValidation Results:")
     print(f"Overall Compliance Score: {report.overall_compliance_score:.2f}")
     print(f"Historical Fidelity Rating: {report.historical_fidelity_rating}")
     print(f"Mandatory Constraints Satisfied: {report.mandatory_constraints_satisfied}")
 
-    print(f"\nIndividual Constraint Results:")
+    print("\nIndividual Constraint Results:")
     for result in report.validation_results:
         status = "✓" if result.is_satisfied else "✗"
         print(f"  {status} {result.constraint_name}: {result.notes}")
 
-    print(f"\nRecommendations:")
+    print("\nRecommendations:")
     for rec in report.recommendations:
         print(f"  • {rec}")
 
-    print(f"\nEnhancement Opportunities:")
+    print("\nEnhancement Opportunities:")
     for opp in report.enhancement_opportunities:
         print(f"  • {opp}")
 
     # Comparative analysis example
-    print(f"\n" + "="*60)
+    print("\n" + "="*60)
     print("Comparative Analysis Example")
     print("="*60)
 
@@ -730,11 +730,11 @@ if __name__ == "__main__":
 
     comparison = validator.generate_comparative_analysis(['ornithopter', 'aerial_screw', 'self_propelled_cart'])
 
-    print(f"Comparative Summary:")
+    print("Comparative Summary:")
     print(f"  Average Compliance: {comparison['summary']['average_compliance']:.2f}")
     print(f"  Best Performer: {comparison['summary']['best_performer']}")
     print(f"  Worst Performer: {comparison['summary']['worst_performer']}")
 
-    print(f"\nIndividual Invention Scores:")
+    print("\nIndividual Invention Scores:")
     for slug, data in comparison['inventions'].items():
         print(f"  {slug}: {data['compliance_score']:.2f} ({data['fidelity_rating']})")

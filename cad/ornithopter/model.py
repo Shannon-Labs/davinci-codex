@@ -301,7 +301,7 @@ bio_inspired_ornithopter();
         writer.writerow(["Primary wing spar", "Carbon fiber composite tube", 2, "Bird bone structure", f"{span_m/2:.2f} m each, {wing_spar_diameter_mm} mm OD, optimized flexural stiffness"])
         writer.writerow(["Leading edge spar", "Carbon fiber rod", 2, "Feather shaft", f"{span_m/2:.2f} m each, 28 mm OD, pre-curved for adaptive camber"])
         writer.writerow(["Elastic membrane", "Silicone-impregnated ripstop", 2, "Bat wing membrane", f"0.8mm thick, elastic axis at {elastic_axis_percent}% chord"])
-        writer.writerow(["Wing ribs", "3D-printed CFRP lattice", rib_count * 2, "Feather structure", f"Varying camber, elastic membrane attachment points"])
+        writer.writerow(["Wing ribs", "3D-printed CFRP lattice", rib_count * 2, "Feather structure", "Varying camber, elastic membrane attachment points"])
         writer.writerow(["Figure-8 mechanism", "Titanium alloy", 1, "Bird shoulder joint", "Dual-axis actuation for figure-8 motion"])
 
         # Bio-inspired drivetrain

@@ -8,18 +8,18 @@ instruments, showcasing their unique capabilities, technical innovations,
 and musical characteristics with comprehensive technical explanations.
 """
 
-import sys
 import json
-import math
+import sys
 from pathlib import Path
-from typing import Dict, List, Tuple, Optional
+from typing import Dict, List
 
 # Add the src directory to the path
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
+from davinci_codex.artifacts import ensure_artifact_dir
 from davinci_codex.renaissance_music import (
     MechanicalEnsembleIntegrator,
-    RenaissanceCompositionGenerator
+    RenaissanceCompositionGenerator,
 )
 from davinci_codex.renaissance_music.models import (
     InstrumentType,
@@ -29,7 +29,6 @@ from davinci_codex.renaissance_music.models import (
     RenaissanceMode,
     Voice,
 )
-from davinci_codex.artifacts import ensure_artifact_dir
 
 
 class LeonardosMusicalWorkshop:
@@ -216,7 +215,7 @@ class LeonardosMusicalWorkshop:
         )
 
         # Create technical demonstration voice
-        voice = Voice(name=f"Technical Demonstration", instrument=instrument_type)
+        voice = Voice(name="Technical Demonstration", instrument=instrument_type)
 
         # Get instrument range from profile
         if instrument_type == InstrumentType.VIOLA_ORGANISTA:
@@ -263,7 +262,7 @@ class LeonardosMusicalWorkshop:
         )
 
         # Generate Renaissance-style music for the instrument
-        voice = Voice(name=f"Renaissance Performance", instrument=instrument_type)
+        voice = Voice(name="Renaissance Performance", instrument=instrument_type)
 
         # Generate appropriate notes for the instrument and form
         notes = self._generate_renaissance_notes(instrument_type, form, mode)
@@ -287,7 +286,7 @@ class LeonardosMusicalWorkshop:
             tempo_bpm=80.0
         )
 
-        voice = Voice(name=f"Extended Techniques", instrument=instrument_type)
+        voice = Voice(name="Extended Techniques", instrument=instrument_type)
 
         # Create extended technique demonstration
         notes = self._generate_extended_technique_notes(instrument_type)
@@ -539,7 +538,7 @@ class LeonardosMusicalWorkshop:
         melody = [440.00, 493.88, 523.25, 587.33, 659.25, 587.33, 523.25, 493.88]
         harmony = [220.00, 246.94, 261.63, 293.66, 329.63, 293.66, 261.63, 246.94]
 
-        for i, (mel_pitch, harm_pitch) in enumerate(zip(melody, harmony)):
+        for _i, (mel_pitch, harm_pitch) in enumerate(zip(melody, harmony)):
             # Melody note
             melody_note = Note(
                 pitch=mel_pitch,
@@ -707,7 +706,7 @@ class LeonardosMusicalWorkshop:
 
     def _analyze_acoustic_properties(self, instrument_type: InstrumentType) -> Dict:
         """Analyze acoustic properties of the instrument."""
-        profile = self.instrument_profiles[instrument_type]
+        self.instrument_profiles[instrument_type]
 
         # Simulate acoustic analysis based on instrument characteristics
         if instrument_type == InstrumentType.VIOLA_ORGANISTA:

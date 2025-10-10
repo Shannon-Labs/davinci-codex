@@ -8,18 +8,18 @@ Renaissance performance practice and Leonardo's mechanical instrument adaptation
 highlighting similarities, differences, and unique characteristics of each approach.
 """
 
-import sys
 import json
-import math
+import sys
 from pathlib import Path
-from typing import Dict, List, Tuple, Optional, Any
+from typing import Dict, List, Tuple
 
 # Add the src directory to the path
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
+from davinci_codex.artifacts import ensure_artifact_dir
 from davinci_codex.renaissance_music import (
     MechanicalEnsembleIntegrator,
-    RenaissanceCompositionGenerator
+    RenaissanceCompositionGenerator,
 )
 from davinci_codex.renaissance_music.models import (
     InstrumentType,
@@ -29,7 +29,6 @@ from davinci_codex.renaissance_music.models import (
     RenaissanceMode,
     Voice,
 )
-from davinci_codex.artifacts import ensure_artifact_dir
 
 
 class ComparativeAnalysisSystem:
@@ -529,7 +528,7 @@ class ComparativeAnalysisSystem:
 
         analysis = {}
 
-        for category in self.analysis_categories.keys():
+        for category in self.analysis_categories:
             hist_char = self.historical_characteristics[category]
             mech_char = self.mechanical_characteristics[category]
 
@@ -945,7 +944,7 @@ class ComparativeAnalysisSystem:
             report["analysis_pieces"][piece_name] = piece_analysis
 
         # Generate category summaries
-        for category in self.analysis_categories.keys():
+        for category in self.analysis_categories:
             category_summary = self._generate_category_summary(category, comparison_pieces)
             report["category_analyses"][category] = category_summary
 
@@ -975,7 +974,7 @@ class ComparativeAnalysisSystem:
         }
 
         # Add piece-specific observations
-        for piece_name in comparison_pieces.keys():
+        for piece_name in comparison_pieces:
             # This would be filled with actual analysis of each piece
             summary["piece_specific_observations"][piece_name] = f"Analysis of {category} in {piece_name}"
 

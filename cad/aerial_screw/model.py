@@ -15,7 +15,6 @@ Features:
 
 from __future__ import annotations
 
-import math
 from pathlib import Path
 from typing import Dict, List, Tuple
 
@@ -378,10 +377,7 @@ def generate_mesh(
         mesh_list.extend(supports)
 
     # Combine all meshes
-    if len(mesh_list) > 1:
-        assembly = trimesh.util.concatenate(mesh_list)
-    else:
-        assembly = blade_mesh
+    assembly = trimesh.util.concatenate(mesh_list) if len(mesh_list) > 1 else blade_mesh
 
     # Clean up mesh
     assembly.remove_duplicate_faces()

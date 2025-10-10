@@ -3,10 +3,10 @@
 from __future__ import annotations
 
 import json
+from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, List, Optional, Any, Union
-from dataclasses import dataclass, asdict
+from typing import Any, Dict, List
 
 from ..artifacts import ensure_artifact_dir
 
@@ -106,7 +106,7 @@ class InnovationPlatform:
             "resource_sharing"
         ]
 
-    def plan() -> Dict[str, object]:
+    def plan(self) -> Dict[str, object]:
         """Comprehensive platform architecture plan."""
         return {
             "platform_vision": {
@@ -641,7 +641,7 @@ class InnovationPlatform:
             new_project = InnovationProject(
                 project_id,
                 f"Project {len(self.projects) + i + 1}",
-                f"Innovation project addressing sustainability challenges",
+                "Innovation project addressing sustainability challenges",
                 "sustainable_cities",
                 "various_natural_systems",
                 "ideation",
@@ -692,10 +692,10 @@ class InnovationPlatform:
         if not self.users:
             return 0.0
 
-        active_users = len(self.users)  # Simplified - all users considered active in simulation
-        contributing_users = len(set(
-            [member for project in self.projects.values() for member in project.team_members]
-        ))
+        len(self.users)  # Simplified - all users considered active in simulation
+        contributing_users = len({
+            member for project in self.projects.values() for member in project.team_members
+        })
 
         return contributing_users / len(self.users) if self.users else 0.0
 
@@ -809,7 +809,6 @@ class InnovationPlatform:
 
         try:
             import matplotlib.pyplot as plt
-            import numpy as np
 
             # Growth visualization
             months = [m["month"] for m in monthly_metrics]
@@ -864,7 +863,7 @@ class InnovationPlatform:
             # Skip visualization if matplotlib not available
             pass
 
-    def build() -> None:
+    def build(self) -> None:
         """Build innovation platform framework artifacts."""
         artifacts_dir = ensure_artifact_dir(SLUG, subdir="platform_framework")
 
@@ -910,7 +909,7 @@ class InnovationPlatform:
         with features_path.open("w", encoding="utf-8") as f:
             json.dump(features, f, indent=2)
 
-    def evaluate() -> Dict[str, object]:
+    def evaluate(self) -> Dict[str, object]:
         """Evaluate innovation platform readiness and effectiveness."""
         return {
             "platform_readiness": {

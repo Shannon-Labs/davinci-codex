@@ -3,11 +3,11 @@
 from __future__ import annotations
 
 import json
-from datetime import datetime, timedelta
-from pathlib import Path
-from typing import Dict, List, Optional, Any, Union
-from dataclasses import dataclass, asdict
+from dataclasses import dataclass
+from datetime import datetime
 from enum import Enum
+from pathlib import Path
+from typing import Any, Dict, List, Optional
 
 from ..artifacts import ensure_artifact_dir
 
@@ -106,7 +106,7 @@ class StrategicPartnershipNetwork:
             "scalability_support": "Resources for scaling innovations globally"
         }
 
-    def plan() -> Dict[str, object]:
+    def plan(self) -> Dict[str, object]:
         """Comprehensive partnership network framework plan."""
         return {
             "network_vision": {
@@ -677,10 +677,7 @@ class StrategicPartnershipNetwork:
         """Simulate partnership network development for a specific quarter."""
 
         # New partner acquisition (2-4 partners per quarter after initial setup)
-        if quarter == 0:
-            new_partners = 5  # Initial setup
-        else:
-            new_partners = min(2 + (quarter // 3), 4)  # Gradually increasing
+        new_partners = 5 if quarter == 0 else min(2 + (quarter // 3), 4)  # Gradually increasing
 
         # New partnership formation (1-3 partnerships per quarter)
         new_partnerships = min(1 + (quarter // 4), 3)
@@ -800,7 +797,6 @@ class StrategicPartnershipNetwork:
 
         try:
             import matplotlib.pyplot as plt
-            import numpy as np
 
             # Growth visualization
             quarters = [m["quarter"] for m in quarterly_metrics]
@@ -855,7 +851,7 @@ class StrategicPartnershipNetwork:
             # Skip visualization if matplotlib not available
             pass
 
-    def build() -> None:
+    def build(self) -> None:
         """Build partnership network framework artifacts."""
         artifacts_dir = ensure_artifact_dir(SLUG, subdir="network_framework")
 
@@ -895,7 +891,7 @@ class StrategicPartnershipNetwork:
         with roadmap_path.open("w", encoding="utf-8") as f:
             json.dump(roadmap, f, indent=2)
 
-    def evaluate() -> Dict[str, object]:
+    def evaluate(self) -> Dict[str, object]:
         """Evaluate partnership network framework readiness and effectiveness."""
         return {
             "framework_readiness": {

@@ -418,7 +418,7 @@ class HelicalRotorAnalysis:
 
         # Convert to thrust and torque with positive orientation
         dr = 0.01  # Radial element width [m]
-        element_area = chord * dr
+        chord * dr
 
         # Ensure positive thrust contribution
         dT = abs(lift_per_span * dr * math.cos(inflow_angle) - drag_per_span * dr * math.sin(inflow_angle))
@@ -446,7 +446,6 @@ class HelicalRotorAnalysis:
         total_thrust = 0.0
         total_torque = 0.0
         total_power = 0.0
-        profile_power = 0.0
 
         # Radial integration points
         r_points = np.linspace(self.inner_radius, self.radius, 50)
@@ -599,7 +598,7 @@ def _plot_performance(path: Path, data: Dict[str, np.ndarray]) -> None:
         ax1.annotate(f'Hover: {hover_rpm:.0f} RPM',
                     xy=(hover_rpm, required_lift_kN),
                     xytext=(hover_rpm + 20, required_lift_kN + 0.2),
-                    arrowprops=dict(arrowstyle='->', color='gray', alpha=0.7))
+                    arrowprops={"arrowstyle": '->', "color": 'gray', "alpha": 0.7})
 
     ax1.set_xlabel("Rotor Speed (RPM)", fontsize=12)
     ax1.set_ylabel("Lift Force (kN)", fontsize=12, color="tab:blue")
@@ -611,7 +610,7 @@ def _plot_performance(path: Path, data: Dict[str, np.ndarray]) -> None:
 
     # Combined legend
     lines = thrust_line + power_line
-    labels = [l.get_label() for l in lines]
+    labels = [line.get_label() for line in lines]
     labels.extend(["Required Lift", "Human Sustainable Power", "4-Operator Power"])
     ax1.legend(lines + [plt.Line2D([0], [0], color="green", linestyle="--"),
                         plt.Line2D([0], [0], color="orange", linestyle=":"),
@@ -691,7 +690,7 @@ def _plot_performance(path: Path, data: Dict[str, np.ndarray]) -> None:
 
     ax7.text(0.05, 0.5, educational_text, transform=ax7.transAxes, fontsize=9,
              verticalalignment='center', fontfamily='monospace',
-             bbox=dict(boxstyle="round,pad=0.5", facecolor="lightgray", alpha=0.8))
+             bbox={"boxstyle": "round,pad=0.5", "facecolor": "lightgray", "alpha": 0.8})
 
     # Add Leonardo sketch annotation
     ax7.text(0.75, 0.8, "Original Codex Atlanticus Sketch", transform=ax7.transAxes,
@@ -981,7 +980,7 @@ def _create_educational_plots(path: Path, data: Dict[str, np.ndarray]) -> List[s
     r_points = np.linspace(ROTOR_INNER_RADIUS, ROTOR_RADIUS, 30)
 
     # Analyze at hover RPM
-    required_lift = (TARGET_PAYLOAD_MASS + STRUCTURE_MASS + ROTOR_BLADE_MASS) * GRAVITY
+    (TARGET_PAYLOAD_MASS + STRUCTURE_MASS + ROTOR_BLADE_MASS) * GRAVITY
     hover_rpm = 100  # Default for visualization
     thrust_distribution = []
     power_distribution = []
@@ -1116,12 +1115,12 @@ def evaluate() -> Dict[str, object]:
         hover_rpm = sim["rpm"][hover_rpm_idx[0]]
         hover_lift = float(sim["thrust"][hover_rpm_idx[0]])
         hover_power = float(np.interp(hover_rpm, sim["rpm"], sim["power"]))
-        hover_efficiency = float(np.interp(hover_rpm, sim["rpm"], sim["figure_of_merit"]))
+        float(np.interp(hover_rpm, sim["rpm"], sim["figure_of_merit"]))
     else:
         hover_rpm = None
         hover_lift = float(sim["thrust"].max())
         hover_power = float(sim["power"].max())
-        hover_efficiency = float(sim["figure_of_merit"].max())
+        float(sim["figure_of_merit"].max())
 
     # Reference performance at 100 RPM
     torque_at_100 = float(np.interp(100.0, sim["rpm"], sim["torque"]))
