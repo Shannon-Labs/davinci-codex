@@ -80,20 +80,48 @@ class CartParameters:
     escapement: EscapementProperties
 
 
-def _load_parameters() -> CartParameters:
+def get_spring_properties(material: str) -> SpringProperties:
+    """Returns the properties for a given spring material."""
+    materials = {
+        "high_carbon_steel": {
+            "k_linear": 32.0,
+            "k_cubic": 0.15,
+            "max_theta": 14.0,
+            "damping_coeff": 0.08,
+            "lamination_count": 12,
+        },
+        "bronze_spring": {
+            "k_linear": 25.0,
+            "k_cubic": 0.10,
+            "max_theta": 12.0,
+            "damping_coeff": 0.12,
+            "lamination_count": 10,
+        },
+        "advanced_renaissance_alloy": {
+            "k_linear": 45.0,
+            "k_cubic": 0.20,
+            "max_theta": 18.0,
+            "damping_coeff": 0.06,
+            "lamination_count": 15,
+        },
+        "modern_spring_steel": {
+            "k_linear": 60.0,
+            "k_cubic": 0.05,
+            "max_theta": 25.0,
+            "damping_coeff": 0.04,
+            "lamination_count": 20,
+        },
+    }
+    props = materials.get(material, materials["high_carbon_steel"])
+    return SpringProperties(material=material, **props)
+
+def _load_parameters(material: str = "high_carbon_steel") -> CartParameters:
     """Load parameters from YAML file with enhanced defaults for Leonardo's design."""
     with PARAM_FILE.open("r", encoding="utf-8") as stream:
         raw = yaml.safe_load(stream)
 
-    # Enhanced defaults based on historical analysis
-    spring_props = SpringProperties(
-        k_linear=raw.get("spring_k_Nm", 32.0),
-        k_cubic=raw.get("spring_k_cubic", 0.15),  # Nonlinear stiffening
-        max_theta=raw.get("spring_max_theta_rad", 14.0),
-        damping_coeff=raw.get("spring_damping", 0.08),
-        lamination_count=raw.get("spring_laminations", 12),
-        material="high_carbon_steel"
-    )
+    # Get spring properties for the specified material
+    spring_props = get_spring_properties(material)
 
     # Leonardo's multi-stage gear train based on Codex Atlanticus analysis
     gear_train = [

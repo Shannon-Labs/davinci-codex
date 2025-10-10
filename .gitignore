@@ -169,3 +169,15 @@ artifacts/*
 simulations/*/output/
 data/generated/
 *.log
+
+# Development tools
+.qoder/
+.benchmarks/
+
+# Analysis files (moved to artifacts/)
+material_selection_matrix.png
+vortex_ring_analysis.png
+cost_availability_analysis.txt
+materials_analysis_summary.txt
+renaissance_cost_analysis.txt
+renaissance_fabrication_guide.txt

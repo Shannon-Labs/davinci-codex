@@ -34,6 +34,7 @@ class ViolaParameters:
     wheel_surface_speed_m_per_s: float
     bow_contact_time_s: float
     key_velocity_profile: List[float]
+    bow_pressure_profile: List[float]
     note_sequence: List[int]
     bow_noise_std: float
 
@@ -133,10 +134,16 @@ def _simulate(params: ViolaParameters, seed: int) -> Dict[str, np.ndarray]:
     if key_profile.size != indices.size:
         key_profile = np.resize(key_profile, indices.size)
 
+    pressure_profile = np.asarray(params.bow_pressure_profile, dtype=float)
+    if pressure_profile.size == 0:
+        pressure_profile = np.ones_like(indices, dtype=float)
+    if pressure_profile.size != indices.size:
+        pressure_profile = np.resize(pressure_profile, indices.size)
+
     rng = np.random.default_rng(seed)
     noise = rng.normal(0.0, params.bow_noise_std, size=indices.size)
     ideal_frequency = fundamentals[indices]
-    amplitude = np.clip(key_profile * (1.0 + noise), 0.0, 1.5)
+    amplitude = np.clip(key_profile * pressure_profile * (1.0 + noise), 0.0, 1.5)
     time_axis = np.arange(indices.size, dtype=float) * params.bow_contact_time_s
     surface_speed = np.full_like(time_axis, params.wheel_surface_speed_m_per_s, dtype=float)
     return {

@@ -202,7 +202,7 @@ def demo(slug: Optional[str] = typer.Option(None, help="Slug of the invention to
 def sweep(
     slug: Optional[str] = typer.Option(None, help="Slug of the invention to sweep."),
     runs: int = typer.Option(5, help="Number of seeds to sample when explicit seeds are not provided."),
-    seed: Optional[List[int]] = typer.Option(None, "--seed", multiple=True, help="Explicit seed values to run."),
+    seed: Optional[List[int]] = typer.Option(None, "--seed", help="Explicit seed values to run."),
     fidelity: Optional[str] = typer.Option(None, help="Optional fidelity level."),
     label: Optional[str] = typer.Option(None, help="Optional label used for cache grouping."),
     reuse_cache: bool = typer.Option(True, help="Skip reruns when cached results are available."),

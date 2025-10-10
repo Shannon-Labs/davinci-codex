@@ -319,6 +319,28 @@ def _wake_capture_effect(circulation_history: np.ndarray,
     return induced_velocity
 
 
+def _calculate_porosity_factor(stroke_velocity: float) -> float:
+    """
+    Calculate the wing porosity factor based on stroke direction.
+
+    This simulates feathers separating on the upstroke (high porosity)
+    and sealing on the downstroke (low porosity).
+
+    Args:
+        stroke_velocity: The vertical velocity of the wing.
+
+    Returns:
+        A porosity factor between 0.0 (sealed) and 0.8 (porous).
+    """
+    # Upstroke (positive velocity) should have high porosity
+    if stroke_velocity > 0:
+        # Feathers separate to let air through
+        return 0.7
+    # Downstroke (negative velocity) should have low porosity
+    else:
+        # Feathers are sealed
+        return 0.1
+
 def _calculate_unsteady_forces(kinematics: Dict[str, float],
                               membrane_def: float,
                               circulation_history: np.ndarray,
@@ -397,6 +419,15 @@ def _calculate_unsteady_forces(kinematics: Dict[str, float],
     # Forces
     lift = q * params.wing_area_m2 * cl_total
 
+    # Profile drag (including unsteady effects)
+    cd0 = 0.02 + 0.05 * abs(cl_total)**2  # Polar drag
+    drag = q * params.wing_area_m2 * cd0
+
+    # Apply porosity effect
+    porosity_factor = _calculate_porosity_factor(kinematics['stroke_velocity'])
+    lift *= (1.0 - porosity_factor)
+    drag *= (1.0 - porosity_factor)
+
     # Thrust from stroke plane inclination and forward component
     stroke_plane_tilt = params.kinematics.stroke_plane_angle
     stroke_thrust = lift * np.sin(stroke_plane_tilt) * np.sign(kinematics['stroke_velocity'])
@@ -404,10 +435,6 @@ def _calculate_unsteady_forces(kinematics: Dict[str, float],
     # Additional thrust from wing rotation timing
     rotation_thrust = 0.1 * lift * kinematics['rotation_velocity'] * np.sign(kinematics['stroke_velocity'])
     thrust = stroke_thrust + rotation_thrust
-
-    # Profile drag (including unsteady effects)
-    cd0 = 0.02 + 0.05 * abs(cl_total)**2  # Polar drag
-    drag = q * params.wing_area_m2 * cd0
 
     # Bound circulation (Kutta-Joukowski theorem)
     circulation = lift / (RHO_AIR * v_effective * params.wing_span_m) if v_effective > 0.1 else 0.0
@@ -1081,7 +1108,7 @@ def simulate(seed: int = 0) -> Dict[str, object]:
             "power_loading_w_per_n": avg_power / gross_weight if gross_weight > 0 else 0.0,
         },
         "educational_insights": {
-            "unsteady_effects_significant": reduced_frequency > 0.3,
+            "unsteady_effects_significant": bool(reduced_frequency > 0.3),
             "bio_mimicry_achievements": [
                 "Figure-8 wing trajectory for optimal lift-thrust balance",
                 "Elastic membrane enabling adaptive camber control",
