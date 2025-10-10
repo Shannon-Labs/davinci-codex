@@ -191,18 +191,16 @@ def main():
                 print(f"  Suggested fix: {possible_fix}")
             print()
     
-    # Check a sample of external links (to avoid making too many requests)
-    print("\n=== EXTERNAL LINKS (SAMPLE CHECK) ===")
-    sample_size = min(10, len(all_external_links))
-    checked_count = 0
+    # Check all external links
+    print("\n=== EXTERNAL LINKS ===")
     
     for i, link in enumerate(all_external_links):
-        if checked_count >= sample_size:
-            break
-            
-        print(f"Checking: {link['link']}")
+        print(f"Checking ({i+1}/{len(all_external_links)}): {link['link']}")
         is_valid, status = check_external_link(link['link'])
         
+        link['checked'] = True
+        link['status'] = status
+
         if not is_valid:
             dead_external_links.append({
                 'file': link['file'],
@@ -213,8 +211,6 @@ def main():
             print(f"  [X] DEAD: {status}")
         else:
             print(f"  [OK]")
-        
-        checked_count += 1
     
     # Save detailed results to JSON
     results = {

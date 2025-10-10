@@ -307,7 +307,7 @@ We welcome contributions from engineers, historians, educators, and enthusiasts 
 ### 💬 Get in Touch
 
 - **GitHub Issues** - [Report bugs or request features](https://github.com/Shannon-Labs/davinci-codex/issues)
-- **GitHub Discussions** - [Community forum](https://github.com/Shannon-Labs/davinci-codex/discussions)
+- **GitHub Issues** - [Community forum](https://github.com/Shannon-Labs/davinci-codex/issues)
 - **Email** - hunter@shannonlabs.dev
 - **Project Website** - https://shannon-labs.github.io/davinci-codex/
 

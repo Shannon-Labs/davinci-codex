@@ -1,67 +1,26 @@
 {
   "summary": {
-    "total_files": 89,
-    "total_internal_links": 154,
-    "total_external_links": 59,
-    "dead_internal_links": 2,
-    "dead_external_links": 1
+    "total_files": 90,
+    "total_internal_links": 152,
+    "total_external_links": 58,
+    "dead_internal_links": 0,
+    "dead_external_links": 0
   },
-  "dead_internal_links": [
-    {
-      "file": "dead_links_report.md",
-      "line": 17,
-      "link": "README.md:20",
-      "resolved_path": "README.md:20"
-    },
-    {
-      "file": "dead_links_report.md",
-      "line": 30,
-      "link": "CONTRIBUTING.md:179",
-      "resolved_path": "CONTRIBUTING.md:179"
-    }
-  ],
-  "dead_external_links": [
-    {
-      "file": "CONTRIBUTING.md",
-      "line": 179,
-      "link": "https://github.com/Shannon-Labs/davinci-codex/discussions",
-      "error": "HTTP 404"
-    }
-  ],
+  "dead_internal_links": [],
+  "dead_external_links": [],
   "all_internal_links": [
-    {
-      "file": "dead_links_report.md",
-      "line": 17,
-      "link": "README.md:20",
-      "resolved_path": "README.md:20",
-      "exists": false
-    },
-    {
-      "file": "dead_links_report.md",
-      "line": 30,
-      "link": "CONTRIBUTING.md:179",
-      "resolved_path": "CONTRIBUTING.md:179",
-      "exists": false
-    },
-    {
-      "file": "dead_links_report.md",
-      "line": 73,
-      "link": "link_check_results.json",
-      "resolved_path": "link_check_results.json",
-      "exists": true
-    },
     {
       "file": "README.md",
       "line": 20,
       "link": "showcase/index.md",
-      "resolved_path": "showcase\\index.md",
+      "resolved_path": "showcase/index.md",
       "exists": true
     },
     {
       "file": "README.md",
       "line": 20,
       "link": "docs/index.md",
-      "resolved_path": "docs\\index.md",
+      "resolved_path": "docs/index.md",
       "exists": true
     },
     {
@@ -89,112 +48,112 @@
       "file": "README.md",
       "line": 47,
       "link": "showcase/musical_instruments.md#1-viola-organista---the-bowed-keyboard",
-      "resolved_path": "showcase\\musical_instruments.md",
+      "resolved_path": "showcase/musical_instruments.md",
       "exists": true
     },
     {
       "file": "README.md",
       "line": 48,
       "link": "showcase/musical_instruments.md#7-mechanical-ensemble---the-orchestra",
-      "resolved_path": "showcase\\musical_instruments.md",
+      "resolved_path": "showcase/musical_instruments.md",
       "exists": true
     },
     {
       "file": "README.md",
       "line": 49,
       "link": "showcase/musical_instruments.md#4-mechanical-trumpeter---automated-fanfares",
-      "resolved_path": "showcase\\musical_instruments.md",
+      "resolved_path": "showcase/musical_instruments.md",
       "exists": true
     },
     {
       "file": "README.md",
       "line": 50,
       "link": "showcase/musical_instruments.md",
-      "resolved_path": "showcase\\musical_instruments.md",
+      "resolved_path": "showcase/musical_instruments.md",
       "exists": true
     },
     {
       "file": "README.md",
       "line": 52,
       "link": "showcase/musical_instruments.md",
-      "resolved_path": "showcase\\musical_instruments.md",
+      "resolved_path": "showcase/musical_instruments.md",
       "exists": true
     },
     {
       "file": "README.md",
       "line": 58,
       "link": "showcase/index.md",
-      "resolved_path": "showcase\\index.md",
+      "resolved_path": "showcase/index.md",
       "exists": true
     },
     {
       "file": "README.md",
       "line": 62,
       "link": "showcase/musical_instruments.md",
-      "resolved_path": "showcase\\musical_instruments.md",
+      "resolved_path": "showcase/musical_instruments.md",
       "exists": true
     },
     {
       "file": "README.md",
       "line": 63,
       "link": "showcase/flight_inventions.md",
-      "resolved_path": "showcase\\flight_inventions.md",
+      "resolved_path": "showcase/flight_inventions.md",
       "exists": true
     },
     {
       "file": "README.md",
       "line": 64,
       "link": "showcase/mechanical_inventions.md",
-      "resolved_path": "showcase\\mechanical_inventions.md",
+      "resolved_path": "showcase/mechanical_inventions.md",
       "exists": true
     },
     {
       "file": "README.md",
       "line": 94,
       "link": "docs/images/ornithopter_lift.png",
-      "resolved_path": "docs\\images\\ornithopter_lift.png",
+      "resolved_path": "docs/images/ornithopter_lift.png",
       "exists": true
     },
     {
       "file": "README.md",
       "line": 94,
       "link": "docs/images/parachute_descent.png",
-      "resolved_path": "docs\\images\\parachute_descent.png",
+      "resolved_path": "docs/images/parachute_descent.png",
       "exists": true
     },
     {
       "file": "README.md",
       "line": 101,
       "link": "docs/images/aerial_screw_performance.png",
-      "resolved_path": "docs\\images\\aerial_screw_performance.png",
+      "resolved_path": "docs/images/aerial_screw_performance.png",
       "exists": true
     },
     {
       "file": "README.md",
       "line": 101,
       "link": "docs/images/cart_motion.png",
-      "resolved_path": "docs\\images\\cart_motion.png",
+      "resolved_path": "docs/images/cart_motion.png",
       "exists": true
     },
     {
       "file": "README.md",
       "line": 108,
       "link": "docs/images/odometer_error.png",
-      "resolved_path": "docs\\images\\odometer_error.png",
+      "resolved_path": "docs/images/odometer_error.png",
       "exists": true
     },
     {
       "file": "README.md",
       "line": 117,
       "link": "docs/book/physics/index.md",
-      "resolved_path": "docs\\book\\physics\\index.md",
+      "resolved_path": "docs/book/physics/index.md",
       "exists": true
     },
     {
       "file": "README.md",
       "line": 135,
       "link": "docs/images/material_comparisons.png",
-      "resolved_path": "docs\\images\\material_comparisons.png",
+      "resolved_path": "docs/images/material_comparisons.png",
       "exists": true
     },
     {
@@ -219,892 +178,899 @@
       "exists": true
     },
     {
-      "file": "docs\\index.md",
-      "line": 27,
-      "link": "parachute_safety_dossier.md",
-      "resolved_path": "docs\\parachute_safety_dossier.md",
+      "file": "dead_links_report.md",
+      "line": 82,
+      "link": "link_check_results.json",
+      "resolved_path": "link_check_results.json",
       "exists": true
     },
     {
-      "file": "docs\\index.md",
-      "line": 28,
-      "link": "revolving_bridge.md",
-      "resolved_path": "docs\\revolving_bridge.md",
-      "exists": true
-    },
-    {
-      "file": "docs\\index.md",
-      "line": 29,
-      "link": "ornithopter_validation.md",
-      "resolved_path": "docs\\ornithopter_validation.md",
-      "exists": true
-    },
-    {
-      "file": "docs\\index.md",
-      "line": 35,
-      "link": "aerial_screw.md",
-      "resolved_path": "docs\\aerial_screw.md",
-      "exists": true
-    },
-    {
-      "file": "docs\\index.md",
-      "line": 36,
-      "link": "self_propelled_cart.md",
-      "resolved_path": "docs\\self_propelled_cart.md",
-      "exists": true
-    },
-    {
-      "file": "docs\\index.md",
-      "line": 37,
-      "link": "mechanical_odometer.md",
-      "resolved_path": "docs\\mechanical_odometer.md",
-      "exists": true
-    },
-    {
-      "file": "docs\\index.md",
-      "line": 38,
-      "link": "parachute.md",
-      "resolved_path": "docs\\parachute.md",
-      "exists": true
-    },
-    {
-      "file": "docs\\index.md",
-      "line": 38,
-      "link": "parachute_safety_dossier.md",
-      "resolved_path": "docs\\parachute_safety_dossier.md",
-      "exists": true
-    },
-    {
-      "file": "docs\\index.md",
-      "line": 39,
-      "link": "revolving_bridge.md",
-      "resolved_path": "docs\\revolving_bridge.md",
-      "exists": true
-    },
-    {
-      "file": "docs\\index.md",
-      "line": 40,
-      "link": "ornithopter.md",
-      "resolved_path": "docs\\ornithopter.md",
-      "exists": true
-    },
-    {
-      "file": "docs\\index.md",
-      "line": 40,
-      "link": "ornithopter_validation.md",
-      "resolved_path": "docs\\ornithopter_validation.md",
-      "exists": true
-    },
-    {
-      "file": "docs\\index.md",
-      "line": 73,
-      "link": "mechanical_drum.md",
-      "resolved_path": "docs\\mechanical_drum.md",
-      "exists": true
-    },
-    {
-      "file": "docs\\index.md",
-      "line": 74,
-      "link": "mechanical_carillon.md",
-      "resolved_path": "docs\\mechanical_carillon.md",
-      "exists": true
-    },
-    {
-      "file": "docs\\index.md",
-      "line": 75,
-      "link": "mechanical_trumpeter.md",
-      "resolved_path": "docs\\mechanical_trumpeter.md",
-      "exists": true
-    },
-    {
-      "file": "docs\\index.md",
-      "line": 76,
-      "link": "mechanical_ensemble.md",
-      "resolved_path": "docs\\mechanical_ensemble.md",
-      "exists": true
-    },
-    {
-      "file": "docs\\index.md",
-      "line": 77,
-      "link": "mechanical_organ.md",
-      "resolved_path": "docs\\mechanical_organ.md",
-      "exists": true
-    },
-    {
-      "file": "docs\\index.md",
-      "line": 78,
-      "link": "viola_organista.md",
-      "resolved_path": "docs\\viola_organista.md",
-      "exists": true
-    },
-    {
-      "file": "docs\\index.md",
-      "line": 79,
-      "link": "programmable_flute.md",
-      "resolved_path": "docs\\programmable_flute.md",
-      "exists": true
-    },
-    {
-      "file": "docs\\mechanical_carillon.md",
-      "line": 26,
-      "link": "../src/davinci_codex/inventions/mechanical_carillon.py",
-      "resolved_path": "src\\davinci_codex\\inventions\\mechanical_carillon.py",
-      "exists": true
-    },
-    {
-      "file": "docs\\mechanical_drum.md",
-      "line": 25,
-      "link": "../src/davinci_codex/inventions/mechanical_drum.py",
-      "resolved_path": "src\\davinci_codex\\inventions\\mechanical_drum.py",
-      "exists": true
-    },
-    {
-      "file": "docs\\mechanical_ensemble.md",
-      "line": 30,
-      "link": "../src/davinci_codex/inventions/mechanical_ensemble.py",
-      "resolved_path": "src\\davinci_codex\\inventions\\mechanical_ensemble.py",
-      "exists": true
-    },
-    {
-      "file": "docs\\mechanical_odometer.md",
-      "line": 33,
-      "link": "../validation/mechanical_odometer_contact",
-      "resolved_path": "validation\\mechanical_odometer_contact",
-      "exists": true
-    },
-    {
-      "file": "docs\\mechanical_odometer.md",
-      "line": 43,
-      "link": "images/odometer_slip_profiles.png",
-      "resolved_path": "docs\\images\\odometer_slip_profiles.png",
-      "exists": true
-    },
-    {
-      "file": "docs\\mechanical_organ.md",
-      "line": 26,
-      "link": "../src/davinci_codex/inventions/mechanical_organ.py",
-      "resolved_path": "src\\davinci_codex\\inventions\\mechanical_organ.py",
-      "exists": true
-    },
-    {
-      "file": "docs\\mechanical_trumpeter.md",
-      "line": 26,
-      "link": "../src/davinci_codex/inventions/mechanical_trumpeter.py",
-      "resolved_path": "src\\davinci_codex\\inventions\\mechanical_trumpeter.py",
-      "exists": true
-    },
-    {
-      "file": "docs\\ornithopter.md",
-      "line": 3,
-      "link": "ornithopter_validation.md",
-      "resolved_path": "docs\\ornithopter_validation.md",
-      "exists": true
-    },
-    {
-      "file": "docs\\ornithopter_validation.md",
-      "line": 11,
-      "link": "images/ornithopter_lift.png",
-      "resolved_path": "docs\\images\\ornithopter_lift.png",
-      "exists": true
-    },
-    {
-      "file": "docs\\parachute.md",
-      "line": 3,
-      "link": "parachute_safety_dossier.md",
-      "resolved_path": "docs\\parachute_safety_dossier.md",
-      "exists": true
-    },
-    {
-      "file": "docs\\parachute.md",
-      "line": 80,
-      "link": "images/parachute_drop_profiles.png",
-      "resolved_path": "docs\\images\\parachute_drop_profiles.png",
-      "exists": true
-    },
-    {
-      "file": "docs\\parachute.md",
-      "line": 83,
-      "link": "../validation/parachute_drop",
-      "resolved_path": "validation\\parachute_drop",
-      "exists": true
-    },
-    {
-      "file": "docs\\programmable_flute.md",
-      "line": 26,
-      "link": "../src/davinci_codex/inventions/programmable_flute.py",
-      "resolved_path": "src\\davinci_codex\\inventions\\programmable_flute.py",
-      "exists": true
-    },
-    {
-      "file": "docs\\revolving_bridge.md",
-      "line": 12,
-      "link": "images/revolving_bridge/stress_deflection.png",
-      "resolved_path": "docs\\images\\revolving_bridge\\stress_deflection.png",
-      "exists": true
-    },
-    {
-      "file": "docs\\revolving_bridge.md",
-      "line": 13,
-      "link": "images/revolving_bridge/rotation_torque.png",
-      "resolved_path": "docs\\images\\revolving_bridge\\rotation_torque.png",
-      "exists": true
-    },
-    {
-      "file": "docs\\revolving_bridge.md",
-      "line": 14,
-      "link": "images/revolving_bridge/stability_margin.png",
-      "resolved_path": "docs\\images\\revolving_bridge\\stability_margin.png",
-      "exists": true
-    },
-    {
-      "file": "docs\\viola_organista.md",
-      "line": 26,
-      "link": "../src/davinci_codex/inventions/viola_organista.py",
-      "resolved_path": "src\\davinci_codex\\inventions\\viola_organista.py",
-      "exists": true
-    },
-    {
-      "file": "docs\\book\\physics\\index.md",
-      "line": 27,
-      "link": "unsteady_aero.md",
-      "resolved_path": "docs\\book\\physics\\unsteady_aero.md",
-      "exists": true
-    },
-    {
-      "file": "docs\\book\\physics\\index.md",
-      "line": 28,
-      "link": "gear_bending.md",
-      "resolved_path": "docs\\book\\physics\\gear_bending.md",
-      "exists": true
-    },
-    {
-      "file": "docs\\book\\physics\\index.md",
-      "line": 29,
-      "link": "tribology.md",
-      "resolved_path": "docs\\book\\physics\\tribology.md",
-      "exists": true
-    },
-    {
-      "file": "docs\\book\\simulator\\index.md",
-      "line": 11,
-      "link": "ornithopter.html",
-      "resolved_path": "docs\\book\\simulator\\ornithopter.html",
-      "exists": true
-    },
-    {
-      "file": "docs\\physics\\index.md",
-      "line": 5,
-      "link": "unsteady_aero.md",
-      "resolved_path": "docs\\physics\\unsteady_aero.md",
-      "exists": true
-    },
-    {
-      "file": "docs\\physics\\index.md",
-      "line": 6,
-      "link": "gear_bending.md",
-      "resolved_path": "docs\\physics\\gear_bending.md",
-      "exists": true
-    },
-    {
-      "file": "docs\\physics\\index.md",
-      "line": 7,
-      "link": "tribology.md",
-      "resolved_path": "docs\\physics\\tribology.md",
-      "exists": true
-    },
-    {
-      "file": "showcase\\flight_inventions.md",
-      "line": 89,
-      "link": "../docs/ornithopter.md",
-      "resolved_path": "docs\\ornithopter.md",
-      "exists": true
-    },
-    {
-      "file": "showcase\\flight_inventions.md",
-      "line": 89,
-      "link": "../sims/ornithopter/",
-      "resolved_path": "sims\\ornithopter",
-      "exists": true
-    },
-    {
-      "file": "showcase\\flight_inventions.md",
-      "line": 89,
-      "link": "../cad/ornithopter/model.py",
-      "resolved_path": "cad\\ornithopter\\model.py",
-      "exists": true
-    },
-    {
-      "file": "showcase\\flight_inventions.md",
-      "line": 143,
-      "link": "../docs/parachute.md",
-      "resolved_path": "docs\\parachute.md",
-      "exists": true
-    },
-    {
-      "file": "showcase\\flight_inventions.md",
-      "line": 143,
-      "link": "../docs/parachute_safety_dossier.md",
-      "resolved_path": "docs\\parachute_safety_dossier.md",
-      "exists": true
-    },
-    {
-      "file": "showcase\\flight_inventions.md",
-      "line": 143,
-      "link": "../tva/parachute/data/drop_profiles.csv",
-      "resolved_path": "tva\\parachute\\data\\drop_profiles.csv",
-      "exists": true
-    },
-    {
-      "file": "showcase\\flight_inventions.md",
-      "line": 187,
-      "link": "../docs/aerial_screw.md",
-      "resolved_path": "docs\\aerial_screw.md",
-      "exists": true
-    },
-    {
-      "file": "showcase\\flight_inventions.md",
-      "line": 187,
-      "link": "../sims/aerial_screw/parameters.yaml",
-      "resolved_path": "sims\\aerial_screw\\parameters.yaml",
-      "exists": true
-    },
-    {
-      "file": "showcase\\flight_inventions.md",
-      "line": 187,
-      "link": "../cad/aerial_screw/model.py",
-      "resolved_path": "cad\\aerial_screw\\model.py",
-      "exists": true
-    },
-    {
-      "file": "showcase\\flight_inventions.md",
-      "line": 322,
-      "link": "../docs/ornithopter.md",
-      "resolved_path": "docs\\ornithopter.md",
-      "exists": true
-    },
-    {
-      "file": "showcase\\flight_inventions.md",
-      "line": 323,
-      "link": "../docs/parachute_safety_dossier.md",
-      "resolved_path": "docs\\parachute_safety_dossier.md",
-      "exists": true
-    },
-    {
-      "file": "showcase\\flight_inventions.md",
-      "line": 324,
-      "link": "../docs/aerial_screw.md",
-      "resolved_path": "docs\\aerial_screw.md",
-      "exists": true
-    },
-    {
-      "file": "showcase\\flight_inventions.md",
-      "line": 328,
-      "link": "../src/davinci_codex/inventions/",
-      "resolved_path": "src\\davinci_codex\\inventions",
-      "exists": true
-    },
-    {
-      "file": "showcase\\flight_inventions.md",
-      "line": 329,
-      "link": "../validation/",
-      "resolved_path": "validation",
-      "exists": true
-    },
-    {
-      "file": "showcase\\flight_inventions.md",
-      "line": 330,
-      "link": "../artifacts/",
-      "resolved_path": "artifacts",
-      "exists": true
-    },
-    {
-      "file": "showcase\\flight_inventions.md",
-      "line": 334,
-      "link": "../PROVENANCE/",
-      "resolved_path": "PROVENANCE",
-      "exists": true
-    },
-    {
-      "file": "showcase\\flight_inventions.md",
-      "line": 335,
-      "link": "../anima/",
-      "resolved_path": "anima",
-      "exists": true
-    },
-    {
-      "file": "showcase\\flight_inventions.md",
-      "line": 336,
-      "link": "../materials/",
-      "resolved_path": "materials",
-      "exists": true
-    },
-    {
-      "file": "showcase\\flight_inventions.md",
-      "line": 345,
-      "link": "index.md",
-      "resolved_path": "showcase\\index.md",
-      "exists": true
-    },
-    {
-      "file": "showcase\\flight_inventions.md",
-      "line": 345,
-      "link": "musical_instruments.md",
-      "resolved_path": "showcase\\musical_instruments.md",
-      "exists": true
-    },
-    {
-      "file": "showcase\\flight_inventions.md",
-      "line": 345,
-      "link": "mechanical_inventions.md",
-      "resolved_path": "showcase\\mechanical_inventions.md",
-      "exists": true
-    },
-    {
-      "file": "showcase\\index.md",
-      "line": 38,
-      "link": "../CONTRIBUTING.md",
-      "resolved_path": "CONTRIBUTING.md",
-      "exists": true
-    },
-    {
-      "file": "showcase\\index.md",
-      "line": 97,
-      "link": "musical_instruments.md",
-      "resolved_path": "showcase\\musical_instruments.md",
-      "exists": true
-    },
-    {
-      "file": "showcase\\index.md",
-      "line": 118,
-      "link": "flight_inventions.md",
-      "resolved_path": "showcase\\flight_inventions.md",
-      "exists": true
-    },
-    {
-      "file": "showcase\\index.md",
-      "line": 140,
-      "link": "mechanical_inventions.md",
-      "resolved_path": "showcase\\mechanical_inventions.md",
-      "exists": true
-    },
-    {
-      "file": "showcase\\index.md",
-      "line": 320,
-      "link": "../LICENSE",
-      "resolved_path": "LICENSE",
-      "exists": true
-    },
-    {
-      "file": "showcase\\index.md",
-      "line": 321,
-      "link": "../LICENSE-CC0",
-      "resolved_path": "LICENSE-CC0",
-      "exists": true
-    },
-    {
-      "file": "showcase\\mechanical_inventions.md",
-      "line": 96,
-      "link": "../docs/self_propelled_cart.md",
-      "resolved_path": "docs\\self_propelled_cart.md",
-      "exists": true
-    },
-    {
-      "file": "showcase\\mechanical_inventions.md",
-      "line": 96,
-      "link": "../sims/cart/rolling_loss.py",
-      "resolved_path": "sims\\cart\\rolling_loss.py",
-      "exists": true
-    },
-    {
-      "file": "showcase\\mechanical_inventions.md",
-      "line": 96,
-      "link": "../cad/self_propelled_cart/model.py",
-      "resolved_path": "cad\\self_propelled_cart\\model.py",
-      "exists": true
-    },
-    {
-      "file": "showcase\\mechanical_inventions.md",
-      "line": 146,
-      "link": "../docs/mechanical_odometer.md",
-      "resolved_path": "docs\\mechanical_odometer.md",
-      "exists": true
-    },
-    {
-      "file": "showcase\\mechanical_inventions.md",
-      "line": 146,
-      "link": "../tva/mechanical_odometer/data/slip_characterisation.csv",
-      "resolved_path": "tva\\mechanical_odometer\\data\\slip_characterisation.csv",
-      "exists": true
-    },
-    {
-      "file": "showcase\\mechanical_inventions.md",
-      "line": 146,
-      "link": "../cad/mechanical_odometer/model.py",
-      "resolved_path": "cad\\mechanical_odometer\\model.py",
-      "exists": true
-    },
-    {
-      "file": "showcase\\mechanical_inventions.md",
-      "line": 197,
-      "link": "../docs/revolving_bridge.md",
-      "resolved_path": "docs\\revolving_bridge.md",
-      "exists": true
-    },
-    {
-      "file": "showcase\\mechanical_inventions.md",
-      "line": 197,
-      "link": "../sims/revolving_bridge/rotation_profile.py",
-      "resolved_path": "sims\\revolving_bridge\\rotation_profile.py",
-      "exists": true
-    },
-    {
-      "file": "showcase\\mechanical_inventions.md",
-      "line": 197,
-      "link": "../cad/revolving_bridge/model.py",
-      "resolved_path": "cad\\revolving_bridge\\model.py",
-      "exists": true
-    },
-    {
-      "file": "showcase\\mechanical_inventions.md",
-      "line": 234,
-      "link": "../docs/aerial_screw.md",
-      "resolved_path": "docs\\aerial_screw.md",
-      "exists": true
-    },
-    {
-      "file": "showcase\\mechanical_inventions.md",
-      "line": 234,
-      "link": "../sims/aerial_screw/parameters.yaml",
-      "resolved_path": "sims\\aerial_screw\\parameters.yaml",
-      "exists": true
-    },
-    {
-      "file": "showcase\\mechanical_inventions.md",
-      "line": 234,
-      "link": "../cad/aerial_screw/model.py",
-      "resolved_path": "cad\\aerial_screw\\model.py",
-      "exists": true
-    },
-    {
-      "file": "showcase\\mechanical_inventions.md",
-      "line": 371,
-      "link": "../docs/self_propelled_cart.md",
-      "resolved_path": "docs\\self_propelled_cart.md",
-      "exists": true
-    },
-    {
-      "file": "showcase\\mechanical_inventions.md",
-      "line": 372,
-      "link": "../docs/mechanical_odometer.md",
-      "resolved_path": "docs\\mechanical_odometer.md",
-      "exists": true
-    },
-    {
-      "file": "showcase\\mechanical_inventions.md",
-      "line": 373,
-      "link": "../docs/revolving_bridge.md",
-      "resolved_path": "docs\\revolving_bridge.md",
-      "exists": true
-    },
-    {
-      "file": "showcase\\mechanical_inventions.md",
-      "line": 374,
-      "link": "../docs/aerial_screw.md",
-      "resolved_path": "docs\\aerial_screw.md",
-      "exists": true
-    },
-    {
-      "file": "showcase\\mechanical_inventions.md",
-      "line": 378,
-      "link": "../src/davinci_codex/inventions/",
-      "resolved_path": "src\\davinci_codex\\inventions",
-      "exists": true
-    },
-    {
-      "file": "showcase\\mechanical_inventions.md",
-      "line": 379,
-      "link": "../artifacts/",
-      "resolved_path": "artifacts",
-      "exists": true
-    },
-    {
-      "file": "showcase\\mechanical_inventions.md",
-      "line": 380,
-      "link": "../validation/",
-      "resolved_path": "validation",
-      "exists": true
-    },
-    {
-      "file": "showcase\\mechanical_inventions.md",
-      "line": 384,
-      "link": "../PROVENANCE/",
-      "resolved_path": "PROVENANCE",
-      "exists": true
-    },
-    {
-      "file": "showcase\\mechanical_inventions.md",
-      "line": 385,
-      "link": "../materials/",
-      "resolved_path": "materials",
-      "exists": true
-    },
-    {
-      "file": "showcase\\mechanical_inventions.md",
-      "line": 386,
-      "link": "../anima/",
-      "resolved_path": "anima",
-      "exists": true
-    },
-    {
-      "file": "showcase\\mechanical_inventions.md",
-      "line": 395,
-      "link": "index.md",
-      "resolved_path": "showcase\\index.md",
-      "exists": true
-    },
-    {
-      "file": "showcase\\mechanical_inventions.md",
-      "line": 395,
-      "link": "musical_instruments.md",
-      "resolved_path": "showcase\\musical_instruments.md",
-      "exists": true
-    },
-    {
-      "file": "showcase\\mechanical_inventions.md",
-      "line": 395,
-      "link": "flight_inventions.md",
-      "resolved_path": "showcase\\flight_inventions.md",
-      "exists": true
-    },
-    {
-      "file": "showcase\\musical_instruments.md",
-      "line": 65,
-      "link": "../docs/viola_organista.md",
-      "resolved_path": "docs\\viola_organista.md",
-      "exists": true
-    },
-    {
-      "file": "showcase\\musical_instruments.md",
-      "line": 65,
-      "link": "../cad/viola_organista/model.py",
-      "resolved_path": "cad\\viola_organista\\model.py",
-      "exists": true
-    },
-    {
-      "file": "showcase\\musical_instruments.md",
-      "line": 84,
-      "link": "../docs/mechanical_drum.md",
-      "resolved_path": "docs\\mechanical_drum.md",
-      "exists": true
-    },
-    {
-      "file": "showcase\\musical_instruments.md",
-      "line": 84,
-      "link": "../cad/mechanical_drum/model.py",
-      "resolved_path": "cad\\mechanical_drum\\model.py",
-      "exists": true
-    },
-    {
-      "file": "showcase\\musical_instruments.md",
-      "line": 103,
-      "link": "../docs/mechanical_carillon.md",
-      "resolved_path": "docs\\mechanical_carillon.md",
-      "exists": true
-    },
-    {
-      "file": "showcase\\musical_instruments.md",
-      "line": 103,
-      "link": "../cad/mechanical_carillon/model.py",
-      "resolved_path": "cad\\mechanical_carillon\\model.py",
-      "exists": true
-    },
-    {
-      "file": "showcase\\musical_instruments.md",
-      "line": 122,
-      "link": "../docs/mechanical_trumpeter.md",
-      "resolved_path": "docs\\mechanical_trumpeter.md",
-      "exists": true
-    },
-    {
-      "file": "showcase\\musical_instruments.md",
-      "line": 122,
-      "link": "../cad/mechanical_trumpeter/model.py",
-      "resolved_path": "cad\\mechanical_trumpeter\\model.py",
-      "exists": true
-    },
-    {
-      "file": "showcase\\musical_instruments.md",
-      "line": 141,
-      "link": "../docs/programmable_flute.md",
-      "resolved_path": "docs\\programmable_flute.md",
-      "exists": true
-    },
-    {
-      "file": "showcase\\musical_instruments.md",
-      "line": 141,
-      "link": "../cad/programmable_flute/model.py",
-      "resolved_path": "cad\\programmable_flute\\model.py",
-      "exists": true
-    },
-    {
-      "file": "showcase\\musical_instruments.md",
-      "line": 160,
-      "link": "../docs/mechanical_organ.md",
-      "resolved_path": "docs\\mechanical_organ.md",
-      "exists": true
-    },
-    {
-      "file": "showcase\\musical_instruments.md",
-      "line": 160,
-      "link": "../cad/mechanical_organ/model.py",
-      "resolved_path": "cad\\mechanical_organ\\model.py",
-      "exists": true
-    },
-    {
-      "file": "showcase\\musical_instruments.md",
-      "line": 179,
-      "link": "../docs/mechanical_ensemble.md",
-      "resolved_path": "docs\\mechanical_ensemble.md",
-      "exists": true
-    },
-    {
-      "file": "showcase\\musical_instruments.md",
-      "line": 179,
-      "link": "../src/davinci_codex/inventions/mechanical_ensemble.py",
-      "resolved_path": "src\\davinci_codex\\inventions\\mechanical_ensemble.py",
-      "exists": true
-    },
-    {
-      "file": "showcase\\musical_instruments.md",
-      "line": 302,
-      "link": "../docs/mechanical_ensemble.md",
-      "resolved_path": "docs\\mechanical_ensemble.md",
-      "exists": true
-    },
-    {
-      "file": "showcase\\musical_instruments.md",
-      "line": 303,
-      "link": "../docs/index.md#musical-instruments",
-      "resolved_path": "docs\\index.md",
-      "exists": true
-    },
-    {
-      "file": "showcase\\musical_instruments.md",
-      "line": 304,
-      "link": "../cad/",
-      "resolved_path": "cad",
-      "exists": true
-    },
-    {
-      "file": "showcase\\musical_instruments.md",
-      "line": 305,
-      "link": "../src/davinci_codex/inventions/",
-      "resolved_path": "src\\davinci_codex\\inventions",
-      "exists": true
-    },
-    {
-      "file": "showcase\\musical_instruments.md",
-      "line": 309,
-      "link": "../PROVENANCE/",
-      "resolved_path": "PROVENANCE",
-      "exists": true
-    },
-    {
-      "file": "showcase\\musical_instruments.md",
-      "line": 310,
-      "link": "../anima/",
-      "resolved_path": "anima",
-      "exists": true
-    },
-    {
-      "file": "showcase\\musical_instruments.md",
-      "line": 311,
-      "link": "../materials/",
-      "resolved_path": "materials",
-      "exists": true
-    },
-    {
-      "file": "showcase\\musical_instruments.md",
-      "line": 315,
-      "link": "../README.md#-quick-start",
-      "resolved_path": "README.md",
-      "exists": true
-    },
-    {
-      "file": "showcase\\musical_instruments.md",
-      "line": 316,
-      "link": "../notebooks/",
-      "resolved_path": "notebooks",
-      "exists": true
-    },
-    {
-      "file": "showcase\\musical_instruments.md",
-      "line": 317,
-      "link": "../tests/",
-      "resolved_path": "tests",
-      "exists": true
-    },
-    {
-      "file": "showcase\\musical_instruments.md",
-      "line": 326,
-      "link": "index.md",
-      "resolved_path": "showcase\\index.md",
-      "exists": true
-    },
-    {
-      "file": "showcase\\musical_instruments.md",
-      "line": 326,
-      "link": "flight_inventions.md",
-      "resolved_path": "showcase\\flight_inventions.md",
-      "exists": true
-    },
-    {
-      "file": "showcase\\musical_instruments.md",
-      "line": 326,
-      "link": "mechanical_inventions.md",
-      "resolved_path": "showcase\\mechanical_inventions.md",
-      "exists": true
-    },
-    {
-      "file": "showcase\\README.md",
+      "file": "showcase/README.md",
       "line": 44,
       "link": "index.md",
-      "resolved_path": "showcase\\index.md",
+      "resolved_path": "showcase/index.md",
       "exists": true
     },
     {
-      "file": "showcase\\README.md",
+      "file": "showcase/README.md",
       "line": 49,
       "link": "musical_instruments.md",
-      "resolved_path": "showcase\\musical_instruments.md",
+      "resolved_path": "showcase/musical_instruments.md",
       "exists": true
     },
     {
-      "file": "showcase\\README.md",
+      "file": "showcase/README.md",
       "line": 59,
       "link": "flight_inventions.md",
-      "resolved_path": "showcase\\flight_inventions.md",
+      "resolved_path": "showcase/flight_inventions.md",
       "exists": true
     },
     {
-      "file": "showcase\\README.md",
+      "file": "showcase/README.md",
       "line": 65,
       "link": "mechanical_inventions.md",
-      "resolved_path": "showcase\\mechanical_inventions.md",
+      "resolved_path": "showcase/mechanical_inventions.md",
       "exists": true
     },
     {
-      "file": "showcase\\README.md",
+      "file": "showcase/README.md",
       "line": 150,
       "link": "../README.md",
       "resolved_path": "README.md",
       "exists": true
     },
     {
-      "file": "showcase\\README.md",
+      "file": "showcase/README.md",
       "line": 150,
       "link": "index.md",
-      "resolved_path": "showcase\\index.md",
+      "resolved_path": "showcase/index.md",
+      "exists": true
+    },
+    {
+      "file": "showcase/musical_instruments.md",
+      "line": 65,
+      "link": "../docs/viola_organista.md",
+      "resolved_path": "docs/viola_organista.md",
+      "exists": true
+    },
+    {
+      "file": "showcase/musical_instruments.md",
+      "line": 65,
+      "link": "../cad/viola_organista/model.py",
+      "resolved_path": "cad/viola_organista/model.py",
+      "exists": true
+    },
+    {
+      "file": "showcase/musical_instruments.md",
+      "line": 84,
+      "link": "../docs/mechanical_drum.md",
+      "resolved_path": "docs/mechanical_drum.md",
+      "exists": true
+    },
+    {
+      "file": "showcase/musical_instruments.md",
+      "line": 84,
+      "link": "../cad/mechanical_drum/model.py",
+      "resolved_path": "cad/mechanical_drum/model.py",
+      "exists": true
+    },
+    {
+      "file": "showcase/musical_instruments.md",
+      "line": 103,
+      "link": "../docs/mechanical_carillon.md",
+      "resolved_path": "docs/mechanical_carillon.md",
+      "exists": true
+    },
+    {
+      "file": "showcase/musical_instruments.md",
+      "line": 103,
+      "link": "../cad/mechanical_carillon/model.py",
+      "resolved_path": "cad/mechanical_carillon/model.py",
+      "exists": true
+    },
+    {
+      "file": "showcase/musical_instruments.md",
+      "line": 122,
+      "link": "../docs/mechanical_trumpeter.md",
+      "resolved_path": "docs/mechanical_trumpeter.md",
+      "exists": true
+    },
+    {
+      "file": "showcase/musical_instruments.md",
+      "line": 122,
+      "link": "../cad/mechanical_trumpeter/model.py",
+      "resolved_path": "cad/mechanical_trumpeter/model.py",
+      "exists": true
+    },
+    {
+      "file": "showcase/musical_instruments.md",
+      "line": 141,
+      "link": "../docs/programmable_flute.md",
+      "resolved_path": "docs/programmable_flute.md",
+      "exists": true
+    },
+    {
+      "file": "showcase/musical_instruments.md",
+      "line": 141,
+      "link": "../cad/programmable_flute/model.py",
+      "resolved_path": "cad/programmable_flute/model.py",
+      "exists": true
+    },
+    {
+      "file": "showcase/musical_instruments.md",
+      "line": 160,
+      "link": "../docs/mechanical_organ.md",
+      "resolved_path": "docs/mechanical_organ.md",
+      "exists": true
+    },
+    {
+      "file": "showcase/musical_instruments.md",
+      "line": 160,
+      "link": "../cad/mechanical_organ/model.py",
+      "resolved_path": "cad/mechanical_organ/model.py",
+      "exists": true
+    },
+    {
+      "file": "showcase/musical_instruments.md",
+      "line": 179,
+      "link": "../docs/mechanical_ensemble.md",
+      "resolved_path": "docs/mechanical_ensemble.md",
+      "exists": true
+    },
+    {
+      "file": "showcase/musical_instruments.md",
+      "line": 179,
+      "link": "../src/davinci_codex/inventions/mechanical_ensemble.py",
+      "resolved_path": "src/davinci_codex/inventions/mechanical_ensemble.py",
+      "exists": true
+    },
+    {
+      "file": "showcase/musical_instruments.md",
+      "line": 302,
+      "link": "../docs/mechanical_ensemble.md",
+      "resolved_path": "docs/mechanical_ensemble.md",
+      "exists": true
+    },
+    {
+      "file": "showcase/musical_instruments.md",
+      "line": 303,
+      "link": "../docs/index.md#musical-instruments",
+      "resolved_path": "docs/index.md",
+      "exists": true
+    },
+    {
+      "file": "showcase/musical_instruments.md",
+      "line": 304,
+      "link": "../cad/",
+      "resolved_path": "cad",
+      "exists": true
+    },
+    {
+      "file": "showcase/musical_instruments.md",
+      "line": 305,
+      "link": "../src/davinci_codex/inventions/",
+      "resolved_path": "src/davinci_codex/inventions",
+      "exists": true
+    },
+    {
+      "file": "showcase/musical_instruments.md",
+      "line": 309,
+      "link": "../PROVENANCE/",
+      "resolved_path": "PROVENANCE",
+      "exists": true
+    },
+    {
+      "file": "showcase/musical_instruments.md",
+      "line": 310,
+      "link": "../anima/",
+      "resolved_path": "anima",
+      "exists": true
+    },
+    {
+      "file": "showcase/musical_instruments.md",
+      "line": 311,
+      "link": "../materials/",
+      "resolved_path": "materials",
+      "exists": true
+    },
+    {
+      "file": "showcase/musical_instruments.md",
+      "line": 315,
+      "link": "../README.md#-quick-start",
+      "resolved_path": "README.md",
+      "exists": true
+    },
+    {
+      "file": "showcase/musical_instruments.md",
+      "line": 316,
+      "link": "../notebooks/",
+      "resolved_path": "notebooks",
+      "exists": true
+    },
+    {
+      "file": "showcase/musical_instruments.md",
+      "line": 317,
+      "link": "../tests/",
+      "resolved_path": "tests",
+      "exists": true
+    },
+    {
+      "file": "showcase/musical_instruments.md",
+      "line": 326,
+      "link": "index.md",
+      "resolved_path": "showcase/index.md",
+      "exists": true
+    },
+    {
+      "file": "showcase/musical_instruments.md",
+      "line": 326,
+      "link": "flight_inventions.md",
+      "resolved_path": "showcase/flight_inventions.md",
+      "exists": true
+    },
+    {
+      "file": "showcase/musical_instruments.md",
+      "line": 326,
+      "link": "mechanical_inventions.md",
+      "resolved_path": "showcase/mechanical_inventions.md",
+      "exists": true
+    },
+    {
+      "file": "showcase/flight_inventions.md",
+      "line": 89,
+      "link": "../docs/ornithopter.md",
+      "resolved_path": "docs/ornithopter.md",
+      "exists": true
+    },
+    {
+      "file": "showcase/flight_inventions.md",
+      "line": 89,
+      "link": "../sims/ornithopter/",
+      "resolved_path": "sims/ornithopter",
+      "exists": true
+    },
+    {
+      "file": "showcase/flight_inventions.md",
+      "line": 89,
+      "link": "../cad/ornithopter/model.py",
+      "resolved_path": "cad/ornithopter/model.py",
+      "exists": true
+    },
+    {
+      "file": "showcase/flight_inventions.md",
+      "line": 143,
+      "link": "../docs/parachute.md",
+      "resolved_path": "docs/parachute.md",
+      "exists": true
+    },
+    {
+      "file": "showcase/flight_inventions.md",
+      "line": 143,
+      "link": "../docs/parachute_safety_dossier.md",
+      "resolved_path": "docs/parachute_safety_dossier.md",
+      "exists": true
+    },
+    {
+      "file": "showcase/flight_inventions.md",
+      "line": 143,
+      "link": "../tva/parachute/data/drop_profiles.csv",
+      "resolved_path": "tva/parachute/data/drop_profiles.csv",
+      "exists": true
+    },
+    {
+      "file": "showcase/flight_inventions.md",
+      "line": 187,
+      "link": "../docs/aerial_screw.md",
+      "resolved_path": "docs/aerial_screw.md",
+      "exists": true
+    },
+    {
+      "file": "showcase/flight_inventions.md",
+      "line": 187,
+      "link": "../sims/aerial_screw/parameters.yaml",
+      "resolved_path": "sims/aerial_screw/parameters.yaml",
+      "exists": true
+    },
+    {
+      "file": "showcase/flight_inventions.md",
+      "line": 187,
+      "link": "../cad/aerial_screw/model.py",
+      "resolved_path": "cad/aerial_screw/model.py",
+      "exists": true
+    },
+    {
+      "file": "showcase/flight_inventions.md",
+      "line": 322,
+      "link": "../docs/ornithopter.md",
+      "resolved_path": "docs/ornithopter.md",
+      "exists": true
+    },
+    {
+      "file": "showcase/flight_inventions.md",
+      "line": 323,
+      "link": "../docs/parachute_safety_dossier.md",
+      "resolved_path": "docs/parachute_safety_dossier.md",
+      "exists": true
+    },
+    {
+      "file": "showcase/flight_inventions.md",
+      "line": 324,
+      "link": "../docs/aerial_screw.md",
+      "resolved_path": "docs/aerial_screw.md",
+      "exists": true
+    },
+    {
+      "file": "showcase/flight_inventions.md",
+      "line": 328,
+      "link": "../src/davinci_codex/inventions/",
+      "resolved_path": "src/davinci_codex/inventions",
+      "exists": true
+    },
+    {
+      "file": "showcase/flight_inventions.md",
+      "line": 329,
+      "link": "../validation/",
+      "resolved_path": "validation",
+      "exists": true
+    },
+    {
+      "file": "showcase/flight_inventions.md",
+      "line": 330,
+      "link": "../artifacts/",
+      "resolved_path": "artifacts",
+      "exists": true
+    },
+    {
+      "file": "showcase/flight_inventions.md",
+      "line": 334,
+      "link": "../PROVENANCE/",
+      "resolved_path": "PROVENANCE",
+      "exists": true
+    },
+    {
+      "file": "showcase/flight_inventions.md",
+      "line": 335,
+      "link": "../anima/",
+      "resolved_path": "anima",
+      "exists": true
+    },
+    {
+      "file": "showcase/flight_inventions.md",
+      "line": 336,
+      "link": "../materials/",
+      "resolved_path": "materials",
+      "exists": true
+    },
+    {
+      "file": "showcase/flight_inventions.md",
+      "line": 345,
+      "link": "index.md",
+      "resolved_path": "showcase/index.md",
+      "exists": true
+    },
+    {
+      "file": "showcase/flight_inventions.md",
+      "line": 345,
+      "link": "musical_instruments.md",
+      "resolved_path": "showcase/musical_instruments.md",
+      "exists": true
+    },
+    {
+      "file": "showcase/flight_inventions.md",
+      "line": 345,
+      "link": "mechanical_inventions.md",
+      "resolved_path": "showcase/mechanical_inventions.md",
+      "exists": true
+    },
+    {
+      "file": "showcase/index.md",
+      "line": 38,
+      "link": "../CONTRIBUTING.md",
+      "resolved_path": "CONTRIBUTING.md",
+      "exists": true
+    },
+    {
+      "file": "showcase/index.md",
+      "line": 97,
+      "link": "musical_instruments.md",
+      "resolved_path": "showcase/musical_instruments.md",
+      "exists": true
+    },
+    {
+      "file": "showcase/index.md",
+      "line": 118,
+      "link": "flight_inventions.md",
+      "resolved_path": "showcase/flight_inventions.md",
+      "exists": true
+    },
+    {
+      "file": "showcase/index.md",
+      "line": 140,
+      "link": "mechanical_inventions.md",
+      "resolved_path": "showcase/mechanical_inventions.md",
+      "exists": true
+    },
+    {
+      "file": "showcase/index.md",
+      "line": 320,
+      "link": "../LICENSE",
+      "resolved_path": "LICENSE",
+      "exists": true
+    },
+    {
+      "file": "showcase/index.md",
+      "line": 321,
+      "link": "../LICENSE-CC0",
+      "resolved_path": "LICENSE-CC0",
+      "exists": true
+    },
+    {
+      "file": "showcase/mechanical_inventions.md",
+      "line": 96,
+      "link": "../docs/self_propelled_cart.md",
+      "resolved_path": "docs/self_propelled_cart.md",
+      "exists": true
+    },
+    {
+      "file": "showcase/mechanical_inventions.md",
+      "line": 96,
+      "link": "../sims/cart/rolling_loss.py",
+      "resolved_path": "sims/cart/rolling_loss.py",
+      "exists": true
+    },
+    {
+      "file": "showcase/mechanical_inventions.md",
+      "line": 96,
+      "link": "../cad/self_propelled_cart/model.py",
+      "resolved_path": "cad/self_propelled_cart/model.py",
+      "exists": true
+    },
+    {
+      "file": "showcase/mechanical_inventions.md",
+      "line": 146,
+      "link": "../docs/mechanical_odometer.md",
+      "resolved_path": "docs/mechanical_odometer.md",
+      "exists": true
+    },
+    {
+      "file": "showcase/mechanical_inventions.md",
+      "line": 146,
+      "link": "../tva/mechanical_odometer/data/slip_characterisation.csv",
+      "resolved_path": "tva/mechanical_odometer/data/slip_characterisation.csv",
+      "exists": true
+    },
+    {
+      "file": "showcase/mechanical_inventions.md",
+      "line": 146,
+      "link": "../cad/mechanical_odometer/model.py",
+      "resolved_path": "cad/mechanical_odometer/model.py",
+      "exists": true
+    },
+    {
+      "file": "showcase/mechanical_inventions.md",
+      "line": 197,
+      "link": "../docs/revolving_bridge.md",
+      "resolved_path": "docs/revolving_bridge.md",
+      "exists": true
+    },
+    {
+      "file": "showcase/mechanical_inventions.md",
+      "line": 197,
+      "link": "../sims/revolving_bridge/rotation_profile.py",
+      "resolved_path": "sims/revolving_bridge/rotation_profile.py",
+      "exists": true
+    },
+    {
+      "file": "showcase/mechanical_inventions.md",
+      "line": 197,
+      "link": "../cad/revolving_bridge/model.py",
+      "resolved_path": "cad/revolving_bridge/model.py",
+      "exists": true
+    },
+    {
+      "file": "showcase/mechanical_inventions.md",
+      "line": 234,
+      "link": "../docs/aerial_screw.md",
+      "resolved_path": "docs/aerial_screw.md",
+      "exists": true
+    },
+    {
+      "file": "showcase/mechanical_inventions.md",
+      "line": 234,
+      "link": "../sims/aerial_screw/parameters.yaml",
+      "resolved_path": "sims/aerial_screw/parameters.yaml",
+      "exists": true
+    },
+    {
+      "file": "showcase/mechanical_inventions.md",
+      "line": 234,
+      "link": "../cad/aerial_screw/model.py",
+      "resolved_path": "cad/aerial_screw/model.py",
+      "exists": true
+    },
+    {
+      "file": "showcase/mechanical_inventions.md",
+      "line": 371,
+      "link": "../docs/self_propelled_cart.md",
+      "resolved_path": "docs/self_propelled_cart.md",
+      "exists": true
+    },
+    {
+      "file": "showcase/mechanical_inventions.md",
+      "line": 372,
+      "link": "../docs/mechanical_odometer.md",
+      "resolved_path": "docs/mechanical_odometer.md",
+      "exists": true
+    },
+    {
+      "file": "showcase/mechanical_inventions.md",
+      "line": 373,
+      "link": "../docs/revolving_bridge.md",
+      "resolved_path": "docs/revolving_bridge.md",
+      "exists": true
+    },
+    {
+      "file": "showcase/mechanical_inventions.md",
+      "line": 374,
+      "link": "../docs/aerial_screw.md",
+      "resolved_path": "docs/aerial_screw.md",
+      "exists": true
+    },
+    {
+      "file": "showcase/mechanical_inventions.md",
+      "line": 378,
+      "link": "../src/davinci_codex/inventions/",
+      "resolved_path": "src/davinci_codex/inventions",
+      "exists": true
+    },
+    {
+      "file": "showcase/mechanical_inventions.md",
+      "line": 379,
+      "link": "../artifacts/",
+      "resolved_path": "artifacts",
+      "exists": true
+    },
+    {
+      "file": "showcase/mechanical_inventions.md",
+      "line": 380,
+      "link": "../validation/",
+      "resolved_path": "validation",
+      "exists": true
+    },
+    {
+      "file": "showcase/mechanical_inventions.md",
+      "line": 384,
+      "link": "../PROVENANCE/",
+      "resolved_path": "PROVENANCE",
+      "exists": true
+    },
+    {
+      "file": "showcase/mechanical_inventions.md",
+      "line": 385,
+      "link": "../materials/",
+      "resolved_path": "materials",
+      "exists": true
+    },
+    {
+      "file": "showcase/mechanical_inventions.md",
+      "line": 386,
+      "link": "../anima/",
+      "resolved_path": "anima",
+      "exists": true
+    },
+    {
+      "file": "showcase/mechanical_inventions.md",
+      "line": 395,
+      "link": "index.md",
+      "resolved_path": "showcase/index.md",
+      "exists": true
+    },
+    {
+      "file": "showcase/mechanical_inventions.md",
+      "line": 395,
+      "link": "musical_instruments.md",
+      "resolved_path": "showcase/musical_instruments.md",
+      "exists": true
+    },
+    {
+      "file": "showcase/mechanical_inventions.md",
+      "line": 395,
+      "link": "flight_inventions.md",
+      "resolved_path": "showcase/flight_inventions.md",
+      "exists": true
+    },
+    {
+      "file": "docs/mechanical_drum.md",
+      "line": 25,
+      "link": "../src/davinci_codex/inventions/mechanical_drum.py",
+      "resolved_path": "src/davinci_codex/inventions/mechanical_drum.py",
+      "exists": true
+    },
+    {
+      "file": "docs/programmable_flute.md",
+      "line": 26,
+      "link": "../src/davinci_codex/inventions/programmable_flute.py",
+      "resolved_path": "src/davinci_codex/inventions/programmable_flute.py",
+      "exists": true
+    },
+    {
+      "file": "docs/ornithopter_validation.md",
+      "line": 11,
+      "link": "images/ornithopter_lift.png",
+      "resolved_path": "docs/images/ornithopter_lift.png",
+      "exists": true
+    },
+    {
+      "file": "docs/ornithopter.md",
+      "line": 3,
+      "link": "ornithopter_validation.md",
+      "resolved_path": "docs/ornithopter_validation.md",
+      "exists": true
+    },
+    {
+      "file": "docs/mechanical_trumpeter.md",
+      "line": 26,
+      "link": "../src/davinci_codex/inventions/mechanical_trumpeter.py",
+      "resolved_path": "src/davinci_codex/inventions/mechanical_trumpeter.py",
+      "exists": true
+    },
+    {
+      "file": "docs/viola_organista.md",
+      "line": 26,
+      "link": "../src/davinci_codex/inventions/viola_organista.py",
+      "resolved_path": "src/davinci_codex/inventions/viola_organista.py",
+      "exists": true
+    },
+    {
+      "file": "docs/index.md",
+      "line": 27,
+      "link": "parachute_safety_dossier.md",
+      "resolved_path": "docs/parachute_safety_dossier.md",
+      "exists": true
+    },
+    {
+      "file": "docs/index.md",
+      "line": 28,
+      "link": "revolving_bridge.md",
+      "resolved_path": "docs/revolving_bridge.md",
+      "exists": true
+    },
+    {
+      "file": "docs/index.md",
+      "line": 29,
+      "link": "ornithopter_validation.md",
+      "resolved_path": "docs/ornithopter_validation.md",
+      "exists": true
+    },
+    {
+      "file": "docs/index.md",
+      "line": 35,
+      "link": "aerial_screw.md",
+      "resolved_path": "docs/aerial_screw.md",
+      "exists": true
+    },
+    {
+      "file": "docs/index.md",
+      "line": 36,
+      "link": "self_propelled_cart.md",
+      "resolved_path": "docs/self_propelled_cart.md",
+      "exists": true
+    },
+    {
+      "file": "docs/index.md",
+      "line": 37,
+      "link": "mechanical_odometer.md",
+      "resolved_path": "docs/mechanical_odometer.md",
+      "exists": true
+    },
+    {
+      "file": "docs/index.md",
+      "line": 38,
+      "link": "parachute.md",
+      "resolved_path": "docs/parachute.md",
+      "exists": true
+    },
+    {
+      "file": "docs/index.md",
+      "line": 38,
+      "link": "parachute_safety_dossier.md",
+      "resolved_path": "docs/parachute_safety_dossier.md",
+      "exists": true
+    },
+    {
+      "file": "docs/index.md",
+      "line": 39,
+      "link": "revolving_bridge.md",
+      "resolved_path": "docs/revolving_bridge.md",
+      "exists": true
+    },
+    {
+      "file": "docs/index.md",
+      "line": 40,
+      "link": "ornithopter.md",
+      "resolved_path": "docs/ornithopter.md",
+      "exists": true
+    },
+    {
+      "file": "docs/index.md",
+      "line": 40,
+      "link": "ornithopter_validation.md",
+      "resolved_path": "docs/ornithopter_validation.md",
+      "exists": true
+    },
+    {
+      "file": "docs/index.md",
+      "line": 73,
+      "link": "mechanical_drum.md",
+      "resolved_path": "docs/mechanical_drum.md",
+      "exists": true
+    },
+    {
+      "file": "docs/index.md",
+      "line": 74,
+      "link": "mechanical_carillon.md",
+      "resolved_path": "docs/mechanical_carillon.md",
+      "exists": true
+    },
+    {
+      "file": "docs/index.md",
+      "line": 75,
+      "link": "mechanical_trumpeter.md",
+      "resolved_path": "docs/mechanical_trumpeter.md",
+      "exists": true
+    },
+    {
+      "file": "docs/index.md",
+      "line": 76,
+      "link": "mechanical_ensemble.md",
+      "resolved_path": "docs/mechanical_ensemble.md",
+      "exists": true
+    },
+    {
+      "file": "docs/index.md",
+      "line": 77,
+      "link": "mechanical_organ.md",
+      "resolved_path": "docs/mechanical_organ.md",
+      "exists": true
+    },
+    {
+      "file": "docs/index.md",
+      "line": 78,
+      "link": "viola_organista.md",
+      "resolved_path": "docs/viola_organista.md",
+      "exists": true
+    },
+    {
+      "file": "docs/index.md",
+      "line": 79,
+      "link": "programmable_flute.md",
+      "resolved_path": "docs/programmable_flute.md",
+      "exists": true
+    },
+    {
+      "file": "docs/mechanical_ensemble.md",
+      "line": 30,
+      "link": "../src/davinci_codex/inventions/mechanical_ensemble.py",
+      "resolved_path": "src/davinci_codex/inventions/mechanical_ensemble.py",
+      "exists": true
+    },
+    {
+      "file": "docs/parachute.md",
+      "line": 3,
+      "link": "parachute_safety_dossier.md",
+      "resolved_path": "docs/parachute_safety_dossier.md",
+      "exists": true
+    },
+    {
+      "file": "docs/parachute.md",
+      "line": 80,
+      "link": "images/parachute_drop_profiles.png",
+      "resolved_path": "docs/images/parachute_drop_profiles.png",
+      "exists": true
+    },
+    {
+      "file": "docs/parachute.md",
+      "line": 83,
+      "link": "../validation/parachute_drop",
+      "resolved_path": "validation/parachute_drop",
+      "exists": true
+    },
+    {
+      "file": "docs/revolving_bridge.md",
+      "line": 12,
+      "link": "images/revolving_bridge/stress_deflection.png",
+      "resolved_path": "docs/images/revolving_bridge/stress_deflection.png",
+      "exists": true
+    },
+    {
+      "file": "docs/revolving_bridge.md",
+      "line": 13,
+      "link": "images/revolving_bridge/rotation_torque.png",
+      "resolved_path": "docs/images/revolving_bridge/rotation_torque.png",
+      "exists": true
+    },
+    {
+      "file": "docs/revolving_bridge.md",
+      "line": 14,
+      "link": "images/revolving_bridge/stability_margin.png",
+      "resolved_path": "docs/images/revolving_bridge/stability_margin.png",
+      "exists": true
+    },
+    {
+      "file": "docs/mechanical_odometer.md",
+      "line": 33,
+      "link": "../validation/mechanical_odometer_contact",
+      "resolved_path": "validation/mechanical_odometer_contact",
+      "exists": true
+    },
+    {
+      "file": "docs/mechanical_odometer.md",
+      "line": 43,
+      "link": "images/odometer_slip_profiles.png",
+      "resolved_path": "docs/images/odometer_slip_profiles.png",
+      "exists": true
+    },
+    {
+      "file": "docs/mechanical_carillon.md",
+      "line": 26,
+      "link": "../src/davinci_codex/inventions/mechanical_carillon.py",
+      "resolved_path": "src/davinci_codex/inventions/mechanical_carillon.py",
+      "exists": true
+    },
+    {
+      "file": "docs/mechanical_organ.md",
+      "line": 26,
+      "link": "../src/davinci_codex/inventions/mechanical_organ.py",
+      "resolved_path": "src/davinci_codex/inventions/mechanical_organ.py",
+      "exists": true
+    },
+    {
+      "file": "docs/physics/index.md",
+      "line": 5,
+      "link": "unsteady_aero.md",
+      "resolved_path": "docs/physics/unsteady_aero.md",
+      "exists": true
+    },
+    {
+      "file": "docs/physics/index.md",
+      "line": 6,
+      "link": "gear_bending.md",
+      "resolved_path": "docs/physics/gear_bending.md",
+      "exists": true
+    },
+    {
+      "file": "docs/physics/index.md",
+      "line": 7,
+      "link": "tribology.md",
+      "resolved_path": "docs/physics/tribology.md",
+      "exists": true
+    },
+    {
+      "file": "docs/book/physics/index.md",
+      "line": 27,
+      "link": "unsteady_aero.md",
+      "resolved_path": "docs/book/physics/unsteady_aero.md",
+      "exists": true
+    },
+    {
+      "file": "docs/book/physics/index.md",
+      "line": 28,
+      "link": "gear_bending.md",
+      "resolved_path": "docs/book/physics/gear_bending.md",
+      "exists": true
+    },
+    {
+      "file": "docs/book/physics/index.md",
+      "line": 29,
+      "link": "tribology.md",
+      "resolved_path": "docs/book/physics/tribology.md",
+      "exists": true
+    },
+    {
+      "file": "docs/book/simulator/index.md",
+      "line": 11,
+      "link": "ornithopter.html",
+      "resolved_path": "docs/book/simulator/ornithopter.html",
       "exists": true
     }
   ],
@@ -1113,355 +1079,407 @@
       "file": "CODE_OF_CONDUCT.md",
       "line": 43,
       "link": "https://www.contributor-covenant.org",
-      "checked": false
-    },
-    {
-      "file": "CONTRIBUTING.md",
-      "line": 17,
-      "link": "https://github.com/Shannon-Labs/davinci-codex",
-      "checked": false
-    },
-    {
-      "file": "CONTRIBUTING.md",
-      "line": 179,
-      "link": "https://github.com/Shannon-Labs/davinci-codex/discussions",
-      "checked": false
-    },
-    {
-      "file": "CONTRIBUTING.md",
-      "line": 180,
-      "link": "https://github.com/Shannon-Labs/davinci-codex/pulls?q=is%3Apr+is%3Aclosed",
-      "checked": false
+      "checked": true,
+      "status": "HTTP 200"
     },
     {
       "file": "README.md",
       "line": 6,
       "link": "https://img.shields.io/badge/python-3.9+-blue.svg",
-      "checked": false
+      "checked": true,
+      "status": "HTTP 200"
     },
     {
       "file": "README.md",
       "line": 7,
       "link": "https://img.shields.io/badge/License-MIT-yellow.svg",
-      "checked": false
+      "checked": true,
+      "status": "HTTP 200"
     },
     {
       "file": "README.md",
       "line": 8,
       "link": "https://img.shields.io/badge/DOI-10.5281%2Fzenodo.XXXXXXX-blue",
-      "checked": false
+      "checked": true,
+      "status": "HTTP 200"
     },
     {
       "file": "README.md",
       "line": 9,
       "link": "https://github.com/Shannon-Labs/davinci-codex/actions/workflows/ci.yml/badge.svg",
-      "checked": false
+      "checked": true,
+      "status": "HTTP 200"
     },
     {
       "file": "README.md",
       "line": 10,
       "link": "https://img.shields.io/badge/docs-latest-brightgreen.svg",
-      "checked": false
+      "checked": true,
+      "status": "HTTP 200"
     },
     {
       "file": "README.md",
       "line": 11,
       "link": "https://img.shields.io/badge/code%20style-ruff-000000.svg",
-      "checked": false
+      "checked": true,
+      "status": "HTTP 200"
     },
     {
       "file": "README.md",
       "line": 13,
       "link": "https://img.shields.io/github/stars/Shannon-Labs/davinci-codex?style=flat-square",
-      "checked": false
+      "checked": true,
+      "status": "HTTP 200"
     },
     {
       "file": "README.md",
       "line": 14,
       "link": "https://img.shields.io/github/forks/Shannon-Labs/davinci-codex?style=flat-square",
-      "checked": false
+      "checked": true,
+      "status": "HTTP 200"
     },
     {
       "file": "README.md",
       "line": 15,
       "link": "https://img.shields.io/github/issues/Shannon-Labs/davinci-codex?style=flat-square",
-      "checked": false
+      "checked": true,
+      "status": "HTTP 200"
     },
     {
       "file": "README.md",
       "line": 16,
       "link": "https://img.shields.io/github/last-commit/Shannon-Labs/davinci-codex?style=flat-square",
-      "checked": false
+      "checked": true,
+      "status": "HTTP 200"
     },
     {
       "file": "README.md",
       "line": 20,
       "link": "https://shannon-labs.github.io/davinci-codex/",
-      "checked": false
+      "checked": true,
+      "status": "HTTP 200"
     },
     {
       "file": "README.md",
       "line": 40,
       "link": "https://img.shields.io/badge/Featured_Innovation-Music_Automation-red",
-      "checked": false
+      "checked": true,
+      "status": "HTTP 200"
     },
     {
       "file": "README.md",
       "line": 424,
       "link": "https://www.leonardodigitale.com/",
-      "checked": false
+      "checked": true,
+      "status": "HTTP 200"
     },
     {
       "file": "README.md",
       "line": 425,
       "link": "https://www.bl.uk/",
-      "checked": false
+      "checked": true,
+      "status": "HTTP 200"
     },
     {
       "file": "README.md",
       "line": 426,
       "link": "https://www.bne.es/",
-      "checked": false
+      "checked": true,
+      "status": "HTTP 200"
     },
     {
       "file": "README.md",
       "line": 427,
       "link": "https://www.institutdefrance.fr/",
-      "checked": false
+      "checked": true,
+      "status": "HTTP 200"
     },
     {
       "file": "README.md",
       "line": 428,
       "link": "https://airandspace.si.edu/",
-      "checked": false
+      "checked": true,
+      "status": "HTTP 200"
     },
     {
       "file": "README.md",
       "line": 431,
       "link": "https://www.leonardodigitale.com/",
-      "checked": false
+      "checked": true,
+      "status": "HTTP 200"
     },
     {
       "file": "README.md",
       "line": 432,
-      "link": "https://www.universalleonardo.org/",
-      "checked": false
+      "link": "https://global.oup.com/academic/product/leonardo-9780199583355",
+      "checked": true,
+      "status": "HTTP 200"
     },
     {
       "file": "README.md",
       "line": 433,
       "link": "https://www.leonardodigitale.com/",
-      "checked": false
+      "checked": true,
+      "status": "HTTP 200"
     },
     {
       "file": "README.md",
       "line": 493,
       "link": "https://img.shields.io/github/stars/Shannon-Labs/davinci-codex?style=social&label=Star&maxAge=2592000",
-      "checked": false
+      "checked": true,
+      "status": "HTTP 200"
     },
     {
       "file": "README.md",
       "line": 494,
       "link": "https://img.shields.io/github/forks/Shannon-Labs/davinci-codex?style=social&label=Fork&maxAge=2592000",
-      "checked": false
+      "checked": true,
+      "status": "HTTP 200"
     },
     {
       "file": "README.md",
       "line": 495,
       "link": "https://img.shields.io/github/watchers/Shannon-Labs/davinci-codex?style=social&label=Watch&maxAge=2592000",
-      "checked": false
+      "checked": true,
+      "status": "HTTP 200"
+    },
+    {
+      "file": "CONTRIBUTING.md",
+      "line": 17,
+      "link": "https://github.com/Shannon-Labs/davinci-codex",
+      "checked": true,
+      "status": "HTTP 200"
+    },
+    {
+      "file": "CONTRIBUTING.md",
+      "line": 179,
+      "link": "https://github.com/Shannon-Labs/davinci-codex/issues",
+      "checked": true,
+      "status": "HTTP 200"
+    },
+    {
+      "file": "CONTRIBUTING.md",
+      "line": 180,
+      "link": "https://github.com/Shannon-Labs/davinci-codex/pulls?q=is%3Apr+is%3Aclosed",
+      "checked": true,
+      "status": "HTTP 200"
     },
     {
       "file": "REFERENCES.md",
       "line": 9,
       "link": "https://www.leonardodigitale.com/",
-      "checked": false
+      "checked": true,
+      "status": "HTTP 200"
     },
     {
       "file": "REFERENCES.md",
       "line": 15,
       "link": "https://www.institutdefrance.fr/",
-      "checked": false
+      "checked": true,
+      "status": "HTTP 200"
     },
     {
       "file": "REFERENCES.md",
       "line": 21,
       "link": "https://airandspace.si.edu/",
-      "checked": false
+      "checked": true,
+      "status": "HTTP 200"
     },
     {
       "file": "REFERENCES.md",
       "line": 26,
       "link": "https://www.bl.uk/",
-      "checked": false
+      "checked": true,
+      "status": "HTTP 200"
     },
     {
-      "file": ".pytest_cache\\README.md",
-      "line": 8,
-      "link": "https://docs.pytest.org/en/stable/how-to/cache.html",
-      "checked": false
-    },
-    {
-      "file": "docs\\index.md",
-      "line": 65,
-      "link": "https://github.com/Shannon-Labs/davinci-codex/issues",
-      "checked": false
-    },
-    {
-      "file": "docs\\index.md",
-      "line": 66,
-      "link": "https://shannon-labs.github.io/davinci-codex/",
-      "checked": false
-    },
-    {
-      "file": "docs\\revolving_bridge.md",
-      "line": 3,
-      "link": "https://www.leonardodigitale.com/opera/ca-855-r/",
-      "checked": false
-    },
-    {
-      "file": "showcase\\flight_inventions.md",
-      "line": 32,
-      "link": "https://img.shields.io/badge/Category-Aviation_Exploration-blue",
-      "checked": false
-    },
-    {
-      "file": "showcase\\flight_inventions.md",
-      "line": 33,
-      "link": "https://img.shields.io/badge/Status-Validation_In_Progress-yellow",
-      "checked": false
-    },
-    {
-      "file": "showcase\\flight_inventions.md",
-      "line": 34,
-      "link": "https://img.shields.io/badge/Docs-Comprehensive-brightgreen",
-      "checked": false
-    },
-    {
-      "file": "showcase\\index.md",
-      "line": 32,
-      "link": "https://img.shields.io/badge/python-3.9+-blue.svg",
-      "checked": false
-    },
-    {
-      "file": "showcase\\index.md",
-      "line": 33,
-      "link": "https://img.shields.io/badge/License-MIT-yellow.svg",
-      "checked": false
-    },
-    {
-      "file": "showcase\\index.md",
-      "line": 34,
-      "link": "https://img.shields.io/badge/DOI-10.5281%2Fzenodo.XXXXXXX-blue",
-      "checked": false
-    },
-    {
-      "file": "showcase\\index.md",
-      "line": 35,
-      "link": "https://github.com/Shannon-Labs/davinci-codex/actions/workflows/ci.yml/badge.svg",
-      "checked": false
-    },
-    {
-      "file": "showcase\\index.md",
-      "line": 36,
-      "link": "https://img.shields.io/badge/docs-latest-brightgreen.svg",
-      "checked": false
-    },
-    {
-      "file": "showcase\\index.md",
-      "line": 38,
-      "link": "https://shannon-labs.github.io/davinci-codex/",
-      "checked": false
-    },
-    {
-      "file": "showcase\\index.md",
-      "line": 38,
-      "link": "https://github.com/Shannon-Labs/davinci-codex",
-      "checked": false
-    },
-    {
-      "file": "showcase\\index.md",
-      "line": 82,
-      "link": "https://img.shields.io/badge/Featured_Innovation-Music_Automation-red",
-      "checked": false
-    },
-    {
-      "file": "showcase\\index.md",
-      "line": 107,
-      "link": "https://img.shields.io/badge/Category-Aviation_Exploration-blue",
-      "checked": false
-    },
-    {
-      "file": "showcase\\index.md",
-      "line": 128,
-      "link": "https://img.shields.io/badge/Category-Mechanical_Engineering-green",
-      "checked": false
-    },
-    {
-      "file": "showcase\\index.md",
-      "line": 309,
-      "link": "https://github.com/Shannon-Labs/davinci-codex/issues",
-      "checked": false
-    },
-    {
-      "file": "showcase\\index.md",
-      "line": 310,
-      "link": "https://github.com/Shannon-Labs/davinci-codex/discussions",
-      "checked": false
-    },
-    {
-      "file": "showcase\\index.md",
-      "line": 363,
-      "link": "https://img.shields.io/github/stars/Shannon-Labs/davinci-codex?style=social&label=Star&maxAge=2592000",
-      "checked": false
-    },
-    {
-      "file": "showcase\\index.md",
-      "line": 364,
-      "link": "https://img.shields.io/github/forks/Shannon-Labs/davinci-codex?style=social&label=Fork&maxAge=2592000",
-      "checked": false
-    },
-    {
-      "file": "showcase\\index.md",
-      "line": 365,
-      "link": "https://img.shields.io/github/watchers/Shannon-Labs/davinci-codex?style=social&label=Watch&maxAge=2592000",
-      "checked": false
-    },
-    {
-      "file": "showcase\\mechanical_inventions.md",
-      "line": 32,
-      "link": "https://img.shields.io/badge/Category-Mechanical_Engineering-green",
-      "checked": false
-    },
-    {
-      "file": "showcase\\mechanical_inventions.md",
-      "line": 33,
-      "link": "https://img.shields.io/badge/Status-Prototype_Ready-brightgreen",
-      "checked": false
-    },
-    {
-      "file": "showcase\\mechanical_inventions.md",
-      "line": 34,
-      "link": "https://img.shields.io/badge/Docs-Comprehensive-brightgreen",
-      "checked": false
-    },
-    {
-      "file": "showcase\\musical_instruments.md",
+      "file": "showcase/musical_instruments.md",
       "line": 32,
       "link": "https://img.shields.io/badge/Category-Music_Automation-blue",
-      "checked": false
+      "checked": true,
+      "status": "HTTP 200"
     },
     {
-      "file": "showcase\\musical_instruments.md",
+      "file": "showcase/musical_instruments.md",
       "line": 33,
       "link": "https://img.shields.io/badge/Status-Concept_Reconstruction-yellow",
-      "checked": false
+      "checked": true,
+      "status": "HTTP 200"
     },
     {
-      "file": "showcase\\musical_instruments.md",
+      "file": "showcase/musical_instruments.md",
       "line": 34,
       "link": "https://img.shields.io/badge/Docs-Detailed-brightgreen",
-      "checked": false
+      "checked": true,
+      "status": "HTTP 200"
+    },
+    {
+      "file": "showcase/flight_inventions.md",
+      "line": 32,
+      "link": "https://img.shields.io/badge/Category-Aviation_Exploration-blue",
+      "checked": true,
+      "status": "HTTP 200"
+    },
+    {
+      "file": "showcase/flight_inventions.md",
+      "line": 33,
+      "link": "https://img.shields.io/badge/Status-Validation_In_Progress-yellow",
+      "checked": true,
+      "status": "HTTP 200"
+    },
+    {
+      "file": "showcase/flight_inventions.md",
+      "line": 34,
+      "link": "https://img.shields.io/badge/Docs-Comprehensive-brightgreen",
+      "checked": true,
+      "status": "HTTP 200"
+    },
+    {
+      "file": "showcase/index.md",
+      "line": 32,
+      "link": "https://img.shields.io/badge/python-3.9+-blue.svg",
+      "checked": true,
+      "status": "HTTP 200"
+    },
+    {
+      "file": "showcase/index.md",
+      "line": 33,
+      "link": "https://img.shields.io/badge/License-MIT-yellow.svg",
+      "checked": true,
+      "status": "HTTP 200"
+    },
+    {
+      "file": "showcase/index.md",
+      "line": 34,
+      "link": "https://img.shields.io/badge/DOI-10.5281%2Fzenodo.XXXXXXX-blue",
+      "checked": true,
+      "status": "HTTP 200"
+    },
+    {
+      "file": "showcase/index.md",
+      "line": 35,
+      "link": "https://github.com/Shannon-Labs/davinci-codex/actions/workflows/ci.yml/badge.svg",
+      "checked": true,
+      "status": "HTTP 200"
+    },
+    {
+      "file": "showcase/index.md",
+      "line": 36,
+      "link": "https://img.shields.io/badge/docs-latest-brightgreen.svg",
+      "checked": true,
+      "status": "HTTP 200"
+    },
+    {
+      "file": "showcase/index.md",
+      "line": 38,
+      "link": "https://shannon-labs.github.io/davinci-codex/",
+      "checked": true,
+      "status": "HTTP 200"
+    },
+    {
+      "file": "showcase/index.md",
+      "line": 38,
+      "link": "https://github.com/Shannon-Labs/davinci-codex",
+      "checked": true,
+      "status": "HTTP 200"
+    },
+    {
+      "file": "showcase/index.md",
+      "line": 82,
+      "link": "https://img.shields.io/badge/Featured_Innovation-Music_Automation-red",
+      "checked": true,
+      "status": "HTTP 200"
+    },
+    {
+      "file": "showcase/index.md",
+      "line": 107,
+      "link": "https://img.shields.io/badge/Category-Aviation_Exploration-blue",
+      "checked": true,
+      "status": "HTTP 200"
+    },
+    {
+      "file": "showcase/index.md",
+      "line": 128,
+      "link": "https://img.shields.io/badge/Category-Mechanical_Engineering-green",
+      "checked": true,
+      "status": "HTTP 200"
+    },
+    {
+      "file": "showcase/index.md",
+      "line": 309,
+      "link": "https://github.com/Shannon-Labs/davinci-codex/issues",
+      "checked": true,
+      "status": "HTTP 200"
+    },
+    {
+      "file": "showcase/index.md",
+      "line": 310,
+      "link": "https://github.com/Shannon-Labs/davinci-codex/issues",
+      "checked": true,
+      "status": "HTTP 200"
+    },
+    {
+      "file": "showcase/index.md",
+      "line": 363,
+      "link": "https://img.shields.io/github/stars/Shannon-Labs/davinci-codex?style=social&label=Star&maxAge=2592000",
+      "checked": true,
+      "status": "HTTP 200"
+    },
+    {
+      "file": "showcase/index.md",
+      "line": 364,
+      "link": "https://img.shields.io/github/forks/Shannon-Labs/davinci-codex?style=social&label=Fork&maxAge=2592000",
+      "checked": true,
+      "status": "HTTP 200"
+    },
+    {
+      "file": "showcase/index.md",
+      "line": 365,
+      "link": "https://img.shields.io/github/watchers/Shannon-Labs/davinci-codex?style=social&label=Watch&maxAge=2592000",
+      "checked": true,
+      "status": "HTTP 200"
+    },
+    {
+      "file": "showcase/mechanical_inventions.md",
+      "line": 32,
+      "link": "https://img.shields.io/badge/Category-Mechanical_Engineering-green",
+      "checked": true,
+      "status": "HTTP 200"
+    },
+    {
+      "file": "showcase/mechanical_inventions.md",
+      "line": 33,
+      "link": "https://img.shields.io/badge/Status-Prototype_Ready-brightgreen",
+      "checked": true,
+      "status": "HTTP 200"
+    },
+    {
+      "file": "showcase/mechanical_inventions.md",
+      "line": 34,
+      "link": "https://img.shields.io/badge/Docs-Comprehensive-brightgreen",
+      "checked": true,
+      "status": "HTTP 200"
+    },
+    {
+      "file": "docs/index.md",
+      "line": 65,
+      "link": "https://github.com/Shannon-Labs/davinci-codex/issues",
+      "checked": true,
+      "status": "HTTP 200"
+    },
+    {
+      "file": "docs/index.md",
+      "line": 66,
+      "link": "https://shannon-labs.github.io/davinci-codex/",
+      "checked": true,
+      "status": "HTTP 200"
+    },
+    {
+      "file": "docs/revolving_bridge.md",
+      "line": 3,
+      "link": "https://www.leonardomachines.com/projects/project-the-wood-bridges/",
+      "checked": true,
+      "status": "HTTP 200"
     }
   ]
 }
