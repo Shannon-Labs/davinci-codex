@@ -38,7 +38,7 @@ class BeamElement:
 
         E = self.material.young_modulus
         A = self.cross_section_area
-        I = self.moment_of_inertia
+        moment_of_inertia = self.moment_of_inertia
 
         # Local stiffness matrix (12x12 for 3D beam with 6 DOF per node)
         k_local = np.zeros((12, 12))
@@ -51,7 +51,7 @@ class BeamElement:
         k_local[6, 6] = k_axial
 
         # Bending stiffness (simplified)
-        k_bend = E * I / (length ** 3)
+        k_bend = E * moment_of_inertia / (length ** 3)
         k_local[1, 1] = 12 * k_bend
         k_local[7, 7] = 12 * k_bend
 

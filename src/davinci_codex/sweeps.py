@@ -7,7 +7,7 @@ import json
 import statistics
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Tuple
+from typing import Any, Dict, Iterable, List
 
 from .cache import ensure_cached_result
 from .registry import InventionSpec
@@ -81,7 +81,7 @@ def _write_csv(path: Path, rows: Iterable[Dict[str, Any]]) -> None:
     rows = list(rows)
     if not rows:
         return
-    fieldnames = sorted({key for row in rows for key in row.keys()})
+    fieldnames = sorted({key for row in rows for key in row})
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(handle, fieldnames=fieldnames)
@@ -94,7 +94,7 @@ def _aggregate_metrics(results: List[SweepResult]) -> Dict[str, Dict[str, float]
     if not results:
         return aggregates
 
-    metric_names = {name for result in results for name in result.metrics.keys()}
+    metric_names = {name for result in results for name in result.metrics}
 
     for name in sorted(metric_names):
         series = [r.metrics[name] for r in results if name in r.metrics]

@@ -7,7 +7,7 @@ from __future__ import annotations
 
 import math
 from dataclasses import dataclass
-from typing import Dict, List, Tuple, Optional
+from typing import Dict, List, Tuple
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -233,17 +233,17 @@ class ChestStructuralAnalyzer:
         E = material_props["elastic_modulus_gpa"] * 1e9  # Convert GPa to Pa
 
         # Moment of inertia
-        I = component.calculate_moment_of_inertia()
+        moment_of_inertia = component.calculate_moment_of_inertia()
 
         # Deflection due to bending (simply supported beam with center load)
-        if load_case.force_n > 0 and I > 0:
-            deflection = (load_case.force_n * length**3) / (48 * E * I)
+        if load_case.force_n > 0 and moment_of_inertia > 0:
+            deflection = (load_case.force_n * length**3) / (48 * E * moment_of_inertia)
         else:
             deflection = 0.0
 
         # Angular deflection
-        if load_case.moment_nm > 0 and I > 0:
-            angular_deflection = (load_case.moment_nm * length) / (E * I)
+        if load_case.moment_nm > 0 and moment_of_inertia > 0:
+            angular_deflection = (load_case.moment_nm * length) / (E * moment_of_inertia)
         else:
             angular_deflection = 0.0
 
@@ -267,10 +267,7 @@ class ChestStructuralAnalyzer:
         if stress_amplitude > 0:
             # Simplified fatigue life estimation
             stress_ratio = stress_amplitude / fatigue_strength
-            if stress_ratio < 1.0:
-                fatigue_life = 1e6 * (1.0 / stress_ratio)**6  # Simplified S-N relationship
-            else:
-                fatigue_life = 1e3  # Very low life if stress exceeds fatigue strength
+            fatigue_life = 1e6 * (1.0 / stress_ratio)**6 if stress_ratio < 1.0 else 1e3  # Very low life if stress exceeds fatigue strength
         else:
             fatigue_life = float('inf')
 
@@ -384,7 +381,7 @@ class ChestStructuralAnalyzer:
         fatigue_issues = 0
         for component in self.components:
             comp_results = analysis_results["component_stresses"][component.component_id]
-            for load_id, fatigue_data in comp_results["fatigue"].items():
+            for _load_id, fatigue_data in comp_results["fatigue"].items():
                 if not fatigue_data["adequate_fatigue_life"]:
                     fatigue_issues += 1
 
@@ -434,7 +431,7 @@ def create_structural_analysis_visualization():
     colors = [get_safety_color(sf) for sf in safety_factors]
 
     # Plot 1: Safety factors by component
-    bars1 = axes[0, 0].bar(component_ids, safety_factors, color=colors)
+    axes[0, 0].bar(component_ids, safety_factors, color=colors)
     axes[0, 0].set_ylabel('Safety Factor', fontsize=12)
     axes[0, 0].set_title('Component Safety Factors', fontsize=14)
     axes[0, 0].axhline(y=analyzer.min_safety_factor, color='red', linestyle='--', alpha=0.7, label='Minimum Required')
@@ -464,8 +461,8 @@ def create_structural_analysis_visualization():
     x = np.arange(len(materials))
     width = 0.35
 
-    bars2 = axes[0, 1].bar(x - width/2, material_stresses, width, label='Maximum Stress', alpha=0.8)
-    bars3 = axes[0, 1].bar(x + width/2, material_strengths, width, label='Yield Strength', alpha=0.8)
+    axes[0, 1].bar(x - width/2, material_stresses, width, label='Maximum Stress', alpha=0.8)
+    axes[0, 1].bar(x + width/2, material_strengths, width, label='Yield Strength', alpha=0.8)
 
     axes[0, 1].set_ylabel('Stress (MPa)', fontsize=12)
     axes[0, 1].set_title('Material Stress Analysis', fontsize=14)
@@ -477,7 +474,7 @@ def create_structural_analysis_visualization():
     load_case_names = [lc.load_id for lc in analyzer.load_cases]
     load_magnitudes = [lc.force_n for lc in analyzer.load_cases]
 
-    bars4 = axes[0, 2].bar(load_case_names, load_magnitudes, color=['blue', 'red', 'orange', 'green', 'purple'])
+    axes[0, 2].bar(load_case_names, load_magnitudes, color=['blue', 'red', 'orange', 'green', 'purple'])
     axes[0, 2].set_ylabel('Force (N)', fontsize=12)
     axes[0, 2].set_title('Load Case Magnitudes', fontsize=14)
     axes[0, 2].tick_params(axis='x', rotation=45)
@@ -491,7 +488,7 @@ def create_structural_analysis_visualization():
             max_deflection = max(max_deflection, deflection_data["linear_deflection_m"])
         component_deflections.append(max_deflection * 1000)  # Convert to mm
 
-    bars5 = axes[1, 0].bar(component_ids, component_deflections, color='cyan')
+    axes[1, 0].bar(component_ids, component_deflections, color='cyan')
     axes[1, 0].set_ylabel('Maximum Deflection (mm)', fontsize=12)
     axes[1, 0].set_title('Component Deflection Analysis', fontsize=14)
     axes[1, 0].axhline(y=analyzer.max_allowable_deflection_m * 1000, color='red', linestyle='--', alpha=0.7, label='Allowable Limit')
@@ -508,7 +505,7 @@ def create_structural_analysis_visualization():
         else:
             fatigue_safety_factors.append(10.0)  # High value for non-fatigue components
 
-    bars6 = axes[1, 1].bar(component_ids, fatigue_safety_factors, color='magenta')
+    axes[1, 1].bar(component_ids, fatigue_safety_factors, color='magenta')
     axes[1, 1].set_ylabel('Fatigue Safety Factor', fontsize=12)
     axes[1, 1].set_title('Fatigue Life Analysis', fontsize=14)
     axes[1, 1].axhline(y=1.0, color='red', linestyle='--', alpha=0.7, label='Minimum Required')
@@ -533,7 +530,7 @@ Royal Court Ready: {'YES' if results['overall_safety']['minimum_safety_factor'] 
 """
 
     axes[1, 2].text(0.1, 0.5, summary_text, fontsize=11, verticalalignment='center',
-                    bbox=dict(boxstyle="round,pad=0.5", facecolor="lightgray", alpha=0.8))
+                    bbox={"boxstyle": "round,pad=0.5", "facecolor": "lightgray", "alpha": 0.8})
     axes[1, 2].set_xlim(0, 1)
     axes[1, 2].set_ylim(0, 1)
     axes[1, 2].axis('off')

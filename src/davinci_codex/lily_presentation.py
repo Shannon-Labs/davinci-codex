@@ -10,7 +10,6 @@ from dataclasses import dataclass
 from typing import List, Tuple
 
 import matplotlib.pyplot as plt
-import numpy as np
 
 # French royal symbolism
 FLEUR_DE_LIS_SYMBOLISM = {
@@ -62,7 +61,7 @@ class LilyPresentationPlatform:
         # Scissor lift mechanism
         self.num_scissor_pairs = 3
         self.scissor_arms = []
-        for i in range(self.num_scissor_pairs):
+        for _i in range(self.num_scissor_pairs):
             arm_length = self.max_elevation_m / (2 * math.sin(math.pi/6))  # 30° angle
             self.scissor_arms.append(ScissorLiftArm(arm_length))
 
@@ -232,21 +231,16 @@ def simulate_lily_presentation():
         # Determine phase and target progress
         if t < pause_duration:
             target_progress = 0.0
-            phase = "pause"
         elif t < pause_duration + elevation_duration:
             progress = (t - pause_duration) / elevation_duration
             target_progress = platform.calculate_cam_profile(progress * math.pi)
-            phase = "rising"
         elif t < pause_duration + elevation_duration + display_duration:
             target_progress = 1.0
-            phase = "display"
         elif t < pause_duration + elevation_duration + display_duration + lowering_duration:
             progress = (t - pause_duration - elevation_duration - display_duration) / lowering_duration
             target_progress = 1.0 - progress
-            phase = "lowering"
         else:
             target_progress = 0.0
-            phase = "reset"
 
         # Update platform
         platform.update_elevation(dt, target_progress)
@@ -287,7 +281,7 @@ def visualize_lily_presentation():
     # Add phase markers
     phase_markers = [2.5, 4.5, 12.5, 15.5]
     phase_labels = ['Rise', 'Display', 'Lower', 'Reset']
-    for i, (marker, label) in enumerate(zip(phase_markers, phase_labels)):
+    for _i, (marker, label) in enumerate(zip(phase_markers, phase_labels)):
         axes[0, 0].axvline(x=marker, color='gray', linestyle='--', alpha=0.5)
         axes[0, 0].text(marker, platform.max_elevation_m * 0.9, label,
                        ha='center', fontsize=10, alpha=0.7)
@@ -373,10 +367,7 @@ def create_lily_arrangement_diagram():
 
     # Draw lilies at elevated positions
     for lily in platform.fleurs_de_lis:
-        if lily.id == 0:
-            x_pos = 0
-        else:
-            x_pos = lily.radius_m * math.cos(lily.angle_rad)
+        x_pos = 0 if lily.id == 0 else lily.radius_m * math.cos(lily.angle_rad)
 
         y_pos = platform.max_elevation_m + lily.height_mm / 1000
         ax2.scatter(x_pos, y_pos, s=100, c='gold', marker='*',

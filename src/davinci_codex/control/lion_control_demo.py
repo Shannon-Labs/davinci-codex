@@ -16,19 +16,20 @@ Engineering Achievement:
 """
 
 import sys
-import time
+from pathlib import Path
+
 import matplotlib.pyplot as plt
 import numpy as np
-from pathlib import Path
 
 # Add the control modules to path
 sys.path.append(str(Path(__file__).parent))
 
-from lion_control_system import MechanicalLionController
 from cam_profile_generator import CamProfileGenerator
-from timing_sequence_optimizer import TimingSequenceOptimizer
+from lion_control_system import MechanicalLionController
 from mechanical_programming_logic import MechanicalProgrammingController
 from performance_choreography import PerformanceChoreographer
+from timing_sequence_optimizer import TimingSequenceOptimizer
+
 
 class LionControlSystemDemo:
     """
@@ -119,7 +120,7 @@ class LionControlSystemDemo:
         # Create optimal timing sequence
         timing = self.timing_optimizer.create_optimal_timing_sequence()
 
-        print(f"Created optimal timing sequence:")
+        print("Created optimal timing sequence:")
         print(f"  Total duration: {timing.total_duration} seconds")
         print(f"  Performance events: {len(timing.events)}")
         print(f"  Critical timing points: {len(timing.critical_timing_points)}")
@@ -157,7 +158,7 @@ class LionControlSystemDemo:
         print("MECHANICAL PROGRAMMING LOGIC DEMONSTRATION")
         print("=" * 60)
 
-        print(f"Mechanical Programming Controller:")
+        print("Mechanical Programming Controller:")
         print(f"  Control channels: {self.programming_controller.num_channels}")
         print(f"  Programming events: {len(self.programming_controller.control_events)}")
         print(f"  Performance duration: {self.programming_controller.total_performance_time} seconds")
@@ -207,7 +208,7 @@ class LionControlSystemDemo:
         print("PERFORMANCE CHOREOGRAPHY DEMONSTRATION")
         print("=" * 60)
 
-        print(f"Performance Choreographer:")
+        print("Performance Choreographer:")
         print(f"  Theatrical moments: {len(self.choreographer.theatrical_moments)}")
         print(f"  Transitions: {len(self.choreographer.transitions)}")
         print(f"  Total duration: {self.choreographer.total_duration} seconds")
@@ -282,13 +283,13 @@ class LionControlSystemDemo:
         print("Running integrated performance simulation...")
 
         # Simulate the complete performance
-        time_points = np.linspace(0, self.lion_controller.total_performance_time, 100)
+        np.linspace(0, self.lion_controller.total_performance_time, 100)
 
         # Generate integrated control signals
         integrated_control = self.lion_controller.simulate_complete_performance(0.1)
 
         print("Integration Results:")
-        print(f"  Control channels active: {len([ch for ch in integrated_control.keys() if ch != 'time' and ch != 'phase'])}")
+        print(f"  Control channels active: {len([ch for ch in integrated_control if ch != 'time' and ch != 'phase'])}")
         print(f"  Performance phases: {len(set(integrated_control['phase']))}")
         print(f"  Data points generated: {len(integrated_control['time'])}")
         print()

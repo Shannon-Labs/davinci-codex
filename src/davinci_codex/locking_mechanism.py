@@ -8,10 +8,11 @@ from __future__ import annotations
 import math
 from dataclasses import dataclass
 from enum import Enum
-from typing import Dict, List, Tuple, Optional
+from typing import Dict
 
 import matplotlib.pyplot as plt
 import numpy as np
+
 
 class LockState(Enum):
     """Locking mechanism states."""
@@ -84,7 +85,7 @@ class CamLock:
 
     def calculate_cam_torque(self, angle_rad: float, load_n: float) -> float:
         """Calculate torque required to rotate cam under load."""
-        lift = self.calculate_lift_height(angle_rad)
+        self.calculate_lift_height(angle_rad)
         if self.cam_radius_m > 0:
             mechanical_advantage = self.cam_radius_m / (self.lift_height_m + 0.001)
             return load_n / mechanical_advantage
@@ -355,7 +356,7 @@ def simulate_locking_mechanism():
         "locking_force_n": force_array,
         "safety_margin": safety_margin_array,
         "reliability": reliability_array,
-        "engaged_bolts": engaged_bolts,
+        "engaged_bolts": engaged_bolts_array,
         "locking_system": locking_system,
     }
 
@@ -392,12 +393,6 @@ def create_locking_mechanism_visualization():
     axes[0, 0].set_ylim(0, 1)
 
     # Add state labels
-    state_labels = {
-        "locked_closed": "Locked Closed",
-        "free_to_move": "Free to Move",
-        "locked_open": "Locked Open",
-        "reset": "Reset"
-    }
 
     # Plot 2: Locking force profile
     axes[0, 1].plot(sim_data["time_s"], sim_data["locking_force_n"], 'b-', linewidth=2.5)

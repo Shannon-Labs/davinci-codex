@@ -5,13 +5,12 @@ Master controller for perfect royal court performance synchronization
 
 from __future__ import annotations
 
-import math
 from dataclasses import dataclass
 from enum import Enum
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional
 
 import matplotlib.pyplot as plt
-import numpy as np
+
 
 class PerformancePhase(Enum):
     """Performance phases for the mechanical lion show."""
@@ -336,8 +335,8 @@ class TheatricalSequencer:
         script.append("LEONARDO'S MECHANICAL LION - ROYAL PERFORMANCE SCRIPT")
         script.append("=" * 60)
         script.append(f"Total Performance Time: {self.total_performance_time_s:.1f} seconds")
-        script.append(f"Commissioned for: King Francis I of France")
-        script.append(f"Occasion: Celebration of Franco-Florentine Alliance")
+        script.append("Commissioned for: King Francis I of France")
+        script.append("Occasion: Celebration of Franco-Florentine Alliance")
         script.append("")
 
         for event in self.performance_events:
@@ -440,7 +439,7 @@ def create_theatrical_timing_visualization():
             mid_time = event.start_time_s + event.duration_s / 2
             axes[0, 0].text(mid_time, 0.5, phase_labels[event.phase.value],
                            ha='center', va='center', fontsize=10, fontweight='bold',
-                           bbox=dict(boxstyle="round,pad=0.3", facecolor="white", alpha=0.8))
+                           bbox={"boxstyle": "round,pad=0.3", "facecolor": "white", "alpha": 0.8})
 
     # Plot 2: Phase progress over time
     axes[0, 1].plot(sim_data["time_s"], sim_data["progress"], 'b-', linewidth=2.5)

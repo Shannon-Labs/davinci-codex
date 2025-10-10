@@ -57,7 +57,7 @@ def get_instrument_mapping(instrument_str: str) -> Dict[int, InstrumentType]:
 
         except ValueError:
             typer.echo(f"Invalid instrument mapping: {part}")
-            raise typer.Exit(1)
+            raise typer.Exit(1) from None
 
     return mapping
 
@@ -251,7 +251,7 @@ def adapt(
         score = load_from_json(input_path)
     except Exception as e:
         typer.echo(f"Error loading input file: {e}")
-        raise typer.Exit(1)
+        raise typer.Exit(1) from None
 
     # Parse instrument mapping
     instrument_mapping = get_instrument_mapping(instruments)

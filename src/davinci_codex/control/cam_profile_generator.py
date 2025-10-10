@@ -15,13 +15,15 @@ Engineering Innovation:
 - Theater-timed mechanical coordination
 """
 
-import numpy as np
-import matplotlib.pyplot as plt
-from dataclasses import dataclass
-from typing import Dict, List, Tuple, Callable, Optional
-from pathlib import Path
 import json
 import math
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Callable, Dict, List, Optional, Tuple
+
+import matplotlib.pyplot as plt
+import numpy as np
+
 
 @dataclass
 class CamSpecification:
@@ -434,7 +436,7 @@ class CamProfileGenerator:
         dt = 0.01
         dr_dt = np.gradient(radii, dt)
         d2r_dt2 = np.gradient(dr_dt, dt)
-        d3r_dt3 = np.gradient(d2r_dt2, dt)
+        np.gradient(d2r_dt2, dt)
 
         angular_velocity = math.radians(self.rotation_speed)
 
@@ -491,7 +493,7 @@ class CamProfileGenerator:
 
         ax4.text(0.05, 0.95, spec_text, transform=ax4.transAxes,
                 fontsize=9, verticalalignment='top', fontfamily='monospace',
-                bbox=dict(boxstyle='round,pad=0.5', facecolor='lightyellow', alpha=0.8))
+                bbox={'boxstyle': 'round,pad=0.5', 'facecolor': 'lightyellow', 'alpha': 0.8})
 
         plt.suptitle(f'Cam Profile Analysis: {cam_spec.name.replace("_", " ").title()}',
                     fontsize=14, fontweight='bold')
@@ -593,13 +595,13 @@ class CamProfileGenerator:
 
         print(f"✓ Cam design package exported to: {output_path}")
         print(f"✓ Generated {len(cam_specs)} cam profiles")
-        print(f"✓ Created technical drawings and specifications")
+        print("✓ Created technical drawings and specifications")
 
     def _create_manufacturing_instructions(self, cam_specs: Dict[str, CamSpecification],
                                          output_path: Path) -> None:
         """Create detailed manufacturing instructions for Renaissance craftsmen"""
 
-        instructions = f"""
+        instructions = """
         LEONARDO'S MECHANICAL LION - CAM MANUFACTURING INSTRUCTIONS
         ==================================================================
 
@@ -640,7 +642,7 @@ class CamProfileGenerator:
         """
 
         # Add specific instructions for each cam
-        for cam_name, cam_spec in cam_specs.items():
+        for _cam_name, cam_spec in cam_specs.items():
             instructions += f"""
         {cam_spec.name.replace('_', ' ').upper()}
         {'=' * len(cam_spec.name)}
@@ -660,7 +662,7 @@ class CamProfileGenerator:
             instructions += "\n"
 
         # Add quality control instructions
-        instructions += f"""
+        instructions += """
         QUALITY CONTROL AND TESTING
         ==================================================================
 

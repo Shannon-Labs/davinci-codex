@@ -7,20 +7,21 @@ from __future__ import annotations
 
 import math
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import List
 
 import matplotlib
+
 matplotlib.use("Agg")
-import matplotlib.pyplot as plt
 import matplotlib.animation as animation
+import matplotlib.pyplot as plt
 from matplotlib import patches
-import numpy as np
 
 # Import our mechanism modules
 from .chest_mechanism_design import ChestCavityMechanism
 from .lily_presentation import LilyPresentationPlatform
 from .locking_mechanism import ChestLockingSystem
 from .theatrical_timing import TheatricalSequencer
+
 
 class ChestCavityAnimator:
     """Complete animator for the chest cavity mechanism."""
@@ -208,7 +209,7 @@ class ChestCavityAnimator:
 
         # Draw fleurs-de-lis
         lily_positions = self.lily_platform.get_lily_positions_3d()
-        for i, (x, y, z) in enumerate(lily_positions):
+        for _i, (x, y, z) in enumerate(lily_positions):
             # Main view
             lily_main = patches.Star((x, y), 30, color='gold',
                                     edgecolor='darkgoldenrod', linewidth=2)
@@ -288,7 +289,7 @@ Theatrical Impact: {'SPECTACULAR!' if self.phase_progress > 0.8 else 'Building..
 
         ax.text(0.1, 0.9, status_text, fontsize=10, verticalalignment='top',
                fontfamily='monospace',
-               bbox=dict(boxstyle="round,pad=0.5", facecolor="lightblue", alpha=0.8))
+               bbox={"boxstyle": "round,pad=0.5", "facecolor": "lightblue", "alpha": 0.8})
 
     def update_metrics_display(self, ax) -> None:
         """Update the metrics display panel."""
@@ -317,7 +318,7 @@ Leonardo's Genius: EXTRAORDINARY!
 
         ax.text(0.1, 0.9, metrics_text, fontsize=10, verticalalignment='top',
                fontfamily='monospace',
-               bbox=dict(boxstyle="round,pad=0.5", facecolor="lightyellow", alpha=0.8))
+               bbox={"boxstyle": "round,pad=0.5", "facecolor": "lightyellow", "alpha": 0.8})
 
     def animate_frame(self, frame: int) -> List:
         """Animate a single frame."""
@@ -430,7 +431,7 @@ Leonardo's Genius: EXTRAORDINARY!
             mp4_path = output_path.with_suffix('.mp4')
             anim.save(mp4_path, writer='ffmpeg', fps=self.fps)
             print(f"Also saved as MP4: {mp4_path}")
-        except:
+        except Exception:
             print("MP4 export not available (ffmpeg not found)")
 
         plt.close(self.fig)

@@ -15,13 +15,14 @@ Engineering Innovation:
 - Performance sequence synchronization
 """
 
-import numpy as np
-import matplotlib.pyplot as plt
-from dataclasses import dataclass
-from typing import Dict, List, Tuple, Optional, Callable
-from pathlib import Path
 import json
-import math
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Dict, List, Optional
+
+import matplotlib.pyplot as plt
+import numpy as np
+
 
 @dataclass
 class TimingEvent:
@@ -268,7 +269,7 @@ class TimingSequenceOptimizer:
 
         # Calculate audience engagement score
         focus_density = len(timing.audience_focus_points) / timing.total_duration
-        variety_score = len(set(event.dramatic_function for event in timing.events)) / len(timing.events)
+        variety_score = len({event.dramatic_function for event in timing.events}) / len(timing.events)
         audience_engagement_score = (focus_density + variety_score) / 2
 
         # Calculate coordination complexity
@@ -411,10 +412,10 @@ class TimingSequenceOptimizer:
         y_position = 0
         colors = plt.cm.viridis(np.linspace(0, 1, len(timing.events)))
 
-        for i, event in enumerate(timing.events):
+        for y_position, event in enumerate(timing.events):
             # Draw event bar
             ax1.barh(y_position, event.duration, left=event.start_time,
-                    height=0.8, color=colors[i], alpha=0.7,
+                    height=0.8, color=colors[y_position], alpha=0.7,
                     label=f"{event.name}: {event.dramatic_function}")
 
             # Add importance indicator
@@ -422,8 +423,6 @@ class TimingSequenceOptimizer:
             importance_y = y_position + 0.4
             ax1.scatter(importance_x, importance_y, s=100 * event.importance,
                        c='red', marker='*', alpha=0.8, zorder=5)
-
-            y_position += 1
 
         ax1.set_xlabel('Time (seconds)')
         ax1.set_ylabel('Events')
@@ -586,8 +585,8 @@ class TimingSequenceOptimizer:
         self._create_timing_sheet(timing, output_path)
 
         print(f"✓ Timing specifications exported to: {output_path}")
-        print(f"✓ Created detailed event timing documentation")
-        print(f"✓ Generated performance analysis and optimization recommendations")
+        print("✓ Created detailed event timing documentation")
+        print("✓ Generated performance analysis and optimization recommendations")
 
     def _get_event_timing_notes(self, event: TimingEvent) -> List[str]:
         """Get specific timing notes for each event"""
@@ -673,7 +672,7 @@ class TimingSequenceOptimizer:
             timing_sheet += "\n"
 
         # Add coordination notes
-        timing_sheet += f"""
+        timing_sheet += """
         COORDINATION NOTES
         ==================================================================
 
@@ -684,7 +683,7 @@ class TimingSequenceOptimizer:
         for coord_time in timing.mechanical_coordination_points:
             timing_sheet += f"        • {coord_time:.1f} seconds - Verify all systems aligned\n"
 
-        timing_sheet += f"""
+        timing_sheet += """
         2. AUDIENCE FOCUS MOMENTS
         ─────────────────────────
         """
@@ -776,7 +775,7 @@ def main():
 
     # Calculate audience attention model
     attention_model = optimizer.calculate_audience_attention_model(optimized_timing)
-    print(f"AUDIENCE ATTENTION ANALYSIS:")
+    print("AUDIENCE ATTENTION ANALYSIS:")
     print(f"  Average Attention Level: {attention_model['average_attention']:.2f}")
     print(f"  Attention Variance: {attention_model['attention_variance']:.2f}")
     print(f"  Peak Attention Periods: {len(attention_model['peak_attention_times'])}")

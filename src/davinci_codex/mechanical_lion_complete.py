@@ -10,13 +10,10 @@ and theatrical presentation.
 
 from __future__ import annotations
 
-import math
 from dataclasses import dataclass
-from pathlib import Path
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional
 
 import matplotlib.pyplot as plt
-import numpy as np
 
 from .artifacts import ensure_artifact_dir
 from .chest_mechanism_design import ChestCavityMechanism
@@ -146,7 +143,7 @@ class CompleteMechanicalLion:
                 self._update_locking_system(dt_s, current_phase)
 
             # Always update theatrical sequencer
-            sequencer_state = self.sequencer.update_performance_state(dt_s)
+            self.sequencer.update_performance_state(dt_s)
 
         else:
             # Performance complete or between phases
@@ -277,7 +274,7 @@ class CompleteMechanicalLion:
         system_safety_array = []
 
         # Run simulation
-        for step in range(total_steps + 1):
+        for _step in range(total_steps + 1):
             # Update system
             system_status = self.update_complete_system(dt_s)
 
@@ -394,7 +391,7 @@ class CompleteMechanicalLion:
             mid_time = phase.start_time_s + phase.duration_s / 2
             ax3.text(mid_time, 0.5, phase.name.replace('_', '\n'),
                     ha='center', va='center', fontsize=9,
-                    bbox=dict(boxstyle="round,pad=0.3", facecolor="white", alpha=0.8))
+                    bbox={"boxstyle": "round,pad=0.3", "facecolor": "white", "alpha": 0.8})
 
         plt.tight_layout()
         plt.savefig(plot_path, dpi=300, bbox_inches='tight')

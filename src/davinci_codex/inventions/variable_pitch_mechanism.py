@@ -9,14 +9,14 @@ swashplate system that maintains the mechanical elegance and efficiency characte
 of da Vinci's designs.
 """
 
-import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation
-from mpl_toolkits.mplot3d import Axes3D
-import scipy.optimize as opt
-from dataclasses import dataclass, field
-from typing import Tuple, List, Dict, Optional
 import warnings
+from dataclasses import dataclass
+from typing import Dict
+
+import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib.animation import FuncAnimation
+
 warnings.filterwarnings('ignore')
 
 # Module metadata for discovery system
@@ -176,7 +176,7 @@ class SwashplateMechanism:
         pitch = self.current_pitch
         velocity = 0.0
 
-        for i, time in enumerate(t):
+        for i, _time in enumerate(t):
             # Calculate pitch error
             error = target_pitch - pitch
 
@@ -225,7 +225,7 @@ class SwashplateMechanism:
 
             # Calculate efficiency (optimized for high efficiency design)
             power_input = actual_force * self.dynamics.actuator_speed
-            power_output = torque_total * velocity
+            torque_total * velocity
 
             # Account for reduced friction in optimized design
             friction_reduction_factor = 0.4  # Only 40% of calculated friction losses due to optimization
@@ -270,7 +270,7 @@ class SwashplateMechanism:
         friction_losses = {}
 
         # Swashplate bearing losses
-        swashplate_radius = (self.geometry.outer_radius + self.geometry.inner_radius) / 2
+        (self.geometry.outer_radius + self.geometry.inner_radius) / 2
         swashplate_speed = 2 * np.pi * 2  # rad/s (assuming 2 RPM for pitch changes)
 
         # Normal force on bearing (weight + centrifugal)
@@ -897,14 +897,14 @@ def evaluate() -> Dict:
     Returns:
         Feasibility assessment and safety analysis
     """
-    mechanism = SwashplateMechanism()
+    SwashplateMechanism()
 
     # Run simulation to get performance data
     sim_results = simulate()
 
     # Safety assessment
     safety_factors = []
-    for component, analysis in sim_results['structural_analysis'].items():
+    for _component, analysis in sim_results['structural_analysis'].items():
         safety_factors.append(analysis['safety_factor'])
 
     min_safety_factor = min(safety_factors)

@@ -7,10 +7,9 @@ from __future__ import annotations
 
 import math
 from dataclasses import dataclass
-from typing import List, Tuple
+from typing import Tuple
 
 import matplotlib.pyplot as plt
-import numpy as np
 
 # Physical constants
 GRAVITY_M_S2 = 9.81

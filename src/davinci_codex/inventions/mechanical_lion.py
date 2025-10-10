@@ -29,13 +29,13 @@ awe the 16th century court and inspire engineers for generations to come.
 from __future__ import annotations
 
 import importlib.util
-import json
 import math
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Tuple
 
 import matplotlib
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
@@ -447,7 +447,7 @@ class StabilityAnalysis:
         """
         contact_points = []
 
-        for leg_name, leg in self.legs.items():
+        for _leg_name, leg in self.legs.items():
             hip_angle, knee_angle, ground_contact = leg.calculate_joint_angles(time)
 
             if ground_contact:
@@ -488,7 +488,7 @@ class StabilityAnalysis:
         leg_com_x = 0.0
         leg_com_y = 0.0
 
-        for leg_name, leg in self.legs.items():
+        for _leg_name, leg in self.legs.items():
             leg_mass = self.body_mass * 0.15  # Each leg ~15% of body mass
             total_leg_mass += leg_mass
 
@@ -591,13 +591,11 @@ class StabilityAnalysis:
         p1x, p1y = polygon[0]
         for i in range(1, n + 1):
             p2x, p2y = polygon[i % n]
-            if y > min(p1y, p2y):
-                if y <= max(p1y, p2y):
-                    if x <= max(p1x, p2x):
-                        if p1y != p2y:
-                            xinters = (y - p1y) * (p2x - p1x) / (p2y - p1y) + p1x
-                        if p1x == p2x or x <= xinters:
-                            inside = not inside
+            if y > min(p1y, p2y) and y <= max(p1y, p2y) and x <= max(p1x, p2x):
+                if p1y != p2y:
+                    xinters = (y - p1y) * (p2x - p1x) / (p2y - p1y) + p1x
+                if p1x == p2x or x <= xinters:
+                    inside = not inside
             p1x, p1y = p2x, p2y
 
         return inside
@@ -983,7 +981,7 @@ def simulate(seed: int = 0) -> Dict[str, object]:
     gait_data = {
         'time': time_points,
         'stability': [],
-        'leg_positions': {leg_name: [] for leg_name in legs.keys()},
+        'leg_positions': {leg_name: [] for leg_name in legs},
         'center_of_mass': []
     }
 
@@ -1042,7 +1040,7 @@ def simulate(seed: int = 0) -> Dict[str, object]:
     power_results = _analyze_power_requirements()
 
     # Calculate performance metrics
-    total_steps = int(len(time_points) / (STEP_DURATION * 4))
+    int(len(time_points) / (STEP_DURATION * 4))
     stability_percentage = 100.0 * (len(time_points) - stability_failures) / len(time_points)
 
     # Educational insights
@@ -1151,7 +1149,7 @@ def simulate(seed: int = 0) -> Dict[str, object]:
 
         # Generated artifacts
         "artifacts": [str(plot_path), str(animation_path)] +
-                    [str(cam_dir / f"{profile}.csv") for profile in cam_profiles.keys()],
+                    [str(cam_dir / f"{profile}.csv") for profile in cam_profiles],
 
         # Validation results
         "validation": {
@@ -1229,7 +1227,7 @@ def _create_gait_analysis_plot(path: Path, gait_data: Dict) -> None:
 
     for i, leg_name in enumerate(leg_names):
         ground_contact = []
-        for j, t in enumerate(time):
+        for j, _t in enumerate(time):
             stability = gait_data['stability'][j]
             # Count this leg if it contributes to support
             if stability['support_points'] >= 2:
@@ -1323,7 +1321,7 @@ def _create_walking_animation(path: Path, gait_data: Dict) -> None:
     # Leg lines
     leg_lines = {}
     leg_colors = {'LF': 'blue', 'RF': 'red', 'LH': 'green', 'RH': 'orange'}
-    for leg_name in leg_colors.keys():
+    for leg_name in leg_colors:
         line, = ax.plot([], [], linewidth=3, color=leg_colors[leg_name],
                        label=f'{leg_name} Leg')
         leg_lines[leg_name] = line
@@ -1354,16 +1352,13 @@ def _create_walking_animation(path: Path, gait_data: Dict) -> None:
             else:  # Hind leg
                 shoulder_x = body_x - FORELEG_TO_HINDLEG_DISTANCE / 2
 
-            if 'L' in leg_name:  # Left leg
-                shoulder_y = LATERAL_LEG_SPACING / 2
-            else:  # Right leg
-                shoulder_y = -LATERAL_LEG_SPACING / 2
+            shoulder_y = LATERAL_LEG_SPACING / 2 if 'L' in leg_name else -LATERAL_LEG_SPACING / 2
 
             shoulder_z = BODY_HEIGHT
 
             # Leg end position
             foot_x = shoulder_x + leg_data['x']
-            foot_y = shoulder_y + leg_data['y']
+            shoulder_y + leg_data['y']
             foot_z = leg_data['z']
 
             leg_line.set_data([shoulder_x, foot_x], [shoulder_z, foot_z])
@@ -1421,7 +1416,7 @@ def _analyze_power_requirements() -> Dict[str, float]:
     """Analyze power and energy requirements."""
 
     # Calculate mechanical work per step
-    step_distance = LION_STRIDE_LENGTH / 4  # Distance per leg
+    LION_STRIDE_LENGTH / 4  # Distance per leg
     leg_lift_height = 0.1  # meters
     work_per_step = LION_WEIGHT * GRAVITY * leg_lift_height
 

@@ -351,7 +351,7 @@ class MechanicalConstraintValidator:
 
             # Group by instrument type
             instrument_counts: Dict[InstrumentType, int] = {}
-            for voice_idx, note in sounding_notes:
+            for voice_idx, _note in sounding_notes:
                 instrument = instrument_assignments.get(voice_idx)
                 if instrument:
                     instrument_counts[instrument] = instrument_counts.get(instrument, 0) + 1

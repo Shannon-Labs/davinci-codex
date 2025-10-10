@@ -278,7 +278,9 @@ def validate(
 @app.command("gallery")
 def gallery_command() -> None:
     """Regenerate static simulation gallery assets."""
-    from scripts.generate_simulation_gallery import main as gallery_main  # pylint: disable=import-outside-toplevel
+    from scripts.generate_simulation_gallery import (
+        main as gallery_main,  # pylint: disable=import-outside-toplevel
+    )
 
     typer.echo("# Regenerating gallery")
     gallery_main()

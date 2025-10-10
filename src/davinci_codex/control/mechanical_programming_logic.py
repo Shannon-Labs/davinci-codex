@@ -15,14 +15,15 @@ Engineering Innovation:
 - Theatrical timing and synchronization
 """
 
-import numpy as np
-import matplotlib.pyplot as plt
-from dataclasses import dataclass, field
-from typing import Dict, List, Tuple, Optional, Set, Callable
-from pathlib import Path
 import json
-import math
+from dataclasses import dataclass, field
 from enum import Enum
+from pathlib import Path
+from typing import Dict, List, Optional, Set, Tuple
+
+import matplotlib.pyplot as plt
+import numpy as np
+
 
 class MechanicalState(Enum):
     """Mechanical system states for the lion automaton"""
@@ -101,7 +102,7 @@ class MechanicalProgrammingController:
         self.current_time = 0.0
         self.system_status = SystemStatus(
             overall_state=MechanicalState.IDLE,
-            channel_states={i: MechanicalState.IDLE for i in range(self.num_channels)},
+            channel_states=dict.fromkeys(range(self.num_channels), MechanicalState.IDLE),
             performance_time=0.0,
             active_events=[],
             completed_events=[],
@@ -411,7 +412,7 @@ class MechanicalProgrammingController:
 
     def _update_channel_states(self, dt: float) -> None:
         """Update the position and state of all channels"""
-        for channel_id, channel in self.channels.items():
+        for _channel_id, channel in self.channels.items():
             if channel.current_state == MechanicalState.IDLE:
                 continue
 
@@ -522,13 +523,7 @@ class MechanicalProgrammingController:
     def _check_safety_interlocks(self, interlocks: List[str]) -> bool:
         """Check if all safety interlocks are satisfied"""
         for interlock in interlocks:
-            if interlock == "no_leg_collision" and self.safety_interlocks["leg_collision"]:
-                return False
-            elif interlock == "chest_closed" and self.channels[5].current_position > 0.1:
-                return False
-            elif interlock == "chest_clear" and self.safety_interlocks["chest_collision"]:
-                return False
-            elif interlock == "system_stable" and self.system_status.safety_status != "safe":
+            if interlock == "no_leg_collision" and self.safety_interlocks["leg_collision"] or interlock == "chest_closed" and self.channels[5].current_position > 0.1 or interlock == "chest_clear" and self.safety_interlocks["chest_collision"] or interlock == "system_stable" and self.system_status.safety_status != "safe":
                 return False
 
         return True
@@ -591,7 +586,7 @@ class MechanicalProgrammingController:
         self.current_time = 0.0
         self.system_status = SystemStatus(
             overall_state=MechanicalState.IDLE,
-            channel_states={i: MechanicalState.IDLE for i in range(self.num_channels)},
+            channel_states=dict.fromkeys(range(self.num_channels), MechanicalState.IDLE),
             performance_time=0.0,
             active_events=[],
             completed_events=[],
@@ -827,7 +822,7 @@ def main():
     # Initialize controller
     controller = MechanicalProgrammingController()
 
-    print(f"Initialized mechanical programming controller:")
+    print("Initialized mechanical programming controller:")
     print(f"  Control channels: {controller.num_channels}")
     print(f"  Programming events: {len(controller.control_events)}")
     print(f"  Performance duration: {controller.total_performance_time} seconds")

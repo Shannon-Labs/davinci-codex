@@ -15,13 +15,14 @@ Engineering Innovation:
 - Theatrical timing optimization
 """
 
-import numpy as np
-import matplotlib.pyplot as plt
-from dataclasses import dataclass
-from typing import Dict, List, Tuple, Optional
-from pathlib import Path
 import json
-import math
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Dict, List, Optional, Tuple
+
+import matplotlib.pyplot as plt
+import numpy as np
+
 
 @dataclass
 class PerformancePhase:
@@ -375,7 +376,7 @@ class MechanicalLionController:
 
         if not active_phase:
             # Return default values for idle state
-            return {channel: 0.0 for channel in self.control_channels.keys()}
+            return dict.fromkeys(self.control_channels.keys(), 0.0)
 
         # Calculate progress within current phase
         progress = (current_time - active_phase.start_time) / active_phase.duration
@@ -397,7 +398,7 @@ class MechanicalLionController:
         """Simulate complete 26.5-second theatrical performance"""
         simulation_time = np.arange(0, self.total_performance_time + time_step, time_step)
 
-        control_history = {channel: [] for channel in self.control_channels.keys()}
+        control_history = {channel: [] for channel in self.control_channels}
         control_history['time'] = simulation_time
         control_history['phase'] = []
 
@@ -472,7 +473,7 @@ class MechanicalLionController:
             phase_center = phase.start_time + phase.duration / 2
             phase_axis.text(phase_center, 0.5, phase.name.replace('_', ' ').title(),
                           ha='center', va='center', fontsize=9,
-                          bbox=dict(boxstyle='round,pad=0.3', facecolor='lightblue', alpha=0.7))
+                          bbox={"boxstyle": 'round,pad=0.3', "facecolor": 'lightblue', "alpha": 0.7})
 
         phase_axis.set_yticks([])
 
@@ -504,15 +505,15 @@ class MechanicalLionController:
         }
 
         # Add detailed specifications for each cam
-        for cam_name, cam_profile in self.cam_profiles.items():
+        for cam_name, _cam_profile in self.cam_profiles.items():
             x, y = self.generate_cam_coordinates(cam_name)
 
             specs["cam_profiles"][cam_name] = {
                 "function": cam_name.replace('_', ' ').title(),
-                "material": cam_profile.material,
-                "follower_type": cam_profile.follower_type,
-                "max_lift": cam_profile.max_lift,
-                "angle_range_degrees": tuple(np.degrees(cam_profile.angle_range)),
+                "material": _cam_profile.material,
+                "follower_type": _cam_profile.follower_type,
+                "max_lift": _cam_profile.max_lift,
+                "angle_range_degrees": tuple(np.degrees(_cam_profile.angle_range)),
                 "manufacturing_notes": self._get_cam_manufacturing_notes(cam_name),
                 "coordinates": {
                     "x_meters": x.tolist(),
@@ -526,7 +527,7 @@ class MechanicalLionController:
             json.dump(specs, f, indent=2)
 
         # Create individual cam profile drawings
-        for cam_name, cam_profile in self.cam_profiles.items():
+        for cam_name, _cam_profile in self.cam_profiles.items():
             self._create_cam_profile_drawing(cam_name, output_path)
 
     def _get_cam_manufacturing_notes(self, cam_name: str) -> List[str]:
@@ -604,7 +605,7 @@ class MechanicalLionController:
         notes_text = '\n'.join([f"• {note}" for note in notes[:3]])
         ax2.text(0.02, 0.98, notes_text, transform=ax2.transAxes,
                 fontsize=9, verticalalignment='top',
-                bbox=dict(boxstyle='round,pad=0.5', facecolor='lightyellow', alpha=0.8))
+                bbox={"boxstyle": 'round,pad=0.5', "facecolor": 'lightyellow', "alpha": 0.8})
 
         plt.suptitle(f'Cam Manufacturing Specifications: {cam_name.replace("_", " ").title()}',
                     fontsize=14, fontweight='bold')
@@ -734,7 +735,7 @@ def main():
     print("programming created the first mechanical computer capable of complex,")
     print("coordinated theatrical performance.")
 
-    print(f"\nPerformance complete! Ready for royal court presentation.")
+    print("\nPerformance complete! Ready for royal court presentation.")
 
 if __name__ == "__main__":
     main()

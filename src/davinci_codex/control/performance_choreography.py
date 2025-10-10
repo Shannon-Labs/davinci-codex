@@ -15,14 +15,15 @@ Engineering Innovation:
 - Mechanical ballet programming for royal court entertainment
 """
 
-import numpy as np
-import matplotlib.pyplot as plt
-from dataclasses import dataclass, field
-from typing import Dict, List, Tuple, Optional, Callable
-from pathlib import Path
 import json
-import math
+from dataclasses import dataclass
 from enum import Enum
+from pathlib import Path
+from typing import Dict, List, Optional
+
+import matplotlib.pyplot as plt
+import numpy as np
+
 
 class TheatricalElement(Enum):
     """Types of theatrical elements in the performance"""
@@ -400,13 +401,12 @@ class PerformanceChoreographer:
         optimized_moments = []
 
         # Calculate current dramatic arc
-        current_arc = self.calculate_dramatic_arc()
+        self.calculate_dramatic_arc()
 
         # Target dramatic arc parameters
         target_climax_time = 16.5  # seconds (around lily presentation)
-        target_arc_shape = "classical"  # buildup, climax, resolution
 
-        for i, moment in enumerate(self.theatrical_moments):
+        for _i, moment in enumerate(self.theatrical_moments):
             optimized_moment = TheatricalMoment(
                 name=moment.name,
                 start_time=moment.start_time,
@@ -431,10 +431,9 @@ class PerformanceChoreographer:
                 if moment.duration < 2.0:
                     optimized_moment.duration = 2.5
 
-            elif moment.dramatic_function == DramaticFunction.PROVIDE_RESOLUTION:
+            elif moment.dramatic_function == DramaticFunction.PROVIDE_RESOLUTION and moment.duration < 3.0:
                 # Ensure adequate resolution time
-                if moment.duration < 3.0:
-                    optimized_moment.duration = 4.0
+                optimized_moment.duration = 4.0
 
             optimized_moments.append(optimized_moment)
 
@@ -515,10 +514,10 @@ class PerformanceChoreographer:
         y_position = 0
         colors = plt.cm.plasma(np.linspace(0, 1, len(self.theatrical_moments)))
 
-        for i, moment in enumerate(self.theatrical_moments):
+        for y_position, moment in enumerate(self.theatrical_moments):
             # Draw moment bar
             ax1.barh(y_position, moment.duration, left=moment.start_time,
-                    height=0.8, color=colors[i], alpha=0.7,
+                    height=0.8, color=colors[y_position], alpha=0.7,
                     label=f"{moment.name}\n{moment.dramatic_function.value}")
 
             # Add emotional impact indicator
@@ -532,8 +531,6 @@ class PerformanceChoreographer:
             focus_y = y_position + 0.4
             ax1.scatter(focus_x, focus_y, s=150 * moment.audience_focus,
                        c='blue', marker='o', alpha=0.8, zorder=5)
-
-            y_position += 1
 
         ax1.set_xlabel('Time (seconds)')
         ax1.set_ylabel('Theatrical Moments')
@@ -802,7 +799,7 @@ def main():
     # Initialize choreographer
     choreographer = PerformanceChoreographer()
 
-    print(f"Initialized performance choreographer:")
+    print("Initialized performance choreographer:")
     print(f"  Theatrical moments: {len(choreographer.theatrical_moments)}")
     print(f"  Transitions: {len(choreographer.transitions)}")
     print(f"  Total duration: {choreographer.total_duration} seconds")
