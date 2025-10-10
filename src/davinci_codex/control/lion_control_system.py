@@ -100,15 +100,56 @@ class MechanicalLionController:
             theatrical_notes="Lion appears as magnificent statue, tail gently swaying"
         ))
 
-        # PHASE 2: Walking Phase - 3 graceful steps forward (8 seconds total)
-        for step in range(3):
-            step_start = 2.0 + step * 2.67
+        # PHASE 2: Prowling Phase - Lion turns in an arc (4 seconds)
+        prowl_start_time = 2.0
+        for step in range(2): # 2 prowling steps
+            step_start = prowl_start_time + step * 2.0
+
+            # Prowling turn - left legs move more
+            phases.append(PerformancePhase(
+                name=f"prowl_{step+1}_turn",
+                start_time=step_start,
+                duration=1.0,
+                control_settings={
+                    'front_left_leg': 1.2 * np.sin(np.pi * (step + 0.5)), # Larger step
+                    'front_right_leg': 0.8 * np.sin(np.pi * step),      # Smaller step
+                    'rear_left_leg': 1.2 * np.sin(np.pi * step),        # Larger step
+                    'rear_right_leg': 0.8 * np.sin(np.pi * (step + 0.5)), # Smaller step
+                    'tail_actuator': 0.5 + 0.2 * np.sin(4 * np.pi * (step + 0.25)),
+                    'chest_mechanism': 0.0,
+                    'lily_platform': 0.0,
+                    'master_timing': 1.0
+                },
+                theatrical_notes=f"Prowl {step+1}: Lion turns with a powerful, deliberate step"
+            ))
+            # Prowling placement
+            phases.append(PerformancePhase(
+                name=f"prowl_{step+1}_place",
+                start_time=step_start + 1.0,
+                duration=1.0,
+                control_settings={
+                    'front_left_leg': 1.2 * np.sin(np.pi * (step + 1.5)),
+                    'front_right_leg': 0.8 * np.sin(np.pi * (step + 1.0)),
+                    'rear_left_leg': 1.2 * np.sin(np.pi * (step + 1.0)),
+                    'rear_right_leg': 0.8 * np.sin(np.pi * (step + 1.5)),
+                    'tail_actuator': 0.5 + 0.2 * np.sin(4 * np.pi * (step + 0.75)),
+                    'chest_mechanism': 0.0,
+                    'lily_platform': 0.0,
+                    'master_timing': 1.0
+                },
+                theatrical_notes=f"Prowl {step+1}: Lion places paw with authority"
+            ))
+
+        # PHASE 3: Walking Phase - 2 graceful steps forward (6 seconds total)
+        walk_start_time = 6.0
+        for step in range(2):
+            step_start = walk_start_time + step * 3.0
 
             # Step up and forward
             phases.append(PerformancePhase(
                 name=f"step_{step+1}_lift",
                 start_time=step_start,
-                duration=0.8,
+                duration=1.0,
                 control_settings={
                     'front_left_leg': np.sin(np.pi * (step + 0.5)),
                     'front_right_leg': np.sin(np.pi * step),
@@ -125,8 +166,8 @@ class MechanicalLionController:
             # Step down and placement
             phases.append(PerformancePhase(
                 name=f"step_{step+1}_place",
-                start_time=step_start + 0.8,
-                duration=0.8,
+                start_time=step_start + 1.0,
+                duration=1.0,
                 control_settings={
                     'front_left_leg': np.sin(np.pi * (step + 1.5)),
                     'front_right_leg': np.sin(np.pi * (step + 1.0)),
@@ -143,8 +184,8 @@ class MechanicalLionController:
             # Brief pause between steps
             phases.append(PerformancePhase(
                 name=f"step_{step+1}_pause",
-                start_time=step_start + 1.6,
-                duration=1.07,
+                start_time=step_start + 2.0,
+                duration=1.0,
                 control_settings={
                     'front_left_leg': 0.0,
                     'front_right_leg': 0.0,
@@ -158,10 +199,10 @@ class MechanicalLionController:
                 theatrical_notes=f"Paws {step+1}: Dramatic pause before next movement"
             ))
 
-        # PHASE 3: Stopping Position - Lion pauses, prepares for reveal
+        # PHASE 4: Stopping Position - Lion pauses, prepares for reveal
         phases.append(PerformancePhase(
             name="stopping_position",
-            start_time=10.0,
+            start_time=12.0,
             duration=2.0,
             control_settings={
                 'front_left_leg': 0.0,
@@ -176,10 +217,10 @@ class MechanicalLionController:
             theatrical_notes="Lion pauses majestically, court holds breath in anticipation"
         ))
 
-        # PHASE 4: Chest Opening - Mechanical chest cavity opens (3.5 seconds)
+        # PHASE 5: Chest Opening - Mechanical chest cavity opens (3.5 seconds)
         phases.append(PerformancePhase(
             name="chest_opening",
-            start_time=12.0,
+            start_time=14.0,
             duration=3.5,
             control_settings={
                 'front_left_leg': 0.0,
@@ -194,10 +235,10 @@ class MechanicalLionController:
             theatrical_notes="Chest cavity slowly opens with mechanical precision, court gasps"
         ))
 
-        # PHASE 5: Lily Presentation - Fleur-de-lis emerges from chest
+        # PHASE 6: Lily Presentation - Fleur-de-lis emerges from chest
         phases.append(PerformancePhase(
             name="lily_presentation",
-            start_time=15.5,
+            start_time=17.5,
             duration=2.0,
             control_settings={
                 'front_left_leg': 0.0,
@@ -212,10 +253,10 @@ class MechanicalLionController:
             theatrical_notes="Royal fleurs-de-lis emerges from chest, court cheers"
         ))
 
-        # PHASE 6: Royal Display - Presentation of symbols (5 seconds)
+        # PHASE 7: Royal Display - Presentation of symbols (5 seconds)
         phases.append(PerformancePhase(
             name="royal_display",
-            start_time=17.5,
+            start_time=19.5,
             duration=5.0,
             control_settings={
                 'front_left_leg': 0.0,
@@ -230,11 +271,11 @@ class MechanicalLionController:
             theatrical_notes="Royal symbols displayed, King Francis I nods approval"
         ))
 
-        # PHASE 7: Reset Sequence - Return to initial position
+        # PHASE 8: Reset Sequence - Return to initial position
         phases.append(PerformancePhase(
             name="reset_sequence",
-            start_time=22.5,
-            duration=4.0,
+            start_time=24.5,
+            duration=2.0,
             control_settings={
                 'front_left_leg': 0.0,
                 'front_right_leg': 0.0,
@@ -635,32 +676,38 @@ class MechanicalLionController:
                     "mechanical_elements": "Tail gently swaying",
                     "theatrical_impact": "Establishes mechanical marvel"
                 },
-                "act_2_graceful_walk": {
-                    "duration": "8.0 seconds",
-                    "description": "Three graceful steps forward",
-                    "mechanical_elements": "Four-leg coordination with natural gait",
-                    "theatrical_impact": "Demonstrates lifelike movement"
+                "act_2_prowling_survey": {
+                    "duration": "4.0 seconds",
+                    "description": "Lion turns in a slow arc, surveying the court",
+                    "mechanical_elements": "Asymmetrical leg movement for turning gait",
+                    "theatrical_impact": "Builds tension and displays intelligence"
                 },
-                "act_3_dramatic_pause": {
+                "act_3_forward_advance": {
+                    "duration": "6.0 seconds",
+                    "description": "Two graceful steps forward",
+                    "mechanical_elements": "Four-leg coordination with natural gait",
+                    "theatrical_impact": "Demonstrates purposeful, lifelike movement"
+                },
+                "act_4_dramatic_pause": {
                     "duration": "2.0 seconds",
                     "description": "Lion pauses, prepares for reveal",
                     "mechanical_elements": "All mechanisms locked",
                     "theatrical_impact": "Builds anticipation"
                 },
-                "act_4_chest_reveal": {
+                "act_5_chest_reveal": {
                     "duration": "5.5 seconds",
                     "description": "Chest opens and lilies presented",
                     "mechanical_elements": "Chest mechanism and lily platform",
                     "theatrical_impact": "Celebration of Franco-Florentine alliance"
                 },
-                "act_5_royal_display": {
+                "act_6_royal_display": {
                     "duration": "5.0 seconds",
                     "description": "Presentation of royal symbols",
                     "mechanical_elements": "All mechanisms in display position",
                     "theatrical_impact": "Honors King Francis I"
                 },
-                "act_6_graceful_reset": {
-                    "duration": "4.0 seconds",
+                "act_7_graceful_reset": {
+                    "duration": "2.0 seconds",
                     "description": "Return to initial position",
                     "mechanical_elements": "Smooth mechanical reset",
                     "theatrical_impact": "Shows complete control mastery"

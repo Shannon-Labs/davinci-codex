@@ -11,7 +11,7 @@
 
 **An Open-Source Computational Framework for Leonardo da Vinci's Mechanical Inventions**
 
-[**📖 Documentation**](docs/index.md) • [**🤝 Contributing**](CONTRIBUTING.md) • [**📚 References**](REFERENCES.md)
+[**📖 Documentation**](docs/index.md) • [**🎨 Gallery & Visualizations**(#-gallery--visualizations) • [**🤝 Contributing**](CONTRIBUTING.md) • [**📚 References**](REFERENCES.md)
 
 </div>
 
@@ -35,33 +35,210 @@ Leonardo da Vinci (1452-1519) produced over 13,000 pages of notes and drawings, 
 
 ---
 
-## 🖼️ Simulation Gallery
+## 🎨 Gallery & Visualizations
 
-<div align="center">
+### 🚁 Aerial Screw - Variable-Pitch System
+> **MAJOR BREAKTHROUGH**: Optimized 15° helix angle achieves 1,416N lift with complete mechanical design
 
-### 🚁 **MAJOR BREAKTHROUGH: Aerial Screw Variable-Pitch System**
-*Optimized 15° helix angle achieves 1,416N lift with complete mechanical design*
+<table>
+<tr>
+<td width="33%" align="center">
+<img src="artifacts/aerial_screw/sim/performance.png" alt="Aerial Screw Performance" width="100%"/>
+<br/><b>Performance Analysis</b>
+<br/>Optimal configuration: 1,416N lift at 10.8kW
+<br/>4x improvement over original design
+</td>
+<td width="33%" align="center">
+<img src="artifacts/aerial_screw/sim/rotor_demo.gif" alt="Rotor Animation" width="100%"/>
+<br/><b>Rotor Mechanism</b>
+<br/>Swashplate mechanism enables 15°-45° pitch control
+<br/>Response time <0.5s, mechanical advantage 1.92
+</td>
+<td width="33%" align="center">
+<img src="docs/images/aerial_screw_performance.png" alt="Power Envelope" width="100%"/>
+<br/><b>Power Envelope</b>
+<br/>Eagle-inspired tapered blades with 82% efficiency
+<br/>Structural safety factor 2.0+ maintained
+</td>
+</tr>
+</table>
 
-| **Variable-Pitch Mechanism Animation** | **Blade Stress Visualization** | **3D Performance Surface** |
-|:-------------------------------------:|:-----------------------------:|:-------------------------:|
-| ![Mechanism Animation](artifacts/mechanism_animation.gif) | ![Blade Stress](artifacts/blade_stress_maps.png) | ![Performance Surface](artifacts/performance_curves.png) |
-| *Swashplate mechanism enables 15°-45° pitch control<br>Response time <0.5s, mechanical advantage 1.92* | *Eagle-inspired tapered blades with 82% efficiency<br>Structural safety factor 2.0+ maintained* | *Optimal configuration: 1,416N lift at 10.8kW<br>4x improvement over original design* |
+**Available Resources:**
+- 📦 [Complete CAD Package](artifacts/aerial_screw/complete_package/) - STL models at 15°, 30°, 45° pitch angles
+- 🎬 [Animation Data](artifacts/aerial_screw/complete_package/animations/) - Assembly sequences & pitch operation
+- 📐 [Technical Drawings](artifacts/aerial_screw/complete_package/technical_drawings/) - Full dimensional specifications
+- 📊 [Simulation Results](artifacts/aerial_screw/sim/) - Performance data & analysis
 
-### Flight Dynamics & Aeronautics
+---
 
-| **Ornithopter Flight Profile** | **Pyramid Parachute Descent** |
-|:------------------------------:|:-----------------------------:|
-| ![Ornithopter](docs/images/ornithopter_lift.png) | ![Parachute](docs/images/parachute_descent.png) |
-| *Bio-inspired flapping flight achieving 396m altitude<br>78% lift margin with composite materials* | *Safe terminal velocity: 6.9 m/s (25 km/h)<br>Comparable to modern round parachutes* |
+### 🦁 Mechanical Lion Automaton
+> Leonardo's programmable automaton featuring synchronized walking, chest reveal, and fleur-de-lis presentation
 
-### Mechanical Systems
+<table>
+<tr>
+<td width="25%" align="center">
+<img src="artifacts/cam_demonstration/walking_gait_demo.png" alt="Walking Gait" width="100%"/>
+<br/><b>Walking Gait</b>
+<br/>Biomechanical quadruped locomotion
+</td>
+<td width="25%" align="center">
+<img src="artifacts/cam_demonstration/chest_opening_demo.png" alt="Chest Reveal" width="100%"/>
+<br/><b>Chest Reveal</b>
+<br/>Theatrical fleur-de-lis presentation
+</td>
+<td width="25%" align="center">
+<img src="artifacts/cam_demonstration/master_timing_demo.png" alt="Master Timing" width="100%"/>
+<br/><b>Master Timing System</b>
+<br/>Programmable cam-based control
+</td>
+<td width="25%" align="center">
+<img src="artifacts/lion_performance_timing.png" alt="Performance Timeline" width="100%"/>
+<br/><b>30-Second Performance</b>
+<br/>Complete choreographed sequence
+</td>
+</tr>
+</table>
 
-| **Self-Propelled Cart Dynamics** | **Mechanical Odometer Calibration** |
-|:---------------------------------:|:-----------------------------------:|
-| ![Cart](docs/images/cart_motion.png) | ![Odometer](docs/images/odometer_error.png) |
-| *Spring-driven locomotion: 152m range<br>Peak velocity: 10.76 m/s* | *Distance measurement accuracy analysis<br>17% error reducible with calibration* |
+**Available Resources:**
+- 📦 [CAD Models](mechanical_lion_complete_package/) - Complete mechanical system (when generated)
+- 🎭 [Cam Demonstrations](artifacts/cam_demonstration/) - All mechanical subsystems
+- 🔧 [Control System](src/davinci_codex/control/lion_control_system.py) - Programmable timing system
 
-</div>
+---
+
+### 🪂 Parachute - Pyramid Design
+<table>
+<tr>
+<td width="50%" align="center">
+<img src="docs/images/parachute_descent.png" alt="Parachute Descent" width="100%"/>
+<br/><b>Descent Profile & Drag Polar</b>
+<br/>Pyramid parachute achieving 11.5 m/s terminal velocity
+</td>
+<td width="50%" align="center">
+<img src="artifacts/parachute/descent_simulation.png" alt="Drop Profiles" width="100%"/>
+<br/><b>Validation Against Test Data</b>
+<br/>Experimental validation confirms simulation accuracy
+</td>
+</tr>
+</table>
+
+---
+
+### 🦅 Ornithopter - Flapping Wing Flight
+<table>
+<tr>
+<td width="50%" align="center">
+<img src="docs/images/ornithopter_lift.png" alt="Ornithopter Flight" width="100%"/>
+<br/><b>Sustained Flight Campaign</b>
+<br/>30-second flight achieving 120m altitude
+</td>
+<td width="50%" align="center">
+<img src="artifacts/ornithopter/sim/lift_profile.png" alt="Wing Aerodynamics" width="100%"/>
+<br/><b>Wing Aerodynamics</b>
+<br/>NACA 0012 airfoil validation
+</td>
+</tr>
+</table>
+
+---
+
+### 🚗 Self-Propelled Cart & Mechanical Odometer
+<table>
+<tr>
+<td width="50%" align="center">
+<img src="docs/images/cart_motion.png" alt="Cart Motion" width="100%"/>
+<br/><b>Spring-Powered Locomotion</b>
+<br/>Autonomous navigation system
+</td>
+<td width="50%" align="center">
+<img src="docs/images/odometer_error.png" alt="Odometer Accuracy" width="100%"/>
+<br/><b>Distance Measurement</b>
+<br/>Mechanical odometer precision analysis
+</td>
+</tr>
+</table>
+
+---
+
+### 🎵 Renaissance Musical Instruments
+> Mechanical instruments capable of autonomous performance
+
+<table>
+<tr>
+<td width="33%" align="center">
+<img src="artifacts/mechanical_carillon/sim/frequency_scatter.png" alt="Carillon" width="100%"/>
+<br/><b>Mechanical Carillon</b>
+<br/>Automated bell tower system
+</td>
+<td width="33%" align="center">
+<img src="artifacts/mechanical_organ/sim/frequency_profile.png" alt="Organ" width="100%"/>
+<br/><b>Mechanical Organ</b>
+<br/>Programmable pipe organ
+</td>
+<td width="33%" align="center">
+<img src="artifacts/viola_organista/sim/amplitude_timeline.png" alt="Viola Organista" width="100%"/>
+<br/><b>Viola Organista</b>
+<br/>Bowed keyboard instrument
+</td>
+</tr>
+</table>
+
+---
+
+### 🔄 Revolving Bridge - Engineering Innovation
+<table>
+<tr>
+<td width="33%" align="center">
+<img src="docs/images/revolving_bridge/rotation_torque.png" alt="Bridge Rotation" width="100%"/>
+<br/><b>Rotation Dynamics</b>
+<br/>360° rotation mechanism analysis
+</td>
+<td width="33%" align="center">
+<img src="artifacts/revolving_bridge/sim/stress_deflection.png" alt="Structural Analysis" width="100%"/>
+<br/><b>Structural Integrity</b>
+<br/>Stress and deflection analysis
+</td>
+<td width="33%" align="center">
+<img src="artifacts/revolving_bridge/sim/rotation_animation.gif" alt="Bridge Animation" width="100%"/>
+<br/><b>Operational Sequence</b>
+<br/>Complete rotation demonstration
+</td>
+</tr>
+</table>
+
+---
+
+### 📊 Engineering Validation
+<table>
+<tr>
+<td width="33%" align="center">
+<img src="docs/images/material_comparisons.png" alt="Materials" width="100%"/>
+<br/><b>Renaissance Materials</b>
+<br/>Historical authenticity validation
+</td>
+<td width="33%" align="center">
+<img src="docs/images/gear_bending_convergence.png" alt="Gear Analysis" width="100%"/>
+<br/><b>Mechanical Analysis</b>
+<br/>Gear stress & tribology validation
+</td>
+<td width="33%" align="center">
+<img src="docs/images/rolling_friction_load_sweep.png" alt="Friction" width="100%"/>
+<br/><b>Tribological Studies</b>
+<br/>Renaissance-era friction coefficients
+</td>
+</tr>
+</table>
+
+---
+
+### 🎓 Educational Resources
+All visualizations, CAD models, and simulation data are available for:
+- **Academic Research** - Validated engineering analysis
+- **Museum Exhibitions** - Interactive displays & replicas
+- **Educational Workshops** - Hands-on STEM learning
+- **Digital Reconstruction** - Historical accuracy verification
+
+**Documentation**: See [docs/](docs/) for detailed technical specifications of each invention.
 
 ---
 

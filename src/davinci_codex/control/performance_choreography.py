@@ -138,52 +138,38 @@ class PerformanceChoreographer:
             royal_significance="Leonardo's tribute to royal majesty"
         ))
 
-        # MOMENT 2: Graceful Movement - Phase 1 (2.0 - 5.0 seconds)
+        # MOMENT 2: Prowling Survey (2.0 - 6.0 seconds)
         moments.append(TheatricalMoment(
-            name="graceful_movement_1",
+            name="prowling_survey",
             start_time=2.0,
-            duration=3.0,
+            duration=4.0,
             theatrical_element=TheatricalElement.MOVEMENT,
             dramatic_function=DramaticFunction.BUILD_TENSION,
             mechanical_systems=["leg_systems", "tail_actuator"],
             audience_focus=0.9,
             emotional_impact=0.8,
-            symbolic_meaning="Harmony of nature and mechanism",
-            royal_significance="Natural authority and controlled power"
+            symbolic_meaning="A display of latent power and intelligence",
+            royal_significance="The lion acknowledges the court before proceeding"
         ))
 
-        # MOMENT 3: Dramatic Walking - Phase 2 (5.0 - 8.0 seconds)
+        # MOMENT 3: Forward Walk (6.0 - 12.0 seconds)
         moments.append(TheatricalMoment(
-            name="dramatic_walking_2",
-            start_time=5.0,
-            duration=3.0,
+            name="forward_walk",
+            start_time=6.0,
+            duration=6.0,
             theatrical_element=TheatricalElement.MOVEMENT,
             dramatic_function=DramaticFunction.CREATE_ANTICIPATION,
             mechanical_systems=["leg_systems", "tail_actuator"],
             audience_focus=0.95,
             emotional_impact=0.85,
             symbolic_meaning="Mastery over natural movement",
-            royal_significance="Control and dominion"
+            royal_significance="Controlled and purposeful advance"
         ))
 
-        # MOMENT 4: Final Steps and Position (8.0 - 10.0 seconds)
-        moments.append(TheatricalMoment(
-            name="final_positioning",
-            start_time=8.0,
-            duration=2.0,
-            theatrical_element=TheatricalElement.MOVEMENT,
-            dramatic_function=DramaticFunction.CREATE_ANTICIPATION,
-            mechanical_systems=["leg_systems", "tail_actuator"],
-            audience_focus=0.9,
-            emotional_impact=0.8,
-            symbolic_meaning="Precision and perfection",
-            royal_significance="Order and discipline"
-        ))
-
-        # MOMENT 5: Suspenseful Pause (10.0 - 12.0 seconds)
+        # MOMENT 4: Suspenseful Pause (12.0 - 14.0 seconds)
         moments.append(TheatricalMoment(
             name="suspenseful_pause",
-            start_time=10.0,
+            start_time=12.0,
             duration=2.0,
             theatrical_element=TheatricalElement.PAUSE,
             dramatic_function=DramaticFunction.MAINTAIN_MYSTERY,
@@ -194,38 +180,24 @@ class PerformanceChoreographer:
             royal_significance="Building royal expectations"
         ))
 
-        # MOMENT 6: Chest Revelation Beginning (12.0 - 14.5 seconds)
+        # MOMENT 5: Chest Revelation (14.0 - 17.5 seconds)
         moments.append(TheatricalMoment(
-            name="chest_revelation_begin",
-            start_time=12.0,
-            duration=2.5,
+            name="chest_revelation",
+            start_time=14.0,
+            duration=3.5,
             theatrical_element=TheatricalElement.REVEAL,
             dramatic_function=DramaticFunction.BUILD_TENSION,
             mechanical_systems=["chest_mechanism", "timing_controller"],
             audience_focus=1.0,
             emotional_impact=0.95,
-            symbolic_meaning="Opening of mechanical heart",
+            symbolic_meaning="Opening of the mechanical heart",
             royal_significance="Revelation of hidden treasures"
         ))
 
-        # MOMENT 7: Chest Opening Complete (14.5 - 15.5 seconds)
-        moments.append(TheatricalMoment(
-            name="chest_revelation_complete",
-            start_time=14.5,
-            duration=1.0,
-            theatrical_element=TheatricalElement.REVEAL,
-            dramatic_function=DramaticFunction.CREATE_ANTICIPATION,
-            mechanical_systems=["chest_mechanism", "timing_controller"],
-            audience_focus=1.0,
-            emotional_impact=0.98,
-            symbolic_meaning="Mechanical mystery revealed",
-            royal_significance="Royal generosity and openness"
-        ))
-
-        # MOMENT 8: Lily Presentation (15.5 - 17.5 seconds)
+        # MOMENT 6: Lily Presentation (17.5 - 19.5 seconds)
         moments.append(TheatricalMoment(
             name="lily_presentation",
-            start_time=15.5,
+            start_time=17.5,
             duration=2.0,
             theatrical_element=TheatricalElement.REVEAL,
             dramatic_function=DramaticFunction.DELIVER_CLIMAX,
@@ -236,10 +208,10 @@ class PerformanceChoreographer:
             royal_significance="Franco-Florentine alliance celebration"
         ))
 
-        # MOMENT 9: Royal Display (17.5 - 22.5 seconds)
+        # MOMENT 7: Royal Display (19.5 - 24.5 seconds)
         moments.append(TheatricalMoment(
             name="royal_display",
-            start_time=17.5,
+            start_time=19.5,
             duration=5.0,
             theatrical_element=TheatricalElement.DISPLAY,
             dramatic_function=DramaticFunction.PROVIDE_RESOLUTION,
@@ -250,11 +222,11 @@ class PerformanceChoreographer:
             royal_significance="King Francis I's honor and prestige"
         ))
 
-        # MOMENT 10: Graceful Conclusion (22.5 - 26.5 seconds)
+        # MOMENT 8: Graceful Conclusion (24.5 - 26.5 seconds)
         moments.append(TheatricalMoment(
             name="graceful_conclusion",
-            start_time=22.5,
-            duration=4.0,
+            start_time=24.5,
+            duration=2.0,
             theatrical_element=TheatricalElement.CONCLUSION,
             dramatic_function=DramaticFunction.PROVIDE_RESOLUTION,
             mechanical_systems=["all_mechanical_systems"],

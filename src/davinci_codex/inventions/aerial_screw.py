@@ -734,6 +734,85 @@ def _render_animation(path: Path) -> None:
     plt.close(fig)
 
 
+def _create_vortex_visualization(path: Path, data: Dict[str, np.ndarray]) -> str:
+    """
+    Create a sophisticated animation of the vortex ring state.
+
+    This function simulates air particles flowing through the rotor,
+    visualizing the downward and rotational acceleration that generates lift.
+    """
+    fig, ax = plt.subplots(figsize=(8, 6))
+    ax.set_xlim(-ROTOR_RADIUS * 1.5, ROTOR_RADIUS * 1.5)
+    ax.set_ylim(-ROTOR_RADIUS * 2, ROTOR_RADIUS * 1.5)
+    ax.set_aspect("equal")
+    ax.axis("off")
+    fig.patch.set_facecolor('#e6f0ff') # Light blue background
+
+    # Rotor representation
+    rotor_line, = ax.plot([], [], 'k-', lw=4, solid_capstyle='round')
+
+    # Particle simulation
+    n_particles = 200
+    particles = np.random.rand(n_particles, 2) * np.array([ROTOR_RADIUS * 2.5, ROTOR_RADIUS * 2.5])
+    particles[:, 0] -= ROTOR_RADIUS * 1.25
+    particles[:, 1] += ROTOR_RADIUS * 0.5
+    particle_scatter = ax.scatter(particles[:, 0], particles[:, 1], s=5, c='#003366', alpha=0.7)
+
+    # Find hover RPM for simulation
+    required_lift = (TARGET_PAYLOAD_MASS + STRUCTURE_MASS + ROTOR_BLADE_MASS) * GRAVITY
+    hover_rpm = 120.0 # Default value
+    for i, thrust in enumerate(data["thrust"]):
+        if thrust >= required_lift:
+            hover_rpm = data["rpm"][i]
+            break
+    
+    omega = hover_rpm * 2 * np.pi / 60
+    rotor_analyzer = HelicalRotorAnalysis(ROTOR_RADIUS, ROTOR_INNER_RADIUS, HELICAL_PITCH)
+
+    def update(frame):
+        # Update rotor position
+        angle = (frame / 50.0) * 2 * np.pi
+        rotor_x = [-ROTOR_RADIUS * np.cos(angle), ROTOR_RADIUS * np.cos(angle)]
+        rotor_y = [-ROTOR_RADIUS * np.sin(angle), ROTOR_RADIUS * np.sin(angle)]
+        rotor_line.set_data(rotor_x, rotor_y)
+
+        # Update particle positions
+        for i in range(n_particles):
+            p_x, p_y = particles[i]
+            dist_to_rotor = np.sqrt(p_x**2 + p_y**2)
+
+            if -ROTOR_RADIUS < p_x < ROTOR_RADIUS and -0.2 < p_y < 0.2:
+                # Strong downward velocity through rotor disk
+                v_induced = rotor_analyzer.compute_induced_velocity(hover_rpm, abs(p_x))
+                p_y -= v_induced * 0.1
+                # Add swirl
+                p_x += np.sign(p_x) * 0.05 * (1 - abs(p_x)/ROTOR_RADIUS)
+            elif p_y < 0 and abs(p_x) < ROTOR_RADIUS * 1.2:
+                 # Vortex recirculation
+                v_induced = rotor_analyzer.compute_induced_velocity(hover_rpm, ROTOR_RADIUS) * 0.5
+                p_y -= v_induced * 0.05
+                p_x += 0.03 * np.sign(p_x) * (abs(p_x) - ROTOR_RADIUS)
+                if abs(p_x) > ROTOR_RADIUS:
+                     p_y += 0.02 * (abs(p_x) - ROTOR_RADIUS)
+
+            # General downward drift
+            p_y -= 0.005
+
+            # Reset particles that go off-screen
+            if p_y < -ROTOR_RADIUS * 2 or abs(p_x) > ROTOR_RADIUS * 1.5:
+                particles[i, 0] = (np.random.rand() - 0.5) * ROTOR_RADIUS * 2.5
+                particles[i, 1] = ROTOR_RADIUS * 1.5
+        
+        particle_scatter.set_offsets(particles)
+        return [rotor_line, particle_scatter]
+
+    anim = animation.FuncAnimation(fig, update, frames=200, interval=40, blit=True)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    anim.save(path, writer=animation.PillowWriter(fps=25))
+    plt.close(fig)
+    return str(path)
+
+
 def simulate(seed: int = 0) -> Dict[str, object]:
     """
     Comprehensive simulation of Leonardo's Aerial Screw with detailed analysis.
@@ -767,6 +846,10 @@ def simulate(seed: int = 0) -> Dict[str, object]:
 
     gif_path = artifacts_dir / "rotor_demo.gif"
     _render_animation(gif_path)
+
+    # Create new vortex visualization
+    vortex_gif_path = artifacts_dir / "vortex_visualization.gif"
+    vortex_artifact = _create_vortex_visualization(vortex_gif_path, data)
 
     # Additional educational visualizations
     educational_plots = _create_educational_plots(artifacts_dir / "educational_analysis.png", data)
@@ -924,7 +1007,7 @@ def simulate(seed: int = 0) -> Dict[str, object]:
         },
 
         # Generated artifacts
-        "artifacts": [str(csv_path), str(plot_path), str(gif_path)] + educational_plots,
+        "artifacts": [str(csv_path), str(plot_path), str(gif_path)] + educational_plots + [vortex_artifact],
 
         # Summary and conclusions
         "summary": {
