@@ -4,8 +4,8 @@ url: https://shannon-labs.github.io
 baseurl: /davinci-codex
 permalink: pretty
 timezone: UTC
-email: safety@davinci-codex.org
-twitter_username: shannon_labs
+email: hunter@shannonlabs.dev
+twitter_username: huntermbown
 
 markdown: kramdown
 theme: null

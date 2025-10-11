@@ -159,7 +159,7 @@ sections:
       - label: Maintainer
         value: Hunter Bown (Shannon Labs)
       - label: Email
-        value: safety@davinci-codex.org
+        value: hunter@shannonlabs.dev
       - label: Project site
         value: https://shannon-labs.github.io/davinci-codex/
       - label: Repository
