@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="#C8A061" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Blueprint/Compass icon -->
+  <circle cx="32" cy="32" r="24" opacity="0.2" fill="#C8A061"/>
+  <circle cx="32" cy="32" r="3" fill="#C8A061"/>
+  <line x1="32" y1="32" x2="48" y2="20"/>
+  <line x1="32" y1="32" x2="16" y2="44"/>
+  <circle cx="48" cy="20" r="2" fill="#C8A061"/>
+  <circle cx="16" cy="44" r="2" fill="#C8A061"/>
+  <!-- Grid lines -->
+  <line x1="12" y1="12" x2="52" y2="12" opacity="0.3"/>
+  <line x1="12" y1="52" x2="52" y2="52" opacity="0.3"/>
+  <line x1="12" y1="12" x2="12" y2="52" opacity="0.3"/>
+  <line x1="52" y1="12" x2="52" y2="52" opacity="0.3"/>
+</svg>
+

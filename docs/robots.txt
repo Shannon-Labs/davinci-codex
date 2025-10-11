@@ -1,0 +1,11 @@
+---
+layout: null
+permalink: /robots.txt
+---
+User-agent: *
+Allow: /
+Disallow: /book/_build/
+Disallow: /_site/
+
+Sitemap: {{ site.url }}{{ site.baseurl }}/sitemap.xml
+

@@ -1,0 +1,19 @@
+{% assign hero = page.hero %}
+{% if hero %}
+<section class="hero" id="top"{% if hero.background %} style="background-image: url('{{ hero.background | relative_url }}');"{% endif %}>
+  <div class="hero-container">
+    <div class="hero-content">
+      <h1>{{ hero.title }}</h1>
+      <div class="hero-description">{{ hero.description | markdownify }}</div>
+      {% if hero.cta %}
+      <div class="hero-actions">
+        {% for action in hero.cta %}
+        <a class="button {{ action.style | default: 'primary' }}" href="{{ action.href }}">{{ action.label }}</a>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endif %}
+

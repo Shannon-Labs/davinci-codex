@@ -2,7 +2,7 @@
 
 ## Overview
 
-This orchestrator coordinates Leonardo''s automated musical inventions—drum, organ, viola organista, programmable flute, carillon, and trumpeter—into a single simulation and CAD pipeline with spectral balancing.
+This orchestrator coordinates Leonardo's automated musical inventionsâ€”drum, organ, viola organista, programmable flute, carillon, and trumpeterâ€”into a single simulation and CAD pipeline with spectral balancing.
 
 ## Historical Context
 
@@ -17,7 +17,7 @@ This orchestrator coordinates Leonardo''s automated musical inventions—drum, org
 
 ## CAD Manifest
 
-`build()` invokes every instrument''s CAD export and packages a manifest of STL paths for stage layout.
+`build()` invokes every instrument's CAD export and packages a manifest of STL paths for stage layout.
 
 ## Evaluation
 

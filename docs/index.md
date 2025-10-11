@@ -1,98 +1,167 @@
-# da Vinci Codex Documentation Index
-
-## Purpose
-The da Vinci Codex project reconstructs Leonardo da Vinci's civil, non-weapon inventions using modern engineering methods. It is co-created by Hunter Bown (Shannon Labs) and the GPT-5 Codex agent to keep the reconstruction process transparent and reproducible. Each module follows a consistent workflow: historical provenance, quantitative completion plan, computational implementation, feasibility and ethics review, and reproducible artifact packaging.
-
-## Safety Scope
-- Only non-harmful, non-weaponizable devices are explored.
-- Medical concepts must meet contemporary safety expectations; speculative or risky ideas are deferred.
-- All datasets, imagery, and text are public-domain or newly generated under CC0.
-
-## 🚁 AERIAL SCREW BREAKTHROUGH ANNOUNCEMENT
-
-We are proud to announce a **major engineering breakthrough** in Leonardo da Vinci's aerial screw design! After extensive computational analysis and modern engineering refinement, we have achieved:
-
-### Key Achievements
-- **Variable-Pitch Control System**: Complete swashplate mechanism enabling 15°-45° blade pitch adjustment
-- **4x Performance Improvement**: 1,416N lift at 10.8kW (vs. original 473N at 56kW)
-- **Eagle-Inspired Optimization**: Tapered blades with 82% aerodynamic efficiency
-- **Complete CAD Package**: 99 technical files including animations, drawings, and manufacturing guides
-- **Structural Validation**: All components exceed 2.0 safety factor with Renaissance materials
-
-### Technical Innovations
-- Advanced blade element momentum theory applied to historical design
-- Vortex ring state safety analysis for flight envelope protection
-- Eagle-wing biomimicry for optimal blade taper ratios
-- Swashplate mechanism compatible with 15th-century manufacturing capabilities
-
-**Full Documentation**: See [Aerial Screw Rotor Lab](aerial_screw.md) for comprehensive analysis and technical details.
-
-## Repository Guide
-- `docs/<slug>.md` — Module reports with provenance, engineering math, assumptions, and experimental proposals.
-- `docs/book/` — Jupyter Book configuration + build output for computational essays.
-- `notebooks/` — Curated notebooks executed through the Jupyter Book build to accompany validation results.
-- `src/davinci_codex/` — Python package delivering CLI entry points and invention APIs.
-- `cad/` — Parametric CAD scripts (OpenSCAD, FreeCAD Python, etc.).
-- `sims/` — Simulation configurations, solver outputs, and logs.
-- `tests/` — Pytest suites validating math, data integrity, and deterministic behavior.
-
-## 📘 Interactive Essays
-- Build locally with `make book` (Jupyter Book executes the curated notebooks).
-- Generated HTML lives in `docs/book/_build/html/`; open `index.html` to preview before publishing.
-- GitHub Pages will host the collection at <https://shannon-labs.github.io/davinci-codex/book/> once enabled.
-- Available chapters: gear bending validation, ornithopter FSI convergence, rolling friction tribology, and supporting physics derivations.
-
-## 🧪 Validation Briefs
-- [Parachute Safety Dossier](parachute_safety_dossier.md) — turbulence scenarios, tensile coupons, and hazard analysis for prototype readiness.
-- [Revolving Bridge Modernization](revolving_bridge.md) — rotation profile CSVs, counterweight calibration workflow, and acceptance metrics.
-- [Ornithopter Validation Log](ornithopter_validation.md) — dyno, modal, and telemetry summaries satisfying acceptance targets.
-
-## 📦 Active Modules
-
-| Module | Status | Description |
-|--------|--------|--------------|
-| [**Aerial Screw Rotor Lab**](aerial_screw.md) | `validated` | **BREAKTHROUGH**: Variable-pitch system with 1,416N lift at 10.8kW (4x improvement), eagle-inspired blades, complete CAD package with 99 files |
-| [**Self-Propelled Cart**](self_propelled_cart.md) | `prototype_ready` | Spring-driven automaton with parametric CAD models and kinematic simulation |
-| [**Mechanical Odometer**](mechanical_odometer.md) | `prototype_ready` | Survey cart with pebble-drop counter mechanism and precision calibration |
-| [**Pyramid Parachute**](parachute.md) | `prototype_ready` | Safety dossier with turbulence scenarios, tensile coupons, and drop telemetry linked in [Parachute Safety Dossier](parachute_safety_dossier.md) |
-| [**Self-Supporting Revolving Bridge**](revolving_bridge.md) | `in_progress` | Rotation profile CSVs, counterweight treatise, and stability proofs available for field deployment planning |
-| [**Ornithopter Flight Lab**](ornithopter.md) | `in_progress` | Validation assets (dyno, modal survey, telemetry) summarized in [Ornithopter Validation Log](ornithopter_validation.md) |
-
-## 🗺️ Development Roadmap
-
-### Near-term Goals
-1. **Pyramid Parachute** — Execute full-scale drop validation and integrate reserve deployment drills into the safety dossier
-2. **Self-Supporting Revolving Bridge** — Fabricate counterweight prototypes and plan live rotation drills informed by the new rotation profile CSVs
-3. **Ornithopter Flight Lab** — Transition from tethered ground-runs to free-flight envelope expansion using logged telemetry acceptance checks
-4. **Self-Propelled Cart** — Package workshop testing scripts and path programming instrumentation for outreach deployments
-
-### Future Inventions
-- Hydraulic pumps and water lifting devices
-- Mechanical clock mechanisms
-- Bridge designs and structural innovations
-- Musical instruments and acoustic devices
-
-## Provenance Logging
-Each module documents original folio references (e.g., Codex Atlanticus, folio numbers) and high-resolution scan sources with catalog identifiers. When direct image reproduction is ambiguous, descriptions and derived vector sketches are provided instead of scans.
-
-## How to Contribute
-- Review `CONTRIBUTING.md` for development workflow.
-- Discuss new modules via `.github/ISSUE_TEMPLATE/feature.md`.
-- Prioritize transparency in assumptions, calculations, and testing.
-
-## 📧 Contact & Support
-- **Issues & Features**: [GitHub Issues](https://github.com/Shannon-Labs/davinci-codex/issues)
-- **Documentation**: [Project Website](https://shannon-labs.github.io/davinci-codex/)
-- **Safety Concerns**: `safety@davinci-codex.org`
-- **Maintainer**: Hunter Bown (Shannon Labs)
-## Musical Instruments
-
-| Module | Status | Description |
-|--------|--------|-------------|
-| [**Mechanical Drum**](mechanical_drum.md) | `prototype_ready` | Programmable percussion barrel with cam-driven beat pins |
-| [**Mechanical Carillon**](mechanical_carillon.md) | `concept_reconstruction` | Drum-indexed bell strikers for civic chimes |
-| [**Mechanical Trumpeter**](mechanical_trumpeter.md) | `concept_reconstruction` | Programmable valve automaton with bellows-driven breath |
-| [**Mechanical Ensemble**](mechanical_ensemble.md) | `concept_reconstruction` | Spectral-balanced coordination with pseudo-score demo across all instruments |
-| [**Mechanical Organ**](mechanical_organ.md) | `concept_reconstruction` | Automatic pipe organ with twin bellows and pinned program barrel |
-| [**Viola Organista**](viola_organista.md) | `concept_reconstruction` | Wheel-bowed keyboard sustaining polyphonic string voices |
-| [**Programmable Flute**](programmable_flute.md) | `concept_reconstruction` | Cam-actuated recorder with automated fingering and valve control |
+---
+layout: landing
+title: The da Vinci Codex
+nav_order: 1
+permalink: /
+hero:
+  title: Leonardo's mechanical inventions, rebuilt responsibly
+  description: |
+    Explore reproducible engineering research, interactive simulations, and open CAD derived from da Vinci's notebooks.
+    
+    - Parametric CAD models with full provenance tracking
+    - Deterministic physics simulations validated against historical constraints
+    - Safety-first approach with FMEA analysis and ethical review
+  background: images/hero-texture.png
+  cta:
+    - label: Explore inventions
+      href: "#inventions"
+      style: primary
+    - label: View interactive essays
+      href: "book/index.html"
+      style: secondary
+meta:
+  description: Open engineering reconstruction of Leonardo da Vinci’s civil inventions with simulations, CAD, and safety analysis.
+  image: /docs/images/codex_logo.png
+social:
+  twitter: https://twitter.com/shannon_labs
+  github: https://github.com/Shannon-Labs/davinci-codex
+  email: safety@davinci-codex.org
+sections:
+  - id: overview
+    title: Trustworthy computational archaeology
+    intro: |
+      The da Vinci Codex project translates Renaissance mechanical concepts into validated, reproducible implementations. Each module tracks provenance, quantitative planning, simulation, safety review, and modern fabrication pathways.
+    cards:
+      - title: Historical provenance
+        body: Codex folio references, dimensional recovery, and intent interpretation mapped to modern units.
+      - title: Engineering execution
+        body: Deterministic simulations, parametric CAD models, and validated surrogate physics.
+      - title: Ethical stewardship
+        body: Exclusively civil inventions, FMEA-based safety margins, and transparent assumptions.
+  - id: pipeline
+    title: Invention Pipeline
+    intro: Each invention follows a rigorous four-stage methodology ensuring historical accuracy, technical validity, and safety compliance.
+    pipeline:
+      - title: Plan
+        icon: images/icons/plan.svg
+        description: Research historical provenance, extract dimensions from Codex folios, and establish design parameters with modern unit conversions.
+      - title: Simulate
+        icon: images/icons/simulate.svg
+        description: Run deterministic physics simulations with validated surrogate models, quantify performance envelopes, and verify against historical constraints.
+      - title: Build
+        icon: images/icons/build.svg
+        description: Generate parametric CAD models, export fabrication-ready artifacts (STL/STEP), and document assembly procedures with tolerances.
+      - title: Evaluate
+        icon: images/icons/evaluate.svg
+        description: Conduct FMEA safety analysis, assess feasibility metrics, identify ethical considerations, and recommend next steps.
+  - id: highlights
+    title: Current highlights
+    layout: split
+    primary:
+      heading: Aerial Screw rotor breakthrough
+      bullets:
+        - text: 1,416 N lift with 4× efficiency improvement using variable-pitch control
+        - text: Eagle-inspired taper geometry tuned via blade-element momentum methods
+        - text: 99-piece CAD package with stress validation ≥ 2.0 safety factor
+      cta:
+        label: Read case study
+        href: aerial_screw.md
+      quote:
+        text: "If a man have a tent made of linen of which the apertures have all been stopped up, and it be twelve braccia across and twelve in depth, he will be able to throw himself down from any great height without sustaining any injury."
+        attribution: Leonardo da Vinci, Codex Atlanticus, f. 381v
+    secondary:
+      image: images/aerial_screw_performance.png
+      caption: Variable pitch rotor performance envelope derived from integrated CFD + structural models.
+  - id: inventions
+    title: Active invention portfolio
+    description: Status-tracked modules ready for exploration and replication.
+    table:
+      headers: [Module, Status, Summary]
+      rows:
+        - ["[Aerial Screw Rotor Lab](aerial_screw.md)", "validated", "Variable-pitch swashplate, 4× lift gain, CAD + simulation artifacts"]
+        - ["[Self-Propelled Cart](self_propelled_cart.md)", "prototype_ready", "Programmable spring drive with kinematic validation"]
+        - ["[Mechanical Odometer](mechanical_odometer.md)", "prototype_ready", "Pebble-drop surveying with calibrated tolerances"]
+        - ["[Pyramid Parachute](parachute.md)", "prototype_ready", "Safety dossier with turbulence, tensile, and drop telemetry"]
+        - ["[Self-Supporting Revolving Bridge](revolving_bridge.md)", "in_progress", "Counterweight trials, rotation envelope, structural proofs"]
+        - ["[Ornithopter Flight Lab](ornithopter.md)", "in_progress", "Modal, telemetry, and aerodynamic acceptance campaign"]
+  - id: resources
+    title: Engineering resources
+    columns:
+      - heading: Interactive essays
+        description: Reproducible Jupyter Book build with executed notebooks and derivations.
+        links:
+          - label: Launch the book
+            href: book/index.html
+          - label: Build locally
+            href: ../README.md#-quick-start
+      - heading: CAD & artifacts
+        description: Parametric scripts and generated STL/STEP assets for physical prototyping.
+        links:
+          - label: Browse CAD library
+            href: ../cad/
+          - label: Artifact archive
+            href: ../artifacts/
+      - heading: Simulation + safety
+        description: Deterministic runs, validation suites, and ethics/performance reviews.
+        links:
+          - label: Validation briefs
+            href: #validation
+          - label: Safety charter
+            href: ../ETHICS.md
+  - id: validation
+    title: Validation briefs
+    cards:
+      - title: Parachute safety dossier
+        body: Turbulence envelopes, tensile coupons, and hazard mitigation for prototype readiness.
+        link:
+          label: View report
+          href: parachute_safety_dossier.md
+      - title: Revolving bridge modernization
+        body: Rotation profile CSVs, counterweight calibration, and field deployment instrumentation.
+        link:
+          label: View report
+          href: revolving_bridge.md
+      - title: Ornithopter validation log
+        body: Dyno, modal, and telemetry analysis tracking acceptance metrics.
+        link:
+          label: View log
+          href: ornithopter_validation.md
+  - id: research
+    title: Latest Research
+    description: Recent technical analyses and specification developments from the engineering team.
+    cards:
+      - title: Aerial Screw Blade Element Analysis
+        body: Variable-pitch swashplate optimization using blade element momentum theory, achieving 4× lift improvement with 82% rotor efficiency.
+        link:
+          label: Read specifications
+          href: specifications/aerial_screw_specifications.md
+      - title: Mechanical Lion Cam Programming
+        body: Synchronized choreography system with polynomial interpolation, achieving ±2° angular precision across 12-second performance cycle.
+        link:
+          label: View cam design
+          href: mechanical_lion.md
+      - title: Parachute Turbulence Envelope
+        body: Terminal velocity analysis with drag coefficient validation under varying atmospheric conditions and fabric permeability studies.
+        link:
+          label: See safety dossier
+          href: parachute_safety_dossier.md
+  - id: contribute
+    title: Contribute & collaborate
+    intro: Review contribution guidelines, safety scope, and provenance requirements before submitting changes.
+    buttons:
+      - label: Contribution guide
+        href: ../CONTRIBUTING.md
+      - label: Open issues
+        href: https://github.com/Shannon-Labs/davinci-codex/issues
+  - id: contact
+    title: Contact
+    list:
+      - label: Maintainer
+        value: Hunter Bown (Shannon Labs)
+      - label: Email
+        value: safety@davinci-codex.org
+      - label: Project site
+        value: https://shannon-labs.github.io/davinci-codex/
+      - label: Repository
+        value: https://github.com/Shannon-Labs/davinci-codex
+---

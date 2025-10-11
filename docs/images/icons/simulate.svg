@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="#C8A061" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Wave/Graph icon -->
+  <circle cx="32" cy="32" r="24" opacity="0.2" fill="#C8A061"/>
+  <path d="M 12 32 Q 18 20, 24 32 T 36 32 T 48 32 T 52 32" fill="none"/>
+  <path d="M 12 38 Q 18 28, 24 38 T 36 38 T 48 38" fill="none" opacity="0.6"/>
+  <path d="M 12 26 Q 18 16, 24 26 T 36 26 T 48 26" fill="none" opacity="0.4"/>
+  <!-- Data points -->
+  <circle cx="24" cy="32" r="2" fill="#C8A061"/>
+  <circle cx="36" cy="32" r="2" fill="#C8A061"/>
+  <circle cx="48" cy="32" r="2" fill="#C8A061"/>
+</svg>
+

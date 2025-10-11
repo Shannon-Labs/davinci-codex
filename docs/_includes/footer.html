@@ -1,0 +1,44 @@
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <img src="{{ '/docs/images/codex_logo.png' | relative_url }}" alt="da Vinci Codex logo" class="footer-logo" />
+      <div>
+        <p class="footer-title">{{ site.title }}</p>
+        <p class="footer-tagline">Computational archaeology of Renaissance mechanical engineering.</p>
+      </div>
+    </div>
+    <div class="footer-links">
+      <div>
+        <h4>Project</h4>
+        <a href="{{ '/docs/index.html#overview' | relative_url }}">Overview</a>
+        <a href="{{ '/docs/index.html#inventions' | relative_url }}">Inventions</a>
+        <a href="{{ '/docs/index.html#resources' | relative_url }}">Resources</a>
+        <a href="{{ '/docs/overview.html' | relative_url }}">Legacy Index</a>
+      </div>
+      <div>
+        <h4>Community</h4>
+        <a href="{{ site.github.repository_url }}/issues">Issues</a>
+        <a href="{{ site.github.repository_url }}/pulls">Pull Requests</a>
+        <a href="{{ '/CONTRIBUTING.html' | relative_url }}">Contributing</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="mailto:safety@davinci-codex.org">safety@davinci-codex.org</a>
+        <a href="https://twitter.com/shannon_labs">Twitter</a>
+        <a href="https://shannon-labs.github.io/davinci-codex/">Project Site</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-meta">
+    <span>&copy; {{ site.time | date: '%Y' }} Shannon Labs &amp; contributors</span>
+    <span>MIT License · CC0 media</span>
+  </div>
+  
+  <!-- Scroll to top button -->
+  <button id="scroll-to-top" class="scroll-to-top" aria-label="Scroll to top">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+</footer>
+

@@ -1,0 +1,157 @@
+{% if page.sections %}
+  {% for section in page.sections %}
+    <section id="{{ section.id }}" class="page-section">
+      <div class="section-header">
+        <h2>{{ section.title }}</h2>
+        {% if section.description %}<p>{{ section.description }}</p>{% endif %}
+      </div>
+      <div class="section-body">
+        {% if section.intro %}<p>{{ section.intro }}</p>{% endif %}
+
+        {% if section.cards %}
+        <div class="card-grid">
+          {% for card in section.cards %}
+          <article class="card">
+            <h3>{{ card.title }}</h3>
+            <p>{{ card.body }}</p>
+            {% if card.bullets %}
+            <ul>
+              {% for bullet in card.bullets %}
+              <li>{{ bullet }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+            {% if card.link %}
+            {% if card.link.href contains 'http://' or card.link.href contains 'https://' %}
+            <a class="card-link" href="{{ card.link.href }}" target="_blank" rel="noopener noreferrer">{{ card.link.label }}</a>
+            {% else %}
+            <a class="card-link" href="{{ card.link.href | relative_url }}">{{ card.link.label }}</a>
+            {% endif %}
+            {% endif %}
+          </article>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if section.columns %}
+        <div class="column-grid">
+          {% for column in section.columns %}
+          <div class="column">
+            <h3>{{ column.heading }}</h3>
+            {% if column.description %}<p>{{ column.description }}</p>{% endif %}
+            {% if column.links %}
+            <ul>
+              {% for link in column.links %}
+              <li>
+                {% if link.href contains 'http://' or link.href contains 'https://' %}
+                <a href="{{ link.href }}" target="_blank" rel="noopener noreferrer">{{ link.label }}</a>
+                {% else %}
+                <a href="{{ link.href | relative_url }}">{{ link.label }}</a>
+                {% endif %}
+              </li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if section.table %}
+        <table>
+          <thead>
+            <tr>
+              {% for header in section.table.headers %}
+              <th>{{ header }}</th>
+              {% endfor %}
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in section.table.rows %}
+            <tr>
+              {% for cell in row %}
+              <td>{{ cell | markdownify | strip_newlines }}</td>
+              {% endfor %}
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% endif %}
+
+        {% if section.buttons %}
+        <div class="button-group">
+          {% for button in section.buttons %}
+          {% if button.href contains 'http://' or button.href contains 'https://' %}
+          <a class="button" href="{{ button.href }}" target="_blank" rel="noopener noreferrer">{{ button.label }}</a>
+          {% else %}
+          <a class="button" href="{{ button.href | relative_url }}">{{ button.label }}</a>
+          {% endif %}
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if section.list %}
+        <dl class="detail-list">
+          {% for item in section.list %}
+          <div>
+            <dt>{{ item.label }}</dt>
+            <dd>{{ item.value }}</dd>
+          </div>
+          {% endfor %}
+        </dl>
+        {% endif %}
+
+        {% if section.pipeline %}
+        <div class="pipeline-timeline">
+          {% for stage in section.pipeline %}
+          <div class="pipeline-stage">
+            <div class="pipeline-icon">
+              {% if stage.icon %}
+              <img src="{{ stage.icon | relative_url }}" alt="{{ stage.title }}" class="icon-svg" />
+              {% endif %}
+            </div>
+            <h4>{{ stage.title }}</h4>
+            <p>{{ stage.description }}</p>
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if section.layout == 'split' %}
+        <div class="split">
+          <div class="split-primary">
+            <h3>{{ section.primary.heading }}</h3>
+            <ul>
+              {% for bullet in section.primary.bullets %}
+              <li>{{ bullet.text }}</li>
+              {% endfor %}
+            </ul>
+            {% if section.primary.cta %}
+            <a class="button" href="{{ section.primary.cta.href }}">{{ section.primary.cta.label }}</a>
+            {% endif %}
+            {% if section.primary.quote %}
+            <blockquote class="testimonial">
+              <p>{{ section.primary.quote.text }}</p>
+              {% if section.primary.quote.attribution %}
+              <footer>— {{ section.primary.quote.attribution }}</footer>
+              {% endif %}
+            </blockquote>
+            {% endif %}
+          </div>
+          <div class="split-secondary">
+            {% if section.secondary.image %}
+            <img src="{{ section.secondary.image | relative_url }}" alt="{{ section.secondary.caption | default: section.secondary.image }}" />
+            <p class="caption">{{ section.secondary.caption }}</p>
+            {% endif %}
+            {% if section.secondary.animation %}
+            <img src="{{ section.secondary.animation | relative_url }}" alt="{{ section.secondary.caption | default: 'Animation' }}" class="animation" />
+            <p class="caption">{{ section.secondary.caption }}</p>
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </section>
+  {% endfor %}
+{% endif %}
+

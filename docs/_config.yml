@@ -1,0 +1,30 @@
+title: The da Vinci Codex
+description: Computational archaeology of Leonardo da Vinci's civil inventions.
+url: https://shannon-labs.github.io
+baseurl: /davinci-codex
+permalink: pretty
+timezone: UTC
+email: safety@davinci-codex.org
+twitter_username: shannon_labs
+
+markdown: kramdown
+theme: null
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+
+plugins:
+  - jekyll-github-metadata
+
+exclude:
+  - book/
+  - book/_build/
+  - README.md
+  - overview.md
+
+sass:
+  style: compressed
+

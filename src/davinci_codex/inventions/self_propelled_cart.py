@@ -785,6 +785,27 @@ def simulate(seed: int = 0) -> Dict[str, object]:
     }
 
 
+def analyze_spring_materials() -> Dict[str, Dict[str, float]]:
+    """Runs simulations for different spring materials and compares their performance."""
+    materials_to_test = [
+        "high_carbon_steel",
+        "bronze_spring",
+        "advanced_renaissance_alloy",
+        "modern_spring_steel",
+    ]
+    results = {}
+    for material in materials_to_test:
+        params = _load_parameters(material=material)
+        sim_result = _simulate_dynamics(params)
+        travel_distance = float(sim_result.position[-1])
+        runtime = float(sim_result.time[-1])
+        results[material] = {
+            "distance_m": travel_distance,
+            "runtime_s": runtime,
+        }
+    return results
+
+
 def build() -> None:
     artifacts_dir = ensure_artifact_dir(SLUG, subdir="cad")
     cad = _cad_module()
@@ -793,6 +814,8 @@ def build() -> None:
 
 def evaluate() -> Dict[str, object]:
     """Comprehensive evaluation with enhanced safety analysis and educational assessment."""
+    material_analysis_results = analyze_spring_materials()
+
     params = _load_parameters()
     result = _simulate_dynamics(params)
 
@@ -923,5 +946,6 @@ def evaluate() -> Dict[str, object]:
                 "Compare with contemporary mechanical devices",
                 "Discuss Leonardo's broader mechanical innovations"
             ]
-        }
+        },
+        "material_endurance_analysis": material_analysis_results,
     }

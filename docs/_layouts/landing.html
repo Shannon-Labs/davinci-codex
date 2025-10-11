@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ page.title | default: site.title }}</title>
+    <meta name="description" content="{{ page.meta.description | default: site.description }}" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ page.url | absolute_url }}" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ page.url | absolute_url }}" />
+    <meta property="og:title" content="{{ page.title | default: site.title }}" />
+    <meta property="og:description" content="{{ page.meta.description | default: site.description }}" />
+    <meta property="og:image" content="{{ page.meta.image | default: '/images/codex_social_preview.png' | relative_url | absolute_url }}" />
+    <meta property="og:site_name" content="{{ site.title }}" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="{{ page.url | absolute_url }}" />
+    <meta name="twitter:title" content="{{ page.title | default: site.title }}" />
+    <meta name="twitter:description" content="{{ page.meta.description | default: site.description }}" />
+    <meta name="twitter:image" content="{{ page.meta.image | default: '/images/codex_social_preview.png' | relative_url | absolute_url }}" />
+    {% if site.twitter_username %}
+    <meta name="twitter:site" content="@{{ site.twitter_username }}" />
+    {% endif %}
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "{{ site.title }}",
+      "url": "{{ site.url }}{{ site.baseurl }}",
+      "description": "{{ site.description }}",
+      "email": "{{ site.email }}",
+      "sameAs": [
+        "https://github.com/Shannon-Labs/davinci-codex"{% if site.twitter_username %},
+        "https://twitter.com/{{ site.twitter_username }}"{% endif %}
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="{{ 'assets/css/main.css' | relative_url }}" />
+    <link rel="stylesheet" href="{{ 'assets/css/landing.css' | relative_url }}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=EB+Garamond:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" />
+    {% include favicon.html %}
+    {% include analytics.html %}
+  </head>
+  <body class="page-landing">
+    {% include navbar.html %}
+    <main class="landing-main">
+      {% include hero.html %}
+      {% include section-list.html %}
+    </main>
+    {% include footer.html %}
+    <script src="{{ 'assets/js/main.js' | relative_url }}"></script>
+  </body>
+</html>
+

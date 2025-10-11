@@ -1,0 +1,30 @@
+---
+layout: null
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {% for page in site.pages %}
+  {% unless page.url contains 'book/_build' or page.url contains '_site' %}
+  <url>
+    <loc>{{ page.url | prepend: site.baseurl | prepend: site.url }}</loc>
+    {% if page.date %}
+    <lastmod>{{ page.date | date_to_xmlschema }}</lastmod>
+    {% else %}
+    <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+    {% endif %}
+    <changefreq>monthly</changefreq>
+    <priority>{% if page.url == '/' %}1.0{% elsif page.url contains 'index' %}0.9{% else %}0.7{% endif %}</priority>
+  </url>
+  {% endunless %}
+  {% endfor %}
+  
+  {% for post in site.posts %}
+  <url>
+    <loc>{{ post.url | prepend: site.baseurl | prepend: site.url }}</loc>
+    <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  {% endfor %}
+</urlset>
+

@@ -11,13 +11,15 @@
 
 **An Open-Source Computational Framework for Leonardo da Vinci's Mechanical Inventions**
 
-[**📖 Documentation**](docs/index.md) • [**🎨 Gallery & Visualizations**(#-gallery--visualizations) • [**🤝 Contributing**](CONTRIBUTING.md) • [**📚 References**](REFERENCES.md)
+[**🌐 Visit Site**](https://shannon-labs.github.io/davinci-codex/) • [**📖 Documentation**](docs/index.md) • [**🎨 Gallery**](#-gallery--visualizations) • [**🤝 Contributing**](CONTRIBUTING.md) • [**📚 References**](REFERENCES.md)
 
 </div>
 
 ---
 
 ## 📜 Project Overview
+
+> **🌐 [Visit our interactive documentation site](https://shannon-labs.github.io/davinci-codex/)** featuring beautiful visualizations, detailed specifications, and our invention pipeline methodology.
 
 This repository is an experimental open-source computational framework for analyzing Leonardo da Vinci's mechanical inventions. Using modern engineering principles, physics-based simulation, and safety analysis, we explore how da Vinci's 15th-century mechanical concepts might perform when implemented with contemporary materials and methods.
 
