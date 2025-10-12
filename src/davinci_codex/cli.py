@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 from typing import Dict, List, Optional, Sequence
 
+import numpy as np
 import typer
 
 from . import __version__
@@ -15,6 +16,22 @@ from .inventions import mechanical_ensemble as mechanical_ensemble_module
 from .pipelines import run_ornithopter_pipeline
 from .registry import InventionSpec, get_invention, list_inventions
 from .sweeps import run_parameter_sweep
+
+
+class NumpyEncoder(json.JSONEncoder):
+    """Special json encoder for numpy types"""
+
+    def default(self, o):
+        if isinstance(o, np.bool_):
+            return bool(o)
+        if isinstance(o, np.integer):
+            return int(o)
+        if isinstance(o, np.floating):
+            return float(o)
+        if isinstance(o, np.ndarray):
+            return o.tolist()
+        return super().default(o)
+
 
 app = typer.Typer(help="Interact with da Vinci Codex invention modules.")
 
@@ -129,7 +146,7 @@ def plan(slug: Optional[str] = typer.Option(None, help="Slug of the invention to
     for spec in specs:
         typer.echo(f"# {spec.title} ({spec.slug})")
         payload = spec.module.plan()
-        typer.echo(json.dumps(payload, indent=2, sort_keys=True))
+        typer.echo(json.dumps(payload, indent=2, sort_keys=True, cls=NumpyEncoder))
 
 
 @app.command()
@@ -150,7 +167,7 @@ def simulate(
         except TypeError:
             kwargs.pop("fidelity", None)
             results = spec.module.simulate(**kwargs)  # type: ignore[misc]
-        typer.echo(json.dumps(results, indent=2, sort_keys=True))
+        typer.echo(json.dumps(results, indent=2, sort_keys=True, cls=NumpyEncoder))
 
 
 @app.command()
@@ -173,7 +190,7 @@ def evaluate(slug: Optional[str] = typer.Option(None, help="Slug of the inventio
     for spec in specs:
         typer.echo(f"# Evaluating {spec.title} ({spec.slug})")
         payload = spec.module.evaluate()
-        typer.echo(json.dumps(payload, indent=2, sort_keys=True))
+        typer.echo(json.dumps(payload, indent=2, sort_keys=True, cls=NumpyEncoder))
 
 
 @app.command()
@@ -195,7 +212,7 @@ def demo(slug: Optional[str] = typer.Option(None, help="Slug of the invention to
             validation = _load_validation_metrics("parachute_drop", "descent_summary.csv")
             if validation:
                 payload["validation"] = validation
-        typer.echo(json.dumps(payload, indent=2, sort_keys=True))
+        typer.echo(json.dumps(payload, indent=2, sort_keys=True, cls=NumpyEncoder))
 
 
 @app.command()
@@ -225,7 +242,7 @@ def sweep(
         label=label,
         reuse_cache=reuse_cache,
     )
-    typer.echo(json.dumps(summary, indent=2, sort_keys=True))
+    typer.echo(json.dumps(summary, indent=2, sort_keys=True, cls=NumpyEncoder))
 
 
 @app.command()
@@ -268,11 +285,11 @@ def validate(
             "metrics": metrics,
             "targets": _load_acceptance_targets(spec.slug),
         }
-        typer.echo(json.dumps(summary, indent=2, sort_keys=True))
+        typer.echo(json.dumps(summary, indent=2, sort_keys=True, cls=NumpyEncoder))
 
         artifact_dir = ensure_artifact_dir(spec.slug, subdir="validation")
         with (artifact_dir / "validation_summary.json").open("w", encoding="utf-8") as handle:
-            json.dump(summary, handle, indent=2, sort_keys=True)
+            json.dump(summary, handle, indent=2, sort_keys=True, cls=NumpyEncoder)
 
 
 @app.command("gallery")
@@ -301,7 +318,7 @@ def pipeline_command(
             typer.echo("Pipeline automation not yet implemented for this invention.")
             continue
         report = run_ornithopter_pipeline(seed=seed, duration_s=duration)
-        typer.echo(json.dumps(report, indent=2, sort_keys=True))
+        typer.echo(json.dumps(report, indent=2, sort_keys=True, cls=NumpyEncoder))
 
 
 @app.command("ensemble-demo")
@@ -313,7 +330,7 @@ def ensemble_demo_command(
     """Generate a pseudo-score for the full mechanical ensemble."""
 
     result = mechanical_ensemble_module.demo(seed=seed, tempo_bpm=tempo, measures=measures)
-    typer.echo(json.dumps(result, indent=2, sort_keys=True))
+    typer.echo(json.dumps(result, indent=2, sort_keys=True, cls=NumpyEncoder))
 
 
 @app.command("validation-status")
