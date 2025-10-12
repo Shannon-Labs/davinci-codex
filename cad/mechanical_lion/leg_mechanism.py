@@ -28,7 +28,7 @@ from __future__ import annotations
 
 import math
 from pathlib import Path
-from typing import Dict, List, Tuple, Optional
+from typing import Dict, List, Optional, Tuple
 
 import numpy as np
 import trimesh
@@ -500,7 +500,7 @@ def _create_paw(
         List of trimesh components for the paw
     """
     components = []
-    oak_props = MATERIALS["oak"]
+    MATERIALS["oak"]
     steel_props = MATERIALS["steel"]
 
     # Paw pad
@@ -790,7 +790,7 @@ def generate_all_legs(
         ('RH', False, False, phase_offsets['RH'])
     ]
 
-    for leg_name, is_front, is_left, phase_offset in leg_configs:
+    for _leg_name, is_front, is_left, phase_offset in leg_configs:
         leg_crank_angle = crank_angle + 2 * math.pi * phase_offset
         leg = generate_complete_leg(
             is_front=is_front,

@@ -1,0 +1,173 @@
+version: '3.8'
+
+services:
+  # ==========================================================================
+  # Main application service
+  # ==========================================================================
+  davinci-codex:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    image: davinci-codex:latest
+    container_name: davinci-codex-app
+    volumes:
+      - ./artifacts:/app/artifacts
+      - ./data:/app/data
+    environment:
+      - PYTHONPATH=/app/src
+    command: ["python", "-m", "davinci_codex.cli", "demo"]
+    profiles:
+      - production
+
+  # ==========================================================================
+  # Development environment with Jupyter
+  # ==========================================================================
+  jupyter:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    image: davinci-codex:dev
+    container_name: davinci-codex-jupyter
+    ports:
+      - "8888:8888"
+    volumes:
+      - .:/app
+      - ./artifacts:/app/artifacts
+      - ./data:/app/data
+      - jupyter-data:/home/davinci/.jupyter
+    environment:
+      - PYTHONPATH=/app/src
+      - JUPYTER_ENABLE_LAB=yes
+    command: >
+      bash -c "
+        jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root
+        --NotebookApp.token='' --NotebookApp.password=''
+      "
+    profiles:
+      - development
+
+  # ==========================================================================
+  # Documentation server
+  # ==========================================================================
+  docs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    image: davinci-codex:dev
+    container_name: davinci-codex-docs
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: >
+      bash -c "
+        make book &&
+        python -m http.server 8080 --directory docs/book/_build/html
+      "
+    profiles:
+      - docs
+
+  # ==========================================================================
+  # Testing environment
+  # ==========================================================================
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: builder
+    image: davinci-codex:test
+    container_name: davinci-codex-test
+    volumes:
+      - .:/app
+      - test-results:/app/test-results
+    environment:
+      - PYTHONPATH=/app/src
+    command: >
+      bash -c "
+        python -m pytest tests/ 
+        --cov=src 
+        --cov-report=xml 
+        --cov-report=html 
+        --cov-report=term-missing 
+        --junit-xml=test-results/results.xml 
+        --html=test-results/report.html
+      "
+    profiles:
+      - test
+
+  # ==========================================================================
+  # Code quality and linting
+  # ==========================================================================
+  lint:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    image: davinci-codex:dev
+    container_name: davinci-codex-lint
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: >
+      bash -c "
+        echo '🔍 Running code quality checks...' &&
+        python -m ruff check . &&
+        python -m ruff format --check . &&
+        python -m mypy src/ &&
+        echo '✅ All quality checks passed!'
+      "
+    profiles:
+      - quality
+
+  # ==========================================================================
+  # Simulation runner for batch processing
+  # ==========================================================================
+  simulation:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    image: davinci-codex:latest
+    container_name: davinci-codex-simulation
+    volumes:
+      - ./artifacts:/app/artifacts
+      - ./data:/app/data
+    environment:
+      - PYTHONPATH=/app/src
+    command: ["python", "-m", "davinci_codex.cli", "gallery"]
+    profiles:
+      - simulation
+
+volumes:
+  jupyter-data:
+    driver: local
+  test-results:
+    driver: local
+
+# =============================================================================
+# Usage Examples
+# =============================================================================
+#
+# Start development environment:
+#   docker-compose --profile development up jupyter
+#
+# Run documentation server:
+#   docker-compose --profile docs up docs
+#
+# Run tests:
+#   docker-compose --profile test up test
+#
+# Run quality checks:
+#   docker-compose --profile quality up lint
+#
+# Generate simulation gallery:
+#   docker-compose --profile simulation up simulation
+#
+# Start production app:
+#   docker-compose --profile production up davinci-codex
+#
+# =============================================================================

@@ -1,53 +1,179 @@
 repos:
+  # ==============================================================================
+  # Standard Pre-commit Hooks
+  # ==============================================================================
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.5.0
     hooks:
       - id: trailing-whitespace
+        name: Trim trailing whitespace
       - id: end-of-file-fixer
+        name: Fix end of files
       - id: check-yaml
+        name: Check YAML syntax
       - id: check-added-large-files
+        name: Check for large files
+        args: ['--maxkb=1000']  # Limit to 1MB
       - id: check-json
+        name: Check JSON syntax
       - id: check-merge-conflict
+        name: Check for merge conflicts
       - id: check-toml
+        name: Check TOML syntax
       - id: mixed-line-ending
+        name: Check line endings
       - id: detect-private-key
+        name: Detect private keys
+      - id: check-case-conflict
+        name: Check for case conflicts
+      - id: check-docstring-first
+        name: Check docstring is first
+      - id: check-executables-have-shebangs
+        name: Check executables have shebangs
+      - id: check-shebang-scripts-are-executable
+        name: Check shebang scripts are executable
 
+  # ==============================================================================
+  # Python Code Quality
+  # ==============================================================================
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.3.7
     hooks:
       - id: ruff
-        args: [--fix]
+        name: Ruff linting
+        args: [--fix, --exit-non-zero-on-fix]
       - id: ruff-format
+        name: Ruff formatting
 
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.9.0
     hooks:
       - id: mypy
+        name: MyPy type checking
         additional_dependencies: [types-all]
-        args: [--ignore-missing-imports]
+        args: [--ignore-missing-imports, --show-error-codes]
+        files: ^src/
 
-  - repo: https://github.com/python-poetry/poetry
-    rev: 1.8.0
-    hooks:
-      - id: poetry-check
-      - id: poetry-lock
-
-  - repo: https://github.com/commitizen-tools/commitizen
-    rev: v3.20.0
-    hooks:
-      - id: commitizen
-        stages: [commit-msg]
-
+  # ==============================================================================
+  # Security & Safety
+  # ==============================================================================
   - repo: https://github.com/pycqa/bandit
     rev: 1.7.8
     hooks:
       - id: bandit
+        name: Security linting with Bandit
         args: [-ll, --skip=B101,B601]
         files: ^src/
+
+  - repo: https://github.com/Lucas-C/pre-commit-hooks-safety
+    rev: v1.3.2
+    hooks:
+      - id: python-safety-dependencies-check
+        name: Safety check for vulnerabilities
+
+  # ==============================================================================
+  # Documentation & Formatting
+  # ==============================================================================
+  - repo: https://github.com/pycqa/doc8
+    rev: v1.1.1
+    hooks:
+      - id: doc8
+        name: Check reStructuredText
+        args: ['--max-line-length=100']
+
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v4.0.0-alpha.8
+    hooks:
+      - id: prettier
+        name: Format with Prettier
+        types_or: [javascript, jsx, ts, tsx, json, yaml, markdown]
+
+  # ==============================================================================
+  # Jupyter Notebooks
+  # ==============================================================================
+  - repo: https://github.com/nbQA-dev/nbQA
+    rev: 1.8.5
+    hooks:
+      - id: nbqa-ruff
+        name: Lint notebooks with ruff
+        args: [--fix]
+      - id: nbqa-mypy
+        name: Type check notebooks
+        additional_dependencies: [mypy]
+
+  - repo: https://github.com/kynan/nbstripout
+    rev: 0.7.1
+    hooks:
+      - id: nbstripout
+        name: Strip notebook output
+
+  # ==============================================================================
+  # Git & Commit Standards
+  # ==============================================================================
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v3.20.0
+    hooks:
+      - id: commitizen
+        name: Check commit message format
+        stages: [commit-msg]
 
   - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
     rev: v9.13.0
     hooks:
       - id: commitlint
+        name: Lint commit messages
         stages: [commit-msg]
         additional_dependencies: ['@commitlint/config-conventional']
+
+  # ==============================================================================
+  # Custom Project-Specific Hooks
+  # ==============================================================================
+  - repo: local
+    hooks:
+      - id: pytest-check
+        name: Run tests
+        entry: python -m pytest
+        args: [tests/, --maxfail=1, -q]
+        language: system
+        types: [python]
+        pass_filenames: false
+        stages: [pre-push]
+
+      - id: check-invention-metadata
+        name: Check invention module metadata
+        entry: python scripts/validate_invention_metadata.py
+        language: system
+        files: ^src/davinci_codex/inventions/
+        types: [python]
+
+      - id: validate-cad-models
+        name: Validate CAD model integrity
+        entry: python scripts/validate_cad_models.py
+        language: system
+        files: ^cad/
+        types: [python]
+
+      - id: check-simulation-reproducibility
+        name: Check simulation reproducibility
+        entry: python scripts/check_simulation_seeds.py
+        language: system
+        files: ^src/davinci_codex/inventions/
+        types: [python]
+
+# ==============================================================================
+# Configuration
+# ==============================================================================
+default_language_version:
+  python: python3.11
+
+ci:
+  autofix_commit_msg: |
+    [pre-commit.ci] auto fixes from pre-commit.com hooks
+
+    for more information, see https://pre-commit.ci
+  autofix_prs: true
+  autoupdate_branch: ''
+  autoupdate_commit_msg: '[pre-commit.ci] pre-commit autoupdate'
+  autoupdate_schedule: weekly
+  skip: []
+  submodules: false

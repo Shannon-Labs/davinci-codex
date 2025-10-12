@@ -1,0 +1,345 @@
+
+        LEONARDO'S MECHANICAL LION - TIMING SHEET
+        ==================================================================
+
+        Total Performance Duration: 26.5 seconds
+        Date: 1517
+        Designer: Leonardo da Vinci
+
+        TIMING COORDINATION REQUIREMENTS
+        ==================================================================
+
+        1. PRECISION REQUIREMENTS
+        ─────────────────────────
+        • Event timing tolerance: ±0.1 seconds
+        • Synchronization tolerance: ±0.05 seconds
+        • Dramatic pause accuracy: ±0.05 seconds
+        • Reveal timing precision: ±0.1 seconds
+
+        2. CRITICAL MOMENTS
+        ─────────────────────────
+        • Walking initiation: 2.0 seconds (must be precise)
+        • Chest opening start: 12.0 seconds (dramatic timing critical)
+        • Lily presentation: 15.5 seconds (symbolic reveal)
+        • Royal display peak: 20.0 seconds (political significance)
+        • Performance completion: 26.5 seconds (perfect ending)
+
+        DETAILED EVENT TIMING
+        ==================================================================
+
+        
+        Event 1: Initial Position
+        ─────────────────────────
+        Start Time: 0.00 seconds
+        Duration: 2.00 seconds
+        End Time: 2.00 seconds
+        Importance: 0.60
+        Dramatic Function: Establish mechanical marvel and royal presence
+
+        Mechanical Systems: tail_actuator
+        Dependencies: None
+
+        Timing Notes:
+        ─────────────────────────
+        
+
+        Event 2: Step 1 Lift
+        ─────────────────────────
+        Start Time: 2.00 seconds
+        Duration: 0.80 seconds
+        End Time: 2.80 seconds
+        Importance: 0.70
+        Dramatic Function: Demonstrate natural walking biomechanics - Step 1
+
+        Mechanical Systems: leg_0, leg_1, leg_2, leg_3, tail_actuator
+        Dependencies: None
+
+        Timing Notes:
+        ─────────────────────────
+                • Coordinate with tail motion for natural movement
+        • Ensure smooth transition between lift and place phases
+        • Important: Verify timing accuracy
+
+
+        Event 3: Step 1 Place
+        ─────────────────────────
+        Start Time: 2.80 seconds
+        Duration: 0.80 seconds
+        End Time: 3.60 seconds
+        Importance: 0.60
+        Dramatic Function: Complete graceful walking cycle - Step 1
+
+        Mechanical Systems: leg_0, leg_1, leg_2, leg_3, tail_actuator
+        Dependencies: step_1_lift
+
+        Timing Notes:
+        ─────────────────────────
+                • Coordinate with tail motion for natural movement
+        • Ensure smooth transition between lift and place phases
+
+
+        Event 4: Step 1 Pause
+        ─────────────────────────
+        Start Time: 3.60 seconds
+        Duration: 1.07 seconds
+        End Time: 4.67 seconds
+        Importance: 0.50
+        Dramatic Function: Build anticipation and showcase control precision - Pause 1
+
+        Mechanical Systems: tail_actuator
+        Dependencies: step_1_place
+
+        Timing Notes:
+        ─────────────────────────
+                • Coordinate with tail motion for natural movement
+        • Ensure smooth transition between lift and place phases
+
+
+        Event 5: Step 2 Lift
+        ─────────────────────────
+        Start Time: 4.67 seconds
+        Duration: 0.80 seconds
+        End Time: 5.47 seconds
+        Importance: 0.70
+        Dramatic Function: Demonstrate natural walking biomechanics - Step 2
+
+        Mechanical Systems: leg_0, leg_1, leg_2, leg_3, tail_actuator
+        Dependencies: step_1_place
+
+        Timing Notes:
+        ─────────────────────────
+                • Coordinate with tail motion for natural movement
+        • Ensure smooth transition between lift and place phases
+        • Important: Verify timing accuracy
+
+
+        Event 6: Step 2 Place
+        ─────────────────────────
+        Start Time: 5.47 seconds
+        Duration: 0.80 seconds
+        End Time: 6.27 seconds
+        Importance: 0.60
+        Dramatic Function: Complete graceful walking cycle - Step 2
+
+        Mechanical Systems: leg_0, leg_1, leg_2, leg_3, tail_actuator
+        Dependencies: step_2_lift
+
+        Timing Notes:
+        ─────────────────────────
+                • Coordinate with tail motion for natural movement
+        • Ensure smooth transition between lift and place phases
+
+
+        Event 7: Step 2 Pause
+        ─────────────────────────
+        Start Time: 6.27 seconds
+        Duration: 1.07 seconds
+        End Time: 7.34 seconds
+        Importance: 0.50
+        Dramatic Function: Build anticipation and showcase control precision - Pause 2
+
+        Mechanical Systems: tail_actuator
+        Dependencies: step_2_place
+
+        Timing Notes:
+        ─────────────────────────
+                • Coordinate with tail motion for natural movement
+        • Ensure smooth transition between lift and place phases
+
+
+        Event 8: Step 3 Lift
+        ─────────────────────────
+        Start Time: 7.34 seconds
+        Duration: 0.80 seconds
+        End Time: 8.14 seconds
+        Importance: 0.70
+        Dramatic Function: Demonstrate natural walking biomechanics - Step 3
+
+        Mechanical Systems: leg_0, leg_1, leg_2, leg_3, tail_actuator
+        Dependencies: step_2_place
+
+        Timing Notes:
+        ─────────────────────────
+                • Coordinate with tail motion for natural movement
+        • Ensure smooth transition between lift and place phases
+        • Important: Verify timing accuracy
+
+
+        Event 9: Step 3 Place
+        ─────────────────────────
+        Start Time: 8.14 seconds
+        Duration: 0.80 seconds
+        End Time: 8.94 seconds
+        Importance: 0.60
+        Dramatic Function: Complete graceful walking cycle - Step 3
+
+        Mechanical Systems: leg_0, leg_1, leg_2, leg_3, tail_actuator
+        Dependencies: step_3_lift
+
+        Timing Notes:
+        ─────────────────────────
+                • Coordinate with tail motion for natural movement
+        • Ensure smooth transition between lift and place phases
+
+
+        Event 10: Step 3 Pause
+        ─────────────────────────
+        Start Time: 8.94 seconds
+        Duration: 1.07 seconds
+        End Time: 10.01 seconds
+        Importance: 0.50
+        Dramatic Function: Build anticipation and showcase control precision - Pause 3
+
+        Mechanical Systems: tail_actuator
+        Dependencies: step_3_place
+
+        Timing Notes:
+        ─────────────────────────
+                • Coordinate with tail motion for natural movement
+        • Ensure smooth transition between lift and place phases
+
+
+        Event 11: Stopping Position
+        ─────────────────────────
+        Start Time: 10.00 seconds
+        Duration: 2.00 seconds
+        End Time: 12.00 seconds
+        Importance: 0.80
+        Dramatic Function: Create tension before major reveal - court holds breath
+
+        Mechanical Systems: tail_actuator
+        Dependencies: step_3_pause
+
+        Timing Notes:
+        ─────────────────────────
+                • Important: Verify timing accuracy
+
+
+        Event 12: Chest Opening
+        ─────────────────────────
+        Start Time: 12.00 seconds
+        Duration: 3.50 seconds
+        End Time: 15.50 seconds
+        Importance: 0.95
+        Dramatic Function: Dramatic mechanical reveal - centerpiece of performance
+
+        Mechanical Systems: chest_mechanism, timing_controller
+        Dependencies: stopping_position
+
+        Timing Notes:
+        ─────────────────────────
+                • Critical timing for dramatic reveal
+        • Must synchronize with lily platform timing
+        • CRITICAL: Maximum precision required
+
+
+        Event 13: Lily Presentation
+        ─────────────────────────
+        Start Time: 15.50 seconds
+        Duration: 2.00 seconds
+        End Time: 17.50 seconds
+        Importance: 0.98
+        Dramatic Function: Royal symbol presentation - celebration of Franco-Florentine alliance
+
+        Mechanical Systems: lily_platform, timing_controller
+        Dependencies: chest_opening
+
+        Timing Notes:
+        ─────────────────────────
+                • Precise elevation timing for symbol presentation
+        • Hold position steady during royal display
+        • CRITICAL: Maximum precision required
+
+
+        Event 14: Royal Display
+        ─────────────────────────
+        Start Time: 17.50 seconds
+        Duration: 5.00 seconds
+        End Time: 22.50 seconds
+        Importance: 0.90
+        Dramatic Function: Present royal symbols to King Francis I - political and artistic climax
+
+        Mechanical Systems: lily_platform, tail_actuator
+        Dependencies: lily_presentation
+
+        Timing Notes:
+        ─────────────────────────
+                • CRITICAL: Maximum precision required
+
+
+        Event 15: Reset Sequence
+        ─────────────────────────
+        Start Time: 22.50 seconds
+        Duration: 4.00 seconds
+        End Time: 26.50 seconds
+        Importance: 0.70
+        Dramatic Function: Smooth return to initial position - demonstration of complete control mastery
+
+        Mechanical Systems: chest_mechanism, lily_platform, tail_actuator
+        Dependencies: royal_display
+
+        Timing Notes:
+        ─────────────────────────
+                • Smooth return to initial position
+        • All systems must synchronize perfectly
+        • Important: Verify timing accuracy
+
+
+        COORDINATION NOTES
+        ==================================================================
+
+        1. SYNCHRONIZATION POINTS
+        ─────────────────────────
+                • 2.0 seconds - Verify all systems aligned
+        • 10.0 seconds - Verify all systems aligned
+        • 12.0 seconds - Verify all systems aligned
+        • 15.5 seconds - Verify all systems aligned
+        • 22.5 seconds - Verify all systems aligned
+        • 26.5 seconds - Verify all systems aligned
+
+        2. AUDIENCE FOCUS MOMENTS
+        ─────────────────────────
+                • 0.0 seconds - Maximum audience attention
+        • 3.0 seconds - Maximum audience attention
+        • 10.0 seconds - Maximum audience attention
+        • 14.0 seconds - Maximum audience attention
+        • 16.5 seconds - Maximum audience attention
+        • 20.0 seconds - Maximum audience attention
+        • 26.5 seconds - Maximum audience attention
+
+        PROGRAMMING INSTRUCTIONS
+        ==================================================================
+
+        1. CAM DRUM PROGRAMMING
+        ─────────────────────────
+        • Program cam profiles to match event timing exactly
+        • Verify cam rotation speed: 13.58 degrees/second
+        • Test individual cam timing before assembly
+        • Adjust cam positions for precise event synchronization
+
+        2. ESCAPEMENT MECHANISM
+        ─────────────────────────
+        • Set escapement for constant speed regulation
+        • Verify timing accuracy over complete performance
+        • Test with full mechanical load
+        • Adjust weight or spring tension as needed
+
+        3. PERFORMANCE VALIDATION
+        ─────────────────────────
+        • Test complete performance sequence 10 times
+        • Verify timing consistency within ±0.1 seconds
+        • Confirm theatrical impact at critical moments
+        • Validate mechanical reliability
+
+        ==================================================================
+        These timing specifications have been mathematically optimized
+        for maximum theatrical impact while ensuring mechanical reliability.
+
+        Each timing point has been calculated to create dramatic tension,
+        audience engagement, and satisfying resolution suitable for
+        royal court presentation.
+
+        Signed: Leonardo da Vinci
+        Date: 1517
+        ==================================================================
+        

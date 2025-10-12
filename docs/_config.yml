@@ -1,30 +1,148 @@
-title: The da Vinci Codex
-description: Computational archaeology of Leonardo da Vinci's civil inventions.
+title: "The da Vinci Codex"
+tagline: "Computational Archaeology of Renaissance Engineering"
+description: "Open-source computational framework exploring Leonardo da Vinci's mechanical inventions through modern engineering, physics simulation, and safety analysis."
 url: https://shannon-labs.github.io
 baseurl: /davinci-codex
 permalink: pretty
 timezone: UTC
+
+# Contact Information
 email: hunter@shannonlabs.dev
 twitter_username: huntermbown
+github_username: Shannon-Labs
+linkedin_username: hunterbown
 
+# Build Settings
 markdown: kramdown
+highlighter: rouge
 theme: null
+sass:
+  style: compressed
+  sass_dir: _sass
 
+# Plugins
+plugins:
+  - jekyll-github-metadata
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Collections for better organization
+collections:
+  inventions:
+    output: true
+    permalink: /:collection/:name/
+  gallery:
+    output: true
+    permalink: /:collection/:name/
+  research:
+    output: true
+    permalink: /:collection/:name/
+
+# Defaults
 defaults:
   - scope:
       path: ""
     values:
       layout: default
+      author: "Hunter Bown"
+  - scope:
+      path: ""
+      type: "inventions"
+    values:
+      layout: invention
+  - scope:
+      path: ""
+      type: "gallery"
+    values:
+      layout: gallery
+  - scope:
+      path: ""
+      type: "research"
+    values:
+      layout: research
 
-plugins:
-  - jekyll-github-metadata
-
+# Exclude from processing
 exclude:
   - book/
   - book/_build/
   - README.md
   - overview.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .sass-cache
+  - .jekyll-cache
+  - gemfiles
+  - _site
 
-sass:
-  style: compressed
+# Social Media and SEO
+social:
+  name: Shannon Labs
+  links:
+    - https://github.com/Shannon-Labs
+    - https://twitter.com/huntermbown
+    - https://linkedin.com/in/hunterbown
+
+# Renaissance Theme Configuration
+renaissance:
+  # Color palette inspired by da Vinci's notebooks
+  colors:
+    primary: "#8B4513"      # Renaissance brown
+    secondary: "#DAA520"    # Gold accent
+    manuscript: "#F5F5DC"   # Beige parchment
+    ink: "#2F4F4F"          # Dark slate gray
+    accent: "#CD853F"       # Peru
+  
+  # Typography inspired by Renaissance manuscripts
+  fonts:
+    heading: "Cinzel, serif"
+    body: "EB Garamond, serif"
+    code: "JetBrains Mono, monospace"
+  
+  # Features
+  features:
+    search: true
+    dark_mode: true
+    animations: true
+    interactive_demos: true
+
+# Navigation structure
+navigation:
+  - title: "Home"
+    url: /
+  - title: "Inventions"
+    url: /inventions/
+    children:
+      - title: "Flight & Motion"
+        children:
+          - title: "Aerial Screw"
+            url: /aerial_screw/
+          - title: "Ornithopter"
+            url: /ornithopter/
+          - title: "Parachute"
+            url: /parachute/
+      - title: "Mechanical Systems"
+        children:
+          - title: "Self-Propelled Cart"
+            url: /self_propelled_cart/
+          - title: "Mechanical Odometer"
+            url: /mechanical_odometer/
+          - title: "Revolving Bridge"
+            url: /revolving_bridge/
+      - title: "Musical Automata"
+        children:
+          - title: "Mechanical Lion"
+            url: /mechanical_lion/
+          - title: "Musical Ensemble"
+            url: /mechanical_ensemble/
+  - title: "Gallery"
+    url: /gallery/
+  - title: "Research"
+    url: /research/
+  - title: "Interactive Book"
+    url: /book/
+  - title: "GitHub"
+    url: https://github.com/Shannon-Labs/davinci-codex
 

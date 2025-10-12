@@ -8,22 +8,21 @@
 [![Tests](https://github.com/Shannon-Labs/davinci-codex/actions/workflows/ci.yml/badge.svg)](https://github.com/Shannon-Labs/davinci-codex/actions/workflows/ci.yml)
 [![Code style: ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
 
-
 **An Open-Source Computational Framework for Leonardo da Vinci's Mechanical Inventions**
 
-[**🌐 Visit Site**](https://shannon-labs.github.io/davinci-codex/) • [**📖 Documentation**](docs/index.md) • [**🎨 Gallery**](#-gallery--visualizations) • [**🤝 Contributing**](CONTRIBUTING.md) • [**📚 References**](REFERENCES.md)
+[**Visit Site**](https://shannon-labs.github.io/davinci-codex/) • [**Documentation**](docs/index.md) • [**Gallery**](#gallery--visualizations) • [**Contributing**](CONTRIBUTING.md) • [**References**](REFERENCES.md)
 
 </div>
 
 ---
 
-## 📜 Project Overview
+## Project Overview
 
-> **🌐 [Visit our interactive documentation site](https://shannon-labs.github.io/davinci-codex/)** featuring beautiful visualizations, detailed specifications, and our invention pipeline methodology.
+> **[Visit our interactive documentation site](https://shannon-labs.github.io/davinci-codex/)** featuring beautiful visualizations, detailed specifications, and our invention pipeline methodology.
 
 This repository is an experimental open-source computational framework for analyzing Leonardo da Vinci's mechanical inventions. Using modern engineering principles, physics-based simulation, and safety analysis, we explore how da Vinci's 15th-century mechanical concepts might perform when implemented with contemporary materials and methods.
 
-### 🎯 Project Goals
+### Project Goals
 
 1. **Digital Exploration**: Create computational models of selected Renaissance mechanical concepts
 2. **Educational Resources**: Develop open-source materials for STEM education
@@ -31,15 +30,15 @@ This repository is an experimental open-source computational framework for analy
 4. **Safety Focus**: Ensure all implementations prioritize safety
 5. **Open Collaboration**: Enable community contributions to historical engineering study
 
-### 🏛️ Historical Context
+### Historical Context
 
-Leonardo da Vinci (1452-1519) produced over 13,000 pages of notes and drawings, including hundreds of mechanical invention sketches. This project explores five selected inventions, focusing on educational applications and maintaining strict adherence to non-weaponized implementations.
+Leonardo da Vinci (1452-1519) produced over 13,000 pages of notes and drawings, including hundreds of mechanical invention sketches. This project explores selected inventions, focusing on educational applications and maintaining strict adherence to non-weaponized implementations.
 
 ---
 
-## 🎨 Gallery & Visualizations
+## Gallery & Visualizations
 
-### 🚁 Aerial Screw - Variable-Pitch System
+### Aerial Screw - Variable-Pitch System
 > **MAJOR BREAKTHROUGH**: Optimized 15° helix angle achieves 1,416N lift with complete mechanical design
 
 <table>

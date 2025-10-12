@@ -17,31 +17,27 @@ Generated Package Includes:
 
 from __future__ import annotations
 
-from pathlib import Path
 import json
 from datetime import datetime
+from pathlib import Path
+from typing import Optional
+
+from assembly_animations import AnimationConfiguration, generate_complete_animation_package
+from exploded_assembly_view import ExplosionConfiguration, export_exploded_assembly_package
+from individual_components import ManufacturingTolerances, export_component_manufacturing_package
+from mechanical_linkage_system import (
+    export_linkage_system_package,
+)
+from technical_drawings import generate_complete_technical_drawings
 
 # Import all CAD modules
 from variable_pitch_assembly import (
-    AerialScrewSpecs, create_complete_assembly, analyze_assembly_properties,
-    export_manufacturing_drawings
+    AerialScrewSpecs,
+    analyze_assembly_properties,
+    create_complete_assembly,
+    export_manufacturing_drawings,
 )
-from individual_components import (
-    ManufacturingTolerances, export_component_manufacturing_package
-)
-from mechanical_linkage_system import (
-    LinkageGeometry, create_complete_linkage_system,
-    export_linkage_system_package
-)
-from exploded_assembly_view import (
-    ExplosionConfiguration, export_exploded_assembly_package
-)
-from technical_drawings import (
-    DrawingStandard, generate_complete_technical_drawings
-)
-from assembly_animations import (
-    AnimationConfiguration, generate_complete_animation_package
-)
+
 
 def generate_complete_cad_package(
     base_output_dir: Optional[Path] = None,
@@ -148,8 +144,8 @@ def generate_complete_cad_package(
     package_metadata['generated_files']['individual_components'] = component_exports
 
     print(f"   ✓ {specs.num_blades} tapered blade components")
-    print(f"   ✓ Swashplate mechanism components")
-    print(f"   ✓ Central hub and mounting hardware")
+    print("   ✓ Swashplate mechanism components")
+    print("   ✓ Central hub and mounting hardware")
 
     # 3. Generate mechanical linkage system
     print("\n3. Creating mechanical linkage system...")
@@ -159,10 +155,10 @@ def generate_complete_cad_package(
     )
     package_metadata['generated_files']['linkage_system'] = linkage_exports
 
-    print(f"   ✓ Complete swashplate mechanism")
-    print(f"   ✓ Control linkages with spherical joints")
-    print(f"   ✓ Pitch control horns and actuation system")
-    print(f"   ✓ Safety interlocks and limit stops")
+    print("   ✓ Complete swashplate mechanism")
+    print("   ✓ Control linkages with spherical joints")
+    print("   ✓ Pitch control horns and actuation system")
+    print("   ✓ Safety interlocks and limit stops")
 
     # 4. Generate exploded assembly views
     print("\n4. Creating exploded assembly views...")
@@ -179,9 +175,9 @@ def generate_complete_cad_package(
     )
     package_metadata['generated_files']['exploded_views'] = exploded_exports
 
-    print(f"   ✓ Complete exploded assembly with interfaces")
-    print(f"   ✓ Component relationship visualization")
-    print(f"   ✓ Assembly sequence indicators")
+    print("   ✓ Complete exploded assembly with interfaces")
+    print("   ✓ Component relationship visualization")
+    print("   ✓ Assembly sequence indicators")
 
     # 5. Generate technical drawings
     print("\n5. Creating technical drawings with dimensions and tolerances...")
@@ -192,10 +188,10 @@ def generate_complete_cad_package(
     )
     package_metadata['generated_files']['technical_drawings'] = drawing_exports
 
-    print(f"   ✓ Assembly drawings with overall dimensions")
-    print(f"   ✓ Detailed component drawings with tolerances")
-    print(f"   ✓ Material specifications and heat treatment")
-    print(f"   ✓ Quality control requirements")
+    print("   ✓ Assembly drawings with overall dimensions")
+    print("   ✓ Detailed component drawings with tolerances")
+    print("   ✓ Material specifications and heat treatment")
+    print("   ✓ Quality control requirements")
 
     # 6. Generate assembly animations
     print("\n6. Creating assembly animations...")
@@ -212,9 +208,9 @@ def generate_complete_cad_package(
     )
     package_metadata['generated_files']['animations'] = animation_exports
 
-    print(f"   ✓ Assembly sequence animation")
-    print(f"   ✓ Variable-pitch operation demonstration")
-    print(f"   ✓ Exploded view transitions")
+    print("   ✓ Assembly sequence animation")
+    print("   ✓ Variable-pitch operation demonstration")
+    print("   ✓ Exploded view transitions")
 
     # 7. Create comprehensive documentation
     print("\n7. Creating comprehensive documentation...")

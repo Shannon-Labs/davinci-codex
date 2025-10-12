@@ -34,7 +34,7 @@ from __future__ import annotations
 
 import math
 from pathlib import Path
-from typing import Dict, List, Tuple, Optional
+from typing import Dict, List, Tuple
 
 import numpy as np
 import trimesh
@@ -326,7 +326,7 @@ def _create_cam_drum_assembly(
         current_z = track_z_start
 
         for leg_index in range(4):
-            for cam_type_index, cam_type in enumerate(leg_cam_types):
+            for _cam_type_index, cam_type in enumerate(leg_cam_types):
                 # Generate cam profile
                 angles, radii = _generate_cam_profile(
                     cam_type,
@@ -336,7 +336,7 @@ def _create_cam_drum_assembly(
                 )
 
                 # Apply phase offset for this leg
-                phase_offset = leg_phases[leg_index]
+                leg_phases[leg_index]
                 cam_position = [
                     position[0],
                     position[1],
@@ -366,7 +366,7 @@ def _create_cam_drum_assembly(
             )
 
             # Apply timing offset for sequential panel opening
-            timing_offset = chest_track * math.pi / 8
+            chest_track * math.pi / 8
             chest_cam_position = [
                 position[0],
                 position[1],

@@ -14,18 +14,19 @@ Run this script to generate the complete mechanical lion package including:
 
 from __future__ import annotations
 
-import math
 import json
+import math
 from pathlib import Path
-from typing import Dict, List
+
+from chest_system import export_chest_system
+from control_system import export_control_system
+from external_shell import export_external_shell
+from leg_mechanism import export_leg_assembly
 
 # Import all CAD generation modules
 from lion_assembly import export_assembly
-from leg_mechanism import export_leg_assembly
-from chest_system import export_chest_system
 from power_system import export_power_system
-from control_system import export_control_system
-from external_shell import export_external_shell
+
 
 def main():
     """Generate complete CAD model package for Leonardo's Mechanical Lion."""

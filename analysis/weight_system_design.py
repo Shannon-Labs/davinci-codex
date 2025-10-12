@@ -149,7 +149,7 @@ class WeightPowerSystem:
             dimensions = (weight_side, weight_side, weight_side)
 
         # Create weight specifications
-        for i in range(num_weights):
+        for _i in range(num_weights):
             weight = WeightSpecification(
                 material=material,
                 density_kg_per_m3=density,
@@ -296,7 +296,7 @@ class WeightPowerSystem:
         """Calculate space requirements within lion body."""
 
         # Weight stack dimensions
-        total_weight_volume = sum(
+        sum(
             weight.dimensions_m[0] * weight.dimensions_m[1] * weight.dimensions_m[2]
             for weight in self.drive_weights
         )
@@ -448,7 +448,7 @@ def main():
     print(f"Drop Height: {weights['drop_height_m']:.2f} m")
 
     # Display performance
-    print(f"\nPerformance Characteristics:")
+    print("\nPerformance Characteristics:")
     print("-" * 40)
     perf = summary["performance"]
     print(f"Effective Energy: {perf['effective_energy_j']:.1f} J")
@@ -459,7 +459,7 @@ def main():
     print(f"Force Consistency: {perf['force_consistency']}")
 
     # Display space requirements
-    print(f"\nSpace Requirements:")
+    print("\nSpace Requirements:")
     print("-" * 40)
     space = summary["space_requirements"]
     print(f"Total Volume: {space['total_volume_m3']:.3f} m³")
@@ -467,7 +467,7 @@ def main():
     print(f"Weight Carriage Height: {space['weight_carriage']['height_m']:.2f} m")
 
     # Display reset analysis
-    print(f"\nReset Mechanism:")
+    print("\nReset Mechanism:")
     print("-" * 40)
     reset = summary["reset"]
     print(f"Human Feasible: {'✓' if reset['human_feasible'] else '✗'}")
@@ -475,7 +475,7 @@ def main():
     print(f"Effort Required: {reset['effort_required']}")
 
     # Display manufacturing analysis
-    print(f"\nManufacturing Analysis:")
+    print("\nManufacturing Analysis:")
     print("-" * 40)
     manuf = summary["manufacturing"]
     print(f"Total Construction Time: {manuf['total_construction_time']}")

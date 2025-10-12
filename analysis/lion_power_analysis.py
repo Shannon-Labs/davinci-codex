@@ -20,10 +20,11 @@ technological capabilities and performance requirements.
 """
 
 import math
+from pathlib import Path
+from typing import Dict
+
 import matplotlib.pyplot as plt
 import numpy as np
-from typing import Dict, List, Tuple
-from pathlib import Path
 
 # Import system designs
 from energy_budget import EnergyBudget
@@ -354,8 +355,8 @@ class PowerSystemComparison:
         }
 
         # Calculate weighted totals
-        spring_total = sum(spring_scores[category] * weights[category] for category in weights.keys())
-        weight_total = sum(weight_scores[category] * weights[category] for category in weights.keys())
+        spring_total = sum(spring_scores[category] * weights[category] for category in weights)
+        weight_total = sum(weight_scores[category] * weights[category] for category in weights)
 
         return {
             "spring_system": {
@@ -670,7 +671,7 @@ def main():
     print(f"Score Difference: {overall['score_difference_percent']:.1f}%")
 
     # Display individual category winners
-    print(f"\nCATEGORY WINNERS:")
+    print("\nCATEGORY WINNERS:")
     print("-" * 40)
     print(f"Performance: {comparison.comparison_results['performance']['performance_winner'].upper()}")
     print(f"Space Efficiency: {comparison.comparison_results['space_requirements']['space_winner'].upper()}")
@@ -692,11 +693,14 @@ def main():
     print(f"Recommendation report saved to: {artifacts_dir / 'power_system_recommendation.txt'}")
 
     # Display summary recommendation
-    print(f"\nRECOMMENDATION SUMMARY:")
+    print("\nRECOMMENDATION SUMMARY:")
     print("-" * 40)
     print(f"Recommended System: {overall['recommended_system'].upper()}")
     print(f"Confidence Level: {'High' if overall['score_difference_percent'] > 10 else 'Medium' if overall['score_difference_percent'] > 5 else 'Low'}")
-    print(f"Key Advantage: {'Energy density and Leonardo\'s expertise' if overall['recommended_system'] == 'spring' else 'Reliability and simpler construction'}")
+    key_advantage_spring = "Energy density and Leonardo's expertise"
+    key_advantage_counterweight = "Reliability and simpler construction"
+    key_advantage = key_advantage_spring if overall['recommended_system'] == 'spring' else key_advantage_counterweight
+    print(f"Key Advantage: {key_advantage}")
 
     return comparison
 

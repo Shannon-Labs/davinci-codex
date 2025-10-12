@@ -1,0 +1,34 @@
+LEONARDO DA VINCI AERIAL SCREW - MANUFACTURING INSTRUCTIONS
+============================================================
+
+MATERIAL REQUIREMENTS
+------------------------------
+Blades: oak - select straight grain
+Structure: wrought_iron - forged and annealed
+Bearings: bronze - cast and polished
+
+TOOLING REQUIRED
+------------------------------
+• Woodworking tools for blade shaping
+• Metal lathe for cylindrical components
+• Drill press for precision holes
+• Files and rasps for finishing
+• Balance stand for dynamic balancing
+
+MANUFACTURING SEQUENCE
+------------------------------
+1. Machine central hub to precise dimensions
+2. Create blade airfoil sections with proper taper
+3. Machine swashplate components with bearing surfaces
+4. Assemble bearing assemblies with proper clearances
+5. Install control linkages with pivot joints
+6. Balance all components dynamically
+7. Final assembly and testing
+
+QUALITY CONTROL CHECKLIST
+------------------------------
+□ Check all dimensions against tolerances
+□ Verify surface finish on bearing surfaces
+□ Test fit of all mating components
+□ Balance rotating assembly
+□ Verify smooth operation of pitch control

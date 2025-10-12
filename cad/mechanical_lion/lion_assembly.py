@@ -23,7 +23,7 @@ from __future__ import annotations
 
 import math
 from pathlib import Path
-from typing import Dict, List, Tuple, Optional
+from typing import Dict, List
 
 import numpy as np
 import trimesh
@@ -145,7 +145,7 @@ def _create_body_frame() -> trimesh.Trimesh:
         frame_components.append(bracket)
 
     # Combine all frame components
-    body_frame = trimesh.util.concatenate(frame_components)
+    trimesh.util.concatenate(frame_components)
 
     # Add mortise and tenon joint details (decorative)
     for i in range(num_ribs - 1):
@@ -182,7 +182,7 @@ def _create_leg_mounting_points() -> List[trimesh.Trimesh]:
         (-FORELEG_TO_HINDLEG_DISTANCE/2, -LATERAL_LEG_SPACING/2, False, False) # Rear Right
     ]
 
-    for x_pos, y_pos, is_front, is_left in leg_positions:
+    for x_pos, y_pos, _is_front, _is_left in leg_positions:
         # Main mounting block
         mount_block = trimesh.creation.box(extents=[0.12, 0.12, 0.08])
         mount_block.apply_translation([x_pos, y_pos, BODY_HEIGHT])
@@ -689,11 +689,11 @@ def analyze_assembly_properties(
         "assembly_statistics": mesh_statistics,
         "renaissance_feasibility": renaissance_feasibility,
         "engineering_notes": [
-            f"Assembly designed for Renaissance workshop construction",
-            f"All dimensions compatible with 16th century precision",
-            f"Modular design allows step-by-step assembly",
-            f"Structural safety factor >2 for all wooden components",
-            f"Bearing surfaces use bronze for durability"
+            "Assembly designed for Renaissance workshop construction",
+            "All dimensions compatible with 16th century precision",
+            "Modular design allows step-by-step assembly",
+            "Structural safety factor >2 for all wooden components",
+            "Bearing surfaces use bronze for durability"
         ]
     }
 

@@ -33,7 +33,7 @@ from __future__ import annotations
 
 import math
 from pathlib import Path
-from typing import Dict, List, Tuple, Optional
+from typing import Dict, List, Tuple
 
 import numpy as np
 import trimesh
@@ -163,7 +163,7 @@ def _create_chest_frame() -> trimesh.Trimesh:
     frame_components.append(frame)
 
     # Hollow out the interior cavity (represented by internal walls)
-    cavity_dimensions = [
+    [
         CHEST_WIDTH,
         CHEST_DEPTH - 2*CHEST_WALL_THICKNESS,
         CHEST_HEIGHT - 2*CHEST_WALL_THICKNESS
@@ -231,7 +231,7 @@ def _create_hinge_mechanism(
     steel_props = MATERIALS["steel"]
 
     hinge_position = panel.calculate_hinge_position(chest_center)
-    rotation_axis = panel.calculate_panel_rotation_axis()
+    panel.calculate_panel_rotation_axis()
 
     # Hinge pin (steel)
     pin_length = PANEL_HEIGHT + 0.04

@@ -765,8 +765,8 @@ def _create_vortex_visualization(path: Path, data: Dict[str, np.ndarray]) -> str
         if thrust >= required_lift:
             hover_rpm = data["rpm"][i]
             break
-    
-    omega = hover_rpm * 2 * np.pi / 60
+
+    hover_rpm * 2 * np.pi / 60
     rotor_analyzer = HelicalRotorAnalysis(ROTOR_RADIUS, ROTOR_INNER_RADIUS, HELICAL_PITCH)
 
     def update(frame):
@@ -779,7 +779,7 @@ def _create_vortex_visualization(path: Path, data: Dict[str, np.ndarray]) -> str
         # Update particle positions
         for i in range(n_particles):
             p_x, p_y = particles[i]
-            dist_to_rotor = np.sqrt(p_x**2 + p_y**2)
+            np.sqrt(p_x**2 + p_y**2)
 
             if -ROTOR_RADIUS < p_x < ROTOR_RADIUS and -0.2 < p_y < 0.2:
                 # Strong downward velocity through rotor disk
@@ -802,7 +802,7 @@ def _create_vortex_visualization(path: Path, data: Dict[str, np.ndarray]) -> str
             if p_y < -ROTOR_RADIUS * 2 or abs(p_x) > ROTOR_RADIUS * 1.5:
                 particles[i, 0] = (np.random.rand() - 0.5) * ROTOR_RADIUS * 2.5
                 particles[i, 1] = ROTOR_RADIUS * 1.5
-        
+
         particle_scatter.set_offsets(particles)
         return [rotor_line, particle_scatter]
 

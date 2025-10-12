@@ -1,0 +1,55 @@
+LEONARDO DA VINCI AERIAL SCREW - TECHNICAL DRAWINGS SUMMARY
+=================================================================
+
+DRAWING PACKAGE CONTENTS
+-----------------------------------
+AAS-001: Assembly Drawing - General Arrangement
+  Scale: 1:10
+  File: assembly_dimensions.json
+
+AAS-002: Swashplate Assembly Detail
+  Scale: 1:2
+  File: swashplate_dimensions.json
+
+AAS-003: Control Linkage Details
+  Scale: 1:1
+  File: control_linkage_dimensions.json
+
+AAS-004: Material Specifications
+  Scale: N/A
+  File: material_specifications.json
+
+AAS-005: Tolerance Analysis
+  Scale: N/A
+  File: tolerance_analysis.json
+
+AAS-006: Quality Control Requirements
+  Scale: N/A
+  File: quality_control_requirements.json
+
+CRITICAL DIMENSIONS SUMMARY
+-----------------------------------
+Rotor Diameter: 8000.0 mm
+Blade Span: 799.9999999999998 mm
+Helix Angle: 15.0°
+Pitch Range: 15.0° to 45.0°
+
+MATERIAL REQUIREMENTS
+-----------------------------------
+Blades: Oak or Ash (seasoned 2+ years)
+Structure: Wrought iron (charcoal forged)
+Bearings: Phosphor bronze (sand cast)
+
+MANUFACTURING PRECISION
+-----------------------------------
+Linear Tolerances: ±1.0mm (general), ±0.1mm (critical)
+Angular Tolerances: ±0.5°
+Surface Finish: Ra 0.8 (bearing), Ra 1.6 (mating), Ra 3.2 (general)
+Bearing Clearances: 0.04mm nominal
+
+QUALITY REQUIREMENTS
+-----------------------------------
+100% inspection of critical dimensions
+Material certification required
+Dynamic balancing after assembly
+Operational testing of pitch control

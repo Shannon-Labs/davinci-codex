@@ -17,17 +17,19 @@ Animation Types:
 
 from __future__ import annotations
 
-from pathlib import Path
-from typing import Dict, List, Tuple, Optional
-import numpy as np
+import builtins
+import contextlib
 import json
 from dataclasses import dataclass
+from pathlib import Path
+from typing import Dict, List, Optional
+
+import numpy as np
+from exploded_assembly_view import ExplodedAssemblyGenerator, ExplosionConfiguration
 
 # Import shared components
 from variable_pitch_assembly import AerialScrewSpecs, create_complete_assembly
-from individual_components import ManufacturingTolerances
-from mechanical_linkage_system import LinkageGeometry
-from exploded_assembly_view import ExplosionConfiguration, ExplodedAssemblyGenerator
+
 
 @dataclass
 class AnimationConfiguration:
@@ -142,7 +144,7 @@ class AssemblyAnimation:
         # Final assembled state
         final_time = self.config.assembly_sequence_duration
         final_positions = {}
-        for comp_name in initial_positions.keys():
+        for comp_name in initial_positions:
             final_positions[comp_name] = {
                 'position': self._calculate_final_position(comp_name),
                 'visible': True,
@@ -162,10 +164,8 @@ class AssemblyAnimation:
             # Extract blade index from component name
             blade_index = 0
             if '_' in component_name:
-                try:
+                with contextlib.suppress(builtins.BaseException):
                     blade_index = int(component_name.split('_')[-1])
-                except:
-                    pass
 
             angle = 2 * np.pi * blade_index / self.specs.num_blades
             radius = self.specs.root_radius
@@ -198,7 +198,7 @@ class PitchOperationAnimation:
         # Create initial assembled state
         complete_assembly = create_complete_assembly(self.specs, 30.0)  # Start at 30° pitch
 
-        initial_positions = self._extract_component_positions(complete_assembly)
+        self._extract_component_positions(complete_assembly)
 
         # Pitch change animation
         pitch_angles = np.linspace(
@@ -251,7 +251,6 @@ class PitchOperationAnimation:
         }
 
         # Add key component positions
-        bounds = assembly.bounds
         center = assembly.centroid
 
         # Estimate swashplate position
@@ -287,7 +286,7 @@ class ExplodedTransitionAnimation:
         current_time = 0.0
 
         # Start with assembled state
-        complete_assembly = create_complete_assembly(self.specs, 30.0)
+        create_complete_assembly(self.specs, 30.0)
         assembled_positions = self._get_assembled_positions()
 
         keyframes.append(KeyFrame(
@@ -322,7 +321,7 @@ class ExplodedTransitionAnimation:
             progress = frame / explosion_frames
 
             frame_positions = {}
-            for comp_name in assembled_positions.keys():
+            for comp_name in assembled_positions:
                 if comp_name in exploded_positions:
                     # Interpolate between assembled and exploded positions
                     assembled_pos = assembled_positions[comp_name]['position']
@@ -364,7 +363,7 @@ class ExplodedTransitionAnimation:
             progress = frame / collapse_frames
 
             frame_positions = {}
-            for comp_name in assembled_positions.keys():
+            for comp_name in assembled_positions:
                 if comp_name in exploded_positions:
                     # Interpolate back to assembled positions
                     assembled_pos = assembled_positions[comp_name]['position']

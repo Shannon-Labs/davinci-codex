@@ -1,0 +1,5 @@
+Samples: 501
+Stroke range (deg): -1654.2 -> 955.5
+Max lift (N): 5736157.2
+Max torque (Nm): 89701.8
+Control torque limit (Nm): 350.0

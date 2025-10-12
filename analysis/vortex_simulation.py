@@ -21,15 +21,15 @@ Birds avoid vortex conditions during steep descents by:
 
 from __future__ import annotations
 
-import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib import animation, patches
-from mpl_toolkits.mplot3d import Axes3D
-from matplotlib.patches import Circle, FancyBboxPatch
-import matplotlib.gridspec as gridspec
-from dataclasses import dataclass, field
-from typing import Dict, List, Tuple, Optional
 import warnings
+from dataclasses import dataclass
+from typing import Dict, Optional
+
+import matplotlib.gridspec as gridspec
+import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib.patches import Circle, FancyBboxPatch
+
 warnings.filterwarnings('ignore')
 
 # Physical constants
@@ -129,7 +129,7 @@ class VortexRingSimulator:
         # Create particles around rotor disk
         n_particles = 200
 
-        for i in range(n_particles):
+        for _i in range(n_particles):
             # Random position around rotor
             theta = np.random.uniform(0, 2*np.pi)
             r = np.random.uniform(self.inner_radius, self.rotor_radius * 1.5)
@@ -220,10 +220,7 @@ class VortexRingSimulator:
         # This is the classic vortex ring state condition
 
         # Descent factor (peaks at descent_ratio = 1.0)
-        if descent_ratio < 1.0:
-            descent_factor = descent_ratio
-        else:
-            descent_factor = 2.0 - descent_ratio
+        descent_factor = descent_ratio if descent_ratio < 1.0 else 2.0 - descent_ratio
 
         # Forward speed factor (reduces severity)
         forward_factor = np.exp(-forward_ratio)
@@ -700,7 +697,7 @@ class VortexRingSimulator:
         for vortex in self.vortices[::5]:  # Plot every 5th vortex for clarity
             # Vortex core visualization
             u = np.linspace(0, 2*np.pi, 20)
-            v = np.linspace(0, 2*np.pi, 20)
+            np.linspace(0, 2*np.pi, 20)
 
             if vortex['strength'] > 0:
                 color = 'red'
@@ -735,8 +732,8 @@ class VortexRingSimulator:
         if self.state.flight_state == "vortex_ring":
             ax.text2D(0.05, 0.95, "⚠️ VORTEX RING STATE ⚠️",
                      transform=ax.transAxes, fontsize=12, color='red',
-                     fontweight='bold', bbox=dict(boxstyle="round,pad=0.3",
-                     facecolor="yellow", alpha=0.7))
+                     fontweight='bold', bbox={'boxstyle': "round,pad=0.3",
+                     'facecolor': "yellow", 'alpha': 0.7})
 
     def _plot_particle_flow(self, ax):
         """Plot particle flow visualization."""
@@ -895,7 +892,7 @@ class VortexRingSimulator:
         max_altitude_loss = max(r['altitude_loss'] for r in recovery.values())
         ax.text(0.5, 0.95, f"Max altitude loss: {max_altitude_loss:.1f} m",
                transform=ax.transAxes, ha='center', fontsize=9,
-               bbox=dict(boxstyle="round,pad=0.3", facecolor="yellow", alpha=0.7))
+               bbox={'boxstyle': "round,pad=0.3", 'facecolor': "yellow", 'alpha': 0.7})
 
     def _plot_safe_envelope(self, ax):
         """Plot safe operating envelope."""
@@ -949,11 +946,11 @@ class VortexRingSimulator:
         ax.axis('off')
 
         # Get recovery procedures
-        recovery = self.calculate_recovery_procedures()
+        self.calculate_recovery_procedures()
 
         # Create bird strategy visualization
         y_pos = 0.9
-        for i, (strategy, data) in enumerate(self.bird_strategies.items()):
+        for _i, (strategy, data) in enumerate(self.bird_strategies.items()):
             # Strategy name
             ax.text(0.1, y_pos, strategy.replace('_', ' ').title(),
                    fontsize=10, fontweight='bold')

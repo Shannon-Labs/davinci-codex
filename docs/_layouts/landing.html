@@ -15,7 +15,7 @@
     <meta property="og:url" content="{{ page.url | absolute_url }}" />
     <meta property="og:title" content="{{ page.title | default: site.title }}" />
     <meta property="og:description" content="{{ page.meta.description | default: site.description }}" />
-    <meta property="og:image" content="{{ page.meta.image | default: '/images/codex_social_preview.png' | relative_url | absolute_url }}" />
+    <meta property="og:image" content="{{ page.meta.image | default: '/images/davinci-codex-social.jpg' | relative_url | absolute_url }}" />
     <meta property="og:site_name" content="{{ site.title }}" />
     
     <!-- Twitter Card -->
@@ -23,12 +23,12 @@
     <meta name="twitter:url" content="{{ page.url | absolute_url }}" />
     <meta name="twitter:title" content="{{ page.title | default: site.title }}" />
     <meta name="twitter:description" content="{{ page.meta.description | default: site.description }}" />
-    <meta name="twitter:image" content="{{ page.meta.image | default: '/images/codex_social_preview.png' | relative_url | absolute_url }}" />
+    <meta name="twitter:image" content="{{ page.meta.image | default: '/images/davinci-codex-social.jpg' | relative_url | absolute_url }}" />
     {% if site.twitter_username %}
     <meta name="twitter:site" content="@{{ site.twitter_username }}" />
     {% endif %}
     
-    <!-- Structured Data -->
+    <!-- Structured Data for SEO -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -36,27 +36,217 @@
       "name": "{{ site.title }}",
       "url": "{{ site.url }}{{ site.baseurl }}",
       "description": "{{ site.description }}",
+      "logo": "{{ '/images/davinci-codex-logo.png' | relative_url | absolute_url }}",
       "email": "{{ site.email }}",
       "sameAs": [
         "https://github.com/Shannon-Labs/davinci-codex"{% if site.twitter_username %},
         "https://twitter.com/{{ site.twitter_username }}"{% endif %}
-      ]
+      ],
+      "founder": {
+        "@type": "Person",
+        "name": "Hunter Bown",
+        "url": "https://shannonlabs.dev"
+      },
+      "keywords": "{{ page.meta.keywords | default: 'Leonardo da Vinci, mechanical engineering, Renaissance, computational archaeology, historical simulation' }}"
     }
     </script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="{{ 'assets/css/main.css' | relative_url }}" />
+    <link rel="stylesheet" href="{{ 'assets/css/renaissance.css' | relative_url }}" />
     <link rel="stylesheet" href="{{ 'assets/css/landing.css' | relative_url }}" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=EB+Garamond:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" />
+    
+    <!-- Favicon -->
     {% include favicon.html %}
+    
+    <!-- Analytics -->
     {% include analytics.html %}
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="{{ 'assets/js/renaissance.js' | relative_url }}" as="script">
   </head>
   <body class="page-landing">
     {% include navbar.html %}
+    
     <main class="landing-main">
+      <!-- Hero Section -->
       {% include hero.html %}
-      {% include section-list.html %}
+      
+      <!-- Dynamic Sections -->
+      {% for section in page.sections %}
+        <section id="{{ section.id }}" class="page-section {{ section.layout | default: 'default' }}">
+          <div class="container">
+            
+            {% if section.title %}
+            <div class="section-header">
+              <h2 class="section-title fade-in">{{ section.title }}</h2>
+              {% if section.subtitle %}
+              <p class="section-subtitle fade-in">{{ section.subtitle }}</p>
+              {% endif %}
+              {% if section.intro %}
+              <div class="section-intro fade-in">{{ section.intro | markdownify }}</div>
+              {% endif %}
+            </div>
+            {% endif %}
+            
+            <!-- Category Showcase Layout -->
+            {% if section.layout == 'category-showcase' %}
+              <div class="categories-grid">
+                {% for category in section.categories %}
+                <div class="category-card slide-in-left">
+                  <div class="category-header" style="background: {{ category.gradient | default: category.color }};">
+                    <h3 class="category-title">{{ category.title }}</h3>
+                    <p class="category-subtitle">{{ category.subtitle }}</p>
+                    <p class="category-description">{{ category.description }}</p>
+                  </div>
+                  <div class="inventions-list">
+                    {% for invention in category.inventions %}
+                    <a href="{{ invention.href }}" class="invention-card">
+                      <div class="invention-image">
+                        {% case invention.status %}
+                          {% when 'validated' %}🏆
+                          {% when 'prototype_ready' %}🔧
+                          {% when 'in_progress' %}⚡
+                          {% else %}🔬
+                        {% endcase %}
+                      </div>
+                      <div class="invention-content">
+                        <h4 class="invention-name">{{ invention.name }}</h4>
+                        <span class="invention-status">{{ invention.status | replace: '_', ' ' | capitalize }}</span>
+                        <p class="invention-achievement">{{ invention.achievement }}</p>
+                        <p class="invention-description">{{ invention.description }}</p>
+                        <div class="invention-stats">
+                          {% for stat in invention.stats %}
+                          <span class="invention-stat">{{ stat }}</span>
+                          {% endfor %}
+                        </div>
+                      </div>
+                    </a>
+                    {% endfor %}
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            {% endif %}
+            
+            <!-- Methodology Layout -->
+            {% if section.layout == 'methodology' %}
+              <div class="methodology-stages">
+                {% for stage in section.stages %}
+                <div class="stage-card fade-in" style="--delay: {{ forloop.index0 | times: 0.1 }}s;">
+                  <div class="stage-icon" style="background: {{ stage.color }};">
+                    {{ forloop.index }}
+                  </div>
+                  <h3 class="stage-title">{{ stage.title }}</h3>
+                  <p class="stage-description">{{ stage.description }}</p>
+                  <ul class="stage-details">
+                    {% for detail in stage.details %}
+                    <li>{{ detail }}</li>
+                    {% endfor %}
+                  </ul>
+                  <div class="stage-deliverable">
+                    <strong>Deliverable:</strong> {{ stage.deliverable }}
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            {% endif %}
+            
+            <!-- Get Started Layout -->
+            {% if section.layout == 'get-started' %}
+              <div class="paths-grid">
+                {% for path in section.paths %}
+                <div class="path-card slide-in-right" style="--delay: {{ forloop.index0 | times: 0.15 }}s;">
+                  <div class="path-icon">{{ path.icon }}</div>
+                  <h3 class="path-title">{{ path.title }}</h3>
+                  <p class="path-description">{{ path.description }}</p>
+                  <ol class="path-steps">
+                    {% for step in path.steps %}
+                    <li>{{ step }}</li>
+                    {% endfor %}
+                  </ol>
+                  <a href="{{ path.cta.href }}" class="button primary">{{ path.cta.label }}</a>
+                </div>
+                {% endfor %}
+              </div>
+            {% endif %}
+            
+            <!-- Contact Layout -->
+            {% if section.layout == 'contact' %}
+              <div class="contact-grid">
+                {% for contact in section.contact_info %}
+                <div class="contact-card fade-in">
+                  <div class="contact-type">
+                    {% case contact.type %}
+                      {% when 'email' %}📧
+                      {% when 'github' %}🐙
+                      {% when 'twitter' %}🐦
+                      {% when 'web' %}🌐
+                      {% else %}📞
+                    {% endcase %}
+                  </div>
+                  <div class="contact-label">{{ contact.label }}</div>
+                  <div class="contact-value">
+                    {% if contact.type == 'email' %}
+                      <a href="mailto:{{ contact.contact }}">{{ contact.value }}</a>
+                    {% else %}
+                      <a href="{{ contact.contact }}" target="_blank">{{ contact.value }}</a>
+                    {% endif %}
+                  </div>
+                  <p class="contact-description">{{ contact.description }}</p>
+                </div>
+                {% endfor %}
+              </div>
+            {% endif %}
+            
+            <!-- Default Layout -->
+            {% if section.layout == 'default' or section.layout == nil %}
+              <div class="section-content">
+                {{ section.content | markdownify }}
+              </div>
+            {% endif %}
+            
+          </div>
+        </section>
+      {% endfor %}
+      
     </main>
+    
     {% include footer.html %}
+    
+    <!-- Scripts -->
     <script src="{{ 'assets/js/main.js' | relative_url }}"></script>
+    <script src="{{ 'assets/js/renaissance.js' | relative_url }}"></script>
+    
+    <!-- Intersection Observer for animations -->
+    <script>
+      // Initialize scroll animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, observerOptions);
+      
+      // Observe all animation elements
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+          observer.observe(el);
+        });
+      });
+    </script>
+    
   </body>
 </html>
 

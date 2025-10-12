@@ -33,7 +33,7 @@ from __future__ import annotations
 
 import math
 from pathlib import Path
-from typing import Dict, List, Tuple, Optional
+from typing import Dict, List, Tuple
 
 import numpy as np
 import trimesh
@@ -141,7 +141,7 @@ def _create_spring_coil(
     """
     # Calculate spring parameters
     effective_height = max(height - compression, height * 0.3)  # Minimum 30% compression
-    pitch = effective_height / num_coils
+    effective_height / num_coils
     points_per_coil = 20
     total_points = int(num_coils * points_per_coil)
 
@@ -691,7 +691,6 @@ def _create_power_distribution_system(
     timing_cam = trimesh.creation.cylinder(
         radius=0.04, height=0.02, sections=32
     )
-    cam_profile_height = 0.01
     cam_profile_radius = 0.06
 
     # Create cam profile (egg-shaped for gradual engagement)
@@ -874,7 +873,6 @@ def analyze_power_system_properties(
 
     # Escapement frequency
     escapement_beats_per_second = BEAT_FREQUENCY
-    escapement_teeth_per_beat = 1  # One tooth advance per beat
 
     return {
         "physical_properties": {

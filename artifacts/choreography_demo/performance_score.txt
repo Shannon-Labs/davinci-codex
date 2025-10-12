@@ -1,0 +1,33 @@
+================================================================================
+Leonardo's Mechanical Lion - Performance Score
+================================================================================
+Date: 1517
+Composer: Leonardo da Vinci
+Duration: 26.5 seconds
+Occasion: Royal Court Performance for King Francis I
+
+THEATRICAL STRUCTURE:
+  Acts: 10
+  Scenes: 9
+  Climax: 16.5 seconds
+  Resolution: 22.5 seconds
+
+MECHANICAL CAST:
+  • Four-legged walking system
+  • Articulated tail mechanism
+  • Chest reveal mechanism
+  • Lily presentation platform
+  • Master timing controller
+
+PERFORMANCE NOTES:
+  1. The performance must create a sense of wonder and awe
+  2. Mechanical movements should appear natural and lifelike
+  3. Timing of the chest reveal is critical for dramatic impact
+  4. The fleurs-de-lis presentation must be perfectly synchronized
+  5. Maintain eye contact with King Francis I during royal display
+  6. Ensure smooth transitions between all mechanical movements
+  7. The conclusion should demonstrate complete control mastery
+  8. Performance must be flawless - royal reputation depends on it
+  9. IMPORTANT: chest_revelation_begin requires perfect mechanical coordination
+  10. IMPORTANT: chest_revelation_complete requires perfect mechanical coordination
+  11. CRITICAL: lily_presentation must deliver maximum emotional impact

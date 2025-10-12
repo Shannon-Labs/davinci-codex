@@ -34,7 +34,7 @@ from __future__ import annotations
 
 import math
 from pathlib import Path
-from typing import Dict, List, Tuple, Optional
+from typing import Dict, List, Tuple
 
 import numpy as np
 import trimesh
@@ -417,7 +417,7 @@ def _create_mane(
     # Neck ruff (transition from mane to body)
     ruff_segments = 6
     for i in range(ruff_segments):
-        ruff_angle = math.pi * i / ruff_segments
+        math.pi * i / ruff_segments
         ruff_x = head_position[0] - LION_HEAD_LENGTH/2 - (i * 0.05)
         ruff_radius = LION_HEAD_WIDTH * 0.6 * (1 - i/ruff_segments)
 

@@ -1,20 +1,267 @@
-<header class="site-navbar">
+<nav class="navbar">
   <div class="navbar-container">
-    <a class="navbar-brand" href="{{ '/' | relative_url }}">
-      <img src="{{ '/docs/images/codex_logo.png' | relative_url }}" alt="da Vinci Codex logo" class="navbar-logo" />
-      <span class="navbar-title">{{ site.title }}</span>
+    <!-- Brand/Logo -->
+    <a href="{{ '/' | relative_url }}" class="navbar-brand">
+      <span class="navbar-logo">&#x1F3DB;</span>
+      <span class="navbar-title">da Vinci Codex</span>
     </a>
-    <button class="navbar-toggle" aria-label="Toggle navigation" data-toggle="nav">
-      <span></span><span></span><span></span>
-    </button>
-    <nav class="navbar-links" data-target="nav">
-      <a href="{{ '/docs/index.html#overview' | relative_url }}">Overview</a>
-      <a href="{{ '/docs/index.html#inventions' | relative_url }}">Inventions</a>
-      <a href="{{ '/docs/index.html#resources' | relative_url }}">Resources</a>
-      <a href="{{ '/docs/index.html#validation' | relative_url }}">Validation</a>
-      <a href="{{ '/docs/index.html#contact' | relative_url }}">Contact</a>
-      <a class="navbar-cta" href="{{ site.github.repository_url }}">GitHub</a>
-    </nav>
-  </div>
-</header>
 
+    <!-- Mobile Menu Toggle -->
+    <button class="navbar-toggle" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Navigation Menu -->
+    <div class="navbar-menu">
+      <div class="navbar-nav">
+        
+        <a href="{{ '/' | relative_url }}" class="nav-link {% if page.url == '/' %}active{% endif %}">
+          <span class="nav-icon">Home</span>
+        </a>
+
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link dropdown-toggle">
+            <span class="nav-icon">Inventions</span>
+          </a>
+          <div class="dropdown-menu">
+            <div class="dropdown-section">
+              <h4>Flight & Motion</h4>
+              <a href="{{ 'aerial_screw.html' | relative_url }}" class="dropdown-item">
+                <span>Aerial Screw</span> <small>validated</small>
+              </a>
+              <a href="{{ 'ornithopter.html' | relative_url }}" class="dropdown-item">
+                <span>Ornithopter</span> <small>in progress</small>
+              </a>
+              <a href="{{ 'parachute.html' | relative_url }}" class="dropdown-item">
+                <span>Parachute</span> <small>prototype ready</small>
+              </a>
+            </div>
+            <div class="dropdown-section">
+              <h4>Mechanical Systems</h4>
+              <a href="{{ 'self_propelled_cart.html' | relative_url }}" class="dropdown-item">
+                <span>Self-Propelled Cart</span>
+              </a>
+              <a href="{{ 'mechanical_odometer.html' | relative_url }}" class="dropdown-item">
+                <span>Mechanical Odometer</span>
+              </a>
+              <a href="{{ 'revolving_bridge.html' | relative_url }}" class="dropdown-item">
+                <span>Revolving Bridge</span>
+              </a>
+            </div>
+            <div class="dropdown-section">
+              <h4>Artistic Automata</h4>
+              <a href="{{ 'mechanical_lion.html' | relative_url }}" class="dropdown-item">
+                <span>Mechanical Lion</span>
+              </a>
+              <a href="{{ 'mechanical_ensemble.html' | relative_url }}" class="dropdown-item">
+                <span>Musical Ensemble</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <a href="{{ 'book/' | relative_url }}" class="nav-link">
+          <span class="nav-icon">Interactive Book</span>
+        </a>
+
+        <a href="https://github.com/Shannon-Labs/davinci-codex" class="nav-link" target="_blank">
+          <span class="nav-icon">GitHub</span>
+        </a>
+
+      </div>
+    </div>
+  </div>
+</nav>
+
+<style>
+.navbar {
+  position: sticky;
+  top: 0;
+  background: rgba(245, 245, 220, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(139, 69, 19, 0.1);
+  z-index: 1000;
+}
+
+.navbar-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: #8B4513;
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.navbar-logo {
+  font-size: 1.5rem;
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  color: #2F4F4F;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background: rgba(139, 69, 19, 0.1);
+  color: #8B4513;
+}
+
+.nav-dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  min-width: 300px;
+  background: white;
+  border: 1px solid rgba(139, 69, 19, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  padding: 1rem;
+  z-index: 1001;
+}
+
+.nav-dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-section {
+  margin-bottom: 1rem;
+}
+
+.dropdown-section h4 {
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  color: #8B4513;
+  border-bottom: 1px solid rgba(139, 69, 19, 0.1);
+  padding-bottom: 0.25rem;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.dropdown-item:hover {
+  background: rgba(139, 69, 19, 0.05);
+}
+
+.dropdown-item small {
+  margin-left: auto;
+  color: #666;
+  font-size: 0.75rem;
+}
+
+.navbar-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 0.25rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.navbar-toggle span {
+  width: 24px;
+  height: 2px;
+  background: #8B4513;
+  border-radius: 1px;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .navbar-toggle {
+    display: flex;
+  }
+  
+  .navbar-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border-top: 1px solid rgba(139, 69, 19, 0.1);
+    padding: 1rem;
+  }
+  
+  .navbar-nav {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+  }
+  
+  .nav-link {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  
+  .dropdown-menu {
+    position: static;
+    width: 100%;
+    box-shadow: none;
+    border: 1px solid rgba(139, 69, 19, 0.1);
+    margin-top: 0.5rem;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const navToggle = document.querySelector('.navbar-toggle');
+  const navMenu = document.querySelector('.navbar-menu');
+  
+  if (navToggle && navMenu) {
+    navToggle.addEventListener('click', function() {
+      navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+    });
+  }
+});
+</script>

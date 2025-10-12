@@ -1,0 +1,783 @@
+/* ============================================================================
+   The da Vinci Codex - Renaissance Theme CSS
+   Inspired by Leonardo's notebooks and Renaissance aesthetic
+   ============================================================================ */
+
+:root {
+  /* Renaissance Color Palette */
+  --renaissance-brown: #8B4513;
+  --manuscript-beige: #F5F5DC;
+  --ink-black: #2F4F4F;
+  --gold-accent: #DAA520;
+  --peru-accent: #CD853F;
+  --parchment: #FDF6E3;
+  --sepia: #704214;
+  
+  /* Modern Color System */
+  --primary: var(--renaissance-brown);
+  --secondary: var(--gold-accent);
+  --accent: var(--peru-accent);
+  --background: var(--manuscript-beige);
+  --surface: rgba(255, 255, 255, 0.95);
+  --text-primary: var(--ink-black);
+  --text-secondary: rgba(47, 79, 79, 0.7);
+  --border: rgba(139, 69, 19, 0.2);
+  
+  /* Typography */
+  --font-heading: 'Cinzel', serif;
+  --font-body: 'EB Garamond', serif;
+  --font-code: 'JetBrains Mono', monospace;
+  
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 3rem;
+  --space-xl: 5rem;
+  
+  /* Layout */
+  --max-width: 1400px;
+  --container-padding: 2rem;
+  --border-radius: 12px;
+  --border-radius-lg: 24px;
+  
+  /* Animations */
+  --transition-fast: 0.15s ease-out;
+  --transition-medium: 0.3s ease-out;
+  --transition-slow: 0.6s ease-out;
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.2);
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, var(--renaissance-brown), var(--peru-accent));
+  --gradient-gold: linear-gradient(135deg, var(--gold-accent), #FFD700);
+  --gradient-manuscript: linear-gradient(135deg, var(--manuscript-beige), var(--parchment));
+}
+
+/* ============================================================================
+   Global Styles
+   ============================================================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  background: var(--background);
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(218, 165, 32, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(139, 69, 19, 0.05) 0%, transparent 50%);
+  background-attachment: fixed;
+}
+
+/* ============================================================================
+   Typography
+   ============================================================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: var(--space-sm);
+  color: var(--primary);
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+h3 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+h4 {
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+}
+
+.subtitle {
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+}
+
+.text-large {
+  font-size: 1.25rem;
+  line-height: 1.6;
+}
+
+.text-small {
+  font-size: 0.875rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* ============================================================================
+   Hero Section
+   ============================================================================ */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  background: var(--gradient-manuscript);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(245, 245, 220, 0.8);
+  backdrop-filter: blur(2px);
+}
+
+.hero-container {
+  position: relative;
+  z-index: 2;
+  max-width: var(--max-width);
+  padding: var(--container-padding);
+  margin: 0 auto;
+}
+
+.hero h1 {
+  margin-bottom: var(--space-sm);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.hero-subtitle {
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+  font-style: italic;
+}
+
+.hero-description {
+  font-size: 1.125rem;
+  max-width: 600px;
+  margin: 0 auto var(--space-lg);
+  line-height: 1.6;
+}
+
+.hero-actions {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ============================================================================
+   Buttons
+   ============================================================================ */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 1rem 2rem;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: all var(--transition-medium);
+  position: relative;
+  overflow: hidden;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left var(--transition-medium);
+}
+
+.button:hover::before {
+  left: 100%;
+}
+
+.button.primary {
+  background: var(--gradient-primary);
+  color: white;
+  box-shadow: var(--shadow-md);
+}
+
+.button.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.button.secondary {
+  background: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+
+.button.secondary:hover {
+  background: var(--primary);
+  color: white;
+}
+
+/* ============================================================================
+   Category Showcase (Three Acts)
+   ============================================================================ */
+
+.category-showcase {
+  padding: var(--space-xl) 0;
+  background: white;
+}
+
+.category-showcase .section-header {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: var(--space-lg);
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.category-card {
+  background: var(--surface);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-medium);
+  position: relative;
+}
+
+.category-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: var(--gradient-primary);
+}
+
+.category-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+.category-header {
+  padding: var(--space-lg);
+  text-align: center;
+  background: var(--gradient-manuscript);
+}
+
+.category-title {
+  margin-bottom: var(--space-sm);
+}
+
+.category-subtitle {
+  font-style: italic;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-sm);
+}
+
+.category-description {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.inventions-list {
+  padding: var(--space-md);
+}
+
+.invention-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  border-radius: var(--border-radius);
+  transition: background-color var(--transition-fast);
+  text-decoration: none;
+  color: inherit;
+  margin-bottom: var(--space-sm);
+  border: 1px solid var(--border);
+}
+
+.invention-card:hover {
+  background: rgba(139, 69, 19, 0.05);
+  text-decoration: none;
+  color: inherit;
+}
+
+.invention-image {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--border-radius);
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: white;
+  flex-shrink: 0;
+}
+
+.invention-content {
+  flex: 1;
+}
+
+.invention-name {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.invention-status {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  border-radius: 12px;
+  background: var(--gold-accent);
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.invention-achievement {
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 0.25rem;
+}
+
+.invention-description {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.invention-stats {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.invention-stat {
+  font-size: 0.75rem;
+  background: rgba(139, 69, 19, 0.1);
+  padding: 0.25rem 0.5rem;
+  border-radius: 8px;
+}
+
+/* ============================================================================
+   Methodology Section
+   ============================================================================ */
+
+.methodology {
+  padding: var(--space-xl) 0;
+  background: var(--gradient-manuscript);
+}
+
+.methodology-stages {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-lg);
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.stage-card {
+  background: var(--surface);
+  padding: var(--space-lg);
+  border-radius: var(--border-radius-lg);
+  text-align: center;
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-medium);
+  position: relative;
+  overflow: hidden;
+}
+
+.stage-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-primary);
+}
+
+.stage-card:hover {
+  transform: translateY(-4px);
+}
+
+.stage-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto var(--space-md);
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: white;
+}
+
+.stage-title {
+  font-size: 1.5rem;
+  margin-bottom: var(--space-sm);
+}
+
+.stage-description {
+  font-weight: 600;
+  margin-bottom: var(--space-md);
+  color: var(--accent);
+}
+
+.stage-details {
+  list-style: none;
+  text-align: left;
+}
+
+.stage-details li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.stage-details li:before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: bold;
+}
+
+.stage-deliverable {
+  margin-top: var(--space-md);
+  padding: var(--space-sm);
+  background: rgba(139, 69, 19, 0.05);
+  border-radius: var(--border-radius);
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+/* ============================================================================
+   Get Started Section
+   ============================================================================ */
+
+.get-started {
+  padding: var(--space-xl) 0;
+  background: white;
+}
+
+.paths-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-lg);
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.path-card {
+  background: var(--surface);
+  padding: var(--space-lg);
+  border-radius: var(--border-radius-lg);
+  text-align: center;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-medium);
+  border: 2px solid transparent;
+}
+
+.path-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--accent);
+  box-shadow: var(--shadow-lg);
+}
+
+.path-icon {
+  font-size: 4rem;
+  margin-bottom: var(--space-md);
+}
+
+.path-title {
+  font-size: 1.5rem;
+  margin-bottom: var(--space-sm);
+}
+
+.path-description {
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+}
+
+.path-steps {
+  list-style: none;
+  text-align: left;
+  margin-bottom: var(--space-lg);
+}
+
+.path-steps li {
+  padding: 0.5rem 0;
+  position: relative;
+  padding-left: 2rem;
+}
+
+.path-steps li:before {
+  content: counter(step-counter);
+  counter-increment: step-counter;
+  position: absolute;
+  left: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: var(--accent);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.paths-grid {
+  counter-reset: step-counter;
+}
+
+.path-card {
+  counter-reset: step-counter;
+}
+
+/* ============================================================================
+   Contact Section
+   ============================================================================ */
+
+.contact {
+  padding: var(--space-xl) 0;
+  background: var(--gradient-manuscript);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-lg);
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.contact-card {
+  background: var(--surface);
+  padding: var(--space-lg);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-medium);
+}
+
+.contact-card:hover {
+  transform: translateY(-4px);
+}
+
+.contact-type {
+  font-size: 2rem;
+  margin-bottom: var(--space-md);
+}
+
+.contact-label {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  margin-bottom: var(--space-xs);
+}
+
+.contact-value {
+  font-size: 1.125rem;
+  color: var(--accent);
+  margin-bottom: var(--space-sm);
+}
+
+.contact-description {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* ============================================================================
+   Responsive Design
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .categories-grid,
+  .methodology-stages,
+  .paths-grid,
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .invention-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .invention-image {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .invention-stats {
+    justify-content: center;
+  }
+}
+
+/* ============================================================================
+   Animation Utilities
+   ============================================================================ */
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all var(--transition-slow);
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slide-in-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all var(--transition-slow);
+}
+
+.slide-in-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.slide-in-right {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all var(--transition-slow);
+}
+
+.slide-in-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ============================================================================
+   Utility Classes
+   ============================================================================ */
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.section-title {
+  margin-bottom: var(--space-sm);
+}
+
+.section-subtitle {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-lg);
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-lg);
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-lg);
+}
+
+.text-gradient {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.backdrop-blur {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* ============================================================================
+   Print Styles
+   ============================================================================ */
+
+@media print {
+  * {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+  }
+  
+  .hero {
+    min-height: auto;
+    padding: 2rem 0;
+  }
+  
+  .button {
+    border: 1px solid black;
+  }
+}

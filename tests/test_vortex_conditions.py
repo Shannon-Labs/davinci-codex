@@ -11,9 +11,18 @@ suddenly lose lift in certain descent conditions. This analysis provides
 the safety understanding that was unavailable to Renaissance pioneers.
 """
 
-import numpy as np
+# Import the vortex simulation module from the analysis directory
+import sys
+from pathlib import Path
+
 import matplotlib.pyplot as plt
-from vortex_simulation import VortexRingSimulator
+import numpy as np
+
+# Must be imported after adding path
+analysis_path = Path(__file__).parent.parent / "analysis"
+sys.path.insert(0, str(analysis_path))
+from vortex_simulation import VortexRingSimulator  # noqa: E402
+
 
 def test_critical_descent_conditions():
     """Test various critical descent conditions that induce vortex ring state."""
@@ -108,7 +117,7 @@ def create_comparison_plot(results):
 
     # 1. Severity comparison
     ax1 = axes[0, 0]
-    bars1 = ax1.bar(range(len(names)), severities, color=colors, alpha=0.7)
+    ax1.bar(range(len(names)), severities, color=colors, alpha=0.7)
     ax1.set_title('Vortex Ring Severity', fontweight='bold')
     ax1.set_ylabel('Severity (0-1)')
     ax1.set_xticks(range(len(names)))
@@ -118,7 +127,7 @@ def create_comparison_plot(results):
 
     # 2. Lift efficiency
     ax2 = axes[0, 1]
-    bars2 = ax2.bar(range(len(names)), lift_effs, color=colors, alpha=0.7)
+    ax2.bar(range(len(names)), lift_effs, color=colors, alpha=0.7)
     ax2.set_title('Lift Efficiency', fontweight='bold')
     ax2.set_ylabel('Lift Efficiency (%)')
     ax2.set_xticks(range(len(names)))
@@ -128,7 +137,7 @@ def create_comparison_plot(results):
 
     # 3. Control effectiveness
     ax3 = axes[0, 2]
-    bars3 = ax3.bar(range(len(names)), control_effs, color=colors, alpha=0.7)
+    ax3.bar(range(len(names)), control_effs, color=colors, alpha=0.7)
     ax3.set_title('Control Effectiveness', fontweight='bold')
     ax3.set_ylabel('Control Effectiveness (%)')
     ax3.set_xticks(range(len(names)))
@@ -138,7 +147,7 @@ def create_comparison_plot(results):
 
     # 4. Instability parameter
     ax4 = axes[1, 0]
-    bars4 = ax4.bar(range(len(names)), instabilities, color=colors, alpha=0.7)
+    ax4.bar(range(len(names)), instabilities, color=colors, alpha=0.7)
     ax4.set_title('Instability Parameter', fontweight='bold')
     ax4.set_ylabel('Instability (0-1)')
     ax4.set_xticks(range(len(names)))
@@ -148,7 +157,7 @@ def create_comparison_plot(results):
 
     # 5. Recovery effectiveness
     ax5 = axes[1, 1]
-    bars5 = ax5.bar(range(len(names)), recovery_effs, color=colors, alpha=0.7)
+    ax5.bar(range(len(names)), recovery_effs, color=colors, alpha=0.7)
     ax5.set_title('Best Recovery Effectiveness', fontweight='bold')
     ax5.set_ylabel('Recovery Effectiveness (%)')
     ax5.set_xticks(range(len(names)))
@@ -163,7 +172,7 @@ def create_comparison_plot(results):
     # Create summary text
     summary_text = "FLIGHT CONDITION SUMMARY\n" + "="*25 + "\n\n"
 
-    for i, r in enumerate(results):
+    for _i, r in enumerate(results):
         if r['flight_state'] == 'vortex_ring':
             status = "⚠️ DANGER"
         elif r['flight_state'] == 'turbulent_wake':

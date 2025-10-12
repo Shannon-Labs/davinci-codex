@@ -15,27 +15,26 @@ Historical Context:
 """
 
 import sys
-import os
-import numpy as np
-import matplotlib.pyplot as plt
 from pathlib import Path
+
+import matplotlib.pyplot as plt
+import numpy as np
 
 # Add the src directory to the path
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 from davinci_codex.inventions.mechanical_lion import (
-    LegKinematics,
-    StabilityAnalysis,
+    LION_HEIGHT,
+    LION_LENGTH,
+    LION_WALKING_SPEED,
+    LION_WEIGHT,
+    STEP_DURATION,
     CamProfileDesigner,
     ChestMechanism,
-    plan,
-    simulate,
+    LegKinematics,
+    StabilityAnalysis,
     evaluate,
-    LION_LENGTH,
-    LION_HEIGHT,
-    LION_WEIGHT,
-    LION_WALKING_SPEED,
-    STEP_DURATION
+    simulate,
 )
 
 
@@ -159,7 +158,7 @@ def demonstrate_cam_profiles(legs):
     print("Leonardo's Cam Drum System:")
     print(f"  Cam drum radius: {cam_designer.cam_radius:.3f} m")
     print(f"  Number of cam types: {len(cam_designer.cam_types)}")
-    print(f"  Profile resolution: 360 points (1° increments)")
+    print("  Profile resolution: 360 points (1° increments)")
     print()
 
     # Generate cam profiles for one leg
@@ -205,12 +204,12 @@ def demonstrate_chest_mechanism():
         print(f"    Current angle: {np.degrees(panel.current_angle_rad):.1f}°")
 
     print("\nReveal Sequence Timing:")
-    print(f"  Post-walk pause: 2.5 seconds")
-    print(f"  Chest opening: 3.5 seconds")
-    print(f"  Lily elevation: 2.0 seconds")
-    print(f"  Display duration: 8.0 seconds")
-    print(f"  Reset sequence: 10.0 seconds")
-    print(f"  Total performance: 26.0 seconds")
+    print("  Post-walk pause: 2.5 seconds")
+    print("  Chest opening: 3.5 seconds")
+    print("  Lily elevation: 2.0 seconds")
+    print("  Display duration: 8.0 seconds")
+    print("  Reset sequence: 10.0 seconds")
+    print("  Total performance: 26.0 seconds")
 
     # Simulate opening sequence
     print("\nSimulating Chest Opening Sequence:")

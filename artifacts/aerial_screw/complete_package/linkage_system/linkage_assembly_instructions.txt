@@ -1,0 +1,37 @@
+MECHANICAL LINKAGE SYSTEM - ASSEMBLY INSTRUCTIONS
+============================================================
+
+SYSTEM OVERVIEW
+------------------------------
+This variable-pitch linkage system provides precise control
+of blade pitch angles from 15° to 45° using mechanical
+advantage and bronze bearing technology suitable for
+Renaissance-era manufacturing capabilities.
+
+CRITICAL TOLERANCES
+------------------------------
+• Bearing clearances: ±0.1mm
+• Linkage lengths: ±1mm
+• Spherical joint fit: ±0.2mm
+• Swashplate runout: <0.5mm
+
+ASSEMBLY SEQUENCE
+------------------------------
+1. Install stationary swashplate on central hub
+2. Install bearing assemblies with proper clearances
+3. Install rotating swashplate on bearings
+4. Attach control linkages to rotating swashplate
+5. Install pitch control horns on blade roots
+6. Connect linkages to pitch horns
+7. Install actuation lever and safety stops
+8. Test pitch control movement
+9. Adjust linkage lengths for proper range
+10. Verify safety stop operation
+
+TESTING PROCEDURES
+------------------------------
+1. Verify smooth swashplate rotation
+2. Check full pitch range movement
+3. Test mechanical advantage
+4. Verify safety stop operation
+5. Check for binding or interference

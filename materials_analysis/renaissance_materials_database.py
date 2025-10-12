@@ -5,7 +5,6 @@ Comprehensive material properties and availability analysis for 16th-century Flo
 
 from dataclasses import dataclass
 from typing import Dict, List, Optional, Tuple
-import math
 
 
 @dataclass
@@ -31,16 +30,16 @@ class RenaissanceMaterial:
 
 class RenaissanceMaterialsDatabase:
     """Comprehensive database of materials available in Renaissance Florence."""
-    
+
     def __init__(self):
         self.materials = {}
         self._initialize_materials()
-    
+
     def _initialize_materials(self):
         """Initialize all materials available in Renaissance Florence."""
-        
+
         # === STRUCTURAL WOODS ===
-        
+
         self.materials['oak_tuscan'] = RenaissanceMaterial(
             name="Tuscan Oak",
             material_type="Hardwood",
@@ -59,7 +58,7 @@ class RenaissanceMaterialsDatabase:
             florentine_suppliers=["Arte dei Maestri di Pietra e Legname", "Casa di Legname Medicea"],
             quality_variations={"strength": 0.15, "density": 0.1, "workability": 0.2}
         )
-        
+
         self.materials['oak_slavonian'] = RenaissanceMaterial(
             name="Slavonian Oak",
             material_type="Hardwood",
@@ -78,7 +77,7 @@ class RenaissanceMaterialsDatabase:
             florentine_suppliers=["Mercanti di Ragusa", "Compagnia dell'Adriatico"],
             quality_variations={"strength": 0.1, "density": 0.08, "workability": 0.15}
         )
-        
+
         self.materials['pine_italian'] = RenaissanceMaterial(
             name="Italian Pine",
             material_type="Softwood",
@@ -97,7 +96,7 @@ class RenaissanceMaterialsDatabase:
             florentine_suppliers=["Taglialegna Fiorentini", "Casa del Bosco"],
             quality_variations={"strength": 0.2, "density": 0.15, "workability": 0.1}
         )
-        
+
         self.materials['ash_italian'] = RenaissanceMaterial(
             name="Italian Ash",
             material_type="Hardwood",
@@ -116,9 +115,9 @@ class RenaissanceMaterialsDatabase:
             florentine_suppliers=["Legnami di Bologna", "Mercanti dell'Emilia"],
             quality_variations={"strength": 0.12, "density": 0.1, "elasticity": 0.15}
         )
-        
+
         # === METALS ===
-        
+
         self.materials['bronze_florentine'] = RenaissanceMaterial(
             name="Florentine Bronze",
             material_type="Copper Alloy",
@@ -137,7 +136,7 @@ class RenaissanceMaterialsDatabase:
             florentine_suppliers=["Fonderia del Duomo", "Bottega dei Bronzei Medicei", "Arte dei Fabbri"],
             quality_variations={"strength": 0.08, "hardness": 0.1, "castability": 0.05}
         )
-        
+
         self.materials['bronze_bell'] = RenaissanceMaterial(
             name="Bell Bronze",
             material_type="Copper Alloy",
@@ -156,7 +155,7 @@ class RenaissanceMaterialsDatabase:
             floorentine_suppliers=["Fonderia di Campane", "Mercanti di Venezia"],
             quality_variations={"resonance": 0.1, "strength": 0.05, "hardness": 0.08}
         )
-        
+
         self.materials['steel_florentine'] = RenaissanceMaterial(
             name="Florentine Steel",
             material_type="Iron Alloy",
@@ -175,7 +174,7 @@ class RenaissanceMaterialsDatabase:
             floorentine_suppliers=["Fabbri di Brescia", "Arte dei Spadai", "Magister Ferariorum"],
             quality_variations={"strength": 0.25, "hardness": 0.3, "flexibility": 0.2}
         )
-        
+
         self.materials['iron_wrought'] = RenaissanceMaterial(
             name="Wrought Iron",
             material_type="Iron",
@@ -194,9 +193,9 @@ class RenaissanceMaterialsDatabase:
             floorentine_suppliers=["Fucine Fiorentine", "Magistri Ferariorum"],
             quality_variations={"strength": 0.15, "ductility": 0.2, "workability": 0.1}
         )
-        
+
         # === PRECIOUS MATERIALS ===
-        
+
         self.materials['gold_leaf'] = RenaissanceMaterial(
             name="Gold Leaf",
             material_type="Precious Metal",
@@ -215,7 +214,7 @@ class RenaissanceMaterialsDatabase:
             floorentine_suppliers=["Orefici del Battistero", "Banchieri Medicei", "Mercanti d'Oro"],
             quality_variations={"purity": 0.02, "thickness": 0.1, "uniformity": 0.05}
         )
-        
+
         self.materials['silver'] = RenaissanceMaterial(
             name="Silver",
             material_type="Precious Metal",
@@ -234,9 +233,9 @@ class RenaissanceMaterialsDatabase:
             floorentine_suppliers=["Argentieri Fiorentini", "Mercanti di Genova"],
             quality_variations={"purity": 0.03, "tarnish_resistance": 0.15, "workability": 0.08}
         )
-        
+
         # === ORGANIC MATERIALS ===
-        
+
         self.materials['leather_calf'] = RenaissanceMaterial(
             name="Calf Leather",
             material_type="Organic",
@@ -255,7 +254,7 @@ class RenaissanceMaterialsDatabase:
             floorentine_suppliers=["Conceria Fiorentina", "Cuoiài del Mercato"],
             quality_variations={"strength": 0.2, "flexibility": 0.15, "thickness": 0.1}
         )
-        
+
         self.materials['silk_florentine'] = RenaissanceMaterial(
             name="Florentine Silk",
             material_type="Textile",
@@ -274,7 +273,7 @@ class RenaissanceMaterialsDatabase:
             floorentine_suppliers=["Arte della Seta", "Setaiuoli Fiorentini", "Tessitori di Oltrarno"],
             quality_variations={"strength": 0.1, "sheen": 0.15, "uniformity": 0.08}
         )
-        
+
         self.materials['hemp_rope'] = RenaissanceMaterial(
             name="Hemp Rope",
             material_type="Natural Fiber",
@@ -293,9 +292,9 @@ class RenaissanceMaterialsDatabase:
             floorentine_suppliers=["Canapai del Mugello", "Funai Fiorentini"],
             quality_variations={"strength": 0.25, "flexibility": 0.2, "durability": 0.3}
         )
-        
+
         # === BINDING AND FINISHING MATERIALS ===
-        
+
         self.materials['animal_glue'] = RenaissanceMaterial(
             name="Animal Glue",
             material_type="Organic Adhesive",
@@ -314,7 +313,7 @@ class RenaissanceMaterialsDatabase:
             floorentine_suppliers=["Collai di Santa Croce", "Speziali Fiorentini"],
             quality_variations={"strength": 0.3, "setting_time": 0.2, "water_resistance": 0.4}
         )
-        
+
         self.materials['linseed_oil'] = RenaissanceMaterial(
             name="Linseed Oil",
             material_type="Organic Oil",
@@ -333,7 +332,7 @@ class RenaissanceMaterialsDatabase:
             floorentine_suppliers=["Speziali di Via Tornabuoni", "Mercanti di Olio"],
             quality_variations={"clarity": 0.1, "drying_time": 0.2, "protection": 0.15}
         )
-        
+
         self.materials['beeswax'] = RenaissanceMaterial(
             name="Beeswax",
             material_type="Natural Wax",
@@ -351,9 +350,9 @@ class RenaissanceMaterialsDatabase:
             floorentine_suppliers=["Apicoltori di Chianti", "Speziali Fiorentini"],
             quality_variations={"purity": 0.08, "hardness": 0.15, "fragrance": 0.1}
         )
-        
+
         # === PIGMENTS AND DYES ===
-        
+
         self.materials['vermilion'] = RenaissanceMaterial(
             name="Vermilion",
             material_type="Mineral Pigment",
@@ -372,7 +371,7 @@ class RenaissanceMaterialsDatabase:
             floorentine_suppliers=["Speziali di Santa Maria Novella", "Mercanti di Pigmenti"],
             quality_variations={"color_intensity": 0.1, "stability": 0.15, "toxicity": 0.05}
         )
-        
+
         self.materials['ultramarine'] = RenaissanceMaterial(
             name="Ultramarine",
             material_type="Mineral Pigment",
@@ -391,9 +390,9 @@ class RenaissanceMaterialsDatabase:
             floorentine_suppliers=["Speziali Medicei", "Mercanti di Levante"],
             quality_variations={"color_purity": 0.08, "stability": 0.05, "rarity": 0.02}
         )
-        
+
         # === NEW WORLD MATERIALS (Limited Availability) ===
-        
+
         self.materials['rubber_natural'] = RenaissanceMaterial(
             name="Natural Rubber",
             material_type="Natural Polymer",
@@ -412,18 +411,18 @@ class RenaissanceMaterialsDatabase:
             floorentine_suppliers=["Mercanti Spagnuoli", "Agenti Portoghesi"],
             quality_variations={"elasticity": 0.4, "stability": 0.5, "purity": 0.3}
         )
-    
+
     def get_material(self, name: str) -> Optional[RenaissanceMaterial]:
         """Get material by name."""
         return self.materials.get(name)
-    
+
     def filter_materials(self, **criteria) -> List[RenaissanceMaterial]:
         """Filter materials by criteria."""
         filtered = []
-        
+
         for material in self.materials.values():
             matches = True
-            
+
             for key, value in criteria.items():
                 if hasattr(material, key):
                     if getattr(material, key) != value:
@@ -432,46 +431,46 @@ class RenaissanceMaterialsDatabase:
                 else:
                     matches = False
                     break
-            
+
             if matches:
                 filtered.append(material)
-        
+
         return filtered
-    
+
     def get_materials_by_type(self, material_type: str) -> List[RenaissanceMaterial]:
         """Get all materials of a specific type."""
         return [m for m in self.materials.values() if m.material_type == material_type]
-    
+
     def get_materials_by_availability(self, availability: str) -> List[RenaissanceMaterial]:
         """Get materials by availability level."""
         return [m for m in self.materials.values() if m.availability == availability]
-    
+
     def calculate_material_cost(self, material_name: str, volume_m3: float) -> float:
         """Calculate total material cost."""
         material = self.get_material(material_name)
         if material is None:
             raise ValueError(f"Unknown material: {material_name}")
-        
+
         return material.cost_per_unit * volume_m3
-    
+
     def get_structural_materials_ranking(self) -> List[Tuple[str, float]]:
         """Rank structural materials by strength-to-weight ratio."""
         rankings = []
-        
+
         for name, material in self.materials.items():
             if material.material_type in ["Hardwood", "Softwood", "Copper Alloy", "Iron Alloy"]:
                 strength_to_weight = material.tensile_strength_pa / material.density_kg_m3
                 rankings.append((name, strength_to_weight))
-        
+
         rankings.sort(key=lambda x: x[1], reverse=True)
         return rankings
-    
+
     def summarize_materials(self) -> Dict[str, int]:
         """Get summary of available materials by type."""
         summary = {}
-        
+
         for material in self.materials.values():
             material_type = material.material_type
             summary[material_type] = summary.get(material_type, 0) + 1
-        
+
         return summary

@@ -1,0 +1,70 @@
+
+MANUFACTURING NOTES - VARIABLE PITCH SWASHPLATE MECHANISM
+Leonardo da Vinci's Workshop Specifications
+
+MATERIALS REQUIRED:
+- Bronze (Cu 88%, Sn 12%) for bearings and swashplate surfaces
+- Wrought iron for control linkages (case-hardened at pivot points)
+- Steel (case-hardened iron) for high-stress pivot points
+- Oak or walnut wood for structural components
+- Animal fat lubrication (rendered beef tallow) for bearings
+
+TOOLING REQUIRED:
+- Lathe for turning cylindrical components
+- File set (rough to fine) for finishing
+- Hammer and anvil for forging iron components
+- Drill bits (hand-operated brace)
+- Calipers for precision measurements
+- Surface plate for checking flatness
+
+FABRICATION SEQUENCE:
+
+1. SWASHPLATE FABRICATION:
+   - Cast bronze plates using sand molds
+   - Turn outer and inner diameters on lathe
+   - File bearing surfaces to within 0.5mm tolerance
+   - Polish bearing surfaces with abrasive stone
+   - Drill mounting holes using brace and bit
+
+2. CONTROL LINKAGES:
+   - Forge wrought iron to required diameter
+   - Heat-treat ends in charcoal forge (case hardening)
+   - Straighten using hammer and anvil
+   - Drill holes for pivot pins
+   - Verify straightness within 1mm over full length
+
+3. BLADE GRIPS:
+   - Machine steel pivot blocks
+   - Drill precise bearing holes
+   - Install bronze bushings (press-fit)
+   - Attach to blade roots with iron bolts
+
+4. ASSEMBLY PROCEDURE:
+   - Mount fixed swashplate to airframe structure
+   - Install rotating plate with bearing clearance
+   - Attach control linkages to rotating plate
+   - Connect linkages to blade grips
+   - Verify smooth operation through full pitch range
+   - Apply animal fat lubrication to all bearings
+
+QUALITY CONTROL:
+- Test swashplate rotation: must be smooth and consistent
+- Verify pitch range: 15° to 45°
+- Check control force: should not exceed 500N
+- Inspect for binding at extreme positions
+- Verify no excessive play in linkages
+
+MAINTENANCE SCHEDULE:
+- Weekly: Inspect all bearings for wear
+- Monthly: Reapply animal fat lubrication
+- Quarterly: Check linkage straightness and adjust if needed
+- Annually: Complete disassembly and inspection
+
+ADJUSTMENT PROCEDURES:
+- Pitch range adjustment: Modify linkage attachment points
+- Control force adjustment: Adjust lever arm lengths
+- Friction reduction: Polish bearing surfaces, apply fresh lubrication
+
+Remember: "Mechanical perfection is achieved through patience and precision.
+Every component must move with the grace of a bird's wing in flight."
+- Leonardo da Vinci

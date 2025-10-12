@@ -8,33 +8,31 @@ engineering standards.
 """
 
 import math
-import pytest
-import numpy as np
 from pathlib import Path
 
+import numpy as np
+import pytest
+
 from davinci_codex.inventions.mechanical_lion import (
-    LegKinematics,
-    StabilityAnalysis,
-    CamProfileDesigner,
-    ChestMechanism,
-    plan,
-    simulate,
-    evaluate,
+    CAM_DRUM_RADIUS,
+    LATERAL_LEG_SPACING,
+    LEG_LENGTH,
+    LION_HEIGHT,
     # Constants to test
     LION_LENGTH,
-    LION_HEIGHT,
-    LION_WIDTH,
     LION_WEIGHT,
-    LEG_LENGTH,
-    STEP_DURATION,
-    SWING_PHASE_RATIO,
-    STANCE_PHASE_RATIO,
+    LION_WIDTH,
     PHASE_OFFSET_FRONT_REAR,
     PHASE_OFFSET_LEFT_RIGHT,
-    CAM_DRUM_RADIUS,
-    BODY_HEIGHT,
-    FORELEG_TO_HINDLEG_DISTANCE,
-    LATERAL_LEG_SPACING
+    STEP_DURATION,
+    SWING_PHASE_RATIO,
+    CamProfileDesigner,
+    ChestMechanism,
+    LegKinematics,
+    StabilityAnalysis,
+    evaluate,
+    plan,
+    simulate,
 )
 
 
@@ -51,8 +49,8 @@ class TestLegKinematics:
     def test_leg_initialization(self):
         """Test leg initialization with correct parameters."""
         assert self.lf_leg.leg_id == 'LF'
-        assert self.lf_leg.is_front == True
-        assert self.lf_leg.is_left == True
+        assert self.lf_leg.is_front
+        assert self.lf_leg.is_left
         assert self.lf_leg.upper_leg_length == LEG_LENGTH * 0.5
         assert self.lf_leg.lower_leg_length == LEG_LENGTH * 0.5
 
@@ -290,7 +288,7 @@ class TestCamProfileDesigner:
             assert len(profiles) == expected_profiles
 
             # Check that files were created
-            for profile_name in profiles.keys():
+            for profile_name in profiles:
                 profile_file = temp_path / f"{profile_name}.csv"
                 assert profile_file.exists()
 
@@ -307,7 +305,7 @@ class TestChestMechanism:
         assert len(self.mechanism.panels) == 4  # 4 panels
         assert self.mechanism.lily_platform.lily_count == 3
         assert self.mechanism.current_phase == "closed"
-        assert self.mechanism.is_locked == True
+        assert self.mechanism.is_locked
 
     def test_spring_force_calculation(self):
         """Test spring force calculation."""
@@ -440,8 +438,8 @@ class TestIntegration:
 
         # Check validation results
         validation = eval_result['validation']
-        assert validation['mechanical_soundness'] == True
-        assert validation['renaissance_authenticity'] == True
+        assert validation['mechanical_soundness']
+        assert validation['renaissance_authenticity']
 
     def test_gait_stability_throughout_cycle(self):
         """Test stability throughout complete gait cycle."""
@@ -479,7 +477,7 @@ class TestIntegration:
         assert power_results['winding_force_required_N'] > 0
 
         # Human winding should be feasible
-        assert power_results['human_winding_feasibility'] == True
+        assert power_results['human_winding_feasibility']
 
     def test_structural_analysis_safety_factors(self):
         """Test structural analysis provides adequate safety factors."""

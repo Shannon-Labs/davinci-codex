@@ -16,18 +16,17 @@ Drawing Types:
 
 from __future__ import annotations
 
-from pathlib import Path
-from typing import Dict, List, Tuple, Optional
-import numpy as np
 import json
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from pathlib import Path
+from typing import Dict, List, Optional
 
-# Import shared components
-from variable_pitch_assembly import AerialScrewSpecs, MATERIALS
 from individual_components import ManufacturingTolerances
 from mechanical_linkage_system import LinkageGeometry
 
-from dataclasses import dataclass, field
+# Import shared components
+from variable_pitch_assembly import MATERIALS, AerialScrewSpecs
+
 
 @dataclass
 class DrawingStandard:

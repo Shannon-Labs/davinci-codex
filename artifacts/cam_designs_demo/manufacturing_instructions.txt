@@ -1,0 +1,172 @@
+
+        LEONARDO'S MECHANICAL LION - CAM MANUFACTURING INSTRUCTIONS
+        ==================================================================
+
+        Prepared by: Leonardo da Vinci
+        Date: 1517
+        Purpose: Royal court performance for King Francis I
+
+        GENERAL MANUFACTURING REQUIREMENTS
+        ==================================================================
+
+        1. MATERIAL PREPARATION
+        ─────────────────────────
+        • Use specified materials for each cam
+        • Ensure metal is properly annealed before machining
+        • Check for defects and imperfections
+        • Verify material hardness and workability
+
+        2. PRECISION REQUIREMENTS
+        ─────────────────────────
+        • Tolerance: ±0.1mm (achievable with careful hand work)
+        • Surface finish: As specified for each cam
+        • Profile accuracy: Follow mathematical functions exactly
+        • Angle measurements: Use precision dividers and protractors
+
+        3. MANUFACTURING SEQUENCE
+        ─────────────────────────
+        • Rough cut cam blank to approximate shape
+        • Mark center hole and mount on mandrel
+        • Transfer profile coordinates using dividers
+        • Carefully file to precise profile shape
+        • Polish to specified surface finish
+        • Verify profile accuracy with templates
+        • Heat treat if required by material specifications
+
+        SPECIFIC CAM INSTRUCTIONS
+        ==================================================================
+
+        
+        WALKING GAIT CAM
+        ================
+
+        Function: Generate natural lion walking motion
+        Material: bronze
+        Follower: roller
+        Surface Finish: polished
+
+        Manufacturing Notes:
+        ─────────────────────────
+                1. Three complete cycles for three walking steps
+        2. Complex harmonic profile for natural movement
+        3. Critical for realistic lion gait
+        4. Use finest files for smooth transitions
+        5. Check cam follower clearance carefully
+        6. Test with leg mechanism before final assembly
+
+
+        TAIL MOTION CAM
+        ===============
+
+        Function: Create natural tail swaying during walking
+        Material: bronze
+        Follower: knife_edge
+        Surface Finish: smooth
+
+        Manufacturing Notes:
+        ─────────────────────────
+                1. Gentle wave pattern for lifelike movement
+        2. Double frequency creates natural sway
+        3. Subtle variations add organic quality
+        4. Essential for theatrical effect
+        5. Polish to mirror finish for smooth operation
+        6. Test tail linkage for binding
+
+
+        CHEST OPENING CAM
+        =================
+
+        Function: Control dramatic chest cavity opening
+        Material: hardened_bronze
+        Follower: flat_face
+        Surface Finish: highly_polished
+
+        Manufacturing Notes:
+        ─────────────────────────
+                1. Smooth sigmoid transition for dramatic effect
+        2. Hardened bronze for repeated operation
+        3. Critical for theatrical timing
+        4. Precision machining required
+        5. Test chest mechanism for binding
+        6. Ensure smooth panel movement
+
+
+        LILY PLATFORM CAM
+        =================
+
+        Function: Control fleurs-de-lis platform presentation
+        Material: bronze
+        Follower: roller
+        Surface Finish: polished
+
+        Manufacturing Notes:
+        ─────────────────────────
+                1. Step profile with plateau for presentation
+        2. Must hold position during royal display
+        3. Critical for fleurs-de-lis presentation
+        4. Roller follower recommended for smooth motion
+        5. Test platform stability at full extension
+        6. Ensure smooth return to retracted position
+
+
+        MASTER TIMING CAM
+        =================
+
+        Function: Coordinate all mechanisms with precise timing
+        Material: steel
+        Follower: knife_edge
+        Surface Finish: precision_ground
+
+        Manufacturing Notes:
+        ─────────────────────────
+                1. Most critical cam - requires highest precision
+        2. Complex harmonic profile for coordination
+        3. Steel construction for stability
+        4. Controls all other cam timing
+        5. Precision ground surface essential
+        6. Test timing with all mechanisms connected
+        7. Verify theatrical sequence timing
+
+
+        QUALITY CONTROL AND TESTING
+        ==================================================================
+
+        1. PROFILE VERIFICATION
+        ─────────────────────────
+        • Check cam profile against coordinate templates
+        • Verify radius measurements at multiple angles
+        • Test cam follower engagement for smoothness
+        • Check for any binding or interference
+
+        2. ASSEMBLY TESTING
+        ─────────────────────────
+        • Test each cam individually with its mechanism
+        • Verify timing relationships between cams
+        • Check complete system integration
+        • Test full performance sequence
+
+        3. PERFORMANCE VALIDATION
+        ─────────────────────────
+        • Verify walking gait smoothness and naturalness
+        • Test chest opening timing and smoothness
+        • Check lily platform elevation accuracy
+        • Validate complete 26.5-second performance
+
+        FINAL ACCEPTANCE CRITERIA
+        ==================================================================
+
+        • All cam profiles within specified tolerances
+        • Smooth operation without binding or noise
+        • Complete performance sequence executed flawlessly
+        • Theatrical timing meets royal court requirements
+        • System reliability for multiple demonstrations
+
+        ==================================================================
+        These cam profiles represent the pinnacle of Renaissance mechanical
+        engineering. Each profile has been mathematically optimized for
+        smooth, reliable operation and theatrical effect.
+
+        Signed: Leonardo da Vinci
+        Date: 1517
+        ==================================================================
+        

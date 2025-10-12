@@ -309,7 +309,7 @@ class EnergyBudget:
         profile = []
         current_time = 0.0
 
-        for start_time, duration, phase_name in phases:
+        for _start_time, duration, phase_name in phases:
             # Calculate power for this phase
             phase_power = 0.0
             for comp in self.components:
@@ -361,7 +361,7 @@ def main():
 
     # Display summary
     summary = budget.get_energy_summary()
-    print(f"\nEnergy Summary:")
+    print("\nEnergy Summary:")
     print(f"Total Performance Time: {summary['performance_duration_s']:.1f} seconds")
     print(f"Total Energy Required: {summary['total_energy_j']:.1f} J")
     print(f"Average Power: {summary['average_power_w']:.1f} W")
@@ -370,10 +370,10 @@ def main():
     print(f"Required Power with Losses: {summary['required_power_with_losses_w']:.1f} W")
 
     # Display phase power profile
-    print(f"\nPower Profile by Performance Phase:")
+    print("\nPower Profile by Performance Phase:")
     print("-" * 40)
     profile = budget.get_phase_power_profile()
-    for time, power, phase in profile:
+    for _time, power, phase in profile:
         print(f"{phase:20s}: {power:8.1f} W")
 
     return budget

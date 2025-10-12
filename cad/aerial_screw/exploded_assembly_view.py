@@ -17,16 +17,22 @@ Features:
 
 from __future__ import annotations
 
+from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, List, Tuple, Optional
+from typing import Dict, List, Optional, Tuple
+
 import numpy as np
 import trimesh
-from dataclasses import dataclass
+from individual_components import ManufacturingTolerances
+from mechanical_linkage_system import (
+    ControlLinkageSystem,
+    LinkageGeometry,
+    SwashplateAssembly,
+)
 
 # Import shared components
-from variable_pitch_assembly import AerialScrewSpecs, MATERIALS
-from individual_components import ManufacturingTolerances
-from mechanical_linkage_system import LinkageGeometry, SwashplateAssembly, ControlLinkageSystem, ActuationSystem
+from variable_pitch_assembly import AerialScrewSpecs
+
 
 @dataclass
 class ExplosionConfiguration:

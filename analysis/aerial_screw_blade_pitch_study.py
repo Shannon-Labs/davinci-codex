@@ -31,14 +31,14 @@ Date: October 2025
 
 from __future__ import annotations
 
-import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib import cm
-from mpl_toolkits.mplot3d import Axes3D
-import pandas as pd
-from pathlib import Path
-from typing import Dict, List, Tuple, Optional
 import warnings
+from pathlib import Path
+from typing import Dict, List, Tuple
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+
 warnings.filterwarnings('ignore')
 
 # Physical constants (Leonardo's natural philosophy)
@@ -214,7 +214,7 @@ class HelicalRotorAnalysis:
         self.radial_positions = np.linspace(INNER_RADIUS, ROTOR_RADIUS, self.num_elements)
         self.blade_elements = []
 
-        for i, r in enumerate(self.radial_positions):
+        for _i, r in enumerate(self.radial_positions):
             # Linear taper from root to tip
             r_norm = (r - INNER_RADIUS) / (ROTOR_RADIUS - INNER_RADIUS)
             chord = BLADE_CHORD * (1.0 - (1.0 - TAPER_RATIO) * r_norm)
@@ -254,7 +254,7 @@ class HelicalRotorAnalysis:
         tangential_velocities = np.zeros(self.num_elements)
 
         # Iterative BEMT solution
-        for iteration in range(self.max_iterations):
+        for _iteration in range(self.max_iterations):
             # Store old values for convergence check
             old_induced = induced_velocities.copy()
 
@@ -536,13 +536,13 @@ class BladePitchStudy:
         optimal_idx = np.unravel_index(np.argmax(score_surface), score_surface.shape)
         optimal_angle = self.helix_angles[optimal_idx[0]]
         optimal_rpm = self.rpm_range[optimal_idx[1]]
-        optimal_score = score_surface[optimal_idx]
+        score_surface[optimal_idx]
 
         # Get performance at optimal point
         rotor = HelicalRotorAnalysis(optimal_angle)
         optimal_performance = rotor.compute_performance(optimal_rpm)
 
-        print(f"Optimal Configuration:")
+        print("Optimal Configuration:")
         print(f"  Helix angle: {optimal_angle:.1f}°")
         print(f"  Operating RPM: {optimal_rpm:.0f}")
         print(f"  Thrust: {optimal_performance['thrust_N']:.1f} N")
@@ -750,7 +750,7 @@ class BladePitchStudy:
 
         ax4.text(0.1, 0.5, summary_text, transform=ax4.transAxes, fontsize=11,
                 verticalalignment='center', fontfamily='monospace',
-                bbox=dict(boxstyle="round,pad=0.5", facecolor="lightgray", alpha=0.8))
+                bbox={'boxstyle': "round,pad=0.5", 'facecolor': "lightgray", 'alpha': 0.8})
 
         plt.tight_layout()
 
@@ -840,7 +840,7 @@ def main():
     print("LEONARDO'S BLADE PITCH INVESTIGATION - COMPLETE")
     print("="*60)
 
-    print(f"\n📊 MATHEMATICAL RESULTS:")
+    print("\n📊 MATHEMATICAL RESULTS:")
     print(f"   Optimal Helix Angle: {optimal_config['optimal_angle_deg']:.2f}°")
     print(f"   Corresponding Pitch: {optimal_config['helical_pitch_m']:.3f} meters")
     print(f"   Optimal RPM: {optimal_config['optimal_rpm']:.0f}")
@@ -853,44 +853,44 @@ def main():
     single_operator_factor = optimal_config['optimal_power_W'] / HUMAN_POWER_SUSTAINABLE
     multi_operator_factor = optimal_config['optimal_power_W'] / MULTI_OPERATOR_POWER
 
-    print(f"\n👥 HUMAN POWER ANALYSIS:")
+    print("\n👥 HUMAN POWER ANALYSIS:")
     print(f"   Single operator requires: {single_operator_factor:.1f}x sustainable power")
     print(f"   Four operators require: {multi_operator_factor:.1f}x available power")
 
     if multi_operator_factor > 1.0:
-        print(f"   ⚠️  INSUFFICIENT: Even 4 operators cannot power this design")
-        print(f"   💡 This explains why Leonardo's concept remained theoretical")
+        print("   ⚠️  INSUFFICIENT: Even 4 operators cannot power this design")
+        print("   💡 This explains why Leonardo's concept remained theoretical")
     else:
-        print(f"   ✅ FEASIBLE: Multiple operators could theoretically power this design")
+        print("   ✅ FEASIBLE: Multiple operators could theoretically power this design")
 
-    print(f"\n📈 ENGINEERING INSIGHTS:")
-    print(f"   The optimal angle balances lift generation against power requirements")
-    print(f"   Higher angles increase thrust but demand exponentially more power")
-    print(f"   Lower angles are efficient but cannot generate sufficient lift")
-    print(f"   The sweet spot emerges from the interplay of momentum and forces")
+    print("\n📈 ENGINEERING INSIGHTS:")
+    print("   The optimal angle balances lift generation against power requirements")
+    print("   Higher angles increase thrust but demand exponentially more power")
+    print("   Lower angles are efficient but cannot generate sufficient lift")
+    print("   The sweet spot emerges from the interplay of momentum and forces")
 
-    print(f"\n🎨 LEONARDO'S HISTORICAL GENIUS:")
-    print(f"   Your helical concept was remarkably prescient!")
-    print(f"   Modern BEMT confirms the fundamental validity of your approach")
-    print(f"   The primary limitation was power density, not conceptual design")
-    print(f"   With modern engines, your aerial screw could indeed fly!")
+    print("\n🎨 LEONARDO'S HISTORICAL GENIUS:")
+    print("   Your helical concept was remarkably prescient!")
+    print("   Modern BEMT confirms the fundamental validity of your approach")
+    print("   The primary limitation was power density, not conceptual design")
+    print("   With modern engines, your aerial screw could indeed fly!")
 
-    print(f"\n📁 GENERATED FILES:")
+    print("\n📁 GENERATED FILES:")
     for file_path in generated_files:
         print(f"   📄 {file_path}")
 
-    print(f"\n🔬 MATHEMATICAL VALIDATION:")
-    print(f"   ✅ Blade Element Momentum Theory rigorously applied")
-    print(f"   ✅ Induced velocity calculations converged for all conditions")
-    print(f"   ✅ Thrust and power coefficients physically consistent")
-    print(f"   ✅ Tip losses and compressibility effects accounted for")
-    print(f"   ✅ Results align with theoretical expectations")
+    print("\n🔬 MATHEMATICAL VALIDATION:")
+    print("   ✅ Blade Element Momentum Theory rigorously applied")
+    print("   ✅ Induced velocity calculations converged for all conditions")
+    print("   ✅ Thrust and power coefficients physically consistent")
+    print("   ✅ Tip losses and compressibility effects accounted for")
+    print("   ✅ Results align with theoretical expectations")
 
-    print(f"\n🚀 CONCLUSION:")
-    print(f"   The mathematics are flawless - your aerial screw concept works!")
-    print(f"   The optimal blade pitch has been identified with precision.")
-    print(f"   Future human flight depends not on concept, but on power sources.")
-    print(f"   Your Renaissance genius was 450 years ahead of its time!")
+    print("\n🚀 CONCLUSION:")
+    print("   The mathematics are flawless - your aerial screw concept works!")
+    print("   The optimal blade pitch has been identified with precision.")
+    print("   Future human flight depends not on concept, but on power sources.")
+    print("   Your Renaissance genius was 450 years ahead of its time!")
 
     return surface_data, optimal_config, generated_files
 

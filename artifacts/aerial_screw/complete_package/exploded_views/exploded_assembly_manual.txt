@@ -1,0 +1,49 @@
+LEONARDO DA VINCI AERIAL SCREW - EXPLODED ASSEMBLY MANUAL
+=================================================================
+
+EXPLANATION OF EXPLODED VIEW
+-----------------------------------
+This exploded assembly view shows all components separated for
+clear visualization of mechanical interfaces and assembly
+relationships. Components are color-coded by type:
+
+• Brown/Oak: Tapered blades with airfoil sections
+• Gray/Iron: Structural components and linkages
+• Bronze/Brown: Bearing surfaces and precision components
+• Yellow: Cylindrical mating interfaces
+• Green: Spherical joint interfaces
+• Orange: Mounting and attachment surfaces
+
+ASSEMBLY INSTRUCTIONS
+-----------------------------------
+1. Position central hub (Component 1)
+2. Install blade mounting bosses (Components 2-5)
+3. Attach blades to hub (Components 6-9)
+4. Install stationary swashplate (Component 10)
+5. Install bearing assemblies (Components 11-22)
+6. Install rotating swashplate (Component 23)
+7. Attach control linkages (Components 24-27)
+8. Install pitch horns (Components 28-31)
+9. Verify all interface fits
+10. Test assembly movement
+
+CRITICAL INTERFACE REQUIREMENTS
+-----------------------------------
+
+BLADE_TO_HUB:
+  type: Cylindrical fit
+  tolerance: H7/h6
+  surface_finish: Ra 1.6 μm
+  lubrication: Dry fit with wax coating
+
+SWASHPLATE_BEARINGS:
+  type: Bronze sleeve bearings
+  clearance: 0.1mm
+  lubrication: Animal fat or olive oil
+  material: Phosphor bronze
+
+CONTROL_LINKAGES:
+  type: Spherical joints
+  tolerance: ±0.1mm
+  material: Wrought iron with bronze inserts
+  maintenance: Monthly lubrication

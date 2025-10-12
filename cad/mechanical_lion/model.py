@@ -17,7 +17,7 @@ Features:
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Dict
 
 import numpy as np
 import trimesh
@@ -171,15 +171,9 @@ def _create_leg_mechanism(is_front: bool, is_left: bool) -> Dict[str, trimesh.Tr
 
     # Position leg components
     # Hip position
-    if is_front:
-        hip_x = FORELEG_TO_HINDLEG_DISTANCE / 2
-    else:
-        hip_x = -FORELEG_TO_HINDLEG_DISTANCE / 2
+    hip_x = FORELEG_TO_HINDLEG_DISTANCE / 2 if is_front else -FORELEG_TO_HINDLEG_DISTANCE / 2
 
-    if is_left:
-        hip_y = LATERAL_LEG_SPACING / 2
-    else:
-        hip_y = -LATERAL_LEG_SPACING / 2
+    hip_y = LATERAL_LEG_SPACING / 2 if is_left else -LATERAL_LEG_SPACING / 2
 
     hip_z = BODY_HEIGHT
 

@@ -1,3 +1,7 @@
+# =============================================================================
+# da Vinci Codex - Professional .gitignore
+# =============================================================================
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -48,28 +52,29 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 cover/
+test-results/
+benchmark-results.json
 
 # Translations
 *.mo
 *.pot
 
-# Django stuff:
+# Django/Flask stuff
 *.log
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
-
-# Flask stuff:
 instance/
 .webassets-cache
 
-# Scrapy stuff:
+# Scrapy stuff
 .scrapy
 
-# Sphinx documentation
+# Sphinx & Jupyter Book documentation
 docs/_build/
 docs/book/_build/
 docs/_generated/
+docs/_site/
 
 # PyBuilder
 .pybuilder/
@@ -156,37 +161,67 @@ cython_debug/
 ehthumbs.db
 Thumbs.db
 
-# Project specific
-artifacts/*
+# =============================================================================
+# da Vinci Codex Specific
+# =============================================================================
+
+# Generated artifacts (preserve structure but not content)
+artifacts/**/*.png
+artifacts/**/*.jpg
+artifacts/**/*.gif
+artifacts/**/*.svg
+artifacts/**/*.pdf
+artifacts/**/*.csv
+artifacts/**/*.json
+artifacts/**/*.stl
+artifacts/**/*.step
+artifacts/**/*.iges
+artifacts/**/*.obj
+artifacts/**/*.dae
+artifacts/**/*.gltf
+artifacts/**/*.glb
 !artifacts/.gitkeep
-*.stl
-*.step
-*.iges
-*.obj
-*.dae
-*.gltf
-*.glb
+!artifacts/*/.gitkeep
+
+# Simulation output directories
 simulations/*/output/
 data/generated/
 *.log
 
+# CAD temporary files
+*.tmp
+*.bak
+*~
+
 # Development tools
 .qoder/
 .benchmarks/
+.ruff_cache/
 
-# Jekyll / Ruby
+# Jekyll / Ruby (GitHub Pages)
 .bundle/
 vendor/
 Gemfile.lock
-docs/_site/
 .sass-cache/
 .jekyll-cache/
 .jekyll-metadata
 
-# Analysis files (moved to artifacts/)
+# Security reports
+bandit-report.json
+safety-report.json
+security-reports/
+
+# Temporary analysis files
 material_selection_matrix.png
 vortex_ring_analysis.png
 cost_availability_analysis.txt
 materials_analysis_summary.txt
 renaissance_cost_analysis.txt
 renaissance_fabrication_guide.txt
+
+# Docker build cache
+.dockerignore
+
+# Backup files
+*.backup
+*.orig

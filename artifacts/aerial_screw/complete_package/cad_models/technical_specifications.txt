@@ -1,0 +1,29 @@
+LEONARDO DA VINCI AERIAL SCREW - VARIABLE PITCH ASSEMBLY
+============================================================
+
+TECHNICAL SPECIFICATIONS
+------------------------------
+Root Radius: 3.2 m
+Tip Radius: 4.0 m
+Helix Angle: 15.0°
+Taper Ratio: 0.35
+Number of Blades: 4
+Pitch Range: 15.0° to 45.0°
+Hub Radius: 0.4 m
+Blade Thickness (root): 0.08 m
+Blade Thickness (tip): 0.03 m
+
+MATERIALS
+------------------------------
+Blades: oak
+Structure: wrought_iron
+Bearings: bronze
+
+PERFORMANCE
+------------------------------
+Design RPM: 120.0
+Max Thrust: 800.0 N
+Total Mass: 988.5 kg
+Tip Speed: 50.3 m/s
+Safety Factor: 16.2
+Power Required: 40.2 kW

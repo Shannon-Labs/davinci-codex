@@ -18,11 +18,13 @@ incorporating modern engineering precision.
 
 from __future__ import annotations
 
+from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, List, Tuple, Optional
+from typing import Dict, List, Optional, Tuple
+
 import numpy as np
 import trimesh
-from dataclasses import dataclass
+
 
 # Technical specifications from completed analyses
 @dataclass
@@ -128,7 +130,7 @@ def _tapered_airfoil_section(
     )
 
     # Leading edge radius (sharper near tip for efficiency)
-    leading_edge_radius = 1.1019 * thickness_ratio**2 * (1.0 - 0.3 * position_ratio)
+    1.1019 * thickness_ratio**2 * (1.0 - 0.3 * position_ratio)
 
     # Camber line (optimized for low Reynolds number)
     p = 0.4 + 0.1 * position_ratio  # Move camber peak toward tip
@@ -147,7 +149,7 @@ def _tapered_airfoil_section(
     airfoil_3d = []
     for i in range(num_points):
         # Add slight spanwise twist for stability
-        twist_angle = np.radians(2.0 * position_ratio)
+        np.radians(2.0 * position_ratio)
         z_offset = 0.0
 
         airfoil_3d.append([xu[i], yu[i], z_offset])
@@ -297,7 +299,6 @@ def _create_swashplate_mechanism(
     Returns:
         Tuple of (rotating_swashplate, stationary_components)
     """
-    components = []
 
     # Stationary swashplate (non-rotating)
     stationary_radius = specs.hub_radius * 1.2
@@ -690,7 +691,7 @@ def analyze_assembly_properties(
         "centrifugal_force_N": centrifugal_force,
         "max_stress_Pa": max_stress,
         "safety_factor": safety_factor,
-        "materials_used": list(set([specs.blade_material, specs.structure_material, specs.bearing_material])),
+        "materials_used": list({specs.blade_material, specs.structure_material, specs.bearing_material}),
         "estimated_thrust_N": specs.max_thrust,
         "design_rpm": specs.design_rpm,
         "power_requirements_kw": (specs.max_thrust * tip_speed) / 1000,  # Rough estimate
@@ -728,7 +729,7 @@ def export_manufacturing_drawings(
     # Export exploded view components
     components, metadata = create_exploded_view(specs)
 
-    for i, (component_name, mesh) in enumerate(zip(metadata.keys(), components)):
+    for _i, (component_name, mesh) in enumerate(zip(metadata.keys(), components)):
         component_path = output_dir / f"component_{component_name}.stl"
         mesh.export(component_path)
         exported_files[f"component_{component_name}"] = component_path
@@ -799,7 +800,7 @@ if __name__ == "__main__":
     # Analyze properties
     properties = analyze_assembly_properties(complete_assembly, specs)
 
-    print(f"Assembly Properties:")
+    print("Assembly Properties:")
     print(f"  Total Mass: {properties['total_mass_kg']:.1f} kg")
     print(f"  Tip Speed: {properties['tip_speed_ms']:.1f} m/s")
     print(f"  Safety Factor: {properties['safety_factor']:.1f}")
@@ -813,6 +814,6 @@ if __name__ == "__main__":
     for name, path in exported_files.items():
         print(f"  {name}: {path}")
 
-    print(f"\nCAD model honors Leonardo's mechanical genius while providing")
-    print(f"technical detail needed for Renaissance workshop construction.")
+    print("\nCAD model honors Leonardo's mechanical genius while providing")
+    print("technical detail needed for Renaissance workshop construction.")
     print(f"Variable-pitch mechanism allows blade adjustment from {specs.min_pitch}° to {specs.max_pitch}°.")

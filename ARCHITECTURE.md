@@ -15,6 +15,7 @@ graph TB
     UI --> |Interactive Notebooks| JUPYTER[Jupyter Book System]
     UI --> |Web Interface| WEB[Web Dashboard]
     UI --> |3D Visualization| VIZ[Visualization Engine]
+    UI --> |Vision Analysis| VISION[Vision Analysis Engine]
     
     API --> |CLI Commands| CLI[Command Line Interface]
     API --> |Python API| PYAPI[Python Package API]
@@ -26,6 +27,7 @@ graph TB
     DATA --> |Historical| PROV[Manuscript Provenance]
     DATA --> |Materials| MAT[Renaissance Materials DB]
     DATA --> |Validation| VAL[Validation Cases]
+    DATA --> |Vision| VISION_DATA[Vision Data Repository]
 ```
 
 ## Component Architecture

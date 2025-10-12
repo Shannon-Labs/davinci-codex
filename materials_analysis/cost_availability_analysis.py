@@ -3,12 +3,11 @@ Cost and Availability Analysis for Leonardo's Mechanical Lion
 Comprehensive economic analysis for Renaissance royal commission
 """
 
-import math
-from typing import Dict, List, Tuple, Optional
 from dataclasses import dataclass
-from datetime import datetime, timedelta
-from renaissance_materials_database import RenaissanceMaterialsDatabase
+from typing import Dict, List, Optional
+
 from lion_materials_analysis import LionMaterialsAnalyzer
+from renaissance_materials_database import RenaissanceMaterialsDatabase
 
 
 @dataclass
@@ -53,21 +52,21 @@ class MaterialCost:
 
 class RenaissanceCostAnalyzer:
     """Comprehensive cost and availability analysis for Renaissance materials."""
-    
+
     def __init__(self):
         self.db = RenaissanceMaterialsDatabase()
         self.analyzer = LionMaterialsAnalyzer()
         self.suppliers = self._initialize_suppliers()
         self.trade_routes = self._initialize_trade_routes()
         self.renaissance_economics = self._initialize_economic_context()
-    
+
     def _initialize_suppliers(self) -> Dict[str, List[Supplier]]:
         """Initialize Renaissance suppliers database."""
-        
+
         suppliers = {}
-        
+
         # === FLORENTINE SUPPLIERS ===
-        
+
         suppliers["oak_tuscan"] = [
             Supplier(
                 name="Arte dei Maestri di Pietra e Legname",
@@ -90,7 +89,7 @@ class RenaissanceCostAnalyzer:
                 quality_consistency=0.92
             )
         ]
-        
+
         suppliers["bronze_florentine"] = [
             Supplier(
                 name="Fonderia del Duomo",
@@ -113,7 +112,7 @@ class RenaissanceCostAnalyzer:
                 quality_consistency=0.95
             )
         ]
-        
+
         suppliers["steel_florentine"] = [
             Supplier(
                 name="Fabbri di Brescia",
@@ -136,7 +135,7 @@ class RenaissanceCostAnalyzer:
                 quality_consistency=0.82
             )
         ]
-        
+
         suppliers["gold_leaf"] = [
             Supplier(
                 name="Orefici del Battistero",
@@ -159,7 +158,7 @@ class RenaissanceCostAnalyzer:
                 quality_consistency=0.95
             )
         ]
-        
+
         suppliers["silk_florentine"] = [
             Supplier(
                 name="Arte della Seta",
@@ -172,9 +171,9 @@ class RenaissanceCostAnalyzer:
                 quality_consistency=0.87
             )
         ]
-        
+
         # === REGIONAL SUPPLIERS ===
-        
+
         suppliers["oak_slavonian"] = [
             Supplier(
                 name="Mercanti di Ragusa",
@@ -197,7 +196,7 @@ class RenaissanceCostAnalyzer:
                 quality_consistency=0.85
             )
         ]
-        
+
         suppliers["bronze_bell"] = [
             Supplier(
                 name="Fonderia di Campane",
@@ -210,9 +209,9 @@ class RenaissanceCostAnalyzer:
                 quality_consistency=0.90
             )
         ]
-        
+
         # === INTERNATIONAL SUPPLIERS ===
-        
+
         suppliers["ultramarine"] = [
             Supplier(
                 name="Speziali Medicei",
@@ -235,7 +234,7 @@ class RenaissanceCostAnalyzer:
                 quality_consistency=0.55
             )
         ]
-        
+
         suppliers["rubber_natural"] = [
             Supplier(
                 name="Mercanti Spagnuoli",
@@ -248,16 +247,16 @@ class RenaissanceCostAnalyzer:
                 quality_consistency=0.30
             )
         ]
-        
+
         return suppliers
-    
+
     def _initialize_trade_routes(self) -> Dict[str, List[TradeRoute]]:
         """Initialize historical trade routes."""
-        
+
         routes = {}
-        
+
         # === MEDITERRANEAN ROUTES ===
-        
+
         routes["adriatic"] = [
             TradeRoute(
                 name="Venice to Ragusa",
@@ -272,7 +271,7 @@ class RenaissanceCostAnalyzer:
                 }
             )
         ]
-        
+
         routes["levantine"] = [
             TradeRoute(
                 name="Venice to Alexandria",
@@ -299,9 +298,9 @@ class RenaissanceCostAnalyzer:
                 }
             )
         ]
-        
+
         # === OVERLAND ROUTES ===
-        
+
         routes["trans_alpine"] = [
             TradeRoute(
                 name="Florence to Brescia",
@@ -316,9 +315,9 @@ class RenaissanceCostAnalyzer:
                 }
             )
         ]
-        
+
         # === ATLANTIC ROUTES ===
-        
+
         routes["atlantic"] = [
             TradeRoute(
                 name="Seville to Florence",
@@ -333,12 +332,12 @@ class RenaissanceCostAnalyzer:
                 }
             )
         ]
-        
+
         return routes
-    
+
     def _initialize_economic_context(self) -> Dict:
         """Initialize Renaissance economic context."""
-        
+
         return {
             "currency": "Florin d'oro (gold florin)",
             "exchange_rates": {
@@ -361,15 +360,15 @@ class RenaissanceCostAnalyzer:
                 "cash_advance": 0.05   # 5% discount for cash advance
             }
         }
-    
-    def calculate_material_cost(self, material_name: str, quantity: float, 
+
+    def calculate_material_cost(self, material_name: str, quantity: float,
                               selected_supplier: Optional[Supplier] = None) -> MaterialCost:
         """Calculate comprehensive material cost."""
-        
+
         material = self.db.get_material(material_name)
         if material is None:
             raise ValueError(f"Unknown material: {material_name}")
-        
+
         # Get supplier information
         if selected_supplier is None:
             suppliers = self.suppliers.get(material_name, [])
@@ -387,26 +386,26 @@ class RenaissanceCostAnalyzer:
                     payment_terms="Standard",
                     quality_consistency=0.5
                 )
-        
+
         # Base material cost
         base_cost = material.cost_per_unit * quantity
-        
+
         # Supplier cost adjustment
         supplier_cost = base_cost * selected_supplier.price_multiplier
-        
+
         # Transportation cost
         transport_cost = self._calculate_transportation_cost(material_name, selected_supplier)
-        
+
         # Taxes and duties
         taxes_duties = self._calculate_taxes_and_duties(material_name, supplier_cost)
-        
+
         # Processing cost (for materials requiring additional processing)
         processing_cost = self._calculate_processing_cost(material_name, quantity)
-        
+
         # Total cost
-        total_cost = (base_cost + supplier_cost + transport_cost + 
+        total_cost = (base_cost + supplier_cost + transport_cost +
                      taxes_duties + processing_cost)
-        
+
         # Cost breakdown
         cost_breakdown = {
             "base_material_cost": base_cost,
@@ -415,7 +414,7 @@ class RenaissanceCostAnalyzer:
             "taxes_duties": taxes_duties,
             "processing": processing_cost
         }
-        
+
         return MaterialCost(
             material_name=material_name,
             base_cost=base_cost,
@@ -427,14 +426,14 @@ class RenaissanceCostAnalyzer:
             total_cost=total_cost,
             cost_breakdown=cost_breakdown
         )
-    
+
     def _calculate_transportation_cost(self, material_name: str, supplier: Supplier) -> float:
         """Calculate transportation cost based on supplier location."""
-        
+
         # Base transportation cost factor
         if "Florence" in supplier.location:
             return 0.0  # Local pickup
-        
+
         # Determine route and cost
         if "Venice" in supplier.location or "Ragusa" in supplier.location:
             route = self.trade_routes["adriatic"][0]
@@ -448,46 +447,46 @@ class RenaissanceCostAnalyzer:
         else:
             route = self.trade_routes["trans_alpine"][0]
             base_transport_cost = 30.0  # Overland transport
-        
+
         # Adjust for material weight and distance
         material = self.db.get_material(material_name)
         weight_factor = material.density_kg_m3 / 1000.0  # Convert to tons/m³
-        
+
         transport_cost = base_transport_cost * weight_factor * route.cost_factor
-        
+
         # Seasonal adjustment
         current_season = "Summer"  # Assume summer construction
         seasonal_factor = route.seasonal_availability.get(current_season, 1.0)
-        
+
         return transport_cost * (2.0 - seasonal_factor)  # Higher cost in difficult seasons
-    
+
     def _calculate_taxes_and_duties(self, material_name: str, supplier_cost: float) -> float:
         """Calculate taxes and import duties."""
-        
+
         material = self.db.get_material(material_name)
-        
+
         total_taxes = 0.0
-        
+
         # Import duties for non-local materials
         if material.availability != "Local":
             import_duty = supplier_cost * self.renaissance_economics["tax_rates"]["import_duty"]
             total_taxes += import_duty
-        
+
         # Guild taxes
         guild_tax = supplier_cost * self.renaissance_economics["tax_rates"]["guild_tax"]
         total_taxes += guild_tax
-        
+
         # Sales tax
         sales_tax = supplier_cost * self.renaissance_economics["tax_rates"]["sales_tax"]
         total_taxes += sales_tax
-        
+
         return total_taxes
-    
+
     def _calculate_processing_cost(self, material_name: str, quantity: float) -> float:
         """Calculate additional processing costs."""
-        
+
         material = self.db.get_material(material_name)
-        
+
         # Base processing rate (florins per cubic meter)
         processing_rates = {
             "Hardwood": 40.0,  # Sawing, planing, seasoning
@@ -499,60 +498,60 @@ class RenaissanceCostAnalyzer:
             "Textile": 35.0,  # Cutting, sewing
             "Mineral Pigment": 200.0  # Grinding, purification
         }
-        
+
         base_rate = processing_rates.get(material.material_type, 50.0)
-        
+
         # Adjust for processing difficulty
         difficulty_multiplier = 1.0 + (material.processing_difficulty - 3) * 0.2
-        
+
         return base_rate * quantity * difficulty_multiplier
-    
+
     def analyze_component_costs(self) -> Dict[str, Dict[str, MaterialCost]]:
         """Analyze costs for all lion components."""
-        
+
         recommendations = self.analyzer.generate_component_recommendations()
         component_costs = {}
-        
+
         for component_name, analysis in recommendations.items():
             primary_material = analysis["primary_selection"]["material"]
-            
+
             # Estimate quantity needed
             quantity = self.analyzer._estimate_component_volume(component_name)
-            
+
             if quantity > 0:
                 # Get best supplier for this material
                 suppliers = self.suppliers.get(primary_material.name, [])
                 best_supplier = suppliers[0] if suppliers else None
-                
+
                 # Calculate cost
                 material_cost = self.calculate_material_cost(
                     primary_material.name, quantity, best_supplier
                 )
-                
+
                 component_costs[component_name] = {
                     "primary_material": material_cost,
                     "alternatives": {}
                 }
-                
+
                 # Calculate costs for alternatives
                 for alt_name in analysis["primary_selection"]["alternatives"]:
                     alt_material = self.db.get_material(alt_name[0])
                     alt_suppliers = self.suppliers.get(alt_name[0], [])
                     alt_supplier = alt_suppliers[0] if alt_suppliers else None
-                    
+
                     alt_cost = self.calculate_material_cost(
                         alt_material.name, quantity, alt_supplier
                     )
-                    
+
                     component_costs[component_name]["alternatives"][alt_name[0]] = alt_cost
-        
+
         return component_costs
-    
+
     def generate_total_cost_analysis(self) -> Dict:
         """Generate comprehensive total cost analysis."""
-        
+
         component_costs = self.analyze_component_costs()
-        
+
         total_material_cost = 0.0
         cost_breakdown = {
             "structural_materials": 0.0,
@@ -563,15 +562,15 @@ class RenaissanceCostAnalyzer:
             "taxes_duties": 0.0,
             "processing": 0.0
         }
-        
+
         # Summarize costs by category
-        for component_name, costs in component_costs.items():
+        for _component_name, costs in component_costs.items():
             primary_cost = costs["primary_material"]
             total_material_cost += primary_cost.total_cost
-            
+
             # Categorize costs
             material = self.db.get_material(primary_cost.material_name)
-            
+
             if material.material_type in ["Hardwood", "Softwood"]:
                 cost_breakdown["structural_materials"] += primary_cost.total_cost
             elif material.material_type in ["Copper Alloy", "Iron Alloy"]:
@@ -580,21 +579,21 @@ class RenaissanceCostAnalyzer:
                 cost_breakdown["decorative_elements"] += primary_cost.total_cost
             else:
                 cost_breakdown["functional_components"] += primary_cost.total_cost
-            
+
             # Add transportation, taxes, and processing
             cost_breakdown["transportation"] += primary_cost.transportation_cost
             cost_breakdown["taxes_duties"] += primary_cost.taxes_duties
             cost_breakdown["processing"] += primary_cost.processing_cost
-        
+
         # Labor cost estimation
         labor_analysis = self._estimate_labor_costs()
-        
+
         # Timeline analysis
         timeline_analysis = self._analyze_project_timeline()
-        
+
         # Risk analysis
         risk_analysis = self._analyze_cost_risks(component_costs)
-        
+
         return {
             "total_material_cost": total_material_cost,
             "cost_breakdown": cost_breakdown,
@@ -608,10 +607,10 @@ class RenaissanceCostAnalyzer:
             "cost_risks": risk_analysis,
             "payment_schedule": self._generate_payment_schedule(total_material_cost, labor_analysis)
         }
-    
+
     def _estimate_labor_costs(self) -> Dict:
         """Estimate labor costs for the project."""
-        
+
         # Labor requirements by component type
         labor_hours = {
             "carpentry": 800,  # Woodworking and frame construction
@@ -621,27 +620,27 @@ class RenaissanceCostAnalyzer:
             "finishing": 300,  # Surface preparation and finishing
             "testing": 150  # Testing and adjustment
         }
-        
+
         # Skill level distribution
         skill_distribution = {
             "master_craftsmen": 0.3,  # 30% master craftsmen
             "journeymen": 0.5,  # 50% journeymen
             "apprentices": 0.2  # 20% apprentices
         }
-        
+
         total_hours = sum(labor_hours.values())
-        
+
         # Calculate labor costs
         master_hours = total_hours * skill_distribution["master_craftsmen"]
         journeyman_hours = total_hours * skill_distribution["journeymen"]
         apprentice_hours = total_hours * skill_distribution["apprentices"]
-        
+
         master_cost = master_hours * self.renaissance_economics["master_craftsman_daily_wage"] / 8.0  # Convert to hourly
         journeyman_cost = journeyman_hours * 0.35 / 8.0  # Average journeyman rate
         apprentice_cost = apprentice_hours * self.renaissance_economics["apprentice_daily_wage"] / 8.0
-        
+
         total_labor_cost = master_cost + journeyman_cost + apprentice_cost
-        
+
         return {
             "total_hours": total_hours,
             "master_craftsmen_hours": master_hours,
@@ -653,19 +652,19 @@ class RenaissanceCostAnalyzer:
             "total_labor_cost": total_labor_cost,
             "breakdown_by_task": labor_hours
         }
-    
+
     def _analyze_project_timeline(self) -> Dict:
         """Analyze project timeline and critical path."""
-        
+
         # Material acquisition times
         material_lead_times = {}
-        
+
         for material_name, suppliers in self.suppliers.items():
             if suppliers:
                 # Use longest lead time for safety
                 max_lead_time = max(supplier.lead_time_days for supplier in suppliers)
                 material_lead_times[material_name] = max_lead_time
-        
+
         # Construction phases
         phases = {
             "material_acquisition": {
@@ -697,10 +696,10 @@ class RenaissanceCostAnalyzer:
                 "depends_on": ["finishing"]
             }
         }
-        
+
         # Calculate critical path
         total_duration = sum(phase["duration_days"] for phase in phases.values())
-        
+
         return {
             "total_duration_days": total_duration,
             "total_duration_months": total_duration / 30.0,
@@ -708,41 +707,41 @@ class RenaissanceCostAnalyzer:
             "critical_path_materials": material_lead_times,
             "potential_delays": self._identify_potential_delays(material_lead_times)
         }
-    
+
     def _identify_potential_delays(self, material_lead_times: Dict[str, int]) -> List[str]:
         """Identify potential delay sources."""
-        
+
         delays = []
-        
+
         for material_name, lead_time in material_lead_times.items():
             if lead_time > 90:
                 delays.append(f"{material_name}: Long lead time ({lead_time} days)")
             elif lead_time > 60:
                 delays.append(f"{material_name}: Moderate lead time ({lead_time} days)")
-        
+
         # Seasonal considerations
         delays.append("Winter weather may affect overland transportation")
         delays.append("Mediterranean storm season (Sept-Nov) may affect shipping")
-        
+
         # Supplier reliability issues
         for material_name, suppliers in self.suppliers.items():
             for supplier in suppliers:
                 if supplier.reliability_rating < 0.7:
                     delays.append(f"{supplier.name}: Low reliability rating")
-        
+
         return delays
-    
+
     def _analyze_cost_risks(self, component_costs: Dict) -> Dict:
         """Analyze potential cost risks and mitigation strategies."""
-        
+
         risk_factors = []
         mitigation_strategies = []
-        
+
         # Material availability risks
         for component_name, costs in component_costs.items():
             primary_cost = costs["primary_material"]
             material = self.db.get_material(primary_cost.material_name)
-            
+
             if material.availability in ["International", "Rare"]:
                 risk_factors.append({
                     "risk": f"{material.name} supply disruption",
@@ -753,7 +752,7 @@ class RenaissanceCostAnalyzer:
                 mitigation_strategies.append(
                     f"Order {material.name} well in advance with safety stock"
                 )
-        
+
         # Price volatility risks
         for material_name in ["gold_leaf", "ultramarine", "bronze_florentine"]:
             if material_name in self.db.materials:
@@ -766,7 +765,7 @@ class RenaissanceCostAnalyzer:
                 mitigation_strategies.append(
                     f"Lock in {material_name} prices through forward contracts"
                 )
-        
+
         # Quality risks
         for material_name, suppliers in self.suppliers.items():
             for supplier in suppliers:
@@ -780,18 +779,18 @@ class RenaissanceCostAnalyzer:
                     mitigation_strategies.append(
                         f"Implement quality testing for {supplier.name} materials"
                     )
-        
+
         return {
             "risk_factors": risk_factors,
             "mitigation_strategies": mitigation_strategies,
             "contingency_recommendation": "Include 20% contingency budget for material risks"
         }
-    
+
     def _generate_payment_schedule(self, material_cost: float, labor_costs: Dict) -> Dict:
         """Generate payment schedule for the project."""
-        
+
         total_cost = material_cost + labor_costs["total_labor_cost"]
-        
+
         # Renaissance payment structure
         payments = [
             {
@@ -823,7 +822,7 @@ class RenaissanceCostAnalyzer:
                 "purpose": "Final delivery and acceptance testing"
             }
         ]
-        
+
         return {
             "total_contract_value": total_cost,
             "payment_schedule": payments,

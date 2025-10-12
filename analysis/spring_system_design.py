@@ -23,7 +23,7 @@ appearance.
 
 import math
 from dataclasses import dataclass
-from typing import Dict, List, Tuple
+from typing import Dict
 
 # Physical Constants
 GRAVITY = 9.80665  # m/s²
@@ -196,7 +196,6 @@ class SpringPowerSystem:
         escape_wheel_radius = 0.05  # meters
 
         # Verge design
-        verge_length = 0.08  # meters
         pendulum_length = 0.25  # meters (for 2 Hz frequency)
 
         # Regulation accuracy (Renaissance craftsmanship)
@@ -417,7 +416,7 @@ def main():
     print(f"Maximum Torque: {spring['max_torque_nm']:.1f} N·m")
 
     # Display performance
-    print(f"\nPerformance Characteristics:")
+    print("\nPerformance Characteristics:")
     print("-" * 40)
     perf = summary["performance"]
     print(f"Usable Operating Time: {perf['usable_operating_time_s']:.1f} s")
@@ -426,7 +425,7 @@ def main():
     print(f"Power Reserve: {perf['power_reserve_percentage']:.1f}%")
 
     # Display winding analysis
-    print(f"\nWinding Mechanism:")
+    print("\nWinding Mechanism:")
     print("-" * 40)
     winding = summary["winding"]
     print(f"Human Effort Feasible: {'✓' if winding['human_effort_feasible'] else '✗'}")
@@ -434,7 +433,7 @@ def main():
     print(f"Handle Turns Required: {winding['handle_turns']:.0f}")
 
     # Display manufacturing analysis
-    print(f"\nManufacturing Analysis:")
+    print("\nManufacturing Analysis:")
     print("-" * 40)
     manuf = summary["manufacturing"]
     print(f"Total Construction Time: {manuf['total_construction_time']}")

@@ -16,14 +16,16 @@ System Components:
 
 from __future__ import annotations
 
+from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, List, Tuple, Optional
+from typing import Dict, List, Optional, Tuple
+
 import numpy as np
 import trimesh
-from dataclasses import dataclass
 
 # Import shared components
-from variable_pitch_assembly import AerialScrewSpecs, MATERIALS
+from variable_pitch_assembly import MATERIALS, AerialScrewSpecs
+
 
 @dataclass
 class LinkageGeometry:
@@ -245,7 +247,7 @@ class SwashplateAssembly:
             )
 
             # Inner bearing race
-            inner_race = trimesh.creation.cylinder(
+            trimesh.creation.cylinder(
                 radius=inner_radius,
                 height=width,
                 sections=32
@@ -574,10 +576,10 @@ def create_complete_linkage_system(
     metadata = {
         'system_type': 'variable_pitch_linkage_system',
         'components_count': len(all_components),
-        'materials_used': list(set([
+        'materials_used': list({
             specs.bearing_material,
             specs.structure_material
-        ])),
+        }),
         'mechanical_advantage': geometry.mechanical_advantage,
         'pitch_range_degrees': [specs.min_pitch, specs.max_pitch],
         'bearing_count': len(bearings),

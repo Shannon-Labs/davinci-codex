@@ -15,14 +15,16 @@ Components included:
 
 from __future__ import annotations
 
+from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, List, Tuple, Optional
+from typing import Dict, List, Optional, Tuple
+
 import numpy as np
 import trimesh
-from dataclasses import dataclass
 
 # Import main assembly for shared specifications
-from variable_pitch_assembly import AerialScrewSpecs, MATERIALS
+from variable_pitch_assembly import MATERIALS, AerialScrewSpecs
+
 
 @dataclass
 class ManufacturingTolerances:
@@ -112,7 +114,7 @@ def create_tapered_blade_manufacturing_model(
 
         # Position vertices with high precision
         blade_angle = 2 * np.pi * blade_index / specs.num_blades
-        helix_angle_rad = np.radians(specs.helix_angle)
+        np.radians(specs.helix_angle)
 
         for point in airfoil_section:
             # Apply local geometry
@@ -440,7 +442,7 @@ def create_swashplate_components_manufacturing(
         )
 
         # Inner bearing race
-        inner_race = trimesh.creation.cylinder(
+        trimesh.creation.cylinder(
             radius=inner_radius,
             height=bearing_height,
             sections=32
