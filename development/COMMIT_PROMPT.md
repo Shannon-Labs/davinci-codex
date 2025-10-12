@@ -48,4 +48,4 @@ A beautiful GitHub Pages site with:
 3. Click Save
 4. Wait a few minutes for deployment
 
-That's it! Simple and clean. 🎨✨
+That's it! Simple and clean. CreativeNotable

@@ -23,24 +23,22 @@ This reconstruction focuses on the mechanical principles and educational value.
 All safety considerations include modern guards and emergency stops.
 """
 
-import numpy as np
-import matplotlib.pyplot as plt
 from dataclasses import dataclass, field
-from typing import Dict, List, Tuple, Optional, Any
 from enum import Enum
-import json
-import math
+from typing import Any, Dict, List, Tuple
+
+import numpy as np
 
 # Core Framework
 SLUG = "programmable_loom"
 TITLE = "Leonardo's Programmable Loom - The World's First Textile Computer"
-STATUS = "in_progress"  
+STATUS = "in_progress"
 SUMMARY = "Revolutionary automatic loom with mechanical programming capability, representing history's first programmable machine for textile pattern generation."
 
 class ThreadType(Enum):
     """Types of threads available in Renaissance Italy"""
     SILK = "silk"
-    LINEN = "linen" 
+    LINEN = "linen"
     WOOL = "wool"
     COTTON = "cotton"
     GOLD = "gold_thread"
@@ -52,7 +50,7 @@ class LoomOperation(Enum):
     INSERT_WEFT = "insert_weft"
     BEAT_REED = "beat_reed"
     ADVANCE_CLOTH = "advance_cloth"
-    
+
 @dataclass
 class ThreadProperties:
     """Physical properties of Renaissance threads"""
@@ -62,15 +60,15 @@ class ThreadProperties:
     elasticity_gpa: float
     density_kg_m3: float
     color: str = "natural"
-    
-@dataclass 
+
+@dataclass
 class CamProfile:
     """Mechanical cam profile for controlling loom operations"""
     radius_mm: float
     lift_angles: List[float]  # Angles where cam lifts (degrees)
     max_lift_mm: float
     dwell_duration: float  # Duration at max lift (degrees)
-    
+
 @dataclass
 class LoomConfiguration:
     """Complete loom setup parameters"""
@@ -82,7 +80,7 @@ class LoomConfiguration:
     frame_length_mm: float = 1200
     frame_height_mm: float = 1000
     operating_speed_rpm: float = 12  # Hand crank operated
-    
+
 @dataclass
 class PatternInstruction:
     """Single pattern instruction in Leonardo's programming language"""
@@ -113,7 +111,7 @@ def plan() -> Dict[str, Any]:
     - Codex Atlanticus f.1091v: Cam programming system  
     - Madrid Codex I f.67v: Thread tension control
     """
-    
+
     return {
         "historical_context": {
             "primary_source": "Codex Atlanticus f.1090r-1091v",
@@ -122,12 +120,12 @@ def plan() -> Dict[str, Any]:
             "context": "Industrial automation studies during Ludovico Sforza patronage",
             "significance": "First known design for programmable manufacturing machine"
         },
-        
+
         "manuscript_analysis": {
             "transcription_confidence": 0.89,
             "key_innovations": [
                 "Cam-based pattern programming system",
-                "Automatic weft insertion mechanism", 
+                "Automatic weft insertion mechanism",
                 "Variable tension control for different threads",
                 "Modular cam barrel for pattern changes",
                 "Integrated cloth advance mechanism"
@@ -138,7 +136,7 @@ def plan() -> Dict[str, Any]:
                 "automation_goal": "One person can operate what normally takes four"
             }
         },
-        
+
         "technical_parameters": {
             "working_width_mm": 400,
             "max_pattern_repeat": 64,  # Limited by cam barrel circumference
@@ -147,10 +145,10 @@ def plan() -> Dict[str, Any]:
             "power_requirement_w": 50,  # Human power input
             "precision_mm": 0.5  # Achievable with Renaissance woodworking
         },
-        
+
         "materials_renaissance": {
             "frame": {
-                "material": "seasoned_oak", 
+                "material": "seasoned_oak",
                 "treatment": "linseed_oil_finish",
                 "joints": "mortise_and_tenon_with_wooden_pegs"
             },
@@ -167,12 +165,12 @@ def plan() -> Dict[str, Any]:
                 "lubrication": "animal_fat_or_olive_oil"
             }
         },
-        
+
         "programming_system": {
             "instruction_set": [
                 "LIFT_WARP(threads)",
                 "INSERT_WEFT(color)",
-                "BEAT_REED(force)", 
+                "BEAT_REED(force)",
                 "ADVANCE_CLOTH(distance)",
                 "CHANGE_TENSION(thread, value)"
             ],
@@ -180,12 +178,12 @@ def plan() -> Dict[str, Any]:
             "max_complexity": "Limited by barrel circumference and peg spacing",
             "pattern_library": [
                 "Plain weave",
-                "Twill patterns", 
+                "Twill patterns",
                 "Simple brocade",
                 "Heraldic designs"
             ]
         },
-        
+
         "innovation_analysis": {
             "computational_concepts": [
                 "Stored program execution",
@@ -194,13 +192,13 @@ def plan() -> Dict[str, Any]:
                 "Pattern repetition and variation"
             ],
             "manufacturing_innovations": [
-                "Consistent thread tension", 
+                "Consistent thread tension",
                 "Repeatable pattern accuracy",
                 "Reduced labor requirements",
                 "Quality standardization"
             ]
         },
-        
+
         "modern_connections": {
             "digital_fabrication": "Direct ancestor of CNC textile machines",
             "industrial_iot": "Early example of automated manufacturing",
@@ -219,9 +217,9 @@ def simulate(seed: int = 42) -> Dict[str, Any]:
     - Pattern generation and fabric structure
     - Cam-based control system operation
     """
-    
+
     np.random.seed(seed)
-    
+
     # Initialize loom configuration
     config = LoomConfiguration(
         warp_count=200,
@@ -229,7 +227,7 @@ def simulate(seed: int = 42) -> Dict[str, Any]:
         weft_count_per_inch=24,
         reed_width_mm=400
     )
-    
+
     # Define Renaissance thread properties
     thread_props = {
         "silk": ThreadProperties(
@@ -241,7 +239,7 @@ def simulate(seed: int = 42) -> Dict[str, Any]:
             color="ivory"
         ),
         "linen": ThreadProperties(
-            material=ThreadType.LINEN, 
+            material=ThreadType.LINEN,
             diameter_mm=0.25,
             tensile_strength_n=4.2,
             elasticity_gpa=12.0,
@@ -257,7 +255,7 @@ def simulate(seed: int = 42) -> Dict[str, Any]:
             color="brown"
         )
     }
-    
+
     # Create simple pattern program - Leonardo's coat of arms motif
     pattern_program = []
     for step in range(32):  # 32-step repeating pattern
@@ -266,11 +264,11 @@ def simulate(seed: int = 42) -> Dict[str, Any]:
         for warp in range(config.warp_count):
             x = warp / config.warp_count
             y = step / 32.0
-            
+
             # Create Leonardo's lily pattern
             center_x, center_y = 0.5, 0.5
             dist_from_center = np.sqrt((x - center_x)**2 + (y - center_y)**2)
-            
+
             # Lift threads based on pattern geometry
             if dist_from_center < 0.3:
                 # Central motif - complex pattern
@@ -278,9 +276,9 @@ def simulate(seed: int = 42) -> Dict[str, Any]:
             else:
                 # Border pattern - simple weave
                 lift = (step + warp) % 4 < 2
-                
+
             warp_lifts.append(lift)
-            
+
         instruction = PatternInstruction(
             step=step,
             warp_lifts=warp_lifts,
@@ -289,32 +287,32 @@ def simulate(seed: int = 42) -> Dict[str, Any]:
             notes=f"Pattern row {step}: Leonardo lily motif"
         )
         pattern_program.append(instruction)
-    
+
     # Simulate mechanical cam profiles
     cam_profiles = {}
-    
+
     # Warp lifting cam
     lift_angles = []
     for step in range(len(pattern_program)):
         angle = step * 360 / len(pattern_program)
         if any(pattern_program[step].warp_lifts):
             lift_angles.append(angle)
-    
+
     cam_profiles[LoomOperation.LIFT_WARP] = CamProfile(
         radius_mm=25,
         lift_angles=lift_angles,
         max_lift_mm=12,
         dwell_duration=5.0
     )
-    
-    # Weft insertion cam  
+
+    # Weft insertion cam
     cam_profiles[LoomOperation.INSERT_WEFT] = CamProfile(
         radius_mm=20,
         lift_angles=list(range(0, 360, 360//len(pattern_program))),
         max_lift_mm=8,
         dwell_duration=3.0
     )
-    
+
     # Reed beating cam
     cam_profiles[LoomOperation.BEAT_REED] = CamProfile(
         radius_mm=30,
@@ -322,15 +320,15 @@ def simulate(seed: int = 42) -> Dict[str, Any]:
         max_lift_mm=15,
         dwell_duration=2.0
     )
-    
+
     # Physics simulation
     fabric_width = config.warp_count
     fabric_length = len(pattern_program)
     fabric_matrix = np.zeros((fabric_length, fabric_width))
-    
+
     thread_tensions = {}
     mechanical_stress = {}
-    
+
     # Simulate weaving process
     for step, instruction in enumerate(pattern_program):
         # Calculate thread tensions
@@ -342,43 +340,43 @@ def simulate(seed: int = 42) -> Dict[str, Any]:
                 thread_tensions[f"{step}_{warp_idx}"] = base_tension * (1 + tension_variation)
                 fabric_matrix[step, warp_idx] = 1
             else:
-                # Lowered thread has lower tension  
+                # Lowered thread has lower tension
                 thread_tensions[f"{step}_{warp_idx}"] = thread_props[instruction.weft_color].tensile_strength_n * 0.15
                 fabric_matrix[step, warp_idx] = 0
-    
+
     # Calculate mechanical stresses on wooden frame
     max_warp_tension = max(thread_tensions.values())
-    total_warp_force = sum([thread_tensions[k] for k in thread_tensions.keys() if "warp" in k] + [max_warp_tension] * config.warp_count) / config.warp_count
-    
+    total_warp_force = sum([thread_tensions[k] for k in thread_tensions if "warp" in k] + [max_warp_tension] * config.warp_count) / config.warp_count
+
     mechanical_stress["frame_tension_mpa"] = total_warp_force / (50 * 50)  # 50x50mm frame member
     mechanical_stress["cam_shear_mpa"] = (instruction.beat_strength * 20) / (np.pi * 25**2)  # Cam shaft stress
     mechanical_stress["gear_tooth_mpa"] = (total_warp_force * 2) / (10 * 5)  # Gear tooth contact stress
-    
+
     # Performance metrics
     weaving_time_minutes = len(pattern_program) * 60 / (config.operating_speed_rpm * 60)
     fabric_area_m2 = (config.reed_width_mm / 1000) * (fabric_length * config.weft_count_per_inch * 25.4 / 1000)
     production_rate_m2_hr = fabric_area_m2 / (weaving_time_minutes / 60)
-    
+
     # Pattern complexity analysis
     pattern_entropy = calculate_pattern_entropy(fabric_matrix)
     thread_utilization = np.mean(fabric_matrix)
-    
+
     return {
         "simulation_metadata": {
             "seed": seed,
-            "simulation_type": "multi_physics_textile_mechanics", 
+            "simulation_type": "multi_physics_textile_mechanics",
             "time_step_ms": 50,
             "total_steps": len(pattern_program),
             "convergence_criterion": "thread_tension_equilibrium"
         },
-        
+
         "loom_configuration": {
             "warp_count": config.warp_count,
             "working_width_mm": config.reed_width_mm,
             "pattern_length": len(pattern_program),
             "operating_speed_rpm": 12
         },
-        
+
         "fabric_results": {
             "pattern_matrix_shape": fabric_matrix.shape,
             "fabric_area_m2": fabric_area_m2,
@@ -387,7 +385,7 @@ def simulate(seed: int = 42) -> Dict[str, Any]:
             "thread_utilization": thread_utilization,
             "weaving_time_minutes": weaving_time_minutes
         },
-        
+
         "mechanical_analysis": {
             "thread_tensions": {
                 "max_tension_n": max(thread_tensions.values()),
@@ -397,41 +395,41 @@ def simulate(seed: int = 42) -> Dict[str, Any]:
             },
             "structural_stress": {
                 "frame_stress_mpa": mechanical_stress["frame_tension_mpa"],
-                "cam_stress_mpa": mechanical_stress["cam_shear_mpa"], 
+                "cam_stress_mpa": mechanical_stress["cam_shear_mpa"],
                 "gear_stress_mpa": mechanical_stress["gear_tooth_mpa"],
                 "safety_factor_frame": 40 / mechanical_stress["frame_tension_mpa"],  # Oak yield strength ~40 MPa
                 "safety_factor_cam": 25 / mechanical_stress["cam_shear_mpa"]  # Hardwood shear strength
             }
         },
-        
+
         "cam_system_performance": {
             "lift_precision_mm": 0.5,
-            "timing_accuracy_degrees": 2.0, 
+            "timing_accuracy_degrees": 2.0,
             "wear_cycles_estimated": 50000,
             "maintenance_interval_hours": 40
         },
-        
+
         "pattern_programming": {
             "instructions_total": len(pattern_program),
             "unique_operations": len(set([op.value for op in LoomOperation])),
             "pattern_complexity_score": pattern_entropy,
             "programmability_assessment": "High - supports complex geometric patterns"
         },
-        
+
         "historical_validation": {
             "renaissance_feasibility": "Excellent - within period material capabilities",
-            "precision_achievable": "±0.5mm with skilled Renaissance craftsmanship", 
+            "precision_achievable": "±0.5mm with skilled Renaissance craftsmanship",
             "power_requirement_human": "50W sustained - feasible for trained operator",
             "economic_impact": "4x productivity improvement over manual weaving"
         },
-        
+
         "modern_relevance": {
             "digital_fabrication_connection": "Direct ancestor of CNC textile machines",
             "programming_concepts": "Stored program, mechanical logic, automation control",
             "educational_value": "Demonstrates evolution from mechanical to digital programming",
             "maker_movement_appeal": "Perfect intersection of historical craft and modern making"
         },
-        
+
         "performance_metrics": {
             "fabric_quality_score": 0.92,  # Based on tension uniformity and pattern accuracy
             "automation_efficiency": 0.85,  # Compared to manual operation
@@ -458,13 +456,13 @@ def build() -> Dict[str, Any]:
     - Assembly instructions and tooling requirements
     - Modern safety enhancements and controls
     """
-    
+
     # Core frame dimensions (scaled from Leonardo's braccia measurements)
     frame_width_mm = 800
-    frame_length_mm = 1200  
+    frame_length_mm = 1200
     frame_height_mm = 1000
     working_width_mm = 400
-    
+
     # Major components list
     components = {
         "frame_assembly": {
@@ -475,12 +473,12 @@ def build() -> Dict[str, Any]:
                 "finish": "danish_oil_food_safe"
             },
             "base_platform": {
-                "material": "hardwood_plywood_18mm", 
+                "material": "hardwood_plywood_18mm",
                 "dimensions_mm": [frame_length_mm, frame_width_mm, 18],
                 "mounting": "countersunk_screws_and_threaded_inserts"
             }
         },
-        
+
         "warp_system": {
             "warp_beam": {
                 "material": "turned_hardwood_cylinder",
@@ -489,7 +487,7 @@ def build() -> Dict[str, Any]:
                 "bearings": "sealed_ball_bearings_with_bronze_bushings"
             },
             "cloth_beam": {
-                "material": "turned_hardwood_cylinder", 
+                "material": "turned_hardwood_cylinder",
                 "diameter_mm": 80,
                 "length_mm": working_width_mm + 100,
                 "ratchet_system": "hardwood_pawl_and_ratchet_wheel"
@@ -501,7 +499,7 @@ def build() -> Dict[str, Any]:
                 "mounting": "heddle_bars_on_harness_frames"
             }
         },
-        
+
         "cam_programming_system": {
             "master_cam_barrel": {
                 "material": "seasoned_hardwood_cylinder",
@@ -523,7 +521,7 @@ def build() -> Dict[str, Any]:
                 "spring_return": "leaf_springs_or_coil_springs"
             }
         },
-        
+
         "harness_and_shed_system": {
             "harness_frames": {
                 "count": 4,  # For complex patterns
@@ -538,7 +536,7 @@ def build() -> Dict[str, Any]:
                 "precision_mm": 0.5
             }
         },
-        
+
         "weft_insertion_system": {
             "shuttle": {
                 "material": "turned_hardwood_with_steel_tips",
@@ -552,7 +550,7 @@ def build() -> Dict[str, Any]:
                 "automatic_picker": "cam_actuated_throwing_mechanism"
             }
         },
-        
+
         "beating_and_reed_system": {
             "reed": {
                 "material": "steel_wire_in_hardwood_frame",
@@ -567,7 +565,7 @@ def build() -> Dict[str, Any]:
                 "cam_actuation": "automatic_beating_synchronized_with_weft_insertion"
             }
         },
-        
+
         "drive_system": {
             "main_drive_shaft": {
                 "material": "steel_shaft_with_bronze_bearings",
@@ -586,7 +584,7 @@ def build() -> Dict[str, Any]:
                 "mechanical_advantage": 4.0
             }
         },
-        
+
         "modern_safety_enhancements": {
             "emergency_stop": {
                 "type": "mechanical_brake_on_main_shaft",
@@ -604,37 +602,37 @@ def build() -> Dict[str, Any]:
             }
         }
     }
-    
+
     # Manufacturing specifications
     manufacturing_specs = {
         "tolerances": {
             "frame_joints": "±0.2mm for precision fit",
-            "gear_teeth": "±0.1mm for smooth meshing", 
+            "gear_teeth": "±0.1mm for smooth meshing",
             "cam_profiles": "±0.05mm for timing accuracy",
             "thread_guides": "±0.1mm for consistent tension"
         },
-        
+
         "surface_finishes": {
             "wood_components": "220_grit_sand_and_danish_oil",
             "metal_components": "machine_finish_and_clear_coat",
             "bearing_surfaces": "polished_to_0.4_micron_ra"
         },
-        
+
         "fasteners": {
             "primary_joints": "stainless_steel_machine_screws_with_threaded_inserts",
             "adjustable_connections": "bronze_thumb_screws_and_wing_nuts",
             "high_stress_joints": "steel_bolts_with_lock_washers"
         },
-        
+
         "tooling_requirements": [
             "CNC router or high-precision woodworking tools",
-            "Metal lathe for turning shafts and cylinders", 
+            "Metal lathe for turning shafts and cylinders",
             "Drill press with precision depth control",
             "Mortising machine or chisel set for joints",
             "Gear cutting tools or CNC machining for gear teeth"
         ]
     }
-    
+
     # Assembly sequence
     assembly_instructions = {
         "phase_1_frame": [
@@ -645,15 +643,15 @@ def build() -> Dict[str, Any]:
             "Apply wood glue and assemble with clamps",
             "Install threaded inserts for removable components"
         ],
-        
+
         "phase_2_drive_system": [
             "Mount main drive shaft with precision-aligned bearings",
             "Install gear train with proper backlash adjustment",
-            "Connect hand crank and verify smooth operation", 
+            "Connect hand crank and verify smooth operation",
             "Test gear ratios and timing relationships",
             "Apply appropriate lubrication to all moving parts"
         ],
-        
+
         "phase_3_cam_programming": [
             "Turn cam barrel to precise diameter and concentricity",
             "Drill peg holes using indexing fixture for accuracy",
@@ -661,7 +659,7 @@ def build() -> Dict[str, Any]:
             "Program initial test pattern using colored pegs",
             "Verify cam timing and adjust as needed"
         ],
-        
+
         "phase_4_textile_systems": [
             "Mount warp and cloth beams with proper alignment",
             "Install harness frames and suspension system",
@@ -669,7 +667,7 @@ def build() -> Dict[str, Any]:
             "Install reed and beater mechanism",
             "Test shuttle race and automatic picker"
         ],
-        
+
         "phase_5_integration_testing": [
             "Load test threads and verify tension system",
             "Program simple pattern and test weaving cycle",
@@ -678,7 +676,7 @@ def build() -> Dict[str, Any]:
             "Complete operator training and documentation"
         ]
     }
-    
+
     # Modern enhancements for safety and usability
     modern_enhancements = {
         "digital_pattern_interface": {
@@ -690,14 +688,14 @@ def build() -> Dict[str, Any]:
                 "Weaving simulation and optimization"
             ]
         },
-        
+
         "sensors_and_monitoring": {
             "thread_tension_sensors": "Load cells for real-time tension monitoring",
             "position_encoders": "Track shuttle and harness positions",
             "pattern_verification": "Camera system to verify woven pattern accuracy",
             "maintenance_alerts": "Vibration sensors for predictive maintenance"
         },
-        
+
         "educational_features": {
             "transparent_panels": "Show internal mechanisms during operation",
             "step_by_step_mode": "Manual control for demonstration",
@@ -705,7 +703,7 @@ def build() -> Dict[str, Any]:
             "virtual_reality_integration": "VR experience of Leonardo's workshop"
         }
     }
-    
+
     return {
         "cad_model_summary": {
             "total_components": len([item for subdict in components.values() for item in subdict.keys()]),
@@ -714,12 +712,12 @@ def build() -> Dict[str, Any]:
             "estimated_weight_kg": 150,
             "footprint_m2": (frame_length_mm * frame_width_mm) / 1_000_000
         },
-        
+
         "component_specifications": components,
         "manufacturing_specifications": manufacturing_specs,
         "assembly_instructions": assembly_instructions,
         "modern_enhancements": modern_enhancements,
-        
+
         "cost_analysis": {
             "materials_usd": 2500,
             "machining_hours": 80,
@@ -727,7 +725,7 @@ def build() -> Dict[str, Any]:
             "estimated_total_usd": 8000,
             "comparison_to_historical": "Accessible to Renaissance master craftsman budget"
         },
-        
+
         "performance_specifications": {
             "production_rate_m2_hr": 0.8,
             "pattern_resolution_mm": 2.0,
@@ -735,11 +733,11 @@ def build() -> Dict[str, Any]:
             "operator_skill_required": "intermediate_weaving_knowledge",
             "maintenance_interval_hours": 40
         },
-        
+
         "educational_applications": {
             "stem_integration": [
                 "Mechanical engineering: gear ratios and cam design",
-                "Computer science: early programming concepts", 
+                "Computer science: early programming concepts",
                 "Mathematics: pattern generation and tessellation",
                 "History: Renaissance technology and craftsmanship"
             ],
@@ -758,12 +756,12 @@ def evaluate() -> Dict[str, Any]:
     - Modern safety enhancements
     - Educational and cultural impact assessment
     """
-    
+
     # Failure Mode and Effects Analysis
     fmea_analysis = {
         "thread_breakage": {
             "probability": "Medium",
-            "severity": "Low", 
+            "severity": "Low",
             "detection": "High",
             "risk_priority_number": 6,
             "mitigation": [
@@ -773,11 +771,11 @@ def evaluate() -> Dict[str, Any]:
                 "Regular inspection of thread guides"
             ]
         },
-        
+
         "cam_system_wear": {
             "probability": "Medium",
             "severity": "Medium",
-            "detection": "Medium", 
+            "detection": "Medium",
             "risk_priority_number": 12,
             "mitigation": [
                 "Hardened steel contact points on cam followers",
@@ -786,7 +784,7 @@ def evaluate() -> Dict[str, Any]:
                 "Replaceable wear components"
             ]
         },
-        
+
         "shuttle_jam": {
             "probability": "Low",
             "severity": "Medium",
@@ -799,23 +797,23 @@ def evaluate() -> Dict[str, Any]:
                 "Regular cleaning and maintenance procedures"
             ]
         },
-        
+
         "hand_crank_injury": {
-            "probability": "Low", 
+            "probability": "Low",
             "severity": "High",
             "detection": "Low",
             "risk_priority_number": 18,
             "mitigation": [
                 "Crank handle guards and non-slip grips",
-                "Emergency brake system on main shaft", 
+                "Emergency brake system on main shaft",
                 "Operator training on proper cranking technique",
                 "Clear workspace around crank area"
             ]
         },
-        
+
         "pinch_points": {
             "probability": "Medium",
-            "severity": "High", 
+            "severity": "High",
             "detection": "High",
             "risk_priority_number": 15,
             "mitigation": [
@@ -826,7 +824,7 @@ def evaluate() -> Dict[str, Any]:
             ]
         }
     }
-    
+
     # Historical feasibility assessment
     historical_feasibility = {
         "materials_availability": {
@@ -835,21 +833,21 @@ def evaluate() -> Dict[str, Any]:
             "metals": "Iron and bronze available through trade networks",
             "threads": "Silk, linen, wool produced locally"
         },
-        
+
         "craftsmanship_requirements": {
             "woodworking_skills": "High precision required - master craftsman level",
             "metalworking": "Basic forging and filing - available skills",
             "gear_cutting": "Challenging but feasible with hand tools",
             "assembly_complexity": "Moderate - within Renaissance capabilities"
         },
-        
+
         "economic_viability": {
             "construction_cost": "Equivalent to 6 months master craftsman wages",
             "productivity_gain": "4x improvement over manual weaving",
             "payback_period": "18 months with full utilization",
             "market_demand": "High for luxury textiles in Renaissance courts"
         },
-        
+
         "technological_prerequisites": {
             "precision_measurement": "Available through guild knowledge",
             "mechanical_principles": "Gears and cams well understood",
@@ -857,7 +855,7 @@ def evaluate() -> Dict[str, Any]:
             "maintenance_knowledge": "Within existing craft traditions"
         }
     }
-    
+
     # Modern safety compliance
     modern_safety = {
         "machine_safety_standards": {
@@ -868,12 +866,12 @@ def evaluate() -> Dict[str, Any]:
             ],
             "required_safety_features": [
                 "Emergency stop systems",
-                "Interlocked guards", 
+                "Interlocked guards",
                 "Light curtains for pinch point protection",
                 "Lockout/tagout procedures"
             ]
         },
-        
+
         "operator_safety": {
             "training_requirements": [
                 "Machine operation procedures",
@@ -888,7 +886,7 @@ def evaluate() -> Dict[str, Any]:
                 "Hearing protection if needed"
             ]
         },
-        
+
         "environmental_considerations": {
             "noise_levels": "< 70 dB with proper maintenance",
             "dust_generation": "Minimal with hardwood construction",
@@ -896,7 +894,7 @@ def evaluate() -> Dict[str, Any]:
             "waste_products": "Biodegradable textile scraps only"
         }
     }
-    
+
     # Educational and cultural impact
     impact_assessment = {
         "educational_value": {
@@ -909,19 +907,19 @@ def evaluate() -> Dict[str, Any]:
             "interdisciplinary_connections": [
                 "History: Renaissance technology and society",
                 "Art: Textile design and pattern creation",
-                "Mathematics: Geometric patterns and tessellation", 
+                "Mathematics: Geometric patterns and tessellation",
                 "Engineering: Mechanical systems and automation"
             ],
             "hands_on_learning": "Perfect for maker spaces and technical museums"
         },
-        
+
         "cultural_significance": {
             "historical_preservation": "Demonstrates lost Renaissance manufacturing technology",
             "artisan_skills": "Preserves traditional textile and woodworking knowledge",
             "innovation_story": "Shows evolution from manual to automated production",
             "leonardo_legacy": "Exemplifies da Vinci's vision of human-centered technology"
         },
-        
+
         "research_applications": {
             "textile_archaeology": "Enables recreation of historical fabric patterns",
             "technology_history": "Physical proof-of-concept for Renaissance automation",
@@ -929,7 +927,7 @@ def evaluate() -> Dict[str, Any]:
             "museum_studies": "Interactive exhibit potential for visitor engagement"
         }
     }
-    
+
     # Overall project assessment
     overall_assessment = {
         "technical_feasibility": {
@@ -942,14 +940,14 @@ def evaluate() -> Dict[str, Any]:
                 "Strong educational and cultural value proposition"
             ]
         },
-        
+
         "innovation_potential": {
             "historical_significance": "First reconstruction of programmable Renaissance machine",
             "educational_impact": "Unique bridge between historical and modern technology",
             "research_value": "Validates computational archaeology methodologies",
             "public_engagement": "High appeal for museums and maker communities"
         },
-        
+
         "implementation_recommendations": {
             "priority_level": "High - flagship project potential",
             "development_phases": [
@@ -966,21 +964,21 @@ def evaluate() -> Dict[str, Any]:
             ]
         }
     }
-    
+
     return {
         "fmea_analysis": fmea_analysis,
         "historical_feasibility": historical_feasibility,
         "modern_safety_compliance": modern_safety,
-        "impact_assessment": impact_assessment, 
+        "impact_assessment": impact_assessment,
         "overall_assessment": overall_assessment,
-        
+
         "safety_summary": {
             "highest_risk_items": ["hand_crank_injury", "pinch_points"],
             "required_mitigations": 8,
             "safety_score": 8.5,  # Out of 10
             "compliance_status": "Achievable with proper engineering controls"
         },
-        
+
         "feasibility_summary": {
             "historical_accuracy": "Excellent - true to Leonardo's design intent",
             "modern_buildability": "High - all techniques and materials available",
@@ -988,7 +986,7 @@ def evaluate() -> Dict[str, Any]:
             "cultural_value": "Exceptional - preserves Renaissance innovation legacy",
             "overall_recommendation": "PROCEED - flagship project potential"
         },
-        
+
         "next_steps": [
             "Develop detailed CAD models with precise tolerances",
             "Build small-scale proof-of-concept prototype",
@@ -1019,16 +1017,16 @@ if __name__ == "__main__":
     print(f"Leonardo's Programmable Loom - {TITLE}")
     print(f"Status: {STATUS}")
     print(f"Summary: {SUMMARY}")
-    
+
     # Quick demonstration
     plan_data = plan()
     print(f"\nHistorical Context: {plan_data['historical_context']['significance']}")
-    
+
     sim_results = simulate()
     print(f"Simulation: {sim_results['fabric_results']['pattern_entropy']:.2f} pattern entropy")
-    
+
     build_data = build()
     print(f"CAD Model: {build_data['cad_model_summary']['total_components']} components")
-    
+
     eval_data = evaluate()
     print(f"Safety Assessment: {eval_data['safety_summary']['safety_score']}/10")

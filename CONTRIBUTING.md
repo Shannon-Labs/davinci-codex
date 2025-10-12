@@ -68,7 +68,7 @@ git push origin feature/your-feature-name
 
 ## Types of Contributions
 
-### 🎨 New Inventions
+### Creative New Inventions
 Implement additional da Vinci designs:
 - Research original manuscripts
 - Create mathematical models
@@ -76,7 +76,7 @@ Implement additional da Vinci designs:
 - Add safety analysis
 - Document provenance
 
-### 🔬 Enhanced Simulations
+### Scientific Analysis Enhanced Simulations
 Improve existing models:
 - Refine physics calculations
 - Add CFD analysis

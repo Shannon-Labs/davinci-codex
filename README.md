@@ -67,8 +67,8 @@ Leonardo da Vinci (1452-1519) produced over 13,000 pages of notes and drawings, 
 **Available Resources:**
 - 📦 [Complete CAD Package](artifacts/aerial_screw/complete_package/) - STL models at 15°, 30°, 45° pitch angles
 - 🎬 [Animation Data](artifacts/aerial_screw/complete_package/animations/) - Assembly sequences & pitch operation
-- 📐 [Technical Drawings](artifacts/aerial_screw/complete_package/technical_drawings/) - Full dimensional specifications
-- 📊 [Simulation Results](artifacts/aerial_screw/sim/) - Performance data & analysis
+- Technical Drawing [Technical Drawings](artifacts/aerial_screw/complete_package/technical_drawings/) - Full dimensional specifications
+- Performance Metrics [Simulation Results](artifacts/aerial_screw/sim/) - Performance data & analysis
 
 ---
 
@@ -102,7 +102,7 @@ Leonardo da Vinci (1452-1519) produced over 13,000 pages of notes and drawings, 
 
 **Available Resources:**
 - 📦 [CAD Models](mechanical_lion_complete_package/) - Complete mechanical system (when generated)
-- 🎭 [Cam Demonstrations](artifacts/cam_demonstration/) - All mechanical subsystems
+- Theatrical [Cam Demonstrations](artifacts/cam_demonstration/) - All mechanical subsystems
 - 🔧 [Control System](src/davinci_codex/control/lion_control_system.py) - Programmable timing system
 
 ---
@@ -125,7 +125,7 @@ Leonardo da Vinci (1452-1519) produced over 13,000 pages of notes and drawings, 
 
 ---
 
-### 🦅 Ornithopter - Flapping Wing Flight
+### Eagle-inspired Ornithopter - Flapping Wing Flight
 <table>
 <tr>
 <td width="50%" align="center">
@@ -161,7 +161,7 @@ Leonardo da Vinci (1452-1519) produced over 13,000 pages of notes and drawings, 
 
 ---
 
-### 🎵 Renaissance Musical Instruments
+### Musical Renaissance Musical Instruments
 > Mechanical instruments capable of autonomous performance
 
 <table>
@@ -209,7 +209,7 @@ Leonardo da Vinci (1452-1519) produced over 13,000 pages of notes and drawings, 
 
 ---
 
-### 📊 Engineering Validation
+### Performance Metrics Engineering Validation
 <table>
 <tr>
 <td width="33%" align="center">
@@ -243,7 +243,7 @@ All visualizations, CAD models, and simulation data are available for:
 
 ---
 
-## 📊 Simulation Results Summary
+## Performance Metrics Simulation Results Summary
 
 **⚠️ Important**: All metrics below are from computational simulations using **low-order surrogate models** suitable for educational exploration and trend analysis. Results should not be used for detailed design decisions without validation. See [Physics Derivations](docs/book/physics/index.md) for model assumptions and limitations.
 
@@ -347,7 +347,7 @@ davinci-codex/
 │   └── materials/                  # Renaissance material properties with uncertainty
 │       └── renaissance_db.yaml
 │
-├── 🔬 Source Code
+├── Scientific Analysis Source Code
 │   └── src/davinci_codex/
 │       ├── cli.py                 # CLI interface
 │       ├── registry.py            # Dynamic discovery
@@ -403,7 +403,7 @@ Validation artefacts live in `tests/`, `validation/`, `sims/`, and `artifacts/` 
 
 ---
 
-## 🔬 Methodology
+## Scientific Analysis Methodology
 
 ### 1. Historical Research Phase
 - **Source Analysis**: Original codex folio examination
@@ -476,8 +476,8 @@ We welcome contributions from engineers, historians, educators, and enthusiasts 
 
 ### Contribution Ideas
 
-- 🎨 **New Inventions**: Implement additional da Vinci designs
-- 🔬 **Enhanced Physics**: Improve simulation accuracy
+- Creative **New Inventions**: Implement additional da Vinci designs
+- Scientific Analysis **Enhanced Physics**: Improve simulation accuracy
 - 📚 **Historical Research**: Add manuscript references
 - 🌍 **Translations**: Internationalize documentation
 - 🎓 **Educational Content**: Create tutorials and guides
@@ -535,7 +535,7 @@ This project can serve as an educational resource for:
 
 ---
 
-## 📊 Project Status
+## Performance Metrics Project Status
 
 ### Current Development
 - **Test Coverage**: Comprehensive test suite
@@ -609,10 +609,10 @@ CC0 1.0 Universal - Public Domain Dedication for generated content
 I am actively working to enhance the repository. See our [Enhancement Plan](ENHANCEMENT_PLAN.md) and [Architecture Guide](ARCHITECTURE.md) for detailed plans.
 
 **Current Focus Areas:**
-- 🎨 **Documentation & User Experience**: Improving documentation and usability
+- Creative **Documentation & User Experience**: Improving documentation and usability
 - 🔧 **Testing & Quality**: Expanding test coverage and code quality
 - 📚 **Educational Resources**: Developing interactive learning materials
-- 🔬 **Simulation Improvements**: Enhancing computational models
+- Scientific Analysis **Simulation Improvements**: Enhancing computational models
 
 **"Obstacles do not bend me."** - Leonardo da Vinci
 

@@ -20,9 +20,9 @@ The da Vinci Codex project reconstructs Leonardo da Vinci's civil, non-weapon in
 - Medical concepts must meet contemporary safety expectations; speculative or risky ideas are deferred.
 - All datasets, imagery, and text are public-domain or newly generated under CC0.
 
-## 🚁 AERIAL SCREW BREAKTHROUGH ANNOUNCEMENT
+## Aerial Screw Breakthrough Announcement
 
-We are proud to announce a **major engineering breakthrough** in Leonardo da Vinci's aerial screw design! After extensive computational analysis and modern engineering refinement, we have achieved:
+We are proud to announce a major engineering breakthrough in Leonardo da Vinci's aerial screw design. After extensive computational analysis and modern engineering refinement, we have achieved:
 
 ### Key Achievements
 - **Variable-Pitch Control System**: Complete swashplate mechanism enabling 15°-45° blade pitch adjustment
