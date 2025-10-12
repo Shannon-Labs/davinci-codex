@@ -71,9 +71,11 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - node_modules
-  - vendor
+  - vendor/
+  - vendor/bundle/
   - .sass-cache
   - .jekyll-cache
+  - .jekyll-metadata
   - gemfiles
   - _site
 

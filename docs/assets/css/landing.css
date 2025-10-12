@@ -327,3 +327,110 @@
   }
 }
 
+/* Invention Card Image Styles - Graceful Degradation */
+.invention-image {
+  position: relative;
+  min-height: 150px;
+  background-color: #f5f5dc;
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px 8px 0 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.invention-status-icon {
+  font-size: 2.5em;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+.invention-card {
+  display: block;
+  background: var(--surface);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+  color: inherit;
+  margin-bottom: 20px;
+}
+
+.invention-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.invention-content {
+  padding: 20px;
+}
+
+.invention-name {
+  font-family: 'Cinzel', serif;
+  font-size: 1.25rem;
+  margin-bottom: 8px;
+  color: var(--primary);
+}
+
+.invention-status {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  background: var(--secondary);
+  color: white;
+  font-size: 0.8rem;
+  margin-bottom: 12px;
+}
+
+.invention-achievement {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--accent);
+}
+
+.invention-description {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+}
+
+.invention-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.invention-stat {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  padding-left: 12px;
+  position: relative;
+}
+
+.invention-stat::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+.inventions-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.category-card {
+  margin-bottom: 40px;
+}
+

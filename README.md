@@ -67,8 +67,8 @@ Leonardo da Vinci (1452-1519) produced over 13,000 pages of notes and drawings, 
 **Available Resources:**
 - 📦 [Complete CAD Package](artifacts/aerial_screw/complete_package/) - STL models at 15°, 30°, 45° pitch angles
 - 🎬 [Animation Data](artifacts/aerial_screw/complete_package/animations/) - Assembly sequences & pitch operation
-- Technical Drawing [Technical Drawings](artifacts/aerial_screw/complete_package/technical_drawings/) - Full dimensional specifications
-- Performance Metrics [Simulation Results](artifacts/aerial_screw/sim/) - Performance data & analysis
+- 📐 [Technical Drawings](artifacts/aerial_screw/complete_package/technical_drawings/) - Full dimensional specifications
+- 📊 [Simulation Results](artifacts/aerial_screw/sim/) - Performance data & analysis
 
 ---
 
@@ -102,7 +102,7 @@ Leonardo da Vinci (1452-1519) produced over 13,000 pages of notes and drawings, 
 
 **Available Resources:**
 - 📦 [CAD Models](mechanical_lion_complete_package/) - Complete mechanical system (when generated)
-- Theatrical [Cam Demonstrations](artifacts/cam_demonstration/) - All mechanical subsystems
+- 🎭 [Cam Demonstrations](artifacts/cam_demonstration/) - All mechanical subsystems
 - 🔧 [Control System](src/davinci_codex/control/lion_control_system.py) - Programmable timing system
 
 ---
