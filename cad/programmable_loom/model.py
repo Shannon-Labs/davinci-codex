@@ -3,12 +3,12 @@ Leonardo's Programmable Loom - CAD Model
 ========================================
 
 Parametric 3D model of Leonardo's revolutionary textile computer.
-This implementation creates a complete, manufacturable design based on 
+This implementation creates a complete, manufacturable design based on
 Renaissance woodworking techniques enhanced with modern safety features.
 
 The model includes:
 - Main frame structure with traditional joinery
-- Cam-based programming system with interchangeable barrels  
+- Cam-based programming system with interchangeable barrels
 - Multi-harness weaving mechanism
 - Automatic weft insertion system
 - Modern safety guards and controls
@@ -493,7 +493,7 @@ class LoomCADModel:
         }
 
         # Component details
-        for name, component in self.components.items():
+        for _name, component in self.components.items():
             weight = component.weight_kg()
 
             bom["components"].append({
@@ -680,7 +680,7 @@ def generate_manufacturing_drawings():
     print("📐 Generating Manufacturing Drawings for Leonardo's Programmable Loom")
     print("=" * 70)
 
-    loom = LoomCADModel()
+    LoomCADModel()
 
     # Critical dimensions for manufacturing
     drawings = {
@@ -735,7 +735,7 @@ def generate_manufacturing_drawings():
 
 def export_cad_files():
     """Export CAD files in various formats"""
-    loom = LoomCADModel()
+    LoomCADModel()
 
     export_formats = {
         "STEP_files": "For CAM programming and precision machining",

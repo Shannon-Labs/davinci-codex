@@ -39,6 +39,12 @@ UPPER_LEG_LENGTH = 0.3  # meters (femur/humerus)
 LOWER_LEG_LENGTH = 0.25  # meters (tibia/radius)
 PAW_LENGTH = 0.05  # meters
 
+# Body positioning constants (meters)
+FORELEG_TO_HINDLEG_DISTANCE = 0.8
+LATERAL_LEG_SPACING = 0.4
+BODY_HEIGHT = 0.6
+WINDING_GEAR_RADIUS = 0.15
+
 # Joint ranges (radians) - based on real lion anatomy
 HIP_FLEXION_RANGE = (-math.pi/4, math.pi/3)  # -45° to +60°
 HIP_ABDUCTION_RANGE = (-math.pi/6, math.pi/6)  # -30° to +30°

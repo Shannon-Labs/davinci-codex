@@ -3,9 +3,9 @@ Leonardo's Programmable Loom - The World's First Textile Computer
 ================================================================
 
 Historical Context:
-Leonardo da Vinci (c. 1495-1500) designed what may be history's first programmable 
-machine in Codex Atlanticus folios 1090r-1091v. This automatic loom uses a system 
-of cams, pegs, and mechanical logic to weave complex patterns - essentially creating 
+Leonardo da Vinci (c. 1495-1500) designed what may be history's first programmable
+machine in Codex Atlanticus folios 1090r-1091v. This automatic loom uses a system
+of cams, pegs, and mechanical logic to weave complex patterns - essentially creating
 a textile computer 500 years before modern computers!
 
 This implementation demonstrates:
@@ -105,10 +105,10 @@ class LoomSimulation:
 def plan() -> Dict[str, Any]:
     """
     Historical research and design parameters for Leonardo's Programmable Loom
-    
+
     Based on analysis of:
     - Codex Atlanticus f.1090r: Main loom mechanism
-    - Codex Atlanticus f.1091v: Cam programming system  
+    - Codex Atlanticus f.1091v: Cam programming system
     - Madrid Codex I f.67v: Thread tension control
     """
 
@@ -210,10 +210,10 @@ def plan() -> Dict[str, Any]:
 def simulate(seed: int = 42) -> Dict[str, Any]:
     """
     Physics-based simulation of Leonardo's Programmable Loom
-    
+
     Models:
     - Thread tension dynamics during weaving
-    - Mechanical stress on wooden components  
+    - Mechanical stress on wooden components
     - Pattern generation and fabric structure
     - Cam-based control system operation
     """
@@ -411,7 +411,7 @@ def simulate(seed: int = 42) -> Dict[str, Any]:
 
         "pattern_programming": {
             "instructions_total": len(pattern_program),
-            "unique_operations": len(set([op.value for op in LoomOperation])),
+            "unique_operations": len({op.value for op in LoomOperation}),
             "pattern_complexity_score": pattern_entropy,
             "programmability_assessment": "High - supports complex geometric patterns"
         },
@@ -449,7 +449,7 @@ def calculate_pattern_entropy(fabric_matrix: np.ndarray) -> float:
 def build() -> Dict[str, Any]:
     """
     Generate complete CAD model and manufacturing package for Leonardo's Programmable Loom
-    
+
     Creates:
     - Parametric 3D model with 200+ components
     - Manufacturing drawings and tolerances
@@ -460,7 +460,6 @@ def build() -> Dict[str, Any]:
     # Core frame dimensions (scaled from Leonardo's braccia measurements)
     frame_width_mm = 800
     frame_length_mm = 1200
-    frame_height_mm = 1000
     working_width_mm = 400
 
     # Major components list
@@ -706,9 +705,9 @@ def build() -> Dict[str, Any]:
 
     return {
         "cad_model_summary": {
-            "total_components": len([item for subdict in components.values() for item in subdict.keys()]),
+            "total_components": len([item for subdict in components.values() for item in subdict]),
             "assemblies": list(components.keys()),
-            "materials_count": len(set([comp.get("material", "unknown") for subdict in components.values() for comp in subdict.values()])),
+            "materials_count": len({comp.get("material", "unknown") for subdict in components.values() for comp in subdict.values()}),
             "estimated_weight_kg": 150,
             "footprint_m2": (frame_length_mm * frame_width_mm) / 1_000_000
         },
@@ -749,7 +748,7 @@ def build() -> Dict[str, Any]:
 def evaluate() -> Dict[str, Any]:
     """
     Comprehensive safety analysis and feasibility assessment
-    
+
     Includes:
     - FMEA (Failure Mode and Effects Analysis)
     - Historical feasibility validation

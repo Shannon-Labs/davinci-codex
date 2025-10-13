@@ -495,7 +495,7 @@ def _create_leg_exterior(
     pad_positions = [
         [paw_pos[0], paw_pos[1], paw_pos[2] + PAW_LENGTH/6],
         [paw_pos[0] - PAW_LENGTH/4, paw_pos[1] + PAW_WIDTH/4, paw_pos[2] + PAW_LENGTH/6],
-        [paw_pos[0] - PAW_LENGTH/4, paw_position[1] - PAW_WIDTH/4, paw_pos[2] + PAW_LENGTH/6],
+        [paw_pos[0] - PAW_LENGTH/4, paw_pos[1] - PAW_WIDTH/4, paw_pos[2] + PAW_LENGTH/6],
         [paw_pos[0] + PAW_LENGTH/4, paw_pos[1] + PAW_WIDTH/4, paw_pos[2] + PAW_LENGTH/6],
         [paw_pos[0] + PAW_LENGTH/4, paw_pos[1] - PAW_WIDTH/4, paw_pos[2] + PAW_LENGTH/6]
     ]

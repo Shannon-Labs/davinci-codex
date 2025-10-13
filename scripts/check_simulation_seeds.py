@@ -35,13 +35,12 @@ class SeedChecker(ast.NodeVisitor):
 
             # Check function body for seed usage
             for stmt in ast.walk(node):
-                if isinstance(stmt, ast.Call):
-                    if (hasattr(stmt.func, 'attr') and
-                        stmt.func.attr in ['seed', 'random_state'] or
-                        hasattr(stmt.func, 'id') and
-                        stmt.func.id in ['seed']):
-                        self.sets_seed = True
-                        break
+                if isinstance(stmt, ast.Call) and (hasattr(stmt.func, 'attr') and
+                    stmt.func.attr in ['seed', 'random_state'] or
+                    hasattr(stmt.func, 'id') and
+                    stmt.func.id in ['seed']):
+                    self.sets_seed = True
+                    break
 
         self.generic_visit(node)
 

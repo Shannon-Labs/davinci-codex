@@ -15,7 +15,7 @@
     <meta property="og:url" content="{{ page.url | absolute_url }}" />
     <meta property="og:title" content="{{ page.title | default: site.title }}" />
     <meta property="og:description" content="{{ page.meta.description | default: site.description }}" />
-    <meta property="og:image" content="{{ page.meta.image | default: '/images/davinci-codex-social.jpg' | relative_url | absolute_url }}" />
+    <meta property="og:image" content="{{ page.meta.image | default: '/images/davinci-codex-hero.jpg' | relative_url | absolute_url }}" />
     <meta property="og:site_name" content="{{ site.title }}" />
     
     <!-- Twitter Card -->
@@ -23,7 +23,7 @@
     <meta name="twitter:url" content="{{ page.url | absolute_url }}" />
     <meta name="twitter:title" content="{{ page.title | default: site.title }}" />
     <meta name="twitter:description" content="{{ page.meta.description | default: site.description }}" />
-    <meta name="twitter:image" content="{{ page.meta.image | default: '/images/davinci-codex-social.jpg' | relative_url | absolute_url }}" />
+    <meta name="twitter:image" content="{{ page.meta.image | default: '/images/davinci-codex-hero.jpg' | relative_url | absolute_url }}" />
     {% if site.twitter_username %}
     <meta name="twitter:site" content="@{{ site.twitter_username }}" />
     {% endif %}
@@ -36,7 +36,7 @@
       "name": "{{ site.title }}",
       "url": "{{ site.url }}{{ site.baseurl }}",
       "description": "{{ site.description }}",
-      "logo": "{{ '/images/davinci-codex-logo.png' | relative_url | absolute_url }}",
+      "logo": "{{ '/images/codex_logo.png' | relative_url | absolute_url }}",
       "email": "{{ site.email }}",
       "sameAs": [
         "https://github.com/Shannon-Labs/davinci-codex"{% if site.twitter_username %},
@@ -93,7 +93,44 @@
               {% endif %}
             </div>
             {% endif %}
-            
+
+            <!-- Hero Split Layout -->
+            {% if section.layout == 'hero-split' %}
+              <div class="hero-split">
+                {% if section.intro %}
+                <div class="intro fade-in">{{ section.intro | markdownify }}</div>
+                {% endif %}
+
+                {% if section.primary %}
+                <div class="hero-split-primary fade-in">
+                  <h3>{{ section.primary.heading }}</h3>
+                  <p>{{ section.primary.description }}</p>
+                  {% if section.primary.highlights %}
+                  <ul class="highlights">
+                    {% for highlight in section.primary.highlights %}
+                    <li>{{ highlight }}</li>
+                    {% endfor %}
+                  </ul>
+                  {% endif %}
+                  {% if section.primary.cta %}
+                  <a href="{{ section.primary.cta.href }}" class="button primary">{{ section.primary.cta.label }}</a>
+                  {% endif %}
+                </div>
+                {% endif %}
+
+                {% if section.secondary %}
+                <div class="hero-split-secondary fade-in">
+                  {% if section.secondary.image %}
+                  <img src="{{ section.secondary.image | relative_url }}" alt="{{ section.secondary.caption | default: 'Historical manuscript' }}" loading="lazy">
+                  {% endif %}
+                  {% if section.secondary.caption %}
+                  <p class="caption">{{ section.secondary.caption }}</p>
+                  {% endif %}
+                </div>
+                {% endif %}
+              </div>
+            {% endif %}
+
             <!-- Category Showcase Layout -->
             {% if section.layout == 'category-showcase' %}
               <div class="categories-grid">

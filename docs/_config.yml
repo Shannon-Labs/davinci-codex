@@ -121,6 +121,8 @@ navigation:
         children:
           - title: "Aerial Screw"
             url: /aerial_screw/
+          - title: "3D Viewer"
+            url: /aerial_screw_viewer/
           - title: "Ornithopter"
             url: /ornithopter/
           - title: "Parachute"
@@ -137,8 +139,23 @@ navigation:
         children:
           - title: "Mechanical Lion"
             url: /mechanical_lion/
+          - title: "3D Viewer"
+            url: /mechanical_lion_viewer/
           - title: "Musical Ensemble"
             url: /mechanical_ensemble/
+          - title: "3D Collection"
+            url: /musical_instruments_viewer/
+  - title: "3D Models"
+    url: /3d-models/
+    children:
+      - title: "Aerial Screw Viewer"
+        url: /aerial_screw_viewer/
+      - title: "Mechanical Lion Viewer"
+        url: /mechanical_lion_viewer/
+      - title: "Musical Instruments Collection"
+        url: /musical_instruments_viewer/
+      - title: "Complete Gallery"
+        url: /3d-gallery/
   - title: "Gallery"
     url: /gallery/
   - title: "Research"

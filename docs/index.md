@@ -245,7 +245,7 @@ sections:
       Every da Vinci invention undergoes our rigorous four-stage methodology, ensuring both historical authenticity and modern safety standards.
     stages:
       - title: "PLAN"
-        icon: "images/icons/manuscript.svg"
+        icon: "images/icons/plan.svg"
         color: "#8B4513"
         description: "Historical Research & Provenance"
         details:
@@ -267,7 +267,7 @@ sections:
         deliverable: "Validated simulation results with uncertainty analysis"
         
       - title: "BUILD"
-        icon: "images/icons/cad.svg"
+        icon: "images/icons/build.svg"
         color: "#F39C12"
         description: "Parametric CAD & Manufacturing"
         details:
@@ -278,7 +278,7 @@ sections:
         deliverable: "Complete fabrication-ready CAD package"
         
       - title: "EVALUATE"
-        icon: "images/icons/safety.svg"
+        icon: "images/icons/evaluate.svg"
         color: "#E74C3C"
         description: "Safety Analysis & Ethics Review"
         details:

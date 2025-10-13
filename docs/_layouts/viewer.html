@@ -1,0 +1,578 @@
+---
+layout: default
+---
+
+<div class="container">
+    <header class="viewer-header">
+        <h1 class="viewer-title">{{ page.title }}</h1>
+        <p class="viewer-subtitle">{{ page.subtitle }}</p>
+        <div class="viewer-meta">
+            {% if page.folio %}
+                <span class="folio">Codex {{ page.folio }}</span>
+            {% endif %}
+            {% if page.date %}
+                <span class="date">{{ page.date | date: "%Y" }}</span>
+            {% endif %}
+            {% if page.category %}
+                <span class="category">{{ page.category }}</span>
+            {% endif %}
+        </div>
+    </header>
+
+    <section class="viewer-section">
+        <div class="davinci-3d-viewer" id="model-viewer">
+            <!-- 3D viewer will be initialized here -->
+        </div>
+    </section>
+
+    <section class="viewer-content">
+        <div class="content-grid">
+            <div class="main-content">
+                {{ content }}
+
+                {% if page.technical_specifications %}
+                <div class="technical-specs">
+                    <h3>Technical Specifications</h3>
+                    {{ page.technical_specifications }}
+                </div>
+                {% endif %}
+
+                {% if page.historical_context %}
+                <div class="historical-context">
+                    <h3>Historical Context</h3>
+                    {{ page.historical_context }}
+                </div>
+                {% endif %}
+            </div>
+
+            <aside class="sidebar">
+                {% if page.model_metadata %}
+                <div class="model-info">
+                    <h3>Model Information</h3>
+                    <dl>
+                        {% if page.model_metadata.vertices %}
+                        <dt>Vertices:</dt>
+                        <dd>{{ page.model_metadata.vertices | number_with_delimiters }}</dd>
+                        {% endif %}
+                        {% if page.model_metadata.faces %}
+                        <dt>Faces:</dt>
+                        <dd>{{ page.model_metadata.faces | number_with_delimiters }}</dd>
+                        {% endif %}
+                        {% if page.model_metadata.file_size %}
+                        <dt>File Size:</dt>
+                        <dd>{{ page.model_metadata.file_size }}</dd>
+                        {% endif %}
+                        {% if page.model_metadata.materials %}
+                        <dt>Materials:</dt>
+                        <dd>{{ page.model_metadata.materials | join: ", " }}</dd>
+                        {% endif %}
+                    </dl>
+                </div>
+                {% endif %}
+
+                {% if page.interactive_features %}
+                <div class="features">
+                    <h3>Interactive Features</h3>
+                    <ul>
+                        {% for feature in page.interactive_features %}
+                        <li>{{ feature }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+                {% if page.related_models %}
+                <div class="related-models">
+                    <h3>Related Models</h3>
+                    <ul>
+                        {% for model in page.related_models %}
+                        <li>
+                            <a href="{{ model.url }}">{{ model.title }}</a>
+                            {% if model.description %}
+                            <small>{{ model.description }}</small>
+                            {% endif %}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </aside>
+        </div>
+    </section>
+
+    {% if page.annotations %}
+    <section class="annotations-section">
+        <h2>Key Components</h2>
+        <div class="annotations-grid">
+            {% for annotation in page.annotations %}
+            <div class="annotation-card">
+                <h4>{{ annotation.title }}</h4>
+                <p>{{ annotation.description }}</p>
+                {% if annotation.material %}
+                <span class="material">{{ annotation.material }}</span>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+</div>
+
+<!-- 3D Viewer Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/STLLoader.js"></script>
+<script src="{{ '/assets/js/3d-viewer.js' | relative_url }}"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize 3D viewer
+    const viewer = new DaVinci3DViewer('model-viewer', {
+        backgroundColor: 0xF5F5DC,
+        modelColor: 0x8B4513,
+        wireframeColor: 0xDAA520,
+        enableControls: true,
+        enableMeasurement: true,
+        enableAnnotations: true,
+        autoRotate: false,
+        cameraDistance: 10
+    });
+
+    // Load model if specified
+    {% if page.model_url %}
+    viewer.loadSTL('{{ page.model_url }}', {
+        title: '{{ page.title }}',
+        {% if page.model_metadata %}
+        metadata: {{ page.model_metadata | jsonify }},
+        {% endif %}
+        {% if page.annotations %}
+        annotations: {{ page.annotations | jsonify }},
+        {% endif %}
+        {% if page.material %}
+        material: '{{ page.material }}',
+        {% endif %}
+        {% if page.dimensions %}
+        dimensions: '{{ page.dimensions }}',
+        {% endif %}
+        {% if page.folio %}
+        folio: '{{ page.folio }}',
+        {% endif %}
+        {% if page.date %}
+        year: '{{ page.date | date: "%Y" }}'
+        {% endif %}
+    });
+    {% endif %}
+
+    // Handle multiple models if available
+    {% if page.model_variants %}
+    const modelVariants = {{ page.model_variants | jsonify }};
+    const variantSelector = document.createElement('div');
+    variantSelector.className = 'model-variant-selector';
+    variantSelector.innerHTML = `
+        <div class="variant-header">
+            <h4>Model Variants</h4>
+        </div>
+        <div class="variant-list">
+            ${modelVariants.map((variant, index) => `
+                <button class="variant-btn" data-index="${index}" data-url="${variant.url}">
+                    ${variant.name}
+                </button>
+            `).join('')}
+        </div>
+    `;
+
+    const controlsContainer = document.querySelector('.davinci-3d-viewer-controls');
+    if (controlsContainer) {
+        controlsContainer.insertBefore(variantSelector, controlsContainer.querySelector('.controls-content'));
+    }
+
+    // Add click handlers for variant buttons
+    variantSelector.querySelectorAll('.variant-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const url = this.dataset.url;
+            const variant = modelVariants[this.dataset.index];
+
+            // Update active state
+            variantSelector.querySelectorAll('.variant-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            this.classList.add('active');
+
+            // Load the selected variant
+            viewer.loadSTL(url, {
+                title: variant.name || '{{ page.title }}',
+                ...variant.metadata
+            });
+        });
+    });
+
+    // Set first variant as active
+    const firstVariantBtn = variantSelector.querySelector('.variant-btn');
+    if (firstVariantBtn) {
+        firstVariantBtn.classList.add('active');
+    }
+    {% endif %}
+
+    // Make viewer globally accessible for debugging
+    window.davinciViewer = viewer;
+});
+</script>
+
+<style>
+/* Viewer-specific page styles */
+.viewer-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 2rem 0;
+    background: linear-gradient(135deg, #2F4F4F 0%, #1C1C1C 100%);
+    color: #F5F5DC;
+    border-radius: 8px;
+    margin-top: 2rem;
+}
+
+.viewer-title {
+    font-family: 'Cinzel', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #DAA520;
+    margin: 0 0 0.5rem 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.viewer-subtitle {
+    font-size: 1.2rem;
+    font-style: italic;
+    margin: 0 0 1rem 0;
+    color: #F5F5DC;
+}
+
+.viewer-meta {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.viewer-meta span {
+    background: rgba(218, 165, 32, 0.2);
+    border: 1px solid #DAA520;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: #DAA520;
+    font-weight: 600;
+}
+
+.viewer-section {
+    margin-bottom: 3rem;
+}
+
+.viewer-content {
+    margin-bottom: 3rem;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.main-content {
+    background: rgba(245, 245, 220, 0.1);
+    border: 1px solid #CD853F;
+    border-radius: 8px;
+    padding: 2rem;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.sidebar > div {
+    background: rgba(245, 245, 220, 0.1);
+    border: 1px solid #CD853F;
+    border-radius: 8px;
+    padding: 1.5rem;
+}
+
+.sidebar h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #DAA520;
+    margin: 0 0 1rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.sidebar dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.5rem 1rem;
+    margin: 0;
+}
+
+.sidebar dt {
+    font-weight: 600;
+    color: #DAA520;
+}
+
+.sidebar dd {
+    margin: 0;
+    color: #F5F5DC;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar li {
+    margin-bottom: 0.5rem;
+    padding-left: 1rem;
+    position: relative;
+    color: #F5F5DC;
+}
+
+.sidebar li:before {
+    content: "•";
+    color: #DAA520;
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+.sidebar a {
+    color: #DAA520;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.sidebar a:hover {
+    color: #FFD700;
+    text-decoration: underline;
+}
+
+.sidebar small {
+    display: block;
+    font-size: 0.8rem;
+    color: #CD853F;
+    margin-top: 0.25rem;
+}
+
+.technical-specs,
+.historical-context {
+    background: rgba(245, 245, 220, 0.05);
+    border: 1px solid rgba(218, 165, 32, 0.3);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+}
+
+.technical-specs h3,
+.historical-context h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #DAA520;
+    margin: 0 0 1rem 0;
+}
+
+.annotations-section {
+    margin-bottom: 3rem;
+}
+
+.annotations-section h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #DAA520;
+    margin: 0 0 1.5rem 0;
+    text-align: center;
+}
+
+.annotations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.annotation-card {
+    background: rgba(245, 245, 220, 0.1);
+    border: 1px solid #CD853F;
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.annotation-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(218, 165, 32, 0.2);
+}
+
+.annotation-card h4 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #DAA520;
+    margin: 0 0 0.75rem 0;
+}
+
+.annotation-card p {
+    margin: 0 0 0.75rem 0;
+    color: #F5F5DC;
+    line-height: 1.6;
+}
+
+.annotation-card .material {
+    display: inline-block;
+    background: rgba(218, 165, 32, 0.2);
+    border: 1px solid #DAA520;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    color: #DAA520;
+    font-weight: 600;
+}
+
+/* Model variant selector */
+.model-variant-selector {
+    background: rgba(218, 165, 32, 0.1);
+    border: 1px solid #DAA520;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.variant-header {
+    padding: 8px 12px;
+    background: rgba(218, 165, 32, 0.2);
+    border-bottom: 1px solid #DAA520;
+}
+
+.variant-header h4 {
+    margin: 0;
+    font-size: 0.9rem;
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+    color: #DAA520;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.variant-list {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    gap: 4px;
+}
+
+.variant-btn {
+    background: rgba(245, 245, 220, 0.1);
+    border: 1px solid #CD853F;
+    border-radius: 4px;
+    padding: 8px 12px;
+    color: #F5F5DC;
+    font-family: 'EB Garamond', serif;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+}
+
+.variant-btn:hover {
+    background: rgba(218, 165, 32, 0.2);
+    border-color: #DAA520;
+}
+
+.variant-btn.active {
+    background: rgba(218, 165, 32, 0.3);
+    border-color: #DAA520;
+    color: #DAA520;
+    font-weight: 600;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .viewer-title {
+        font-size: 2rem;
+    }
+
+    .annotations-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .viewer-header {
+        margin-top: 1rem;
+        padding: 1.5rem 0;
+    }
+
+    .viewer-title {
+        font-size: 1.8rem;
+    }
+
+    .viewer-subtitle {
+        font-size: 1rem;
+    }
+
+    .viewer-meta {
+        gap: 1rem;
+    }
+
+    .viewer-meta span {
+        font-size: 0.8rem;
+        padding: 0.2rem 0.6rem;
+    }
+
+    .main-content,
+    .sidebar > div {
+        padding: 1.5rem;
+    }
+
+    .annotations-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .variant-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .variant-btn {
+        flex: 1;
+        min-width: 120px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .viewer-title {
+        font-size: 1.5rem;
+    }
+
+    .viewer-meta {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .main-content,
+    .sidebar > div {
+        padding: 1rem;
+    }
+
+    .content-grid {
+        gap: 1rem;
+    }
+}
+</style>

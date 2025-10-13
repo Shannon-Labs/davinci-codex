@@ -432,5 +432,392 @@
 
 .category-card {
   margin-bottom: 40px;
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.category-header {
+  padding: 32px;
+  color: white;
+  text-align: center;
+}
+
+.category-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.75rem;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.category-subtitle {
+  font-size: 1.1rem;
+  margin-bottom: 16px;
+  opacity: 0.9;
+}
+
+.category-description {
+  font-size: 0.95rem;
+  opacity: 0.85;
+  line-height: 1.5;
+}
+
+/* Hero Split Layout */
+.hero-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  margin-top: 48px;
+}
+
+.hero-split .intro {
+  grid-column: 1 / -1;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 48px;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.hero-split-primary,
+.hero-split-secondary {
+  padding: 24px;
+}
+
+.hero-split-primary h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+  color: var(--accent);
+}
+
+.hero-split-primary p {
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.hero-split-primary .highlights {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 24px;
+}
+
+.hero-split-primary .highlights li {
+  padding: 8px 0;
+  padding-left: 24px;
+  position: relative;
+}
+
+.hero-split-primary .highlights li::before {
+  content: '◆';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+.hero-split-secondary img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow);
+}
+
+.hero-split-secondary .caption {
+  text-align: center;
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* Enhanced Responsive Design */
+@media (max-width: 1200px) {
+  .inventions-list {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .hero-split {
+    gap: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-split {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .hero-split .intro {
+    margin-bottom: 32px;
+  }
+
+  .category-header {
+    padding: 24px;
+  }
+
+  .category-title {
+    font-size: 1.5rem;
+  }
+
+  .inventions-list {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .hero-container {
+    padding: 32px 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-split-primary,
+  .hero-split-secondary {
+    padding: 16px;
+  }
+
+  .category-header {
+    padding: 20px;
+  }
+
+  .invention-content {
+    padding: 16px;
+  }
+
+  .invention-name {
+    font-size: 1.1rem;
+  }
+}
+
+/* Methodology Stages */
+.methodology-stages {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 32px;
+  margin-top: 48px;
+}
+
+.stage-card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  padding: 32px 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stage-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--accent);
+}
+
+.stage-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+.stage-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  color: white;
+  font-family: 'Cinzel', serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.stage-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.stage-description {
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.stage-details {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.stage-details li {
+  padding: 6px 0;
+  padding-left: 20px;
+  position: relative;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.stage-details li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+.stage-deliverable {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  padding: 12px;
+  background: rgba(200, 160, 97, 0.08);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--accent);
+}
+
+/* Get Started Paths */
+.paths-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+  margin-top: 48px;
+}
+
+.path-card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  padding: 32px 24px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.path-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+.path-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+
+.path-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.path-description {
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.path-steps {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 24px;
+  text-align: left;
+  counter-reset: step-counter;
+}
+
+.path-steps li {
+  counter-increment: step-counter;
+  padding: 8px 0 8px 32px;
+  position: relative;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.path-steps li::before {
+  content: counter(step-counter);
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 20px;
+  height: 20px;
+  background: var(--accent);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+/* Contact Grid */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.contact-card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  padding: 24px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.contact-type {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+}
+
+.contact-label {
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.contact-value {
+  margin-bottom: 12px;
+}
+
+.contact-value a {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.contact-value a:hover {
+  color: var(--accent);
+}
+
+.contact-description {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
 }
 

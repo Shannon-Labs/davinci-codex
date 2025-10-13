@@ -68,9 +68,8 @@ def validate_invention_module(invention_spec: Any) -> List[str]:
             errors.append(f"{slug}: Invalid status '{status}'. Must be one of: {VALID_STATUS_VALUES}")
 
     # Check SLUG consistency
-    if hasattr(module, 'SLUG'):
-        if slug != module.SLUG:
-            errors.append(f"{slug}: SLUG attribute '{module.SLUG}' doesn't match filename '{slug}'")
+    if hasattr(module, 'SLUG') and slug != module.SLUG:
+        errors.append(f"{slug}: SLUG attribute '{module.SLUG}' doesn't match filename '{slug}'")
 
     # Validate docstrings
     for func_name in REQUIRED_FUNCTIONS:
