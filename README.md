@@ -78,24 +78,14 @@ Leonardo da Vinci (1452-1519) produced over 13,000 pages of notes and drawings, 
 <table>
 <tr>
 <td width="25%" align="center">
-<img src="artifacts/cam_demonstration/walking_gait_demo.png" alt="Walking Gait" width="100%"/>
+<img src="artifacts/mechanical_lion/sim/gait_analysis.png" alt="Walking Gait" width="100%"/>
 <br/><b>Walking Gait</b>
 <br/>Biomechanical quadruped locomotion
 </td>
 <td width="25%" align="center">
-<img src="artifacts/cam_demonstration/chest_opening_demo.png" alt="Chest Reveal" width="100%"/>
-<br/><b>Chest Reveal</b>
-<br/>Theatrical fleur-de-lis presentation
-</td>
-<td width="25%" align="center">
-<img src="artifacts/cam_demonstration/master_timing_demo.png" alt="Master Timing" width="100%"/>
-<br/><b>Master Timing System</b>
-<br/>Programmable cam-based control
-</td>
-<td width="25%" align="center">
-<img src="artifacts/lion_performance_timing.png" alt="Performance Timeline" width="100%"/>
-<br/><b>30-Second Performance</b>
-<br/>Complete choreographed sequence
+<img src="artifacts/mechanical_lion/sim/walking_animation.gif" alt="Walking Animation" width="100%"/>
+<br/><b>Walking Animation</b>
+<br/>Complete walking sequence
 </td>
 </tr>
 </table>
@@ -116,7 +106,7 @@ Leonardo da Vinci (1452-1519) produced over 13,000 pages of notes and drawings, 
 <br/>Pyramid parachute achieving 11.5 m/s terminal velocity
 </td>
 <td width="50%" align="center">
-<img src="artifacts/parachute/descent_simulation.png" alt="Drop Profiles" width="100%"/>
+<img src="docs/images/parachute_drop_profiles.png" alt="Drop Profiles" width="100%"/>
 <br/><b>Validation Against Test Data</b>
 <br/>Experimental validation confirms simulation accuracy
 </td>
@@ -134,7 +124,7 @@ Leonardo da Vinci (1452-1519) produced over 13,000 pages of notes and drawings, 
 <br/>30-second flight achieving 120m altitude
 </td>
 <td width="50%" align="center">
-<img src="artifacts/ornithopter/sim/lift_profile.png" alt="Wing Aerodynamics" width="100%"/>
+<img src="artifacts/ornithopter/sim/ornithopter_dynamics.png" alt="Wing Aerodynamics" width="100%"/>
 <br/><b>Wing Aerodynamics</b>
 <br/>NACA 0012 airfoil validation
 </td>
@@ -195,7 +185,7 @@ Leonardo da Vinci (1452-1519) produced over 13,000 pages of notes and drawings, 
 <br/>360° rotation mechanism analysis
 </td>
 <td width="33%" align="center">
-<img src="artifacts/revolving_bridge/sim/stress_deflection.png" alt="Structural Analysis" width="100%"/>
+<img src="docs/images/revolving_bridge/stress_deflection.png" alt="Structural Analysis" width="100%"/>
 <br/><b>Structural Integrity</b>
 <br/>Stress and deflection analysis
 </td>
