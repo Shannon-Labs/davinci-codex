@@ -127,14 +127,24 @@ navigation:
             url: /ornithopter/
           - title: "Parachute"
             url: /parachute/
+          - title: "Safety Analysis"
+            url: /parachute_safety_dossier/
       - title: "Mechanical Systems"
         children:
           - title: "Self-Propelled Cart"
             url: /self_propelled_cart/
+          - title: "3D Viewer"
+            url: /self_propelled_cart_viewer/
           - title: "Mechanical Odometer"
             url: /mechanical_odometer/
           - title: "Revolving Bridge"
             url: /revolving_bridge/
+          - title: "Armored Walker"
+            url: /armored_walker/
+          - title: "Variable Pitch Mechanism"
+            url: /variable_pitch_mechanism/
+          - title: "Programmable Loom"
+            url: /programmable_loom/
       - title: "Musical Automata"
         children:
           - title: "Mechanical Lion"
@@ -143,25 +153,80 @@ navigation:
             url: /mechanical_lion_viewer/
           - title: "Musical Ensemble"
             url: /mechanical_ensemble/
+          - title: "Mechanical Carillon"
+            url: /mechanical_carillon/
+          - title: "Mechanical Drum"
+            url: /mechanical_drum/
+          - title: "Mechanical Organ"
+            url: /mechanical_organ/
+          - title: "Mechanical Trumpeter"
+            url: /mechanical_trumpeter/
+          - title: "Programmable Flute"
+            url: /programmable_flute/
+          - title: "Viola Organista"
+            url: /viola_organista/
           - title: "3D Collection"
             url: /musical_instruments_viewer/
-  - title: "3D Models"
-    url: /3d-models/
+  - title: "Interactive Features"
+    url: /interactive/
     children:
-      - title: "Aerial Screw Viewer"
-        url: /aerial_screw_viewer/
-      - title: "Mechanical Lion Viewer"
-        url: /mechanical_lion_viewer/
-      - title: "Musical Instruments Collection"
-        url: /musical_instruments_viewer/
-      - title: "Complete Gallery"
-        url: /3d-gallery/
-  - title: "Gallery"
-    url: /gallery/
-  - title: "Research"
+      - title: "Invention Dashboard"
+        url: /dashboard/
+      - title: "3D Models"
+        url: /3d-models/
+        children:
+          - title: "Aerial Screw Viewer"
+            url: /aerial_screw_viewer/
+          - title: "Mechanical Lion Viewer"
+            url: /mechanical_lion_viewer/
+          - title: "Self-Propelled Cart Viewer"
+            url: /self_propelled_cart_viewer/
+          - title: "Musical Instruments Collection"
+            url: /musical_instruments_viewer/
+          - title: "Complete Gallery"
+            url: /3d-gallery/
+      - title: "Interactive Book"
+        url: /book/
+      - title: "Educational Resources"
+        url: /education/
+  - title: "Research & Analysis"
     url: /research/
-  - title: "Interactive Book"
-    url: /book/
+    children:
+      - title: "Overview"
+        url: /overview/
+      - title: "Methodology"
+        url: /adaptation_methodology/
+      - title: "Cultural Context"
+        url: /renaissance_cultural_context/
+      - title: "Technical Analysis"
+        url: /analysis/
+      - title: "Physics Simulations"
+        url: /physics/
+      - title: "Planning Documents"
+        url: /planning/
+      - title: "Specifications"
+        url: /specifications/
+      - title: "Safety & Ethics"
+        url: /utilization_overview/
+  - title: "Documentation"
+    url: /documentation/
+    children:
+      - title: "Technical Guides"
+        url: /3D_VIEWER_DOCUMENTATION/
+      - title: "Image Documentation"
+        url: /image_documentation/
+      - title: "Visual Guides"
+        url: /visual_guides/
+      - title: "Educational Infographics"
+        url: /educational_infographics/
+      - title: "Branding Guide"
+        url: /BRANDING_GUIDE.md/
+      - title: "Testing Documentation"
+        url: /TESTING/
+      - title: "Maintenance"
+        url: /MAINTENANCE.md/
+      - title: "Releases"
+        url: /releases/
   - title: "GitHub"
     url: https://github.com/Shannon-Labs/davinci-codex
 

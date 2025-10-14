@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ page.title | default: site.title }}</title>
+    <meta name="description" content="{{ page.meta.description | default: site.description }}" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ page.url | absolute_url }}" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="{{ page.url | absolute_url }}" />
+    <meta property="og:title" content="{{ page.title | default: site.title }}" />
+    <meta property="og:description" content="{{ page.meta.description | default: site.description }}" />
+    <meta property="og:image" content="{{ page.meta.image | default: '/images/education_default.jpg' | relative_url | absolute_url }}" />
+    <meta property="og:site_name" content="{{ site.title }}" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="{{ page.url | absolute_url }}" />
+    <meta name="twitter:title" content="{{ page.title | default: site.title }}" />
+    <meta name="twitter:description" content="{{ page.meta.description | default: site.description }}" />
+    <meta name="twitter:image" content="{{ page.meta.image | default: '/images/education_default.jpg' | relative_url | absolute_url }}" />
+    {% if site.twitter_username %}
+    <meta name="twitter:site" content="@{{ site.twitter_username }}" />
+    {% endif %}
+
+    <!-- Structured Data for Educational Content -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LearningResource",
+      "name": "{{ page.title | default: site.title }}",
+      "description": "{{ page.meta.description | default: site.description }}",
+      "educationalLevel": "{{ page.educational_level | default: 'Multiple' }}",
+      "learningResourceType": "{{ page.resource_type | default: 'Educational Material' }}",
+      "teaches": "{{ page.learning_objectives | default: 'STEM education through historical innovation' }}",
+      "author": {
+        "@type": "Person",
+        "name": "{{ site.author | default: 'Hunter Bown' }}"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "{{ site.title }}",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "{{ '/images/logo.png' | relative_url | absolute_url }}"
+        }
+      },
+      "datePublished": "{{ page.date | default: site.time | date: '%Y-%m-%d' }}",
+      "dateModified": "{{ page.last_modified_at | default: site.time | date: '%Y-%m-%d' }}",
+      "mainEntityOfPage": "{{ page.url | absolute_url }}"
+    }
+    </script>
+
+    <link rel="stylesheet" href="{{ 'assets/css/main.css' | relative_url }}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=EB+Garamond:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" />
+    {% include favicon.html %}
+    {% include analytics.html %}
+  </head>
+  <body class="page-education">
+    {% include navbar.html %}
+
+    <header class="education-header">
+      <div class="container">
+        <div class="education-header-content">
+          <h1 class="education-title">{{ page.title }}</h1>
+          {% if page.subtitle %}
+          <p class="education-subtitle">{{ page.subtitle }}</p>
+          {% endif %}
+          {% if page.summary %}
+          <p class="education-summary">{{ page.summary }}</p>
+          {% endif %}
+        </div>
+        {% if page.header_image %}
+        <div class="education-header-image">
+          <img src="{{ page.header_image | relative_url }}" alt="{{ page.title }} illustration" />
+        </div>
+        {% endif %}
+      </div>
+    </header>
+
+    {% if page.quick_links %}
+    <nav class="quick-links-nav">
+      <div class="container">
+        <div class="quick-links">
+          {% for link in page.quick_links %}
+          <a href="#{{ link.id }}" class="quick-link">{{ link.title }}</a>
+          {% endfor %}
+        </div>
+      </div>
+    </nav>
+    {% endif %}
+
+    <main class="education-main">
+      <div class="container">
+        <div class="education-content">
+          <aside class="education-sidebar">
+            <div class="sidebar-section">
+              <h4>🎓 Educational Focus</h4>
+              <div class="focus-areas">
+                {% if page.subject_areas %}
+                {% for subject in page.subject_areas %}
+                <span class="focus-tag">{{ subject }}</span>
+                {% endfor %}
+                {% else %}
+                <span class="focus-tag">STEM Education</span>
+                <span class="focus-tag">Historical Innovation</span>
+                <span class="focus-tag">Engineering Design</span>
+                {% endif %}
+              </div>
+            </div>
+
+            {% if page.grade_levels %}
+            <div class="sidebar-section">
+              <h4>📚 Grade Levels</h4>
+              <div class="grade-levels">
+                {% for grade in page.grade_levels %}
+                <div class="grade-level">
+                  <span class="grade-range">{{ grade.range }}</span>
+                  <span class="grade-description">{{ grade.description }}</span>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+            {% endif %}
+
+            {% if page.learning_objectives %}
+            <div class="sidebar-section">
+              <h4>🎯 Learning Objectives</h4>
+              <ul class="learning-objectives">
+                {% for objective in page.learning_objectives %}
+                <li>{{ objective }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
+
+            <div class="sidebar-section">
+              <h4>📋 Download Resources</h4>
+              <div class="resource-downloads">
+                {% if page.has_teacher_guide %}
+                <a href="#" class="download-btn" onclick="downloadResource('teacher-guide')">
+                  <span class="btn-icon">📖</span> Teacher Guide (PDF)
+                </a>
+                {% endif %}
+                {% if page.has_student_worksheets %}
+                <a href="#" class="download-btn" onclick="downloadResource('worksheets')">
+                  <span class="btn-icon">📝</span> Student Worksheets
+                </a>
+                {% endif %}
+                {% if page.has_assessment_tools %}
+                <a href="#" class="download-btn" onclick="downloadResource('assessment')">
+                  <span class="btn-icon">✅</span> Assessment Tools
+                </a>
+                {% endif %}
+                <a href="#" class="download-btn" onclick="downloadResource('complete')">
+                  <span class="btn-icon">📦</span> Complete Package
+                </a>
+              </div>
+            </div>
+
+            <div class="sidebar-section">
+              <h4>🔗 Related Resources</h4>
+              <div class="related-links">
+                <a href="/education/" class="related-link">
+                  <span class="link-icon">🎓</span> All Educational Resources
+                </a>
+                <a href="/dashboard/" class="related-link">
+                  <span class="link-icon">📊</span> Invention Dashboard
+                </a>
+                <a href="/inventions/" class="related-link">
+                  <span class="link-icon">🔧</span> Browse Inventions
+                </a>
+                {% if page.related_modules %}
+                {% for module in page.related_modules %}
+                <a href="{{ module.url }}" class="related-link">
+                  <span class="link-icon">{{ module.icon | default: '📚' }}</span> {{ module.title }}
+                </a>
+                {% endfor %}
+                {% endif %}
+              </div>
+            </div>
+          </aside>
+
+          <div class="education-body">
+            {{ content }}
+
+            {% if page.interactive_elements %}
+            <div class="interactive-section">
+              <h3>🎮 Interactive Learning Tools</h3>
+              <div class="interactive-grid">
+                {% for element in page.interactive_elements %}
+                <div class="interactive-element">
+                  <h4>{{ element.title }}</h4>
+                  <p>{{ element.description }}</p>
+                  <button class="interactive-btn" onclick="launchInteractive('{{ element.type }}', '{{ element.id }}')">
+                    {{ element.button_text | default: 'Launch Tool' }}
+                  </button>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+            {% endif %}
+
+            {% if page.teacher_notes %}
+            <div class="teacher-notes">
+              <h3>👨‍🏫 Teacher Notes</h3>
+              <div class="notes-content">
+                {{ page.teacher_notes }}
+              </div>
+            </div>
+            {% endif %}
+
+            {% if page.assessment_rubric %}
+            <div class="assessment-section">
+              <h3>📊 Assessment Rubric</h3>
+              <div class="rubric-content">
+                {{ page.assessment_rubric }}
+              </div>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </main>
+
+    {% include footer.html %}
+
+    <script src="{{ 'assets/js/main.js' | relative_url }}"></script>
+    <script>
+      // Educational resource functionality
+      function downloadResource(type) {
+        console.log('Downloading resource:', type);
+        alert(`Downloading ${type.replace('-', ' ')}... In production, this would download the actual file.`);
+      }
+
+      function launchInteractive(type, id) {
+        console.log('Launching interactive:', type, id);
+        alert(`Launching ${type} interactive tool for ${id}... Full implementation would open the interactive learning module.`);
+      }
+
+      // Smooth scroll for quick links
+      document.querySelectorAll('.quick-link').forEach(link => {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+
+      // Highlight active section in quick links
+      window.addEventListener('scroll', function() {
+        const sections = document.querySelectorAll('h2[id], h3[id]');
+        const quickLinks = document.querySelectorAll('.quick-link');
+
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          if (pageYOffset >= sectionTop - 150) {
+            current = section.getAttribute('id');
+          }
+        });
+
+        quickLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + current) {
+            link.classList.add('active');
+          }
+        });
+      });
+
+      // Print functionality for educational materials
+      function printEducationalContent() {
+        window.print();
+      }
+
+      // Add print button if needed
+      document.addEventListener('DOMContentLoaded', function() {
+        if (document.body.classList.contains('page-education')) {
+          const printBtn = document.createElement('button');
+          printBtn.innerHTML = '🖨️ Print Resources';
+          printBtn.className = 'print-btn';
+          printBtn.onclick = printEducationalContent;
+
+          const header = document.querySelector('.education-header-content');
+          if (header) {
+            header.appendChild(printBtn);
+          }
+        }
+      });
+    </script>
+
+    <style>
+      .education-header {
+        background: linear-gradient(135deg, #2c3e50, #3498db);
+        color: white;
+        padding: 3rem 0;
+        margin-bottom: 2rem;
+      }
+
+      .education-title {
+        font-family: 'Cinzel', serif;
+        font-size: 2.5rem;
+        margin: 0 0 1rem 0;
+        font-weight: 700;
+      }
+
+      .education-subtitle {
+        font-size: 1.3rem;
+        opacity: 0.9;
+        margin: 0 0 1.5rem 0;
+        font-style: italic;
+      }
+
+      .education-summary {
+        font-size: 1.1rem;
+        opacity: 0.8;
+        max-width: 800px;
+        line-height: 1.6;
+      }
+
+      .quick-links-nav {
+        background: #f8f9fa;
+        border-bottom: 1px solid #dee2e6;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+
+      .quick-links {
+        display: flex;
+        gap: 2rem;
+        padding: 1rem 0;
+        overflow-x: auto;
+      }
+
+      .quick-link {
+        color: #495057;
+        text-decoration: none;
+        font-weight: 600;
+        padding: 0.5rem 0;
+        border-bottom: 2px solid transparent;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+      }
+
+      .quick-link:hover,
+      .quick-link.active {
+        color: #3498db;
+        border-bottom-color: #3498db;
+      }
+
+      .education-content {
+        display: grid;
+        grid-template-columns: 320px 1fr;
+        gap: 3rem;
+        margin-bottom: 3rem;
+      }
+
+      .education-sidebar {
+        position: sticky;
+        top: 100px;
+        height: fit-content;
+      }
+
+      .sidebar-section {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .sidebar-section h4 {
+        color: #2c3e50;
+        margin: 0 0 1rem 0;
+        font-family: 'Cinzel', serif;
+      }
+
+      .focus-areas {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .focus-tag {
+        background: #3498db;
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 15px;
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+
+      .grade-levels {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .grade-level {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #dee2e6;
+      }
+
+      .grade-range {
+        font-weight: 600;
+        color: #2c3e50;
+      }
+
+      .grade-description {
+        font-size: 0.9rem;
+        color: #6c757d;
+      }
+
+      .learning-objectives {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .learning-objectives li {
+        position: relative;
+        padding-left: 1.5rem;
+        margin-bottom: 0.75rem;
+        line-height: 1.4;
+      }
+
+      .learning-objectives li:before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: #27ae60;
+        font-weight: bold;
+      }
+
+      .resource-downloads {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .download-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem;
+        background: white;
+        border: 1px solid #3498db;
+        border-radius: 6px;
+        color: #3498db;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .download-btn:hover {
+        background: #3498db;
+        color: white;
+      }
+
+      .related-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .related-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem;
+        background: white;
+        border: 1px solid #dee2e6;
+        border-radius: 6px;
+        color: #495057;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .related-link:hover {
+        border-color: #3498db;
+        color: #3498db;
+      }
+
+      .education-body {
+        max-width: none;
+      }
+
+      .education-body h1,
+      .education-body h2,
+      .education-body h3 {
+        color: #2c3e50;
+        scroll-margin-top: 100px;
+      }
+
+      .interactive-section {
+        background: #e8f4f8;
+        border-radius: 12px;
+        padding: 2rem;
+        margin: 2rem 0;
+      }
+
+      .interactive-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+      }
+
+      .interactive-element {
+        background: white;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        padding: 1.5rem;
+        text-align: center;
+      }
+
+      .interactive-element h4 {
+        color: #2c3e50;
+        margin: 0 0 1rem 0;
+      }
+
+      .interactive-btn {
+        background: #3498db;
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      .interactive-btn:hover {
+        background: #2980b9;
+      }
+
+      .teacher-notes {
+        background: #fff3cd;
+        border: 1px solid #ffeaa7;
+        border-radius: 8px;
+        padding: 2rem;
+        margin: 2rem 0;
+      }
+
+      .teacher-notes h3 {
+        color: #856404;
+        margin-top: 0;
+      }
+
+      .assessment-section {
+        background: #d1ecf1;
+        border: 1px solid #bee5eb;
+        border-radius: 8px;
+        padding: 2rem;
+        margin: 2rem 0;
+      }
+
+      .assessment-section h3 {
+        color: #0c5460;
+        margin-top: 0;
+      }
+
+      .print-btn {
+        background: rgba(255,255,255,0.2);
+        border: 1px solid rgba(255,255,255,0.3);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 1rem;
+        transition: background 0.3s ease;
+      }
+
+      .print-btn:hover {
+        background: rgba(255,255,255,0.3);
+      }
+
+      @media (max-width: 1024px) {
+        .education-content {
+          grid-template-columns: 1fr;
+        }
+
+        .education-sidebar {
+          position: static;
+          order: 2;
+        }
+
+        .education-body {
+          order: 1;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .education-title {
+          font-size: 2rem;
+        }
+
+        .education-header {
+          padding: 2rem 0;
+        }
+
+        .quick-links {
+          gap: 1rem;
+          font-size: 0.9rem;
+        }
+
+        .interactive-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media print {
+        .education-sidebar,
+        .quick-links-nav,
+        .print-btn {
+          display: none;
+        }
+
+        .education-content {
+          grid-template-columns: 1fr;
+        }
+
+        .education-body {
+          order: 1;
+        }
+      }
+    </style>
+  </body>
+</html>

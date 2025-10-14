@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ page.title | default: site.title }}</title>
+    <meta name="description" content="{{ page.meta.description | default: site.description }}" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ page.url | absolute_url }}" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="{{ page.url | absolute_url }}" />
+    <meta property="og:title" content="{{ page.title | default: site.title }}" />
+    <meta property="og:description" content="{{ page.meta.description | default: site.description }}" />
+    <meta property="og:image" content="{{ page.meta.image | default: '/images/invention_default.jpg' | relative_url | absolute_url }}" />
+    <meta property="og:site_name" content="{{ site.title }}" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="{{ page.url | absolute_url }}" />
+    <meta name="twitter:title" content="{{ page.title | default: site.title }}" />
+    <meta name="twitter:description" content="{{ page.meta.description | default: site.description }}" />
+    <meta name="twitter:image" content="{{ page.meta.image | default: '/images/invention_default.jpg' | relative_url | absolute_url }}" />
+    {% if site.twitter_username %}
+    <meta name="twitter:site" content="@{{ site.twitter_username }}" />
+    {% endif %}
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "{{ page.title | default: site.title }}",
+      "description": "{{ page.meta.description | default: site.description }}",
+      "author": {
+        "@type": "Person",
+        "name": "{{ site.author | default: 'Hunter Bown' }}"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "{{ site.title }}",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "{{ '/images/logo.png' | relative_url | absolute_url }}"
+        }
+      },
+      "datePublished": "{{ page.date | default: site.time | date: '%Y-%m-%d' }}",
+      "dateModified": "{{ page.last_modified_at | default: site.time | date: '%Y-%m-%d' }}",
+      "mainEntityOfPage": "{{ page.url | absolute_url }}"
+    }
+    </script>
+
+    <link rel="stylesheet" href="{{ 'assets/css/main.css' | relative_url }}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=EB+Garamond:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" />
+    {% include favicon.html %}
+    {% include analytics.html %}
+  </head>
+  <body class="page-invention">
+    {% include navbar.html %}
+
+    <header class="invention-header">
+      <div class="container">
+        <div class="invention-header-content">
+          <h1 class="invention-title">{{ page.title }}</h1>
+          {% if page.subtitle %}
+          <p class="invention-subtitle">{{ page.subtitle }}</p>
+          {% endif %}
+          {% if page.quote %}
+          <blockquote class="invention-quote">{{ page.quote }}</blockquote>
+          {% endif %}
+        </div>
+        {% if page.header_image %}
+        <div class="invention-header-image">
+          <img src="{{ page.header_image | relative_url }}" alt="{{ page.title }} illustration" />
+        </div>
+        {% endif %}
+      </div>
+    </header>
+
+    <main class="invention-main">
+      <div class="container">
+        <div class="invention-content">
+          <nav class="invention-sidebar">
+            <div class="sidebar-section">
+              <h4>Quick Navigation</h4>
+              <ul class="sidebar-nav">
+                {% if page.content contains "## Overview" %}
+                <li><a href="#overview">Overview</a></li>
+                {% endif %}
+                {% if page.content contains "## Historical Context" %}
+                <li><a href="#historical-context">Historical Context</a></li>
+                {% endif %}
+                {% if page.content contains "## Design Principles" %}
+                <li><a href="#design-principles">Design Principles</a></li>
+                {% endif %}
+                {% if page.content contains "## Engineering Analysis" %}
+                <li><a href="#engineering-analysis">Engineering Analysis</a></li>
+                {% endif %}
+                {% if page.content contains "## Simulation Results" %}
+                <li><a href="#simulation-results">Simulation Results</a></li>
+                {% endif %}
+                {% if page.content contains "## Available Resources" %}
+                <li><a href="#available-resources">Resources</a></li>
+                {% endif %}
+              </ul>
+            </div>
+
+            <div class="sidebar-section">
+              <h4>Invention Details</h4>
+              <div class="invention-meta">
+                {% if page.category %}
+                <div class="meta-item">
+                  <span class="meta-label">Category:</span>
+                  <span class="meta-value">{{ page.category }}</span>
+                </div>
+                {% endif %}
+                {% if page.period %}
+                <div class="meta-item">
+                  <span class="meta-label">Period:</span>
+                  <span class="meta-value">{{ page.period }}</span>
+                </div>
+                {% endif %}
+                {% if page.complexity %}
+                <div class="meta-item">
+                  <span class="meta-label">Complexity:</span>
+                  <span class="meta-value complexity-{{ page.complexity | downcase }}">{{ page.complexity }}</span>
+                </div>
+                {% endif %}
+                {% if page.feasibility %}
+                <div class="meta-item">
+                  <span class="meta-label">Feasibility:</span>
+                  <span class="meta-value feasibility-{{ page.feasibility | downcase }}">{{ page.feasibility }}</span>
+                </div>
+                {% endif %}
+              </div>
+            </div>
+
+            <div class="sidebar-section">
+              <h4>Interactive Features</h4>
+              <div class="interactive-links">
+                {% if page.has_3d_model %}
+                <a href="#" class="interactive-btn" onclick="launch3DViewer('{{ page.slug }}')">
+                  <span class="btn-icon">🎮</span> 3D Model Viewer
+                </a>
+                {% endif %}
+                {% if page.has_simulation %}
+                <a href="#" class="interactive-btn" onclick="launchSimulation('{{ page.slug }}')">
+                  <span class="btn-icon">🔬</span> Run Simulation
+                </a>
+                {% endif %}
+                <a href="/dashboard/" class="interactive-btn">
+                  <span class="btn-icon">📊</span> Compare Inventions
+                </a>
+              </div>
+            </div>
+
+            <div class="sidebar-section">
+              <h4>Share This Invention</h4>
+              <div class="social-share">
+                <a href="https://twitter.com/intent/tweet?text={{ page.title | url_encode }}&url={{ page.url | absolute_url | url_encode }}" target="_blank" class="share-btn twitter">
+                  <span class="share-icon">𝕏</span> Twitter
+                </a>
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | absolute_url | url_encode }}" target="_blank" class="share-btn linkedin">
+                  <span class="share-icon">in</span> LinkedIn
+                </a>
+                <a href="https://github.com/Shannon-Labs/davinci-codex/blob/main/docs/{{ page.path }}" target="_blank" class="share-btn github">
+                  <span class="share-icon">⚡</span> View Source
+                </a>
+              </div>
+            </div>
+          </nav>
+
+          <div class="invention-body">
+            {{ content }}
+
+            <nav class="invention-navigation">
+              {% if page.previous_invention %}
+              <a href="{{ page.previous_invention.url }}" class="nav-link prev">
+                <span class="nav-direction">← Previous</span>
+                <span class="nav-title">{{ page.previous_invention.title }}</span>
+              </a>
+              {% endif %}
+              {% if page.next_invention %}
+              <a href="{{ page.next_invention.url }}" class="nav-link next">
+                <span class="nav-direction">Next →</span>
+                <span class="nav-title">{{ page.next_invention.title }}</span>
+              </a>
+              {% endif %}
+            </nav>
+
+            <div class="invention-footer">
+              <h4>Explore More Inventions</h4>
+              <div class="related-inventions">
+                <a href="/inventions/" class="related-link">
+                  <span class="link-icon">🔧</span> All Inventions
+                </a>
+                <a href="/dashboard/" class="related-link">
+                  <span class="link-icon">📊</span> Compare Inventions
+                </a>
+                <a href="/education/" class="related-link">
+                  <span class="link-icon">🎓</span> Educational Resources
+                </a>
+                <a href="/3d-models/" class="related-link">
+                  <span class="link-icon">🎮</span> 3D Models
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    {% include footer.html %}
+
+    <script src="{{ 'assets/js/main.js' | relative_url }}"></script>
+    <script>
+      // Interactive features for invention pages
+      function launch3DViewer(inventionSlug) {
+        // Implementation for 3D viewer
+        console.log('Launching 3D viewer for:', inventionSlug);
+        window.open(`/3d-models/${inventionSlug}_viewer/`, '_blank');
+      }
+
+      function launchSimulation(inventionSlug) {
+        // Implementation for simulation launcher
+        console.log('Launching simulation for:', inventionSlug);
+        alert(`Simulation for ${inventionSlug} would launch here with interactive controls.`);
+      }
+
+      // Smooth scroll for sidebar navigation
+      document.querySelectorAll('.sidebar-nav a').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+
+      // Active section highlighting
+      window.addEventListener('scroll', function() {
+        const sections = document.querySelectorAll('h2[id], h3[id]');
+        const navLinks = document.querySelectorAll('.sidebar-nav a');
+
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          if (pageYOffset >= sectionTop - 100) {
+            current = section.getAttribute('id');
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + current) {
+            link.classList.add('active');
+          }
+        });
+      });
+    </script>
+
+    <style>
+      .invention-header {
+        background: linear-gradient(135deg, #8B4513, #a0522d);
+        color: white;
+        padding: 3rem 0;
+        margin-bottom: 2rem;
+      }
+
+      .invention-header-content {
+        max-width: 800px;
+      }
+
+      .invention-title {
+        font-family: 'Cinzel', serif;
+        font-size: 2.5rem;
+        margin: 0 0 1rem 0;
+        font-weight: 700;
+      }
+
+      .invention-subtitle {
+        font-size: 1.3rem;
+        opacity: 0.9;
+        margin: 0 0 1.5rem 0;
+        font-style: italic;
+      }
+
+      .invention-quote {
+        border-left: 4px solid #DAA520;
+        padding-left: 1.5rem;
+        margin: 0;
+        font-style: italic;
+        opacity: 0.8;
+        font-size: 1.1rem;
+      }
+
+      .invention-content {
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        gap: 3rem;
+        margin-bottom: 3rem;
+      }
+
+      .invention-sidebar {
+        position: sticky;
+        top: 2rem;
+        height: fit-content;
+      }
+
+      .sidebar-section {
+        background: #f8f6f0;
+        border: 1px solid #d4c5a9;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .sidebar-section h4 {
+        color: #8B4513;
+        margin: 0 0 1rem 0;
+        font-family: 'Cinzel', serif;
+      }
+
+      .sidebar-nav {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .sidebar-nav a {
+        display: block;
+        padding: 0.5rem 0;
+        color: #5d4037;
+        text-decoration: none;
+        border-bottom: 1px solid #e8dcc0;
+        transition: color 0.3s ease;
+      }
+
+      .sidebar-nav a:hover,
+      .sidebar-nav a.active {
+        color: #8B4513;
+        font-weight: 600;
+      }
+
+      .invention-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .meta-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .meta-label {
+        font-weight: 600;
+        color: #5d4037;
+      }
+
+      .meta-value {
+        color: #8B4513;
+        font-weight: 500;
+      }
+
+      .complexity-high, .feasibility-low {
+        color: #d32f2f;
+      }
+
+      .complexity-medium, .feasibility-medium {
+        color: #f57c00;
+      }
+
+      .complexity-low, .feasibility-high {
+        color: #388e3c;
+      }
+
+      .interactive-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .interactive-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem;
+        background: white;
+        border: 1px solid #8B4513;
+        border-radius: 6px;
+        color: #8B4513;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .interactive-btn:hover {
+        background: #8B4513;
+        color: white;
+      }
+
+      .btn-icon {
+        font-size: 1.2rem;
+      }
+
+      .social-share {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .share-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem;
+        border-radius: 4px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .share-btn:hover {
+        transform: translateY(-1px);
+      }
+
+      .share-btn.twitter {
+        background: #1da1f2;
+        color: white;
+      }
+
+      .share-btn.linkedin {
+        background: #0077b5;
+        color: white;
+      }
+
+      .share-btn.github {
+        background: #333;
+        color: white;
+      }
+
+      .invention-body {
+        max-width: none;
+      }
+
+      .invention-body h1,
+      .invention-body h2,
+      .invention-body h3 {
+        color: #8B4513;
+        scroll-margin-top: 2rem;
+      }
+
+      .invention-navigation {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin: 3rem 0;
+        padding: 2rem 0;
+        border-top: 2px solid #e8dcc0;
+        border-bottom: 2px solid #e8dcc0;
+      }
+
+      .nav-link {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        text-decoration: none;
+        color: #5d4037;
+        transition: color 0.3s ease;
+      }
+
+      .nav-link:hover {
+        color: #8B4513;
+      }
+
+      .nav-link.next {
+        text-align: right;
+      }
+
+      .nav-direction {
+        font-size: 0.9rem;
+        opacity: 0.7;
+      }
+
+      .nav-title {
+        font-weight: 600;
+        font-size: 1.1rem;
+      }
+
+      .invention-footer {
+        background: #f8f6f0;
+        border-radius: 8px;
+        padding: 2rem;
+        margin-top: 2rem;
+        text-align: center;
+      }
+
+      .invention-footer h4 {
+        color: #8B4513;
+        margin: 0 0 1.5rem 0;
+      }
+
+      .related-inventions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+      }
+
+      .related-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        background: white;
+        border: 1px solid #d4c5a9;
+        border-radius: 25px;
+        color: #5d4037;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .related-link:hover {
+        border-color: #8B4513;
+        color: #8B4513;
+        transform: translateY(-2px);
+      }
+
+      @media (max-width: 968px) {
+        .invention-content {
+          grid-template-columns: 1fr;
+        }
+
+        .invention-sidebar {
+          position: static;
+          order: 2;
+        }
+
+        .invention-body {
+          order: 1;
+        }
+
+        .invention-navigation {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+
+        .nav-link.next {
+          text-align: left;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .invention-title {
+          font-size: 2rem;
+        }
+
+        .invention-header {
+          padding: 2rem 0;
+        }
+
+        .related-inventions {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+    </style>
+  </body>
+</html>
