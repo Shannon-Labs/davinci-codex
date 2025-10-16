@@ -1,6 +1,6 @@
 # Self-Supporting Revolving Bridge
 
-**Folio Reference:** [Codex Atlanticus, 855r](https://www.leonardodigitale.com/opera/ca-855-r/)
+**Folio Reference:** [Codex Atlanticus, 855r](https://www.leonardomachines.com/projects/project-the-wood-bridges/)
 
 The revolving bridge is advanced to **in-progress** status with a reproducible rotation profile study, counterweight calibration workflow, and acceptance tests that anchor rapid deployment claims in contemporary structural practice.
 

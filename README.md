@@ -692,7 +692,7 @@ Access digitized versions of Leonardo's original works:
 
 ### Digital Archives
 - **[Leonardo Digitale](https://www.leonardodigitale.com/)** - Comprehensive digital archive
-- **[Universal Leonardo](https://www.universalleonardo.org/)** - Research resources
+- **[Martin Kemp, "Leonardo" (OUP)](https://global.oup.com/academic/product/leonardo-9780199583355)** - A foundational text by a leading authority.
 - **[e-Leo Archive](https://www.leonardodigitale.com/)** - High-resolution scans
 
 ---
