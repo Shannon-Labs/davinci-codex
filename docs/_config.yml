@@ -172,6 +172,8 @@ navigation:
     children:
       - title: "Invention Dashboard"
         url: /dashboard/
+      - title: "Playground"
+        url: /playground/
       - title: "3D Models"
         url: /3d-models/
         children:

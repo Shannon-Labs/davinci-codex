@@ -80,7 +80,7 @@ setup: ## Setup development environment
 	@echo "$(GREEN)Setting up development environment...$(RESET)"
 	$(PYTHON) -m venv $(VENV)
 	$(PYTHON_BIN) -m pip install --upgrade pip setuptools wheel
-	$(PYTHON_BIN) -m pip install -r requirements.txt
+	$(PYTHON_BIN) -m pip install -r requirements.lock
 	$(PYTHON_BIN) -m pip install -e .
 	@echo "$(GREEN)✅ Development environment ready!$(RESET)"
 
@@ -138,6 +138,10 @@ test: ## Run basic test suite
 	@echo "$(BLUE)Running test suite...$(RESET)"
 	$(PYTHON_BIN) -m pytest -q --tb=short
 
+smoke: ## Run smoke tests for hero demos
+	@echo "$(BLUE)Running smoke tests...$(RESET)"
+	$(PYTHON_BIN) -m pytest tests/smoke -q --tb=short
+
 test-cov: ## Run tests with coverage
 	@echo "$(BLUE)Running tests with coverage...$(RESET)"
 	$(PYTHON_BIN) -m pytest \
@@ -183,6 +187,11 @@ build-all: build build-docs build-packages ## Build everything
 demo: ## Run lightweight demonstration
 	@echo "$(BLUE)Running da Vinci Codex demonstration...$(RESET)"
 	$(PYTHON_BIN) -m davinci_codex.cli demo
+
+space: ## Run the Hugging Face Space app locally
+	@echo "$(BLUE)Launching HF Space demo...$(RESET)"
+	$(PYTHON_BIN) -m pip install -r hf_space/requirements.txt > /dev/null 2>&1 || true
+	$(PYTHON_BIN) hf_space/app.py || $(PYTHON_BIN) -c "import runpy; runpy.run_path('hf_space/app.py')"
 
 simulate: ## Run simulations for specified invention
 	@echo "$(BLUE)Running simulations...$(RESET)"

@@ -7,6 +7,10 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Tests](https://github.com/Shannon-Labs/davinci-codex/actions/workflows/ci.yml/badge.svg)](https://github.com/Shannon-Labs/davinci-codex/actions/workflows/ci.yml)
 [![Code style: ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
+[![Open in Colab](https://img.shields.io/badge/Open%20in-Colab-F9AB00?logo=googlecolab&logoColor=white)](https://colab.research.google.com/github/Shannon-Labs/davinci-codex/blob/main/notebooks/Quickstart.ipynb)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Coming%20Soon-ff69b4)](https://huggingface.co/spaces/Shannon-Labs/davinci-codex)
+[![Docs](https://img.shields.io/badge/Docs-Website-0A1F44)](https://shannon-labs.github.io/davinci-codex/)
+[![Quickstart](https://img.shields.io/badge/README-Quickstart-8A2BE2)](#quickstart)
 
 **An Open-Source Computational Framework for Leonardo da Vinci's Mechanical Inventions**
 
@@ -15,6 +19,33 @@
 </div>
 
 ---
+
+## Quickstart
+
+- **Run in Colab**: [Launch the Quickstart notebook](https://colab.research.google.com/github/Shannon-Labs/davinci-codex/blob/main/notebooks/Quickstart.ipynb) to install the package and simulate the parachute demo in minutes.
+- **Install locally**:
+
+```bash
+pip install git+https://github.com/Shannon-Labs/davinci-codex.git
+```
+
+- **Explore inventions**:
+
+```bash
+davinci-codex list | head -n 5
+```
+
+- **Simulate a hero demo**:
+
+```bash
+davinci-codex simulate --slug parachute --seed 0 --fidelity educational
+```
+
+- **Verify fast smoke tests**:
+
+```bash
+make smoke
+```
 
 ## Project Overview
 

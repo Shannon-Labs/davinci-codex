@@ -18,6 +18,9 @@ hero:
     - label: "Interactive Simulations"
       href: "book/index.html"
       style: secondary
+    - label: "Playground"
+      href: "/playground/"
+      style: link
 meta:
   description: "Experience Leonardo da Vinci's mechanical genius through interactive simulations, 3D models, and modern engineering analysis. Open-source computational archaeology."
   image: /docs/images/davinci-codex-hero.jpg
