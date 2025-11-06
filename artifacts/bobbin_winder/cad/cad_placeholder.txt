@@ -1,0 +1,4 @@
+Automatic Bobbin Winder CAD placeholder
+Configure cad/bobbin_winder/model.py to export geometry.
+Parameters: spool_width=0.090 m, lift=0.065 m
+Error: [Errno 2] No such file or directory: '/Users/huntermbown/davinci-codex/cad/bobbin_winder/model.py'

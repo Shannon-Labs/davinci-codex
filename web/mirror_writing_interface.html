@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leonardo's Mirror Writing - Interactive Decoder</title>
+    <link rel="stylesheet" href="leonardo_design_system.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--leonardo-bg-parchment);
+            font-family: var(--font-leonardo-body);
+            min-height: 100vh;
+        }
+
+        .mirror-writing-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--space-golden-xl);
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: var(--space-golden-xxl);
+            padding: var(--space-golden-xl);
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: var(--space-golden-lg);
+            box-shadow: var(--shadow-leonardo-manuscript);
+        }
+
+        .main-title {
+            font-family: var(--font-leonardo-display);
+            font-size: 3em;
+            color: var(--leonardo-ink);
+            margin-bottom: var(--space-golden-md);
+            text-shadow: 2px 2px 4px rgba(44, 24, 16, 0.2);
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            color: var(--leonardo-umber);
+            font-style: italic;
+            margin-bottom: var(--space-golden-lg);
+        }
+
+        .workshop-layout {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: var(--space-golden-xl);
+            margin-bottom: var(--space-golden-xxl);
+        }
+
+        .left-panel {
+            background: rgba(255, 255, 255, 0.8);
+            padding: var(--space-golden-lg);
+            border-radius: var(--space-golden-md);
+            box-shadow: var(--shadow-leonardo-manuscript);
+        }
+
+        .center-workspace {
+            background: rgba(255, 255, 255, 0.9);
+            padding: var(--space-golden-xl);
+            border-radius: var(--space-golden-lg);
+            box-shadow: var(--shadow-leonardo-elevated);
+            min-height: 500px;
+        }
+
+        .right-panel {
+            background: rgba(255, 255, 255, 0.8);
+            padding: var(--space-golden-lg);
+            border-radius: var(--space-golden-md);
+            box-shadow: var(--shadow-leonardo-manuscript);
+        }
+
+        .panel-title {
+            font-family: var(--font-leonardo-display);
+            font-size: 1.5em;
+            color: var(--leonardo-crimson);
+            margin-bottom: var(--space-golden-md);
+            text-align: center;
+        }
+
+        .input-area {
+            margin-bottom: var(--space-golden-lg);
+        }
+
+        .leonardo-textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: var(--space-golden-md);
+            border: 2px solid var(--leonardo-umber);
+            border-radius: var(--space-golden-sm);
+            font-family: var(--font-leonardo-body);
+            font-size: 1.1em;
+            line-height: 1.6;
+            background: rgba(255, 255, 255, 0.95);
+            resize: vertical;
+            transition: all var(--anim-leonardo-medium);
+        }
+
+        .leonardo-textarea:focus {
+            outline: none;
+            border-color: var(--leonardo-gold);
+            box-shadow: var(--glow-leonardo);
+        }
+
+        .mirror-output {
+            background: rgba(44, 24, 16, 0.05);
+            border: 2px dashed var(--leonardo-umber-light);
+            border-radius: var(--space-golden-sm);
+            padding: var(--space-golden-md);
+            margin-top: var(--space-golden-md);
+            min-height: 150px;
+            font-family: var(--font-leonardo-mirror);
+            font-size: 1.3em;
+            line-height: 1.8;
+            color: var(--leonardo-ink);
+            transform: scaleX(-1);
+            direction: rtl;
+            unicode-bidi: bidi-override;
+            letter-spacing: 0.1em;
+        }
+
+        .control-buttons {
+            display: flex;
+            gap: var(--space-golden-md);
+            justify-content: center;
+            margin: var(--space-golden-lg) 0;
+            flex-wrap: wrap;
+        }
+
+        .leonardo-button {
+            background: linear-gradient(45deg, var(--leonardo-crimson), var(--leonardo-crimson-light));
+            color: var(--leonardo-parchment);
+            border: none;
+            padding: var(--space-golden-sm) var(--space-golden-lg);
+            border-radius: var(--space-golden-sm);
+            font-family: var(--font-leonardo-display);
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all var(--anim-leonardo-medium);
+            box-shadow: var(--shadow-leonardo-manuscript);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .leonardo-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-leonardo-elevated);
+        }
+
+        .leonardo-button.secondary {
+            background: linear-gradient(45deg, var(--leonardo-umber), var(--leonardo-umber-light));
+        }
+
+        .leonardo-button.gold {
+            background: linear-gradient(45deg, var(--leonardo-gold-dark), var(--leonardo-gold));
+            color: var(--leonardo-ink);
+        }
+
+        .interactive-examples {
+            margin-top: var(--space-golden-lg);
+        }
+
+        .example-item {
+            background: rgba(255, 215, 0, 0.1);
+            border-left: 4px solid var(--leonardo-gold);
+            padding: var(--space-golden-md);
+            margin: var(--space-golden-md) 0;
+            border-radius: 0 var(--space-golden-sm) var(--space-golden-sm) 0;
+            cursor: pointer;
+            transition: all var(--anim-leonardo-medium);
+        }
+
+        .example-item:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: translateX(5px);
+        }
+
+        .example-title {
+            font-family: var(--font-leonardo-display);
+            font-size: 1.1em;
+            color: var(--leonardo-crimson);
+            margin-bottom: var(--space-golden-sm);
+        }
+
+        .example-text {
+            font-style: italic;
+            color: var(--leonardo-umber);
+        }
+
+        .leonardo-quote {
+            background: rgba(139, 0, 0, 0.05);
+            border: 1px solid var(--leonardo-crimson);
+            border-radius: var(--space-golden-sm);
+            padding: var(--space-golden-md);
+            margin: var(--space-golden-lg) 0;
+            font-style: italic;
+            text-align: center;
+            position: relative;
+        }
+
+        .leonardo-quote::before {
+            content: '"';
+            font-size: 4em;
+            color: var(--leonardo-crimson);
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            opacity: 0.3;
+        }
+
+        .quote-text {
+            font-size: 1.2em;
+            margin-bottom: var(--space-golden-sm);
+        }
+
+        .quote-attribution {
+            font-size: 0.9em;
+            color: var(--leonardo-umber);
+            text-align: right;
+        }
+
+        .history-section {
+            margin-top: var(--space-golden-lg);
+        }
+
+        .history-item {
+            background: rgba(135, 169, 107, 0.1);
+            border-left: 4px solid var(--leonardo-sage);
+            padding: var(--space-golden-md);
+            margin: var(--space-golden-md) 0;
+            border-radius: 0 var(--space-golden-sm) var(--space-golden-sm) 0;
+        }
+
+        .history-title {
+            font-family: var(--font-leonardo-display);
+            color: var(--leonardo-sage);
+            margin-bottom: var(--space-golden-sm);
+        }
+
+        .decoder-tool {
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid var(--leonardo-gold);
+            border-radius: var(--space-golden-md);
+            padding: var(--space-golden-lg);
+            margin: var(--space-golden-lg) 0;
+            box-shadow: var(--glow-leonardo);
+        }
+
+        .decoder-title {
+            font-family: var(--font-leonardo-display);
+            font-size: 1.3em;
+            color: var(--leonardo-crimson);
+            text-align: center;
+            margin-bottom: var(--space-golden-md);
+        }
+
+        .mirror-sample {
+            background: rgba(44, 24, 16, 0.05);
+            padding: var(--space-golden-md);
+            border-radius: var(--space-golden-sm);
+            margin: var(--space-golden-md) 0;
+            text-align: center;
+            cursor: pointer;
+            transition: all var(--anim-leonardo-medium);
+        }
+
+        .mirror-sample:hover {
+            background: rgba(44, 24, 16, 0.1);
+            transform: scale(1.02);
+        }
+
+        .mirror-text-sample {
+            font-family: var(--font-leonardo-mirror);
+            font-size: 1.5em;
+            transform: scaleX(-1);
+            direction: rtl;
+            unicode-bidi: bidi-override;
+            letter-spacing: 0.1em;
+            color: var(--leonardo-ink);
+        }
+
+        .decoded-text {
+            margin-top: var(--space-golden-sm);
+            font-family: var(--font-leonardo-body);
+            font-size: 1.1em;
+            color: var(--leonardo-umber);
+            opacity: 0;
+            transition: opacity var(--anim-leonardo-medium);
+        }
+
+        .mirror-sample:hover .decoded-text {
+            opacity: 1;
+        }
+
+        .footer {
+            text-align: center;
+            padding: var(--space-golden-xl);
+            background: rgba(44, 24, 16, 0.9);
+            color: var(--leonardo-parchment);
+            border-radius: var(--space-golden-lg);
+            margin-top: var(--space-golden-xxl);
+        }
+
+        .footer-text {
+            font-style: italic;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .workshop-layout {
+                grid-template-columns: 1fr;
+                gap: var(--space-golden-md);
+            }
+            
+            .main-title {
+                font-size: 2em;
+            }
+            
+            .control-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="mirror-writing-container">
+        <header class="header-section leonardo-reveal">
+            <h1 class="main-title">Leonardo's Mirror Writing</h1>
+            <p class="subtitle">"I have been impressed with the urgency of doing. Knowing is not enough; we must apply."</p>
+            
+            <div class="leonardo-quote">
+                <div class="quote-text">Why did Leonardo write backwards? Was it to hide his ideas from prying eyes, or simply because he was left-handed and found it easier to pull the pen across the page?</div>
+                <div class="quote-attribution">— The Mystery of the Master's Hand</div>
+            </div>
+        </header>
+
+        <div class="workshop-layout">
+            <aside class="left-panel">
+                <h2 class="panel-title">The Master's Tools</h2>
+                
+                <div class="history-section">
+                    <div class="history-item">
+                        <h3 class="history-title">The Left-Handed Theory</h3>
+                        <p>Leonardo was left-handed, and writing right-to-left prevented smudging the ink as his hand moved across the page.</p>
+                    </div>
+                    
+                    <div class="history-item">
+                        <h3 class="history-title">The Secrecy Theory</h3>
+                        <p>Some scholars believe mirror writing was a simple form of cryptography to protect his revolutionary ideas.</p>
+                    </div>
+                    
+                    <div class="history-item">
+                        <h3 class="history-title">The Natural Theory</h3>
+                        <p>Perhaps it simply felt natural to Leonardo - he saw the world differently than others.</p>
+                    </div>
+                </div>
+
+                <div class="interactive-examples">
+                    <h3 class="panel-title">Leonardo's Words</h3>
+                    
+                    <div class="example-item" onclick="loadExample('nature')">
+                        <div class="example-title">On Nature</div>
+                        <div class="example-text">"Nature is the source of all true knowledge..."</div>
+                    </div>
+                    
+                    <div class="example-item" onclick="loadExample('flight')">
+                        <div class="example-title">On Flight</div>
+                        <div class="example-text">"Once you have tasted flight..."</div>
+                    </div>
+                    
+                    <div class="example-item" onclick="loadExample('learning')">
+                        <div class="example-title">On Learning</div>
+                        <div class="example-text">"Learning never exhausts the mind..."</div>
+                    </div>
+                </div>
+            </aside>
+
+            <main class="center-workspace">
+                <div class="input-area">
+                    <label for="text-input" style="display: block; margin-bottom: var(--space-golden-sm); font-family: var(--font-leonardo-display); color: var(--leonardo-crimson);">
+                        Write Your Message:
+                    </label>
+                    <textarea 
+                        id="text-input" 
+                        class="leonardo-textarea" 
+                        placeholder="Enter your text here and watch it transform into Leonardo's mirror writing..."
+                        oninput="updateMirrorWriting()"
+                    ></textarea>
+                </div>
+
+                <div class="control-buttons">
+                    <button class="leonardo-button" onclick="clearText()">Clear</button>
+                    <button class="leonardo-button secondary" onclick="copyMirrorText()">Copy Mirror Text</button>
+                    <button class="leonardo-button gold" onclick="downloadMirrorWriting()">Download</button>
+                </div>
+
+                <div class="mirror-output" id="mirror-output">
+                    Your mirror writing will appear here...
+                </div>
+
+                <div class="decoder-tool">
+                    <h3 class="decoder-title">🔍 Interactive Decoder</h3>
+                    <p style="text-align: center; margin-bottom: var(--space-golden-md); color: var(--leonardo-umber);">
+                        Hover over the mirror writing samples below to reveal their secrets:
+                    </p>
+                    
+                    <div class="mirror-sample">
+                        <div class="mirror-text-sample">.gnivil eht fo ecaf eht si esrevinU ehT</div>
+                        <div class="decoded-text">The Universe is the face of living.</div>
+                    </div>
+                    
+                    <div class="mirror-sample">
+                        <div class="mirror-text-sample">.wonk ot tnaw uoy tahw wonk ot evah uoY</div>
+                        <div class="decoded-text">You have to know what you want to know.</div>
+                    </div>
+                </div>
+            </main>
+
+            <aside class="right-panel">
+                <h2 class="panel-title">Leonardo's Insights</h2>
+                
+                <div class="leonardo-quote">
+                    <div class="quote-text">Obstacles do not bend me. Every obstacle yields to stern resolve.</div>
+                    <div class="quote-attribution">— Leonardo da Vinci</div>
+                </div>
+
+                <div class="leonardo-quote">
+                    <div class="quote-text">The noblest pleasure is the joy of understanding.</div>
+                    <div class="quote-attribution">— Leonardo da Vinci</div>
+                </div>
+
+                <div class="leonardo-quote">
+                    <div class="quote-text">Learning never exhausts the mind.</div>
+                    <div class="quote-attribution">— Leonardo da Vinci</div>
+                </div>
+
+                <div style="margin-top: var(--space-golden-lg);">
+                    <h3 class="panel-title">Try This Exercise</h3>
+                    <p style="font-style: italic; color: var(--leonardo-umber);">
+                        Write your name in the input area and try to sign it like Leonardo would. Notice how different it feels to write backwards!
+                    </p>
+                </div>
+
+                <div style="margin-top: var(--space-golden-lg);">
+                    <h3 class="panel-title">Historical Context</h3>
+                    <p style="color: var(--leonardo-umber); font-size: 0.9em;">
+                        Leonardo's mirror writing appears in over 7,000 pages of his notebooks. It wasn't meant to be secret - many of his contemporaries could read it easily.
+                    </p>
+                </div>
+            </aside>
+        </div>
+
+        <footer class="footer">
+            <p class="footer-text">
+                "I have been impressed with the urgency of doing. Knowing is not enough; we must apply. Being willing is not enough; we must do."
+            </p>
+            <p style="margin-top: var(--space-golden-sm);">
+                — Leonardo da Vinci, 1452-1519
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Mirror Writing Functions
+        function updateMirrorWriting() {
+            const input = document.getElementById('text-input');
+            const output = document.getElementById('mirror-output');
+            const text = input.value;
+            
+            if (text.trim() === '') {
+                output.innerHTML = '<span style="opacity: 0.5;">Your mirror writing will appear here...</span>';
+                return;
+            }
+            
+            // Create mirror writing
+            const mirrorText = text.split('').reverse().join('');
+            output.innerHTML = mirrorText;
+            output.style.fontFamily = 'var(--font-leonardo-mirror)';
+            output.style.transform = 'scaleX(-1)';
+            output.style.direction = 'rtl';
+            output.style.unicodeBidi = 'bidi-override';
+            output.style.letterSpacing = '0.1em';
+        }
+
+        function clearText() {
+            document.getElementById('text-input').value = '';
+            updateMirrorWriting();
+        }
+
+        function copyMirrorText() {
+            const output = document.getElementById('mirror-output');
+            const text = output.textContent;
+            
+            if (text.includes('Your mirror writing will appear here')) {
+                alert('Please enter some text first!');
+                return;
+            }
+            
+            // Create temporary textarea to copy reversed text
+            const tempTextarea = document.createElement('textarea');
+            tempTextarea.value = text.split('').reverse().join('');
+            document.body.appendChild(tempTextarea);
+            tempTextarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextarea);
+            
+            // Show feedback
+            const button = event.target;
+            const originalText = button.textContent;
+            button.textContent = 'Copied!';
+            button.style.background = 'linear-gradient(45deg, var(--leonardo-sage), var(--leonardo-sage-light))';
+            
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.style.background = 'linear-gradient(45deg, var(--leonardo-crimson), var(--leonardo-crimson-light))';
+            }, 2000);
+        }
+
+        function downloadMirrorWriting() {
+            const input = document.getElementById('text-input').value;
+            const output = document.getElementById('mirror-output').textContent;
+            
+            if (input.trim() === '') {
+                alert('Please enter some text first!');
+                return;
+            }
+            
+            const content = `LEONARDO'S MIRROR WRITING
+=========================
+
+Original Text:
+"${input}"
+
+Mirror Writing (Leonardo's Style):
+"${output}"
+
+Created with Leonardo da Vinci's Mirror Writing Tool
+"The noblest pleasure is the joy of understanding."
+
+Date: ${new Date().toLocaleDateString()}
+Time: ${new Date().toLocaleTimeString()}
+`;
+            
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'leonardo-mirror-writing.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function loadExample(type) {
+            const examples = {
+                nature: "Nature is the source of all true knowledge. She has her own logic, her own laws, she has no effect without cause nor invention without necessity.",
+                flight: "Once you have tasted flight, you will walk the earth with your eyes turned skyward, for there you have been, and there you long to return.",
+                learning: "Learning never exhausts the mind. It is the food of the soul, the light of intellect, the key that opens the treasures of wisdom."
+            };
+            
+            document.getElementById('text-input').value = examples[type];
+            updateMirrorWriting();
+            
+            // Add visual feedback
+            const exampleItem = event.currentTarget;
+            exampleItem.style.background = 'rgba(255, 215, 0, 0.3)';
+            setTimeout(() => {
+                exampleItem.style.background = 'rgba(255, 215, 0, 0.1)';
+            }, 1000);
+        }
+
+        // Add some Leonardo wisdom on load
+        document.addEventListener('DOMContentLoaded', function() {
+            const wisdoms = [
+                "Obstacles do not bend me. Every obstacle yields to stern resolve.",
+                "The noblest pleasure is the joy of understanding.",
+                "Learning never exhausts the mind.",
+                "Simplicity is the ultimate sophistication.",
+                "Art is never finished, only abandoned."
+            ];
+            
+            // Randomly display a wisdom in the input area
+            const randomWisdom = wisdoms[Math.floor(Math.random() * wisdoms.length)];
+            document.getElementById('text-input').placeholder = `Try writing: "${randomWisdom}"`;
+            
+            // Add hover effects to mirror samples
+            const samples = document.querySelectorAll('.mirror-sample');
+            samples.forEach(sample => {
+                sample.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.02)';
+                    this.style.boxShadow = 'var(--glow-leonardo)';
+                });
+                
+                sample.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                    this.style.boxShadow = 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

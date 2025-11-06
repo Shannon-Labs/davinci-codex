@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="styles/notation.css">
     <link rel="stylesheet" href="styles/controls.css">
     <link rel="stylesheet" href="styles/responsive.css">
+    <link rel="stylesheet" href="../leonardo_design_system.css">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -18,10 +19,22 @@
         <header class="court-header">
             <div class="header-decoration">
                 <div class="fleur-de-lis"></div>
-                <h1 class="page-title">Leonardo's Mechanical Ensemble</h1>
+                <h1 class="page-title leonardo-display">Leonardo's Mechanical Ensemble</h1>
                 <div class="fleur-de-lis"></div>
             </div>
-            <p class="subtitle">An Interactive Journey Through Renaissance Musical Innovation</p>
+            <p class="subtitle leonardo-body">An Interactive Journey Through Renaissance Musical Innovation</p>
+            
+            <!-- Leonardo's Voice - Hidden wisdom revealed on hover -->
+            <div class="leonardo-voice-panel">
+                <div class="leonardo-mirror-decoder">
+                    <span class="mirror-text">.ecnatropmi lacihtem fo ytiliba eht si cisum</span>
+                    <div class="decoder-hint">Hover to decode Leonardo's wisdom</div>
+                </div>
+                <div class="leonardo-marginalia">
+                    "Music is the arithmetic of sounds as optics is the geometry of light."
+                    <br>— Leonardo's Note, Codex Atlanticus
+                </div>
+            </div>
         </header>
 
         <!-- Main visualization area -->
@@ -38,6 +51,10 @@
                 <div class="instruments-stage">
                     <!-- Mechanical Carillon -->
                     <div class="instrument-container carillon-container" data-instrument="carillon">
+                        <div class="instrument-leonardo-note">
+                            "The harmony of bells teaches us the mathematics of time itself"
+                            <br>— Codex Madrid I, folio 45r
+                        </div>
                         <canvas id="carillon-canvas" class="instrument-canvas" width="300" height="400" aria-label="Mechanical Carillon animation"></canvas>
                         <div class="instrument-label">
                             <h3>Mechanical Carillon</h3>
@@ -47,6 +64,10 @@
 
                     <!-- Mechanical Drum -->
                     <div class="instrument-container drum-container" data-instrument="drum">
+                        <div class="instrument-leonardo-note">
+                            "Rhythm is the heartbeat of the universe, measurable and eternal"
+                            <br>— Codex Atlanticus, folio 78v
+                        </div>
                         <canvas id="drum-canvas" class="instrument-canvas" width="250" height="300" aria-label="Mechanical Drum animation"></canvas>
                         <div class="instrument-label">
                             <h3>Mechanical Drum</h3>
@@ -56,6 +77,10 @@
 
                     <!-- Mechanical Organ -->
                     <div class="instrument-container organ-container" data-instrument="organ">
+                        <div class="instrument-leonardo-note">
+                            "The wind is the breath of nature, and pipes are her voice"
+                            <br>— Codex Leicester, folio 12r
+                        </div>
                         <canvas id="organ-canvas" class="instrument-canvas" width="350" height="450" aria-label="Mechanical Organ animation"></canvas>
                         <div class="instrument-label">
                             <h3>Mechanical Organ</h3>
@@ -65,6 +90,10 @@
 
                     <!-- Mechanical Trumpeter -->
                     <div class="instrument-container trumpeter-container" data-instrument="trumpeter">
+                        <div class="instrument-leonardo-note">
+                            "Brass carries the voice of war and celebration across distance"
+                            <br>— Manuscript B, folio 34v
+                        </div>
                         <canvas id="trumpeter-canvas" class="instrument-canvas" width="280" height="380" aria-label="Mechanical Trumpeter animation"></canvas>
                         <div class="instrument-label">
                             <h3>Mechanical Trumpeter</h3>
@@ -74,6 +103,10 @@
 
                     <!-- Programmable Flute -->
                     <div class="instrument-container flute-container" data-instrument="flute">
+                        <div class="instrument-leonardo-note">
+                            "The flute mimics the songbirds, teaching us nature's melodies"
+                            <br>— Codex on the Flight of Birds, folio 8r
+                        </div>
                         <canvas id="flute-canvas" class="instrument-canvas" width="260" height="320" aria-label="Programmable Flute animation"></canvas>
                         <div class="instrument-label">
                             <h3>Programmable Flute</h3>
@@ -83,6 +116,10 @@
 
                     <!-- Viola Organista -->
                     <div class="instrument-container viola-container" data-instrument="viola">
+                        <div class="instrument-leonardo-note">
+                            "Continuous sound is the closest human art comes to eternity"
+                            <br>— Codex Madrid II, folio 89r
+                        </div>
                         <canvas id="viola-canvas" class="instrument-canvas" width="320" height="400" aria-label="Viola Organista animation"></canvas>
                         <div class="instrument-label">
                             <h3>Viola Organista</h3>
@@ -280,11 +317,25 @@
         </footer>
     </div>
 
-    <!-- Loading overlay -->
+    <!-- Loading overlay - Renaissance Theatrical Experience -->
     <div id="loading-overlay" class="loading-overlay">
         <div class="loading-content">
             <div class="loading-spinner"></div>
-            <p>Preparing Leonardo's Mechanical Ensemble...</p>
+            <p class="leonardo-display">Preparing Leonardo's Mechanical Ensemble...</p>
+            <div class="leonardo-loading-quote">
+                <div class="leonardo-mirror-decoder">
+                    <span class="mirror-text">.ecnatropmi lacihtem fo ytiliba eht si cisum</span>
+                    <div class="decoder-hint">Hover to decode</div>
+                </div>
+                <p class="leonardo-marginalia">"Music is the arithmetic of sounds as optics is the geometry of light."</p>
+                <p class="leonardo-marginalia" style="text-align: right;">— Leonardo da Vinci, Codex Atlanticus</p>
+            </div>
+            <div class="loading-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="loading-progress-fill"></div>
+                </div>
+                <p class="progress-text" id="loading-progress-text">Tuning the instruments...</p>
+            </div>
         </div>
     </div>
 
