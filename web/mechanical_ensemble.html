@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leonardo's Mechanical Ensemble - Automated Orchestra</title>
+    <link rel="stylesheet" href="leonardo_design_system.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        body { margin: 0; padding: 0; background: linear-gradient(135deg, #FF1493 0%, #F4E4C1 100%); font-family: var(--font-leonardo-body); min-height: 100vh; }
+        .main-container { max-width: 1400px; margin: 0 auto; padding: var(--space-golden-xl); }
+        .header { text-align: center; padding: var(--space-golden-xl); background: rgba(255, 255, 255, 0.9); border-radius: var(--space-golden-lg); margin-bottom: var(--space-golden-lg); }
+        .main-title { font-family: var(--font-leonardo-display); font-size: 3em; color: var(--leonardo-ink); }
+        .canvas { width: 100%; height: 400px; background: rgba(255, 255, 255, 0.9); border: 2px solid #FF1493; border-radius: var(--space-golden-md); margin: var(--space-golden-md) 0; }
+        .content { background: rgba(255, 255, 255, 0.9); padding: var(--space-golden-lg); border-radius: var(--space-golden-md); }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="header">
+            <h1 class="main-title">🎼 Mechanical Ensemble</h1>
+            <p style="font-size: 1.2em; font-style: italic;">Synchronized Multi-Instrument Automated Orchestra</p>
+            <div style="display: inline-block; background: linear-gradient(45deg, #FF1493, #FF69B4); color: white; padding: var(--space-golden-sm) var(--space-golden-lg); border-radius: var(--space-golden-lg); font-family: var(--font-leonardo-display); margin-top: var(--space-golden-md);">🎵 8 INSTRUMENTS SYNCHRONIZED 🎵</div>
+        </div>
+        <div class="canvas"><canvas id="ensembleCanvas"></canvas></div>
+        <button onclick="playEnsemble()" style="padding: var(--space-golden-md) var(--space-golden-xl); font-size: 1.2em; background: linear-gradient(45deg, #FF1493, #FF69B4); color: white; border: none; border-radius: var(--space-golden-sm); cursor: pointer; display: block; margin: var(--space-golden-md) auto;">🎼 Play Full Orchestra</button>
+        <div class="content">
+            <h3 style="font-family: var(--font-leonardo-display); color: var(--leonardo-crimson);">Ultimate Achievement:</h3>
+            <ul style="line-height: 1.8; font-size: 1.1em;">
+                <li><strong>Master Clock System:</strong> Single cam drum synchronizes all instruments</li>
+                <li><strong>8-Part Harmony:</strong> Organs, drums, strings, bells in coordination</li>
+                <li><strong>Programmable Compositions:</strong> Interchangeable cylinders for different pieces</li>
+                <li><strong>Renaissance Automation Peak:</strong> Most complex mechanical music system</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        const canvas = document.getElementById('ensembleCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+        let playing = false;
+
+        function playEnsemble() { playing = !playing; }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            const instruments = ['🎹', '🎻', '🎺', '🥁', '🔔', '🎶', '🎵', '♪'];
+            const colors = ['#4B0082', '#8B0000', '#FFD700', '#8B4513', '#FFD700', '#228B22', '#DC143C', '#FF1493'];
+
+            for (let i = 0; i < 8; i++) {
+                const x = 100 + (i % 4) * 250;
+                const y = 100 + Math.floor(i / 4) * 150;
+                const active = playing && Math.sin(Date.now() * 0.005 + i) > 0;
+
+                ctx.fillStyle = active ? colors[i] : '#DDD';
+                ctx.font = '48px serif';
+                ctx.fillText(instruments[i], x, y);
+
+                if (active) {
+                    ctx.strokeStyle = colors[i];
+                    ctx.lineWidth = 3;
+                    ctx.beginPath();
+                    ctx.arc(x + 20, y - 30, 40, 0, Math.PI * 2);
+                    ctx.stroke();
+                }
+            }
+
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
+</body>
+</html>
