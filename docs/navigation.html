@@ -1,0 +1,270 @@
+<!--
+🎨 Leonardo's Navigation Component
+Reusable navigation bar for all web interfaces
+
+Usage: Include this at the top of any invention page
+-->
+
+<style>
+    .leonardo-nav {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: linear-gradient(135deg,
+            rgba(44, 24, 16, 0.98),
+            rgba(139, 69, 19, 0.98)
+        );
+        border-bottom: 3px solid var(--leonardo-gold, #FFD700);
+        box-shadow: 0 4px 12px rgba(44, 24, 16, 0.5);
+        backdrop-filter: blur(10px);
+    }
+
+    .leonardo-nav-container {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 1rem 1.618rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .nav-brand {
+        display: flex;
+        align-items: center;
+        gap: 0.618rem;
+        text-decoration: none;
+        color: var(--leonardo-parchment, #F4E4C1);
+        font-family: 'Cinzel', serif;
+        font-size: 1.3em;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .nav-brand:hover {
+        color: var(--leonardo-gold, #FFD700);
+        transform: translateY(-2px);
+    }
+
+    .nav-brand-icon {
+        font-size: 1.5em;
+        animation: iconGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes iconGlow {
+        0%, 100% { filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.3)); }
+        50% { filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8)); }
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 0.618rem;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .nav-link {
+        color: var(--leonardo-parchment, #F4E4C1);
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        font-family: 'Crimson Text', serif;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .nav-link:hover {
+        background: rgba(255, 215, 0, 0.2);
+        border-color: var(--leonardo-gold, #FFD700);
+        transform: translateY(-2px);
+    }
+
+    .nav-link.active {
+        background: rgba(139, 0, 0, 0.3);
+        border-color: var(--leonardo-crimson, #8B0000);
+    }
+
+    .nav-divider {
+        width: 1px;
+        height: 30px;
+        background: linear-gradient(to bottom,
+            transparent,
+            rgba(255, 215, 0, 0.5),
+            transparent
+        );
+    }
+
+    .nav-dropdown {
+        position: relative;
+    }
+
+    .nav-dropdown-toggle {
+        cursor: pointer;
+    }
+
+    .nav-dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: rgba(44, 24, 16, 0.98);
+        border: 2px solid var(--leonardo-gold, #FFD700);
+        border-radius: 0.5rem;
+        margin-top: 0.5rem;
+        min-width: 250px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(10px);
+    }
+
+    .nav-dropdown:hover .nav-dropdown-menu {
+        display: block;
+    }
+
+    .nav-dropdown-item {
+        display: block;
+        padding: 0.75rem 1rem;
+        color: var(--leonardo-parchment, #F4E4C1);
+        text-decoration: none;
+        font-family: 'Crimson Text', serif;
+        transition: all 0.3s ease;
+        border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+    }
+
+    .nav-dropdown-item:last-child {
+        border-bottom: none;
+    }
+
+    .nav-dropdown-item:hover {
+        background: rgba(255, 215, 0, 0.2);
+        padding-left: 1.5rem;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+        .leonardo-nav-container {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .nav-brand {
+            justify-content: center;
+        }
+
+        .nav-links {
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .nav-link {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .nav-divider {
+            display: none;
+        }
+
+        .nav-dropdown-menu {
+            position: static;
+            display: none;
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+
+        .nav-dropdown.active .nav-dropdown-menu {
+            display: block;
+        }
+    }
+</style>
+
+<nav class="leonardo-nav">
+    <div class="leonardo-nav-container">
+        <!-- Brand / Logo -->
+        <a href="index.html" class="nav-brand">
+            <span class="nav-brand-icon">⚙️</span>
+            <span>Leonardo's Workshop</span>
+        </a>
+
+        <!-- Navigation Links -->
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">
+                🏛️ Home
+            </a>
+
+            <a href="gallery.html" class="nav-link">
+                🎨 Gallery
+            </a>
+
+            <div class="nav-divider"></div>
+
+            <!-- Inventions Dropdown -->
+            <div class="nav-dropdown">
+                <a href="#" class="nav-link nav-dropdown-toggle">
+                    🔧 Inventions ▾
+                </a>
+                <div class="nav-dropdown-menu">
+                    <a href="gallery.html#flight" class="nav-dropdown-item">✈️ Flight Systems</a>
+                    <a href="gallery.html#ground" class="nav-dropdown-item">🚗 Ground Transport</a>
+                    <a href="gallery.html#automata" class="nav-dropdown-item">🎭 Automata</a>
+                    <a href="gallery.html#music" class="nav-dropdown-item">🎵 Musical Instruments</a>
+                    <a href="gallery.html#hydraulic" class="nav-dropdown-item">💧 Hydraulic Systems</a>
+                    <a href="gallery.html#tools" class="nav-dropdown-item">🔬 Interactive Tools</a>
+                </div>
+            </div>
+
+            <div class="nav-divider"></div>
+
+            <a href="mirror_writing_interface.html" class="nav-link">
+                🪞 Mirror Writing
+            </a>
+
+            <a href="cross_pollination_explorer.html" class="nav-link">
+                🕸️ Network
+            </a>
+
+            <a href="invention_timeline.html" class="nav-link">
+                ⏰ Timeline
+            </a>
+
+            <div class="nav-divider"></div>
+
+            <a href="https://github.com/Shannon-Labs/davinci-codex" target="_blank" class="nav-link">
+                💻 GitHub
+            </a>
+        </div>
+    </div>
+</nav>
+
+<script>
+// Mobile dropdown toggle
+document.addEventListener('DOMContentLoaded', function() {
+    const dropdowns = document.querySelectorAll('.nav-dropdown');
+
+    dropdowns.forEach(dropdown => {
+        const toggle = dropdown.querySelector('.nav-dropdown-toggle');
+
+        if (window.innerWidth <= 768) {
+            toggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                dropdown.classList.toggle('active');
+            });
+        }
+    });
+
+    // Highlight current page
+    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    navLinks.forEach(link => {
+        const linkPath = link.getAttribute('href');
+        if (linkPath === currentPath || linkPath.includes(currentPath)) {
+            link.classList.add('active');
+        }
+    });
+});
+</script>
