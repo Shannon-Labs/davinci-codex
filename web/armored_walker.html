@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leonardo's Armored Walker - Quadruped Walking Chassis</title>
+    <link rel="stylesheet" href="leonardo_design_system.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        body { margin: 0; padding: 0; background: linear-gradient(135deg, #2F4F4F 0%, #696969 50%, #F4E4C1 100%); font-family: var(--font-leonardo-body); min-height: 100vh; }
+        .main-container { max-width: 1400px; margin: 0 auto; padding: var(--space-golden-xl); }
+        .header { text-align: center; padding: var(--space-golden-xxl); background: rgba(255, 255, 255, 0.9); border-radius: var(--space-golden-lg); margin-bottom: var(--space-golden-xxl); }
+        .main-title { font-family: var(--font-leonardo-display); font-size: 3.5em; color: var(--leonardo-ink); }
+        .canvas { width: 100%; height: 500px; background: rgba(255, 255, 255, 0.9); border: 2px solid #2F4F4F; border-radius: var(--space-golden-md); margin: var(--space-golden-lg) 0; }
+        .content { background: rgba(255, 255, 255, 0.9); padding: var(--space-golden-xl); border-radius: var(--space-golden-lg); margin-bottom: var(--space-golden-lg); }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="header">
+            <h1 class="main-title">🦾 Leonardo's Armored Walker</h1>
+            <p style="font-size: 1.3em; color: var(--leonardo-umber); font-style: italic;">Quadruped Walking Chassis for Armored Transport</p>
+            <div style="display: inline-block; background: linear-gradient(45deg, #2F4F4F, #696969); color: white; padding: var(--space-golden-sm) var(--space-golden-lg); border-radius: var(--space-golden-lg); font-family: var(--font-leonardo-display); font-size: 1.1em; margin-top: var(--space-golden-md);">⚔️ ALL-TERRAIN MOBILITY ⚔️</div>
+        </div>
+
+        <div class="canvas"><canvas id="walkerCanvas"></canvas></div>
+
+        <div style="text-align: center; margin: var(--space-golden-lg) 0;">
+            <button onclick="startWalker()" style="padding: var(--space-golden-md) var(--space-golden-xl); font-size: 1.2em; background: linear-gradient(45deg, #2F4F4F, #696969); color: white; border: none; border-radius: var(--space-golden-sm); cursor: pointer; font-family: var(--font-leonardo-display);">🚶 Start Walking</button>
+            <button onclick="stopWalker()" style="padding: var(--space-golden-md) var(--space-golden-xl); font-size: 1.2em; background: linear-gradient(45deg, var(--leonardo-sage), var(--leonardo-sage-light)); color: white; border: none; border-radius: var(--space-golden-sm); cursor: pointer; font-family: var(--font-leonardo-display); margin-left: var(--space-golden-md);">⏹️ Stop</button>
+        </div>
+
+        <div class="content">
+            <h2 style="font-family: var(--font-leonardo-display); color: var(--leonardo-crimson); text-align: center; margin-bottom: var(--space-golden-lg);">Engineering Innovation</h2>
+            <ul style="font-size: 1.1em; line-height: 1.8;">
+                <li><strong>Quadruped Gait:</strong> Four-legged walking mechanism for terrain navigation</li>
+                <li><strong>Armored Protection:</strong> Bronze plating resists projectile weapons</li>
+                <li><strong>Mechanical Linkages:</strong> Cam-driven leg coordination</li>
+                <li><strong>All-Terrain Capability:</strong> Negotiates rough ground and obstacles</li>
+                <li><strong>Tactical Advantage:</strong> Mobile fortification for battlefield deployment</li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <h2 style="font-family: var(--font-leonardo-display); color: var(--leonardo-crimson); text-align: center; margin-bottom: var(--space-golden-lg);">Historical Context</h2>
+            <p style="font-size: 1.2em; line-height: 1.8;">
+                Leonardo's armored walker represents his vision for mobile armored warfare. Designed during his service as military engineer, it combined the stability of quadruped locomotion with protective armor—a Renaissance precursor to modern armored vehicles and walking robots.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('walkerCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+
+        let walking = false, animTime = 0, walkerX = 100;
+
+        function startWalker() { walking = true; }
+        function stopWalker() { walking = false; }
+
+        function getLegY(legIndex, time) {
+            const phase = (time + legIndex * 0.25) % 1.0;
+            return phase < 0.6 ? Math.sin(phase * Math.PI / 0.6) * 40 : 0;
+        }
+
+        function animate() {
+            if (walking) {
+                animTime += 0.02;
+                walkerX += 1;
+                if (walkerX > canvas.width - 150) walkerX = 100;
+            }
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Ground
+            ctx.strokeStyle = '#8B4513';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(0, canvas.height - 80);
+            ctx.lineTo(canvas.width, canvas.height - 80);
+            ctx.stroke();
+
+            // Walker body
+            ctx.fillStyle = '#696969';
+            ctx.strokeStyle = '#2F4F4F';
+            ctx.lineWidth = 3;
+            ctx.fillRect(walkerX, canvas.height - 200, 120, 80);
+            ctx.strokeRect(walkerX, canvas.height - 200, 120, 80);
+
+            // Turret
+            ctx.fillStyle = '#556B2F';
+            ctx.beginPath();
+            ctx.arc(walkerX + 60, canvas.height - 200, 30, 0, Math.PI, true);
+            ctx.fill();
+            ctx.stroke();
+
+            // Legs
+            const legPositions = [
+                {x: 20, front: true, left: true},
+                {x: 100, front: true, left: false},
+                {x: 20, front: false, left: true},
+                {x: 100, front: false, left: false}
+            ];
+
+            legPositions.forEach((leg, i) => {
+                const legY = getLegY(i, animTime);
+                ctx.strokeStyle = '#2F4F4F';
+                ctx.lineWidth = 6;
+                ctx.beginPath();
+                ctx.moveTo(walkerX + leg.x, canvas.height - 120);
+                ctx.lineTo(walkerX + leg.x, canvas.height - 80 - legY);
+                ctx.stroke();
+
+                ctx.fillStyle = '#696969';
+                ctx.beginPath();
+                ctx.arc(walkerX + leg.x, canvas.height - 80 - legY, 8, 0, Math.PI * 2);
+                ctx.fill();
+            });
+
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
+</body>
+</html>
