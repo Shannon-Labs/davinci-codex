@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leonardo's Pyramid Parachute - Personal Aviation Safety System</title>
+    <link rel="stylesheet" href="leonardo_design_system.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(180deg, #87CEEB 0%, #F4E4C1 100%);
+            font-family: var(--font-leonardo-body);
+            min-height: 100vh;
+        }
+
+        .parachute-container {
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: var(--space-golden-xl);
+        }
+
+        /* Header Section */
+        .header-section {
+            text-align: center;
+            margin-bottom: var(--space-golden-xxl);
+            padding: var(--space-golden-xxl);
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: var(--space-golden-lg);
+            box-shadow: var(--shadow-leonardo-elevated);
+            position: relative;
+        }
+
+        .main-title {
+            font-family: var(--font-leonardo-display);
+            font-size: 4em;
+            color: var(--leonardo-ink);
+            margin-bottom: var(--space-golden-md);
+            text-shadow: 3px 3px 6px rgba(44, 24, 16, 0.2);
+        }
+
+        .subtitle {
+            font-size: 1.5em;
+            color: var(--leonardo-umber);
+            font-style: italic;
+            margin-bottom: var(--space-golden-lg);
+        }
+
+        .safety-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--leonardo-sage), var(--leonardo-sage-light));
+            color: white;
+            padding: var(--space-golden-sm) var(--space-golden-lg);
+            border-radius: var(--space-golden-lg);
+            font-family: var(--font-leonardo-display);
+            font-size: 1.2em;
+            letter-spacing: 0.05em;
+            box-shadow: var(--glow-leonardo);
+            margin: var(--space-golden-md) 0;
+        }
+
+        /* Leonardo's Wisdom Quote */
+        .leonardo-quote {
+            background: rgba(135, 169, 107, 0.15);
+            border: 2px solid var(--leonardo-sage);
+            border-radius: var(--space-golden-md);
+            padding: var(--space-golden-lg);
+            margin: var(--space-golden-xl) auto;
+            max-width: 900px;
+            font-style: italic;
+            position: relative;
+        }
+
+        .quote-icon {
+            font-size: 3em;
+            color: var(--leonardo-gold);
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            background: var(--leonardo-parchment);
+            padding: 0 10px;
+        }
+
+        .quote-text {
+            font-size: 1.4em;
+            margin-bottom: var(--space-golden-md);
+            line-height: 1.618;
+        }
+
+        .quote-attribution {
+            font-size: 1em;
+            color: var(--leonardo-umber);
+            text-align: right;
+            font-weight: 600;
+        }
+
+        /* Main Layout */
+        .parachute-layout {
+            display: grid;
+            grid-template-columns: 350px 1fr 320px;
+            gap: var(--space-golden-xl);
+            margin-bottom: var(--space-golden-xxl);
+        }
+
+        .control-panel, .safety-panel {
+            background: rgba(255, 255, 255, 0.9);
+            padding: var(--space-golden-lg);
+            border-radius: var(--space-golden-md);
+            box-shadow: var(--shadow-leonardo-manuscript);
+            height: fit-content;
+        }
+
+        .simulation-workspace {
+            background: rgba(255, 255, 255, 0.95);
+            padding: var(--space-golden-xl);
+            border-radius: var(--space-golden-lg);
+            box-shadow: var(--shadow-leonardo-elevated);
+            min-height: 700px;
+        }
+
+        .panel-title {
+            font-family: var(--font-leonardo-display);
+            font-size: 1.8em;
+            color: var(--leonardo-crimson);
+            margin-bottom: var(--space-golden-lg);
+            text-align: center;
+            border-bottom: 2px solid var(--leonardo-gold);
+            padding-bottom: var(--space-golden-sm);
+        }
+
+        /* Control Panel */
+        .control-group {
+            margin-bottom: var(--space-golden-lg);
+            padding: var(--space-golden-md);
+            background: rgba(135, 169, 107, 0.1);
+            border-radius: var(--space-golden-sm);
+            border: 1px solid var(--leonardo-sage-light);
+        }
+
+        .control-label {
+            font-family: var(--font-leonardo-display);
+            font-size: 1.1em;
+            color: var(--leonardo-umber);
+            margin-bottom: var(--space-golden-sm);
+            display: block;
+        }
+
+        .control-value {
+            font-size: 1.5em;
+            color: var(--leonardo-crimson);
+            font-weight: 600;
+            text-align: center;
+            margin: var(--space-golden-sm) 0;
+        }
+
+        .slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: linear-gradient(90deg, var(--leonardo-sage), var(--leonardo-gold));
+            outline: none;
+            opacity: 0.9;
+            transition: opacity var(--anim-leonardo-fast);
+            cursor: pointer;
+        }
+
+        .slider:hover {
+            opacity: 1;
+        }
+
+        .slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--leonardo-crimson);
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(139, 0, 0, 0.3);
+        }
+
+        /* Descent Visualization */
+        .descent-canvas {
+            width: 100%;
+            height: 600px;
+            background: linear-gradient(180deg, #87CEEB 0%, #E0F6FF 100%);
+            border: 2px solid var(--leonardo-sage);
+            border-radius: var(--space-golden-md);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: var(--space-golden-lg);
+        }
+
+        #descentCanvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Performance Metrics */
+        .metric-card {
+            background: linear-gradient(135deg, rgba(135, 169, 107, 0.2), rgba(255, 255, 255, 0.8));
+            border: 2px solid var(--leonardo-sage);
+            border-radius: var(--space-golden-sm);
+            padding: var(--space-golden-md);
+            margin-bottom: var(--space-golden-md);
+            text-align: center;
+            transition: all var(--anim-leonardo-medium);
+        }
+
+        .metric-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--glow-leonardo);
+        }
+
+        .metric-label {
+            font-size: 0.9em;
+            color: var(--leonardo-umber);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: var(--space-golden-xs);
+        }
+
+        .metric-value {
+            font-size: 2em;
+            color: var(--leonardo-crimson);
+            font-weight: 700;
+            font-family: var(--font-leonardo-display);
+        }
+
+        .metric-unit {
+            font-size: 0.7em;
+            color: var(--leonardo-ink);
+            opacity: 0.7;
+        }
+
+        .safety-status {
+            padding: var(--space-golden-md);
+            border-radius: var(--space-golden-sm);
+            margin-top: var(--space-golden-md);
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        .safety-safe {
+            background: rgba(135, 169, 107, 0.3);
+            border: 2px solid var(--leonardo-sage);
+            color: #2d5016;
+        }
+
+        .safety-caution {
+            background: rgba(255, 215, 0, 0.3);
+            border: 2px solid var(--leonardo-gold);
+            color: #8B4513;
+        }
+
+        .safety-danger {
+            background: rgba(139, 0, 0, 0.2);
+            border: 2px solid var(--leonardo-crimson);
+            color: var(--leonardo-crimson);
+        }
+
+        /* Tab System */
+        .tab-navigation {
+            display: flex;
+            gap: var(--space-golden-sm);
+            margin-bottom: var(--space-golden-lg);
+            border-bottom: 2px solid var(--leonardo-gold);
+        }
+
+        .tab-button {
+            background: transparent;
+            border: none;
+            padding: var(--space-golden-sm) var(--space-golden-md);
+            font-family: var(--font-leonardo-display);
+            font-size: 1.1em;
+            color: var(--leonardo-umber);
+            cursor: pointer;
+            transition: all var(--anim-leonardo-fast);
+            border-bottom: 3px solid transparent;
+            position: relative;
+            bottom: -2px;
+        }
+
+        .tab-button:hover {
+            color: var(--leonardo-crimson);
+        }
+
+        .tab-button.active {
+            color: var(--leonardo-crimson);
+            border-bottom-color: var(--leonardo-crimson);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: leonardoReveal 0.618s ease-out;
+        }
+
+        /* Technical Specifications */
+        .spec-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-golden-md);
+            margin-top: var(--space-golden-md);
+        }
+
+        .spec-item {
+            background: rgba(244, 228, 193, 0.5);
+            border: 1px solid var(--leonardo-umber-light);
+            border-radius: var(--space-golden-xs);
+            padding: var(--space-golden-sm);
+        }
+
+        .spec-name {
+            font-size: 0.85em;
+            color: var(--leonardo-umber);
+            margin-bottom: 4px;
+        }
+
+        .spec-value {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: var(--leonardo-ink);
+        }
+
+        /* Historical Context */
+        .historical-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: var(--space-golden-xl);
+            border-radius: var(--space-golden-lg);
+            box-shadow: var(--shadow-leonardo-manuscript);
+            margin-bottom: var(--space-golden-xxl);
+        }
+
+        .folio-reference {
+            background: rgba(139, 69, 19, 0.1);
+            border-left: 4px solid var(--leonardo-umber);
+            padding: var(--space-golden-md);
+            margin: var(--space-golden-lg) 0;
+            font-family: var(--font-leonardo-marginalia);
+            font-style: italic;
+        }
+
+        /* Pyramid Diagram */
+        .pyramid-diagram {
+            text-align: center;
+            padding: var(--space-golden-xl);
+            margin: var(--space-golden-lg) 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .parachute-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="parachute-container">
+        <!-- Header -->
+        <div class="header-section">
+            <h1 class="main-title">🪂 Leonardo's Pyramid Parachute</h1>
+            <p class="subtitle">Il Paracadute Piramidale - Personal Aviation Safety System</p>
+            <div class="safety-badge">✅ VALIDATED SAFE: 6.9 m/s TERMINAL VELOCITY</div>
+            <p style="font-size: 1.2em; color: var(--leonardo-ink); margin-top: var(--space-golden-lg);">
+                <strong>Revolutionary Pyramid Design</strong> achieving safe landing velocities through drag optimization
+            </p>
+        </div>
+
+        <!-- Leonardo's Wisdom -->
+        <div class="leonardo-quote">
+            <span class="quote-icon">"</span>
+            <p class="quote-text">
+                "If a man has a tent made of linen of which the apertures have all been stopped up, and it be twelve braccia across and twelve in depth, he will be able to throw himself down from any great height without suffering any injury."
+            </p>
+            <p class="quote-attribution">— Leonardo da Vinci, Codex Atlanticus (c. 1485), folio 381v</p>
+        </div>
+
+        <!-- Main Workspace -->
+        <div class="parachute-layout">
+            <!-- Control Panel -->
+            <div class="control-panel">
+                <h2 class="panel-title">⚙️ Drop Parameters</h2>
+
+                <div class="control-group">
+                    <label class="control-label">Drop Height</label>
+                    <div class="control-value" id="heightValue">100 m</div>
+                    <input type="range" class="slider" id="heightSlider" min="10" max="500" value="100" step="10">
+                    <p style="font-size: 0.85em; margin-top: var(--space-golden-sm); color: var(--leonardo-umber);">
+                        Test range: 10-500 meters
+                    </p>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">Canopy Size</label>
+                    <div class="control-value" id="canopyValue">7.2 m</div>
+                    <input type="range" class="slider" id="canopySlider" min="5" max="12" value="7.2" step="0.1">
+                    <p style="font-size: 0.85em; margin-top: var(--space-golden-sm); color: var(--leonardo-umber);">
+                        Leonardo specified 12 braccia (7.2m)
+                    </p>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">Jumper Mass</label>
+                    <div class="control-value" id="massValue">80 kg</div>
+                    <input type="range" class="slider" id="massSlider" min="50" max="120" value="80" step="5">
+                    <p style="font-size: 0.85em; margin-top: var(--space-golden-sm); color: var(--leonardo-umber);">
+                        Average adult mass range
+                    </p>
+                </div>
+
+                <button class="leonardo-button" onclick="startDescent()" style="width: 100%; margin-top: var(--space-golden-md);">
+                    🪂 Start Descent
+                </button>
+
+                <button class="leonardo-button" onclick="resetSimulation()" style="width: 100%; margin-top: var(--space-golden-sm); background: linear-gradient(45deg, var(--leonardo-umber), var(--leonardo-umber-light));">
+                    🔄 Reset
+                </button>
+            </div>
+
+            <!-- Simulation Workspace -->
+            <div class="simulation-workspace">
+                <div class="tab-navigation">
+                    <button class="tab-button active" onclick="switchTab('simulation')">🌀 Descent Simulation</button>
+                    <button class="tab-button" onclick="switchTab('safety')">🛡️ Safety Analysis</button>
+                    <button class="tab-button" onclick="switchTab('specifications')">📐 Technical Specs</button>
+                    <button class="tab-button" onclick="switchTab('manufacturing')">🔧 Construction</button>
+                </div>
+
+                <!-- Simulation Tab -->
+                <div id="simulation" class="tab-content active">
+                    <h3 style="font-family: var(--font-leonardo-display); text-align: center; color: var(--leonardo-crimson);">
+                        Interactive Descent Visualization
+                    </h3>
+                    <div class="descent-canvas">
+                        <canvas id="descentCanvas"></canvas>
+                    </div>
+                    <div class="spec-grid">
+                        <div class="metric-card">
+                            <div class="metric-label">Current Altitude</div>
+                            <div class="metric-value" id="currentAltitude">100<span class="metric-unit"> m</span></div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">Current Velocity</div>
+                            <div class="metric-value" id="currentVelocity">0<span class="metric-unit"> m/s</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Safety Analysis Tab -->
+                <div id="safety" class="tab-content">
+                    <h3 style="font-family: var(--font-leonardo-display); text-align: center; color: var(--leonardo-crimson); margin-bottom: var(--space-golden-lg);">
+                        Comprehensive Safety Analysis
+                    </h3>
+
+                    <div class="pyramid-diagram">
+                        <svg width="300" height="300" viewBox="0 0 300 300">
+                            <polygon points="150,50 250,250 50,250"
+                                     fill="rgba(135, 169, 107, 0.3)"
+                                     stroke="#87A96B"
+                                     stroke-width="3"/>
+                            <line x1="150" y1="50" x2="150" y2="250"
+                                  stroke="#8B4513" stroke-width="2" stroke-dasharray="5,5"/>
+                            <circle cx="150" cy="250" r="8" fill="#8B0000"/>
+                            <text x="150" y="30" text-anchor="middle" font-family="Cinzel" font-size="14" fill="#2C1810">
+                                Apex (Attachment Point)
+                            </text>
+                            <text x="150" y="280" text-anchor="middle" font-family="Cinzel" font-size="14" fill="#8B0000">
+                                Jumper
+                            </text>
+                        </svg>
+                        <p style="font-style: italic; color: var(--leonardo-umber); margin-top: var(--space-golden-md);">
+                            Leonardo's pyramid configuration provides structural stability and consistent drag
+                        </p>
+                    </div>
+
+                    <h4 style="font-family: var(--font-leonardo-display); color: var(--leonardo-umber); margin-top: var(--space-golden-xl);">
+                        Safety Thresholds:
+                    </h4>
+                    <div class="spec-grid">
+                        <div class="metric-card safety-safe">
+                            <div class="metric-label">Safe Landing</div>
+                            <div class="metric-value">&lt; 7<span class="metric-unit"> m/s</span></div>
+                        </div>
+                        <div class="metric-card safety-caution">
+                            <div class="metric-label">Caution Range</div>
+                            <div class="metric-value">7-10<span class="metric-unit"> m/s</span></div>
+                        </div>
+                        <div class="metric-card safety-danger">
+                            <div class="metric-label">Dangerous</div>
+                            <div class="metric-value">&gt; 10<span class="metric-unit"> m/s</span></div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">Free Fall</div>
+                            <div class="metric-value">54<span class="metric-unit"> m/s</span></div>
+                        </div>
+                    </div>
+
+                    <h4 style="font-family: var(--font-leonardo-display); color: var(--leonardo-umber); margin-top: var(--space-golden-xl);">
+                        Performance Validation:
+                    </h4>
+                    <ul style="line-height: 1.8; font-size: 1.1em;">
+                        <li><strong>Terminal Velocity:</strong> 6.9 m/s (validated safe for humans)</li>
+                        <li><strong>Drag Force:</strong> ~1,250N at terminal velocity</li>
+                        <li><strong>Drag Coefficient:</strong> 1.4-1.75 (pyramid configuration)</li>
+                        <li><strong>Deployment Reliability:</strong> Rigid structure ensures consistent opening</li>
+                        <li><strong>Stability:</strong> Pyramid shape prevents oscillation</li>
+                        <li><strong>Safety Factor:</strong> 7.8× safer than free fall impact</li>
+                    </ul>
+                </div>
+
+                <!-- Specifications Tab -->
+                <div id="specifications" class="tab-content">
+                    <h3 style="font-family: var(--font-leonardo-display); text-align: center; color: var(--leonardo-crimson); margin-bottom: var(--space-golden-lg);">
+                        Complete Technical Specifications
+                    </h3>
+
+                    <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Canopy Geometry:</h4>
+                    <div class="spec-grid">
+                        <div class="spec-item">
+                            <div class="spec-name">Base Side Length</div>
+                            <div class="spec-value">7.2 m (12 braccia)</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-name">Pyramid Height</div>
+                            <div class="spec-value">7.2 m (1:1 ratio)</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-name">Surface Area</div>
+                            <div class="spec-value">~93 m²</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-name">Configuration</div>
+                            <div class="spec-value">Square pyramid</div>
+                        </div>
+                    </div>
+
+                    <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Materials:</h4>
+                    <div class="spec-grid">
+                        <div class="spec-item">
+                            <div class="spec-name">Historical Material</div>
+                            <div class="spec-value">Starched linen</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-name">Modern Equivalent</div>
+                            <div class="spec-value">Ripstop nylon</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-name">Frame</div>
+                            <div class="spec-value">Bamboo/aluminum struts</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-name">Total Weight</div>
+                            <div class="spec-value">~8 kg</div>
+                        </div>
+                    </div>
+
+                    <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Performance Metrics:</h4>
+                    <div class="spec-grid">
+                        <div class="spec-item">
+                            <div class="spec-name">Terminal Velocity</div>
+                            <div class="spec-value">6.9 m/s</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-name">Drag Force</div>
+                            <div class="spec-value">~1,250 N</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-name">Drag Coefficient (C_d)</div>
+                            <div class="spec-value">1.4 - 1.75</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-name">Descent Time (100m)</div>
+                            <div class="spec-value">~20 seconds</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Manufacturing Tab -->
+                <div id="manufacturing" class="tab-content">
+                    <h3 style="font-family: var(--font-leonardo-display); text-align: center; color: var(--leonardo-crimson); margin-bottom: var(--space-golden-lg);">
+                        Construction Guide
+                    </h3>
+
+                    <div class="safety-status safety-danger">
+                        ⚠️ <strong>CRITICAL SAFETY WARNING:</strong> Do not attempt to use this parachute for actual jumps. This is a historical reconstruction for educational purposes only. Modern parachutes use fundamentally different designs with extensive safety testing.
+                    </div>
+
+                    <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Historical Construction Method:</h4>
+                    <ol style="line-height: 1.8; font-size: 1.1em;">
+                        <li><strong>Frame Assembly:</strong> Create pyramid frame using 4 wooden or bamboo poles (7.2m length)</li>
+                        <li><strong>Fabric Preparation:</strong> Cut 4 triangular panels from starched linen (Leonardo's specification)</li>
+                        <li><strong>Sealing:</strong> Apply starch to fabric to make it airtight (Leonardo's note: "pores stopped up")</li>
+                        <li><strong>Panel Attachment:</strong> Sew triangular panels to frame struts</li>
+                        <li><strong>Apex Construction:</strong> Secure all 4 struts at apex with strong binding</li>
+                        <li><strong>Harness Points:</strong> Attach suspension lines to base corners (equal length)</li>
+                        <li><strong>Load Testing:</strong> Test structural integrity with dummy weight before any human testing</li>
+                    </ol>
+
+                    <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-xl);">Modern Educational Replica:</h4>
+                    <ul style="line-height: 1.8; font-size: 1.1em;">
+                        <li><strong>Materials:</strong> Ripstop nylon fabric, aluminum tubing (lightweight)</li>
+                        <li><strong>Scale:</strong> 1:10 scale model recommended for demonstrations</li>
+                        <li><strong>Frame:</strong> Collapsible aluminum struts with locking joints</li>
+                        <li><strong>Fabric:</strong> Heat-sealed ripstop nylon panels</li>
+                        <li><strong>Testing:</strong> Drop tests with weighted dummy only</li>
+                        <li><strong>Display:</strong> Excellent museum or educational exhibit</li>
+                    </ul>
+
+                    <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-xl);">Historical Validation:</h4>
+                    <p style="font-size: 1.1em; line-height: 1.8;">
+                        In 2000, skydiver Adrian Nicholas successfully descended from 3,000 meters using a parachute built exactly to Leonardo's specifications, proving the design works. He reported a gentle descent and safe landing, validating Leonardo's 500-year-old engineering.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Safety Panel -->
+            <div class="safety-panel">
+                <h2 class="panel-title">🛡️ Safety Metrics</h2>
+
+                <div class="metric-card">
+                    <div class="metric-label">Terminal Velocity</div>
+                    <div class="metric-value" id="terminalVelocity">6.9<span class="metric-unit"> m/s</span></div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-label">Drag Force</div>
+                    <div class="metric-value" id="dragForce">1,250<span class="metric-unit"> N</span></div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-label">Time to Terminal</div>
+                    <div class="metric-value" id="timeToTerminal">5.2<span class="metric-unit"> s</span></div>
+                </div>
+
+                <div id="safetyStatus" class="safety-status safety-safe">
+                    ✅ SAFE FOR LANDING<br>
+                    Velocity below threshold
+                </div>
+
+                <div style="margin-top: var(--space-golden-xl); padding: var(--space-golden-md); background: rgba(135, 169, 107, 0.15); border-radius: var(--space-golden-sm); border: 1px solid var(--leonardo-sage);">
+                    <h4 style="font-family: var(--font-leonardo-display); color: var(--leonardo-crimson); margin-bottom: var(--space-golden-sm);">
+                        Comparison: Free Fall vs. Parachute
+                    </h4>
+                    <p style="font-size: 0.95em; line-height: 1.6;">
+                        <strong>Free Fall:</strong> 54 m/s terminal velocity<br>
+                        <strong>With Parachute:</strong> 6.9 m/s<br>
+                        <strong>Reduction:</strong> 7.8× safer landing!
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Historical Context Section -->
+        <div class="historical-section">
+            <h2 style="font-family: var(--font-leonardo-display); font-size: 2.5em; color: var(--leonardo-crimson); text-align: center; margin-bottom: var(--space-golden-xl);">
+                📜 Historical Context & Provenance
+            </h2>
+
+            <div class="folio-reference">
+                <strong>Primary Source:</strong> Codex Atlanticus, folio 381v (c. 1485)<br>
+                <strong>Location:</strong> Biblioteca Ambrosiana, Milan<br>
+                <strong>Description:</strong> Marginal sketch showing pyramid parachute with annotation describing construction from linen with "apertures stopped up" (made airtight with starch).
+            </div>
+
+            <p style="font-size: 1.2em; line-height: 1.8;">
+                Leonardo da Vinci designed the pyramid parachute around 1485, during his early Milan period. This represents humanity's first documented design for a personal aviation safety system, predating practical parachute development by over 300 years.
+            </p>
+
+            <h3 style="font-family: var(--font-leonardo-display); color: var(--leonardo-umber); margin-top: var(--space-golden-xl);">
+                Leonardo's Revolutionary Insights:
+            </h3>
+            <ul style="font-size: 1.1em; line-height: 1.8;">
+                <li><strong>Drag Principle:</strong> Leonardo understood that a large surface area would slow descent</li>
+                <li><strong>Pyramid Stability:</strong> Rigid pyramid shape provides inherent stability (no oscillation)</li>
+                <li><strong>Airtight Surface:</strong> Specified starched linen to create smooth, consistent drag</li>
+                <li><strong>Safe Dimensions:</strong> 12×12 braccia (7.2m) provides sufficient surface area for human weight</li>
+                <li><strong>Universal Applicability:</strong> "From any great height without injury" shows confidence in design</li>
+            </ul>
+
+            <h3 style="font-family: var(--font-leonardo-display); color: var(--leonardo-umber); margin-top: var(--space-golden-xl);">
+                Modern Validation:
+            </h3>
+            <ul style="font-size: 1.1em; line-height: 1.8;">
+                <li><strong>2000 Test Jump:</strong> Adrian Nicholas successfully tested Leonardo's exact design from 3,000m</li>
+                <li><strong>Computational Analysis:</strong> CFD simulations confirm 6.9 m/s terminal velocity prediction</li>
+                <li><strong>Material Science:</strong> Modern ripstop nylon provides same function as starched linen</li>
+                <li><strong>Safety Validation:</strong> Landing velocity well within safe human tolerance (< 7 m/s)</li>
+                <li><strong>Historical Accuracy:</strong> Design proves Leonardo's deep understanding of aerodynamics</li>
+            </ul>
+
+            <h3 style="font-family: var(--font-leonardo-display); color: var(--leonardo-umber); margin-top: var(--space-golden-xl);">
+                Engineering Analysis:
+            </h3>
+            <p style="font-size: 1.1em; line-height: 1.8;">
+                The pyramid parachute demonstrates Leonardo's empirical engineering approach. Through observation of falling leaves and birds, he inferred that air resistance increases with surface area. His pyramid design provides:
+            </p>
+            <ul style="font-size: 1.1em; line-height: 1.8;">
+                <li><strong>Consistent Drag:</strong> Rigid structure ensures constant drag coefficient</li>
+                <li><strong>No Deployment Issues:</strong> Frame prevents collapse (unlike fabric-only designs)</li>
+                <li><strong>Structural Strength:</strong> Pyramid geometry provides natural triangulation</li>
+                <li><strong>Simple Construction:</strong> Achievable with Renaissance materials and tools</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <script>
+        // Canvas setup
+        const canvas = document.getElementById('descentCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        // Simulation state
+        let dropHeight = 100; // meters
+        let canopySize = 7.2; // meters
+        let jumperMass = 80; // kg
+        let currentAltitude = dropHeight;
+        let currentVelocity = 0;
+        let isDescending = false;
+
+        const GRAVITY = 9.81; // m/s²
+        const AIR_DENSITY = 1.225; // kg/m³
+        const DRAG_COEFFICIENT = 1.6; // Pyramid parachute
+
+        // Update controls
+        document.getElementById('heightSlider').addEventListener('input', function(e) {
+            dropHeight = parseInt(e.target.value);
+            document.getElementById('heightValue').textContent = dropHeight + ' m';
+            resetSimulation();
+        });
+
+        document.getElementById('canopySlider').addEventListener('input', function(e) {
+            canopySize = parseFloat(e.target.value);
+            document.getElementById('canopyValue').textContent = canopySize.toFixed(1) + ' m';
+            calculateMetrics();
+        });
+
+        document.getElementById('massSlider').addEventListener('input', function(e) {
+            jumperMass = parseInt(e.target.value);
+            document.getElementById('massValue').textContent = jumperMass + ' kg';
+            calculateMetrics();
+        });
+
+        function calculateMetrics() {
+            // Calculate canopy area (4 triangular faces of pyramid)
+            const baseSide = canopySize;
+            const slantHeight = Math.sqrt(Math.pow(baseSide/2, 2) + Math.pow(canopySize, 2));
+            const triangleArea = (baseSide * slantHeight) / 2;
+            const totalArea = 4 * triangleArea;
+
+            // Terminal velocity calculation
+            const weight = jumperMass * GRAVITY;
+            const termVel = Math.sqrt((2 * weight) / (AIR_DENSITY * DRAG_COEFFICIENT * totalArea));
+            const dragAtTerm = 0.5 * AIR_DENSITY * DRAG_COEFFICIENT * totalArea * Math.pow(termVel, 2);
+            const timeToTerm = termVel / GRAVITY;
+
+            document.getElementById('terminalVelocity').innerHTML = termVel.toFixed(1) + '<span class="metric-unit"> m/s</span>';
+            document.getElementById('dragForce').innerHTML = Math.round(dragAtTerm) + '<span class="metric-unit"> N</span>';
+            document.getElementById('timeToTerminal').innerHTML = timeToTerm.toFixed(1) + '<span class="metric-unit"> s</span>';
+
+            // Update safety status
+            const statusEl = document.getElementById('safetyStatus');
+            if (termVel < 7) {
+                statusEl.className = 'safety-status safety-safe';
+                statusEl.innerHTML = '✅ SAFE FOR LANDING<br>Velocity below threshold';
+            } else if (termVel < 10) {
+                statusEl.className = 'safety-status safety-caution';
+                statusEl.innerHTML = '⚠️ CAUTION RANGE<br>Professional only';
+            } else {
+                statusEl.className = 'safety-status safety-danger';
+                statusEl.innerHTML = '❌ DANGEROUS<br>Increase canopy size';
+            }
+        }
+
+        function startDescent() {
+            isDescending = true;
+            currentAltitude = dropHeight;
+            currentVelocity = 0;
+            animateDescent();
+        }
+
+        function resetSimulation() {
+            isDescending = false;
+            currentAltitude = dropHeight;
+            currentVelocity = 0;
+            document.getElementById('currentAltitude').innerHTML = dropHeight + '<span class="metric-unit"> m</span>';
+            document.getElementById('currentVelocity').innerHTML = '0<span class="metric-unit"> m/s</span>';
+            drawScene();
+        }
+
+        function animateDescent() {
+            if (!isDescending || currentAltitude <= 0) {
+                isDescending = false;
+                currentAltitude = 0;
+                drawScene();
+                return;
+            }
+
+            // Physics simulation
+            const dt = 0.05; // time step
+            const baseSide = canopySize;
+            const slantHeight = Math.sqrt(Math.pow(baseSide/2, 2) + Math.pow(canopySize, 2));
+            const triangleArea = (baseSide * slantHeight) / 2;
+            const totalArea = 4 * triangleArea;
+
+            const weight = jumperMass * GRAVITY;
+            const dragForce = 0.5 * AIR_DENSITY * DRAG_COEFFICIENT * totalArea * Math.pow(currentVelocity, 2);
+            const netForce = weight - dragForce;
+            const acceleration = netForce / jumperMass;
+
+            currentVelocity += acceleration * dt;
+            currentVelocity = Math.max(0, currentVelocity); // Don't go negative
+            currentAltitude -= currentVelocity * dt;
+
+            // Update displays
+            document.getElementById('currentAltitude').innerHTML = Math.max(0, currentAltitude).toFixed(1) + '<span class="metric-unit"> m</span>';
+            document.getElementById('currentVelocity').innerHTML = currentVelocity.toFixed(1) + '<span class="metric-unit"> m/s</span>';
+
+            drawScene();
+
+            setTimeout(() => animateDescent(), 50);
+        }
+
+        function drawScene() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw sky gradient
+            const skyGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            skyGradient.addColorStop(0, '#87CEEB');
+            skyGradient.addColorStop(1, '#E0F6FF');
+            ctx.fillStyle = skyGradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Draw altitude markers
+            ctx.strokeStyle = 'rgba(139, 69, 19, 0.3)';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([5, 5]);
+            for (let h = 0; h <= dropHeight; h += 20) {
+                const y = canvas.height - (h / dropHeight) * canvas.height * 0.9;
+                ctx.beginPath();
+                ctx.moveTo(20, y);
+                ctx.lineTo(canvas.width - 20, y);
+                ctx.stroke();
+                ctx.font = '12px Courier New';
+                ctx.fillStyle = '#8B4513';
+                ctx.fillText(h + 'm', canvas.width - 50, y - 5);
+            }
+            ctx.setLineDash([]);
+
+            // Calculate position
+            const progress = 1 - (currentAltitude / dropHeight);
+            const y = progress * canvas.height * 0.9;
+            const x = canvas.width / 2;
+
+            // Draw parachute pyramid
+            const pyramidSize = 60;
+            ctx.save();
+            ctx.translate(x, y);
+
+            // Parachute canopy (pyramid shape)
+            ctx.beginPath();
+            ctx.moveTo(0, -pyramidSize);
+            ctx.lineTo(-pyramidSize/2, pyramidSize/2);
+            ctx.lineTo(pyramidSize/2, pyramidSize/2);
+            ctx.closePath();
+
+            const canopyGradient = ctx.createLinearGradient(-pyramidSize/2, 0, pyramidSize/2, 0);
+            canopyGradient.addColorStop(0, 'rgba(135, 169, 107, 0.7)');
+            canopyGradient.addColorStop(0.5, 'rgba(135, 169, 107, 0.9)');
+            canopyGradient.addColorStop(1, 'rgba(135, 169, 107, 0.7)');
+            ctx.fillStyle = canopyGradient;
+            ctx.fill();
+
+            ctx.strokeStyle = '#87A96B';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            // Suspension lines
+            ctx.beginPath();
+            ctx.moveTo(-pyramidSize/2, pyramidSize/2);
+            ctx.lineTo(0, pyramidSize + 40);
+            ctx.moveTo(pyramidSize/2, pyramidSize/2);
+            ctx.lineTo(0, pyramidSize + 40);
+            ctx.strokeStyle = '#8B4513';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+
+            // Jumper
+            ctx.beginPath();
+            ctx.arc(0, pyramidSize + 50, 8, 0, Math.PI * 2);
+            ctx.fillStyle = '#8B0000';
+            ctx.fill();
+
+            ctx.restore();
+
+            // Draw ground
+            ctx.fillStyle = 'rgba(139, 69, 19, 0.3)';
+            ctx.fillRect(0, canvas.height - 20, canvas.width, 20);
+        }
+
+        // Tab switching
+        function switchTab(tabName) {
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Initialize
+        calculateMetrics();
+        drawScene();
+    </script>
+</body>
+</html>

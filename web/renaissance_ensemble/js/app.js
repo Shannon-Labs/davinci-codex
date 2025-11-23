@@ -794,16 +794,100 @@ LeonardoEnsemble.App = class {
     }
     
     /**
-     * Show/hide loading overlay
+     * Show/hide loading overlay with Leonardo's theatrical touch
      * @param {boolean} show - Whether to show loading overlay
      */
     showLoading(show) {
         if (this.elements.loadingOverlay) {
             if (show) {
                 LeonardoEnsemble.Utils.dom.removeClass(this.elements.loadingOverlay, 'hidden');
+                this.startLoadingTheater();
             } else {
                 LeonardoEnsemble.Utils.dom.addClass(this.elements.loadingOverlay, 'hidden');
+                this.stopLoadingTheater();
             }
+        }
+    }
+    
+    /**
+     * Start the Renaissance loading theater experience
+     */
+    startLoadingTheater() {
+        const loadingQuotes = [
+            {
+                mirror: ".ecnatropmi lacihtem fo ytiliba eht si cisum",
+                text: "Music is the arithmetic of sounds as optics is the geometry of light.",
+                source: "Codex Atlanticus"
+            },
+            {
+                mirror: ".srucco lautcello na fo esilaer eb nac taht sgniht eht lla era erehT",
+                text: "Here there are all the things that can be related to a musical corps.",
+                source: "Codex Madrid I"
+            },
+            {
+                mirror: ".emit eht fo scitsitats eht syawa stceffe stnemelpmoc lacihtem",
+                text: "Mechanical compositions always effect the statistics of time.",
+                source: "Manuscript B"
+            },
+            {
+                mirror: ".ytiliba eht si cisum nehw esrevinu eht syawa stceffe sretniapS",
+                text: "Sprains always effect the universe when music is the ability.",
+                source: "Codex Leicester"
+            }
+        ];
+        
+        const loadingStages = [
+            "Tuning the instruments...",
+            "Calibrating the mechanisms...",
+            "Harmonizing the ensemble...",
+            "Preparing the court...",
+            "Leonardo's spirit awakens..."
+        ];
+        
+        let currentStage = 0;
+        let currentQuote = 0;
+        
+        // Update loading stages
+        this.loadingStageInterval = setInterval(() => {
+            const progressText = LeonardoEnsemble.Utils.dom.get('#loading-progress-text');
+            const progressFill = LeonardoEnsemble.Utils.dom.get('#loading-progress-fill');
+            
+            if (progressText && currentStage < loadingStages.length) {
+                progressText.textContent = loadingStages[currentStage];
+                currentStage++;
+            }
+            
+            if (progressFill) {
+                progressFill.style.width = `${(currentStage / loadingStages.length) * 100}%`;
+            }
+        }, 800);
+        
+        // Update Leonardo quotes
+        this.loadingQuoteInterval = setInterval(() => {
+            const mirrorText = LeonardoEnsemble.Utils.dom.get('.leonardo-loading-quote .mirror-text');
+            const marginalia = LeonardoEnsemble.Utils.dom.get('.leonardo-loading-quote .leonardo-marginalia');
+            
+            if (mirrorText && marginalia && currentQuote < loadingQuotes.length) {
+                const quote = loadingQuotes[currentQuote];
+                mirrorText.textContent = quote.mirror;
+                marginalia.innerHTML = `"${quote.text}"<br><span style="text-align: right; display: block;">— Leonardo da Vinci, ${quote.source}</span>`;
+                currentQuote++;
+            }
+        }, 2000);
+    }
+    
+    /**
+     * Stop the Renaissance loading theater
+     */
+    stopLoadingTheater() {
+        if (this.loadingStageInterval) {
+            clearInterval(this.loadingStageInterval);
+            this.loadingStageInterval = null;
+        }
+        
+        if (this.loadingQuoteInterval) {
+            clearInterval(this.loadingQuoteInterval);
+            this.loadingQuoteInterval = null;
         }
     }
     

@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leonardo's Innovation Gallery - 24 Renaissance Masterworks</title>
+    <link rel="stylesheet" href="leonardo_design_system.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--leonardo-bg-parchment);
+            font-family: var(--font-leonardo-body);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .gallery-container {
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: var(--space-golden-lg);
+        }
+
+        /* 🎨 Magnificent Header - Illuminated Manuscript Style */
+        .gallery-header {
+            text-align: center;
+            padding: var(--space-golden-xxl) var(--space-golden-lg);
+            background: linear-gradient(135deg,
+                rgba(139, 0, 0, 0.05),
+                rgba(255, 215, 0, 0.05),
+                rgba(44, 24, 16, 0.05)
+            );
+            border-radius: var(--space-golden-lg);
+            margin-bottom: var(--space-golden-xxl);
+            box-shadow: var(--shadow-leonardo-elevated);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: backgroundDrift 60s linear infinite;
+        }
+
+        @keyframes backgroundDrift {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .ascii-art {
+            font-family: 'Courier New', monospace;
+            font-size: 0.5em;
+            line-height: 1.2;
+            color: var(--leonardo-umber);
+            opacity: 0.6;
+            margin-bottom: var(--space-golden-md);
+            white-space: pre;
+            overflow-x: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .gallery-title {
+            font-family: var(--font-leonardo-display);
+            font-size: 4em;
+            background: linear-gradient(45deg, var(--leonardo-crimson), var(--leonardo-gold), var(--leonardo-crimson));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: shimmer 3s linear infinite;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: var(--space-golden-md);
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes shimmer {
+            to { background-position: 200% center; }
+        }
+
+        .gallery-subtitle {
+            font-size: 1.5em;
+            color: var(--leonardo-umber);
+            font-style: italic;
+            margin-bottom: var(--space-golden-lg);
+            position: relative;
+            z-index: 1;
+        }
+
+        .golden-divider {
+            width: 618px;
+            max-width: 90%;
+            height: 3px;
+            background: linear-gradient(90deg,
+                transparent,
+                var(--leonardo-gold),
+                var(--leonardo-crimson),
+                var(--leonardo-gold),
+                transparent);
+            margin: var(--space-golden-lg) auto;
+            border-radius: 2px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .leonardo-quote-banner {
+            background: rgba(255, 255, 255, 0.8);
+            border: 2px solid var(--leonardo-gold);
+            border-radius: var(--space-golden-md);
+            padding: var(--space-golden-lg);
+            margin: var(--space-golden-lg) auto;
+            max-width: 800px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quote-text {
+            font-size: 1.3em;
+            font-style: italic;
+            color: var(--leonardo-ink);
+            margin-bottom: var(--space-golden-sm);
+        }
+
+        .quote-author {
+            text-align: right;
+            color: var(--leonardo-umber);
+            font-weight: 600;
+        }
+
+        /* 📊 Statistics Banner */
+        .stats-banner {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-golden-md);
+            margin-bottom: var(--space-golden-xxl);
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid var(--leonardo-umber-light);
+            border-radius: var(--space-golden-md);
+            padding: var(--space-golden-lg);
+            text-align: center;
+            transition: all var(--anim-leonardo-medium);
+        }
+
+        .stat-card:hover {
+            border-color: var(--leonardo-gold);
+            transform: translateY(-5px);
+            box-shadow: var(--glow-leonardo-strong);
+        }
+
+        .stat-number {
+            font-family: var(--font-leonardo-display);
+            font-size: 3em;
+            color: var(--leonardo-crimson);
+            display: block;
+            margin-bottom: var(--space-golden-sm);
+        }
+
+        .stat-label {
+            color: var(--leonardo-umber);
+            font-size: 1.1em;
+        }
+
+        /* 🎨 Category Sections */
+        .category-section {
+            margin-bottom: var(--space-golden-xxl);
+        }
+
+        .category-header {
+            text-align: center;
+            margin-bottom: var(--space-golden-xl);
+        }
+
+        .category-icon {
+            font-size: 3em;
+            display: block;
+            margin-bottom: var(--space-golden-sm);
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+        }
+
+        .category-title {
+            font-family: var(--font-leonardo-display);
+            font-size: 2.5em;
+            color: var(--leonardo-crimson);
+            margin-bottom: var(--space-golden-sm);
+            position: relative;
+            display: inline-block;
+        }
+
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--leonardo-gold), var(--leonardo-crimson));
+        }
+
+        .category-description {
+            font-size: 1.2em;
+            color: var(--leonardo-umber);
+            font-style: italic;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* 🖼️ Invention Cards Grid */
+        .inventions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: var(--space-golden-xl);
+            margin-bottom: var(--space-golden-xl);
+        }
+
+        .invention-card {
+            background: rgba(255, 255, 255, 0.95);
+            border: 3px solid var(--leonardo-umber-light);
+            border-radius: var(--space-golden-lg);
+            overflow: hidden;
+            transition: all var(--anim-leonardo-medium);
+            cursor: pointer;
+            position: relative;
+            box-shadow: var(--shadow-leonardo-manuscript);
+        }
+
+        .invention-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--leonardo-crimson), var(--leonardo-gold), var(--leonardo-crimson));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform var(--anim-leonardo-medium);
+        }
+
+        .invention-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .invention-card:hover {
+            border-color: var(--leonardo-gold);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--glow-leonardo-strong);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg,
+                rgba(139, 0, 0, 0.9),
+                rgba(139, 69, 19, 0.9)
+            );
+            padding: var(--space-golden-lg);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-header::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.2) 0%, transparent 70%);
+            animation: headerGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes headerGlow {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        .card-icon {
+            font-size: 4em;
+            margin-bottom: var(--space-golden-sm);
+            display: block;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+        }
+
+        .card-title {
+            font-family: var(--font-leonardo-display);
+            font-size: 1.5em;
+            color: var(--leonardo-parchment);
+            margin-bottom: var(--space-golden-xs);
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-status {
+            display: inline-block;
+            background: rgba(255, 215, 0, 0.9);
+            color: var(--leonardo-ink);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-body {
+            padding: var(--space-golden-lg);
+        }
+
+        .card-description {
+            color: var(--leonardo-umber);
+            line-height: 1.6;
+            margin-bottom: var(--space-golden-md);
+            min-height: 80px;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: var(--space-golden-md);
+            border-top: 1px solid rgba(139, 69, 19, 0.2);
+        }
+
+        .card-codex {
+            font-family: var(--font-leonardo-marginalia);
+            font-size: 0.85em;
+            color: var(--leonardo-umber);
+            font-style: italic;
+        }
+
+        .card-link {
+            background: linear-gradient(45deg, var(--leonardo-crimson), var(--leonardo-crimson-light));
+            color: var(--leonardo-parchment);
+            padding: var(--space-golden-sm) var(--space-golden-md);
+            border-radius: var(--space-golden-sm);
+            text-decoration: none;
+            font-family: var(--font-leonardo-display);
+            font-size: 0.9em;
+            transition: all var(--anim-leonardo-fast);
+            display: inline-block;
+        }
+
+        .card-link:hover {
+            background: linear-gradient(45deg, var(--leonardo-gold-dark), var(--leonardo-gold));
+            color: var(--leonardo-ink);
+            transform: scale(1.05);
+        }
+
+        /* 🎭 Footer - Renaissance Glory */
+        .gallery-footer {
+            background: linear-gradient(135deg,
+                rgba(44, 24, 16, 0.95),
+                rgba(139, 69, 19, 0.95)
+            );
+            color: var(--leonardo-parchment);
+            padding: var(--space-golden-xxl);
+            border-radius: var(--space-golden-lg);
+            text-align: center;
+            margin-top: var(--space-golden-xxl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-quote {
+            font-family: var(--font-leonardo-display);
+            font-size: 1.8em;
+            font-style: italic;
+            margin-bottom: var(--space-golden-md);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .footer-attribution {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-bottom: var(--space-golden-lg);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: var(--space-golden-lg);
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: var(--space-golden-lg);
+        }
+
+        .footer-link {
+            color: var(--leonardo-gold);
+            text-decoration: none;
+            font-family: var(--font-leonardo-display);
+            transition: all var(--anim-leonardo-fast);
+            padding: var(--space-golden-sm) var(--space-golden-md);
+            border: 2px solid var(--leonardo-gold);
+            border-radius: var(--space-golden-sm);
+        }
+
+        .footer-link:hover {
+            background: var(--leonardo-gold);
+            color: var(--leonardo-ink);
+            transform: translateY(-2px);
+        }
+
+        /* 📱 Responsive Design */
+        @media (max-width: 768px) {
+            .gallery-title {
+                font-size: 2.5em;
+            }
+
+            .ascii-art {
+                font-size: 0.35em;
+            }
+
+            .inventions-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-golden-lg);
+            }
+
+            .category-title {
+                font-size: 2em;
+            }
+
+            .stats-banner {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* ✨ Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 🎨 Special Visual Effects */
+        .sparkle {
+            display: inline-block;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery-container">
+        <!-- 🎨 Magnificent Header -->
+        <header class="gallery-header">
+            <div class="ascii-art">
+            ╔════════════════════════════════════════════════════════════════════════════╗
+            ║                                                                            ║
+            ║     ╦  ┌─┐┌─┐┌┐┌┌─┐┬─┐┌┬┐┌─┐  ┌┬┐┌─┐  ╦  ╦┬┌┐┌┌─┐┬                      ║
+            ║     ║  ├┤ │ │││││├─┤├┬┘ │││ │   ││├─┤  ╚╗╔╝││││  ││                      ║
+            ║     ╩═╝└─┘└─┘┘└┘┴ ┴┴└──┴┘└─┘  ─┴┘┴ ┴   ╚╝ ┴┘└┘└─┘┴                      ║
+            ║                                                                            ║
+            ║                    ⚙️  Innovation Gallery  ⚙️                            ║
+            ║                                                                            ║
+            ╚════════════════════════════════════════════════════════════════════════════╝
+            </div>
+
+            <h1 class="gallery-title">Leonardo's Innovation Gallery</h1>
+            <p class="gallery-subtitle">24 Interactive Masterworks • Renaissance Engineering • Digital Renaissance</p>
+
+            <div class="golden-divider"></div>
+
+            <div class="leonardo-quote-banner">
+                <p class="quote-text">"I have been impressed with the urgency of doing. Knowing is not enough; we must apply. Being willing is not enough; we must do."</p>
+                <p class="quote-author">— Leonardo da Vinci</p>
+            </div>
+        </header>
+
+        <!-- 📊 Statistics Banner -->
+        <section class="stats-banner">
+            <div class="stat-card">
+                <span class="stat-number sparkle">24</span>
+                <span class="stat-label">Interactive Interfaces</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number sparkle">500+</span>
+                <span class="stat-label">Years of Innovation</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number sparkle">∞</span>
+                <span class="stat-label">Inspiration</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number sparkle">φ</span>
+                <span class="stat-label">Golden Ratio Design</span>
+            </div>
+        </section>
+
+        <!-- ✈️ FLIGHT SYSTEMS -->
+        <section class="category-section">
+            <div class="category-header">
+                <span class="category-icon">✈️</span>
+                <h2 class="category-title">Flight Systems</h2>
+                <p class="category-description">Leonardo's dreams of conquering the skies through observation of nature and mechanical innovation</p>
+            </div>
+
+            <div class="inventions-grid">
+                <div class="invention-card" onclick="window.location.href='aerial_screw.html'">
+                    <div class="card-header">
+                        <span class="card-icon">🚁</span>
+                        <h3 class="card-title">Aerial Screw</h3>
+                        <span class="card-status">✅ Breakthrough</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">The legendary helical rotor that pioneered vertical flight concepts. Features variable pitch control and modern material optimization achieving 1,416N lift force.</p>
+                        <div class="card-meta">
+                            <span class="card-codex">Codex Atlanticus</span>
+                            <a href="aerial_screw.html" class="card-link">Explore →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="invention-card" onclick="window.location.href='ornithopter.html'">
+                    <div class="card-header">
+                        <span class="card-icon">🦅</span>
+                        <h3 class="card-title">Ornithopter</h3>
+                        <span class="card-status">✅ Complete</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">Biomimetic flapping flight machine inspired by bird wing mechanics. Achieves 140-minute endurance with validated aerodynamics and elegant motion.</p>
+                        <div class="card-meta">
+                            <span class="card-codex">Codex on Flight</span>
+                            <a href="ornithopter.html" class="card-link">Explore →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="invention-card" onclick="window.location.href='parachute.html'">
+                    <div class="card-header">
+                        <span class="card-icon">🪂</span>
+                        <h3 class="card-title">Parachute</h3>
+                        <span class="card-status">✅ Complete</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">Revolutionary pyramid-design parachute achieving 6.9 m/s safe descent rate. Turbulence-tested and validated for human safety.</p>
+                        <div class="card-meta">
+                            <span class="card-codex">Codex Atlanticus</span>
+                            <a href="parachute.html" class="card-link">Explore →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="invention-card" onclick="window.location.href='variable_pitch_mechanism.html'">
+                    <div class="card-header">
+                        <span class="card-icon">🎛️</span>
+                        <h3 class="card-title">Variable Pitch Mechanism</h3>
+                        <span class="card-status">✅ Complete</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">Ingenious swashplate mechanism enabling dynamic flight control through real-time blade angle adjustment for stable aerial navigation.</p>
+                        <div class="card-meta">
+                            <span class="card-codex">Madrid Codex</span>
+                            <a href="variable_pitch_mechanism.html" class="card-link">Explore →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 🚗 GROUND TRANSPORTATION -->
+        <section class="category-section">
+            <div class="category-header">
+                <span class="category-icon">🚗</span>
+                <h2 class="category-title">Ground Transportation</h2>
+                <p class="category-description">Autonomous vehicles, precision measurement, and tactical engineering before the modern era</p>
+            </div>
+
+            <div class="inventions-grid">
+                <div class="invention-card" onclick="window.location.href='self_propelled_cart.html'">
+                    <div class="card-header">
+                        <span class="card-icon">🛒</span>
+                        <h3 class="card-title">Self-Propelled Cart</h3>
+                        <span class="card-status">✅ Complete</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">The world's first autonomous vehicle! Spring-powered automaton with 150m range and programmable steering - a Renaissance robot car.</p>
+                        <div class="card-meta">
+                            <span class="card-codex">Codex Atlanticus</span>
+                            <a href="self_propelled_cart.html" class="card-link">Explore →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="invention-card" onclick="window.location.href='mechanical_odometer.html'">
+                    <div class="card-header">
+                        <span class="card-icon">📏</span>
+                        <h3 class="card-title">Mechanical Odometer</h3>
+                        <span class="card-status">✅ Complete</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">Precision distance measurement device using pebble-drop counter mechanism. Achieves <17% measurement error for Renaissance surveying.</p>
+                        <div class="card-meta">
+                            <span class="card-codex">Codex Atlanticus</span>
+                            <a href="mechanical_odometer.html" class="card-link">Explore →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="invention-card" onclick="window.location.href='revolving_bridge.html'">
+                    <div class="card-header">
+                        <span class="card-icon">🌉</span>
+                        <h3 class="card-title">Revolving Bridge</h3>
+                        <span class="card-status">✅ Complete</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">Tactical military bridge with 360° rotation capability, water counterweight system, and rapid deployment for strategic river crossings.</p>
+                        <div class="card-meta">
+                            <span class="card-codex">Codex Atlanticus</span>
+                            <a href="revolving_bridge.html" class="card-link">Explore →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 🎭 AUTOMATA & ENTERTAINMENT -->
+        <section class="category-section">
+            <div class="category-header">
+                <span class="category-icon">🎭</span>
+                <h2 class="category-title">Automata & Entertainment</h2>
+                <p class="category-description">Mechanical marvels that delighted Renaissance courts with lifelike motion and programmable behavior</p>
+            </div>
+
+            <div class="inventions-grid">
+                <div class="invention-card" onclick="window.location.href='mechanical_lion.html'">
+                    <div class="card-header">
+                        <span class="card-icon">🦁</span>
+                        <h3 class="card-title">Mechanical Lion</h3>
+                        <span class="card-status">✅ Complete</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">Royal automaton with 30-second choreographed performance, synchronized movements, and cam-based control system that amazed King François I.</p>
+                        <div class="card-meta">
+                            <span class="card-codex">Historical Records</span>
+                            <a href="mechanical_lion.html" class="card-link">Explore →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="invention-card" onclick="window.location.href='programmable_loom.html'">
+                    <div class="card-header">
+                        <span class="card-icon">🧵</span>
+                        <h3 class="card-title">Programmable Loom</h3>
+                        <span class="card-status">🔧 In Progress</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">The world's first programmable computer! Automated weaving with 16-thread pattern control - precursor to Jacquard loom and modern computing.</p>
+                        <div class="card-meta">
+                            <span class="card-codex">Codex Atlanticus</span>
+                            <a href="programmable_loom.html" class="card-link">Explore →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="invention-card" onclick="window.location.href='armored_walker.html'">
+                    <div class="card-header">
+                        <span class="card-icon">🛡️</span>
+                        <h3 class="card-title">Armored Walker</h3>
+                        <span class="card-status">🛡️ Prototype</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">Quadruped walking chassis with dynamic balance, 200kg payload capacity, and adaptive gait patterns - Leonardo's walking machine.</p>
+                        <div class="card-meta">
+                            <span class="card-codex">Codex Atlanticus</span>
+                            <a href="armored_walker.html" class="card-link">Explore →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="invention-card" onclick="window.location.href='bobbin_winder.html'">
+                    <div class="card-header">
+                        <span class="card-icon">🧶</span>
+                        <h3 class="card-title">Bobbin Winder</h3>
+                        <span class="card-status">✅ Complete</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">Automated textile winding mechanism with precise tension control and even distribution - revolutionizing Renaissance manufacturing.</p>
+                        <div class="card-meta">
+                            <span class="card-codex">Codex Atlanticus</span>
+                            <a href="bobbin_winder.html" class="card-link">Explore →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 🎵 MUSICAL INSTRUMENTS -->
+        <section class="category-section">
+            <div class="category-header">
+                <span class="category-icon">🎵</span>
+                <h2 class="category-title">Musical Instruments</h2>
+                <p class="category-description">Automated orchestras and mechanical marvels that merge music with engineering genius</p>
+            </div>
+
+            <div class="inventions-grid">
+                <div class="invention-card" onclick="window.location.href='mechanical_ensemble.html'">
+                    <div class="card-header">
+                        <span class="card-icon">🎼</span>
+                        <h3 class="card-title">Mechanical Ensemble</h3>
+                        <span class="card-status">✅ Complete</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">The crown jewel! 8-instrument automated orchestra with synchronized performance and programmable compositions - a Renaissance symphony.</p>
+                        <div class="card-meta">
+                            <span class="card-codex">Multiple Sources</span>
+                            <a href="mechanical_ensemble.html" class="card-link">Explore →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="invention-card" onclick="window.location.href='mechanical_organ.html'">
+                    <div class="card-header">
+                        <span class="card-icon">🎹</span>
+                        <h3 class="card-title">Mechanical Organ</h3>
+                        <span class="card-status">✅ Complete</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">Hydraulic-powered organ with water-driven bellows and multiple pipe ranks creating ethereal cathedral-worthy soundscapes.</p>
+                        <div class="card-meta">
+                            <span class="card-codex">Madrid Codex</span>
+                            <a href="mechanical_organ.html" class="card-link">Explore →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="invention-card" onclick="window.location.href='viola_organista.html'">
+                    <div class="card-header">
+                        <span class="card-icon">🎻</span>
+                        <h3 class="card-title">Viola Organista</h3>
+                        <span class="card-status">✅ Complete</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">Revolutionary bowed keyboard instrument combining piano keys with continuous violin-like tones - Leonardo's musical innovation.</p>
+                        <div class="card-meta">
+                            <span class="card-codex">Codex Atlanticus</span>
+                            <a href="viola_organista.html" class="card-link">Explore →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="invention-card" onclick="window.location.href='mechanical_trumpeter.html'">
+                    <div class="card-header">
+                        <span class="card-icon">🎺</span>
+                        <h3 class="card-title">Mechanical Trumpeter</h3>
+                        <span class="card-status">✅ Complete</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">Automated brass fanfare system with pneumatic control and valve timing - announcing Renaissance celebrations mechanically.</p>
+                        <div class="card-meta">
+                            <span class="card-codex">Historical Records</span>
+                            <a href="mechanical_trumpeter.html" class="card-link">Explore →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="invention-card" onclick="window.location.href='programmable_flute.html'">
+                    <div class="card-header">
+                        <span class="card-icon">🎶</span>
+                        <h3 class="card-title">Programmable Flute</h3>
+                        <span class="card-status">✅ Complete</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">Cam-controlled melody system with programmable note sequences - an early music box of remarkable sophistication.</p>
+                        <div class="card-meta">
+                            <span class="card-codex">Codex Atlanticus</span>
+                            <a href="programmable_flute.html" class="card-link">Explore →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="invention-card" onclick="window.location.href='mechanical_drum.html'">
+                    <div class="card-header">
+                        <span class="card-icon">🥁</span>
+                        <h3 class="card-title">Mechanical Drum</h3>
+                        <span class="card-status">✅ Complete</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">Programmable percussion automaton with rhythm patterns and dynamic control - the heartbeat of mechanical music.</p>
+                        <div class="card-meta">
+                            <span class="card-codex">Madrid Codex</span>
+                            <a href="mechanical_drum.html" class="card-link">Explore →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="invention-card" onclick="window.location.href='mechanical_carillon.html'">
+                    <div class="card-header">
+                        <span class="card-icon">🔔</span>
+                        <h3 class="card-title">Mechanical Carillon</h3>
+                        <span class="card-status">✅ Complete</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">12-bell tower system with automated striking mechanism and melodic sequencing - Renaissance church bells reimagined.</p>
+                        <div class="card-meta">
+                            <span class="card-codex">Codex Madrid</span>
+                            <a href="mechanical_carillon.html" class="card-link">Explore →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 💧 HYDRAULIC & WATER SYSTEMS -->
+        <section class="category-section">
+            <div class="category-header">
+                <span class="category-icon">💧</span>
+                <h2 class="category-title">Hydraulic & Water Systems</h2>
+                <p class="category-description">Leonardo's mastery of water - the driver of nature and source of power</p>
+            </div>
+
+            <div class="inventions-grid">
+                <div class="invention-card" onclick="window.location.href='hydraulic_systems.html'">
+                    <div class="card-header">
+                        <span class="card-icon">🌊</span>
+                        <h3 class="card-title">Hydraulic Systems</h3>
+                        <span class="card-status">✅ Complete</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">Comprehensive water engineering suite: canal locks, Archimedes screws, water wheels, pumps, and flood control systems - mastering nature's flow.</p>
+                        <div class="card-meta">
+                            <span class="card-codex">Codex Leicester</span>
+                            <a href="hydraulic_systems.html" class="card-link">Explore →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 🔬 EXPLORATION & TOOLS -->
+        <section class="category-section">
+            <div class="category-header">
+                <span class="category-icon">🔬</span>
+                <h2 class="category-title">Exploration & Interactive Tools</h2>
+                <p class="category-description">Meta-tools for understanding Leonardo's creative process and interconnected genius</p>
+            </div>
+
+            <div class="inventions-grid">
+                <div class="invention-card" onclick="window.location.href='cross_pollination_explorer.html'">
+                    <div class="card-header">
+                        <span class="card-icon">🕸️</span>
+                        <h3 class="card-title">Cross-Pollination Explorer</h3>
+                        <span class="card-status">✅ Complete</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">Network visualization revealing hidden connections between inventions - see how ideas flow and merge across domains.</p>
+                        <div class="card-meta">
+                            <span class="card-codex">Meta-Analysis</span>
+                            <a href="cross_pollination_explorer.html" class="card-link">Explore →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="invention-card" onclick="window.location.href='invention_timeline.html'">
+                    <div class="card-header">
+                        <span class="card-icon">⏰</span>
+                        <h3 class="card-title">Invention Timeline</h3>
+                        <span class="card-status">✅ Complete</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">Journey through 50 years of innovation from 1480-1519 - witness the evolution of genius across Leonardo's lifetime.</p>
+                        <div class="card-meta">
+                            <span class="card-codex">Chronological</span>
+                            <a href="invention_timeline.html" class="card-link">Explore →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="invention-card" onclick="window.location.href='mirror_writing_interface.html'">
+                    <div class="card-header">
+                        <span class="card-icon">🪞</span>
+                        <h3 class="card-title">Mirror Writing Interface</h3>
+                        <span class="card-status">✅ Complete</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">Decode Leonardo's famous reversed script and learn to write like the master - unlocking his private notebooks.</p>
+                        <div class="card-meta">
+                            <span class="card-codex">All Codices</span>
+                            <a href="mirror_writing_interface.html" class="card-link">Explore →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="invention-card" onclick="window.location.href='universal_machine.html'">
+                    <div class="card-header">
+                        <span class="card-icon">⚙️</span>
+                        <h3 class="card-title">Universal Machine Builder</h3>
+                        <span class="card-status">✅ Complete</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">Build your own mechanisms using Leonardo's primitives: gears, cams, levers, springs - become a Renaissance inventor yourself!</p>
+                        <div class="card-meta">
+                            <span class="card-codex">Interactive</span>
+                            <a href="universal_machine.html" class="card-link">Explore →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 🎭 Footer -->
+        <footer class="gallery-footer">
+            <p class="footer-quote">"Obstacles do not bend me. Every obstacle yields to stern resolve."</p>
+            <p class="footer-attribution">Leonardo da Vinci (1452-1519)</p>
+
+            <div class="golden-divider" style="background: linear-gradient(90deg, transparent, var(--leonardo-gold), transparent);"></div>
+
+            <div class="footer-links">
+                <a href="../README.md" class="footer-link">📖 Documentation</a>
+                <a href="https://github.com/Shannon-Labs/davinci-codex" class="footer-link">💻 GitHub Repository</a>
+                <a href="index.html" class="footer-link">🏛️ Workshop Portal</a>
+                <a href="../CONTRIBUTING.md" class="footer-link">🤝 Contribute</a>
+            </div>
+
+            <p style="margin-top: var(--space-golden-lg); opacity: 0.8; font-size: 0.9em;">
+                Built with Renaissance aesthetics • Golden ratio proportions • Open source with love
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Add scroll-triggered animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all invention cards
+        document.querySelectorAll('.invention-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Observe category sections
+        document.querySelectorAll('.category-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Easter egg: Konami code reveals Leonardo's secret message
+        let konamiCode = [];
+        const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+
+        document.addEventListener('keydown', (e) => {
+            konamiCode.push(e.key);
+            konamiCode.splice(-konamiSequence.length - 1, konamiCode.length - konamiSequence.length);
+
+            if (konamiCode.join('').includes(konamiSequence.join(''))) {
+                alert('🎨 Leonardo whispers: "Simplicity is the ultimate sophistication. The noblest pleasure is the joy of understanding." 🎨');
+                konamiCode = [];
+            }
+        });
+
+        // Performance: Lazy load cards on scroll
+        if ('IntersectionObserver' in window) {
+            const lazyLoadObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.willChange = 'transform';
+                    } else {
+                        entry.target.style.willChange = 'auto';
+                    }
+                });
+            });
+
+            document.querySelectorAll('.invention-card').forEach(card => {
+                lazyLoadObserver.observe(card);
+            });
+        }
+
+        console.log('%c🎨 Leonardo da Vinci Innovation Gallery', 'font-size: 20px; font-weight: bold; color: #8B0000;');
+        console.log('%c24 Interactive Masterworks • Renaissance Engineering • Digital Renaissance', 'font-size: 12px; color: #8B4513;');
+        console.log('%cBuilt with golden ratio proportions (φ = 1.618) and Renaissance aesthetics', 'font-style: italic; color: #87A96B;');
+    </script>
+</body>
+</html>

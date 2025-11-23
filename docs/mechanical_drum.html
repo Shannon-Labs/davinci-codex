@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leonardo's Mechanical Drum - Automated Percussion</title>
+    <link rel="stylesheet" href="leonardo_design_system.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        body { margin: 0; padding: 0; background: linear-gradient(135deg, #8B4513 0%, #F4E4C1 100%); font-family: var(--font-leonardo-body); min-height: 100vh; }
+        .main-container { max-width: 1200px; margin: 0 auto; padding: var(--space-golden-xl); }
+        .header { text-align: center; padding: var(--space-golden-xl); background: rgba(255, 255, 255, 0.9); border-radius: var(--space-golden-lg); margin-bottom: var(--space-golden-lg); }
+        .main-title { font-family: var(--font-leonardo-display); font-size: 3em; color: var(--leonardo-ink); }
+        .canvas { width: 100%; height: 300px; background: rgba(255, 255, 255, 0.9); border: 2px solid #8B4513; border-radius: var(--space-golden-md); margin: var(--space-golden-md) 0; }
+        .content { background: rgba(255, 255, 255, 0.9); padding: var(--space-golden-lg); border-radius: var(--space-golden-md); }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="header">
+            <h1 class="main-title">🥁 Mechanical Drum</h1>
+            <p style="font-size: 1.2em; font-style: italic;">Automated Rhythm System with Programmable Beats</p>
+        </div>
+        <div class="canvas"><canvas id="drumCanvas"></canvas></div>
+        <button onclick="playDrum()" style="padding: var(--space-golden-md) var(--space-golden-lg); background: linear-gradient(45deg, #8B4513, #D2691E); color: white; border: none; border-radius: var(--space-golden-sm); font-size: 1.1em; cursor: pointer; display: block; margin: var(--space-golden-md) auto;">🥁 Play Rhythm</button>
+        <div class="content">
+            <h3 style="font-family: var(--font-leonardo-display); color: var(--leonardo-crimson);">Features:</h3>
+            <ul style="line-height: 1.8; font-size: 1.1em;">
+                <li><strong>Cam-Controlled Strikers:</strong> Rotating drum with pins lifts hammers</li>
+                <li><strong>Variable Tempo:</strong> Adjustable rotation speed for different rhythms</li>
+                <li><strong>Pattern Programming:</strong> Interchangeable cams for complex beats</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        const canvas = document.getElementById('drumCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+        let playing = false, rotation = 0;
+
+        function playDrum() { playing = !playing; }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            if (playing) rotation += 0.1;
+
+            // Drum
+            ctx.fillStyle = '#8B4513';
+            ctx.beginPath();
+            ctx.ellipse(canvas.width / 2, canvas.height / 2, 100, 80, 0, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Strikers
+            for (let i = 0; i < 4; i++) {
+                const angle = rotation + i * Math.PI / 2;
+                const lift = Math.sin(angle) > 0 ? 30 : 0;
+                ctx.fillStyle = '#654321';
+                ctx.fillRect(canvas.width / 2 - 100 + i * 60, canvas.height / 2 - 150 + lift, 20, 100);
+            }
+
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
+</body>
+</html>

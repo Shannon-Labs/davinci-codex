@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leonardo's Invention Timeline - Evolution of Genius</title>
+    <link rel="stylesheet" href="leonardo_design_system.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--leonardo-bg-parchment);
+            font-family: var(--font-leonardo-body);
+            min-height: 100vh;
+        }
+
+        .timeline-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--space-golden-xl);
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: var(--space-golden-xxl);
+            padding: var(--space-golden-xl);
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: var(--space-golden-lg);
+            box-shadow: var(--shadow-leonardo-manuscript);
+        }
+
+        .main-title {
+            font-family: var(--font-leonardo-display);
+            font-size: 3.5em;
+            color: var(--leonardo-ink);
+            margin-bottom: var(--space-golden-md);
+            text-shadow: 2px 2px 4px rgba(44, 24, 16, 0.2);
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            color: var(--leonardo-umber);
+            font-style: italic;
+            margin-bottom: var(--space-golden-lg);
+        }
+
+        .timeline-controls {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-golden-md);
+            margin-bottom: var(--space-golden-lg);
+            flex-wrap: wrap;
+        }
+
+        .control-button {
+            background: linear-gradient(45deg, var(--leonardo-umber), var(--leonardo-umber-light));
+            color: var(--leonardo-parchment);
+            border: none;
+            padding: var(--space-golden-sm) var(--space-golden-lg);
+            border-radius: var(--space-golden-sm);
+            font-family: var(--font-leonardo-display);
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all var(--anim-leonardo-medium);
+            box-shadow: var(--shadow-leonardo-manuscript);
+        }
+
+        .control-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-leonardo-elevated);
+        }
+
+        .control-button.active {
+            background: linear-gradient(45deg, var(--leonardo-crimson), var(--leonardo-crimson-light));
+        }
+
+        .timeline-layout {
+            display: grid;
+            grid-template-columns: 200px 1fr 250px;
+            gap: var(--space-golden-xl);
+            margin-bottom: var(--space-golden-xxl);
+            min-height: 600px;
+        }
+
+        .timeline-sidebar {
+            background: rgba(255, 255, 255, 0.8);
+            padding: var(--space-golden-lg);
+            border-radius: var(--space-golden-md);
+            box-shadow: var(--shadow-leonardo-manuscript);
+        }
+
+        .timeline-main {
+            background: rgba(255, 255, 255, 0.9);
+            padding: var(--space-golden-lg);
+            border-radius: var(--space-golden-lg);
+            box-shadow: var(--shadow-leonardo-elevated);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .details-sidebar {
+            background: rgba(255, 255, 255, 0.8);
+            padding: var(--space-golden-lg);
+            border-radius: var(--space-golden-md);
+            box-shadow: var(--shadow-leonardo-manuscript);
+        }
+
+        .panel-title {
+            font-family: var(--font-leonardo-display);
+            font-size: 1.5em;
+            color: var(--leonardo-crimson);
+            margin-bottom: var(--space-golden-md);
+            text-align: center;
+        }
+
+        .timeline-canvas {
+            width: 100%;
+            height: 100%;
+            min-height: 500px;
+            border-radius: var(--space-golden-md);
+        }
+
+        .timeline-navigation {
+            position: absolute;
+            top: var(--space-golden-lg);
+            right: var(--space-golden-lg);
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid var(--leonardo-gold);
+            border-radius: var(--space-golden-sm);
+            padding: var(--space-golden-md);
+            box-shadow: var(--shadow-leonardo-elevated);
+        }
+
+        .navigation-group {
+            margin-bottom: var(--space-golden-md);
+        }
+
+        .navigation-label {
+            font-family: var(--font-leonardo-display);
+            font-size: 0.9em;
+            color: var(--leonardo-umber);
+            margin-bottom: var(--space-golden-xs);
+            display: block;
+        }
+
+        .navigation-button {
+            background: linear-gradient(45deg, var(--leonardo-umber), var(--leonardo-umber-light));
+            color: var(--leonardo-parchment);
+            border: none;
+            padding: var(--space-golden-xs) var(--space-golden-sm);
+            border-radius: var(--space-golden-xs);
+            font-family: var(--font-leonardo-display);
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all var(--anim-leonardo-medium);
+            margin: 2px;
+        }
+
+        .navigation-button:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-leonardo-manuscript);
+        }
+
+        .era-section {
+            margin-bottom: var(--space-golden-lg);
+        }
+
+        .era-title {
+            font-family: var(--font-leonardo-display);
+            font-size: 1.2em;
+            color: var(--leonardo-umber);
+            margin-bottom: var(--space-golden-sm);
+            border-bottom: 2px solid var(--leonardo-gold);
+            padding-bottom: var(--space-golden-xs);
+        }
+
+        .era-item {
+            background: rgba(255, 215, 0, 0.1);
+            border-left: 4px solid var(--leonardo-gold);
+            padding: var(--space-golden-md);
+            margin: var(--space-golden-sm) 0;
+            border-radius: 0 var(--space-golden-sm) var(--space-golden-sm) 0;
+            cursor: pointer;
+            transition: all var(--anim-leonardo-medium);
+        }
+
+        .era-item:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: translateX(5px);
+        }
+
+        .era-item.active {
+            border-left-color: var(--leonardo-crimson);
+            background: rgba(139, 0, 0, 0.1);
+        }
+
+        .era-name {
+            font-family: var(--font-leonardo-display);
+            font-size: 1.1em;
+            color: var(--leonardo-ink);
+            margin-bottom: var(--space-golden-xs);
+        }
+
+        .era-description {
+            font-size: 0.9em;
+            color: var(--leonardo-umber);
+            line-height: 1.4;
+        }
+
+        .invention-card {
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid var(--leonardo-gold);
+            border-radius: var(--space-golden-sm);
+            padding: var(--space-golden-md);
+            margin-bottom: var(--space-golden-md);
+            cursor: pointer;
+            transition: all var(--anim-leonardo-medium);
+            position: relative;
+        }
+
+        .invention-card:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-leonardo-elevated);
+        }
+
+        .invention-card.active {
+            border-color: var(--leonardo-crimson);
+            background: rgba(139, 0, 0, 0.1);
+        }
+
+        .invention-icon {
+            font-size: 2em;
+            text-align: center;
+            margin-bottom: var(--space-golden-sm);
+        }
+
+        .invention-name {
+            font-family: var(--font-leonardo-display);
+            font-size: 1.2em;
+            color: var(--leonardo-ink);
+            text-align: center;
+            margin-bottom: var(--space-golden-xs);
+        }
+
+        .invention-date {
+            font-size: 0.9em;
+            color: var(--leonardo-umber);
+            text-align: center;
+            font-style: italic;
+        }
+
+        .detail-section {
+            margin-bottom: var(--space-golden-lg);
+        }
+
+        .detail-title {
+            font-family: var(--font-leonardo-display);
+            font-size: 1.2em;
+            color: var(--leonardo-crimson);
+            margin-bottom: var(--space-golden-sm);
+        }
+
+        .detail-content {
+            color: var(--leonardo-umber);
+            line-height: 1.6;
+        }
+
+        .evolution-steps {
+            list-style: none;
+            padding: 0;
+        }
+
+        .evolution-step {
+            background: rgba(135, 169, 107, 0.1);
+            border-left: 4px solid var(--leonardo-sage);
+            padding: var(--space-golden-sm);
+            margin: var(--space-golden-xs) 0;
+            border-radius: 0 var(--space-golden-xs) var(--space-golden-xs) 0;
+            font-size: 0.9em;
+            color: var(--leonardo-umber);
+            position: relative;
+        }
+
+        .evolution-step::before {
+            content: '→';
+            position: absolute;
+            left: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--leonardo-sage);
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .leonardo-insights {
+            background: rgba(139, 0, 0, 0.05);
+            border-left: 4px solid var(--leonardo-crimson);
+            padding: var(--space-golden-md);
+            margin: var(--space-golden-md) 0;
+            border-radius: 0 var(--space-golden-sm) var(--space-golden-sm) 0;
+        }
+
+        .insight-title {
+            font-family: var(--font-leonardo-display);
+            color: var(--leonardo-crimson);
+            margin-bottom: var(--space-golden-sm);
+        }
+
+        .insight-text {
+            color: var(--leonardo-umber);
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        .footer {
+            text-align: center;
+            padding: var(--space-golden-xl);
+            background: rgba(44, 24, 16, 0.9);
+            color: var(--leonardo-parchment);
+            border-radius: var(--space-golden-lg);
+            margin-top: var(--space-golden-xl);
+        }
+
+        .footer-text {
+            font-style: italic;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 1200px) {
+            .timeline-layout {
+                grid-template-columns: 1fr;
+                gap: var(--space-golden-md);
+            }
+            
+            .timeline-sidebar,
+            .details-sidebar {
+                order: 2;
+                max-height: 300px;
+            }
+            
+            .timeline-main {
+                order: 1;
+                min-height: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5em;
+            }
+            
+            .timeline-container {
+                padding: var(--space-golden-md);
+            }
+            
+            .timeline-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="timeline-container">
+        <header class="header-section leonardo-reveal">
+            <h1 class="main-title">Leonardo's Invention Timeline</h1>
+            <p class="subtitle">Witness the Evolution of Renaissance Genius (1470-1519)</p>
+            
+            <div class="leonardo-quote">
+                <div class="quote-text">Art is never finished, only abandoned. Each sketch is a step toward understanding, each invention a lesson in the mathematics of nature.</div>
+                <div class="quote-attribution">— Leonardo da Vinci, Codex Atlanticus</div>
+            </div>
+            
+            <div class="timeline-controls">
+                <button class="control-button active" onclick="setTimelineView('all')">All Inventions</button>
+                <button class="control-button" onclick="setTimelineView('category')">By Category</button>
+                <button class="control-button" onclick="setTimelineView('evolution')">Evolution Path</button>
+                <button class="control-button" onclick="playTimelineAnimation()">Play Animation</button>
+            </div>
+        </header>
+
+        <div class="timeline-layout">
+            <aside class="timeline-sidebar">
+                <h2 class="panel-title">Timeline Eras</h2>
+                
+                <div class="era-section">
+                    <h3 class="category-title">🌅 Early Period (1470-1482)</h3>
+                    
+                    <div class="era-item" data-era="apprentice" onclick="selectEra('apprentice')">
+                        <div class="era-name">Apprentice Years</div>
+                        <div class="era-description">Learning the fundamentals under Verrocchio in Florence</div>
+                    </div>
+                    
+                    <div class="era-item" data-era="independent" onclick="selectEra('independent')">
+                        <div class="era-name">Independent Master</div>
+                        <div class="era-description">First commissions and early mechanical experiments</div>
+                    </div>
+                </div>
+
+                <div class="era-section">
+                    <h3 class="category-title">⚡ Milan Period (1482-1500)</h3>
+                    
+                    <div class="era-item" data-era="milan-court" onclick="selectEra('milan-court')">
+                        <div class="era-name">Court Engineer</div>
+                        <div class="era-description">Serving Ludovico Sforza, creating military and civil engineering marvels</div>
+                    </div>
+                    
+                    <div class="era-item" data-era="flight-studies" onclick="selectEra('flight-studies')">
+                        <div class="era-name">Flight Studies</div>
+                        <div class="era-description">Intensive research into bird flight and aerial mechanics</div>
+                    </div>
+                </div>
+
+                <div class="era-section">
+                    <h3 class="category-title">🌍 Later Years (1500-1519)</h3>
+                    
+                    <div class="era-item" data-era="traveling" onclick="selectEra('traveling')">
+                        <div class="era-name">Traveling Scholar</div>
+                        <div class="era-description">Moving between cities, sharing knowledge across Italy</div>
+                    </div>
+                    
+                    <div class="era-item" data-era="final-works" onclick="selectEra('final-works')">
+                        <div class="era-name">Final Masterpieces</div>
+                        <div class="era-description">Ultimate expressions of artistic and scientific genius</div>
+                    </div>
+                </div>
+
+                <div class="leonardo-insights">
+                    <h3 class="insight-title">💡 Leonardo's Timeline Wisdom</h3>
+                    <div class="insight-text" id="leonardo-insight">
+                        Time is the greatest teacher. Each year brought new understanding, each failure taught new wisdom, each success opened new questions.
+                    </div>
+                </div>
+            </aside>
+
+            <main class="timeline-main">
+                <h2 class="panel-title">Interactive Timeline</h2>
+                
+                <canvas id="timeline-canvas" class="timeline-canvas"></canvas>
+                
+                <div class="timeline-navigation">
+                    <div class="navigation-group">
+                        <label class="navigation-label">Navigation:</label>
+                        <button class="navigation-button" onclick="zoomIn()">Zoom In</button>
+                        <button class="navigation-button" onclick="zoomOut()">Zoom Out</button>
+                        <button class="navigation-button" onclick="resetView()">Reset View</button>
+                    </div>
+                    
+                    <div class="navigation-group">
+                        <label class="navigation-label">Filter:</label>
+                        <button class="navigation-button" onclick="filterCategory('all')">All</button>
+                        <button class="navigation-button" onclick="filterCategory('music')">Music</button>
+                        <button class="navigation-button" onclick="filterCategory('flight')">Flight</button>
+                        <button class="navigation-button" onclick="filterCategory('mechanical')">Mechanical</button>
+                        <button class="navigation-button" onclick="filterCategory('military')">Military</button>
+                    </div>
+                </div>
+            </main>
+
+            <aside class="details-sidebar">
+                <h2 class="panel-title">Invention Details</h2>
+                
+                <div id="invention-details">
+                    <div class="detail-section">
+                        <h3 class="detail-title">Select an Invention</h3>
+                        <div class="detail-content">
+                            Click on any invention in the timeline to explore its details, evolution, and connections to Leonardo's other works.
+                        </div>
+                    </div>
+                </div>
+
+                <div id="evolution-path" style="display: none;">
+                    <div class="detail-section">
+                        <h3 class="detail-title">Evolution Path</h3>
+                        <ul class="evolution-steps" id="evolution-steps">
+                            <!-- Evolution steps will be populated here -->
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="invention-card" onclick="selectInvention('viola-organista')">
+                    <div class="invention-icon">🎻</div>
+                    <div class="invention-name">Viola Organista</div>
+                    <div class="invention-date">c. 1488-1490</div>
+                </div>
+
+                <div class="invention-card" onclick="selectInvention('ornithopter')">
+                    <div class="invention-icon">🪽</div>
+                    <div class="invention-name">Ornithopter</div>
+                    <div class="invention-date">c. 1485-1490</div>
+                </div>
+
+                <div class="invention-card" onclick="selectInvention('automobile')">
+                    <div class="invention-icon">🚗</div>
+                    <div class="invention-name">Self-Propelled Cart</div>
+                    <div class="invention-date">c. 1478</div>
+                </div>
+            </aside>
+        </div>
+
+        <footer class="footer">
+            <p class="footer-text">
+                "I have been impressed with the urgency of doing. Knowing is not enough; we must apply. Being willing is not enough; we must do."
+            </p>
+            <p style="margin-top: var(--space-golden-sm);">
+                — Leonardo da Vinci, 1452-1519
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Timeline Visualization JavaScript
+        let timelineData = {};
+        let selectedInvention = null;
+        let currentEra = null;
+        let timelineView = 'all';
+        let zoomLevel = 1;
+        let panOffset = { x: 0, y: 0 };
+        let isAnimating = false;
+        let animationId = null;
+
+        // Leonardo's invention timeline data
+        const timelineInventions = [
+            {
+                id: 'automobile',
+                name: 'Self-Propelled Cart',
+                icon: '🚗',
+                date: 1478,
+                category: 'mechanical',
+                era: 'independent',
+                description: 'First spring-powered autonomous vehicle',
+                significance: 'Foundation of automated transportation',
+                principles: ['spring_power', 'programmable_path', 'mechanical_computation']
+            },
+            {
+                id: 'siege-tower',
+                name: 'Scaling Ladder',
+                icon: '🏰',
+                date: 1480,
+                category: 'military',
+                era: 'independent',
+                description: 'Mobile siege warfare device',
+                significance: 'Early military engineering innovation',
+                principles: ['mobile_structure', 'mechanical_advantage']
+            },
+            {
+                id: 'parachute',
+                name: 'Pyramid Parachute',
+                icon: '🪂',
+                date: 1485,
+                category: 'flight',
+                era: 'flight-studies',
+                description: 'Controlled descent device',
+                significance: 'First systematic approach to aerial safety',
+                principles: ['controlled_descent', 'aerodynamic_drag', 'pyramid_geometry']
+            },
+            {
+                id: 'giant-crossbow',
+                name: 'Giant Crossbow',
+                icon: '🏹',
+                date: 1485,
+                category: 'military',
+                era: 'milan-court',
+                description: 'Massive siege weapon design',
+                significance: 'Application of stored energy principles',
+                principles: ['stored_energy', 'lever_mechanism', 'projectile_physics']
+            },
+            {
+                id: 'ornithopter',
+                name: 'Ornithopter',
+                icon: '🪽',
+                date: 1487,
+                category: 'flight',
+                era: 'flight-studies',
+                description: 'Human-powered flapping wing aircraft',
+                significance: 'First systematic study of biomimetic flight',
+                principles: ['biomimicry', 'flapping_motion', 'human_power', 'aerodynamics']
+            },
+            {
+                id: 'tank',
+                name: 'Armored Vehicle',
+                icon: '🛡️',
+                date: 1487,
+                category: 'military',
+                era: 'milan-court',
+                description: 'Conical armored fighting vehicle',
+                significance: 'Revolutionary approach to battlefield protection',
+                principles: ['armor_protection', 'conical_geometry', 'crew_protection']
+            },
+            {
+                id: 'aerial-screw',
+                name: 'Aerial Screw',
+                icon: '🚁',
+                date: 1489,
+                category: 'flight',
+                era: 'flight-studies',
+                description: 'Helical rotor for vertical flight',
+                significance: 'Precursor to helicopter technology',
+                principles: ['helical_lift', 'rotor_mechanism', 'vertical_flight', 'screw_principle']
+            },
+            {
+                id: 'viola-organista',
+                name: 'Viola Organista',
+                icon: '🎻',
+                date: 1489,
+                category: 'music',
+                era: 'milan-court',
+                description: 'Bowed keyboard instrument',
+                significance: 'Fusion of keyboard and string technologies',
+                principles: ['continuous_sound', 'string_vibration', 'bow_mechanism', 'keyboard_interface']
+            },
+            {
+                id: 'mechanical-drum',
+                name: 'Mechanical Drum',
+                icon: '🥁',
+                date: 1492,
+                category: 'music',
+                era: 'milan-court',
+                description: 'Automated percussion device',
+                significance: 'First programmable rhythm machine',
+                principles: ['automated_rhythm', 'cylinder_mechanism', 'percussion', 'programmable']
+            },
+            {
+                id: 'robotic-knight',
+                name: 'Mechanical Knight',
+                icon: '🤖',
+                date: 1495,
+                category: 'mechanical',
+                era: 'milan-court',
+                description: 'Programmable humanoid automaton',
+                significance: 'First sophisticated programmable robot',
+                principles: ['automaton', 'programmable_movement', 'humanoid_mechanics', 'cam_programming']
+            },
+            {
+                id: 'programmable-flute',
+                name: 'Programmable Flute',
+                icon: '🎵',
+                date: 1502,
+                category: 'music',
+                era: 'traveling',
+                description: 'Automated wind instrument',
+                significance: 'Peak of mechanical music automation',
+                principles: ['automated_melody', 'cam_mechanism', 'wind_instrument', 'programmable']
+            },
+            {
+                id: 'calculator',
+                name: 'Mechanical Calculator',
+                icon: '🧮',
+                date: 1504,
+                category: 'mechanical',
+                era: 'traveling',
+                description: 'Device for arithmetic operations',
+                significance: 'Mechanical computation breakthrough',
+                principles: ['mechanical_computation', 'gear_ratios', 'positional_notation', 'automated_calculation']
+            }
+        ];
+
+        // Timeline Visualization Class
+        class TimelineVisualizer {
+            constructor(canvas) {
+                this.canvas = canvas;
+                this.ctx = canvas.getContext('2d');
+                this.timelineStart = 1470;
+                this.timelineEnd = 1520;
+                this.selectedInvention = null;
+                this.hoveredInvention = null;
+                this.animationTime = 0;
+                
+                this.setupCanvas();
+                this.setupInteractions();
+            }
+
+            setupCanvas() {
+                this.resizeCanvas();
+                window.addEventListener('resize', () => this.resizeCanvas());
+            }
+
+            resizeCanvas() {
+                const rect = this.canvas.getBoundingClientRect();
+                this.canvas.width = rect.width * window.devicePixelRatio;
+                this.canvas.height = rect.height * window.devicePixelRatio;
+                this.ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+                this.canvas.style.width = rect.width + 'px';
+                this.canvas.style.height = rect.height + 'px';
+                
+                this.draw();
+            }
+
+            setupInteractions() {
+                this.canvas.addEventListener('mousemove', (e) => this.handleMouseMove(e));
+                this.canvas.addEventListener('click', (e) => this.handleClick(e));
+            }
+
+            handleMouseMove(e) {
+                const rect = this.canvas.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                this.hoveredInvention = null;
+                timelineInventions.forEach(invention => {
+                    const inventionX = this.getTimelinePosition(invention.date);
+                    const inventionY = this.getCategoryPosition(invention.category);
+                    
+                    const distance = Math.sqrt(Math.pow(x - inventionX, 2) + Math.pow(y - inventionY, 2));
+                    if (distance < 25) {
+                        this.hoveredInvention = invention;
+                        this.canvas.style.cursor = 'pointer';
+                        return;
+                    }
+                });
+
+                if (!this.hoveredInvention) {
+                    this.canvas.style.cursor = 'default';
+                }
+            }
+
+            handleClick(e) {
+                if (this.hoveredInvention) {
+                    this.selectedInvention = this.hoveredInvention;
+                    selectInvention(this.hoveredInvention.id);
+                }
+            }
+
+            getTimelinePosition(date) {
+                const timelineWidth = this.canvas.clientWidth - 100;
+                const position = (date - this.timelineStart) / (this.timelineEnd - this.timelineStart);
+                return 50 + position * timelineWidth;
+            }
+
+            getCategoryPosition(category) {
+                const categories = ['music', 'flight', 'mechanical', 'military'];
+                const categoryHeight = (this.canvas.clientHeight - 100) / categories.length;
+                const index = categories.indexOf(category);
+                return 50 + index * categoryHeight + categoryHeight / 2;
+            }
+
+            draw() {
+                this.ctx.clearRect(0, 0, this.canvas.clientWidth, this.canvas.clientHeight);
+                
+                this.drawTimeline();
+                this.drawCategories();
+                this.drawConnections();
+                this.drawInventions();
+            }
+
+            drawTimeline() {
+                this.ctx.strokeStyle = 'rgba(44, 24, 16, 0.3)';
+                this.ctx.lineWidth = 2;
+                this.ctx.beginPath();
+                this.ctx.moveTo(50, 50);
+                this.ctx.lineTo(this.canvas.clientWidth - 50, 50);
+                this.ctx.moveTo(50, this.canvas.clientHeight - 50);
+                this.ctx.lineTo(this.canvas.clientWidth - 50, this.canvas.clientHeight - 50);
+                this.ctx.stroke();
+
+                // Draw year markers
+                for (let year = this.timelineStart; year <= this.timelineEnd; year += 5) {
+                    const x = this.getTimelinePosition(year);
+                    this.ctx.strokeStyle = 'rgba(44, 24, 16, 0.2)';
+                    this.ctx.lineWidth = 1;
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(x, 50);
+                    this.ctx.lineTo(x, this.canvas.clientHeight - 50);
+                    this.ctx.stroke();
+                    
+                    this.ctx.fillStyle = 'rgba(44, 24, 16, 0.7)';
+                    this.ctx.font = '12px Cinzel';
+                    this.ctx.textAlign = 'center';
+                    this.ctx.fillText(year, x, this.canvas.clientHeight - 30);
+                }
+            }
+
+            drawCategories() {
+                const categories = ['music', 'flight', 'mechanical', 'military'];
+                const categoryLabels = ['🎵 Musical Instruments', '🕊️ Flying Machines', '⚙️ Mechanical Devices', '🏛️ Military Engineering'];
+                
+                categories.forEach((category, index) => {
+                    const y = this.getCategoryPosition(category);
+                    
+                    this.ctx.fillStyle = 'rgba(44, 24, 16, 0.1)';
+                    this.ctx.fillRect(50, y - 30, this.canvas.clientWidth - 100, 60);
+                    
+                    this.ctx.fillStyle = 'rgba(44, 24, 16, 0.8)';
+                    this.ctx.font = '14px Cinzel';
+                    this.ctx.textAlign = 'left';
+                    this.ctx.fillText(categoryLabels[index], 60, y + 5);
+                });
+            }
+
+            drawConnections() {
+                // Draw evolution connections between inventions
+                for (let i = 0; i < timelineInventions.length - 1; i++) {
+                    const current = timelineInventions[i];
+                    const next = timelineInventions[i + 1];
+                    
+                    const currentX = this.getTimelinePosition(current.date);
+                    const currentY = this.getCategoryPosition(current.category);
+                    const nextX = this.getTimelinePosition(next.date);
+                    const nextY = this.getCategoryPosition(next.category);
+                    
+                    this.ctx.strokeStyle = 'rgba(255, 215, 0, 0.5)';
+                    this.ctx.lineWidth = 2;
+                    this.ctx.setLineDash([5, 5]);
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(currentX, currentY);
+                    
+                    // Add some curve
+                    const midX = (currentX + nextX) / 2;
+                    const midY = (currentY + nextY) / 2;
+                    const offset = Math.sin(this.animationTime * 0.001 + i) * 20;
+                    
+                    this.ctx.quadraticCurveTo(midX + offset, midY + offset, nextX, nextY);
+                    this.ctx.stroke();
+                    this.ctx.setLineDash([]);
+                }
+            }
+
+            drawInventions() {
+                timelineInventions.forEach(invention => {
+                    this.drawInvention(invention);
+                });
+            }
+
+            drawInvention(invention) {
+                const x = this.getTimelinePosition(invention.date);
+                const y = this.getCategoryPosition(invention.category);
+                const isSelected = this.selectedInvention === invention;
+                const isHovered = this.hoveredInvention === invention;
+                
+                // Draw invention circle
+                this.ctx.beginPath();
+                this.ctx.arc(x, y, isSelected ? 20 : isHovered ? 18 : 16, 0, 2 * Math.PI);
+                
+                // Set color based on category
+                let fillColor;
+                switch (invention.category) {
+                    case 'music':
+                        fillColor = 'rgba(255, 215, 0, 0.8)';
+                        break;
+                    case 'flight':
+                        fillColor = 'rgba(135, 169, 107, 0.8)';
+                        break;
+                    case 'mechanical':
+                        fillColor = 'rgba(210, 105, 30, 0.8)';
+                        break;
+                    case 'military':
+                        fillColor = 'rgba(139, 0, 0, 0.8)';
+                        break;
+                }
+                
+                this.ctx.fillStyle = fillColor;
+                this.ctx.fill();
+                
+                if (isSelected) {
+                    this.ctx.strokeStyle = 'rgba(139, 0, 0, 1)';
+                    this.ctx.lineWidth = 3;
+                    this.ctx.stroke();
+                }
+                
+                // Draw icon
+                this.ctx.font = '16px Arial';
+                this.ctx.textAlign = 'center';
+                this.ctx.textBaseline = 'middle';
+                this.ctx.fillStyle = 'white';
+                this.ctx.fillText(invention.icon, x, y);
+            }
+
+            animate() {
+                if (isAnimating) {
+                    this.animationTime += 16;
+                    this.draw();
+                    animationId = requestAnimationFrame(() => this.animate());
+                }
+            }
+        }
+
+        // Global functions
+        function selectInvention(inventionId) {
+            const invention = timelineInventions.find(inv => inv.id === inventionId);
+            if (!invention) return;
+            
+            selectedInvention = invention;
+            
+            // Update UI
+            document.querySelectorAll('.invention-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            
+            const selectedCard = document.querySelector(`[onclick="selectInvention('${inventionId}')"]`);
+            if (selectedCard) {
+                selectedCard.classList.add('active');
+            }
+            
+            // Update details panel
+            updateDetailsPanel(invention);
+            
+            // Update timeline visualization
+            if (window.timelineVisualizer) {
+                window.timelineVisualizer.selectedInvention = invention;
+                window.timelineVisualizer.draw();
+            }
+            
+            // Update Leonardo insight
+            updateLeonardoInsight(invention);
+        }
+
+        function selectEra(eraId) {
+            currentEra = eraId;
+            
+            // Update UI
+            document.querySelectorAll('.era-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            const selectedItem = document.querySelector(`[data-era="${eraId}"]`);
+            if (selectedItem) {
+                selectedItem.classList.add('active');
+            }
+            
+            // Filter timeline by era
+            filterTimelineByEra(eraId);
+        }
+
+        function updateDetailsPanel(invention) {
+            const detailsHtml = `
+                <div class="detail-section">
+                    <h3 class="detail-title">${invention.icon} ${invention.name}</h3>
+                    <div class="detail-content">
+                        <strong>Date:</strong> ${invention.date}<br>
+                        <strong>Category:</strong> ${invention.category}<br>
+                        <strong>Era:</strong> ${invention.era.replace('-', ' ')}<br>
+                        <p style="margin-top: var(--space-golden-sm);">${invention.description}</p>
+                        <p><strong>Significance:</strong> ${invention.significance}</p>
+                    </div>
+                </div>
+                
+                <div class="detail-section">
+                    <h3 class="detail-title">Core Principles</h3>
+                    <div class="detail-content">
+                        <ul style="margin: 0; padding-left: var(--space-golden-md);">
+                            ${invention.principles.map(principle => `<li>${principle.replace(/_/g, ' ')}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('invention-details').innerHTML = detailsHtml;
+        }
+
+        function updateLeonardoInsight(invention) {
+            const insights = {
+                'automobile': "The dream of self-propulsion haunted me for years. To move without being pushed - this was freedom made mechanical.",
+                'siege-tower': "In war as in art, preparation is everything. The siege tower teaches us that reaching great heights requires solid foundations.",
+                'parachute': "What goes up must come down, but the wise prepare for the descent. The parachute is humility made manifest.",
+                'giant-crossbow': "Power stored and released - this is the principle of life itself. The crossbow teaches us patience and timing.",
+                'ornithopter': "For three years I watched birds, studied their every motion. Nature is the ultimate teacher, but her lessons require infinite patience.",
+                'tank': "Protection need not mean immobility. The turtle carries its fortress, yet moves with purpose and grace.",
+                'aerial-screw': "The spiral is one of nature's favorite forms. From seashells to galaxies, the screw connects the smallest and largest scales.",
+                'viola-organista': "To bow a keyboard - this was the marriage of two worlds. Continuous sound meets discrete notes, infinity meets structure.",
+                'mechanical-drum': "Rhythm captured and released at will. The cylinder turns, and time itself becomes music.",
+                'robotic-knight': "Artificial life - not to replace humanity, but to understand it. The mechanical knight is our reflection in polished metal.",
+                'programmable-flute': "The breath of life, captured in cams and springs. The flute sings without lungs, thinks without mind.",
+                'calculator': "Numbers are the language of nature. To calculate mechanically is to speak this language fluently, without stuttering."
+            };
+            
+            const insightElement = document.getElementById('leonardo-insight');
+            if (insights[invention.id]) {
+                insightElement.textContent = insights[invention.id];
+            }
+        }
+
+        function setTimelineView(view) {
+            timelineView = view;
+            
+            // Update button states
+            document.querySelectorAll('.timeline-controls .control-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Update timeline visualization
+            if (window.timelineVisualizer) {
+                window.timelineVisualizer.draw();
+            }
+        }
+
+        function playTimelineAnimation() {
+            if (isAnimating) {
+                window.timelineVisualizer.stopAnimation();
+                event.target.textContent = 'Play Animation';
+            } else {
+                window.timelineVisualizer.startAnimation();
+                event.target.textContent = 'Stop Animation';
+            }
+        }
+
+        function zoomIn() {
+            zoomLevel = Math.min(zoomLevel * 1.2, 5);
+            if (window.timelineVisualizer) {
+                window.timelineVisualizer.draw();
+            }
+        }
+
+        function zoomOut() {
+            zoomLevel = Math.max(zoomLevel / 1.2, 0.5);
+            if (window.timelineVisualizer) {
+                window.timelineVisualizer.draw();
+            }
+        }
+
+        function resetView() {
+            zoomLevel = 1;
+            panOffset = { x: 0, y: 0 };
+            if (window.timelineVisualizer) {
+                window.timelineVisualizer.draw();
+            }
+        }
+
+        function filterCategory(category) {
+            // Filter timeline by category
+            if (window.timelineVisualizer) {
+                window.timelineVisualizer.draw();
+            }
+        }
+
+        function filterTimelineByEra(eraId) {
+            // Filter timeline by era
+            if (window.timelineVisualizer) {
+                window.timelineVisualizer.draw();
+            }
+        }
+
+        // Initialize timeline visualizer
+        document.addEventListener('DOMContentLoaded', function() {
+            const canvas = document.getElementById('timeline-canvas');
+            window.timelineVisualizer = new TimelineVisualizer(canvas);
+            window.timelineVisualizer.draw();
+            
+            // Add some interactive wisdom
+            const wisdoms = [
+                "Time is the greatest teacher. Each year brought new understanding, each failure taught new wisdom, each success opened new questions.",
+                "The timeline reveals what individual inventions hide: that creativity builds upon itself, that each breakthrough enables the next.",
+                "See how the early mechanical devices influenced the later musical instruments, how military engineering informed flight research. All knowledge is connected across time.",
+                "Leonardo's genius was not in isolated inventions, but in the web of understanding that connected them all. The timeline shows this web made visible."
+            ];
+            
+            // Randomly display wisdom
+            const randomWisdom = wisdoms[Math.floor(Math.random() * wisdoms.length)];
+            document.getElementById('leonardo-insight').textContent = randomWisdom;
+        });
+    </script>
+</body>
+</html>

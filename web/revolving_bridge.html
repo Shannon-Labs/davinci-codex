@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leonardo's Revolving Bridge - Tactical Military Engineering</title>
+    <link rel="stylesheet" href="leonardo_design_system.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        body { margin: 0; padding: 0; background: linear-gradient(135deg, #2F4F4F 0%, #F4E4C1 100%); font-family: var(--font-leonardo-body); min-height: 100vh; }
+        .main-container { max-width: 1400px; margin: 0 auto; padding: var(--space-golden-xl); }
+        .header { text-align: center; padding: var(--space-golden-xxl); background: rgba(255, 255, 255, 0.9); border-radius: var(--space-golden-lg); box-shadow: var(--shadow-leonardo-elevated); margin-bottom: var(--space-golden-xxl); }
+        .main-title { font-family: var(--font-leonardo-display); font-size: 3.5em; color: var(--leonardo-ink); margin-bottom: var(--space-golden-md); }
+        .subtitle { font-size: 1.3em; color: var(--leonardo-umber); font-style: italic; }
+        .badge { display: inline-block; background: linear-gradient(45deg, #2F4F4F, #696969); color: white; padding: var(--space-golden-sm) var(--space-golden-lg); border-radius: var(--space-golden-lg); font-family: var(--font-leonardo-display); font-size: 1.1em; margin-top: var(--space-golden-md); }
+        .canvas-area { width: 100%; height: 500px; background: rgba(255, 255, 255, 0.9); border: 2px solid #2F4F4F; border-radius: var(--space-golden-md); margin: var(--space-golden-lg) 0; position: relative; overflow: hidden; }
+        .content-section { background: rgba(255, 255, 255, 0.9); padding: var(--space-golden-xl); border-radius: var(--space-golden-lg); margin-bottom: var(--space-golden-lg); }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="header">
+            <h1 class="main-title">🌉 Leonardo's Revolving Bridge</h1>
+            <p class="subtitle">Rapid Deployment Tactical River Crossing System</p>
+            <div class="badge">⚡ DEPLOYS IN UNDER 60 SECONDS ⚡</div>
+        </div>
+
+        <div class="canvas-area">
+            <canvas id="bridgeCanvas"></canvas>
+        </div>
+
+        <div style="text-align: center; margin: var(--space-golden-lg) 0;">
+            <button onclick="rotateBridge()" style="padding: var(--space-golden-md) var(--space-golden-xl); font-size: 1.2em; background: linear-gradient(45deg, #2F4F4F, #696969); color: white; border: none; border-radius: var(--space-golden-sm); cursor: pointer; font-family: var(--font-leonardo-display);">🔄 Rotate Bridge</button>
+            <button onclick="resetBridge()" style="padding: var(--space-golden-md) var(--space-golden-xl); font-size: 1.2em; background: linear-gradient(45deg, var(--leonardo-sage), var(--leonardo-sage-light)); color: white; border: none; border-radius: var(--space-golden-sm); cursor: pointer; font-family: var(--font-leonardo-display); margin-left: var(--space-golden-md);">↺ Reset</button>
+        </div>
+
+        <div class="content-section">
+            <h2 style="font-family: var(--font-leonardo-display); color: var(--leonardo-crimson); text-align: center; margin-bottom: var(--space-golden-lg);">Engineering Innovation</h2>
+            <ul style="font-size: 1.1em; line-height: 1.8;">
+                <li><strong>Central Pivot System:</strong> Lightweight wooden structure rotates on central pier</li>
+                <li><strong>Counterweight Balance:</strong> Enables single-person operation of 15-meter span</li>
+                <li><strong>Rapid Deployment:</strong> Swings from storage to crossing position in under 60 seconds</li>
+                <li><strong>Modular Construction:</strong> Transportable in sections, assembled on-site</li>
+                <li><strong>Military Advantage:</strong> Enables surprise river crossings and tactical retreats</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2 style="font-family: var(--font-leonardo-display); color: var(--leonardo-crimson); text-align: center; margin-bottom: var(--space-golden-lg);">Historical Context</h2>
+            <p style="font-size: 1.2em; line-height: 1.8;">
+                Designed during Leonardo's service to Cesare Borgia as chief military engineer (1502-1503), the revolving bridge solved a critical tactical problem: rapid river crossing without permanent structures. The design appeared in Codex Atlanticus and represents Leonardo's genius for practical military innovation.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('bridgeCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+
+        let bridgeAngle = 0, rotating = false;
+
+        function rotateBridge() { rotating = true; }
+        function resetBridge() { rotating = false; bridgeAngle = 0; }
+
+        function animate() {
+            if (rotating && bridgeAngle < Math.PI / 2) {
+                bridgeAngle += 0.02;
+            } else if (rotating) {
+                rotating = false;
+            }
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // River
+            ctx.fillStyle = '#4682B4';
+            ctx.fillRect(0, canvas.height / 2 - 50, canvas.width, 100);
+
+            // Bridge
+            ctx.save();
+            ctx.translate(canvas.width / 2, canvas.height / 2);
+            ctx.rotate(bridgeAngle);
+            ctx.fillStyle = '#8B4513';
+            ctx.fillRect(-200, -15, 400, 30);
+            ctx.strokeStyle = '#654321';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(-200, -15, 400, 30);
+            ctx.restore();
+
+            // Pivot
+            ctx.fillStyle = '#696969';
+            ctx.beginPath();
+            ctx.arc(canvas.width / 2, canvas.height / 2, 20, 0, Math.PI * 2);
+            ctx.fill();
+
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
+</body>
+</html>

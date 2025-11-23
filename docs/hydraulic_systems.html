@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leonardo's Hydraulic Systems - The Water Master</title>
+    <link rel="stylesheet" href="leonardo_design_system.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--leonardo-bg-parchment);
+            font-family: var(--font-leonardo-body);
+            min-height: 100vh;
+        }
+
+        .hydraulic-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: var(--space-golden-xl);
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: var(--space-golden-xxl);
+            padding: var(--space-golden-xl);
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: var(--space-golden-lg);
+            box-shadow: var(--shadow-leonardo-manuscript);
+        }
+
+        .main-title {
+            font-family: var(--font-leonardo-display);
+            font-size: 3.5em;
+            color: var(--leonardo-ink);
+            margin-bottom: var(--space-golden-md);
+            text-shadow: 2px 2px 4px rgba(44, 24, 16, 0.2);
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            color: var(--leonardo-umber);
+            font-style: italic;
+            margin-bottom: var(--space-golden-lg);
+        }
+
+        .leonardo-quote {
+            background: rgba(135, 169, 107, 0.1);
+            border: 1px solid var(--leonardo-sage);
+            border-radius: var(--space-golden-sm);
+            padding: var(--space-golden-md);
+            margin: var(--space-golden-lg) auto;
+            max-width: 800px;
+            font-style: italic;
+            position: relative;
+        }
+
+        .quote-text {
+            font-size: 1.3em;
+            margin-bottom: var(--space-golden-sm);
+        }
+
+        .quote-attribution {
+            font-size: 0.9em;
+            color: var(--leonardo-umber);
+            text-align: right;
+        }
+
+        .hydraulic-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr 280px;
+            gap: var(--space-golden-xl);
+            margin-bottom: var(--space-golden-xxl);
+        }
+
+        .systems-panel {
+            background: rgba(255, 255, 255, 0.8);
+            padding: var(--space-golden-lg);
+            border-radius: var(--space-golden-md);
+            box-shadow: var(--shadow-leonardo-manuscript);
+        }
+
+        .simulation-workspace {
+            background: rgba(255, 255, 255, 0.9);
+            padding: var(--space-golden-lg);
+            border-radius: var(--space-golden-lg);
+            box-shadow: var(--shadow-leonardo-elevated);
+            min-height: 600px;
+        }
+
+        .analysis-panel {
+            background: rgba(255, 255, 255, 0.8);
+            padding: var(--space-golden-lg);
+            border-radius: var(--space-golden-md);
+            box-shadow: var(--shadow-leonardo-manuscript);
+        }
+
+        .panel-title {
+            font-family: var(--font-leonardo-display);
+            font-size: 1.5em;
+            color: var(--leonardo-crimson);
+            margin-bottom: var(--space-golden-md);
+            text-align: center;
+        }
+
+        .system-category {
+            margin-bottom: var(--space-golden-lg);
+        }
+
+        .category-title {
+            font-family: var(--font-leonardo-display);
+            font-size: 1.2em;
+            color: var(--leonardo-umber);
+            margin-bottom: var(--space-golden-sm);
+            border-bottom: 2px solid var(--leonardo-gold);
+            padding-bottom: var(--space-golden-xs);
+        }
+
+        .system-item {
+            background: rgba(135, 169, 107, 0.1);
+            border: 2px solid var(--leonardo-sage);
+            border-radius: var(--space-golden-sm);
+            padding: var(--space-golden-md);
+            margin: var(--space-golden-sm) 0;
+            cursor: pointer;
+            transition: all var(--anim-leonardo-medium);
+            position: relative;
+        }
+
+        .system-item:hover {
+            border-color: var(--leonardo-gold);
+            background: rgba(255, 215, 0, 0.1);
+            transform: translateX(5px);
+        }
+
+        .system-item.active {
+            border-color: var(--leonardo-crimson);
+            background: rgba(139, 0, 0, 0.1);
+        }
+
+        .system-icon {
+            font-size: 2em;
+            text-align: center;
+            margin-bottom: var(--space-golden-sm);
+        }
+
+        .system-name {
+            font-family: var(--font-leonardo-display);
+            font-size: 1.1em;
+            color: var(--leonardo-ink);
+            text-align: center;
+            margin-bottom: var(--space-golden-xs);
+        }
+
+        .system-description {
+            font-size: 0.9em;
+            color: var(--leonardo-umber);
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .simulation-canvas {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            border: 2px solid var(--leonardo-umber);
+            border-radius: var(--space-golden-md);
+            background: rgba(135, 169, 107, 0.05);
+        }
+
+        .control-panel {
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid var(--leonardo-gold);
+            border-radius: var(--space-golden-md);
+            padding: var(--space-golden-lg);
+            margin: var(--space-golden-lg) 0;
+            box-shadow: var(--glow-leonardo);
+        }
+
+        .control-buttons {
+            display: flex;
+            gap: var(--space-golden-md);
+            justify-content: center;
+            margin: var(--space-golden-lg) 0;
+            flex-wrap: wrap;
+        }
+
+        .leonardo-button {
+            background: linear-gradient(45deg, var(--leonardo-crimson), var(--leonardo-crimson-light));
+            color: var(--leonardo-parchment);
+            border: none;
+            padding: var(--space-golden-sm) var(--space-golden-lg);
+            border-radius: var(--space-golden-sm);
+            font-family: var(--font-leonardo-display);
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all var(--anim-leonardo-medium);
+            box-shadow: var(--shadow-leonardo-manuscript);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .leonardo-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-leonardo-elevated);
+        }
+
+        .leonardo-button.secondary {
+            background: linear-gradient(45deg, var(--leonardo-umber), var(--leonardo-umber-light));
+        }
+
+        .leonardo-button.gold {
+            background: linear-gradient(45deg, var(--leonardo-gold-dark), var(--leonardo-gold));
+            color: var(--leonardo-ink);
+        }
+
+        .water-properties {
+            margin-bottom: var(--space-golden-lg);
+        }
+
+        .property-group {
+            margin-bottom: var(--space-golden-md);
+        }
+
+        .property-label {
+            font-family: var(--font-leonardo-display);
+            font-size: 0.9em;
+            color: var(--leonardo-umber);
+            margin-bottom: var(--space-golden-xs);
+            display: block;
+        }
+
+        .property-slider {
+            width: 100%;
+            margin: var(--space-golden-sm) 0;
+        }
+
+        .property-value {
+            text-align: center;
+            color: var(--leonardo-umber);
+            font-size: 0.9em;
+            margin-top: var(--space-golden-xs);
+        }
+
+        .leonardo-insights {
+            background: rgba(139, 0, 0, 0.05);
+            border-left: 4px solid var(--leonardo-crimson);
+            padding: var(--space-golden-md);
+            margin: var(--space-golden-md) 0;
+            border-radius: 0 var(--space-golden-sm) var(--space-golden-sm) 0;
+        }
+
+        .insight-title {
+            font-family: var(--font-leonardo-display);
+            color: var(--leonardo-crimson);
+            margin-bottom: var(--space-golden-sm);
+        }
+
+        .insight-text {
+            color: var(--leonardo-umber);
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        .principle-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .principle-item {
+            background: rgba(255, 215, 0, 0.1);
+            border-left: 4px solid var(--leonardo-gold);
+            padding: var(--space-golden-sm);
+            margin: var(--space-golden-xs) 0;
+            border-radius: 0 var(--space-golden-xs) var(--space-golden-xs) 0;
+            font-size: 0.9em;
+            color: var(--leonardo-umber);
+        }
+
+        .footer {
+            text-align: center;
+            padding: var(--space-golden-xl);
+            background: rgba(44, 24, 16, 0.9);
+            color: var(--leonardo-parchment);
+            border-radius: var(--space-golden-lg);
+            margin-top: var(--space-golden-xl);
+        }
+
+        .footer-text {
+            font-style: italic;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 1200px) {
+            .hydraulic-layout {
+                grid-template-columns: 1fr;
+                gap: var(--space-golden-md);
+            }
+            
+            .systems-panel,
+            .analysis-panel {
+                order: 2;
+                max-height: 300px;
+            }
+            
+            .simulation-workspace {
+                order: 1;
+                min-height: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5em;
+            }
+            
+            .hydraulic-container {
+                padding: var(--space-golden-md);
+            }
+            
+            .control-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* 💧 Water Animation Effects */
+        .water-flow {
+            position: absolute;
+            background: linear-gradient(45deg, 
+                rgba(135, 169, 107, 0.6), 
+                rgba(135, 169, 107, 0.3), 
+                rgba(135, 169, 107, 0.6));
+            border-radius: 50%;
+            animation: waterFlow 3s ease-in-out infinite;
+        }
+
+        @keyframes waterFlow {
+            0%, 100% { 
+                transform: translateX(0px) translateY(0px) scale(1);
+                opacity: 0.6;
+            }
+            50% { 
+                transform: translateX(20px) translateY(-10px) scale(1.1);
+                opacity: 0.8;
+            }
+        }
+
+        .ripple-effect {
+            position: absolute;
+            border: 2px solid var(--leonardo-sage);
+            border-radius: 50%;
+            animation: ripple 2s ease-out infinite;
+            opacity: 0;
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hydraulic-container">
+        <header class="header-section leonardo-reveal">
+            <h1 class="main-title">Leonardo's Hydraulic Systems</h1>
+            <p class="subtitle">The Water Master - Understanding Nature's Most Versatile Element</p>
+            
+            <div class="leonardo-quote">
+                <div class="quote-text">Water is the driver of nature. It gives birth to all things and destroys all things. It is never at rest, yet it finds its own level. In understanding water, we understand life itself.</div>
+                <div class="quote-attribution">— Leonardo da Vinci, Codex Leicester</div>
+            </div>
+
+            <div class="leonardo-mirror-decoder" style="margin: var(--space-golden-lg) auto; max-width: 400px;">
+                <div class="mirror-text">.sruocco lacihtem fo ytiliba eht si retaW</div>
+                <div class="decoder-hint" style="text-align: center; margin-top: var(--space-golden-sm);">Hover to decode Leonardo's wisdom</div>
+            </div>
+        </header>
+
+        <div class="hydraulic-layout">
+            <aside class="systems-panel">
+                <h2 class="panel-title">Hydraulic Systems</h2>
+                
+                <div class="system-category">
+                    <h3 class="category-title">💧 Water Management</h3>
+                    
+                    <div class="system-item" data-system="canal-lock" onclick="selectSystem('canal-lock')">
+                        <div class="system-icon">🚢</div>
+                        <div class="system-name">Canal Lock System</div>
+                        <div class="system-description">Raising and lowering boats between water levels</div>
+                    </div>
+                    
+                    <div class="system-item" data-system="water-lift" onclick="selectSystem('water-lift')">
+                        <div class="system-icon">🪣</div>
+                        <div class="system-name">Water Lift Device</div>
+                        <div class="system-description">Archimedes screw for elevation</div>
+                    </div>
+                    
+                    <div class="system-item" data-system="sluice-gate" onclick="selectSystem('sluice-gate')">
+                        <div class="system-icon">🚪</div>
+                        <div class="system-name">Sluice Gate</div>
+                        <div class="system-description">Controlled water flow regulation</div>
+                    </div>
+                </div>
+
+                <div class="system-category">
+                    <h3 class="category-title">⚡ Power Generation</h3>
+                    
+                    <div class="system-item" data-system="water-wheel" onclick="selectSystem('water-wheel')">
+                        <div class="system-icon">⚙️</div>
+                        <div class="system-name">Water Wheel</div>
+                        <div class="system-description">Converting flow to mechanical power</div>
+                    </div>
+                    
+                    <div class="system-item" data-system="turbine" onclick="selectSystem('turbine')">
+                        <div class="system-icon">🌀</div>
+                        <div class="system-name">Water Turbine</div>
+                        <div class="system-description">Efficient energy extraction</div>
+                    </div>
+                    
+                    <div class="system-item" data-system="pump" onclick="selectSystem('pump')">
+                        <div class="system-icon">💨</div>
+                        <div class="system-name">Reciprocating Pump</div>
+                        <div class="system-description">Positive displacement mechanism</div>
+                    </div>
+                </div>
+
+                <div class="system-category">
+                    <h3 class="category-title">🏛️ Civil Engineering</h3>
+                    
+                    <div class="system-item" data-system="bridge-aquaduct" onclick="selectSystem('bridge-aquaduct')">
+                        <div class="system-icon">🏛️</div>
+                        <div class="system-name">Bridge Aqueduct</div>
+                        <div class="system-description">Water transport across valleys</div>
+                    </div>
+                    
+                    <div class="system-item" data-system="flood-control" onclick="selectSystem('flood-control')">
+                        <div class="system-icon">🌊</div>
+                        <div class="system-name">Flood Control</div>
+                        <div class="system-description">Managing river overflow</div>
+                    </div>
+                    
+                    <div class="system-item" data-system="harbor-works" onclick="selectSystem('harbor-works')">
+                        <div class="system-icon">⚓</div>
+                        <div class="system-name">Harbor Works</div>
+                        <div class="system-description">Safe anchorage systems</div>
+                    </div>
+                </div>
+            </aside>
+
+            <main class="simulation-workspace">
+                <h2 class="panel-title">Hydraulic Simulation</h2>
+                
+                <div class="control-panel">
+                    <h3 class="panel-title">💧 Water Properties</h3>
+                    
+                    <div class="water-properties">
+                        <div class="property-group">
+                            <label class="property-label">Flow Rate (L/min)</label>
+                            <input type="range" class="property-slider" id="flow-rate" min="10" max="500" value="100">
+                            <div class="property-value" id="flow-value">100 L/min</div>
+                        </div>
+                        
+                        <div class="property-group">
+                            <label class="property-label">Head Height (m)</label>
+                            <input type="range" class="property-slider" id="head-height" min="1" max="20" value="5">
+                            <div class="property-value" id="head-value">5 m</div>
+                        </div>
+                        
+                        <div class="property-group">
+                            <label class="property-label">Water Pressure (kPa)</label>
+                            <input type="range" class="property-slider" id="water-pressure" min="10" max="200" value="50">
+                            <div class="property-value" id="pressure-value">50 kPa</div>
+                        </div>
+                    </div>
+                </div>
+
+                <canvas id="simulation-canvas" class="simulation-canvas"></canvas>
+                
+                <div class="control-buttons">
+                    <button class="leonardo-button" onclick="startSimulation()">Start Flow</button>
+                    <button class="leonardo-button secondary" onclick="pauseSimulation()">Pause</button>
+                    <button class="leonardo-button gold" onclick="resetSimulation()">Reset</button>
+                    <button class="leonardo-button" onclick="saveParameters()">Save Setup</button>
+                </div>
+            </main>
+
+            <aside class="analysis-panel">
+                <h2 class="panel-title">Analysis & Insights</h2>
+                
+                <div id="system-details">
+                    <div class="detail-section">
+                        <h3 class="detail-title">Select a Hydraulic System</h3>
+                        <div class="detail-content">
+                            Choose a water management system from the left panel to explore Leonardo's hydraulic innovations.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="leonardo-insights">
+                    <h3 class="insight-title">💡 Leonardo's Insight</h3>
+                    <div class="insight-text" id="leonardo-insight">
+                        Water is the blood of the Earth, flowing through veins of rivers and arteries of canals. In understanding its movement, we understand the very pulse of nature.
+                    </div>
+                </div>
+
+                <div class="hydraulic-principles">
+                    <h3 class="panel-title">Water Principles</h3>
+                    <ul class="principle-list" id="principle-list">
+                        <li class="principle-item">Water seeks its own level</li>
+                        <li class="principle-item">Pressure increases with depth</li>
+                        <li class="principle-item">Flow follows path of least resistance</li>
+                        <li class="principle-item">Energy can be extracted from movement</li>
+                    </ul>
+                </div>
+
+                <div class="historical-context">
+                    <h3 class="panel-title">Historical Context</h3>
+                    <div class="detail-content" style="font-size: 0.9em;">
+                        Leonardo spent years studying water for the Duke of Milan, designing canals, harbors, and flood control systems. His hydraulic studies combined practical engineering with deep observations of natural water movement.
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <footer class="footer">
+            <p class="footer-text">
+                "In rivers, the water that you touch is the last of what has passed and the first of that which comes."
+            </p>
+            <p style="margin-top: var(--space-golden-sm);">
+                — Leonardo da Vinci, 1452-1519
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Hydraulic Systems JavaScript
+        let currentSystem = null;
+        let isSimulating = false;
+        let animationId = null;
+        let waterParticles = [];
+        let systemComponents = [];
+
+        // Hydraulic system data
+        const hydraulicSystems = {
+            'canal-lock': {
+                name: 'Canal Lock System',
+                icon: '🚢',
+                description: 'A chamber that raises and lowers boats between different water levels using controlled flooding and emptying.',
+                principles: ['buoyancy', 'water_displacement', 'controlled_flooding', 'gravity_drainage'],
+                efficiency: 0.85,
+                complexity: 'high',
+                historical_note: 'Essential for Milan\'s canal network connecting to major rivers.',
+                leonardo_insight: 'The lock is like a giant water elevator, teaching us that we can overcome nature\'s obstacles through understanding and patience.'
+            },
+            'water-lift': {
+                name: 'Water Lift Device',
+                icon: '🪣',
+                description: 'An Archimedes screw that lifts water through rotation, converting circular motion to vertical elevation.',
+                principles: ['archimedes_screw', 'rotary_motion', 'vertical_lift', 'continuous_flow'],
+                efficiency: 0.75,
+                complexity: 'medium',
+                historical_note: 'Used for irrigation and drainage in Lombardy\'s rice fields.',
+                leonardo_insight: 'The screw teaches us that circular motion can overcome gravity - a principle found throughout nature.'
+            },
+            'sluice-gate': {
+                name: 'Sluice Gate',
+                icon: '🚪',
+                description: 'A movable barrier that controls water flow rate and direction in canals and rivers.',
+                principles: ['flow_control', 'pressure_regulation', 'variable_resistance', 'hydraulic_balance'],
+                efficiency: 0.95,
+                complexity: 'low',
+                historical_note: 'Critical for managing water levels in Milan\'s extensive canal system.',
+                leonardo_insight: 'The gate demonstrates that control comes not from force, but from understanding pressure and flow.'
+            },
+            'water-wheel': {
+                name: 'Water Wheel',
+                icon: '⚙️',
+                description: 'A large wheel that converts the kinetic energy of flowing water into mechanical rotational energy.',
+                principles: ['kinetic_energy', 'rotary_conversion', 'momentum_transfer', 'mechanical_advantage'],
+                efficiency: 0.70,
+                complexity: 'medium',
+                historical_note: 'Powered mills, forges, and manufacturing throughout Renaissance Italy.',
+                leonardo_insight: 'The wheel shows us how nature\'s movement can be harnessed without destruction - true power comes from cooperation, not domination.'
+            },
+            'turbine': {
+                name: 'Water Turbine',
+                icon: '🌀',
+                description: 'An advanced wheel design that efficiently extracts energy from high-pressure water flow.',
+                principles: ['pressure_conversion', 'turbine_blades', 'fluid_dynamics', 'energy_extraction'],
+                efficiency: 0.85,
+                complexity: 'high',
+                historical_note: 'Leonardo\'s advanced design improved upon traditional water wheels.',
+                leonardo_insight: 'The turbine teaches us that efficiency comes from understanding the natural path of least resistance.'
+            },
+            'pump': {
+                name: 'Reciprocating Pump',
+                icon: '💨',
+                description: 'A positive displacement mechanism that moves water through alternating suction and pressure.',
+                principles: ['positive_displacement', 'alternating_pressure', 'suction_dynamics', 'valve_timing'],
+                efficiency: 0.80,
+                complexity: 'medium',
+                historical_note: 'Essential for raising water from wells and controlling groundwater.',
+                leonardo_insight: 'The pump demonstrates that life itself is rhythm - the alternating dance of pressure and release.'
+            },
+            'bridge-aquaduct': {
+                name: 'Bridge Aqueduct',
+                icon: '🏛️',
+                description: 'A structure that carries water across valleys, combining bridge engineering with hydraulic flow.',
+                principles: ['gravity_flow', 'hydraulic_grade', 'structural_integration', 'continuous_transport'],
+                efficiency: 0.90,
+                complexity: 'high',
+                historical_note: 'Connected Milan to distant water sources across challenging terrain.',
+                leonardo_insight: 'The aqueduct teaches us that connection across obstacles requires both strength and the wisdom to follow natural paths.'
+            },
+            'flood-control': {
+                name: 'Flood Control',
+                icon: '🌊',
+                description: 'Systems to manage and redirect excess water during seasonal flooding.',
+                principles: ['flood_management', 'overflow_channels', 'pressure_relief', 'seasonal_adaptation'],
+                efficiency: 0.75,
+                complexity: 'high',
+                historical_note: 'Protected Milan and surrounding agricultural areas from Po River flooding.',
+                leonardo_insight: 'Flood control shows us that the wise engineer works with nature\'s cycles, not against them.'
+            },
+            'harbor-works': {
+                name: 'Harbor Works',
+                icon: '⚓',
+                description: 'Engineered structures that create safe anchorage and protect ships from waves and currents.',
+                principles: ['wave_breaking', 'current_deflection', 'safe_anchorage', 'maritime_protection'],
+                efficiency: 0.85,
+                complexity: 'high',
+                historical_note: 'Improved Milan\'s river ports and connections to maritime trade routes.',
+                leonardo_insight: 'Harbor works demonstrate that safety comes from understanding and redirecting natural forces, not opposing them.'
+            }
+        };
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            setupPropertyControls();
+            initializeSimulation();
+            
+            // Add some interactive wisdom
+            const wisdoms = [
+                "Water is the blood of the Earth, flowing through veins of rivers and arteries of canals. In understanding its movement, we understand the very pulse of nature.",
+                "The wise engineer does not fight water but dances with it, following its natural inclinations while gently guiding its path.",
+                "In hydraulic systems, we see the perfect marriage of force and finesse - power without destruction, control without oppression.",
+                "Leonardo spent years watching water, sketching its movements, understanding its moods. He knew that water teaches patience, observation, and respect for natural law."
+            ];
+            
+            // Randomly display wisdom
+            const randomWisdom = wisdoms[Math.floor(Math.random() * wisdoms.length)];
+            document.getElementById('leonardo-insight').textContent = randomWisdom;
+        });
+
+        function setupPropertyControls() {
+            const sliders = ['flow-rate', 'head-height', 'water-pressure'];
+            const displays = ['flow-value', 'head-value', 'pressure-value'];
+            const units = ['L/min', 'm', 'kPa'];
+            
+            sliders.forEach((sliderId, index) => {
+                const slider = document.getElementById(sliderId);
+                const display = document.getElementById(displays[index]);
+                const unit = units[index];
+                
+                slider.addEventListener('input', function() {
+                    display.textContent = this.value + ' ' + unit;
+                    if (isSimulating) {
+                        updateSimulation();
+                    }
+                });
+            });
+        }
+
+        function selectSystem(systemId) {
+            currentSystem = systemId;
+            
+            // Update UI
+            document.querySelectorAll('.system-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            const selectedItem = document.querySelector(`[data-system="${systemId}"]`);
+            if (selectedItem) {
+                selectedItem.classList.add('active');
+            }
+            
+            // Update details panel
+            updateSystemDetails(systemId);
+            
+            // Initialize simulation
+            initializeSystemSimulation(systemId);
+        }
+
+        function updateSystemDetails(systemId) {
+            const system = hydraulicSystems[systemId];
+            if (!system) return;
+            
+            const detailsHtml = `
+                <div class="detail-section">
+                    <h3 class="detail-title">${system.icon} ${system.name}</h3>
+                    <div class="detail-content">
+                        <p>${system.description}</p>
+                        <p><strong>Efficiency:</strong> ${(system.efficiency * 100).toFixed(0)}%</p>
+                        <p><strong>Complexity:</strong> ${system.complexity}</p>
+                        <p><strong>Historical Note:</strong> ${system.historical_note}</p>
+                    </div>
+                </div>
+                
+                <div class="detail-section">
+                    <h3 class="detail-title">Core Principles</h3>
+                    <div class="detail-content">
+                        <ul style="margin: 0; padding-left: var(--space-golden-md);">
+                            ${system.principles.map(principle => `<li>${principle.replace(/_/g, ' ')}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('system-details').innerHTML = detailsHtml;
+            
+            // Update Leonardo insight
+            const insightElement = document.getElementById('leonardo-insight');
+            insightElement.textContent = system.leonardo_insight;
+        }
+
+        function initializeSimulation() {
+            const canvas = document.getElementById('simulation-canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Set canvas size
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+            
+            // Initial setup
+            drawWaterBackground(ctx);
+        }
+
+        function initializeSystemSimulation(systemId) {
+            // Reset simulation state
+            waterParticles = [];
+            systemComponents = [];
+            
+            // Create system-specific components
+            createSystemComponents(systemId);
+            
+            if (!isSimulating) {
+                drawStaticSystem();
+            }
+        }
+
+        function createSystemComponents(systemId) {
+            // Create components based on selected system
+            switch(systemId) {
+                case 'canal-lock':
+                    systemComponents = [
+                        { type: 'lock_chamber', x: 200, y: 200, width: 150, height: 200 },
+                        { type: 'upper_gate', x: 175, y: 150, width: 20, height: 100 },
+                        { type: 'lower_gate', x: 355, y: 350, width: 20, height: 100 }
+                    ];
+                    break;
+                case 'water-lift':
+                    systemComponents = [
+                        { type: 'screw', x: 250, y: 200, radius: 80, angle: 0 },
+                        { type: 'trough', x: 150, y: 350, width: 200, height: 30 }
+                    ];
+                    break;
+                case 'water-wheel':
+                    systemComponents = [
+                        { type: 'wheel', x: 300, y: 250, radius: 100, angle: 0 },
+                        { type: 'water_flow', x: 100, y: 350, width: 400, height: 50 }
+                    ];
+                    break;
+                default:
+                    systemComponents = [
+                        { type: 'generic', x: 250, y: 250, message: 'Select a system to begin simulation' }
+                    ];
+            }
+        }
+
+        function drawStaticSystem() {
+            const canvas = document.getElementById('simulation-canvas');
+            const ctx = canvas.getContext('2d');
+            
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawWaterBackground(ctx);
+            
+            // Draw system components
+            systemComponents.forEach(component => {
+                drawComponent(ctx, component);
+            });
+        }
+
+        function drawWaterBackground(ctx) {
+            // Gradient water background
+            const gradient = ctx.createLinearGradient(0, 0, 0, ctx.height);
+            gradient.addColorStop(0, 'rgba(135, 169, 107, 0.1)');
+            gradient.addColorStop(1, 'rgba(135, 169, 107, 0.3)');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, ctx.width, ctx.height);
+            
+            // Add subtle wave pattern
+            ctx.strokeStyle = 'rgba(135, 169, 107, 0.2)';
+            ctx.lineWidth = 1;
+            for (let i = 0; i < 10; i++) {
+                ctx.beginPath();
+                ctx.moveTo(0, i * ctx.height / 10);
+                for (let x = 0; x < ctx.width; x += 20) {
+                    const y = i * ctx.height / 10 + Math.sin(x * 0.02 + Date.now() * 0.001) * 5;
+                    ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+            }
+        }
+
+        function drawComponent(ctx, component) {
+            ctx.save();
+            
+            switch(component.type) {
+                case 'lock_chamber':
+                    // Draw lock chamber
+                    ctx.strokeStyle = var(--leonardo-umber);
+                    ctx.lineWidth = 3;
+                    ctx.strokeRect(component.x, component.y, component.width, component.height);
+                    
+                    // Water level indicators
+                    ctx.fillStyle = 'rgba(135, 169, 107, 0.3)';
+                    ctx.fillRect(component.x + 5, component.y + component.height - 50, component.width - 10, 45);
+                    break;
+                    
+                case 'screw':
+                    // Draw Archimedes screw
+                    ctx.strokeStyle = var(--leonardo-umber);
+                    ctx.lineWidth = 4;
+                    ctx.beginPath();
+                    ctx.arc(component.x, component.y, component.radius, 0, 2 * Math.PI);
+                    ctx.stroke();
+                    
+                    // Screw threads
+                    for (let i = 0; i < 8; i++) {
+                        const angle = (i / 8) * 2 * Math.PI + component.angle;
+                        ctx.save();
+                        ctx.translate(component.x, component.y);
+                        ctx.rotate(angle);
+                        ctx.strokeStyle = var(--leonardo-sage);
+                        ctx.lineWidth = 2;
+                        ctx.beginPath();
+                        ctx.moveTo(component.radius - 10, 0);
+                        ctx.lineTo(component.radius + 10, 0);
+                        ctx.stroke();
+                        ctx.restore();
+                    }
+                    break;
+                    
+                case 'wheel':
+                    // Draw water wheel
+                    ctx.strokeStyle = var(--leonardo-umber);
+                    ctx.lineWidth = 5;
+                    ctx.beginPath();
+                    ctx.arc(component.x, component.y, component.radius, 0, 2 * Math.PI);
+                    ctx.stroke();
+                    
+                    // Wheel spokes
+                    for (let i = 0; i < 12; i++) {
+                        const angle = (i / 12) * 2 * Math.PI + component.angle;
+                        ctx.save();
+                        ctx.translate(component.x, component.y);
+                        ctx.rotate(angle);
+                        ctx.strokeStyle = var(--leonardo-umber-light);
+                        ctx.lineWidth = 3;
+                        ctx.beginPath();
+                        ctx.moveTo(0, 0);
+                        ctx.lineTo(component.radius - 10, 0);
+                        ctx.stroke();
+                        ctx.restore();
+                    }
+                    break;
+                    
+                case 'water_flow':
+                    // Draw water flow
+                    ctx.fillStyle = 'rgba(135, 169, 107, 0.6)';
+                    ctx.fillRect(component.x, component.y, component.width, component.height);
+                    
+                    // Flow lines
+                    ctx.strokeStyle = 'rgba(135, 169, 107, 0.8)';
+                    ctx.lineWidth = 2;
+                    for (let i = 0; i < 5; i++) {
+                        ctx.beginPath();
+                        ctx.moveTo(component.x, component.y + i * 10);
+                        for (let x = component.x; x < component.x + component.width; x += 20) {
+                            const y = component.y + i * 10 + Math.sin(x * 0.05 + Date.now() * 0.002) * 3;
+                            ctx.lineTo(x, y);
+                        }
+                        ctx.stroke();
+                    }
+                    break;
+                    
+                case 'generic':
+                    ctx.fillStyle = var(--leonardo-umber);
+                    ctx.font = '16px Cinzel';
+                    ctx.textAlign = 'center';
+                    ctx.fillText(component.message, component.x, component.y);
+                    break;
+            }
+            
+            ctx.restore();
+        }
+
+        function startSimulation() {
+            if (isSimulating) return;
+            
+            isSimulating = true;
+            animateSimulation();
+        }
+
+        function pauseSimulation() {
+            isSimulating = false;
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+                animationId = null;
+            }
+        }
+
+        function resetSimulation() {
+            pauseSimulation();
+            initializeSystemSimulation(currentSystem);
+        }
+
+        function animateSimulation() {
+            if (!isSimulating) return;
+            
+            const canvas = document.getElementById('simulation-canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Update component animations
+            systemComponents.forEach(component => {
+                if (component.type === 'screw') {
+                    component.angle += 0.02;
+                } else if (component.type === 'wheel') {
+                    component.angle += 0.01;
+                }
+            });
+            
+            // Redraw with updates
+            drawStaticSystem();
+            
+            // Add water particles for flow systems
+            if (currentSystem === 'water-wheel' || currentSystem === 'turbine') {
+                updateWaterParticles(ctx);
+            }
+            
+            animationId = requestAnimationFrame(animateSimulation);
+        }
+
+        function updateWaterParticles(ctx) {
+            // Create new particles
+            if (Math.random() < 0.3) {
+                waterParticles.push({
+                    x: 50,
+                    y: 350 + Math.random() * 30,
+                    vx: 2 + Math.random() * 2,
+                    vy: (Math.random() - 0.5) * 0.5,
+                    life: 1.0,
+                    size: 3 + Math.random() * 3
+                });
+            }
+            
+            // Update and draw particles
+            waterParticles = waterParticles.filter(particle => {
+                particle.x += particle.vx;
+                particle.y += particle.vy;
+                particle.life -= 0.01;
+                
+                if (particle.life > 0 && particle.x < ctx.canvas.width) {
+                    ctx.save();
+                    ctx.fillStyle = `rgba(135, 169, 107, ${particle.life * 0.8})`;
+                    ctx.beginPath();
+                    ctx.arc(particle.x, particle.y, particle.size, 0, 2 * Math.PI);
+                    ctx.fill();
+                    ctx.restore();
+                    return true;
+                }
+                return false;
+            });
+        }
+
+        function saveParameters() {
+            const params = {
+                flowRate: document.getElementById('flow-rate').value,
+                headHeight: document.getElementById('head-height').value,
+                waterPressure: document.getElementById('water-pressure').value,
+                system: currentSystem,
+                timestamp: new Date().toISOString()
+            };
+            
+            localStorage.setItem('leonardo_hydraulic_params_' + Date.now(), JSON.stringify(params));
+            
+            alert('Hydraulic parameters saved successfully!');
+        }
+
+        function setupPropertyControls() {
+            const sliders = ['flow-rate', 'head-height', 'water-pressure'];
+            const displays = ['flow-value', 'head-value', 'pressure-value'];
+            const units = ['L/min', 'm', 'kPa'];
+            
+            sliders.forEach((sliderId, index) => {
+                const slider = document.getElementById(sliderId);
+                const display = document.getElementById(displays[index]);
+                const unit = units[index];
+                
+                slider.addEventListener('input', function() {
+                    display.textContent = this.value + ' ' + unit;
+                    if (isSimulating) {
+                        updateSimulation();
+                    }
+                });
+            });
+        }
+
+        function updateSimulation() {
+            // Update simulation based on new parameters
+            // This would involve recalculating flow dynamics, pressure distributions, etc.
+            console.log('Updating simulation with new parameters');
+        }
+    </script>
+</body>
+</html>

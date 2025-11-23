@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Universal Machine - Leonardo's Mechanical Primitives</title>
+    <link rel="stylesheet" href="leonardo_design_system.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--leonardo-bg-parchment);
+            font-family: var(--font-leonardo-body);
+            min-height: 100vh;
+        }
+
+        .universal-machine-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: var(--space-golden-xl);
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: var(--space-golden-xxl);
+            padding: var(--space-golden-xl);
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: var(--space-golden-lg);
+            box-shadow: var(--shadow-leonardo-manuscript);
+        }
+
+        .main-title {
+            font-family: var(--font-leonardo-display);
+            font-size: 3.5em;
+            color: var(--leonardo-ink);
+            margin-bottom: var(--space-golden-md);
+            text-shadow: 2px 2px 4px rgba(44, 24, 16, 0.2);
+        }
+
+        .subtitle {
+            font-size: 1.4em;
+            color: var(--leonardo-umber);
+            font-style: italic;
+            margin-bottom: var(--space-golden-lg);
+        }
+
+        .leonardo-quote {
+            background: rgba(139, 0, 0, 0.05);
+            border: 1px solid var(--leonardo-crimson);
+            border-radius: var(--space-golden-sm);
+            padding: var(--space-golden-md);
+            margin: var(--space-golden-lg) auto;
+            max-width: 800px;
+            font-style: italic;
+            position: relative;
+        }
+
+        .leonardo-quote::before {
+            content: '"';
+            font-size: 4em;
+            color: var(--leonardo-crimson);
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            opacity: 0.3;
+        }
+
+        .quote-text {
+            font-size: 1.3em;
+            margin-bottom: var(--space-golden-sm);
+        }
+
+        .quote-attribution {
+            font-size: 0.9em;
+            color: var(--leonardo-umber);
+            text-align: right;
+        }
+
+        .workshop-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr 250px;
+            gap: var(--space-golden-xl);
+            margin-bottom: var(--space-golden-xxl);
+        }
+
+        .primitives-panel {
+            background: rgba(255, 255, 255, 0.8);
+            padding: var(--space-golden-lg);
+            border-radius: var(--space-golden-md);
+            box-shadow: var(--shadow-leonardo-manuscript);
+            height: fit-content;
+        }
+
+        .builder-workspace {
+            background: rgba(255, 255, 255, 0.9);
+            padding: var(--space-golden-xl);
+            border-radius: var(--space-golden-lg);
+            box-shadow: var(--shadow-leonardo-elevated);
+            min-height: 600px;
+        }
+
+        .properties-panel {
+            background: rgba(255, 255, 255, 0.8);
+            padding: var(--space-golden-lg);
+            border-radius: var(--space-golden-md);
+            box-shadow: var(--shadow-leonardo-manuscript);
+            height: fit-content;
+        }
+
+        .panel-title {
+            font-family: var(--font-leonardo-display);
+            font-size: 1.5em;
+            color: var(--leonardo-crimson);
+            margin-bottom: var(--space-golden-md);
+            text-align: center;
+        }
+
+        .primitive-category {
+            margin-bottom: var(--space-golden-lg);
+        }
+
+        .category-title {
+            font-family: var(--font-leonardo-display);
+            font-size: 1.2em;
+            color: var(--leonardo-umber);
+            margin-bottom: var(--space-golden-sm);
+            border-bottom: 2px solid var(--leonardo-gold);
+            padding-bottom: var(--space-golden-xs);
+        }
+
+        .primitive-item {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid var(--leonardo-gold);
+            border-radius: var(--space-golden-sm);
+            padding: var(--space-golden-md);
+            margin: var(--space-golden-sm) 0;
+            cursor: grab;
+            transition: all var(--anim-leonardo-medium);
+            position: relative;
+        }
+
+        .primitive-item:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-leonardo-elevated);
+        }
+
+        .primitive-item:active {
+            cursor: grabbing;
+        }
+
+        .primitive-icon {
+            font-size: 2em;
+            text-align: center;
+            margin-bottom: var(--space-golden-sm);
+        }
+
+        .primitive-name {
+            font-family: var(--font-leonardo-display);
+            font-size: 1.1em;
+            color: var(--leonardo-ink);
+            text-align: center;
+            margin-bottom: var(--space-golden-xs);
+        }
+
+        .primitive-description {
+            font-size: 0.9em;
+            color: var(--leonardo-umber);
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .drop-zone {
+            border: 3px dashed var(--leonardo-umber-light);
+            border-radius: var(--space-golden-lg);
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(44, 24, 16, 0.02);
+            transition: all var(--anim-leonardo-medium);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .drop-zone.drag-over {
+            border-color: var(--leonardo-gold);
+            background: rgba(255, 215, 0, 0.1);
+            box-shadow: var(--glow-leonardo);
+        }
+
+        .drop-zone.has-content {
+            border-style: solid;
+            border-color: var(--leonardo-sage);
+            background: rgba(135, 169, 107, 0.05);
+        }
+
+        .drop-zone-placeholder {
+            text-align: center;
+            color: var(--leonardo-umber);
+            font-style: italic;
+            opacity: 0.7;
+        }
+
+        .mechanism-canvas {
+            width: 100%;
+            height: 100%;
+            min-height: 350px;
+        }
+
+        .built-mechanism {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid var(--leonardo-sage);
+            border-radius: var(--space-golden-md);
+            padding: var(--space-golden-md);
+            box-shadow: var(--shadow-leonardo-elevated);
+        }
+
+        .mechanism-title {
+            font-family: var(--font-leonardo-display);
+            font-size: 1.3em;
+            color: var(--leonardo-crimson);
+            margin-bottom: var(--space-golden-sm);
+        }
+
+        .mechanism-description {
+            color: var(--leonardo-umber);
+            margin-bottom: var(--space-golden-md);
+        }
+
+        .mechanism-controls {
+            display: flex;
+            gap: var(--space-golden-sm);
+            margin-top: var(--space-golden-md);
+        }
+
+        .control-buttons {
+            display: flex;
+            gap: var(--space-golden-md);
+            justify-content: center;
+            margin: var(--space-golden-lg) 0;
+            flex-wrap: wrap;
+        }
+
+        .leonardo-button {
+            background: linear-gradient(45deg, var(--leonardo-crimson), var(--leonardo-crimson-light));
+            color: var(--leonardo-parchment);
+            border: none;
+            padding: var(--space-golden-sm) var(--space-golden-lg);
+            border-radius: var(--space-golden-sm);
+            font-family: var(--font-leonardo-display);
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all var(--anim-leonardo-medium);
+            box-shadow: var(--shadow-leonardo-manuscript);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .leonardo-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-leonardo-elevated);
+        }
+
+        .leonardo-button.secondary {
+            background: linear-gradient(45deg, var(--leonardo-umber), var(--leonardo-umber-light));
+        }
+
+        .leonardo-button.gold {
+            background: linear-gradient(45deg, var(--leonardo-gold-dark), var(--leonardo-gold));
+            color: var(--leonardo-ink);
+        }
+
+        .property-group {
+            margin-bottom: var(--space-golden-lg);
+        }
+
+        .property-label {
+            font-family: var(--font-leonardo-display);
+            font-size: 0.9em;
+            color: var(--leonardo-umber);
+            margin-bottom: var(--space-golden-xs);
+        }
+
+        .property-input {
+            width: 100%;
+            padding: var(--space-golden-xs);
+            border: 2px solid var(--leonardo-umber-light);
+            border-radius: var(--space-golden-xs);
+            font-family: var(--font-leonardo-body);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .property-input:focus {
+            outline: none;
+            border-color: var(--leonardo-gold);
+            box-shadow: var(--glow-leonardo);
+        }
+
+        .leonardo-insights {
+            background: rgba(139, 0, 0, 0.05);
+            border-left: 4px solid var(--leonardo-crimson);
+            padding: var(--space-golden-md);
+            margin: var(--space-golden-md) 0;
+            border-radius: 0 var(--space-golden-sm) var(--space-golden-sm) 0;
+        }
+
+        .insight-title {
+            font-family: var(--font-leonardo-display);
+            color: var(--leonardo-crimson);
+            margin-bottom: var(--space-golden-sm);
+        }
+
+        .insight-text {
+            color: var(--leonardo-umber);
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        .examples-section {
+            margin-top: var(--space-golden-lg);
+        }
+
+        .example-mechanism {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid var(--leonardo-gold);
+            border-radius: var(--space-golden-sm);
+            padding: var(--space-golden-md);
+            margin: var(--space-golden-md) 0;
+            cursor: pointer;
+            transition: all var(--anim-leonardo-medium);
+        }
+
+        .example-mechanism:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: translateX(5px);
+        }
+
+        .example-title {
+            font-family: var(--font-leonardo-display);
+            font-size: 1.1em;
+            color: var(--leonardo-crimson);
+            margin-bottom: var(--space-golden-sm);
+        }
+
+        .example-description {
+            color: var(--leonardo-umber);
+            font-size: 0.9em;
+        }
+
+        .footer {
+            text-align: center;
+            padding: var(--space-golden-xl);
+            background: rgba(44, 24, 16, 0.9);
+            color: var(--leonardo-parchment);
+            border-radius: var(--space-golden-lg);
+            margin-top: var(--space-golden-xxl);
+        }
+
+        .footer-text {
+            font-style: italic;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 1200px) {
+            .workshop-layout {
+                grid-template-columns: 1fr;
+                gap: var(--space-golden-md);
+            }
+            
+            .primitives-panel,
+            .properties-panel {
+                order: 2;
+            }
+            
+            .builder-workspace {
+                order: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5em;
+            }
+            
+            .control-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .universal-machine-container {
+                padding: var(--space-golden-md);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="universal-machine-container">
+        <header class="header-section leonardo-reveal">
+            <h1 class="main-title">The Universal Machine</h1>
+            <p class="subtitle">Leonardo's Mechanical Primitives - The Building Blocks of Renaissance Innovation</p>
+            
+            <div class="leonardo-quote">
+                <div class="quote-text">The whole is greater than the sum of its parts, yet the parts contain the wisdom of the whole.</div>
+                <div class="quote-attribution">— Leonardo da Vinci, Codex Madrid I</div>
+            </div>
+        </header>
+
+        <div class="workshop-layout">
+            <aside class="primitives-panel">
+                <h2 class="panel-title">Mechanical Primitives</h2>
+                
+                <div class="primitive-category">
+                    <h3 class="category-title">⚙️ Motion Transformers</h3>
+                    
+                    <div class="primitive-item" draggable="true" data-primitive="gear">
+                        <div class="primitive-icon">⚙️</div>
+                        <div class="primitive-name">Gear</div>
+                        <div class="primitive-description">Rotary motion transfer with ratio control</div>
+                    </div>
+                    
+                    <div class="primitive-item" draggable="true" data-primitive="cam">
+                        <div class="primitive-icon">🔄</div>
+                        <div class="primitive-name">Cam</div>
+                        <div class="primitive-description">Converts rotation to oscillating motion</div>
+                    </div>
+                    
+                    <div class="primitive-item" draggable="true" data-primitive="crank">
+                        <div class="primitive-icon">🔧</div>
+                        <div class="primitive-name">Crank</div>
+                        <div class="primitive-description">Transforms rotary to reciprocating motion</div>
+                    </div>
+                </div>
+
+                <div class="primitive-category">
+                    <h3 class="category-title">🎯 Force Controllers</h3>
+                    
+                    <div class="primitive-item" draggable="true" data-primitive="spring">
+                        <div class="primitive-icon">🌀</div>
+                        <div class="primitive-name">Spring</div>
+                        <div class="primitive-description">Stores and releases mechanical energy</div>
+                    </div>
+                    
+                    <div class="primitive-item" draggable="true" data-primitive="lever">
+                        <div class="primitive-icon">🏛️</div>
+                        <div class="primitive-name">Lever</div>
+                        <div class="primitive-description">Amplifies force through mechanical advantage</div>
+                    </div>
+                    
+                    <div class="primitive-item" draggable="true" data-primitive="pulley">
+                        <div class="primitive-icon">🪢</div>
+                        <div class="primitive-name">Pulley</div>
+                        <div class="primitive-description">Changes direction and magnitude of force</div>
+                    </div>
+                </div>
+
+                <div class="primitive-category">
+                    <h3 class="category-title">🔗 Connectors</h3>
+                    
+                    <div class="primitive-item" draggable="true" data-primitive="shaft">
+                        <div class="primitive-icon">📏</div>
+                        <div class="primitive-name">Shaft</div>
+                        <div class="primitive-description">Transmits rotation between components</div>
+                    </div>
+                    
+                    <div class="primitive-item" draggable="true" data-primitive="joint">
+                        <div class="primitive-icon">🔗</div>
+                        <div class="primitive-name">Joint</div>
+                        <div class="primitive-description">Allows articulated movement</div>
+                    </div>
+                    
+                    <div class="primitive-item" draggable="true" data-primitive="bearing">
+                        <div class="primitive-icon">⚡</div>
+                        <div class="primitive-name">Bearing</div>
+                        <div class="primitive-description">Reduces friction in rotating systems</div>
+                    </div>
+                </div>
+            </aside>
+
+            <main class="builder-workspace">
+                <h2 class="panel-title">Leonardo's Workshop</h2>
+                
+                <div class="drop-zone" id="drop-zone">
+                    <div class="drop-zone-placeholder">
+                        <div class="leonardo-mirror-decoder" style="margin-bottom: var(--space-golden-md);">
+                            <span class="mirror-text">.srucco lautcello na fo esilaer eb nac taht sgniht eht lla era erehT</span>
+                            <div class="decoder-hint">Hover to decode Leonardo's wisdom</div>
+                        </div>
+                        <p style="font-size: 1.2em; color: var(--leonardo-umber);">Drag mechanical primitives here to build your invention</p>
+                        <p style="color: var(--leonardo-umber-light); font-style: italic;">Combine gears, cams, and levers like Leonardo did</p>
+                    </div>
+                    <canvas id="mechanism-canvas" class="mechanism-canvas" style="display: none;"></canvas>
+                </div>
+
+                <div class="control-buttons">
+                    <button class="leonardo-button" onclick="clearWorkspace()">Clear Workshop</button>
+                    <button class="leonardo-button secondary" onclick="animateMechanism()">Animate</button>
+                    <button class="leonardo-button gold" onclick="saveMechanism()">Save Design</button>
+                    <button class="leonardo-button" onclick="downloadMechanism()">Download</button>
+                </div>
+            </main>
+
+            <aside class="properties-panel">
+                <h2 class="panel-title">Properties & Analysis</h2>
+                
+                <div class="property-group">
+                    <label class="property-label">Mechanism Name:</label>
+                    <input type="text" class="property-input" id="mechanism-name" placeholder="My Leonardo Invention">
+                </div>
+
+                <div class="property-group">
+                    <label class="property-label">Speed (RPM):</label>
+                    <input type="range" class="property-input" id="speed-control" min="10" max="200" value="60">
+                    <span id="speed-value">60 RPM</span>
+                </div>
+
+                <div class="property-group">
+                    <label class="property-label">Force Ratio:</label>
+                    <input type="range" class="property-input" id="force-ratio" min="0.1" max="5" step="0.1" value="1">
+                    <span id="force-value">1:1</span>
+                </div>
+
+                <div class="leonardo-insights">
+                    <h3 class="insight-title">💡 Leonardo's Insight</h3>
+                    <div class="insight-text" id="leonardo-insight">
+                        Each primitive you add changes the character of your mechanism. Observe how force flows through the system like water through channels.
+                    </div>
+                </div>
+
+                <div class="examples-section">
+                    <h3 class="panel-title">Leonardo's Examples</h3>
+                    
+                    <div class="example-mechanism" onclick="loadExample('ornithopter')">
+                        <div class="example-title">🕊️ Flying Machine</div>
+                        <div class="example-description">Gears + Cams + Levers = Flapping Wings</div>
+                    </div>
+                    
+                    <div class="example-mechanism" onclick="loadExample('automaton')">
+                        <div class="example-title">🤖 Mechanical Knight</div>
+                        <div class="example-description">Cams + Joints + Springs = Movement</div>
+                    </div>
+                    
+                    <div class="example-mechanism" onclick="loadExample('press')">
+                        <div class="example-title">🔨 Printing Press</div>
+                        <div class="example-description">Lever + Gear + Shaft = Power</div>
+                    </div>
+                    
+                    <div class="example-mechanism" onclick="loadExample('clock')">
+                        <div class="example-title">⏰ Clock Mechanism</div>
+                        <div class="example-description">Gear + Spring + Bearing = Time</div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <footer class="footer">
+            <p class="footer-text">
+                "Obstacles do not bend me. Every obstacle yields to stern resolve."
+            </p>
+            <p style="margin-top: var(--space-golden-sm);">
+                — Leonardo da Vinci, 1452-1519
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Universal Machine JavaScript
+        let droppedPrimitives = [];
+        let isAnimating = false;
+        let animationId = null;
+
+        // Drag and Drop functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const primitives = document.querySelectorAll('.primitive-item');
+            const dropZone = document.getElementById('drop-zone');
+
+            primitives.forEach(primitive => {
+                primitive.addEventListener('dragstart', handleDragStart);
+                primitive.addEventListener('dragend', handleDragEnd);
+            });
+
+            dropZone.addEventListener('dragover', handleDragOver);
+            dropZone.addEventListener('drop', handleDrop);
+            dropZone.addEventListener('dragleave', handleDragLeave);
+
+            // Property controls
+            setupPropertyControls();
+        });
+
+        function handleDragStart(e) {
+            e.dataTransfer.setData('text/plain', e.target.dataset.primitive);
+            e.target.style.opacity = '0.5';
+        }
+
+        function handleDragEnd(e) {
+            e.target.style.opacity = '1';
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.currentTarget.classList.add('drag-over');
+        }
+
+        function handleDragLeave(e) {
+            e.currentTarget.classList.remove('drag-over');
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            e.currentTarget.classList.remove('drag-over');
+            
+            const primitiveType = e.dataTransfer.getData('text/plain');
+            addPrimitiveToWorkspace(primitiveType);
+        }
+
+        function addPrimitiveToWorkspace(type) {
+            const primitive = {
+                id: Date.now(),
+                type: type,
+                x: Math.random() * 300 + 50,
+                y: Math.random() * 200 + 50,
+                rotation: 0,
+                scale: 1
+            };
+
+            droppedPrimitives.push(primitive);
+            updateWorkspace();
+            updateLeonardoInsight();
+        }
+
+        function updateWorkspace() {
+            const dropZone = document.getElementById('drop-zone');
+            const placeholder = dropZone.querySelector('.drop-zone-placeholder');
+            const canvas = document.getElementById('mechanism-canvas');
+
+            if (droppedPrimitives.length > 0) {
+                placeholder.style.display = 'none';
+                canvas.style.display = 'block';
+                dropZone.classList.add('has-content');
+                
+                drawMechanism();
+            } else {
+                placeholder.style.display = 'block';
+                canvas.style.display = 'none';
+                dropZone.classList.remove('has-content');
+            }
+        }
+
+        function drawMechanism() {
+            const canvas = document.getElementById('mechanism-canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Set canvas size
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw primitives
+            droppedPrimitives.forEach(primitive => {
+                drawPrimitive(ctx, primitive);
+            });
+            
+            // Draw connections
+            drawConnections(ctx);
+        }
+
+        function drawPrimitive(ctx, primitive) {
+            const { x, y, type, rotation } = primitive;
+            
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate(rotation * Math.PI / 180);
+            
+            switch(type) {
+                case 'gear':
+                    drawGear(ctx);
+                    break;
+                case 'cam':
+                    drawCam(ctx);
+                    break;
+                case 'crank':
+                    drawCrank(ctx);
+                    break;
+                case 'spring':
+                    drawSpring(ctx);
+                    break;
+                case 'lever':
+                    drawLever(ctx);
+                    break;
+                case 'pulley':
+                    drawPulley(ctx);
+                    break;
+                case 'shaft':
+                    drawShaft(ctx);
+                    break;
+                case 'joint':
+                    drawJoint(ctx);
+                    break;
+                case 'bearing':
+                    drawBearing(ctx);
+                    break;
+            }
+            
+            ctx.restore();
+        }
+
+        function drawGear(ctx) {
+            ctx.strokeStyle = var(--leonardo-umber);
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.arc(0, 0, 30, 0, 2 * Math.PI);
+            ctx.stroke();
+            
+            // Draw teeth
+            for (let i = 0; i < 8; i++) {
+                const angle = (i / 8) * 2 * Math.PI;
+                ctx.save();
+                ctx.rotate(angle);
+                ctx.fillRect(25, -3, 10, 6);
+                ctx.restore();
+            }
+        }
+
+        function drawCam(ctx) {
+            ctx.strokeStyle = var(--leonardo-crimson);
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.ellipse(0, 0, 40, 25, 0, 0, 2 * Math.PI);
+            ctx.stroke();
+        }
+
+        function drawCrank(ctx) {
+            ctx.strokeStyle = var(--leonardo-sage);
+            ctx.lineWidth = 4;
+            ctx.beginPath();
+            ctx.moveTo(-30, 0);
+            ctx.lineTo(30, 0);
+            ctx.stroke();
+            
+            // Handle
+            ctx.beginPath();
+            ctx.arc(30, 0, 8, 0, 2 * Math.PI);
+            ctx.stroke();
+        }
+
+        function drawSpring(ctx) {
+            ctx.strokeStyle = var(--leonardo-umber-light);
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            for (let i = 0; i < 10; i++) {
+                const y = (i - 5) * 6;
+                const x = (i % 2 === 0) ? -10 : 10;
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+        }
+
+        function drawLever(ctx) {
+            ctx.strokeStyle = var(--leonardo-umber);
+            ctx.lineWidth = 5;
+            ctx.beginPath();
+            ctx.moveTo(-40, 0);
+            ctx.lineTo(40, 0);
+            ctx.stroke();
+            
+            // Fulcrum
+            ctx.fillStyle = var(--leonardo-ink);
+            ctx.beginPath();
+            ctx.arc(0, 0, 5, 0, 2 * Math.PI);
+            ctx.fill();
+        }
+
+        function drawPulley(ctx) {
+            ctx.strokeStyle = var(--leonardo-crimson);
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.arc(0, 0, 25, 0, 2 * Math.PI);
+            ctx.stroke();
+            
+            // Groove
+            ctx.beginPath();
+            ctx.arc(0, 0, 20, 0, 2 * Math.PI);
+            ctx.stroke();
+        }
+
+        function drawShaft(ctx) {
+            ctx.strokeStyle = var(--leonardo-umber);
+            ctx.lineWidth = 6;
+            ctx.beginPath();
+            ctx.moveTo(-35, 0);
+            ctx.lineTo(35, 0);
+            ctx.stroke();
+        }
+
+        function drawJoint(ctx) {
+            ctx.strokeStyle = var(--leonardo-sage);
+            ctx.lineWidth = 3;
+            
+            // Hinge
+            ctx.beginPath();
+            ctx.arc(0, 0, 8, 0, 2 * Math.PI);
+            ctx.stroke();
+            
+            // Arms
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(30, -20);
+            ctx.moveTo(0, 0);
+            ctx.lineTo(30, 20);
+            ctx.stroke();
+        }
+
+        function drawBearing(ctx) {
+            ctx.strokeStyle = var(--leonardo-umber-light);
+            ctx.lineWidth = 2;
+            
+            // Outer ring
+            ctx.beginPath();
+            ctx.arc(0, 0, 20, 0, 2 * Math.PI);
+            ctx.stroke();
+            
+            // Inner ring
+            ctx.beginPath();
+            ctx.arc(0, 0, 10, 0, 2 * Math.PI);
+            ctx.stroke();
+            
+            // Balls
+            for (let i = 0; i < 6; i++) {
+                const angle = (i / 6) * 2 * Math.PI;
+                const x = Math.cos(angle) * 15;
+                const y = Math.sin(angle) * 15;
+                ctx.beginPath();
+                ctx.arc(x, y, 3, 0, 2 * Math.PI);
+                ctx.fill();
+            }
+        }
+
+        function drawConnections(ctx) {
+            // Draw lines between nearby primitives
+            for (let i = 0; i < droppedPrimitives.length; i++) {
+                for (let j = i + 1; j < droppedPrimitives.length; j++) {
+                    const p1 = droppedPrimitives[i];
+                    const p2 = droppedPrimitives[j];
+                    const distance = Math.sqrt(Math.pow(p2.x - p1.x, 2) + Math.pow(p2.y - p1.y, 2));
+                    
+                    if (distance < 100) {
+                        ctx.strokeStyle = 'rgba(139, 69, 19, 0.3)';
+                        ctx.lineWidth = 2;
+                        ctx.setLineDash([5, 5]);
+                        ctx.beginPath();
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                        ctx.setLineDash([]);
+                    }
+                }
+            }
+        }
+
+        function setupPropertyControls() {
+            const speedControl = document.getElementById('speed-control');
+            const speedValue = document.getElementById('speed-value');
+            const forceRatio = document.getElementById('force-ratio');
+            const forceValue = document.getElementById('force-value');
+
+            speedControl.addEventListener('input', function() {
+                speedValue.textContent = this.value + ' RPM';
+                if (isAnimating) {
+                    animateMechanism();
+                }
+            });
+
+            forceRatio.addEventListener('input', function() {
+                forceValue.textContent = this.value + ':1';
+                updateLeonardoInsight();
+            });
+        }
+
+        function updateLeonardoInsight() {
+            const insights = [
+                "Each primitive you add changes the character of your mechanism. Observe how force flows through the system like water through channels.",
+                "The gear teaches us about ratios - how small changes can create large effects. This is the mathematics of nature.",
+                "Your mechanism breathes with the rhythm of its parts. The cam creates pulse, the spring stores life, the lever amplifies intention.",
+                "Watch how the primitives dance together - each motion is a conversation between components, each connection a relationship."
+            ];
+            
+            const insightElement = document.getElementById('leonardo-insight');
+            const randomInsight = insights[Math.floor(Math.random() * insights.length)];
+            insightElement.textContent = randomInsight;
+        }
+
+        function clearWorkspace() {
+            droppedPrimitives = [];
+            isAnimating = false;
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+                animationId = null;
+            }
+            updateWorkspace();
+        }
+
+        function animateMechanism() {
+            if (!isAnimating) return;
+            
+            const speed = parseInt(document.getElementById('speed-control').value);
+            
+            // Rotate primitives
+            droppedPrimitives.forEach(primitive => {
+                if (primitive.type === 'gear' || primitive.type === 'cam' || primitive.type === 'crank') {
+                    primitive.rotation += speed / 60;
+                }
+            });
+            
+            drawMechanism();
+            
+            animationId = requestAnimationFrame(animateMechanism);
+        }
+
+        function saveMechanism() {
+            const name = document.getElementById('mechanism-name').value || 'My Leonardo Mechanism';
+            const mechanism = {
+                name: name,
+                primitives: droppedPrimitives,
+                timestamp: new Date().toISOString()
+            };
+            
+            localStorage.setItem('leonardo_mechanism_' + Date.now(), JSON.stringify(mechanism));
+            
+            alert('Mechanism saved as: ' + name);
+        }
+
+        function downloadMechanism() {
+            const name = document.getElementById('mechanism-name').value || 'My Leonardo Mechanism';
+            const canvas = document.getElementById('mechanism-canvas');
+            
+            if (droppedPrimitives.length === 0) {
+                alert('Please add some primitives to your mechanism first!');
+                return;
+            }
+            
+            // Create download link
+            const link = document.createElement('a');
+            link.download = name.replace(/\s+/g, '_') + '.png';
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+
+        function loadExample(type) {
+            clearWorkspace();
+            
+            const examples = {
+                ornithopter: [
+                    { type: 'gear', x: 200, y: 150 },
+                    { type: 'cam', x: 300, y: 150 },
+                    { type: 'lever', x: 250, y: 250 }
+                ],
+                automaton: [
+                    { type: 'cam', x: 200, y: 200 },
+                    { type: 'joint', x: 300, y: 200 },
+                    { type: 'spring', x: 250, y: 300 }
+                ],
+                press: [
+                    { type: 'lever', x: 200, y: 200 },
+                    { type: 'gear', x: 150, y: 150 },
+                    { type: 'shaft', x: 250, y: 150 }
+                ],
+                clock: [
+                    { type: 'gear', x: 200, y: 200 },
+                    { type: 'spring', x: 150, y: 150 },
+                    { type: 'bearing', x: 250, y: 250 }
+                ]
+            };
+            
+            droppedPrimitives = examples[type].map(p => ({
+                ...p,
+                id: Date.now() + Math.random(),
+                rotation: 0,
+                scale: 1
+            }));
+            
+            updateWorkspace();
+            
+            // Visual feedback
+            const exampleElement = event.currentTarget;
+            exampleElement.style.background = 'rgba(255, 215, 0, 0.3)';
+            setTimeout(() => {
+                exampleElement.style.background = 'rgba(255, 215, 0, 0.1)';
+            }, 1000);
+        }
+
+        // Animation toggle
+        function animateMechanism() {
+            const button = event.target;
+            if (isAnimating) {
+                isAnimating = false;
+                button.textContent = 'Animate';
+                if (animationId) {
+                    cancelAnimationFrame(animationId);
+                    animationId = null;
+                }
+            } else {
+                isAnimating = true;
+                button.textContent = 'Stop Animation';
+                animateMechanism();
+            }
+        }
+
+        // Add some interactive wisdom
+        document.addEventListener('DOMContentLoaded', function() {
+            const wisdoms = [
+                "The whole is greater than the sum of its parts, yet the parts contain the wisdom of the whole.",
+                "Observe how each component affects the entire mechanism - this is the harmony of nature.",
+                "Your creation breathes with the rhythm you give it. The primitives are its heartbeat.",
+                "Like notes in a symphony, each primitive plays its part in the greater composition."
+            ];
+            
+            // Randomly display wisdom
+            const randomWisdom = wisdoms[Math.floor(Math.random() * wisdoms.length)];
+            document.getElementById('leonardo-insight').textContent = randomWisdom;
+        });
+    </script>
+</body>
+</html>
