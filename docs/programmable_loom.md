@@ -1,5 +1,5 @@
 # Leonardo's Programmable Loom
-## The World's First Textile Computer
+## Textile Pattern Automation Concept
 
 *"The loom that thinks before it weaves"* - Reconstructed from Codex Atlanticus f.1090r-1091v
 
@@ -7,7 +7,7 @@
 
 ## Overview
 
-Leonardo da Vinci's Programmable Loom represents perhaps the most revolutionary mechanical invention of the Renaissance - a textile machine that could be programmed to weave complex patterns automatically. This device, designed around 1495-1500, embodies concepts that wouldn't be fully realized until the Industrial Revolution, making it a true precursor to modern computer-controlled manufacturing.
+Leonardo da Vinci's Programmable Loom is an ambitious mechanical invention from the Renaissance—a textile machine that can be programmed to weave complex patterns automatically. This device, designed around 1495–1500, embodies concepts that would not be widely realised until the Industrial Revolution, making it an early precursor to modern computer-controlled manufacturing.
 
 ### Historical Context
 

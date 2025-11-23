@@ -1,0 +1,31 @@
+slug: "mechanical_ensemble"
+folio_id: "Composite folios"
+canonical_name: "Leonardo mechanical ensemble study"
+category: "music"
+archive_source:
+  repository: "Biblioteca Ambrosiana"
+  collection: "Codex Atlanticus"
+  image_id: "CA_music_composite"
+  retrieval_date: "2024-11-19"
+transcription:
+  method: "synthetic merge"
+  language: "Italian"
+  confidence: 0.68
+  notes: "Composite of multi-folio annotations for ensemble coordination."
+related_folios:
+  - "CA f.30r"
+  - "CA f.93v"
+  - "CA f.572r"
+mechanical_primitives:
+  - "master_drum"
+  - "bellows_matrix"
+  - "tempo_cam"
+materials:
+  - material: "walnut"
+    usage: "shared frame"
+  - material: "linen"
+    usage: "drive belts"
+validation_status:
+  transcription_review: "not_started"
+  simulation: "not_started"
+  fmea: "not_started"

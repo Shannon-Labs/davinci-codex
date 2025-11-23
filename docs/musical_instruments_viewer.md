@@ -172,8 +172,8 @@ historical_context: |
   Created for the Sforza court in Milan during the 1490s, these instruments were designed to provide continuous music for banquets and celebrations. They represented the ultimate luxury entertainment - music that never tired and could play complex compositions without human musicians.
 
   **Technical Innovation:**
-  The instruments incorporated several breakthrough concepts:
-  - **Programmable Music**: Among the first systems for recording and reproducing music mechanically
+  The instruments incorporated several notable concepts:
+  - **Programmable Music**: Among the earliest systems for recording and reproducing music mechanically
   - **Mechanical Expression**: Dynamic control through velocity-sensitive mechanisms
   - **Ensemble Synchronization**: Precise timing coordination between multiple instruments
   - **Acoustic Engineering**: Understanding of sound production and amplification
@@ -214,7 +214,7 @@ Leonardo's musical instruments represent one of the most fascinating and lesser-
 
 The musical ensemble consists of seven interconnected instruments capable of performing complex compositions in perfect synchronization:
 
-1. **Viola Organista** - A revolutionary bowed string instrument
+1. **Viola Organista** - A bowed string instrument concept with continuous wheel bowing
 2. **Mechanical Trumpeter** - An automated brass player with lip simulation
 3. **Mechanical Drum** - Programmable percussion with rhythmic complexity
 4. **Programmable Flute** - A woodwind instrument with mechanical tone control
@@ -234,7 +234,7 @@ The musical ensemble consists of seven interconnected instruments capable of per
 ## Key Innovations
 
 ### Programmable Music System
-Leonardo created one of the first programmable music systems using replaceable cam strips. This allowed the ensemble to perform different compositions by changing mechanical "software" - a revolutionary concept in the 15th century.
+Leonardo created one of the earliest programmable music systems using replaceable cam strips. This allowed the ensemble to perform different compositions by changing mechanical "software"—an advanced concept for the 15th century.
 
 ### Mechanical Expression
 Unlike earlier mechanical music devices, Leonardo's instruments could vary dynamics and articulation. The trumpeter's lip mechanism and drummers' velocity control created nuanced musical performances.

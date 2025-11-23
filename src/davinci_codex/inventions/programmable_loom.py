@@ -1,26 +1,20 @@
 """
-Leonardo's Programmable Loom - The World's First Textile Computer
-================================================================
+Leonardo's Programmable Loom - Textile Pattern Automation
+=========================================================
 
-Historical Context:
-Leonardo da Vinci (c. 1495-1500) designed what may be history's first programmable
-machine in Codex Atlanticus folios 1090r-1091v. This automatic loom uses a system
-of cams, pegs, and mechanical logic to weave complex patterns - essentially creating
-a textile computer 500 years before modern computers!
+Historical context:
+Leonardo da Vinci (c. 1495-1500) sketched a cam-and-peg loom in Codex Atlanticus
+folios 1090r-1091v. The mechanism stores simple weaving patterns mechanically and
+repeats them without continuous manual intervention.
 
-This implementation demonstrates:
-- Mechanical programming through cam-based pattern storage
-- Multi-threaded textile physics simulation
-- Renaissance precision engineering
-- The birth of automated manufacturing
+This implementation focuses on:
+- Mechanical pattern storage through cam profiles and pegs.
+- Simplified textile physics for warp and weft interaction.
+- Renaissance-era framing, gearing, and tension control assumptions.
 
-Modern Relevance:
-This invention directly connects to contemporary digital fabrication, smart textiles,
-and industrial IoT - showing how Leonardo's vision anticipated the modern maker movement.
-
-Safety Note:
-This reconstruction focuses on the mechanical principles and educational value.
-All safety considerations include modern guards and emergency stops.
+Safety note:
+This reconstruction is intended for simulation and educational analysis. Any
+physical prototype should add modern guards, interlocks, and supervised testing.
 """
 
 from dataclasses import dataclass, field
@@ -31,9 +25,9 @@ import numpy as np
 
 # Core Framework
 SLUG = "programmable_loom"
-TITLE = "Leonardo's Programmable Loom - The World's First Textile Computer"
+TITLE = "Leonardo's Programmable Loom - Textile Pattern Automation"
 STATUS = "in_progress"
-SUMMARY = "Revolutionary automatic loom with mechanical programming capability, representing history's first programmable machine for textile pattern generation."
+SUMMARY = "Automatic loom concept with cam-based pattern programming for repeatable textile motifs, reconstructed from Codex Atlanticus folios 1090r-1091v."
 
 class ThreadType(Enum):
     """Types of threads available in Renaissance Italy"""
@@ -850,7 +844,7 @@ def evaluate() -> Dict[str, Any]:
         "technological_prerequisites": {
             "precision_measurement": "Available through guild knowledge",
             "mechanical_principles": "Gears and cams well understood",
-            "programming_concept": "Revolutionary but mechanically implementable",
+            "programming_concept": "Ambitious but mechanically implementable",
             "maintenance_knowledge": "Within existing craft traditions"
         }
     }

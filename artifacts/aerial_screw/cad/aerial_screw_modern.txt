@@ -1,0 +1,2 @@
+CAD export skipped: install 'cad' optional dependencies for full support.
+No module named 'trimesh'

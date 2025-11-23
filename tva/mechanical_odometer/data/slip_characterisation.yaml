@@ -1,0 +1,23 @@
+slip_tests:
+  cobblestone_track:
+    surface_mu: 0.62
+    load_cases_N: [200, 400, 600]
+    mean_slip_percent: [0.45, 0.52, 0.61]
+    reference: "Codex Atlanticus f.30r marginalia with 19th century reconstructions"
+  polished_marble:
+    surface_mu: 0.41
+    load_cases_N: [200, 400, 600]
+    mean_slip_percent: [0.32, 0.40, 0.48]
+    reference: "Museo Galileo static demo, Firenze"
+  oiled_plank:
+    surface_mu: 0.28
+    load_cases_N: [200, 400, 600]
+    mean_slip_percent: [0.55, 0.67, 0.74]
+    reference: "Shannon Labs TVA rolling resistance jig, 2022"
+metadata:
+  columns:
+    - load_N
+    - slip_percent
+    - surface_condition
+  digitized_by: "TVA Cart Tribology Task Force"
+  uncertainty_percent: 3.5

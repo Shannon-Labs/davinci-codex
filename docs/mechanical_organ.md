@@ -7,7 +7,7 @@ nav_order: 15
 # The Mechanical Organ
 **Leonardo's Automated Pipe Organ System**
 
-> **Musical Innovation**: The world's first programmable pipe organ, capable of performing complex polyphonic music without human intervention, centuries before modern automatic instruments.
+> **Musical Innovation**: A programmable pipe organ concept, capable of performing complex polyphonic music without continuous human operation, centuries before modern automatic instruments.
 
 ## Overview
 
@@ -199,4 +199,3 @@ Leonardo addressed several complex technical problems:
 ---
 
 *This documentation is part of the [da Vinci Codex](index.md) project - exploring the intersection of Renaissance art, music, and engineering through modern computational analysis.*
-

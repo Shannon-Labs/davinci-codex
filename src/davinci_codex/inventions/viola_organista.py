@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import csv
 import importlib.util
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Dict, List
 
@@ -34,14 +34,17 @@ class ViolaParameters:
     wheel_surface_speed_m_per_s: float
     bow_contact_time_s: float
     key_velocity_profile: List[float]
-    bow_pressure_profile: List[float]
     note_sequence: List[int]
     bow_noise_std: float
+    bow_pressure_profile: List[float] = field(default_factory=list)
 
 
 def _load_params() -> ViolaParameters:
     with PARAM_FILE.open("r", encoding="utf-8") as stream:
         data = yaml.safe_load(stream)
+    if "bow_pressure_profile" not in data:
+        key_profile = data.get("key_velocity_profile", [0.8])
+        data["bow_pressure_profile"] = [0.75 for _ in key_profile]
     return ViolaParameters(**data)
 
 

@@ -1,14 +1,14 @@
-# Leonardo da Vinci's Aerial Screw: Variable-Pitch Innovation & Performance Breakthrough
+# Leonardo da Vinci's Aerial Screw: Variable-Pitch Performance Analysis
 
-## Major Engineering Breakthrough Announcement
+## Validation overview
 
-**Date**: October 9, 2025
-**Status**: VALIDATED WITH BREAKTHROUGH PERFORMANCE
-**Achievement**: 4x Performance Improvement with Variable-Pitch Control
+**Date**: October 9, 2025  
+**Status**: `validated`  
+**Summary**: Approximately 4× lift improvement relative to a direct transcription of Leonardo’s sketch, with a variable-pitch mechanism and documented safety factors.
 
-We are proud to announce a **historic engineering achievement** in realizing Leonardo da Vinci's aerial screw design. Through advanced computational analysis, biomimetic optimization, and innovative variable-pitch control, we have transformed Leonardo's visionary concept into a viable aerial device with unprecedented performance.
+The analysis below reports quantitative performance metrics for a reconstructed aerial screw, based on computational fluid dynamics, blade element momentum theory, and structural checks.
 
-## Breakthrough Performance Metrics
+## Performance metrics
 
 | Performance Metric | Original Design | Optimized Design | Improvement |
 |-------------------|----------------|-----------------|-------------|
@@ -86,11 +86,11 @@ make demo  # runs aerial screw simulation + evaluation snapshot
 - `src/multiphysics/blade_element_momentum.py` — **BEMT implementation** for aerodynamic analysis
 - `artifacts/aerial_screw/sim/performance.csv` — Raw performance data from RPM sweep analysis
 
-## Scientific Analysis TECHNICAL ANALYSIS & METHODOLOGY
+## Technical analysis & methodology
 
-### Blade Element Momentum Theory Application
+### Blade element momentum theory application
 
-Our breakthrough application of modern BEMT to Leonardo's design revealed critical insights:
+Applying modern BEMT to Leonardo's design reveals the following relationships:
 
 ```python
 # Key relationships discovered:
@@ -123,11 +123,11 @@ Analysis of golden eagle wing geometry revealed optimal design parameters:
 - **Airfoil Sections**: Cambered profiles varying with spanwise position
 - **Aspect Ratio**: 8.2 (optimal for hover vs. forward flight compromise)
 
-## Engineering VARIABLE-PITCH MECHANISM INNOVATION
+## Variable-pitch mechanism
 
-### Swashplate System Design
+### Swashplate system design
 
-The revolutionary swashplate mechanism enables precise blade pitch control:
+The swashplate mechanism enables precise blade pitch control:
 
 #### Components:
 1. **Stationary Swashplate**: Bronze casting with radial grooves
@@ -180,7 +180,7 @@ The revolutionary swashplate mechanism enables precise blade pitch control:
    - Connect safety systems and controls
    - Perform system integration testing
 
-## 🛡️ SAFETY & RELIABILITY ANALYSIS
+## 🛡️ Safety & reliability analysis
 
 ### Vortex Ring State Protection
 
@@ -262,11 +262,11 @@ While we've incorporated modern analysis techniques, the design remains fundamen
 - **Tools**: Hand planes, chisels, braces, bow saws
 - **Quality Control**: Visual inspection, fit testing, load trials
 
-## 📚 EDUCATIONAL & HISTORICAL SIGNIFICANCE
+## 📚 Educational & historical significance
 
-### Leonardo's Legacy Enhanced
+### Leonardo's legacy revisited
 
-This breakthrough represents more than technical achievement—it honors Leonardo's legacy by:
+This work does more than document a single design; it provides:
 
 1. **Realizing His Vision**: Making his aerial screw concept functional
 2. **Respecting His Methods**: Using mechanical principles he understood
@@ -347,24 +347,16 @@ This breakthrough represents more than technical achievement—it honors Leonard
 
 ---
 
-## Target CONCLUSION: A HISTORIC ACHIEVEMENT
+## Conclusion
 
-The successful optimization of Leonardo da Vinci's aerial screw represents a watershed moment in historical engineering. By bridging Renaissance ingenuity with modern computational methods, we have:
+By combining Renaissance source material with modern computational methods, this study:
 
-1. **Validated Leonardo's Vision**: His fundamental concept was sound
-2. **Enhanced Performance**: 4x improvement through optimization
-3. **Maintained Historical Integrity**: Compatible with 15th-century manufacturing
-4. **Advanced Engineering Knowledge**: New insights into biomimetic design
-5. **Created Educational Value**: Demonstrates engineering evolution
+1. Quantifies how a variable-pitch implementation can improve lift and power efficiency for the aerial screw concept.
+2. Shows that a design compatible with period manufacturing can still meet conservative safety factors in simulation.
+3. Provides a reproducible benchmark for future physical prototypes and educational demonstrations.
 
-This breakthrough not only honors Leonardo's genius but also demonstrates how historical engineering concepts can inform and inspire modern innovation. The variable-pitch aerial screw stands as a testament to the timeless nature of creative engineering and the power of bridging historical wisdom with modern analysis.
+*This documentation is intended as both a technical reference and an educational resource for understanding how historical engineering ideas can be evaluated with modern tools.*
 
-**The dream of flight that Leonardo envisioned over 500 years ago has finally been realized—in a way that would make him proud.**
-
----
-
-*This documentation represents the culmination of extensive computational analysis, historical research, and engineering innovation. It serves as both a technical reference and an educational resource for understanding the evolution of engineering from Renaissance to modern times.*
-
-**Project Status**: VALIDATED WITH BREAKTHROUGH PERFORMANCE
-**Documentation Version**: 2.0 (October 9, 2025)
-**Next Milestone**: Prototype Construction & Flight Testing
+**Project Status**: `validated`  
+**Documentation Version**: 2.0 (October 9, 2025)  
+**Next Milestone**: Prototype construction and experimental testing

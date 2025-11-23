@@ -1,0 +1,208 @@
+overview:
+  description: "Metadata for primary simulated inventions exposed via the davinci-codex CLI."
+
+inventions:
+  - slug: aerial_screw
+    status: validated
+    primary_doc: docs/aerial_screw.md
+    hero_asset: docs/images/aerial_screw_performance.png
+    metrics:
+      - label: "Maximum lift"
+        value: "1,416 N"
+        context: "optimized rotor at 10.8 kW"
+      - label: "CAD package"
+        value: "99 files"
+        context: "parametric models, drawings, animations"
+
+  - slug: mechanical_lion
+    status: validated
+    primary_doc: docs/mechanical_lion.md
+    hero_asset: docs/images/mechanical_lion_gait_analysis.png
+    metrics:
+      - label: "Choreography duration"
+        value: "30 s"
+        context: "simulated walking and reveal sequence"
+      - label: "Gait speed"
+        value: "≈0.28 m/s"
+        context: "steady walking in simulation"
+
+  - slug: parachute
+    status: prototype_ready
+    primary_doc: docs/parachute.md
+    hero_asset: docs/images/parachute_descent.png
+    metrics:
+      - label: "Descent rate"
+        value: "6.9 m/s"
+        context: "pyramid parachute terminal velocity (sim)"
+      - label: "Drop height case"
+        value: "400 m"
+        context: "baseline descent profile"
+
+  - slug: self_propelled_cart
+    status: prototype_ready
+    primary_doc: docs/self_propelled_cart.md
+    hero_asset: docs/images/cart_motion.png
+    metrics:
+      - label: "Stored spring energy"
+        value: "≈350 J"
+        context: "per winding in simulation"
+      - label: "Range"
+        value: "≈150 m"
+        context: "on level terrain"
+
+  - slug: mechanical_drum
+    status: prototype_ready
+    primary_doc: docs/mechanical_drum.md
+    hero_asset: docs/images/mechanical_drum_rhythm_plot.png
+    metrics:
+      - label: "Pattern length"
+        value: "up to 16 beats"
+        context: "per cam program in model"
+      - label: "Channels"
+        value: "2–4"
+        context: "independent drum lines"
+
+  - slug: mechanical_odometer
+    status: prototype_ready
+    primary_doc: docs/mechanical_odometer.md
+    hero_asset: docs/images/odometer_error.png
+    metrics:
+      - label: "Measurement error"
+        value: "<17%"
+        context: "across test course"
+      - label: "Distance resolution"
+        value: "≈14 m"
+        context: "per pebble drop"
+
+  - slug: ornithopter
+    status: in_progress
+    primary_doc: docs/ornithopter.md
+    hero_asset: docs/images/ornithopter_lift.png
+    metrics:
+      - label: "Simulated climb"
+        value: "120 m"
+        context: "30 s sustained flight case"
+      - label: "Lift"
+        value: "≈1,600 N"
+        context: "representative flapping cycle"
+
+  - slug: variable_pitch_mechanism
+    status: in_progress
+    primary_doc: docs/variable_pitch_mechanism.md
+    hero_asset: docs/images/aerial_screw_educational_analysis.png
+    metrics:
+      - label: "Pitch range"
+        value: "15°–45°"
+        context: "swashplate control authority"
+      - label: "Response time"
+        value: "<0.5 s"
+        context: "modeled pitch step change"
+
+  - slug: programmable_loom
+    status: in_progress
+    primary_doc: docs/programmable_loom.md
+    hero_asset: docs/images/material_comparisons.png
+    metrics:
+      - label: "Warp threads"
+        value: "≈200"
+        context: "baseline configuration"
+      - label: "Pattern length"
+        value: "≤64 steps"
+        context: "cam barrel circumference limit"
+
+  - slug: revolving_bridge
+    status: in_progress
+    primary_doc: docs/revolving_bridge.md
+    hero_asset: docs/images/revolving_bridge_torque_dynamics.png
+    metrics:
+      - label: "Rotation"
+        value: "360°"
+        context: "full bridge swing"
+      - label: "Load case"
+        value: "vehicular traffic"
+        context: "simulated structural margin"
+
+  - slug: armored_walker
+    status: simulation_prototype
+    primary_doc: docs/armored_walker.md
+    hero_asset: docs/images/armored_walker_armored_walker_final_dynamics.png
+    metrics:
+      - label: "Walking speed"
+        value: "≈0.28 m/s"
+        context: "forward gait in simulation"
+      - label: "Range"
+        value: "≈50 m"
+        context: "per winding"
+
+  - slug: mechanical_carillon
+    status: concept_reconstruction
+    primary_doc: docs/mechanical_carillon.md
+    hero_asset: docs/images/mechanical_carillon_frequency_scatter.png
+    metrics:
+      - label: "Bell count"
+        value: "8–24"
+        context: "modeled bell array"
+      - label: "Programs"
+        value: "12–24"
+        context: "pin patterns per cylinder"
+
+  - slug: mechanical_organ
+    status: concept_reconstruction
+    primary_doc: docs/mechanical_organ.md
+    hero_asset: docs/images/mechanical_organ_frequency_profile.png
+    metrics:
+      - label: "Pipe range"
+        value: "4–5 octaves"
+        context: "modeled ranks"
+      - label: "Programming length"
+        value: "8–12 min"
+        context: "continuous performance per barrel"
+
+  - slug: mechanical_trumpeter
+    status: concept_reconstruction
+    primary_doc: docs/mechanical_trumpeter.md
+    hero_asset: docs/images/mechanical_trumpeter_frequency_pressure_profile.png
+    metrics:
+      - label: "Pitch range"
+        value: "2–2.5 octaves"
+        context: "fanfares and calls"
+      - label: "Phrase duration"
+        value: "8–12 s"
+        context: "per breath cycle"
+
+  - slug: programmable_flute
+    status: concept_reconstruction
+    primary_doc: docs/programmable_flute.md
+    hero_asset: docs/images/programmable_flute_frequency_timeline.png
+    metrics:
+      - label: "Tone holes"
+        value: "8–10"
+        context: "modeled recorder geometry"
+      - label: "Program length"
+        value: "up to 64 notes"
+        context: "per cam sequence"
+
+  - slug: mechanical_ensemble
+    status: concept_reconstruction
+    primary_doc: docs/mechanical_ensemble.md
+    hero_asset: docs/images/viola_organista_amplitude_timeline.png
+    metrics:
+      - label: "Instruments"
+        value: "7"
+        context: "ensemble members"
+      - label: "Program duration"
+        value: "≈45 min"
+        context: "per synchronized sequence"
+
+  - slug: viola_organista
+    status: concept_reconstruction
+    primary_doc: docs/viola_organista.md
+    hero_asset: docs/images/viola_organista_amplitude_timeline.png
+    metrics:
+      - label: "Pitch range"
+        value: "3–4 octaves"
+        context: "modeled keyboard span"
+      - label: "Sustain"
+        value: "continuous"
+        context: "wheel-bowed strings"
+

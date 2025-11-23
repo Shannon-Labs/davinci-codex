@@ -44,7 +44,7 @@ nav_order: 2
       <div class="metrics">
         <span class="metric">Complexity: High</span>
         <span class="metric">Feasibility: Medium</span>
-        <span class="metric">Innovation: Revolutionary</span>
+        <span class="metric">Innovation: High</span>
       </div>
       <p>Early helicopter concept using helical rotor design for vertical flight.</p>
       <a href="/aerial_screw/" class="btn-secondary">View Details</a>
@@ -221,7 +221,7 @@ nav_order: 2
       <div class="metrics">
         <span class="metric">Complexity: Very High</span>
         <span class="metric">Feasibility: Medium</span>
-        <span class="metric">Innovation: Revolutionary</span>
+        <span class="metric">Innovation: High</span>
       </div>
       <p>Bowed keyboard instrument with continuous string excitation.</p>
       <a href="/viola_organista/" class="btn-secondary">View Details</a>

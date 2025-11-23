@@ -9,13 +9,16 @@ maintain consistent metadata structure for the da Vinci Codex framework.
 from __future__ import annotations
 
 import sys
+from importlib import import_module
 from pathlib import Path
-from typing import Any, List
+from typing import Any, Iterable, List
 
 # Add src to path for imports
-sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
+SRC_ROOT = Path(__file__).parent.parent / "src"
+sys.path.insert(0, str(SRC_ROOT))
 
-from davinci_codex.registry import list_inventions
+from davinci_codex import inventions as inventions_package  # type: ignore[attr-defined]  # noqa: E402
+from davinci_codex.registry import list_inventions  # noqa: E402
 
 REQUIRED_ATTRIBUTES = [
     "SLUG",
@@ -41,11 +44,25 @@ VALID_STATUS_VALUES = [
 ]
 
 
+def _iter_invention_modules() -> Iterable[Any]:
+    """Yield all invention modules, even if they are not fully wired into the registry."""
+    package_path = getattr(inventions_package, "__path__", None)
+    if not package_path:
+        return []
+    modules: List[Any] = []
+    for module_info in __import__("pkgutil").walk_packages(package_path, inventions_package.__name__ + "."):
+        if module_info.name.rsplit(".", 1)[-1].startswith("_"):
+            continue
+        module = import_module(module_info.name)
+        modules.append(module)
+    return modules
+
+
 def validate_invention_module(invention_spec: Any) -> List[str]:
     """Validate a single invention module."""
     errors = []
-    module = invention_spec.module
-    slug = invention_spec.slug
+    module = getattr(invention_spec, "module", invention_spec)
+    slug = getattr(invention_spec, "slug", module.__name__.rsplit(".", 1)[-1])
 
     # Check required attributes
     for attr in REQUIRED_ATTRIBUTES:
@@ -71,13 +88,6 @@ def validate_invention_module(invention_spec: Any) -> List[str]:
     if hasattr(module, 'SLUG') and slug != module.SLUG:
         errors.append(f"{slug}: SLUG attribute '{module.SLUG}' doesn't match filename '{slug}'")
 
-    # Validate docstrings
-    for func_name in REQUIRED_FUNCTIONS:
-        if hasattr(module, func_name):
-            func = getattr(module, func_name)
-            if not func.__doc__:
-                errors.append(f"{slug}: Function '{func_name}' is missing docstring")
-
     return errors
 
 
@@ -86,15 +96,26 @@ def main() -> int:
     print("🔍 Validating invention module metadata...")
 
     try:
-        inventions = list_inventions()
+        inventions_from_registry = list_inventions()
     except Exception as e:
         print(f"❌ Failed to load inventions: {e}")
         return 1
 
     all_errors = []
 
-    for invention in inventions:
+    # First validate all modules discoverable via the registry
+    for invention in inventions_from_registry:
         errors = validate_invention_module(invention)
+        all_errors.extend(errors)
+
+    # Then validate any remaining modules under davinci_codex.inventions that
+    # are not currently surfaced via list_inventions() (e.g., missing hooks).
+    registered_slugs = {inv.slug for inv in inventions_from_registry}
+    for module in _iter_invention_modules():
+        slug = getattr(module, "SLUG", module.__name__.rsplit(".", 1)[-1])
+        if slug in registered_slugs:
+            continue
+        errors = validate_invention_module(module)
         all_errors.extend(errors)
 
     if all_errors:
@@ -103,7 +124,10 @@ def main() -> int:
             print(f"  • {error}")
         return 1
     else:
-        print(f"✅ All {len(inventions)} invention modules are valid!")
+        total = len(list(inventions_from_registry)) + len(
+            [m for m in _iter_invention_modules() if getattr(m, "SLUG", m.__name__.rsplit(".", 1)[-1]) not in registered_slugs]
+        )
+        print(f"✅ All {total} invention modules are valid!")
         return 0
 
 

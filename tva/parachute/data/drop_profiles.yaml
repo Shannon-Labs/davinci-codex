@@ -1,0 +1,21 @@
+profiles:
+  nominal_calibration:
+    description: "Telemetry derived from Adrian Nicholas' replica pyramid parachute drop."
+    source: "British Parachute Association archives"
+    columns:
+      - time_s
+      - altitude_m
+      - vertical_velocity_mps
+      - sway_angle_deg
+    notes:
+      - "Digitized from synchronized barometric and inertial logs."
+      - "Used to validate nominal CFD + FSI descent predictions."
+  gust_front_drop:
+    description: "Wind tunnel replay with imposed frontal gust and porosity sweep."
+    source: "Shannon Labs TVA wind tunnel campaign 2023"
+    columns:
+      - time_s
+      - drag_multiplier
+      - reynolds_number
+    notes:
+      - "Supports acceptance envelope for gust-front certification."

@@ -7,11 +7,11 @@ nav_order: 13
 # The Mechanical Carillon
 **Leonardo's Automated Bell Tower System**
 
-> **Civic Innovation**: The world's first programmable public time-keeping and musical announcement system, bringing automated culture to Renaissance cities.
+> **Civic Innovation**: A programmable public time-keeping and musical announcement concept, bringing automated bell sequences to Renaissance cities.
 
 ## Overview
 
-Leonardo da Vinci's mechanical carillon represents a revolutionary advance in public time-keeping and civic communication. This sophisticated system used clockwork mechanisms and programmed drums to automatically play bell chimes, marking hours, announcing events, and providing musical accompaniment to daily life in Renaissance cities.
+Leonardo da Vinci's mechanical carillon represents a significant advance in public time-keeping and civic communication. This system uses clockwork mechanisms and programmed drums to automatically play bell chimes, marking hours, announcing events, and providing musical accompaniment to daily life in Renaissance cities.
 
 ## Historical Context
 
@@ -175,4 +175,3 @@ The carillon provides excellent case studies in:
 ---
 
 *This documentation is part of the [da Vinci Codex](index.md) project - preserving and analyzing Leonardo's technological legacy through modern computational methods.*
-

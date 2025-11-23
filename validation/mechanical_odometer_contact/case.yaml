@@ -1,3 +1,6 @@
+name: "Mechanical odometer contact validation"
+description: "Confirms odometer slip/gear contact models against tribology data"
+validation_type: experimental
 slug: mechanical_odometer_contact
 display_name: "Mechanical odometer contact validation"
 category: tribology

@@ -1,0 +1,2 @@
+CAD build fallback triggered:
+'Trimesh' object has no attribute 'apply_rotation'

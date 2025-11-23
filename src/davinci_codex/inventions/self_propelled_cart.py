@@ -745,7 +745,7 @@ def simulate(seed: int = 0) -> Dict[str, object]:
         f"Maximum speed of {max_speed:.2f} m/s shows the balance between power and control"
     ]
 
-    return {
+    payload = {
         "artifacts": [str(csv_path), str(plot_path), str(motion_gif)],
         "performance_metrics": {
             "distance_m": travel_distance,
@@ -783,6 +783,21 @@ def simulate(seed: int = 0) -> Dict[str, object]:
             "Consider modern materials for improved spring performance"
         ]
     }
+
+    payload.update(
+        {
+            "distance_m": travel_distance,
+            "runtime_s": runtime,
+            "status": "success",
+            "performance": {
+                "average_speed_m_s": average_speed,
+                "max_speed_m_s": max_speed,
+                "mechanical_advantage": f"{total_gear_ratio:.1f}:1",
+            },
+        }
+    )
+
+    return payload
 
 
 def analyze_spring_materials() -> Dict[str, Dict[str, float]]:
@@ -840,6 +855,8 @@ def evaluate() -> Dict[str, object]:
 
     return {
         "practicality": {
+            "distance_m": travel_distance,
+            "runtime_s": runtime,
             "performance": {
                 "distance_m": travel_distance,
                 "runtime_s": runtime,
@@ -886,6 +903,14 @@ def evaluate() -> Dict[str, object]:
                 "Low mass and speed limit impact potential"
             ]
         },
+        "ethics": {
+            "risk": "Low community risk with proper supervision",
+            "considerations": [
+                "Operate in controlled educational settings",
+                "Ensure audience remains outside motion path",
+                "Document maintenance and inspection logs",
+            ],
+        },
         "educational_value": {
             "learning_objectives_met": [
                 "✓ Understanding of mechanical advantage through gear reduction",
@@ -895,10 +920,10 @@ def evaluate() -> Dict[str, object]:
                 "✓ Control systems through escapement regulation"
             ],
             "historical_significance": {
-                "innovation_level": "Revolutionary for Renaissance engineering",
-                "technological_advancement": "First autonomous vehicle design",
-                "influence_on_future": "Predecessor to modern robotics and automation",
-                "leonardos_genius": "Demonstrates mastery of mechanics and control theory"
+                "innovation_level": "Notable for Renaissance engineering",
+                "technological_advancement": "Early autonomous vehicle concept",
+                "influence_on_future": "Illustrates principles later seen in robotics and automation",
+                "leonardos_genius": "Demonstrates strong command of mechanics and control theory"
             },
             "cross_disciplinary_connections": [
                 "Physics: Conservation of energy and rotational dynamics",
@@ -907,6 +932,9 @@ def evaluate() -> Dict[str, object]:
                 "Engineering: Mechanical design and control systems",
                 "Materials Science: Spring metallurgy and friction properties"
             ]
+        },
+        "validated": {
+            "ready_for_workshop": travel_distance > 10.0 and max_velocity < 3.0,
         },
         "validation_results": {
             "ready_for_workshop": {

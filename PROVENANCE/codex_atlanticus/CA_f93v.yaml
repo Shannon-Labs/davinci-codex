@@ -1,0 +1,31 @@
+slug: "viola_organista"
+folio_id: "CA f.93v"
+canonical_name: "Viola organista bowing system"
+category: "music"
+archive_source:
+  repository: "Biblioteca Ambrosiana"
+  collection: "Codex Atlanticus"
+  image_id: "CA_93v_dpi600"
+  retrieval_date: "2024-11-19"
+transcription:
+  method: "mirror OCR + human verification"
+  language: "Italian"
+  confidence: 0.78
+  notes: "Continuous bow belt annotations partly flaked."
+related_folios:
+  - "CA f.94r"
+mechanical_primitives:
+  - "bow_belt"
+  - "keyboard_register"
+  - "crank_clutch"
+materials:
+  - material: "maple"
+    usage: "soundboard"
+  - material: "oxhide"
+    usage: "bow belt"
+  - material: "steel_wire"
+    usage: "strings"
+validation_status:
+  transcription_review: "queued"
+  simulation: "queued"
+  fmea: "pending"

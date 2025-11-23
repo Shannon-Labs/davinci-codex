@@ -135,8 +135,8 @@ technical_specifications: |
 historical_context: |
   ## Historical Significance
 
-  **Revolutionary Concept:**
-  Designed around 1478, Leonardo's self-propelled cart represents one of the most remarkable achievements in Renaissance engineering. This device is widely considered the first programmable automobile in history, predating modern cars by over 400 years.
+  **Programmable Vehicle Concept:**
+  Designed around 1478, Leonardo's self-propelled cart represents one of the more advanced achievements in Renaissance engineering. This device is often cited as an early example of a programmable vehicle, predating modern cars by several centuries.
 
   **Court Entertainment:**
   The cart was likely designed for theatrical performances and court entertainment at the Sforza court in Milan. It could follow pre-programmed paths across stage floors, creating seemingly magical movement that delighted Renaissance audiences.
@@ -186,7 +186,7 @@ related_models:
 
 ## Overview
 
-Leonardo's self-propelled cart stands as one of the most extraordinary achievements of Renaissance engineering. Created around 1478, this remarkable machine represents the world's first programmable automobile, capable of following pre-set paths without any human guidance. The interactive 3D model allows you to explore the ingenious mechanisms that made this revolutionary vehicle possible.
+Leonardo's self-propelled cart is a notable example of Renaissance engineering applied to automata. Created around 1478, this machine is frequently described as a programmable automobile, capable of following pre-set paths without direct human guidance. The interactive 3D model allows you to explore the mechanisms that make this vehicle possible.
 
 ## Historical Context
 

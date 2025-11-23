@@ -1,3 +1,6 @@
+name: "Self-propelled cart rolling resistance"
+description: "Validates Leonardo cart tribology assumptions against archival data"
+validation_type: experimental
 slug: self_propelled_cart
 category: tribology
 experiment:

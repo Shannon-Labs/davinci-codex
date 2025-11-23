@@ -6,7 +6,7 @@
 .PHONY: lint format type-check security-check quality
 .PHONY: test test-cov test-integration test-benchmarks test-all
 .PHONY: build build-docs build-docker build-packages
-.PHONY: demo simulate gallery validate
+.PHONY: demo simulate gallery validate regen-readme-table
 .PHONY: docker-dev docker-prod docker-test docker-clean
 .PHONY: release pre-commit hooks
 
@@ -179,6 +179,11 @@ build-packages: ## Build distribution packages
 	$(PYTHON_BIN) -m build
 
 build-all: build build-docs build-packages ## Build everything
+
+regen-readme-table: ## Regenerate README invention registry table from Python registry
+	@echo "$(BLUE)Regenerating README invention registry table...$(RESET)"
+	$(PYTHON_BIN) scripts/regen_readme_registry_table.py
+	@echo "$(GREEN)✅ README registry table updated from registry.list_inventions().$(RESET)"
 
 # =============================================================================
 # Simulation & Demo

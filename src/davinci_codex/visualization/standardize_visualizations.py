@@ -59,7 +59,7 @@ STYLE_REPLACEMENTS = {
     r'\'red\'': f"'{DATA_COLORS[1]}'",
     r'\'green\'': f"'{DATA_COLORS[2]}'",
     r'\'orange\'': f"'{DATA_COLORS[4]}'",
-    r'\'black\'": f"'{RENAISSANCE_COLORS['text_primary']}'",
+    r"'black'": f"'{RENAISSANCE_COLORS['text_primary']}'",
 
     # Font sizes
     r'fontsize=\d+': 'fontsize=12',

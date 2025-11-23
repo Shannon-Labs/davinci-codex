@@ -2,8 +2,6 @@ from __future__ import annotations
 
 from typing import Any, Dict
 
-import importlib
-
 from davinci_codex.registry import get_invention
 
 

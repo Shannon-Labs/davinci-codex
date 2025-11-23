@@ -36,10 +36,20 @@ def run_ornithopter_pipeline(seed: int = 42, duration_s: float = 20.0) -> Dict[s
     torque_peak = float(np.max(np.abs(flapping_state.torque_nm)))
     control_peak = float(np.max(np.abs(flapping_state.control_torque_nm)))
 
+    safety_factor = float(tva_result.spring_capacity_nm / max(control_peak, 1e-3))
+
     summary = {
         "plan": {
             "goals": plan_payload.get("goals", []),
             "assumptions": plan_payload.get("assumptions", {}),
+        },
+        "analysis": {
+            "performance": {
+                "peak_lift_N": lift_peak,
+                "peak_control_torque_Nm": control_peak,
+                "energy_wh": float(flapping_state.energy_wh),
+            },
+            "safety_factor": safety_factor,
         },
         "tva": {
             "required_power_w": tva_result.required_power_w,
@@ -56,9 +66,20 @@ def run_ornithopter_pipeline(seed: int = 42, duration_s: float = 20.0) -> Dict[s
             "peak_control_torque_Nm": control_peak,
             "energy_used_wh": flapping_state.energy_wh,
             "estimated_endurance_min": flapping_state.endurance_min,
+            "controllers": {
+                "torque_limit_nm": float(control_peak),
+                "safety_factor": safety_factor,
+            },
             "artifacts": {
                 "csv": str(Path("artifacts") / "ornithopter" / "synthesis_sim" / "flapping_state.csv"),
                 "summary": str(Path("artifacts") / "ornithopter" / "synthesis_sim" / "summary.txt"),
+            },
+        },
+        "validation": {
+            "fmea": {
+                "power_margin_w": tva_result.power_margin_w,
+                "passes_power": tva_result.passes_power,
+                "passes_fatigue": tva_result.passes_fatigue,
             },
         },
     }

@@ -15,9 +15,20 @@ from .integration import MechanicalEnsembleIntegrator
 from .models import (
     InstrumentType,
     MusicalForm,
+    MusicalScore,
     RenaissanceMode,
 )
 from .pattern_composer import PatternBasedComposer
+from .patterns import RenaissancePatternLibrary
+
+try:  # Optional dataset module (not available in all deployments)
+    from data.renaissance_music.dataset import (
+        DatasetCategory,
+        RenaissanceMusicDataset,
+    )
+except ModuleNotFoundError:  # pragma: no cover - fallback for minimal installs
+    DatasetCategory = None  # type: ignore
+    RenaissanceMusicDataset = None  # type: ignore
 
 app = typer.Typer(help="Renaissance Music Composition CLI")
 
@@ -53,11 +64,11 @@ def get_instrument_mapping(instrument_str: str) -> Dict[int, InstrumentType]:
                 mapping[voice_idx] = instrument
             else:
                 typer.echo(f"Unknown instrument: {instrument_name}")
-                raise typer.Exit(1)
+                raise SystemExit(1)
 
         except ValueError:
             typer.echo(f"Invalid instrument mapping: {part}")
-            raise typer.Exit(1) from None
+            raise SystemExit(1) from None
 
     return mapping
 
@@ -86,7 +97,7 @@ def get_mode(mode_str: str) -> RenaissanceMode:
     if not mode:
         typer.echo(f"Unknown mode: {mode_str}")
         typer.echo(f"Available modes: {', '.join(mode_map.keys())}")
-        raise typer.Exit(1)
+        raise SystemExit(1)
 
     return mode
 
@@ -115,7 +126,7 @@ def get_form(form_str: str) -> MusicalForm:
     if not form:
         typer.echo(f"Unknown form: {form_str}")
         typer.echo(f"Available forms: {', '.join(form_map.keys())}")
-        raise typer.Exit(1)
+        raise SystemExit(1)
 
     return form
 
@@ -213,8 +224,17 @@ def generate(
         output_path.parent.mkdir(parents=True, exist_ok=True)
 
         if output_path.suffix.lower() == ".json":
-            # Save as JSON
-            save_as_json(score, output_path)
+            if isinstance(score, MusicalScore):
+                save_as_json(score, output_path)
+            else:
+                output_path.write_text(
+                    json.dumps({
+                        "title": getattr(score, "title", "Generated Composition"),
+                        "tempo_bpm": float(getattr(score, "tempo_bpm", 0.0)),
+                        "voices": len(getattr(score, "voices", [])),
+                    }, indent=2),
+                    encoding="utf-8",
+                )
         elif output_path.suffix.lower() in [".mid", ".midi"]:
             # Save as MIDI
             save_as_midi(score, output_path)
@@ -379,8 +399,6 @@ def patterns(
     instrument: Optional[str] = typer.Option(None, help="Filter by instrument"),
 ) -> None:
     """List available patterns in the pattern library."""
-    from .patterns import RenaissancePatternLibrary
-
     library = RenaissancePatternLibrary()
 
     # Parse filters
@@ -438,8 +456,6 @@ def dataset(
     category: Optional[str] = typer.Option(None, help="Filter by category"),
 ) -> None:
     """Interact with the Renaissance music dataset."""
-    from data.renaissance_music.dataset import DatasetCategory, RenaissanceMusicDataset
-
     dataset = RenaissanceMusicDataset()
 
     if action == "stats":
@@ -498,7 +514,8 @@ def dataset(
             typer.echo(f"    Year: {entry.year}")
             typer.echo(f"    Mode: {entry.mode.value}")
             typer.echo(f"    Form: {entry.form.value}")
-            typer.echo(f"    Category: {entry.category.value}")
+            category_value = getattr(entry.category, "value", entry.category)
+            typer.echo(f"    Category: {category_value}")
             typer.echo(f"    Difficulty: {entry.difficulty_level}")
             if entry.source_reference:
                 typer.echo(f"    Source: {entry.source_reference}")
@@ -533,7 +550,8 @@ def dataset(
             typer.echo(f"  Year: {entry.year}")
             typer.echo(f"  Mode: {entry.mode.value}")
             typer.echo(f"  Form: {entry.form.value}")
-            typer.echo(f"  Category: {entry.category.value}")
+            category_value = getattr(entry.category, "value", entry.category)
+            typer.echo(f"  Category: {category_value}")
             typer.echo(f"  Difficulty: {entry.difficulty_level}")
             typer.echo(f"  Tempo: {entry.score.tempo_bpm} BPM")
             typer.echo(f"  Voices: {len(entry.score.voices)}")

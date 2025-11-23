@@ -7,7 +7,7 @@ nav_order: 18
 # The Viola Organista
 **Leonardo's Bowed Keyboard Instrument**
 
-> **Musical Revolution**: The world's first keyboard instrument that produces sustained, bowed tones - essentially a mechanical string orchestra playable by a single musician.
+> **Musical Innovation**: A keyboard instrument concept that produces sustained, bowed tones—essentially a mechanical string ensemble playable by a single musician.
 
 ## Overview
 
@@ -52,9 +52,9 @@ The viola organista emerged during Leonardo's intense period of musical experime
 
 ## Engineering Analysis
 
-### Musical Capabilities
+### Musical capabilities
 
-The computational model demonstrates the viola organista's revolutionary potential:
+The computational model demonstrates the viola organista's performance potential:
 
 - **Sustained Polyphony**: Multiple notes held simultaneously without decay
 - **Dynamic Expression**: Volume control through wheel pressure variation
@@ -69,7 +69,7 @@ The computational model demonstrates the viola organista's revolutionary potenti
 | **String Count** | 24-48 strings | Sufficient for polyphonic music |
 | **Wheel Speed** | 800-1200 RPM | Optimal for gut string bowing |
 | **Dynamic Range** | 40-60 dB | Expressive performance capability |
-| **Sustain Duration** | Unlimited (continuous) | Revolutionary for keyboard instruments |
+| **Sustain Duration** | Unlimited (continuous) | Unusual for keyboard instruments |
 
 ### Acoustic Engineering
 
@@ -100,9 +100,9 @@ The simulation demonstrates capabilities for:
 
 ## Modern Context & Legacy
 
-### Historical Significance
+### Historical significance
 
-The viola organista pioneered several revolutionary concepts:
+The viola organista pioneered several important concepts:
 - **Sustained Keyboard**: First keyboard with unlimited note sustain
 - **Mechanical Bowing**: Automated string bowing technology
 - **Hybrid Instrument**: Combining string and keyboard instrument principles
@@ -116,7 +116,7 @@ Modern applications and interpretations:
 - **Organological Research**: Study of historical instrument design
 - **Educational Value**: Teaching principles of acoustics and mechanics
 
-## Available Resources
+## Available resources
 
 - 🎻 [Simulation Results](../artifacts/viola_organista/sim/) - Acoustic and mechanical analysis
 - 🔧 [Source Code](../src/davinci_codex/inventions/viola_organista.py) - Python implementation
@@ -199,4 +199,3 @@ Leonardo addressed several complex technical problems:
 ---
 
 *This documentation is part of the [da Vinci Codex](index.md) project - exploring Leonardo's revolutionary musical inventions through modern computational analysis and historical reconstruction.*
-

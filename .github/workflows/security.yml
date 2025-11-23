@@ -84,8 +84,18 @@ jobs:
         run: |
           bandit -r src/ -f json -o bandit-report.json
           bandit -r src/ -f sarif -o bandit-results.sarif
-          
+      
+      - name: Check Bandit SARIF presence
+        id: check_bandit_sarif
+        run: |
+          if [ -f bandit-results.sarif ]; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+      
       - name: Upload Bandit SARIF results
+        if: steps.check_bandit_sarif.outputs.exists == 'true'
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: bandit-results.sarif

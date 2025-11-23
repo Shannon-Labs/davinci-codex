@@ -1,3 +1,6 @@
+name: "Ornithopter tethered flight validation"
+description: "Ground-rig tethered run comparing telemetry to simulation"
+validation_type: flight-test
 slug: ornithopter
 display_name: "Ornithopter tethered validation"
 category: flight

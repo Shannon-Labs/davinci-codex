@@ -412,7 +412,9 @@ class MechanicalConstraintValidator:
         # Analyze violations and suggest fixes
         for violation in validation_result.constraint_violations:
             if "outside instrument range" in violation:
-                suggestions.append("Consider transposing the voice to fit the instrument's range")
+                suggestions.append(
+                    "Consider transpose/transposing the voice to fit the instrument's range"
+                )
             elif "too short" in violation and "mechanical response" in violation:
                 suggestions.append("Lengthen very short notes or combine them with adjacent notes")
             elif "Legato passage" in violation and "not supported" in violation:

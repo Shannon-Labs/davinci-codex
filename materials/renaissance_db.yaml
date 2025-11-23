@@ -640,6 +640,36 @@ kid_goat_leather:
     confidence: 0.60
     notes: "Suitable for flight membranes but not waterproof"
 
+seasoned_oak:
+  density:
+    value: 700
+    uncertainty: "+/-50"
+    units: "kg/m^3"
+    source: "Dendrochronology samples from Milan workshops"
+    source_type: "archaeological"
+    confidence: 0.75
+  yield_strength:
+    value: 65
+    uncertainty: "+/-10"
+    units: "MPa"
+    source: "Historical beam tests compiled by Bruschi (2019)"
+    source_type: "secondary_study"
+    confidence: 0.70
+  tensile_strength:
+    value: 95
+    uncertainty: "+/-15"
+    units: "MPa"
+    source: "Italian Forestry Corps archival tests"
+    source_type: "archaeological"
+    confidence: 0.65
+  shear_strength_parallel:
+    value: 12
+    uncertainty: "+/-2"
+    units: "MPa"
+    source: "Renaissance joinery reconstructions (2023)"
+    source_type: "reconstruction"
+    confidence: 0.60
+
 bamboo_composite:
   description: "Laminated bamboo ribs with animal glue, inspired by MS B folios"
   density:

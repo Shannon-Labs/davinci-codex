@@ -19,6 +19,7 @@ class Category(str, Enum):
     agriculture = "agriculture"
     domestic = "domestic"
     experimental = "experimental"
+    music = "music"
 
 
 class StatusFlag(str, Enum):

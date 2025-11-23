@@ -210,6 +210,8 @@ navigation:
         url: /specifications/
       - title: "Safety & Ethics"
         url: /utilization_overview/
+      - title: "Status Methodology"
+        url: /methodology/statuses/
   - title: "Documentation"
     url: /documentation/
     children:
@@ -231,4 +233,3 @@ navigation:
         url: /releases/
   - title: "GitHub"
     url: https://github.com/Shannon-Labs/davinci-codex
-

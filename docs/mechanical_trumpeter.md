@@ -7,7 +7,7 @@ nav_order: 16
 # The Mechanical Trumpeter
 **Leonardo's Automated Brass Performer**
 
-> **Court Spectacle**: The world's first automated brass instrument, capable of performing complex fanfares and ceremonial music without human musicians.
+> **Court Spectacle**: An early automated brass instrument concept, capable of performing fanfares and ceremonial music without continuous human musicianship.
 
 ## Overview
 
@@ -199,4 +199,3 @@ Leonardo addressed several complex technical problems:
 ---
 
 *This documentation is part of the [da Vinci Codex](index.md) project - exploring Leonardo's mechanical ingenuity through modern computational analysis and historical reconstruction.*
-

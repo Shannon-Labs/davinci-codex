@@ -129,14 +129,29 @@ def main(version: bool = typer.Option(False, "--version", is_eager=True, help="S
 
 
 @app.command("list")
-def list_command() -> None:
+def list_command(
+    statuses: bool = typer.Option(
+        False,
+        "--statuses",
+        help="Summarise inventions by status instead of listing full descriptions.",
+    )
+) -> None:
     """List available inventions."""
     specs = list_inventions()
     if not specs:
         typer.echo("No inventions registered yet.")
         raise typer.Exit(code=1)
-    for spec in specs:
-        typer.echo(f"{spec.slug}: {spec.title} [{spec.status}] — {spec.summary}")
+    if statuses:
+        by_status: Dict[str, List[str]] = {}
+        for spec in specs:
+            by_status.setdefault(spec.status, []).append(spec.slug)
+        typer.echo("Status summary:")
+        for status in sorted(by_status):
+            slugs = ", ".join(sorted(by_status[status]))
+            typer.echo(f"- {status}: {slugs}")
+    else:
+        for spec in specs:
+            typer.echo(f"{spec.slug}: {spec.title} [{spec.status}] — {spec.summary}")
 
 
 @app.command()

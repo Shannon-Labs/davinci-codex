@@ -31,7 +31,7 @@ timeline
         1485 : Aerial Screw Concept<br/>Manuscript: Codex Atlanticus
         1490 : Ornithopter Studies<br/>Manuscript: Codex on Flight
         1483 : Pyramid Parachute<br/>Manuscript: Codex Atlanticus
-        2024 : Modern Aerial Screw<br/>Variable-pitch breakthrough
+        2024 : Modern Aerial Screw<br/>Variable-pitch validation
         2024 : Bio-inspired Ornithopter<br/>30-second sustained flight
         2024 : Validated Parachute<br/>6.9 m/s safe descent
     section Mechanical Systems
@@ -94,10 +94,10 @@ Flight Systems         Conceptual           CFD validation     2.5x calculated
 ## 🎨 Visual Learning Tools
 
 ### Color-Coded Status System
-- **🚀 BREAKTHROUGH ACHIEVED** - Major engineering success
-- **✅ Simulation Complete** - Validated computational results
+- **✅ Validated** - Simulations and validation dossier in place
+- **📊 Simulation Complete** - Core computational results available
 - **🔄 In Progress** - Active development phase
-- **📋 Concept Reconstruction** - Historical interpretation
+- **📋 Concept Reconstruction** - Historically grounded reconstruction
 
 ### Interactive Learning Elements
 - **Performance Curves**: Power vs. capability relationships

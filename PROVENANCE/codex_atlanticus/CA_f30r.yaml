@@ -1,0 +1,31 @@
+slug: "mechanical_carillon"
+folio_id: "CA f.30r"
+canonical_name: "Programmable bell carillon"
+category: "music"
+archive_source:
+  repository: "Biblioteca Ambrosiana"
+  collection: "Codex Atlanticus"
+  image_id: "CA_30r_dpi600"
+  retrieval_date: "2024-11-19"
+transcription:
+  method: "mirror OCR + human verification"
+  language: "Italian"
+  confidence: 0.74
+  notes: "Bell hammer timing notes partly smudged."
+related_folios:
+  - "CA f.30v"
+mechanical_primitives:
+  - "ratchet_drum"
+  - "bell_hammer"
+  - "weight_drive"
+materials:
+  - material: "bronze"
+    usage: "bells"
+  - material: "walnut"
+    usage: "frame"
+  - material: "wrought_iron_1500"
+    usage: "hammer arms"
+validation_status:
+  transcription_review: "queued"
+  simulation: "pending"
+  fmea: "pending"

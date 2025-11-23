@@ -1,10 +1,22 @@
 """Performance benchmarks for simulation engine."""
 
+import os
 import time
 
 import pytest
 
+try:  # pragma: no cover - optional dependency
+    import psutil  # type: ignore
+except ImportError:  # pragma: no cover - fallback for CI environments without psutil
+    psutil = None
+
 from davinci_codex.registry import get_invention, list_inventions
+
+
+@pytest.fixture(autouse=True)
+def _enable_fast_mode(monkeypatch):
+    monkeypatch.setenv("DAVINCI_FAST_SIM", "1")
+    yield
 
 
 class TestSimulationPerformance:
@@ -78,9 +90,8 @@ class TestSimulationPerformance:
 
     def test_memory_usage_during_simulation(self, all_inventions):
         """Test memory usage during simulation execution."""
-        import os
-
-        import psutil
+        if psutil is None:
+            pytest.skip("psutil not available")
 
         process = psutil.Process(os.getpid())
         initial_memory = process.memory_info().rss / 1024 / 1024  # MB

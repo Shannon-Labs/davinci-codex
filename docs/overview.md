@@ -20,24 +20,24 @@ The da Vinci Codex project reconstructs Leonardo da Vinci's civil, non-weapon in
 - Medical concepts must meet contemporary safety expectations; speculative or risky ideas are deferred.
 - All datasets, imagery, and text are public-domain or newly generated under CC0.
 
-## Aerial Screw Breakthrough Announcement
+## Aerial Screw Validation Summary
 
-We are proud to announce a major engineering breakthrough in Leonardo da Vinci's aerial screw design. After extensive computational analysis and modern engineering refinement, we have achieved:
+This section summarises validation results for Leonardo da Vinci's aerial screw design. After extended computational analysis and design iteration, the current configuration achieves:
 
-### Key Achievements
-- **Variable-Pitch Control System**: Complete swashplate mechanism enabling 15°-45° blade pitch adjustment
-- **4x Performance Improvement**: 1,416N lift at 10.8kW (vs. original 473N at 56kW)
-- **Eagle-Inspired Optimization**: Tapered blades with 82% aerodynamic efficiency
-- **Complete CAD Package**: 99 technical files including animations, drawings, and manufacturing guides
-- **Structural Validation**: All components exceed 2.0 safety factor with Renaissance materials
+### Key Results
+- **Variable-Pitch Control System**: Swashplate mechanism enabling 15°–45° blade pitch adjustment
+- **Lift Performance**: 1,416 N maximum lift at 10.8 kW input power (vs. ~473 N at 56 kW for a direct transcription)
+- **Blade Efficiency**: ~82% aerodynamic efficiency for the optimized blade compared to ~45% for the baseline
+- **Engineering Package**: 99 technical files including CAD models, drawings, and animations
+- **Structural Safety**: Components sized for ≥2.0 safety factor using Renaissance-compatible materials
 
-### Technical Innovations
-- Advanced blade element momentum theory applied to historical design
-- Vortex ring state safety analysis for flight envelope protection
-- Eagle-wing biomimicry for optimal blade taper ratios
-- Swashplate mechanism compatible with 15th-century manufacturing capabilities
+### Technical Methods
+- Blade element momentum theory applied to the reconstructed rotor
+- Vortex ring state analysis for flight envelope and descent constraints
+- Biomimetic taper ratios derived from golden eagle wing measurements
+- Mechanical design compatible with late 15th-century manufacturing capability
 
-**Full Documentation**: See [Aerial Screw Rotor Lab](aerial_screw.md) for comprehensive analysis and technical details.
+**Full documentation**: See [Aerial Screw Rotor Lab](aerial_screw.md) for methodology and detailed results.
 
 ## Repository Guide
 - `docs/<slug>.md` — Module reports with provenance, engineering math, assumptions, and experimental proposals.
@@ -63,7 +63,7 @@ We are proud to announce a major engineering breakthrough in Leonardo da Vinci's
 
 | Module | Status | Description |
 |--------|--------|--------------|
-| [**Aerial Screw Rotor Lab**](aerial_screw.md) | `validated` | **BREAKTHROUGH**: Variable-pitch system with 1,416N lift at 10.8kW (4x improvement), eagle-inspired blades, complete CAD package with 99 files |
+| [**Aerial Screw Rotor Lab**](aerial_screw.md) | `validated` | Variable-pitch system with 1,416 N lift at 10.8 kW (≈4× improvement), eagle-inspired blades, complete CAD package with 99 files |
 | [**Self-Propelled Cart**](self_propelled_cart.md) | `prototype_ready` | Spring-driven automaton with parametric CAD models and kinematic simulation |
 | [**Mechanical Odometer**](mechanical_odometer.md) | `prototype_ready` | Survey cart with pebble-drop counter mechanism and precision calibration |
 | [**Pyramid Parachute**](parachute.md) | `prototype_ready` | Safety dossier with turbulence scenarios, tensile coupons, and drop telemetry linked in [Parachute Safety Dossier](parachute_safety_dossier.md) |
@@ -109,4 +109,3 @@ Each module documents original folio references (e.g., Codex Atlanticus, folio n
 | [**Mechanical Organ**](mechanical_organ.md) | `concept_reconstruction` | Automatic pipe organ with twin bellows and pinned program barrel |
 | [**Viola Organista**](viola_organista.md) | `concept_reconstruction` | Wheel-bowed keyboard sustaining polyphonic string voices |
 | [**Programmable Flute**](programmable_flute.md) | `concept_reconstruction` | Cam-actuated recorder with automated fingering and valve control |
-

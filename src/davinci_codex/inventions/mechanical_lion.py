@@ -57,14 +57,14 @@ PI = math.pi
 LION_LENGTH = 2.4  # meters (nose to tail base)
 LION_HEIGHT = 1.2  # meters (shoulder height)
 LION_WIDTH = 0.8  # meters (body width)
-LION_WEIGHT = 180.0  # kg (mechanical lion, slightly heavier than real lion)
+LION_WEIGHT = 600.0  # kg (mechanical lion with internal metal framework)
 LION_STRIDE_LENGTH = 0.8  # meters (natural walking stride)
 LION_WALKING_SPEED = 0.8  # m/s (stately royal court pace)
 
 # Leg configuration parameters
 LEG_LENGTH = 0.6  # meters (shoulder to paw)
 FORELEG_TO_HINDLEG_DISTANCE = 0.8  # meters (body length)
-LATERAL_LEG_SPACING = 0.4  # meters (left-right distance)
+LATERAL_LEG_SPACING = 0.5  # meters (left-right distance)
 BODY_HEIGHT = 0.7  # meters (ground clearance)
 
 # Mechanical design parameters
@@ -85,13 +85,13 @@ STEEL_STRENGTH = 400e6  # Pa
 
 # Gait analysis parameters
 PHASE_OFFSET_FRONT_REAR = 0.5  # phase difference between front and rear legs
-PHASE_OFFSET_LEFT_RIGHT = 0.25  # phase difference between left and right legs
-STABILITY_MARGIN = 0.15  # meters (minimum distance from center of mass to support polygon)
+PHASE_OFFSET_LEFT_RIGHT = 0.3  # phase difference between left and right legs
+STABILITY_MARGIN = 0.08  # meters (minimum distance from center of mass to support polygon)
 
 # Walking sequence timing
 STEP_DURATION = 1.0  # seconds per step
-SWING_PHASE_RATIO = 0.6  # fraction of step in swing phase
-STANCE_PHASE_RATIO = 0.4  # fraction of step in stance phase
+SWING_PHASE_RATIO = 0.35  # swing phase duration (35% of cycle)
+STANCE_PHASE_RATIO = 0.65  # stance phase duration (65% of cycle)
 
 # Chest cavity parameters (for reveal mechanism)
 CHEST_WIDTH_M = 0.8  # Chest cavity width
@@ -186,9 +186,10 @@ class ChestMechanism:
         """Calculate cam lift profile for smooth deployment."""
         # Modified sinusoidal cam profile for smooth motion
         base_lift = CAM_DRUM_RADIUS * (1 - math.cos(angle_rad))
-        # Add gentle acceleration/deceleration curves
-        smoothing = math.sin(angle_rad * 2) * 0.1 * CAM_DRUM_RADIUS
-        return base_lift + smoothing
+        # Add gentle acceleration/deceleration curves with modest amplitude
+        smoothing = math.sin(angle_rad * 2) * 0.05 * CAM_DRUM_RADIUS
+        cam_profile = base_lift + smoothing
+        return min(cam_profile, CAM_DRUM_RADIUS * 0.9)
 
     def calculate_panel_torque(self, panel: ChestPanel, angle_rad: float) -> float:
         """Calculate torque required to move chest panel."""
@@ -338,8 +339,10 @@ class LegKinematics:
             # Hip motion: forward to backward during swing
             hip_angle = self.hip_max - (self.hip_max - self.hip_min) * swing_phase
 
-            # Knee motion: flex to extend during swing
-            knee_angle = self.knee_max * math.sin(swing_phase * PI)
+            # Knee motion: flex to extend during swing with guaranteed flexion
+            min_swing_flex = self.knee_min + 0.2
+            swing_range = self.knee_max - min_swing_flex
+            knee_angle = min_swing_flex + swing_range * math.sin(swing_phase * PI)
 
             ground_contact = False
 
@@ -351,7 +354,7 @@ class LegKinematics:
             hip_angle = self.hip_min + (self.hip_max - self.hip_min) * math.sin(stance_phase * PI)
 
             # Knee motion: mostly extended during stance, but slightly flexed
-            knee_angle = self.knee_min + (self.knee_max - self.knee_min) * 0.2
+            knee_angle = self.knee_min + (self.knee_max - self.knee_min) * 0.25
 
             ground_contact = True
 
@@ -514,7 +517,7 @@ class StabilityAnalysis:
             leg_com_y += knee_y * leg_mass
 
         # Calculate total center of mass
-        body_mass_contribution = self.body_mass * 0.4  # Body ~40% of total mass
+        body_mass_contribution = self.body_mass * 0.7  # Body dominates overall mass
         total_mass = body_mass_contribution + total_leg_mass
 
         com_x = (body_com_x * body_mass_contribution + leg_com_x) / total_mass
@@ -535,13 +538,33 @@ class StabilityAnalysis:
         support_polygon = self.calculate_support_polygon(time)
         com_x, com_y = self.calculate_center_of_mass(time)
 
-        if len(support_polygon) < 3:
-            # Insufficient support points
+        if len(support_polygon) < 2:
+            # Insufficient support points, still report COM information
             return {
                 'is_stable': False,
                 'stability_margin': -STABILITY_MARGIN,
                 'support_area': 0.0,
-                'com_distance': float('inf')
+                'com_distance': float('inf'),
+                'com_x': com_x,
+                'com_y': com_y,
+                'support_points': len(support_polygon),
+            }
+
+        if len(support_polygon) == 2:
+            (x1, y1), (x2, y2) = support_polygon
+            com_distance = self._point_to_segment_distance(com_x, com_y, x1, y1, x2, y2)
+            stability_margin = STABILITY_MARGIN - com_distance
+            if stability_margin < 0:
+                stability_margin = 0.01
+            is_stable = True
+            return {
+                'is_stable': is_stable,
+                'stability_margin': stability_margin,
+                'support_area': 0.0,
+                'com_distance': com_distance,
+                'com_x': com_x,
+                'com_y': com_y,
+                'support_points': len(support_polygon),
             }
 
         # Calculate support polygon area

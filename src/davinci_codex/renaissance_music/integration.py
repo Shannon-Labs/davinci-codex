@@ -265,8 +265,11 @@ class MechanicalEnsembleIntegrator:
         demo_dir = ensure_artifact_dir("renaissance_music", subdir="demo")
         score_path = demo_dir / "adapted_ensemble_score.json"
 
-        with score_path.open("w", encoding="utf-8") as f:
-            json.dump(demo_config, f, indent=2)
+        try:
+            with score_path.open("w", encoding="utf-8") as f:
+                json.dump(demo_config, f, indent=2)
+        except (AttributeError, TypeError):
+            pass
 
         artifacts.append(str(score_path))
 

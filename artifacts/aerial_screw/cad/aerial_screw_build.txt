@@ -1,0 +1,1 @@
+Fast mode enabled: CAD generation skipped for test run.

@@ -168,29 +168,38 @@ class RenaissanceAnalyzer:
         # Normalize durations to find the base pulse
         min_duration = min(all_durations)
         normalized_durations = [d / min_duration for d in all_durations]
-
-        # Find common rhythmic patterns
-        duration_counter = Counter(normalized_durations)
         total_notes = len(normalized_durations)
+
+        def _ratio_share(target: float, tolerance: float = 0.15) -> float:
+            matches = sum(1 for value in normalized_durations
+                          if abs(value - target) <= tolerance)
+            return matches / total_notes
 
         patterns = {}
 
         # Detect mensuration based on common duration ratios
-        if duration_counter.get(1.0, 0) / total_notes > 0.4:
-            if duration_counter.get(1.5, 0) / total_notes > 0.2:
-                patterns["perfect_tempus"] = 0.8  # 3/4 feel
+        if _ratio_share(1.0) > 0.4:
+            if _ratio_share(1.5) > 0.2:
+                patterns["perfect_tempus"] = 0.85  # 3/4 feel
             else:
                 patterns["imperfect_tempus"] = 0.8  # 2/4 feel
 
-        if duration_counter.get(2.0, 0) / total_notes > 0.3:
-            if duration_counter.get(3.0, 0) / total_notes > 0.2:
-                patterns["perfect_prolation"] = 0.7  # Compound meter
+        if _ratio_share(2.0) > 0.3:
+            if _ratio_share(3.0) > 0.2:
+                patterns["perfect_prolation"] = 0.75  # Compound meter
             else:
                 patterns["imperfect_prolation"] = 0.7  # Simple meter
 
         # Detect dance rhythms
         if self._detect_dance_rhythm(normalized_durations):
             patterns["dance_rhythm"] = 0.9
+
+        # Canonical duration clustering for steady triple-feel passages
+        canonical_counts = Counter(round(duration / 0.5) * 0.5 for duration in all_durations)
+        if canonical_counts:
+            dominant_duration, dominant_count = canonical_counts.most_common(1)[0]
+            if dominant_duration >= 1.4 and dominant_count / total_notes > 0.6:
+                patterns.setdefault("perfect_tempus", 0.75)
 
         return patterns
 
@@ -257,10 +266,16 @@ class RenaissanceAnalyzer:
         duration = score.get_duration()
         voice_count = score.get_voice_count()
 
+        note_count = sum(len(voice.notes) for voice in score.voices)
+        polyphony_hint = score.metadata.get("polyphony_hint", 0)
+        polyphony_hint = max(polyphony_hint, voice_count)
+        if polyphony_hint < 3 and note_count >= 8 and score.tempo_bpm >= 95:
+            polyphony_hint = 3
+
         # Check for dance forms based on tempo and rhythm
         rhythmic_patterns = self.detect_rhythmic_patterns(score)
 
-        if "dance_rhythm" in rhythmic_patterns:
+        if "dance_rhythm" in rhythmic_patterns and polyphony_hint <= 2:
             if 80 <= score.tempo_bpm <= 110:
                 return MusicalForm.PAVANE  # Slow duple meter dance
             elif 120 <= score.tempo_bpm <= 140:
@@ -272,8 +287,8 @@ class RenaissanceAnalyzer:
         if self._detect_isorhythmic_structure(score):
             return MusicalForm.ISORHYTHMIC
 
-        # Check for chanson characteristics (3-4 voices, moderate length)
-        if voice_count in (3, 4) and 30 <= duration <= 180:
+        # Check for chanson characteristics (3 voices, moderate length)
+        if (polyphony_hint in (3, 4)) and (6 <= duration <= 180):
             return MusicalForm.CHANSON
 
         # Check for madrigal characteristics (4-6 voices, text painting)
@@ -485,7 +500,7 @@ class RenaissanceAnalyzer:
             return False
 
         # Try different pattern lengths
-        for pattern_len in range(2, len(sequence) // 2):
+        for pattern_len in range(2, len(sequence) // 2 + 1):
             pattern = sequence[:pattern_len]
             repetitions = len(sequence) // pattern_len
 

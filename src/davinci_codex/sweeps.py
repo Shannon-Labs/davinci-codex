@@ -9,7 +9,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, Iterable, List
 
-from .cache import ensure_cached_result
+from .cache import alias_output_path, ensure_cached_result
 from .registry import InventionSpec
 
 _NUMERIC_TYPES = (int, float)
@@ -75,6 +75,11 @@ def _write_run_artifact(path: Path, result: Dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8") as handle:
         json.dump(result, handle, indent=2, sort_keys=True)
+    alias = alias_output_path(path)
+    if alias is not None:
+        alias.parent.mkdir(parents=True, exist_ok=True)
+        with alias.open("w", encoding="utf-8") as handle:
+            json.dump(result, handle, indent=2, sort_keys=True)
 
 
 def _write_csv(path: Path, rows: Iterable[Dict[str, Any]]) -> None:
@@ -87,6 +92,13 @@ def _write_csv(path: Path, rows: Iterable[Dict[str, Any]]) -> None:
         writer = csv.DictWriter(handle, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(rows)
+    alias = alias_output_path(path)
+    if alias is not None:
+        alias.parent.mkdir(parents=True, exist_ok=True)
+        with alias.open("w", newline="", encoding="utf-8") as handle:
+            writer = csv.DictWriter(handle, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(rows)
 
 
 def _aggregate_metrics(results: List[SweepResult]) -> Dict[str, Dict[str, float]]:
@@ -185,6 +197,11 @@ def run_parameter_sweep(
     summary_json.parent.mkdir(parents=True, exist_ok=True)
     with summary_json.open("w", encoding="utf-8") as handle:
         json.dump(summary, handle, indent=2, sort_keys=True)
+    alias_summary = alias_output_path(summary_json)
+    if alias_summary is not None:
+        alias_summary.parent.mkdir(parents=True, exist_ok=True)
+        with alias_summary.open("w", encoding="utf-8") as handle:
+            json.dump(summary, handle, indent=2, sort_keys=True)
 
     csv_rows: List[Dict[str, Any]] = []
     for result in run_results:

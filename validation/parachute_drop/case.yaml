@@ -1,3 +1,6 @@
+name: "Pyramid parachute drop validation"
+description: "Flight telemetry comparison for modernized pyramid parachute"
+validation_type: flight-test
 slug: parachute_drop
 display_name: "Pyramid parachute drop test"
 category: aerodynamics

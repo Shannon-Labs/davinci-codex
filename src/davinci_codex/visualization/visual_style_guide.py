@@ -30,14 +30,15 @@ Plot Standards:
 
 from __future__ import annotations
 
-import matplotlib.pyplot as plt
-import numpy as np
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple, Union
+from typing import Dict, List, Tuple, Union
 
-# Set matplotlib to use non-interactive backend
 import matplotlib
+import numpy as np
+
+# Set matplotlib to use non-interactive backend before importing pyplot
 matplotlib.use("Agg")
+import matplotlib.pyplot as plt
 
 # ============================================================================
 # RENAISSANCE COLOR PALETTE
@@ -311,13 +312,17 @@ def create_performance_chart(
     # Add annotations
     if annotations:
         for annotation in annotations:
-            ax.annotate(annotation['text'],
-                       xy=annotation['xy'],
-                       xytext=annotation.get('xytext', annotation['xy']),
-                       arrowprops=dict(arrowstyle='->',
-                                     color=RENAISSANCE_COLORS['text_secondary'],
-                                     alpha=0.7),
-                       fontsize=FONT_STYLES['annotation']['fontsize'])
+            ax.annotate(
+                annotation['text'],
+                xy=annotation['xy'],
+                xytext=annotation.get('xytext', annotation['xy']),
+                arrowprops={
+                    'arrowstyle': '->',
+                    'color': RENAISSANCE_COLORS['text_secondary'],
+                    'alpha': 0.7,
+                },
+                fontsize=FONT_STYLES['annotation']['fontsize'],
+            )
 
     # Styling
     ax.set_xlabel(x_label, **FONT_STYLES['label'])

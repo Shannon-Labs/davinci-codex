@@ -4,12 +4,12 @@ title: The da Vinci Codex
 nav_order: 1
 permalink: /
 hero:
-  title: "Leonardo's Genius, Reimagined with Modern Science"
-  subtitle: "Computational Archaeology of Renaissance Engineering"
+  title: "Computational Archaeology of Leonardo's Inventions"
+  subtitle: "Reconstructing Renaissance mechanisms with modern analysis"
   description: |
-    Journey through 500 years of mechanical evolution as we bring Leonardo da Vinci's visionary inventions to life using cutting-edge physics simulations, parametric CAD modeling, and modern safety analysis.
+    This project studies Leonardo da Vinci's mechanical designs using numerical simulation, parametric CAD modeling, and transparent safety analysis.
     
-    **Historical Authenticity** • **Scientific Rigor** • **Safety First** • **Open Source**
+    **Historical Sources** • **Simulation Evidence** • **Safety First** • **Open Source**
   background: images/leonardo-workshop-bg.jpg
   cta:
     - label: "Explore da Vinci's Workshop"
@@ -52,14 +52,14 @@ sections:
       caption: "Original sketches from Codex Atlanticus, Madrid Codices, and Codex Leicester"
 
   - id: invention-categories
-    title: "The Three Acts of Innovation"
-    subtitle: "Leonardo's inventions span three revolutionary domains"
+    title: "Invention families"
+    subtitle: "Leonardo's inventions across flight, motion, and music"
     layout: category-showcase
     categories:
       - id: flight-motion
         title: "Act I: Conquering the Skies"
         subtitle: "The Dream of Human Flight"
-        description: "Leonardo's obsession with flight birthed revolutionary concepts that wouldn't be realized for centuries."
+        description: "Leonardo's studies of flight explored concepts that would not be built at full scale for centuries."
         color: "#4A90E2"
         gradient: "linear-gradient(135deg, #4A90E2, #7B68EE)"
         inventions:
@@ -96,7 +96,7 @@ sections:
           - name: "Pyramid Parachute"
             status: "prototype_ready"
             achievement: "Safe 6.9 m/s landing"
-            description: "Revolutionary pyramid design with turbulence analysis"
+            description: "Pyramid parachute design evaluated with modern turbulence analysis"
             image: "images/parachute_descent.png"
             href: "parachute.html"
             stats:

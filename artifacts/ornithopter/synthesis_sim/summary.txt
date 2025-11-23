@@ -1,5 +1,7 @@
-Samples: 101
-Stroke range (deg): -7.8 -> 8.7
-Max lift (N): 1767.5
-Max torque (Nm): 566.7
-Control torque limit (Nm): 150.0
+Ornithopter Synthesis Simulation
+Duration [s]: 5.00
+Samples: 501
+Peak lift [N]: 129.87
+Peak control torque [Nm]: 204.92
+Energy used [Wh]: 0.73
+Estimated endurance [min]: 20743.78

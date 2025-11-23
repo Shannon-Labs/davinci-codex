@@ -102,11 +102,11 @@ This document provides comprehensive descriptions and educational context for al
 **Image**: `artifacts/viola_organista/sim/amplitude_timeline.png`
 - **Title**: Viola Organista Sustained Tone Analysis
 - **Description**: Amplitude envelope showing continuous bow operation and tone generation
-- **Revolutionary Innovation**:
+- **Key Insights**:
   - Continuous bow mechanism enables sustained notes
   - Keyboard control provides musical expression
   - Amplitude stability demonstrates mechanical precision
-  - Historic innovation in string instrument design
+  - Historically unusual approach to string instrument design
 
 ### Wind Instrument Systems
 
