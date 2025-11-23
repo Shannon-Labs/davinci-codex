@@ -161,6 +161,34 @@ make test
 
 ---
 
+## Invention registry (auto-generated)
+
+This table is regenerated from the Python registry; run `make regen-readme-table` after changes to any invention module.
+
+<!-- BEGIN INVENTION_REGISTRY -->
+| Slug | Title | Status | Summary |
+| --- | --- | --- | --- |
+| aerial_screw | Leonardo's Aerial Screw - Advanced Aerodynamic Analysis | validated | Comprehensive aerodynamic analysis of Leonardo's helical air screw using modern blade element momentum theory. |
+| armored_walker | The Armored Walker | simulation_prototype | A walking war machine combining the chassis of the Self-Propelled Cart with the leg mechanism of the Mechanical Lion. |
+| bobbin_winder | Automatic Bobbin Winder | prototype_ready | Cam-programmable traverse winding mechanism with tension control analysis. |
+| mechanical_carillon | Mechanical Carillon | concept_reconstruction | Rotating drum that indexes bell strikers for programmable chimes. |
+| mechanical_drum | Mechanical Drum | prototype_ready | Programmable percussion device with cam barrels for rhythm patterns. |
+| mechanical_ensemble | Leonardo Mechanical Ensemble | concept_reconstruction | Coordinated simulations for Leonardo''s automated musical inventions. |
+| mechanical_lion | Leonardo's Mechanical Lion - Complete Walking and Reveal Mechanism | validated | Reconstruction of Leonardo's cam-based walking mechanism with chest cavity reveal for the 1515 Mechanical Lion automaton. |
+| mechanical_odometer | Leonardo's Mechanical Odometer Cart | prototype_ready | Enhanced distance-measuring cart with realistic pebble-drop physics and comprehensive error analysis. |
+| mechanical_organ | Automatic Pipe Organ | concept_reconstruction | Self-playing pipe organ driven by pinned barrels and dual bellows. |
+| mechanical_trumpeter | Mechanical Trumpeter | concept_reconstruction | Automated trumpeter automaton with programmable fingering and bellows-driven breath. |
+| ornithopter | Bio-inspired Ornithopter Flight Lab | in_progress | Advanced flapping-wing flight with unsteady aerodynamics and bio-inspired mechanics. |
+| parachute | Pyramid Parachute | prototype_ready | Modern analysis of da Vinci's pyramid-shaped parachute with advanced aerodynamic modeling, stability assessment, and historical accuracy. |
+| programmable_flute | Programmable Flute | concept_reconstruction | Cam-driven recorder with automatic fingering and regulated airflow. |
+| programmable_loom | Leonardo's Programmable Loom - Textile Pattern Automation | in_progress | Automatic loom concept with cam-based pattern programming for repeatable textile motifs, reconstructed from Codex Atlanticus folios 1090r-1091v. |
+| revolving_bridge | Leonardo's Revolving Bridge - Advanced Engineering Implementation | in_progress | Leonardo da Vinci's innovative rotating bridge with water-filled counterweight system, featuring advanced mechanical analysis and educational visualization. |
+| self_propelled_cart | Self-Propelled Cart | prototype_ready | Spring-driven cart with multi-stage gear reduction and escapement control for autonomous theatrical motion. |
+| variable_pitch_mechanism | Variable Pitch Swashplate Mechanism | in_progress | Swashplate-based variable pitch control system for aerial screw blades |
+| viola_organista | Viola Organista | concept_reconstruction | Continuous wheel-bowed keyboard capable of polyphonic string performance. |
+<!-- END INVENTION_REGISTRY -->
+---
+
 ## Featured Inventions
 
 Visit our **[interactive gallery](https://shannon-labs.github.io/davinci-codex/gallery.html)** for detailed visualizations and technical specifications.

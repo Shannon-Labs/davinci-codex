@@ -17,11 +17,25 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Compute pip cache key
+        run: |
+          if [ -f requirements.lock ]; then
+            HASH=$(python - <<'PY'
+import hashlib, pathlib
+path = pathlib.Path("requirements.lock")
+print(hashlib.sha256(path.read_bytes()).hexdigest())
+PY
+)
+          else
+            HASH=${GITHUB_SHA::7}
+          fi
+          RUNNER_OS_LOWER=$(echo "${RUNNER_OS}" | tr '[:upper:]' '[:lower:]')
+          echo "CACHE_KEY=${RUNNER_OS_LOWER}-pip-${HASH}" >> "$GITHUB_ENV"
       - name: Cache dependencies
         uses: actions/cache@v4
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.lock') }}
+          key: ${{ env.CACHE_KEY }}
           restore-keys: |
             ${{ runner.os }}-pip-
       - name: Install dependencies (locked)
@@ -56,11 +70,26 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
 
+    - name: Compute pip cache key
+      run: |
+        if [ -f requirements.lock ]; then
+          HASH=$(python - <<'PY'
+import hashlib, pathlib
+path = pathlib.Path("requirements.lock")
+print(hashlib.sha256(path.read_bytes()).hexdigest())
+PY
+)
+        else
+          HASH=${GITHUB_SHA::7}
+        fi
+        RUNNER_OS_LOWER=$(echo "${RUNNER_OS}" | tr '[:upper:]' '[:lower:]')
+        echo "CACHE_KEY=${RUNNER_OS_LOWER}-pip-${HASH}" >> "$GITHUB_ENV"
+
     - name: Cache dependencies
       uses: actions/cache@v4
       with:
         path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.lock') }}
+        key: ${{ env.CACHE_KEY }}
         restore-keys: |
           ${{ runner.os }}-pip-
 
