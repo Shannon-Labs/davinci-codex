@@ -21,7 +21,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.lock') }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.lock') }}
           restore-keys: |
             ${{ runner.os }}-pip-
       - name: Install dependencies (locked)
@@ -60,7 +60,7 @@ jobs:
       uses: actions/cache@v4
       with:
         path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('requirements.lock') }}
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.lock') }}
         restore-keys: |
           ${{ runner.os }}-pip-
 
