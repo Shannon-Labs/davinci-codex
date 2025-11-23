@@ -105,6 +105,17 @@ jobs:
         run: |
           semgrep --config=auto --json --output=semgrep-report.json src/ || true
           semgrep --config=auto --sarif --output=semgrep-results.sarif src/ || true
+          if [ ! -f semgrep-report.json ]; then
+            echo '{}' > semgrep-report.json
+          fi
+          if [ ! -f semgrep-results.sarif ]; then
+            cat <<'EOF' > semgrep-results.sarif
+{
+  "version": "2.1.0",
+  "runs": []
+}
+EOF
+          fi
           
       - name: Upload Semgrep SARIF results
         if: always()
