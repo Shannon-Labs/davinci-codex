@@ -585,6 +585,8 @@ class MechanicalEnsembleIntegrator:
                 "frequency_hz": float(note.pitch),
                 "intensity": float(note.velocity),
                 "kind": kind,
+                "slug": instrument.value,
+                "duration_s": float(note.duration),
             }
             events.append(event)
 

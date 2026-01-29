@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leonardo's Mechanical Ensemble - Interactive Renaissance Court Music</title>
-    <meta name="description" content="Experience Leonardo da Vinci's mechanical musical instruments in an interactive Renaissance court setting">
+    <title>Leonardo's Renaissance Ensemble - Physics-Based Mechanical Orchestra</title>
+    <meta name="description" content="Experience Leonardo da Vinci's mechanical musical instruments with physics-based audio synthesis, AI composition, and immersive Renaissance court ambiance">
     <link rel="stylesheet" href="styles/renaissance-ensemble.css">
     <link rel="stylesheet" href="styles/instruments.css">
     <link rel="stylesheet" href="styles/notation.css">
@@ -12,17 +12,342 @@
     <link rel="stylesheet" href="styles/responsive.css">
     <link rel="stylesheet" href="../leonardo_design_system.css">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* Enhanced Audio Player Styles */
+        .audio-showcase {
+            background: linear-gradient(135deg, rgba(44, 24, 16, 0.95), rgba(139, 69, 19, 0.9));
+            border: 3px solid var(--leonardo-gold);
+            border-radius: var(--space-golden-lg);
+            padding: var(--space-golden-xl);
+            margin: var(--space-golden-xl) 0;
+            box-shadow: var(--glow-leonardo-strong);
+        }
+
+        .audio-showcase-header {
+            text-align: center;
+            margin-bottom: var(--space-golden-lg);
+        }
+
+        .audio-showcase-title {
+            font-family: var(--font-leonardo-display);
+            font-size: 2em;
+            color: var(--leonardo-gold);
+            margin-bottom: var(--space-golden-sm);
+        }
+
+        .audio-showcase-subtitle {
+            color: var(--leonardo-parchment);
+            font-style: italic;
+        }
+
+        .audio-player-container {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: var(--space-golden-md);
+            padding: var(--space-golden-lg);
+            margin-bottom: var(--space-golden-lg);
+        }
+
+        .audio-player {
+            width: 100%;
+            height: 50px;
+            border-radius: var(--space-golden-sm);
+        }
+
+        .audio-player::-webkit-media-controls-panel {
+            background: linear-gradient(135deg, var(--leonardo-umber), var(--leonardo-umber-light));
+        }
+
+        .track-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: var(--space-golden-md);
+            padding: var(--space-golden-sm) var(--space-golden-md);
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: var(--space-golden-sm);
+        }
+
+        .track-title {
+            font-family: var(--font-leonardo-display);
+            color: var(--leonardo-gold);
+            font-size: 1.1em;
+        }
+
+        .track-meta {
+            color: var(--leonardo-parchment);
+            font-size: 0.9em;
+        }
+
+        /* Visualization Gallery */
+        .viz-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-golden-lg);
+            margin-top: var(--space-golden-lg);
+        }
+
+        .viz-card {
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid var(--leonardo-gold);
+            border-radius: var(--space-golden-md);
+            overflow: hidden;
+            transition: all var(--anim-leonardo-medium);
+        }
+
+        .viz-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--glow-leonardo-strong);
+        }
+
+        .viz-card-header {
+            background: linear-gradient(135deg, var(--leonardo-crimson), var(--leonardo-crimson-light));
+            color: var(--leonardo-parchment);
+            padding: var(--space-golden-sm) var(--space-golden-md);
+            font-family: var(--font-leonardo-display);
+            text-align: center;
+        }
+
+        .viz-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .viz-card-body {
+            padding: var(--space-golden-md);
+        }
+
+        .viz-card-title {
+            font-family: var(--font-leonardo-display);
+            color: var(--leonardo-crimson);
+            margin-bottom: var(--space-golden-sm);
+        }
+
+        .viz-card-desc {
+            color: var(--leonardo-umber);
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+
+        /* Timbre Showcase */
+        .timbre-showcase {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(139, 0, 0, 0.05));
+            border: 2px solid var(--leonardo-gold);
+            border-radius: var(--space-golden-lg);
+            padding: var(--space-golden-xl);
+            margin: var(--space-golden-xl) 0;
+        }
+
+        .timbre-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-golden-md);
+            margin-top: var(--space-golden-lg);
+        }
+
+        .timbre-card {
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid var(--leonardo-umber-light);
+            border-radius: var(--space-golden-md);
+            padding: var(--space-golden-md);
+            transition: all var(--anim-leonardo-medium);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timbre-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--leonardo-gold), var(--leonardo-crimson));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform var(--anim-leonardo-medium);
+        }
+
+        .timbre-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .timbre-card:hover {
+            border-color: var(--leonardo-gold);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-leonardo-elevated);
+        }
+
+        .timbre-icon {
+            font-size: 2.5em;
+            margin-bottom: var(--space-golden-sm);
+        }
+
+        .timbre-name {
+            font-family: var(--font-leonardo-display);
+            color: var(--leonardo-crimson);
+            font-size: 1.2em;
+            margin-bottom: var(--space-golden-xs);
+        }
+
+        .timbre-type {
+            color: var(--leonardo-umber);
+            font-size: 0.85em;
+            font-style: italic;
+            margin-bottom: var(--space-golden-sm);
+        }
+
+        .timbre-specs {
+            font-size: 0.8em;
+            color: var(--leonardo-umber);
+            line-height: 1.6;
+        }
+
+        .timbre-specs code {
+            background: rgba(139, 69, 19, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* CLI Demo Section */
+        .cli-demo {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            border: 2px solid var(--leonardo-gold);
+            border-radius: var(--space-golden-lg);
+            padding: var(--space-golden-xl);
+            margin: var(--space-golden-xl) 0;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+        }
+
+        .cli-header {
+            color: var(--leonardo-gold);
+            font-size: 1.2em;
+            margin-bottom: var(--space-golden-md);
+            border-bottom: 1px solid var(--leonardo-gold);
+            padding-bottom: var(--space-golden-sm);
+        }
+
+        .cli-command {
+            background: rgba(0, 0, 0, 0.5);
+            padding: var(--space-golden-md);
+            border-radius: var(--space-golden-sm);
+            margin: var(--space-golden-sm) 0;
+            overflow-x: auto;
+        }
+
+        .cli-command .prompt {
+            color: #ff6b6b;
+        }
+
+        .cli-command .cmd {
+            color: #4ecdc4;
+        }
+
+        .cli-output {
+            color: #a8e6cf;
+            margin-top: var(--space-golden-sm);
+            padding-left: var(--space-golden-md);
+            font-size: 0.9em;
+        }
+
+        /* Feature Highlights */
+        .feature-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-golden-md);
+            margin: var(--space-golden-xl) 0;
+        }
+
+        .feature-highlight {
+            text-align: center;
+            padding: var(--space-golden-lg);
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid var(--leonardo-umber-light);
+            border-radius: var(--space-golden-md);
+            transition: all var(--anim-leonardo-medium);
+        }
+
+        .feature-highlight:hover {
+            border-color: var(--leonardo-gold);
+            transform: translateY(-5px);
+            box-shadow: var(--glow-leonardo-strong);
+        }
+
+        .feature-highlight-icon {
+            font-size: 2.5em;
+            margin-bottom: var(--space-golden-sm);
+        }
+
+        .feature-highlight-title {
+            font-family: var(--font-leonardo-display);
+            color: var(--leonardo-crimson);
+            margin-bottom: var(--space-golden-xs);
+        }
+
+        .feature-highlight-desc {
+            font-size: 0.85em;
+            color: var(--leonardo-umber);
+        }
+
+        /* Back to Gallery Button */
+        .back-to-gallery {
+            position: fixed;
+            top: var(--space-golden-md);
+            left: var(--space-golden-md);
+            z-index: 1000;
+            background: linear-gradient(45deg, var(--leonardo-crimson), var(--leonardo-crimson-light));
+            color: var(--leonardo-parchment);
+            padding: var(--space-golden-sm) var(--space-golden-md);
+            border-radius: var(--space-golden-sm);
+            text-decoration: none;
+            font-family: var(--font-leonardo-display);
+            font-size: 0.9em;
+            box-shadow: var(--shadow-leonardo-manuscript);
+            transition: all var(--anim-leonardo-fast);
+        }
+
+        .back-to-gallery:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-leonardo-elevated);
+            background: linear-gradient(45deg, var(--leonardo-gold-dark), var(--leonardo-gold));
+            color: var(--leonardo-ink);
+        }
+
+        /* Badge */
+        .new-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-left: var(--space-golden-sm);
+            animation: badgePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+    </style>
 </head>
 <body>
+    <a href="../gallery.html" class="back-to-gallery">← Back to Gallery</a>
+
     <div id="app" class="renaissance-court">
         <!-- Header with Renaissance styling -->
         <header class="court-header">
             <div class="header-decoration">
                 <div class="fleur-de-lis"></div>
-                <h1 class="page-title leonardo-display">Leonardo's Mechanical Ensemble</h1>
+                <h1 class="page-title leonardo-display">Leonardo's Renaissance Ensemble <span class="new-badge">New</span></h1>
                 <div class="fleur-de-lis"></div>
             </div>
-            <p class="subtitle leonardo-body">An Interactive Journey Through Renaissance Musical Innovation</p>
+            <p class="subtitle leonardo-body">Physics-Based Audio Synthesis • AI Renaissance Composition • Interactive Court Experience</p>
             
             <!-- Leonardo's Voice - Hidden wisdom revealed on hover -->
             <div class="leonardo-voice-panel">
@@ -37,8 +362,194 @@
             </div>
         </header>
 
+        <!-- Feature Highlights -->
+        <section class="feature-highlights" style="max-width: 1400px; margin: 0 auto; padding: var(--space-golden-xl);">
+            <div class="feature-highlight">
+                <div class="feature-highlight-icon">🎼</div>
+                <div class="feature-highlight-title">AI Composition</div>
+                <div class="feature-highlight-desc">Generate authentic Renaissance music in period church modes</div>
+            </div>
+            <div class="feature-highlight">
+                <div class="feature-highlight-icon">🔬</div>
+                <div class="feature-highlight-title">Physics Timbres</div>
+                <div class="feature-highlight-desc">6 instruments with authentic harmonic profiles & ADSR envelopes</div>
+            </div>
+            <div class="feature-highlight">
+                <div class="feature-highlight-icon">🏛️</div>
+                <div class="feature-highlight-title">Hall Reverb</div>
+                <div class="feature-highlight-desc">Schroeder reverb simulation for immersive court acoustics</div>
+            </div>
+            <div class="feature-highlight">
+                <div class="feature-highlight-icon">📊</div>
+                <div class="feature-highlight-title">Visualizations</div>
+                <div class="feature-highlight-desc">Real-time waveform, spectrogram & score roll renders</div>
+            </div>
+        </section>
+
+        <!-- Audio Showcase -->
+        <section class="audio-showcase" style="max-width: 1400px; margin: 0 auto;">
+            <div class="audio-showcase-header">
+                <h2 class="audio-showcase-title">🎵 Demo: Pavane in Dorian Mode</h2>
+                <p class="audio-showcase-subtitle">AI-generated Renaissance composition performed by 6 physics-based mechanical instruments</p>
+            </div>
+            
+            <div class="audio-player-container">
+                <audio class="audio-player" controls>
+                    <source src="assets/demo_pavane.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                </audio>
+                <div class="track-info">
+                    <span class="track-title">"Pavane for Mechanical Ensemble"</span>
+                    <span class="track-meta">16 measures • 72 BPM • Dorian mode • Seed 42</span>
+                </div>
+            </div>
+
+            <div class="viz-gallery">
+                <div class="viz-card">
+                    <div class="viz-card-header">Waveform Visualization</div>
+                    <img src="assets/waveform.png" alt="Audio waveform showing 54 seconds of ensemble performance">
+                    <div class="viz-card-body">
+                        <h4 class="viz-card-title">Amplitude Analysis</h4>
+                        <p class="viz-card-desc">Full 54-second stereo waveform showing the dynamic range of all 6 instruments playing in harmony. Generated at CD-quality 44.1kHz.</p>
+                    </div>
+                </div>
+                <div class="viz-card">
+                    <div class="viz-card-header">Spectrogram</div>
+                    <img src="assets/spectrogram.png" alt="Frequency spectrogram of the mechanical ensemble">
+                    <div class="viz-card-body">
+                        <h4 class="viz-card-title">Frequency Distribution</h4>
+                        <p class="viz-card-desc">Time-frequency analysis revealing the harmonic content across all instruments. Note the rich overtones from the carillon and organ.</p>
+                    </div>
+                </div>
+                <div class="viz-card">
+                    <div class="viz-card-header">Score Roll</div>
+                    <img src="assets/score_roll.png" alt="Piano-roll visualization of the ensemble score">
+                    <div class="viz-card-body">
+                        <h4 class="viz-card-title">Instrument Parts</h4>
+                        <p class="viz-card-desc">Color-coded piano-roll showing each instrument's contribution. Carillon (gold), Organ (purple), Trumpeter (red), Flute (green), Viola (brown).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timbre Showcase -->
+        <section class="timbre-showcase" style="max-width: 1400px; margin: var(--space-golden-xl) auto;">
+            <h2 style="text-align: center; font-family: var(--font-leonardo-display); color: var(--leonardo-crimson); margin-bottom: var(--space-golden-sm);">
+                🎹 Physics-Based Instrument Timbres
+            </h2>
+            <p style="text-align: center; color: var(--leonardo-umber); max-width: 800px; margin: 0 auto;">
+                Each instrument is synthesized from physical principles, not samples. Authentic harmonic profiles, ADSR envelopes, and mechanical noise characteristics.
+            </p>
+
+            <div class="timbre-grid">
+                <div class="timbre-card">
+                    <div class="timbre-icon">🎻</div>
+                    <div class="timbre-name">Viola Organista</div>
+                    <div class="timbre-type">Bowed String Keyboard</div>
+                    <div class="timbre-specs">
+                        <strong>Harmonics:</strong> <code>[1, 2, 3, 4, 5, 6, 7, 8]</code><br>
+                        <strong>Weights:</strong> <code>[1.0, 0.3, 0.7, 0.15, 0.5, 0.1, 0.35, 0.08]</code><br>
+                        <strong>ADSR:</strong> Attack 80ms, Decay 60ms, Sustain 75%, Release 150ms<br>
+                        <strong>Effects:</strong> 5Hz vibrato (12 cents), 3% pink noise
+                    </div>
+                </div>
+
+                <div class="timbre-card">
+                    <div class="timbre-icon">🎹</div>
+                    <div class="timbre-name">Mechanical Organ</div>
+                    <div class="timbre-type">Pipe Organ</div>
+                    <div class="timbre-specs">
+                        <strong>Harmonics:</strong> <code>[1, 2, 3, 4, 5, 6, 7, 8]</code><br>
+                        <strong>Weights:</strong> <code>1/n series [1, 0.5, 0.33, 0.25...]</code><br>
+                        <strong>ADSR:</strong> Attack 50ms, Decay 30ms, Sustain 95%, Release 80ms<br>
+                        <strong>Effects:</strong> 2% breath noise, steady pipe character
+                    </div>
+                </div>
+
+                <div class="timbre-card">
+                    <div class="timbre-icon">🎵</div>
+                    <div class="timbre-name">Programmable Flute</div>
+                    <div class="timbre-type">Recorder / Flauto</div>
+                    <div class="timbre-specs">
+                        <strong>Harmonics:</strong> <code>[1, 2, 3, 4, 5]</code><br>
+                        <strong>Weights:</strong> <code>[1.0, 0.35, 0.15, 0.08, 0.03]</code><br>
+                        <strong>ADSR:</strong> Attack 40ms, Decay 50ms, Sustain 70%, Release 120ms<br>
+                        <strong>Effects:</strong> 4.5Hz vibrato (8 cents), 8% breath noise
+                    </div>
+                </div>
+
+                <div class="timbre-card">
+                    <div class="timbre-icon">🔔</div>
+                    <div class="timbre-name">Mechanical Carillon</div>
+                    <div class="timbre-type">Bell System</div>
+                    <div class="timbre-specs">
+                        <strong>Harmonics:</strong> <code>[1, 2.4, 3.9, 5.4, 6.7, 8.2]</code><br>
+                        <strong>Weights:</strong> <code>[1.0, 0.6, 0.4, 0.25, 0.15, 0.08]</code><br>
+                        <strong>ADSR:</strong> Attack 1ms, Decay 300ms, Sustain 15%, Release 1.5s<br>
+                        <strong>Effects:</strong> Inharmonic bell partials, long release
+                    </div>
+                </div>
+
+                <div class="timbre-card">
+                    <div class="timbre-icon">🎺</div>
+                    <div class="timbre-name">Mechanical Trumpeter</div>
+                    <div class="timbre-type">Brass Automaton</div>
+                    <div class="timbre-specs">
+                        <strong>Harmonics:</strong> <code>[1, 2, 3, 4, 5, 6, 7, 8]</code><br>
+                        <strong>Weights:</strong> <code>[1.0, 0.8, 0.6, 0.55, 0.5, 0.4, 0.3, 0.2]</code><br>
+                        <strong>ADSR:</strong> Attack 30ms, Decay 40ms, Sustain 85%, Release 100ms<br>
+                        <strong>Effects:</strong> 5.5Hz vibrato (15 cents), 4% breath noise
+                    </div>
+                </div>
+
+                <div class="timbre-card">
+                    <div class="timbre-icon">🥁</div>
+                    <div class="timbre-name">Mechanical Drum</div>
+                    <div class="timbre-type">Percussion</div>
+                    <div class="timbre-specs">
+                        <strong>Harmonics:</strong> <code>Bessel zeros [1, 1.59, 2.14, 2.30, 2.65, 2.92]</code><br>
+                        <strong>Weights:</strong> <code>[1.0, 0.7, 0.5, 0.35, 0.2, 0.1]</code><br>
+                        <strong>ADSR:</strong> Attack 2ms, Decay 150ms, Sustain 0%, Release 200ms<br>
+                        <strong>Effects:</strong> 60% white noise burst, drumhead modes
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CLI Demo -->
+        <section class="cli-demo" style="max-width: 1400px; margin: var(--space-golden-xl) auto;">
+            <div class="cli-header">💻 Command-Line Interface</div>
+            <p style="color: #a8e6cf; margin-bottom: var(--space-golden-md);">
+                Generate your own Renaissance concerts with the davinci-codex CLI:
+            </p>
+            <div class="cli-command">
+                <span class="prompt">$</span> <span class="cmd">davinci-codex concert --form pavane --mode dorian --measures 16 --seed 42 --reverb 0.2</span>
+                <div class="cli-output">
+# Concert: pavane in dorian mode, 16 measures @ 80.0 BPM<br>
+{<br>
+&nbsp;&nbsp;"artifacts": [<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"artifacts/mechanical_concert/demo/concert_score.json",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"artifacts/mechanical_concert/demo/concert_audio.wav",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"artifacts/mechanical_concert/demo/waveform.png",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"artifacts/mechanical_concert/demo/spectrogram.png",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"artifacts/mechanical_concert/demo/score_roll.png"<br>
+&nbsp;&nbsp;],<br>
+&nbsp;&nbsp;"instruments": [<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"viola_organista", "mechanical_organ", "programmable_flute",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"mechanical_carillon", "mechanical_trumpeter", "mechanical_drum"<br>
+&nbsp;&nbsp;],<br>
+&nbsp;&nbsp;"total_events": 7680<br>
+}
+                </div>
+            </div>
+            <div style="margin-top: var(--space-golden-md); color: #ffd93d;">
+                <strong>Available Forms:</strong> pavane, galliard, basse_danse, saltarello, allemande<br>
+                <strong>Available Modes:</strong> dorian, mixolydian, phrygian, lydian, ionian, aeolian
+            </div>
+        </section>
+
         <!-- Main visualization area -->
-        <main class="court-main">
+        <main class="court-main" style="max-width: 1400px; margin: 0 auto;">
             <!-- Court setting background -->
             <section class="court-scene" aria-label="Renaissance court setting with mechanical instruments">
                 <div class="court-floor"></div>
@@ -271,7 +782,7 @@
                 <div class="info-tabs">
                     <button class="tab-btn active" data-tab="history" aria-selected="true">Historical Context</button>
                     <button class="tab-btn" data-tab="mechanics" aria-selected="false">Mechanical Design</button>
-                    <button class="tab-btn" data-tab="adaptation" aria-selected="false">Modern Adaptation</button>
+                    <button class="tab-btn" data-tab="synthesis" aria-selected="false">Audio Synthesis</button>
                     <button class="tab-btn" data-tab="leonardo" aria-selected="false">About Leonardo</button>
                 </div>
 
@@ -280,6 +791,7 @@
                         <h3>Renaissance Court Entertainment</h3>
                         <p>Leonardo's mechanical instruments were designed for the sophisticated courts of Renaissance Italy, where musical innovation was a sign of cultural refinement and technical mastery.</p>
                         <p>These automata represented the perfect fusion of art and engineering, capable of performing complex musical compositions without human musicians - a marvel that would have astonished contemporary audiences.</p>
+                        <p>The <strong>Pavane</strong> you hear in the demo was a slow processional dance popular in European courts during the 16th century, while the <strong>Dorian mode</strong> was one of the church modes favored for its solemn, contemplative character.</p>
                     </div>
 
                     <div class="tab-panel" id="mechanics-panel">
@@ -293,16 +805,23 @@
                         </ul>
                     </div>
 
-                    <div class="tab-panel" id="adaptation-panel">
-                        <h3>From Renaissance to Modern</h3>
-                        <p>This visualization demonstrates how Leonardo's original concepts have been adapted using modern computational methods while preserving the essential mechanical principles.</p>
-                        <p>The AI composition system generates music that respects both the technical constraints of the original mechanisms and the musical aesthetics of the Renaissance period.</p>
+                    <div class="tab-panel" id="synthesis-panel">
+                        <h3>Physics-Based Audio Synthesis</h3>
+                        <p>Unlike modern digital instruments that use recorded samples, our Renaissance Ensemble generates sound from first principles:</p>
+                        <ul>
+                            <li><strong>Additive Synthesis:</strong> Each note is built from harmonic partials with instrument-specific weights</li>
+                            <li><strong>ADSR Envelopes:</strong> Attack, Decay, Sustain, Release curves match mechanical response times</li>
+                            <li><strong>Noise Modeling:</strong> Mechanical noise (breath, bow friction, drum impact) adds authenticity</li>
+                            <li><strong>Schroeder Reverb:</strong> 4 comb filters + 2 allpass filters simulate Renaissance hall acoustics</li>
+                            <li><strong>Vibrato:</strong> Pitch modulation at 4-6Hz mimics human performance characteristics</li>
+                        </ul>
                     </div>
 
                     <div class="tab-panel" id="leonardo-panel">
                         <h3>Leonardo da Vinci (1452-1519)</h3>
                         <p>Leonardo's musical inventions represent some of his most sophisticated mechanical designs, combining his deep understanding of acoustics with his innovative approach to automation.</p>
                         <p>Working in the courts of Milan and Florence, Leonardo designed these instruments as both practical entertainment and demonstrations of engineering prowess.</p>
+                        <p>His famous quote <em>"Music is the arithmetic of sounds as optics is the geometry of light"</em> reflects his belief that music, like all natural phenomena, could be understood through mathematical principles.</p>
                     </div>
                 </div>
             </section>
@@ -311,8 +830,11 @@
         <!-- Footer -->
         <footer class="court-footer">
             <div class="footer-content">
-                <p>© 2024 Leonardo's Mechanical Ensemble - Interactive Visualization</p>
-                <p>Built with modern web technologies to bring Renaissance innovation to life</p>
+                <p>© 2024 Leonardo's Renaissance Ensemble - Physics-Based Audio Synthesis</p>
+                <p>Built with computational archaeology and Renaissance spirit</p>
+                <p style="margin-top: var(--space-golden-md);">
+                    <a href="../gallery.html" style="color: var(--leonardo-gold);">← Back to Gallery</a>
+                </p>
             </div>
         </footer>
     </div>
@@ -344,14 +866,128 @@
     <script src="js/instrument-base.js"></script>
     <script src="js/carillon.js"></script>
     <script src="js/drum.js"></script>
-    <script src="js/organ.js"></script>
-    <script src="js/trumpeter.js"></script>
-    <script src="js/flute.js"></script>
-    <script src="js/viola-organista.js"></script>
-    <script src="js/notation-renderer.js"></script>
-    <script src="js/music-engine.js"></script>
-    <script src="js/ensemble-controller.js"></script>
-    <script src="js/ui-controller.js"></script>
+    <script>
+        // Placeholder organ, trumpeter, flute, and viola scripts since they don't exist yet
+        // These will use the base instrument class
+        class Organ extends Instrument {
+            constructor(canvas) {
+                super(canvas, 'organ');
+                this.colors = { primary: '#4B0082', secondary: '#8B4513' };
+            }
+            draw(ctx) {
+                ctx.fillStyle = this.colors.primary;
+                ctx.fillRect(50, 50, 250, 350);
+                ctx.fillStyle = this.colors.secondary;
+                for(let i=0; i<10; i++) {
+                    ctx.fillRect(70 + i*23, 80, 15, 280);
+                }
+            }
+        }
+        
+        class Trumpeter extends Instrument {
+            constructor(canvas) {
+                super(canvas, 'trumpeter');
+                this.colors = { primary: '#B22222', secondary: '#FFD700' };
+            }
+            draw(ctx) {
+                ctx.fillStyle = this.colors.primary;
+                ctx.beginPath();
+                ctx.arc(140, 200, 60, 0, Math.PI*2);
+                ctx.fill();
+                ctx.fillStyle = this.colors.secondary;
+                ctx.fillRect(180, 180, 100, 40);
+            }
+        }
+        
+        class Flute extends Instrument {
+            constructor(canvas) {
+                super(canvas, 'flute');
+                this.colors = { primary: '#006400', secondary: '#8FBC8F' };
+            }
+            draw(ctx) {
+                ctx.fillStyle = this.colors.primary;
+                ctx.fillRect(30, 150, 200, 40);
+                ctx.fillStyle = this.colors.secondary;
+                for(let i=0; i<6; i++) {
+                    ctx.beginPath();
+                    ctx.arc(60 + i*30, 170, 8, 0, Math.PI*2);
+                    ctx.fill();
+                }
+            }
+        }
+        
+        class ViolaOrganista extends Instrument {
+            constructor(canvas) {
+                super(canvas, 'viola');
+                this.colors = { primary: '#8B4513', secondary: '#DEB887' };
+            }
+            draw(ctx) {
+                ctx.fillStyle = this.colors.primary;
+                ctx.fillRect(40, 100, 240, 250);
+                ctx.fillStyle = this.colors.secondary;
+                for(let i=0; i<20; i++) {
+                    ctx.fillRect(60, 120 + i*11, 200, 5);
+                }
+            }
+        }
+    </script>
     <script src="js/app.js"></script>
+    <script>
+        // Enhanced initialization for the new page features
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab switching for educational panels
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Update active tab button
+                    document.querySelectorAll('.tab-btn').forEach(b => {
+                        b.classList.remove('active');
+                        b.setAttribute('aria-selected', 'false');
+                    });
+                    this.classList.add('active');
+                    this.setAttribute('aria-selected', 'true');
+                    
+                    // Show corresponding panel
+                    document.querySelectorAll('.tab-panel').forEach(panel => {
+                        panel.classList.remove('active');
+                    });
+                    document.getElementById(tabId + '-panel').classList.add('active');
+                });
+            });
+            
+            // Simulate loading progress
+            const progressFill = document.getElementById('loading-progress-fill');
+            const progressText = document.getElementById('loading-progress-text');
+            const messages = [
+                'Tuning the instruments...',
+                'Calibrating harmonic series...',
+                'Warming up the bellows...',
+                'Rosining the bow wheels...',
+                'Aligning the pin cylinders...',
+                'The court awaits...'
+            ];
+            
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress > 100) progress = 100;
+                progressFill.style.width = progress + '%';
+                
+                const msgIndex = Math.floor((progress / 100) * messages.length);
+                progressText.textContent = messages[Math.min(msgIndex, messages.length - 1)];
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        document.getElementById('loading-overlay').style.opacity = '0';
+                        setTimeout(() => {
+                            document.getElementById('loading-overlay').style.display = 'none';
+                        }, 500);
+                    }, 500);
+                }
+            }, 300);
+        });
+    </script>
 </body>
 </html>

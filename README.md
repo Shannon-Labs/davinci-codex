@@ -13,7 +13,7 @@
 
 ### **Computational Archaeology of Renaissance Mechanical Engineering**
 
-**[🌐 Live Website](https://shannon-labs.github.io/davinci-codex/) • [🎨 Interactive Gallery](https://shannon-labs.github.io/davinci-codex/gallery.html) • [📖 Documentation](https://shannon-labs.github.io/davinci-codex/book/) • [🤝 Contributing](CONTRIBUTING.md)**
+**[🌐 Live Website](https://shannon-labs.github.io/davinci-codex/) • [🎨 Interactive Gallery](https://shannon-labs.github.io/davinci-codex/gallery.html) • [🎵 Renaissance Ensemble](https://shannon-labs.github.io/davinci-codex/renaissance_ensemble/) • [📖 Documentation](https://shannon-labs.github.io/davinci-codex/book/) • [🤝 Contributing](CONTRIBUTING.md)**
 
 </div>
 
@@ -161,6 +161,29 @@ make test
 
 ---
 
+## 📓 Interactive Notebooks
+
+Explore the physics of Leonardo's inventions with our interactive Colab notebooks. These educational resources combine historical context, mathematical derivation, and real-time simulation.
+
+| Notebook | Focus | Colab Link |
+|----------|-------|------------|
+| **Aerial Screw** | Aerodynamics & BEMT | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Shannon-Labs/davinci-codex/blob/main/notebooks/aerial_screw.ipynb) |
+| **Parachute** | Drag & Dynamics | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Shannon-Labs/davinci-codex/blob/main/notebooks/parachute.ipynb) |
+| **Ornithopter** | Unsteady Aerodynamics | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Shannon-Labs/davinci-codex/blob/main/notebooks/ornithopter.ipynb) |
+| **Variable Pitch** | Swashplate Mechanics | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Shannon-Labs/davinci-codex/blob/main/notebooks/variable_pitch_mechanism.ipynb) |
+| **Self-Propelled Cart** | Spring Drive & Escapement | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Shannon-Labs/davinci-codex/blob/main/notebooks/self_propelled_cart.ipynb) |
+| **Odometer** | Measurement & Error | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Shannon-Labs/davinci-codex/blob/main/notebooks/mechanical_odometer.ipynb) |
+| **Revolving Bridge** | Statics & Balance | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Shannon-Labs/davinci-codex/blob/main/notebooks/revolving_bridge.ipynb) |
+| **Mechanical Lion** | Cam Programming | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Shannon-Labs/davinci-codex/blob/main/notebooks/mechanical_lion.ipynb) |
+| **Armored Walker** | Power & Friction | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Shannon-Labs/davinci-codex/blob/main/notebooks/armored_walker.ipynb) |
+| **Bobbin Winder** | Cam Profiles | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Shannon-Labs/davinci-codex/blob/main/notebooks/bobbin_winder.ipynb) |
+| **Programmable Loom** | Binary Logic | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Shannon-Labs/davinci-codex/blob/main/notebooks/programmable_loom.ipynb) |
+| **Mechanical Drum** | Rhythm Sequencing | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Shannon-Labs/davinci-codex/blob/main/notebooks/mechanical_drum.ipynb) |
+| **Mechanical Ensemble** | Orchestration | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Shannon-Labs/davinci-codex/blob/main/notebooks/mechanical_ensemble.ipynb) |
+| **Quickstart** | CLI & Basic Usage | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Shannon-Labs/davinci-codex/blob/main/notebooks/Quickstart.ipynb) |
+
+---
+
 ## Invention registry (auto-generated)
 
 This table is regenerated from the Python registry; run `make regen-readme-table` after changes to any invention module.
@@ -219,12 +242,29 @@ Visit our **[interactive gallery](https://shannon-labs.github.io/davinci-codex/g
 | **Programmable Loom** | 🔧 In Progress | First programmable computer, 16-thread patterns |
 | **Armored Walker** | 🛡️ Prototype | Quadruped gait, 200kg payload, dynamic balance |
 
-### 🎵 Musical Instruments
+### 🎵 Musical Instruments & Renaissance Ensemble
 
-| Invention | Status | Key Achievement |
-|-----------|--------|-----------------|
-| **Mechanical Orchestra** | ✅ Complete | 7 automated instruments, synchronized performance |
-| **Viola Organista** | ✅ Complete | Continuous bow innovation, keyboard control |
+> *"Music is the shaping of the invisible."* — Leonardo da Vinci
+
+Our **Renaissance Ensemble** features 6 physics-based instrument timbres, each modeled with authentic harmonic profiles:
+
+| Instrument | Timbre Profile | Key Characteristics |
+|------------|----------------|---------------------|
+| **🎻 Viola Organista** | Bowed Strings | Warm tone, strong odd harmonics, 5Hz vibrato, pink noise |
+| **🎹 Mechanical Organ** | Pipe Organ | 1/n harmonic series, breath noise, high sustain |
+| **🎵 Programmable Flute** | Recorder | Fundamental-dominant, 8% breath noise, 4.5Hz vibrato |
+| **🔔 Mechanical Carillon** | Bell System | Inharmonic partials (1, 2.4, 3.9...), long release |
+| **🎺 Mechanical Trumpeter** | Brass | Bright harmonics, breath noise, 5.5Hz vibrato |
+| **🥁 Mechanical Drum** | Percussion | Bessel drumhead modes, 60% noise burst, no sustain |
+
+**✨ Ensemble Capabilities:**
+- **AI Composition**: Generate period-authentic music in Dorian, Mixolydian, and other church modes
+- **Audio Synthesis**: Physics-based sound generation (not samples!) with 44.1kHz output
+- **Hall Reverb**: Schroeder reverb (4 comb + 2 allpass filters) for court acoustics
+- **Visualizations**: Waveform, spectrogram, and piano-roll score renders
+- **CLI Integration**: `davinci-codex concert` command for full pipeline
+
+**[🎵 Experience the Interactive Ensemble →](https://shannon-labs.github.io/davinci-codex/renaissance_ensemble/)**
 
 **[See complete inventory →](https://shannon-labs.github.io/davinci-codex/)**
 
@@ -278,6 +318,12 @@ davinci-codex evaluate --slug parachute
 
 # Execute full pipeline
 davinci-codex pipeline --slug ornithopter
+
+# 🎵 Generate a Renaissance mechanical concert
+davinci-codex concert --form pavane --mode dorian --measures 16 --seed 42 --reverb 0.2
+
+# Available forms: pavane, galliard, basse_danse, saltarello, allemande
+# Available modes: dorian, mixolydian, phrygian, lydian
 ```
 
 ### Python API

@@ -336,6 +336,30 @@ def pipeline_command(
         typer.echo(json.dumps(report, indent=2, sort_keys=True, cls=NumpyEncoder))
 
 
+@app.command("concert")
+def concert_command(
+    form: str = typer.Option("pavane", "--form", help="Musical form (pavane, galliard, basse_danse, ...)."),
+    mode: str = typer.Option("dorian", "--mode", help="Church mode (dorian, mixolydian, ...)."),
+    seed: int = typer.Option(0, "--seed", help="Random seed for deterministic composition."),
+    measures: int = typer.Option(16, "--measures", help="Number of measures."),
+    tempo: float = typer.Option(80.0, "--tempo", help="Tempo in BPM."),
+    reverb: float = typer.Option(0.2, "--reverb", help="Reverb wet/dry mix (0..1)."),
+) -> None:
+    """Compose and render a Renaissance mechanical concert as WAV audio."""
+    from .core.concert import perform_concert
+
+    typer.echo(f"# Concert: {form} in {mode} mode, {measures} measures @ {tempo} BPM")
+    result = perform_concert(
+        form=form,
+        mode=mode,
+        seed=seed,
+        measures=measures,
+        tempo_bpm=tempo,
+        reverb_wet=reverb,
+    )
+    typer.echo(json.dumps(result, indent=2, sort_keys=True, cls=NumpyEncoder))
+
+
 @app.command("ensemble-demo")
 def ensemble_demo_command(
     seed: int = typer.Option(0, help="Random seed for deterministic playback."),
