@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The da Vinci Codex - Computational Archaeology of Renaissance Engineering</title>
+    <meta name="description" content="Open-source computational framework exploring Leonardo da Vinci's mechanical inventions through modern engineering, physics simulation, and safety analysis.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --leonardo-parchment: #f4e4c1;
+            --leonardo-ink: #2c1810;
+            --leonardo-gold: #daa520;
+            --leonardo-crimson: #8b0000;
+            --leonardo-umber: #8b4513;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'EB Garamond', Georgia, serif;
+            background: linear-gradient(135deg, var(--leonardo-parchment) 0%, #e8d4a8 100%);
+            color: var(--leonardo-ink);
+            line-height: 1.6;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, 
+                rgba(44, 24, 16, 0.95) 0%, 
+                rgba(139, 69, 19, 0.9) 50%, 
+                rgba(210, 105, 30, 0.85) 100%);
+            color: var(--leonardo-parchment);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23daa520' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+        
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--leonardo-gold), #ffd700, var(--leonardo-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: none;
+        }
+        
+        .hero-tagline {
+            font-size: 1.5rem;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+        
+        .hero-description {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.85;
+            line-height: 1.7;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, var(--leonardo-gold), #ffd700);
+            color: var(--leonardo-ink);
+            border-color: var(--leonardo-gold);
+            box-shadow: 0 4px 15px rgba(218, 165, 32, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(218, 165, 32, 0.4);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--leonardo-parchment);
+            border-color: var(--leonardo-parchment);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--leonardo-parchment);
+            color: var(--leonardo-ink);
+        }
+        
+        /* New Badge */
+        .new-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-left: 0.5rem;
+            animation: pulse 2s ease-in-out infinite;
+            vertical-align: middle;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        /* Featured Section */
+        .featured {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #8B4513 0%, #DAA520 50%, #8B4513 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .featured h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .featured-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+        
+        .featured-description {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+        
+        .feature-item {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Content Sections */
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--leonardo-crimson);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .section-intro {
+            text-align: center;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            color: var(--leonardo-umber);
+        }
+        
+        /* Invention Cards */
+        .inventions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .invention-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .invention-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+        
+        .invention-card.featured {
+            border: 3px solid var(--leonardo-gold);
+            box-shadow: 0 0 30px rgba(218, 165, 32, 0.3);
+        }
+        
+        .invention-header {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--leonardo-crimson), #a52a2a);
+            color: white;
+        }
+        
+        .invention-card.featured .invention-header {
+            background: linear-gradient(135deg, #8B4513, #DAA520);
+        }
+        
+        .invention-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .invention-status {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+        }
+        
+        .invention-body {
+            padding: 1.5rem;
+        }
+        
+        .invention-achievement {
+            font-weight: 600;
+            color: var(--leonardo-crimson);
+            margin-bottom: 0.5rem;
+        }
+        
+        .invention-description {
+            color: var(--leonardo-umber);
+            line-height: 1.6;
+        }
+        
+        .invention-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .stat {
+            font-size: 0.8rem;
+            background: #f5f5f5;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            color: var(--leonardo-umber);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--leonardo-ink);
+            color: var(--leonardo-parchment);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .footer-links a {
+            color: var(--leonardo-gold);
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .copyright {
+            margin-top: 2rem;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .inventions-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>The da Vinci Codex</h1>
+            <p class="hero-tagline">Computational Archaeology of Renaissance Engineering</p>
+            <p class="hero-description">
+                Open-source computational framework exploring Leonardo da Vinci's mechanical inventions 
+                through modern engineering, physics simulation, and safety analysis.
+            </p>
+            <div class="hero-buttons">
+                <a href="/davinci-codex/renaissance_ensemble/" class="btn btn-primary">
+                    🎵 Renaissance Ensemble <span class="new-badge">New</span>
+                </a>
+                <a href="/davinci-codex/book/" class="btn btn-secondary">📖 Interactive Simulations</a>
+                <a href="/davinci-codex/gallery.html" class="btn btn-secondary">🎨 Gallery</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Renaissance Ensemble -->
+    <section class="featured">
+        <h2>🎵 NEW: Renaissance Ensemble</h2>
+        <p class="featured-subtitle">Physics-Based Mechanical Orchestra</p>
+        <p class="featured-description">
+            Experience Leonardo's mechanical instruments with revolutionary physics-based audio synthesis. 
+            Six authentic instrument timbres, AI-generated Renaissance compositions, and immersive court acoustics.
+        </p>
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon">🎼</div>
+                <h3>AI Composition</h3>
+                <p>Pavane, Galliard, Basse Danse in church modes</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🔬</div>
+                <h3>Physics Timbres</h3>
+                <p>ADSR envelopes, harmonic profiles, mechanical noise</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🏛️</div>
+                <h3>Schroeder Reverb</h3>
+                <p>Hall acoustics simulation</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">📊</div>
+                <h3>Visualizations</h3>
+                <p>Waveform, spectrogram, score roll</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🎵</div>
+                <h3>CD Quality</h3>
+                <p>44.1kHz WAV export with deterministic seeds</p>
+            </div>
+        </div>
+        <div style="margin-top: 2rem;">
+            <a href="/davinci-codex/renaissance_ensemble/" class="btn btn-primary" style="font-size: 1.2rem; padding: 1.2rem 2.5rem;">
+                Enter the Renaissance Court →
+            </a>
+        </div>
+    </section>
+
+    <!-- Featured Inventions -->
+    <section class="section">
+        <h2>Featured Inventions</h2>
+        <p class="section-intro">
+            Explore Leonardo's mechanical genius across flight, automation, and music.
+            Each invention combines historical research with modern engineering analysis.
+        </p>
+        
+        <div class="inventions-grid">
+            <!-- Renaissance Ensemble -->
+            <a href="/davinci-codex/renaissance_ensemble/" class="invention-card featured">
+                <div class="invention-header">
+                    <h3 class="invention-title">🎵 Renaissance Ensemble</h3>
+                    <span class="invention-status">✓ Validated</span>
+                </div>
+                <div class="invention-body">
+                    <p class="invention-achievement">Physics-based audio synthesis</p>
+                    <p class="invention-description">
+                        Six mechanical instruments with AI-generated Renaissance compositions. 
+                        Physics-based timbres, Schroeder reverb, and CD-quality audio export.
+                    </p>
+                    <div class="invention-stats">
+                        <span class="stat">6 Physics timbres</span>
+                        <span class="stat">AI composition</span>
+                        <span class="stat">44.1kHz audio</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Aerial Screw -->
+            <a href="/davinci-codex/aerial_screw.html" class="invention-card">
+                <div class="invention-header">
+                    <h3 class="invention-title">🚁 Aerial Screw</h3>
+                    <span class="invention-status">✓ Validated</span>
+                </div>
+                <div class="invention-body">
+                    <p class="invention-achievement">1,416N lift achieved</p>
+                    <p class="invention-description">
+                        Variable-pitch helicopter rotor with 4× efficiency improvement 
+                        using modern blade element momentum theory.
+                    </p>
+                    <div class="invention-stats">
+                        <span class="stat">Power: 10.8kW</span>
+                        <span class="stat">Pitch: 15°-45°</span>
+                        <span class="stat">CAD: 99 pieces</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Mechanical Lion -->
+            <a href="/davinci-codex/mechanical_lion.html" class="invention-card">
+                <div class="invention-header">
+                    <h3 class="invention-title">🦁 Mechanical Lion</h3>
+                    <span class="invention-status">✓ Validated</span>
+                </div>
+                <div class="invention-body">
+                    <p class="invention-achievement">30-second choreography</p>
+                    <p class="invention-description">
+                        Walking automaton with synchronized chest reveal mechanism 
+                        that amazed King François I in 1515.
+                    </p>
+                    <div class="invention-stats">
+                        <span class="stat">Quadruped gait</span>
+                        <span class="stat">Fleur-de-lis reveal</span>
+                        <span class="stat">Cam-based control</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Ornithopter -->
+            <a href="/davinci-codex/ornithopter.html" class="invention-card">
+                <div class="invention-header">
+                    <h3 class="invention-title">🦅 Ornithopter</h3>
+                    <span class="invention-status">⚡ In Progress</span>
+                </div>
+                <div class="invention-body">
+                    <p class="invention-achievement">Bio-inspired flapping flight</p>
+                    <p class="invention-description">
+                        Advanced flapping-wing aircraft with unsteady aerodynamics 
+                        and bio-inspired mechanics.
+                    </p>
+                    <div class="invention-stats">
+                        <span class="stat">NACA 0012 profile</span>
+                        <span class="stat">120m altitude</span>
+                        <span class="stat">140 min endurance</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Self-Propelled Cart -->
+            <a href="/davinci-codex/self_propelled_cart.html" class="invention-card">
+                <div class="invention-header">
+                    <h3 class="invention-title">🛒 Self-Propelled Cart</h3>
+                    <span class="invention-status">🔧 Prototype Ready</span>
+                </div>
+                <div class="invention-body">
+                    <p class="invention-achievement">World's first autonomous vehicle</p>
+                    <p class="invention-description">
+                        Spring-powered programmable vehicle with escapement control 
+                        and 150m range capability.
+                    </p>
+                    <div class="invention-stats">
+                        <span class="stat">Energy: ~350J</span>
+                        <span class="stat">Range: 150m</span>
+                        <span class="stat">Multi-stage gearing</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Pyramid Parachute -->
+            <a href="/davinci-codex/parachute.html" class="invention-card">
+                <div class="invention-header">
+                    <h3 class="invention-title">🪂 Pyramid Parachute</h3>
+                    <span class="invention-status">🔧 Prototype Ready</span>
+                </div>
+                <div class="invention-body">
+                    <p class="invention-achievement">Safe 6.9 m/s landing</p>
+                    <p class="invention-description">
+                        Revolutionary pyramid design evaluated with modern 
+                        turbulence analysis and safety validation.
+                    </p>
+                    <div class="invention-stats">
+                        <span class="stat">Pyramid geometry</span>
+                        <span class="stat">Turbulence tested</span>
+                        <span class="stat">Safety dossier</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <h3 class="footer-title">The da Vinci Codex</h3>
+            <p>Computational archaeology of Renaissance mechanical engineering</p>
+            
+            <div class="footer-links">
+                <a href="/davinci-codex/renaissance_ensemble/">🎵 Renaissance Ensemble</a>
+                <a href="/davinci-codex/book/">📖 Documentation</a>
+                <a href="/davinci-codex/gallery.html">🎨 Gallery</a>
+                <a href="https://github.com/Shannon-Labs/davinci-codex">💻 GitHub</a>
+            </div>
+            
+            <p class="copyright">
+                © 2025 Shannon Labs & Contributors · MIT License · CC0 Media
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
