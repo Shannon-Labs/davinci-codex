@@ -80,7 +80,7 @@ setup: ## Setup development environment
 	@echo "$(GREEN)Setting up development environment...$(RESET)"
 	$(PYTHON) -m venv $(VENV)
 	$(PYTHON_BIN) -m pip install --upgrade pip setuptools wheel
-	$(PYTHON_BIN) -m pip install -r requirements.lock
+	$(PYTHON_BIN) -m pip install -r requirements/requirements.lock
 	$(PYTHON_BIN) -m pip install -e .
 	@echo "$(GREEN)✅ Development environment ready!$(RESET)"
 
@@ -195,7 +195,7 @@ demo: ## Run lightweight demonstration
 
 space: ## Run the Hugging Face Space app locally
 	@echo "$(BLUE)Launching HF Space demo...$(RESET)"
-	$(PYTHON_BIN) -m pip install -r hf_space/requirements.txt > /dev/null 2>&1 || true
+	$(PYTHON_BIN) -m pip install -r deploy/hf_space/requirements.txt > /dev/null 2>&1 || true
 	$(PYTHON_BIN) hf_space/app.py || $(PYTHON_BIN) -c "import runpy; runpy.run_path('hf_space/app.py')"
 
 simulate: ## Run simulations for specified invention

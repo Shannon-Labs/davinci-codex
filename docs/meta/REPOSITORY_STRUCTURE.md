@@ -8,21 +8,19 @@ This document outlines the systematic organization of the da Vinci Codex reposit
 
 ```
 davinci-codex/
-├── 📚 PROJECT ROOT
+├── 📚 PROJECT ROOT (Essential Files Only)
 │   ├── README.md                     # Project overview and getting started
-│   ├── LICENSE                       # MIT License
 │   ├── CITATION.cff                  # Academic citation metadata
 │   ├── pyproject.toml               # Python project configuration
 │   ├── requirements.txt             # Python dependencies
-│   └── Makefile                     # Professional development automation
+│   ├── Makefile                     # Professional development automation
+│   └── CODE_OF_CONDUCT.md           # Community standards
+│   └── CONTRIBUTING.md              # Contribution guidelines
+│   └── SECURITY.md                  # Security policies
 │
-├── Historical GOVERNANCE & PROCESS
-│   ├── CODE_OF_CONDUCT.md          # Community standards
-│   ├── CONTRIBUTING.md             # Contribution guidelines
-│   ├── SECURITY.md                 # Security policies
-│   ├── ETHICS.md                   # Non-weaponization charter
-│   ├── METHODOLOGY.md              # Research methodology
-│   └── ARCHITECTURE.md             # Technical architecture
+├── 📋 LICENSES
+│   ├── licenses/LICENSE             # MIT License (code)
+│   └── licenses/LICENSE-CC0         # CC0 License (media)
 │
 ├── 🔧 DEVELOPMENT INFRASTRUCTURE
 │   ├── .github/                    # GitHub automation
@@ -30,8 +28,13 @@ davinci-codex/
 │   │   ├── ISSUE_TEMPLATE/         # Issue templates
 │   │   └── PULL_REQUEST_TEMPLATE.md
 │   ├── .pre-commit-config.yaml     # Code quality hooks
-│   ├── docker-compose.yml          # Container orchestration
-│   ├── Dockerfile                  # Container definitions
+│   ├── requirements/               # Dependency lock files
+│   │   ├── requirements.lock
+│   │   └── requirements-docs.lock
+│   ├── deploy/                     # Deployment configs
+│   │   ├── Dockerfile
+│   │   ├── docker-compose.yml
+│   │   └── hf_space/
 │   └── scripts/                    # Utility and automation scripts
 │
 ├── 💻 SOURCE CODE
@@ -83,11 +86,27 @@ davinci-codex/
 │   │   └── inventions/             # Individual invention pages
 │   └── notebooks/                  # Jupyter explorations
 │
-└── 🎓 EDUCATIONAL & RESEARCH
-    ├── education/                  # Curriculum materials
-    ├── examples/                   # Usage examples
-    ├── research/                   # Academic papers and studies
-    └── data/                       # Research datasets
+├── 🎓 EDUCATIONAL & RESEARCH
+│   ├── education/                  # Curriculum materials
+│   ├── examples/                   # Usage examples
+│   ├── research/                   # Academic papers and studies
+│   │   ├── experiments/            # Research experiments
+│   │   │   ├── failures/           # Documented failures (learning)
+│   │   │   ├── synthesis/          # Synthesis studies
+│   │   │   ├── anima/              # Intention research
+│   │   │   ├── ip_nexus/           # IP framework
+│   │   │   └── tva/                # Technical viability analysis
+│   │   └── frameworks/             # Research frameworks
+│   │       └── toulmini/           # Argumentation framework
+│   └── data/                       # Research datasets
+│
+└── 📚 DOCUMENTATION
+    ├── docs/                       # GitHub Pages Jekyll site
+    ├── docs/meta/                  # Project documentation
+    │   ├── CLAUDE.md              # AI collaboration guide
+    │   ├── REFERENCES.md          # Bibliography
+    │   └── REPOSITORY_STRUCTURE.md # This file
+    └── notebooks/                  # Jupyter explorations
 ```
 
 ## 🗂️ Consolidated Directories
@@ -147,6 +166,27 @@ davinci-codex/
 - ✅ Enhanced `.gitignore`
   - Added: `.claude/settings.local.json`
 
+### 2025-01-29 Final Consolidation
+- ✅ Consolidated research directories → `research/experiments/`
+  - Moved: `failures/`, `synthesis/`, `anima/`, `ip_nexus/`, `tva/`
+- ✅ Consolidated frameworks → `research/frameworks/`
+  - Moved: `toulmini/`
+- ✅ Consolidated deployment files → `deploy/`
+  - Moved: `Dockerfile`, `docker-compose.yml`, `hf_space/`
+- ✅ Consolidated documentation → `docs/meta/`
+  - Moved: `CLAUDE.md`, `REFERENCES.md`, `REPOSITORY_STRUCTURE.md`
+- ✅ Consolidated licenses → `licenses/`
+  - Moved: `LICENSE`, `LICENSE-CC0`
+- ✅ Consolidated requirements → `requirements/`
+  - Moved: `requirements.lock`, `requirements-docs.lock`
+
+### Final Statistics
+| Metric | Before | After | Reduction |
+|--------|--------|-------|-----------|
+| Root directories | 38 | 17 | 55% |
+| Root files | 25+ | 11 | 56% |
+| Total items in root | ~63 | 28 | 56% |
+
 ### Enhanced Organization
 - ✅ Professional `.gitignore` with comprehensive exclusions
 - ✅ Standardized directory naming (snake_case)
@@ -169,6 +209,12 @@ davinci-codex/
 | `scripts/` | Development utilities | Scripts, generators, validators |
 | `analysis/` | Engineering studies | Performance analysis, materials research |
 | `research/` | Academic work | Papers, studies, methodologies |
+| `research/experiments/` | Research experiments | failures, synthesis, anima, ip_nexus, tva |
+| `research/frameworks/` | Research frameworks | toulmini (argumentation) |
+| `deploy/` | Deployment configs | Docker, HuggingFace Space |
+| `requirements/` | Dependency locks | requirements.lock, requirements-docs.lock |
+| `licenses/` | Legal | MIT (code), CC0 (media) |
+| `docs/meta/` | Project docs | CLAUDE.md, REFERENCES.md, REPOSITORY_STRUCTURE.md |
 
 ## Target File Naming Conventions
 

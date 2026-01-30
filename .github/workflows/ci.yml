@@ -19,10 +19,10 @@ jobs:
           python-version: '3.11'
       - name: Compute pip cache key
         run: |
-          if [ -f requirements.lock ]; then
+          if [ -f requirements/requirements.lock ]; then
             HASH=$(python - <<'PY'
 import hashlib, pathlib
-path = pathlib.Path("requirements.lock")
+path = pathlib.Path("requirements/requirements.lock")
 print(hashlib.sha256(path.read_bytes()).hexdigest())
 PY
 )
@@ -41,7 +41,7 @@ PY
       - name: Install dependencies (locked)
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.lock
+          pip install -r requirements/requirements/requirements.lock
           pip install -e .
       - name: Validate invention metadata and registry
         run: |
@@ -72,10 +72,10 @@ PY
 
     - name: Compute pip cache key
       run: |
-        if [ -f requirements.lock ]; then
+        if [ -f requirements/requirements.lock ]; then
           HASH=$(python - <<'PY'
 import hashlib, pathlib
-path = pathlib.Path("requirements.lock")
+path = pathlib.Path("requirements/requirements.lock")
 print(hashlib.sha256(path.read_bytes()).hexdigest())
 PY
 )
@@ -96,7 +96,7 @@ PY
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements.lock
+        pip install -r requirements/requirements/requirements.lock
         pip install -e .
 
     - name: Lint with ruff
@@ -132,7 +132,7 @@ PY
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements.lock
+        pip install -r requirements/requirements/requirements.lock
         pip install -e .
 
     - name: Build all artifacts

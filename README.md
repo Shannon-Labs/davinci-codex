@@ -449,7 +449,7 @@ We welcome contributions from engineers, historians, educators, and enthusiasts 
 
 - Martin Kemp, *"Leonardo"* (Oxford University Press) — Foundational text
 - [e-Leo Archive](http://www.leonardodigitale.com/) — High-resolution manuscript scans
-- [REFERENCES.md](REFERENCES.md) — Complete bibliography
+- [docs/meta/REFERENCES.md](docs/meta/REFERENCES.md) — Complete bibliography
 
 ---
 
@@ -478,7 +478,7 @@ This project serves as a resource for:
 
 ### Code
 
-**MIT License** - See [LICENSE](LICENSE)
+**MIT License** - See [licenses/LICENSE](licenses/LICENSE)
 
 ### Media
 
