@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leonardo's Renaissance Ensemble - Physics-Based Mechanical Orchestra</title>
-    <meta name="description" content="Experience Leonardo da Vinci's mechanical musical instruments with physics-based audio synthesis, AI composition, and immersive Renaissance court ambiance">
+    <meta name="description" content="Experience Leonardo da Vinci's mechanical musical instruments with physics-based audio synthesis, algorithmic composition, and Renaissance court ambiance">
     <link rel="stylesheet" href="styles/renaissance-ensemble.css">
     <link rel="stylesheet" href="styles/instruments.css">
     <link rel="stylesheet" href="styles/notation.css">
@@ -347,7 +347,7 @@
                 <h1 class="page-title leonardo-display">Leonardo's Renaissance Ensemble <span class="new-badge">New</span></h1>
                 <div class="fleur-de-lis"></div>
             </div>
-            <p class="subtitle leonardo-body">Physics-Based Audio Synthesis • AI Renaissance Composition • Interactive Court Experience</p>
+            <p class="subtitle leonardo-body">Physics-Based Audio Synthesis • Algorithmic Renaissance Composition • Court Music Demo</p>
             
             <!-- Leonardo's Voice - Hidden wisdom revealed on hover -->
             <div class="leonardo-voice-panel">
@@ -366,8 +366,8 @@
         <section class="feature-highlights" style="max-width: 1400px; margin: 0 auto; padding: var(--space-golden-xl);">
             <div class="feature-highlight">
                 <div class="feature-highlight-icon">🎼</div>
-                <div class="feature-highlight-title">AI Composition</div>
-                <div class="feature-highlight-desc">Generate authentic Renaissance music in period church modes</div>
+                <div class="feature-highlight-title">Algorithmic Composition</div>
+                <div class="feature-highlight-desc">Renaissance music composed in period church modes using algorithmic voice-leading rules</div>
             </div>
             <div class="feature-highlight">
                 <div class="feature-highlight-icon">🔬</div>
@@ -382,7 +382,7 @@
             <div class="feature-highlight">
                 <div class="feature-highlight-icon">📊</div>
                 <div class="feature-highlight-title">Visualizations</div>
-                <div class="feature-highlight-desc">Real-time waveform, spectrogram & score roll renders</div>
+                <div class="feature-highlight-desc">Waveform, spectrogram & score roll analysis of generated audio</div>
             </div>
         </section>
 
@@ -390,7 +390,7 @@
         <section class="audio-showcase" style="max-width: 1400px; margin: 0 auto;">
             <div class="audio-showcase-header">
                 <h2 class="audio-showcase-title">🎵 Demo: Pavane in Dorian Mode</h2>
-                <p class="audio-showcase-subtitle">AI-generated Renaissance composition performed by 6 physics-based mechanical instruments</p>
+                <p class="audio-showcase-subtitle">Algorithmically composed Renaissance music performed by 6 physics-based mechanical instruments</p>
             </div>
             
             <div style="text-align:center; margin-bottom: var(--space-golden-lg);">
@@ -402,7 +402,7 @@
                                border-radius: var(--space-golden-sm); cursor:pointer;
                                box-shadow: var(--shadow-leonardo-manuscript);
                                transition: all var(--anim-leonardo-fast);">
-                    Enter the Court
+                    ▶ Play
                 </button>
                 <canvas id="audio-visualizer" width="800" height="160"
                         style="display:block; width:100%; max-width:800px; margin: var(--space-golden-md) auto 0;
@@ -559,9 +559,9 @@
                 Generate your own Renaissance concerts with the davinci-codex CLI:
             </p>
             <div class="cli-command">
-                <span class="prompt">$</span> <span class="cmd">davinci-codex concert --form pavane --mode dorian --measures 16 --seed 42 --reverb 0.2</span>
+                <span class="prompt">$</span> <span class="cmd">davinci-codex concert --form pavane --mode dorian --measures 16 --tempo 72 --seed 42 --reverb 0.2</span>
                 <div class="cli-output">
-# Concert: pavane in dorian mode, 16 measures @ 80.0 BPM<br>
+# Concert: pavane in dorian mode, 16 measures @ 72.0 BPM<br>
 {<br>
 &nbsp;&nbsp;"artifacts": [<br>
 &nbsp;&nbsp;&nbsp;&nbsp;"artifacts/mechanical_concert/demo/concert_score.json",<br>
@@ -579,240 +579,12 @@
                 </div>
             </div>
             <div style="margin-top: var(--space-golden-md); color: #ffd93d;">
-                <strong>Available Forms:</strong> pavane, galliard, basse_danse, saltarello, allemande<br>
-                <strong>Available Modes:</strong> dorian, mixolydian, phrygian, lydian, ionian, aeolian
+                <strong>Available Forms:</strong> pavane, galliard, basse_danse, chanson, madrigal, motet, isorhythmic, fantasia<br>
+                <strong>Available Modes:</strong> dorian, phrygian, lydian, mixolydian, hypodorian, hypophrygian, hypolydian, hypomixolydian
             </div>
         </section>
 
-        <!-- Main visualization area -->
         <main class="court-main" style="max-width: 1400px; margin: 0 auto;">
-            <!-- Court setting background -->
-            <section class="court-scene" aria-label="Renaissance court setting with mechanical instruments">
-                <div class="court-floor"></div>
-                <div class="court-walls">
-                    <div class="tapestry left-tapestry" aria-hidden="true"></div>
-                    <div class="tapestry right-tapestry" aria-hidden="true"></div>
-                </div>
-                
-                <!-- Instrument containers -->
-                <div class="instruments-stage">
-                    <!-- Mechanical Carillon -->
-                    <div class="instrument-container carillon-container" data-instrument="carillon">
-                        <div class="instrument-leonardo-note">
-                            "The harmony of bells teaches us the mathematics of time itself"
-                            <br>— Codex Madrid I, folio 45r
-                        </div>
-                        <canvas id="carillon-canvas" class="instrument-canvas" width="300" height="400" aria-label="Mechanical Carillon animation"></canvas>
-                        <div class="instrument-label">
-                            <h3>Mechanical Carillon</h3>
-                            <p class="instrument-description">Clock-driven bell system with rotating drum</p>
-                        </div>
-                    </div>
-
-                    <!-- Mechanical Drum -->
-                    <div class="instrument-container drum-container" data-instrument="drum">
-                        <div class="instrument-leonardo-note">
-                            "Rhythm is the heartbeat of the universe, measurable and eternal"
-                            <br>— Codex Atlanticus, folio 78v
-                        </div>
-                        <canvas id="drum-canvas" class="instrument-canvas" width="250" height="300" aria-label="Mechanical Drum animation"></canvas>
-                        <div class="instrument-label">
-                            <h3>Mechanical Drum</h3>
-                            <p class="instrument-description">Pinned barrel percussion device</p>
-                        </div>
-                    </div>
-
-                    <!-- Mechanical Organ -->
-                    <div class="instrument-container organ-container" data-instrument="organ">
-                        <div class="instrument-leonardo-note">
-                            "The wind is the breath of nature, and pipes are her voice"
-                            <br>— Codex Leicester, folio 12r
-                        </div>
-                        <canvas id="organ-canvas" class="instrument-canvas" width="350" height="450" aria-label="Mechanical Organ animation"></canvas>
-                        <div class="instrument-label">
-                            <h3>Mechanical Organ</h3>
-                            <p class="instrument-description">Automatic pipe organ with bellows</p>
-                        </div>
-                    </div>
-
-                    <!-- Mechanical Trumpeter -->
-                    <div class="instrument-container trumpeter-container" data-instrument="trumpeter">
-                        <div class="instrument-leonardo-note">
-                            "Brass carries the voice of war and celebration across distance"
-                            <br>— Manuscript B, folio 34v
-                        </div>
-                        <canvas id="trumpeter-canvas" class="instrument-canvas" width="280" height="380" aria-label="Mechanical Trumpeter animation"></canvas>
-                        <div class="instrument-label">
-                            <h3>Mechanical Trumpeter</h3>
-                            <p class="instrument-description">Automated trumpet with valve system</p>
-                        </div>
-                    </div>
-
-                    <!-- Programmable Flute -->
-                    <div class="instrument-container flute-container" data-instrument="flute">
-                        <div class="instrument-leonardo-note">
-                            "The flute mimics the songbirds, teaching us nature's melodies"
-                            <br>— Codex on the Flight of Birds, folio 8r
-                        </div>
-                        <canvas id="flute-canvas" class="instrument-canvas" width="260" height="320" aria-label="Programmable Flute animation"></canvas>
-                        <div class="instrument-label">
-                            <h3>Programmable Flute</h3>
-                            <p class="instrument-description">Cam-driven recorder with automated fingering</p>
-                        </div>
-                    </div>
-
-                    <!-- Viola Organista -->
-                    <div class="instrument-container viola-container" data-instrument="viola">
-                        <div class="instrument-leonardo-note">
-                            "Continuous sound is the closest human art comes to eternity"
-                            <br>— Codex Madrid II, folio 89r
-                        </div>
-                        <canvas id="viola-canvas" class="instrument-canvas" width="320" height="400" aria-label="Viola Organista animation"></canvas>
-                        <div class="instrument-label">
-                            <h3>Viola Organista</h3>
-                            <p class="instrument-description">Keyboard with rosined wheel bowing</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Music notation and timeline -->
-            <section class="music-visualization" aria-label="Music notation and timeline">
-                <div class="notation-container">
-                    <div class="notation-header">
-                        <h2>Musical Score</h2>
-                        <div class="view-controls">
-                            <button id="view-notation" class="view-btn active" aria-pressed="true">Notation</button>
-                            <button id="view-animation" class="view-btn" aria-pressed="false">Animation</button>
-                            <button id="view-both" class="view-btn" aria-pressed="false">Both</button>
-                        </div>
-                    </div>
-                    
-                    <div class="notation-display" id="notation-display">
-                        <canvas id="notation-canvas" class="notation-canvas" width="1200" height="300" aria-label="Musical notation display"></canvas>
-                    </div>
-                    
-                    <div class="timeline-container">
-                        <div class="timeline-track">
-                            <div class="timeline-progress" id="timeline-progress"></div>
-                            <div class="timeline-marker" id="timeline-marker"></div>
-                        </div>
-                        <div class="time-display">
-                            <span id="current-time">0:00</span> / <span id="total-time">3:45</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Control panel -->
-            <section class="control-panel" aria-label="Ensemble controls">
-                <div class="playback-controls">
-                    <button id="play-btn" class="control-btn play-btn" aria-label="Play">
-                        <span class="icon">▶</span>
-                    </button>
-                    <button id="pause-btn" class="control-btn pause-btn" aria-label="Pause" disabled>
-                        <span class="icon">⏸</span>
-                    </button>
-                    <button id="stop-btn" class="control-btn stop-btn" aria-label="Stop" disabled>
-                        <span class="icon">⏹</span>
-                    </button>
-                </div>
-
-                <div class="tempo-control">
-                    <label for="tempo-slider">Tempo</label>
-                    <input type="range" id="tempo-slider" min="40" max="200" value="120" aria-label="Tempo adjustment">
-                    <span id="tempo-display">120 BPM</span>
-                </div>
-
-                <div class="composition-selector">
-                    <label for="composition-select">Composition</label>
-                    <select id="composition-select" aria-label="Select composition">
-                        <option value="renaissance-dance">Renaissance Court Dance</option>
-                        <option value="madrigal">Madrigal in D Minor</option>
-                        <option value="galliard">Galliard for Six Instruments</option>
-                        <option value="pavane">Pavane for Mechanical Ensemble</option>
-                    </select>
-                </div>
-            </section>
-
-            <!-- Instrument controls -->
-            <section class="instrument-controls" aria-label="Individual instrument controls">
-                <h2>Instrument Controls</h2>
-                <div class="instrument-mixers">
-                    <div class="instrument-mixer" data-instrument="carillon">
-                        <div class="instrument-info">
-                            <h3>Carillon</h3>
-                            <span class="instrument-status">Ready</span>
-                        </div>
-                        <div class="mixer-controls">
-                            <button class="mute-btn" aria-label="Mute/Unmute Carillon">🔔</button>
-                            <input type="range" class="volume-slider" min="0" max="100" value="80" aria-label="Carillon volume">
-                            <span class="volume-display">80%</span>
-                        </div>
-                    </div>
-
-                    <div class="instrument-mixer" data-instrument="drum">
-                        <div class="instrument-info">
-                            <h3>Drum</h3>
-                            <span class="instrument-status">Ready</span>
-                        </div>
-                        <div class="mixer-controls">
-                            <button class="mute-btn" aria-label="Mute/Unmute Drum">🥁</button>
-                            <input type="range" class="volume-slider" min="0" max="100" value="70" aria-label="Drum volume">
-                            <span class="volume-display">70%</span>
-                        </div>
-                    </div>
-
-                    <div class="instrument-mixer" data-instrument="organ">
-                        <div class="instrument-info">
-                            <h3>Organ</h3>
-                            <span class="instrument-status">Ready</span>
-                        </div>
-                        <div class="mixer-controls">
-                            <button class="mute-btn" aria-label="Mute/Unmute Organ">🎹</button>
-                            <input type="range" class="volume-slider" min="0" max="100" value="75" aria-label="Organ volume">
-                            <span class="volume-display">75%</span>
-                        </div>
-                    </div>
-
-                    <div class="instrument-mixer" data-instrument="trumpeter">
-                        <div class="instrument-info">
-                            <h3>Trumpeter</h3>
-                            <span class="instrument-status">Ready</span>
-                        </div>
-                        <div class="mixer-controls">
-                            <button class="mute-btn" aria-label="Mute/Unmute Trumpeter">🎺</button>
-                            <input type="range" class="volume-slider" min="0" max="100" value="65" aria-label="Trumpeter volume">
-                            <span class="volume-display">65%</span>
-                        </div>
-                    </div>
-
-                    <div class="instrument-mixer" data-instrument="flute">
-                        <div class="instrument-info">
-                            <h3>Flute</h3>
-                            <span class="instrument-status">Ready</span>
-                        </div>
-                        <div class="mixer-controls">
-                            <button class="mute-btn" aria-label="Mute/Unmute Flute">🎵</button>
-                            <input type="range" class="volume-slider" min="0" max="100" value="60" aria-label="Flute volume">
-                            <span class="volume-display">60%</span>
-                        </div>
-                    </div>
-
-                    <div class="instrument-mixer" data-instrument="viola">
-                        <div class="instrument-info">
-                            <h3>Viola Organista</h3>
-                            <span class="instrument-status">Ready</span>
-                        </div>
-                        <div class="mixer-controls">
-                            <button class="mute-btn" aria-label="Mute/Unmute Viola">🎻</button>
-                            <input type="range" class="volume-slider" min="0" max="100" value="70" aria-label="Viola volume">
-                            <span class="volume-display">70%</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
             <!-- Educational information panels -->
             <section class="education-panels" aria-label="Educational information">
                 <div class="info-tabs">
@@ -903,126 +675,6 @@
     <script src="js/carillon.js"></script>
     <script src="js/drum.js"></script>
     <script src="js/audio-engine.js"></script>
-    <script>
-        // Placeholder organ, trumpeter, flute, and viola — registered on the namespace
-        // so app.js can instantiate them via LeonardoEnsemble.<Name>(canvas).
-        (function(ns) {
-            var Base = ns.InstrumentBase;
-
-            ns.Organ = class extends Base {
-                constructor(canvas, opts) {
-                    super('organ', 'Mechanical Organ', canvas, opts);
-                    this.colors = { primary: '#4B0082', secondary: '#8B4513' };
-                }
-                draw() {
-                    var ctx = this.ctx;
-                    ctx.fillStyle = this.colors.primary;
-                    ctx.fillRect(50, 50, 250, 350);
-                    ctx.fillStyle = this.colors.secondary;
-                    for(var i=0; i<10; i++) ctx.fillRect(70 + i*23, 80, 15, 280);
-                }
-            };
-
-            ns.Trumpeter = class extends Base {
-                constructor(canvas, opts) {
-                    super('trumpeter', 'Mechanical Trumpeter', canvas, opts);
-                    this.colors = { primary: '#B22222', secondary: '#FFD700' };
-                }
-                draw() {
-                    var ctx = this.ctx;
-                    ctx.fillStyle = this.colors.primary;
-                    ctx.beginPath(); ctx.arc(140, 200, 60, 0, Math.PI*2); ctx.fill();
-                    ctx.fillStyle = this.colors.secondary;
-                    ctx.fillRect(180, 180, 100, 40);
-                }
-            };
-
-            ns.Flute = class extends Base {
-                constructor(canvas, opts) {
-                    super('flute', 'Programmable Flute', canvas, opts);
-                    this.colors = { primary: '#006400', secondary: '#8FBC8F' };
-                }
-                draw() {
-                    var ctx = this.ctx;
-                    ctx.fillStyle = this.colors.primary;
-                    ctx.fillRect(30, 150, 200, 40);
-                    ctx.fillStyle = this.colors.secondary;
-                    for(var i=0; i<6; i++) { ctx.beginPath(); ctx.arc(60 + i*30, 170, 8, 0, Math.PI*2); ctx.fill(); }
-                }
-            };
-
-            ns.ViolaOrganista = class extends Base {
-                constructor(canvas, opts) {
-                    super('viola', 'Viola Organista', canvas, opts);
-                    this.colors = { primary: '#8B4513', secondary: '#DEB887' };
-                }
-                draw() {
-                    var ctx = this.ctx;
-                    ctx.fillStyle = this.colors.primary;
-                    ctx.fillRect(40, 100, 240, 250);
-                    ctx.fillStyle = this.colors.secondary;
-                    for(var i=0; i<20; i++) ctx.fillRect(60, 120 + i*11, 200, 5);
-                }
-            };
-        })(window.LeonardoEnsemble);
-    </script>
     <script src="js/app.js"></script>
-    <script>
-        // Enhanced initialization for the new page features
-        document.addEventListener('DOMContentLoaded', function() {
-            // Tab switching for educational panels
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const tabId = this.getAttribute('data-tab');
-                    
-                    // Update active tab button
-                    document.querySelectorAll('.tab-btn').forEach(b => {
-                        b.classList.remove('active');
-                        b.setAttribute('aria-selected', 'false');
-                    });
-                    this.classList.add('active');
-                    this.setAttribute('aria-selected', 'true');
-                    
-                    // Show corresponding panel
-                    document.querySelectorAll('.tab-panel').forEach(panel => {
-                        panel.classList.remove('active');
-                    });
-                    document.getElementById(tabId + '-panel').classList.add('active');
-                });
-            });
-            
-            // Simulate loading progress
-            const progressFill = document.getElementById('loading-progress-fill');
-            const progressText = document.getElementById('loading-progress-text');
-            const messages = [
-                'Tuning the instruments...',
-                'Calibrating harmonic series...',
-                'Warming up the bellows...',
-                'Rosining the bow wheels...',
-                'Aligning the pin cylinders...',
-                'The court awaits...'
-            ];
-            
-            let progress = 0;
-            const interval = setInterval(() => {
-                progress += Math.random() * 15;
-                if (progress > 100) progress = 100;
-                progressFill.style.width = progress + '%';
-                
-                const msgIndex = Math.floor((progress / 100) * messages.length);
-                progressText.textContent = messages[Math.min(msgIndex, messages.length - 1)];
-                
-                if (progress >= 100) {
-                    clearInterval(interval);
-                    setTimeout(() => {
-                        document.getElementById('loading-overlay').style.opacity = '0';
-                        setTimeout(() => {
-                            document.getElementById('loading-overlay').style.display = 'none';
-                        }, 500);
-                    }, 500);
-                }
-            }, 300);
-        });
-    </script>
 </body>
 </html>
