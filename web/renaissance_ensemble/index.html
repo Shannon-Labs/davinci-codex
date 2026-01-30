@@ -904,69 +904,67 @@
     <script src="js/drum.js"></script>
     <script src="js/audio-engine.js"></script>
     <script>
-        // Placeholder organ, trumpeter, flute, and viola scripts since they don't exist yet
-        // These will use the base instrument class
-        class Organ extends Instrument {
-            constructor(canvas) {
-                super(canvas, 'organ');
-                this.colors = { primary: '#4B0082', secondary: '#8B4513' };
-            }
-            draw(ctx) {
-                ctx.fillStyle = this.colors.primary;
-                ctx.fillRect(50, 50, 250, 350);
-                ctx.fillStyle = this.colors.secondary;
-                for(let i=0; i<10; i++) {
-                    ctx.fillRect(70 + i*23, 80, 15, 280);
+        // Placeholder organ, trumpeter, flute, and viola — registered on the namespace
+        // so app.js can instantiate them via LeonardoEnsemble.<Name>(canvas).
+        (function(ns) {
+            var Base = ns.InstrumentBase;
+
+            ns.Organ = class extends Base {
+                constructor(canvas, opts) {
+                    super('organ', 'Mechanical Organ', canvas, opts);
+                    this.colors = { primary: '#4B0082', secondary: '#8B4513' };
                 }
-            }
-        }
-        
-        class Trumpeter extends Instrument {
-            constructor(canvas) {
-                super(canvas, 'trumpeter');
-                this.colors = { primary: '#B22222', secondary: '#FFD700' };
-            }
-            draw(ctx) {
-                ctx.fillStyle = this.colors.primary;
-                ctx.beginPath();
-                ctx.arc(140, 200, 60, 0, Math.PI*2);
-                ctx.fill();
-                ctx.fillStyle = this.colors.secondary;
-                ctx.fillRect(180, 180, 100, 40);
-            }
-        }
-        
-        class Flute extends Instrument {
-            constructor(canvas) {
-                super(canvas, 'flute');
-                this.colors = { primary: '#006400', secondary: '#8FBC8F' };
-            }
-            draw(ctx) {
-                ctx.fillStyle = this.colors.primary;
-                ctx.fillRect(30, 150, 200, 40);
-                ctx.fillStyle = this.colors.secondary;
-                for(let i=0; i<6; i++) {
-                    ctx.beginPath();
-                    ctx.arc(60 + i*30, 170, 8, 0, Math.PI*2);
-                    ctx.fill();
+                draw() {
+                    var ctx = this.ctx;
+                    ctx.fillStyle = this.colors.primary;
+                    ctx.fillRect(50, 50, 250, 350);
+                    ctx.fillStyle = this.colors.secondary;
+                    for(var i=0; i<10; i++) ctx.fillRect(70 + i*23, 80, 15, 280);
                 }
-            }
-        }
-        
-        class ViolaOrganista extends Instrument {
-            constructor(canvas) {
-                super(canvas, 'viola');
-                this.colors = { primary: '#8B4513', secondary: '#DEB887' };
-            }
-            draw(ctx) {
-                ctx.fillStyle = this.colors.primary;
-                ctx.fillRect(40, 100, 240, 250);
-                ctx.fillStyle = this.colors.secondary;
-                for(let i=0; i<20; i++) {
-                    ctx.fillRect(60, 120 + i*11, 200, 5);
+            };
+
+            ns.Trumpeter = class extends Base {
+                constructor(canvas, opts) {
+                    super('trumpeter', 'Mechanical Trumpeter', canvas, opts);
+                    this.colors = { primary: '#B22222', secondary: '#FFD700' };
                 }
-            }
-        }
+                draw() {
+                    var ctx = this.ctx;
+                    ctx.fillStyle = this.colors.primary;
+                    ctx.beginPath(); ctx.arc(140, 200, 60, 0, Math.PI*2); ctx.fill();
+                    ctx.fillStyle = this.colors.secondary;
+                    ctx.fillRect(180, 180, 100, 40);
+                }
+            };
+
+            ns.Flute = class extends Base {
+                constructor(canvas, opts) {
+                    super('flute', 'Programmable Flute', canvas, opts);
+                    this.colors = { primary: '#006400', secondary: '#8FBC8F' };
+                }
+                draw() {
+                    var ctx = this.ctx;
+                    ctx.fillStyle = this.colors.primary;
+                    ctx.fillRect(30, 150, 200, 40);
+                    ctx.fillStyle = this.colors.secondary;
+                    for(var i=0; i<6; i++) { ctx.beginPath(); ctx.arc(60 + i*30, 170, 8, 0, Math.PI*2); ctx.fill(); }
+                }
+            };
+
+            ns.ViolaOrganista = class extends Base {
+                constructor(canvas, opts) {
+                    super('viola', 'Viola Organista', canvas, opts);
+                    this.colors = { primary: '#8B4513', secondary: '#DEB887' };
+                }
+                draw() {
+                    var ctx = this.ctx;
+                    ctx.fillStyle = this.colors.primary;
+                    ctx.fillRect(40, 100, 240, 250);
+                    ctx.fillStyle = this.colors.secondary;
+                    for(var i=0; i<20; i++) ctx.fillRect(60, 120 + i*11, 200, 5);
+                }
+            };
+        })(window.LeonardoEnsemble);
     </script>
     <script src="js/app.js"></script>
     <script>
