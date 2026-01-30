@@ -310,6 +310,39 @@ LeonardoEnsemble.AudioEngine = class {
      * @param {number} duration  - length in seconds
      * @returns {AudioBufferSourceNode}
      */
+    _createNoiseNode(type, duration) {
+        const ctx = this.ctx;
+        const sampleRate = ctx.sampleRate;
+        const length = Math.ceil(sampleRate * duration);
+        const buffer = ctx.createBuffer(1, length, sampleRate);
+        const data = buffer.getChannelData(0);
+
+        if (type === 'pink') {
+            // Voss-McCartney pink noise approximation
+            let b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0;
+            for (let i = 0; i < length; i++) {
+                const white = Math.random() * 2 - 1;
+                b0 = 0.99886 * b0 + white * 0.0555179;
+                b1 = 0.99332 * b1 + white * 0.0750759;
+                b2 = 0.96900 * b2 + white * 0.1538520;
+                b3 = 0.86650 * b3 + white * 0.3104856;
+                b4 = 0.55000 * b4 + white * 0.5329522;
+                b5 = -0.7616 * b5 - white * 0.0168980;
+                data[i] = (b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362) * 0.11;
+                b6 = white * 0.115926;
+            }
+        } else {
+            // White noise
+            for (let i = 0; i < length; i++) {
+                data[i] = Math.random() * 2 - 1;
+            }
+        }
+
+        const source = ctx.createBufferSource();
+        source.buffer = buffer;
+        return source;
+    }
+
     // ---- Generative Cantus Firmus Engine ----
 
     /**
@@ -318,14 +351,14 @@ LeonardoEnsemble.AudioEngine = class {
     playGenerativeConcert() {
         const ctx = this.ensureContext();
         const now = ctx.currentTime;
-        
+
         // Cantus Firmus (Dorian mode)
-        const cf = [62, 64, 65, 67, 69, 67, 65, 62]; 
+        const cf = [62, 64, 65, 67, 69, 67, 65, 62];
         const tempo = 72;
         const beatDur = 60 / tempo;
 
         const cp = this.generateCounterpoint(cf);
-        
+
         cf.forEach((note, i) => {
             const time = now + i * beatDur;
             this.scheduleNote('organ', note, time, beatDur * 0.8);
@@ -345,4 +378,4 @@ LeonardoEnsemble.AudioEngine = class {
             this.playNote(instrumentId, freq, duration);
         }, (startTime - this.ctx.currentTime) * 1000);
     }
-
+};
