@@ -34,26 +34,6 @@ social:
   email: hunter@shannonlabs.dev
 
 sections:
-  - id: renaissance-ensemble-featured
-    title: "🎵 NEW: Renaissance Ensemble"
-    subtitle: "Physics-Based Mechanical Orchestra"
-    layout: featured-highlight
-    style: 
-      background: "linear-gradient(135deg, #8B4513 0%, #DAA520 50%, #8B4513 100%)"
-      color: "#fff"
-    intro: |
-      Experience Leonardo's mechanical instruments with revolutionary physics-based audio synthesis. 
-      Six authentic instrument timbres, AI-generated Renaissance compositions, and immersive court acoustics.
-    features:
-      - "🎼 AI Composition: Pavane, Galliard, Basse Danse in church modes"
-      - "🔬 Physics Timbres: ADSR envelopes, harmonic profiles, mechanical noise"
-      - "🏛️ Schroeder Reverb: Hall acoustics simulation"
-      - "📊 Visualizations: Waveform, spectrogram, score roll"
-      - "🎵 CD Quality: 44.1kHz WAV export with deterministic seeds"
-    cta:
-      label: "Enter the Renaissance Court →"
-      href: "/renaissance_ensemble/"
-    
   - id: renaissance-workshop
     title: "Welcome to Leonardo's Digital Workshop"
     layout: hero-split
@@ -191,10 +171,17 @@ sections:
         description: "Theatrical machines that blur the line between engineering marvel and artistic masterpiece. Now with physics-based audio synthesis for the complete mechanical orchestra experience."
         color: "#9B59B6"
         gradient: "linear-gradient(135deg, #9B59B6, #8E44AD)"
-        featured_link:
-          label: "🎵 Experience the Full Ensemble →"
-          href: "/renaissance_ensemble/"
         inventions:
+          - name: "🎵 Renaissance Ensemble"
+            status: "validated"
+            achievement: "Physics-based audio synthesis"
+            description: "Six mechanical instruments with AI-generated Renaissance compositions. Physics-based timbres, Schroeder reverb, and CD-quality audio export."
+            image: "images/renaissance_ensemble.png"
+            href: "/renaissance_ensemble/"
+            stats:
+              - "6 Physics timbres"
+              - "AI composition"
+              - "44.1kHz audio"
           - name: "Mechanical Lion"
             status: "validated"
             achievement: "30-second choreography"
