@@ -1,203 +1,45 @@
-name: "Deploy Professional GitHub Pages"
+name: "Deploy GitHub Pages"
 
 on:
   push:
     branches: [ main ]
-    paths: 
-      - 'docs/**'
-      - 'artifacts/**'
+    paths:
+      - 'web/**'
       - '.github/workflows/pages.yml'
-  pull_request:
-    branches: [ main ]
-    paths: 
-      - 'docs/**'
   workflow_dispatch:
-    inputs:
-      rebuild_all:
-        description: 'Rebuild all content including simulations'
-        required: false
-        default: false
-        type: boolean
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
-env:
-  PYTHON_VERSION: '3.11'
-
 jobs:
-  # Build Professional Website
-  build:
-    name: "Build Professional Website"
+  deploy:
+    name: "Deploy Static Site"
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: "Checkout Repository"
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
           lfs: true
 
-      - name: "Set up Python"
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ env.PYTHON_VERSION }}
-          cache: 'pip'
-
-      - name: "Install System Dependencies"
+      - name: "Verify Key Files"
         run: |
-          sudo apt-get update
-          sudo apt-get install -y \
-            libgl1 \
-            libglib2.0-0 \
-            libsm6 \
-            libxext6 \
-            libxrender-dev \
-            libgomp1 \
-            pandoc \
-            texlive-xetex \
-            texlive-fonts-recommended \
-            texlive-plain-generic
-
-      - name: "Install Python Dependencies"
-        run: |
-          python -m pip install --upgrade pip setuptools wheel
-          pip install -r requirements-docs.lock
-          pip install -e .
-
-      - name: "Validate Project Health"
-        run: |
-          echo "Running project validation..."
-          python scripts/validate_invention_metadata.py
-          python -m davinci_codex.cli list
-          echo "Project validation complete"
-
-      - name: "Sync Artifact Images"
-        run: |
-          echo "Syncing artifact images to docs..."
-          python scripts/sync_artifacts_to_docs.py
-          echo "Image sync complete"
-
-      - name: "Build Interactive Jupyter Book"
-        continue-on-error: true
-        run: |
-          echo "Building Jupyter Book..."
-          rm -rf docs/book/_build
-          
-          # Try to build Jupyter Book, but don't fail if it errors
-          if command -v jupyter-book &> /dev/null; then
-            jupyter-book build docs/book --path-output docs/book || echo "Jupyter Book build had warnings, continuing..."
-          else
-            echo "Jupyter Book not available, skipping..."
-          fi
-
-      - name: "Build Jekyll Site"
-        run: |
-          echo "Building Jekyll site..."
-          cd docs
-          
-          gem install bundler
-          bundle install
-          
-          bundle exec jekyll build --destination _site --baseurl "/davinci-codex" --verbose
-          
-          # Copy Jupyter Book if it exists
-          if [ -d "book/_build/html" ]; then
-            echo "Copying Jupyter Book to Jekyll site..."
-            mkdir -p _site/book
-            cp -r book/_build/html/* _site/book/ || echo "Some Jupyter Book files may be missing, continuing..."
-          else
-            echo "Jupyter Book build not found, skipping..."
-          fi
-          
-          echo "Jekyll site built successfully"
-
-      - name: "Verify Build Assets"
-        run: |
-          echo "Verifying built assets..."
-          
-          # Check that key files exist
-          if [ -f "docs/_site/index.html" ]; then
-            echo "✅ Main index.html exists"
-          else
-            echo "❌ Main index.html missing!"
-            exit 1
-          fi
-          
-          # Count assets
-          echo "Images in docs/_site: $(find docs/_site -name '*.png' -o -name '*.jpg' | wc -l)"
-          echo "CSS files: $(find docs/_site/assets/css -name '*.css' 2>/dev/null | wc -l)"
-          echo "JS files: $(find docs/_site/assets/js -name '*.js' 2>/dev/null | wc -l)"
-          
-          echo "Build verification complete"
-
-      - name: "Validate Build Quality"
-        run: |
-          echo "Validating build quality..."
-          
-          REQUIRED_FILES=(
-            "docs/_site/index.html"
-            "docs/_site/book/index.html" 
-            "docs/_site/assets/css/renaissance.css"
-            "docs/_site/assets/js/renaissance.js"
-          )
-          
-          for file in "${REQUIRED_FILES[@]}"; do
-            if [ ! -f "$file" ]; then
-              echo "Missing required file: $file"
-              exit 1
-            fi
-          done
-          
-          if command -v tidy &> /dev/null; then
-            tidy -q -e docs/_site/index.html || echo "HTML validation warnings (non-critical)"
-          fi
-          
-          echo "Build quality validation complete"
-
-      - name: "Generate Build Report"
-        run: |
-          echo "Generating build report..."
-          
-          BUILD_SIZE=$(du -sh docs/_site | cut -f1)
-          INVENTION_COUNT=$(python -m davinci_codex.cli list | wc -l)
-          JUPYTER_PAGES=$(find docs/book/_build/html -name "*.html" | wc -l)
-          
-          cat > build-report.md << EOF
-          # Professional Build Report
-          
-          **Build Date**: $(date -u +"%Y-%m-%d %H:%M UTC")
-          **Total Site Size**: $BUILD_SIZE
-          **Inventions Available**: $INVENTION_COUNT
-          **Jupyter Book Pages**: $JUPYTER_PAGES
-          **Git Commit**: ${GITHUB_SHA:0:8}
-          
-          ## Build Success
-          - Jekyll site compiled successfully
-          - Jupyter Book integrated
-          - All required assets generated
-          - Quality validation passed
-          
-          ## Professional Features Active
-          - Interactive invention showcase
-          - Physics simulations
-          - 3D model viewers
-          - Educational resources
-          - Historical provenance tracking
-          
-          ---
-          "Obstacles do not bend me." - Leonardo da Vinci
-          EOF
-          
-          echo "Build report generated"
+          echo "Verifying static site files..."
+          test -f web/index.html && echo "index.html OK"
+          test -f web/gallery.html && echo "gallery.html OK"
+          test -f web/renaissance_ensemble/index.html && echo "renaissance_ensemble/index.html OK"
+          test -f web/renaissance_ensemble/assets/demo_pavane.mp3 && echo "demo_pavane.mp3 OK"
+          test -f web/leonardo_design_system.css && echo "leonardo_design_system.css OK"
+          echo "Verification complete"
 
       - name: "Setup GitHub Pages"
         uses: actions/configure-pages@v4
@@ -205,85 +47,8 @@ jobs:
       - name: "Upload Site Artifact"
         uses: actions/upload-pages-artifact@v3
         with:
-          path: docs/_site
+          path: web
 
-      - name: "Upload Build Report"
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-report
-          path: build-report.md
-          retention-days: 30
-
-  # Deploy to GitHub Pages
-  deploy:
-    name: "Deploy to GitHub Pages"
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    if: github.ref == 'refs/heads/main'
-    outputs:
-      page_url: ${{ steps.deployment.outputs.page_url }}
-    
-    steps:
       - name: "Deploy to GitHub Pages"
         id: deployment
         uses: actions/deploy-pages@v4
-
-      - name: "Deployment Success"
-        run: |
-          echo "Professional website deployed successfully!"
-          echo "URL: ${{ steps.deployment.outputs.page_url }}"
-          echo ""
-          echo "Welcome to Leonardo's digital workshop!"
-
-  # Post-Deploy Validation
-  validate-deployment:
-    name: "Validate Deployment"
-    runs-on: ubuntu-latest
-    needs: deploy
-    if: github.ref == 'refs/heads/main'
-    
-    steps:
-      - name: "Test Website Accessibility"
-        run: |
-          echo "Testing website accessibility..."
-          
-          curl -f -s "${{ needs.deploy.outputs.page_url }}" > /dev/null
-          echo "Main page accessible"
-          
-          curl -f -s "${{ needs.deploy.outputs.page_url }}/book/" > /dev/null
-          echo "Jupyter Book accessible"
-          
-          echo "All accessibility tests passed!"
-
-      - name: "Performance Check"
-        run: |
-          echo "Running basic performance check..."
-          
-          TIME=$(curl -o /dev/null -s -w "%{time_total}" "${{ needs.deploy.outputs.page_url }}")
-          
-          if (( $(echo "$TIME > 5.0" | bc -l) )); then
-            echo "Page load time: ${TIME}s (consider optimization)"
-          else
-            echo "Page load time: ${TIME}s (excellent)"
-          fi
-
-      - name: "Deployment Complete"
-        run: |
-          echo ""
-          echo "=================================="
-          echo "   PROFESSIONAL DEPLOYMENT COMPLETE"
-          echo "=================================="
-          echo ""
-          echo "Leonardo's inventions are now live!"
-          echo "Visit: ${{ needs.deploy.outputs.page_url }}"
-          echo ""
-          echo "Experience the Three Acts of Innovation:"
-          echo "   Act I: Conquering the Skies"
-          echo "   Act II: Mechanical Marvels" 
-          echo "   Act III: Artistic Automata"
-          echo ""
-          echo "'Simplicity is the ultimate sophistication.'"
-          echo "   - Leonardo da Vinci"
