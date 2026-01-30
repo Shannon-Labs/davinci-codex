@@ -1,0 +1,13 @@
+[project]
+name = "toulmini"
+version = "0.1.0"
+description = "A local MCP server for Toulmin argumentation logic."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "mcp>=1.0.0",
+    "pydantic>=2.0.0"
+]
+
+[project.scripts]
+toulmini = "toulmini:main"

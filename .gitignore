@@ -211,6 +211,9 @@ bandit-report.json
 safety-report.json
 security-reports/
 
+# Generated audit reports
+asset_audit_report.json
+
 # Temporary analysis files
 material_selection_matrix.png
 vortex_ring_analysis.png

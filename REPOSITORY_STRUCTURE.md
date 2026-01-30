@@ -123,11 +123,28 @@ davinci-codex/
 - ✅ Moved development tools to `tools/`
 - ✅ Standardized naming conventions
 
+### 2025-01-29 Major Cleanup
+- ✅ Archived planning documents to `docs/project-history/`
+  - Moved: `DA_VINCI_VISION.md`, `TRANSFORMATION_SUMMARY.md`, `CLEAN_PROJECT_SUMMARY.md`
+  - Moved: `LEONARDO_WORKSHOP_IMPLEMENTATION_ROADMAP.md`, `CLAUDE_CONTINUATION_PROMPT.md`, `NEXT_AI_PROMPT.md`
+- ✅ Consolidated asset generation scripts into `scripts/`
+  - Moved: `generate_visual_assets.py`, `generate_visual_assets_simple.py`
+  - Moved: `generate_additional_assets.py`, `check_links.py`
+- ✅ Removed duplicate/outdated files from root
+  - Removed: `mechanical_lion_complete_package/` (duplicate of `artifacts/` version)
+  - Removed: `vortex_condition_comparison.png` (test output, now gitignored)
+  - Removed: `asset_audit_report.json` (generated file, added to .gitignore)
+  - Removed: `Gemfile`, `Gemfile.lock` (redundant with `docs/Gemfile`)
+- ✅ Organized docs/ directory
+  - Moved invention source markdowns to `docs/_sources/`
+  - Removed: `index.md.backup`
+
 ### Enhanced Organization
 - ✅ Professional `.gitignore` with comprehensive exclusions
 - ✅ Standardized directory naming (snake_case)
 - ✅ Clear separation of concerns
 - ✅ Logical grouping of related files
+- ✅ Root level contains only essential project files
 
 ## 📋 Directory Purpose Guide
 
