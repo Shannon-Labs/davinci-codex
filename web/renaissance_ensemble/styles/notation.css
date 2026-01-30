@@ -450,8 +450,9 @@
 }
 
 .notation-loading::before {
-    content: '🎼';
-    font-size: 2rem;
+    content: 'MVSICA';
+    font-family: var(--font-primary);
+    font-size: 1.2rem;
     margin-right: var(--spacing-sm);
     animation: spin 2s linear infinite;
 }
@@ -468,8 +469,9 @@
 }
 
 .notation-error::before {
-    content: '⚠️';
-    font-size: 2rem;
+    content: 'ERROR';
+    font-family: var(--font-primary);
+    font-size: 1.2rem;
     margin-right: var(--spacing-sm);
 }
 

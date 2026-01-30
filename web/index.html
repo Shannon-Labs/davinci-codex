@@ -3,727 +3,692 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leonardo's Digital Workshop - Renaissance Innovation Portal</title>
+    <title>The da Vinci Codex — Renaissance Engineering</title>
+    <meta name="description" content="Computational archaeology of Leonardo da Vinci's mechanical inventions. Physics simulation, historical reconstruction, and safety analysis.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="leonardo_design_system.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../docs/assets/css/codex-anima.css">
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: var(--leonardo-bg-parchment);
-            font-family: var(--font-leonardo-body);
-            min-height: 100vh;
-            overflow-x: hidden;
+        /* Additional page-specific styles */
+        .hero-compass {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto var(--space-xl);
+            opacity: 0.8;
+            animation: slowRotate 60s linear infinite;
         }
-
-        .workshop-portal {
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: 0;
+        
+        @keyframes slowRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
-
-        /* 🎭 Cinematic Header - Renaissance Theater */
-        .cinematic-header {
-            position: relative;
-            height: 100vh;
-            background: linear-gradient(135deg, 
-                rgba(44, 24, 16, 0.9) 0%, 
-                rgba(139, 69, 19, 0.8) 50%, 
-                rgba(210, 105, 30, 0.7) 100%);
+        
+        .hero-divider-line {
+            width: 60px;
+            height: 1px;
+            background: var(--gold);
+            margin: 0 auto var(--space-xl);
+        }
+        
+        .hero-buttons {
             display: flex;
-            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--space-md);
             justify-content: center;
-            overflow: hidden;
         }
-
-        .header-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="manuscript" patternUnits="userSpaceOnUse" width="20" height="20"><circle cx="10" cy="10" r="1" fill="rgba(255,215,0,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23manuscript)"/></svg>');
-            opacity: 0.3;
-            animation: manuscriptFloat 20s ease-in-out infinite;
+        
+        /* Featured Section */
+        .featured-section {
+            background: linear-gradient(180deg, 
+                var(--parchment) 0%, 
+                var(--parchment-warm) 50%,
+                var(--parchment-aged) 100%);
+            border-top: 1px solid rgba(45, 31, 22, 0.08);
+            border-bottom: 1px solid rgba(45, 31, 22, 0.08);
         }
-
-        @keyframes manuscriptFloat {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(2deg); }
-        }
-
-        .header-content {
+        
+        .featured-description {
             text-align: center;
-            z-index: 10;
-            padding: var(--space-golden-xl);
-            background: rgba(244, 228, 193, 0.95);
-            border-radius: var(--space-golden-lg);
-            border: 3px solid var(--leonardo-gold);
-            box-shadow: var(--glow-leonardo-strong);
-            max-width: 900px;
-            animation: headerReveal 2s ease-out;
+            max-width: 650px;
+            margin: 0 auto var(--space-xl);
+            font-size: 1.1rem;
+            color: var(--ink-faded);
         }
-
-        @keyframes headerReveal {
-            from {
-                opacity: 0;
-                transform: translateY(50px) scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: var(--space-md);
+            max-width: 1000px;
+            margin: 0 auto var(--space-xl);
         }
-
-        .portal-title {
-            font-family: var(--font-leonardo-display);
-            font-size: 4em;
-            color: var(--leonardo-ink);
-            margin-bottom: var(--space-golden-md);
-            text-shadow: 3px 3px 6px rgba(44, 24, 16, 0.3);
-            animation: titleGlow 3s ease-in-out infinite alternate;
+        
+        .feature-item {
+            text-align: center;
+            padding: var(--space-lg);
+            background: rgba(255, 255, 255, 0.4);
+            border: var(--border-hairline);
+            transition: all var(--transition-measured);
         }
-
-        @keyframes titleGlow {
-            from { text-shadow: 3px 3px 6px rgba(44, 24, 16, 0.3); }
-            to { text-shadow: 3px 3px 6px rgba(44, 24, 16, 0.3), 0 0 20px rgba(255, 215, 0, 0.5); }
+        
+        .feature-item:hover {
+            border-color: rgba(201, 162, 39, 0.3);
+            background: rgba(255, 255, 255, 0.6);
+            transform: translateY(-2px);
         }
-
-        .portal-subtitle {
-            font-size: 1.5em;
-            color: var(--leonardo-umber);
-            font-style: italic;
-            margin-bottom: var(--space-golden-lg);
-            animation: subtitleFloat 4s ease-in-out infinite;
+        
+        .feature-icon {
+            width: 44px;
+            height: 44px;
+            margin: 0 auto var(--space-sm);
+            stroke: var(--umber);
+            stroke-width: 1.2;
+            fill: none;
         }
-
-        @keyframes subtitleFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-5px); }
+        
+        .feature-item h3 {
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: var(--space-xs);
+            color: var(--ink-walnut);
         }
-
-        .leonardo-mirror-welcome {
-            margin: var(--space-golden-lg) 0;
-            padding: var(--space-golden-md);
-            background: rgba(44, 24, 16, 0.05);
-            border-radius: var(--space-golden-md);
+        
+        .feature-item p {
+            font-size: 0.9rem;
+            color: var(--ink-faded);
+            line-height: 1.5;
         }
-
-        .mirror-welcome-text {
-            font-family: var(--font-leonardo-mirror);
-            font-size: 1.3em;
+        
+        /* Workshop Section */
+        .workshop-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--space-lg);
+        }
+        
+        .workshop-card {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .workshop-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--space-sm);
+        }
+        
+        .workshop-card h3 {
+            font-family: var(--font-display);
+            font-size: 0.95rem;
+            letter-spacing: 0.04em;
+            color: var(--ink-walnut);
+        }
+        
+        .workshop-card.featured h3 {
+            color: var(--umber);
+        }
+        
+        .workshop-card p {
+            font-size: 0.95rem;
+            color: var(--ink-faded);
+            line-height: 1.6;
+            margin-bottom: var(--space-md);
+        }
+        
+        /* Mirror Section */
+        .mirror-section {
+            text-align: center;
+            padding: var(--space-xl) var(--space-lg);
+            background: linear-gradient(180deg, 
+                var(--parchment-aged) 0%, 
+                var(--parchment) 100%);
+        }
+        
+        .mirror-text {
+            font-family: var(--font-mirror);
+            font-size: 1.3rem;
+            letter-spacing: 0.08em;
+            color: var(--ink-faded);
             transform: scaleX(-1);
             direction: rtl;
             unicode-bidi: bidi-override;
-            letter-spacing: 0.1em;
-            color: var(--leonardo-ink);
-            text-align: center;
-            transition: all var(--anim-leonardo-medium);
-        }
-
-        .leonardo-mirror-welcome:hover .mirror-welcome-text {
-            transform: scaleX(1);
-            color: var(--leonardo-gold);
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-        }
-
-        .welcome-hint {
-            text-align: center;
-            font-size: 0.9em;
-            color: var(--leonardo-umber);
-            margin-top: var(--space-golden-sm);
-            opacity: 0.7;
-            transition: opacity var(--anim-leonardo-medium);
-        }
-
-        .leonardo-mirror-welcome:hover .welcome-hint {
-            opacity: 1;
-        }
-
-        .portal-navigation {
-            display: flex;
-            gap: var(--space-golden-md);
-            justify-content: center;
-            margin-top: var(--space-golden-lg);
-            flex-wrap: wrap;
-        }
-
-        .portal-button {
-            background: linear-gradient(45deg, var(--leonardo-crimson), var(--leonardo-crimson-light));
-            color: var(--leonardo-parchment);
-            border: none;
-            padding: var(--space-golden-md) var(--space-golden-xl);
-            border-radius: var(--space-golden-md);
-            font-family: var(--font-leonardo-display);
-            font-size: 1.1rem;
-            letter-spacing: 0.05em;
+            opacity: 0.6;
+            transition: all var(--transition-measured);
             cursor: pointer;
-            transition: all var(--anim-leonardo-medium);
-            box-shadow: var(--shadow-leonardo-manuscript);
-            position: relative;
-            overflow: hidden;
-            text-decoration: none;
             display: inline-block;
+            margin-bottom: var(--space-sm);
         }
-
-        .portal-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
-            transition: left var(--anim-leonardo-slow);
+        
+        .mirror-text:hover {
+            opacity: 1;
+            transform: scaleX(1);
+            color: var(--vermillion);
         }
-
-        .portal-button:hover::before {
-            left: 100%;
+        
+        .mirror-hint {
+            font-family: var(--font-notes);
+            font-size: 0.8rem;
+            font-style: italic;
+            color: var(--ink-faded);
+            opacity: 0.6;
         }
-
-        .portal-button:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-leonardo-elevated);
-        }
-
-        /* 🎨 Workshop Features Grid */
-        .workshop-features {
-            padding: var(--space-golden-xxl) var(--space-golden-xl);
-            background: rgba(255, 255, 255, 0.95);
-        }
-
-        .features-title {
-            font-family: var(--font-leonardo-display);
-            font-size: 2.5em;
-            color: var(--leonardo-ink);
+        
+        /* Quote Section Dark */
+        .quote-dark {
+            background: var(--ink-walnut);
+            color: var(--parchment);
+            padding: var(--space-xxl) var(--space-lg);
             text-align: center;
-            margin-bottom: var(--space-golden-xxl);
-            position: relative;
         }
-
-        .features-title::after {
-            content: '';
+        
+        .quote-dark blockquote {
+            max-width: 750px;
+            margin: 0 auto;
+        }
+        
+        .quote-dark p {
+            font-family: var(--font-body);
+            font-size: 1.6rem;
+            font-style: italic;
+            line-height: 1.5;
+            margin-bottom: var(--space-md);
+            opacity: 0.95;
+        }
+        
+        .quote-dark cite {
+            font-family: var(--font-notes);
+            font-size: 0.9rem;
+            font-style: normal;
+            letter-spacing: 0.03em;
+            opacity: 0.7;
+        }
+        
+        /* Vitruvian flourish */
+        .vitruvian-flourish {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto var(--space-lg);
+            opacity: 0.6;
+        }
+        
+        /* Footer links */
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: var(--space-lg);
+            margin: var(--space-xl) 0;
+        }
+        
+        .footer-links a {
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        
+        .copyright {
+            margin-top: var(--space-lg);
+            font-family: var(--font-notes);
+            font-size: 0.85rem;
+            opacity: 0.5;
+        }
+        
+        /* Scroll indicator */
+        .scroll-indicator {
             position: absolute;
-            bottom: -10px;
+            bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--leonardo-gold), var(--leonardo-crimson), var(--leonardo-gold));
-            border-radius: 2px;
+            opacity: 0.4;
+            animation: bounce 2s infinite;
         }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: var(--space-golden-xl);
-            margin-bottom: var(--space-golden-xxl);
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
         }
-
-        .feature-card {
-            background: rgba(255, 255, 255, 0.9);
-            border: 2px solid var(--leonardo-umber-light);
-            border-radius: var(--space-golden-lg);
-            padding: var(--space-golden-xl);
-            text-align: center;
-            transition: all var(--anim-leonardo-medium);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
+        
+        /* Geometric decoration */
+        .geometric-deco {
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(from 0deg, transparent, rgba(255, 215, 0, 0.1), transparent);
-            animation: rotate 10s linear infinite;
-            opacity: 0;
-            transition: opacity var(--anim-leonardo-medium);
-        }
-
-        .feature-card:hover::before {
-            opacity: 1;
-        }
-
-        @keyframes rotate {
-            to { transform: rotate(360deg); }
-        }
-
-        .feature-card:hover {
-            border-color: var(--leonardo-gold);
-            transform: translateY(-5px);
-            box-shadow: var(--glow-leonardo-strong);
-        }
-
-        .feature-icon {
-            font-size: 3em;
-            margin-bottom: var(--space-golden-md);
-            animation: iconFloat 3s ease-in-out infinite;
-        }
-
-        @keyframes iconFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .feature-title {
-            font-family: var(--font-leonardo-display);
-            font-size: 1.5em;
-            color: var(--leonardo-crimson);
-            margin-bottom: var(--space-golden-md);
-        }
-
-        .feature-description {
-            color: var(--leonardo-umber);
-            line-height: 1.6;
-            margin-bottom: var(--space-golden-lg);
-        }
-
-        .feature-link {
-            display: inline-block;
-            background: linear-gradient(45deg, var(--leonardo-umber), var(--leonardo-umber-light));
-            color: var(--leonardo-parchment);
-            padding: var(--space-golden-sm) var(--space-golden-lg);
-            border-radius: var(--space-golden-sm);
-            text-decoration: none;
-            font-family: var(--font-leonardo-display);
-            font-size: 0.9rem;
-            transition: all var(--anim-leonardo-medium);
-        }
-
-        .feature-link:hover {
-            background: linear-gradient(45deg, var(--leonardo-crimson), var(--leonardo-crimson-light));
-            transform: scale(1.05);
-        }
-
-        /* 📚 Leonardo's Wisdom Section */
-        .wisdom-section {
-            background: linear-gradient(135deg, 
-                rgba(139, 0, 0, 0.05) 0%, 
-                rgba(44, 24, 16, 0.05) 100%);
-            padding: var(--space-golden-xxl) var(--space-golden-xl);
-            text-align: center;
-        }
-
-        .wisdom-title {
-            font-family: var(--font-leonardo-display);
-            font-size: 2em;
-            color: var(--leonardo-crimson);
-            margin-bottom: var(--space-golden-lg);
-        }
-
-        .wisdom-carousel {
-            max-width: 800px;
-            margin: 0 auto var(--space-golden-lg);
-            position: relative;
-        }
-
-        .wisdom-quote {
-            background: rgba(255, 255, 255, 0.9);
-            border: 2px solid var(--leonardo-gold);
-            border-radius: var(--space-golden-md);
-            padding: var(--space-golden-xl);
-            font-style: italic;
-            font-size: 1.2em;
-            color: var(--leonardo-ink);
-            position: relative;
-            animation: wisdomFade 10s ease-in-out infinite;
-        }
-
-        @keyframes wisdomFade {
-            0%, 90%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-
-        .wisdom-quote::before {
-            content: '"';
-            font-size: 4em;
-            color: var(--leonardo-gold);
-            position: absolute;
-            top: -10px;
-            left: 20px;
-            opacity: 0.3;
-        }
-
-        .wisdom-attribution {
-            text-align: right;
-            margin-top: var(--space-golden-md);
-            color: var(--leonardo-umber);
-            font-size: 0.9em;
-        }
-
-        /* 🎯 Call to Action */
-        .cta-section {
-            background: rgba(44, 24, 16, 0.9);
-            color: var(--leonardo-parchment);
-            padding: var(--space-golden-xxl);
-            text-align: center;
-        }
-
-        .cta-title {
-            font-family: var(--font-leonardo-display);
-            font-size: 2.5em;
-            margin-bottom: var(--space-golden-lg);
-        }
-
-        .cta-subtitle {
-            font-size: 1.2em;
-            margin-bottom: var(--space-golden-xl);
-            opacity: 0.9;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: var(--space-golden-md);
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .cta-button {
-            background: linear-gradient(45deg, var(--leonardo-gold-dark), var(--leonardo-gold));
-            color: var(--leonardo-ink);
-            padding: var(--space-golden-md) var(--space-golden-xl);
-            border-radius: var(--space-golden-md);
-            text-decoration: none;
-            font-family: var(--font-leonardo-display);
-            font-size: 1.1rem;
-            transition: all var(--anim-leonardo-medium);
-            box-shadow: var(--shadow-leonardo-manuscript);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-leonardo-elevated);
-            background: linear-gradient(45deg, var(--leonardo-crimson), var(--leonardo-crimson-light));
-            color: var(--leonardo-parchment);
-        }
-
-        /* 📱 Responsive Design */
-        @media (max-width: 768px) {
-            .portal-title {
-                font-size: 2.5em;
-            }
-            
-            .portal-subtitle {
-                font-size: 1.2em;
-            }
-            
-            .portal-navigation {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
-                gap: var(--space-golden-lg);
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .workshop-portal {
-                padding: 0;
-            }
-        }
-
-        /* ✨ Special Effects */
-        .floating-particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            width: 200px;
+            height: 200px;
+            opacity: 0.08;
             pointer-events: none;
-            overflow: hidden;
         }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--leonardo-gold);
-            border-radius: 50%;
-            opacity: 0.6;
-            animation: particleFloat 15s linear infinite;
+        
+        .geometric-deco.top-left {
+            top: 5%;
+            left: 5%;
         }
-
-        @keyframes particleFloat {
-            0% {
-                transform: translateY(100vh) translateX(0px);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.6;
-            }
-            90% {
-                opacity: 0.6;
-            }
-            100% {
-                transform: translateY(-100px) translateX(100px);
-                opacity: 0;
-            }
+        
+        .geometric-deco.top-right {
+            top: 10%;
+            right: 5%;
+            transform: rotate(90deg);
         }
-
-        /* 🔍 Interactive Elements */
-        .interactive-hint {
-            position: fixed;
-            bottom: var(--space-golden-lg);
-            right: var(--space-golden-lg);
-            background: rgba(44, 24, 16, 0.9);
-            color: var(--leonardo-parchment);
-            padding: var(--space-golden-md);
-            border-radius: var(--space-golden-md);
-            font-size: 0.9em;
-            z-index: 1000;
-            animation: hintFloat 4s ease-in-out infinite;
+        
+        .geometric-deco.bottom-left {
+            bottom: 10%;
+            left: 8%;
+            transform: rotate(180deg);
         }
-
-        @keyframes hintFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+        
+        /* Red chalk annotation style */
+        .chalk-note {
+            font-family: var(--font-notes);
+            font-size: 0.75rem;
+            color: var(--vermillion);
+            opacity: 0.85;
+            font-style: italic;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-compass {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .quote-dark p {
+                font-size: 1.25rem;
+            }
+            
+            .mirror-text {
+                font-size: 1rem;
+            }
+            
+            .workshop-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="workshop-portal">
-        <!-- 🎭 Cinematic Header - The Grand Entrance -->
-        <header class="cinematic-header">
-            <div class="header-background"></div>
-            <div class="floating-particles">
-                <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
-                <div class="particle" style="left: 30%; animation-delay: 2s;"></div>
-                <div class="particle" style="left: 50%; animation-delay: 4s;"></div>
-                <div class="particle" style="left: 70%; animation-delay: 6s;"></div>
-                <div class="particle" style="left: 90%; animation-delay: 8s;"></div>
-            </div>
+    <!-- Manuscript Aging Overlays -->
+    <div class="manuscript-aging">
+        <div class="wormholes"></div>
+        <div class="water-stains"></div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="codex-hero">
+        <!-- Geometric decorations -->
+        <svg class="geometric-deco top-left" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="48" fill="none" stroke="currentColor" stroke-width="0.5"/>
+            <circle cx="50" cy="50" r="35" fill="none" stroke="currentColor" stroke-width="0.5"/>
+            <line x1="50" y1="2" x2="50" y2="98" stroke="currentColor" stroke-width="0.5"/>
+            <line x1="2" y1="50" x2="98" y2="50" stroke="currentColor" stroke-width="0.5"/>
+            <line x1="16" y1="16" x2="84" y2="84" stroke="currentColor" stroke-width="0.5"/>
+            <line x1="84" y1="16" x2="16" y2="84" stroke="currentColor" stroke-width="0.5"/>
+        </svg>
+        <svg class="geometric-deco top-right" viewBox="0 0 100 100">
+            <rect x="10" y="10" width="80" height="80" fill="none" stroke="currentColor" stroke-width="0.5"/>
+            <rect x="25" y="25" width="50" height="50" fill="none" stroke="currentColor" stroke-width="0.5" transform="rotate(45 50 50)"/>
+            <circle cx="50" cy="50" r="30" fill="none" stroke="currentColor" stroke-width="0.5"/>
+        </svg>
+        <svg class="geometric-deco bottom-left" viewBox="0 0 100 100">
+            <polygon points="50,5 95,95 5,95" fill="none" stroke="currentColor" stroke-width="0.5"/>
+            <polygon points="50,25 80,80 20,80" fill="none" stroke="currentColor" stroke-width="0.5"/>
+            <circle cx="50" cy="62" r="15" fill="none" stroke="currentColor" stroke-width="0.5"/>
+        </svg>
+
+        <div class="codex-hero-content">
+            <!-- Mechanical Wing Sketch (Red Chalk Style) -->
+            <svg class="annotation-sketch sketch-visible living-sketch" style="top: -20px; right: -100px; width: 300px; height: 200px; opacity: 0.15;" viewBox="0 0 200 100">
+                <path d="M20,80 Q50,20 180,30" stroke="var(--vermillion)" stroke-width="0.5" fill="none" />
+                <path d="M40,75 Q65,40 160,45" stroke="var(--vermillion)" stroke-width="0.5" fill="none" />
+                <path d="M60,70 Q80,55 140,55" stroke="var(--vermillion)" stroke-width="0.5" fill="none" />
+                <!-- Hatching lines -->
+                <line x1="45" y1="50" x2="50" y2="60" stroke="var(--vermillion)" stroke-width="0.3" />
+                <line x1="55" y1="45" x2="60" y2="55" stroke="var(--vermillion)" stroke-width="0.3" />
+                <line x1="65" y1="42" x2="70" y2="52" stroke="var(--vermillion)" stroke-width="0.3" />
+                <line x1="100" y1="35" x2="105" y2="45" stroke="var(--vermillion)" stroke-width="0.3" />
+                <!-- Structural joints -->
+                <circle cx="20" cy="80" r="2" fill="none" stroke="var(--vermillion)" stroke-width="0.5" />
+                <circle cx="50" cy="65" r="1.5" fill="none" stroke="var(--vermillion)" stroke-width="0.5" />
+            </svg>
+
+            <!-- Compass Icon -->
+            <svg class="hero-compass" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.2">
+                <!-- Outer circle -->
+                <circle cx="50" cy="50" r="45" stroke-dasharray="2,3"/>
+                <circle cx="50" cy="50" r="38"/>
+                <!-- Inner markings -->
+                <circle cx="50" cy="50" r="25" stroke-dasharray="4,4"/>
+                <!-- Compass arms -->
+                <line x1="50" y1="5" x2="50" y2="35" stroke-width="2"/>
+                <line x1="50" y1="65" x2="50" y2="95" stroke-width="2"/>
+                <line x1="5" y1="50" x2="35" y2="50"/>
+                <line x1="65" y1="50" x2="95" y2="50"/>
+                <!-- Center -->
+                <circle cx="50" cy="50" r="8" fill="var(--gold)" fill-opacity="0.3"/>
+                <circle cx="50" cy="50" r="3" fill="currentColor"/>
+                <!-- Degree marks -->
+                <line x1="50" y1="12" x2="50" y2="16"/>
+                <line x1="50" y1="84" x2="50" y2="88"/>
+                <line x1="12" y1="50" x2="16" y2="50"/>
+                <line x1="84" y1="50" x2="88" y2="50"/>
+                <!-- Golden ratio spiral approximation -->
+                <path d="M50 50 Q65 50 65 35 Q65 20 50 20 Q35 20 35 35 Q35 50 50 50" fill="none" stroke-dasharray="1,2" opacity="0.5"/>
+            </svg>
+
+            <p class="codex-subtitle">Shannon Laboratories</p>
+            <h1 class="codex-title">The da Vinci Codex</h1>
             
-            <div class="header-content">
-                <h1 class="portal-title">Leonardo's Digital Workshop</h1>
-                <p class="portal-subtitle">Where Renaissance Genius Meets Modern Innovation • Now with Physics-Based Audio Synthesis</p>
-                
-                <div class="leonardo-mirror-welcome">
-                    <div class="mirror-welcome-text">.ecnatropmi lacihtem fo ytiliba eht si cisum</div>
-                    <div class="welcome-hint">Hover to decode Leonardo's welcome</div>
-                </div>
-                
-                <div class="portal-navigation">
-                    <a href="gallery.html" class="portal-button" style="background: linear-gradient(45deg, var(--leonardo-gold-dark), var(--leonardo-gold)); color: var(--leonardo-ink); font-size: 1.2em; padding: var(--space-golden-lg) var(--space-golden-xxl);">🎨 View Full Gallery (24 Inventions)</a>
-                </div>
-
-                <div class="portal-navigation" style="margin-top: var(--space-golden-md);">
-                    <a href="renaissance_ensemble/index.html" class="portal-button" style="background: linear-gradient(45deg, #8B4513, #DAA520); color: white;">🎼 Renaissance Ensemble</a>
-                    <a href="mirror_writing_interface.html" class="portal-button">🪞 Mirror Writing</a>
-                    <a href="universal_machine.html" class="portal-button">⚙️ Universal Machine</a>
-                </div>
-            </div>
-        </header>
-
-        <!-- 🎨 Workshop Features - The Master's Tools -->
-        <section class="workshop-features">
-            <h2 class="features-title">The Master's Workshop</h2>
+            <div class="hero-divider-line"></div>
             
-            <div class="features-grid">
-                <div class="feature-card" style="border: 4px solid gold; background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(139, 0, 0, 0.08)); box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);">
-                    <div style="position: absolute; top: 10px; right: 10px; background: linear-gradient(45deg, #ff6b6b, #feca57); color: white; padding: 4px 12px; border-radius: 12px; font-size: 0.75em; font-weight: bold;">NEW</div>
-                    <div class="feature-icon" style="font-size: 4em; animation: iconFloat 3s ease-in-out infinite;">🎼</div>
-                    <h3 class="feature-title" style="color: var(--leonardo-gold-dark);">✨ Renaissance Ensemble</h3>
-                    <p class="feature-description">
-                        <strong>Physics-based audio synthesis!</strong> Experience 6 mechanical instruments with AI-generated Renaissance compositions. 
-                        Authentic timbres, Schroeder hall reverb, and CD-quality audio export. A breakthrough in computational music archaeology.
-                    </p>
-                    <div style="margin: 10px 0; font-size: 0.85em; color: var(--leonardo-umber);">
-                        🔬 6 Physics Timbres • 🎼 AI Composition • 📊 Visualizations • 🎵 WAV Export
-                    </div>
-                    <a href="renaissance_ensemble/index.html" class="feature-link" style="background: linear-gradient(45deg, var(--leonardo-gold-dark), var(--leonardo-gold)); color: var(--leonardo-ink); font-weight: bold;">🎵 Enter the Court →</a>
-                </div>
-
-                <div class="feature-card" style="border: 3px solid var(--leonardo-gold); background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(139, 0, 0, 0.05));">
-                    <div class="feature-icon" style="font-size: 4em;">🎨</div>
-                    <h3 class="feature-title" style="color: var(--leonardo-gold-dark);">Innovation Gallery</h3>
-                    <p class="feature-description">
-                        <strong>24 Interactive Masterworks!</strong> Explore all of Leonardo's inventions in one stunning
-                        Renaissance-styled gallery. Flight systems, musical instruments, hydraulic marvels, and more.
-                    </p>
-                    <a href="gallery.html" class="feature-link" style="background: linear-gradient(45deg, var(--leonardo-gold-dark), var(--leonardo-gold)); color: var(--leonardo-ink);">Open Gallery →</a>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">🪞</div>
-                    <h3 class="feature-title">Mirror Writing Decoder</h3>
-                    <p class="feature-description">
-                        Unlock the secrets of Leonardo's famous reversed script. Learn to read and write 
-                        like the master himself, discovering why he wrote backwards.
-                    </p>
-                    <a href="mirror_writing_interface.html" class="feature-link">Decode the Script</a>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">⚙️</div>
-                    <h3 class="feature-title">Universal Machine</h3>
-                    <p class="feature-description">
-                        Build your own inventions using Leonardo's mechanical primitives. Combine gears, 
-                        cams, levers, and springs to create mechanisms limited only by imagination.
-                    </p>
-                    <a href="universal_machine.html" class="feature-link">Build Mechanisms</a>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">🕸️</div>
-                    <h3 class="feature-title">Cross-Pollination Explorer</h3>
-                    <p class="feature-description">
-                        Discover how Leonardo's inventions influenced each other. Navigate the network 
-                        of innovation and see the hidden connections between art, science, and engineering.
-                    </p>
-                    <a href="cross_pollination_explorer.html" class="feature-link">Explore Connections</a>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">⏰</div>
-                    <h3 class="feature-title">Invention Timeline</h3>
-                    <p class="feature-description">
-                        Journey through 50 years of revolutionary innovation. Witness the evolution 
-                        of Leonardo's genius from early mechanical experiments to final masterpieces.
-                    </p>
-                    <a href="invention_timeline.html" class="feature-link">Travel Through Time</a>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">🏆</div>
-                    <h3 class="feature-title">Leonardo Challenge</h3>
-                    <p class="feature-description">
-                        Join the global competition to build Leonardo's unrealized dreams. Compete 
-                        with makers worldwide to bring 500-year-old visions to life.
-                    </p>
-                    <a href="https://github.com/Shannon-Labs/davinci-codex" class="feature-link">Accept the Challenge</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- 📚 Leonardo's Wisdom - The Master's Voice -->
-        <section class="wisdom-section">
-            <h2 class="wisdom-title">The Master's Wisdom</h2>
-            
-            <div class="wisdom-carousel">
-                <div class="wisdom-quote">
-                    Obstacles do not bend me. Every obstacle yields to stern resolve. Learning never exhausts the mind.
-                    <div class="wisdom-attribution">— Leonardo da Vinci, Codex Atlanticus</div>
-                </div>
-            </div>
-            
-            <div class="leonardo-mirror-decoder" style="margin: var(--space-golden-lg) auto; max-width: 400px;">
-                <div class="mirror-text">.ecnatropmi lacihtem fo ytiliba eht si cisum</div>
-                <div class="decoder-hint" style="text-align: center; margin-top: var(--space-golden-sm);">Hover to decode</div>
-            </div>
-        </section>
-
-        <!-- 🎯 Call to Action -->
-        <section class="cta-section">
-            <h2 class="cta-title">Begin Your Journey</h2>
-            <p class="cta-subtitle">
-                Step into Leonardo's workshop and experience the Renaissance mind. 
-                Every invention tells a story, every mechanism holds a secret, every discovery awaits your curiosity.
+            <p class="codex-hero-description">
+                A computational archaeology of Renaissance mechanical engineering.
+                Reconstructing Leonardo's inventions through physics simulation,
+                historical manuscript analysis, and modern safety validation.
             </p>
             
-            <div class="cta-buttons">
-                <a href="renaissance_ensemble/index.html" class="cta-button" style="background: linear-gradient(45deg, #DAA520, #FFD700); color: #4a2c0a; font-size: 1.2em; font-weight: bold;">🎵 Experience Renaissance Ensemble</a>
-                <a href="gallery.html" class="cta-button" style="background: linear-gradient(45deg, var(--leonardo-gold-dark), var(--leonardo-gold)); color: var(--leonardo-ink); font-size: 1.1em;">🎨 View All 24 Inventions</a>
-                <a href="mirror_writing_interface.html" class="cta-button">🪞 Learn Mirror Writing</a>
-                <a href="universal_machine.html" class="cta-button">⚙️ Build Mechanisms</a>
+            <div class="hero-buttons">
+                <a href="renaissance_ensemble/index.html" class="btn-codex btn-codex-primary">
+                    Renaissance Ensemble
+                    <span class="badge-codex badge-new">New</span>
+                </a>
+                <a href="gallery.html" class="btn-codex btn-codex-secondary">Enter the Gallery</a>
             </div>
-        </section>
-    </div>
+        </div>
 
-    <!-- 🔍 Interactive Hint -->
-    <div class="interactive-hint">
-        💡 <strong>Pro Tip:</strong> Hover over the mirror writing to decode Leonardo's secrets!
-    </div>
+        <!-- Scroll indicator -->
+        <svg class="scroll-indicator" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <path d="M12 5v14M5 12l7 7 7-7"/>
+        </svg>
+    </section>
 
+    <!-- Renaissance Ensemble Featured Section -->
+    <section class="codex-section featured-section parchment-bg">
+        <div class="codex-section-inner">
+            <div class="codex-section-header">
+                <h2 class="codex-section-title">Renaissance Ensemble</h2>
+                <p class="codex-section-subtitle">Physics-Based Mechanical Orchestra</p>
+            </div>
+            
+            <p class="featured-description">
+                Leonardo's mechanical instruments rendered with physics-based audio synthesis.
+                Six historically-informed timbres, algorithmic composition in church modes,
+                and court acoustics simulation through Schroeder reverberation.
+            </p>
+            
+            <div class="features-grid">
+                <div class="feature-item">
+                    <svg class="feature-icon" viewBox="0 0 24 24">
+                        <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+                        <circle cx="10" cy="17.5" r="2.5"/>
+                    </svg>
+                    <h3>Algorithmic Composition</h3>
+                    <p>Pavane, Galliard, and Basse Danse in authentic church modes</p>
+                </div>
+                <div class="feature-item">
+                    <svg class="feature-icon" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 2v20M2 12h20"/>
+                        <circle cx="12" cy="12" r="4"/>
+                    </svg>
+                    <h3>Physics Timbres</h3>
+                    <p>ADSR envelopes, harmonic profiles, mechanical resonance</p>
+                </div>
+                <div class="feature-item">
+                    <svg class="feature-icon" viewBox="0 0 24 24">
+                        <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
+                        <path d="M12 7v10"/>
+                        <path d="M8 10v7M16 10v7"/>
+                    </svg>
+                    <h3>Schroeder Reverb</h3>
+                    <p>Hall acoustics using comb and all-pass filters</p>
+                </div>
+                <div class="feature-item">
+                    <svg class="feature-icon" viewBox="0 0 24 24">
+                        <rect x="2" y="3" width="20" height="18" rx="1"/>
+                        <path d="M2 8h20M6 3v5M18 3v5"/>
+                        <path d="M6 12h2v6H6zM11 12h2v8h-2zM16 12h2v4h-2z"/>
+                    </svg>
+                    <h3>Visualizations</h3>
+                    <p>Waveform, spectrogram, and score roll displays</p>
+                </div>
+                <div class="feature-item">
+                    <svg class="feature-icon" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>
+                        <path d="M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                    </svg>
+                    <h3>Studio Quality</h3>
+                    <p>44.1kHz WAV export with deterministic seeds</p>
+                </div>
+            </div>
+            
+            <div class="flourish-divider">
+                <svg class="flourish-symbol" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2L9 9H2l6 4.5L5.5 22 12 17l6.5 5-2.5-8.5L22 9h-7l-3-7z"/>
+                </svg>
+            </div>
+            
+            <div style="text-align: center;">
+                <a href="renaissance_ensemble/index.html" class="btn-codex btn-codex-primary" style="font-size: 0.75rem; padding: 1rem 2.5rem;">
+                    Enter the Court
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workshop Section -->
+    <section class="codex-section parchment-bg">
+        <!-- Water Flow Sketch -->
+        <svg class="annotation-sketch living-sketch" style="bottom: 20px; left: 10px; width: 250px; height: 150px; opacity: 0.1;" viewBox="0 0 200 100">
+            <path d="M10,50 Q40,30 70,50 T130,50 T190,50" stroke="var(--vermillion)" stroke-width="0.5" fill="none" stroke-dasharray="2,2" />
+            <path d="M10,60 Q40,40 70,60 T130,60 T190,60" stroke="var(--vermillion)" stroke-width="0.5" fill="none" stroke-dasharray="3,3" />
+            <path d="M10,70 Q40,50 70,70 T130,70 T190,70" stroke="var(--vermillion)" stroke-width="0.5" fill="none" />
+            <!-- Eddy currents -->
+            <circle cx="50" cy="45" r="5" stroke="var(--vermillion)" stroke-width="0.3" fill="none" opacity="0.5" />
+            <circle cx="120" cy="65" r="8" stroke="var(--vermillion)" stroke-width="0.3" fill="none" opacity="0.5" />
+        </svg>
+
+        <div class="codex-section-inner">
+            <div class="codex-section-header">
+                <h2 class="codex-section-title">The Workshop</h2>
+                <p class="codex-section-subtitle">Interactive tools for exploring Leonardo's mechanical universe</p>
+            </div>
+            
+            <div class="workshop-grid">
+                <a href="gallery.html" class="codex-card workshop-card featured">
+                    <div class="workshop-card-header">
+                        <h3>Innovation Gallery</h3>
+                    </div>
+                    <p>Twenty-four reconstructed masterworks spanning flight systems, musical instruments, hydraulic engineering, and mechanical automata.</p>
+                    <span class="codex-link">Open Gallery</span>
+                </a>
+
+                <a href="renaissance_ensemble/index.html" class="codex-card workshop-card featured">
+                    <div class="workshop-card-header">
+                        <h3>Renaissance Ensemble</h3>
+                        <span class="badge-codex badge-new">New</span>
+                    </div>
+                    <p>Physics-based audio synthesis of Leonardo's mechanical instruments with algorithmic Renaissance composition.</p>
+                    <span class="codex-link">Enter the Court</span>
+                </a>
+
+                <a href="mirror_writing_interface.html" class="codex-card workshop-card">
+                    <div class="workshop-card-header">
+                        <h3>Mirror Writing Decoder</h3>
+                    </div>
+                    <p>Learn to read and write in Leonardo's famous reversed script. Discover the method behind his cryptic manuscripts.</p>
+                    <span class="codex-link">Decode the Script</span>
+                </a>
+
+                <a href="universal_machine.html" class="codex-card workshop-card">
+                    <!-- Gear Study Sketch -->
+                    <svg class="annotation-sketch living-sketch" style="top: -10px; right: -10px; width: 60px; height: 60px; opacity: 0.2;" viewBox="0 0 50 50">
+                        <circle cx="25" cy="25" r="20" stroke="var(--vermillion)" stroke-width="0.5" fill="none" stroke-dasharray="2,1" />
+                        <circle cx="25" cy="25" r="5" stroke="var(--vermillion)" stroke-width="0.5" fill="none" />
+                        <line x1="25" y1="5" x2="25" y2="45" stroke="var(--vermillion)" stroke-width="0.3" />
+                        <line x1="5" y1="25" x2="45" y2="25" stroke="var(--vermillion)" stroke-width="0.3" />
+                    </svg>
+                    <div class="workshop-card-header">
+                        <h3>Universal Machine</h3>
+                    </div>
+                    <p>Combine gears, cams, levers, and springs to construct mechanisms from Leonardo's mechanical primitives.</p>
+                    <span class="codex-link">Build Mechanisms</span>
+                </a>
+
+                <a href="cross_pollination_explorer.html" class="codex-card workshop-card">
+                    <div class="workshop-card-header">
+                        <h3>Cross-Pollination Explorer</h3>
+                    </div>
+                    <p>Navigate the network of innovation. Discover connections between art, science, and engineering across Leonardo's work.</p>
+                    <span class="codex-link">Explore Connections</span>
+                </a>
+
+                <a href="invention_timeline.html" class="codex-card workshop-card">
+                    <div class="workshop-card-header">
+                        <h3>Invention Timeline</h3>
+                    </div>
+                    <p>Journey through five decades of innovation. From early mechanical experiments in Florence to final masterworks in Amboise.</p>
+                    <span class="codex-link">Travel Through Time</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Section -->
+    <section class="quote-dark">
+        <svg class="vitruvian-flourish" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="0.8">
+            <circle cx="50" cy="50" r="45"/>
+            <rect x="15" y="28" width="70" height="44"/>
+            <line x1="50" y1="5" x2="50" y2="95"/>
+            <line x1="5" y1="50" x2="95" y2="50"/>
+            <line x1="22" y1="22" x2="78" y2="78"/>
+            <line x1="78" y1="22" x2="22" y2="78"/>
+            <circle cx="50" cy="50" r="15"/>
+        </svg>
+        
+        <blockquote>
+            <p>"Obstacles do not bend me.<br>Every obstacle yields to stern resolve.<br>Learning never exhausts the mind."</p>
+            <cite>— Leonardo da Vinci, <em>Codex Atlanticus</em>, fol. 85v</cite>
+        </blockquote>
+    </section>
+
+    <!-- Mirror Writing Teaser -->
+    <section class="mirror-section">
+        <p class="mirror-text">l'impetuosità vince ogni cosa</p>
+        <p class="mirror-hint">Hover to reveal</p>
+        <p style="font-size: 0.75rem; color: var(--ink-faded); opacity: 0.5; margin-top: var(--space-sm);">
+            <em>"Passion conquers all things"</em>
+        </p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="codex-footer">
+        <div class="codex-section-inner">
+            <!-- Decorative divider -->
+            <svg width="120" height="20" viewBox="0 0 120 20" style="margin-bottom: var(--space-lg); opacity: 0.5;">
+                <line x1="10" y1="10" x2="50" y2="10" stroke="currentColor" stroke-width="0.5"/>
+                <line x1="70" y1="10" x2="110" y2="10" stroke="currentColor" stroke-width="0.5"/>
+                <circle cx="60" cy="10" r="3" fill="none" stroke="currentColor" stroke-width="0.5"/>
+                <circle cx="60" cy="10" r="1" fill="currentColor"/>
+            </svg>
+            
+            <h3 class="codex-section-title" style="color: var(--parchment);">The da Vinci Codex</h3>
+            <p class="codex-section-subtitle" style="color: var(--parchment); opacity: 0.7;">
+                Computational archaeology of Renaissance mechanical engineering
+            </p>
+            
+            <div class="footer-links">
+                <a href="renaissance_ensemble/index.html">Renaissance Ensemble</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="mirror_writing_interface.html">Mirror Writing</a>
+                <a href="https://github.com/Shannon-Labs/davinci-codex">Source Code</a>
+            </div>
+            
+            <p class="copyright">
+                Shannon Labs & Contributors · MIT License · CC0 Media
+            </p>
+            
+            <!-- Folio numbers -->
+            <span class="folio-number folio-left">fol. 1r</span>
+            <span class="folio-number folio-right">Codex</span>
+        </div>
+    </footer>
+
+    <!-- Living Manuscript Interactive Script -->
+    <script src="../docs/assets/js/codex-anima.js"></script>
     <script>
-        // Add floating particles dynamically
-        function createParticles() {
-            const particlesContainer = document.querySelector('.floating-particles');
-            for (let i = 0; i < 20; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 15 + 's';
-                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
-                particlesContainer.appendChild(particle);
-            }
-        }
+        document.addEventListener('DOMContentLoaded', () => {
+            // Scroll-triggered SVG Drawing Animation
+            const observerOptions = {
+                threshold: 0.2
+            };
 
-        // Rotate wisdom quotes
-        const wisdomQuotes = [
-            {
-                text: "Obstacles do not bend me. Every obstacle yields to stern resolve. Learning never exhausts the mind.",
-                attribution: "— Leonardo da Vinci, Codex Atlanticus"
-            },
-            {
-                text: "Art is never finished, only abandoned. Each sketch is a step toward understanding.",
-                attribution: "— Leonardo da Vinci, Manuscript B"
-            },
-            {
-                text: "The noblest pleasure is the joy of understanding. Nature is the source of all true knowledge.",
-                attribution: "— Leonardo da Vinci, Codex Leicester"
-            },
-            {
-                text: "Simplicity is the ultimate sophistication. The whole is greater than the sum of its parts.",
-                attribution: "— Leonardo da Vinci, Codex Madrid I"
-            }
-        ];
-
-        let currentQuote = 0;
-
-        function rotateWisdom() {
-            const quoteElement = document.querySelector('.wisdom-quote');
-            const quoteText = quoteElement.querySelector('.wisdom-quote');
-            const attribution = quoteElement.querySelector('.wisdom-attribution');
-            
-            currentQuote = (currentQuote + 1) % wisdomQuotes.length;
-            const quote = wisdomQuotes[currentQuote];
-            
-            quoteText.innerHTML = quote.text;
-            attribution.textContent = quote.attribution;
-        }
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            createParticles();
-            
-            // Rotate wisdom every 10 seconds
-            setInterval(rotateWisdom, 10000);
-            
-            // Add scroll animations
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.style.animation = 'leonardoReveal 1s ease-out forwards';
+                        const svgs = entry.target.querySelectorAll('svg.animate-draw');
+                        svgs.forEach(svg => {
+                            svg.classList.add('sketch-visible');
+                        });
+                        
+                        // Add jitter to sketches to make them feel alive
+                        const sketches = entry.target.querySelectorAll('.geometric-deco');
+                        sketches.forEach(sketch => {
+                            sketch.classList.add('living-sketch');
+                        });
                     }
                 });
-            });
-            
-            document.querySelectorAll('.feature-card').forEach(card => {
-                observer.observe(card);
-            });
-        });
+            }, observerOptions);
 
-        // Add smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+            document.querySelectorAll('section').forEach(section => {
+                observer.observe(section);
             });
+
+            // Mirror script interaction enhancement
+            const mirrorTexts = document.querySelectorAll('.mirror-text');
+            mirrorTexts.forEach(text => {
+                text.addEventListener('mouseover', () => {
+                    text.style.transition = 'all 1.2s cubic-bezier(0.19, 1, 0.22, 1)';
+                });
+            });
+
+            // Subtle "Ink Bleed" effect on cards
+            const cards = document.querySelectorAll('.codex-card');
+            cards.forEach(card => {
+                card.classList.add('ink-bleed-container');
+            });
+
+            // Random marginalia generator (Red Chalk)
+            const addMarginalia = () => {
+                const sections = document.querySelectorAll('section.parchment-bg');
+                const notes = [
+                    "dimostrazione", 
+                    "pruova di moto", 
+                    "non mi piego", 
+                    "ostacolo", 
+                    "φ = 1.618"
+                ];
+
+                sections.forEach(section => {
+                    if (Math.random() > 0.5) {
+                        const note = document.createElement('div');
+                        note.className = 'red-chalk-layer';
+                        note.style.top = Math.random() * 80 + 10 + '%';
+                        note.style.right = '2%';
+                        note.style.transform = `rotate(${Math.random() * 20 - 10}deg)`;
+                        note.style.fontSize = '0.7rem';
+                        note.innerText = notes[Math.floor(Math.random() * notes.length)];
+                        section.appendChild(note);
+                    }
+                });
+            };
+
+            addMarginalia();
         });
     </script>
 </body>

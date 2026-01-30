@@ -16,7 +16,7 @@ class RenaissanceTheme {
     this.setupParallax();
     this.setupTypewriter();
     
-    console.log('🎨 Renaissance theme initialized');
+    console.log('Renaissance theme initialized');
   }
 
   /**
@@ -168,7 +168,7 @@ class RenaissanceTheme {
 
   setupFloatingActions() {
     // Scroll to top button
-    const scrollTopBtn = this.createFloatingButton('🔝', 'Scroll to top');
+    const scrollTopBtn = this.createFloatingButton('\u2191', 'Scroll to top');
     scrollTopBtn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
@@ -273,7 +273,7 @@ class RenaissanceTheme {
    */
   setupThemeToggle() {
     const toggleButton = document.createElement('button');
-    toggleButton.innerHTML = '🌙';
+    toggleButton.innerHTML = '\u263D';
     toggleButton.title = 'Toggle dark mode';
     toggleButton.className = 'theme-toggle';
     
@@ -294,7 +294,7 @@ class RenaissanceTheme {
 
     toggleButton.addEventListener('click', () => {
       document.body.classList.toggle('dark-theme');
-      toggleButton.innerHTML = document.body.classList.contains('dark-theme') ? '☀️' : '🌙';
+      toggleButton.innerHTML = document.body.classList.contains('dark-theme') ? '\u2609' : '\u263D';
       
       // Store preference
       localStorage.setItem('theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
@@ -304,7 +304,7 @@ class RenaissanceTheme {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
       document.body.classList.add('dark-theme');
-      toggleButton.innerHTML = '☀️';
+      toggleButton.innerHTML = '\u2609';
     }
 
     document.body.appendChild(toggleButton);

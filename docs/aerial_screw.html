@@ -1,846 +1,832 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leonardo's Aerial Screw - The Helicopter Precursor</title>
-    <link rel="stylesheet" href="leonardo_design_system.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #F4E4C1 0%, #E8D4A8 100%);
-            font-family: var(--font-leonardo-body);
-            min-height: 100vh;
-        }
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Leonardo's Aerial Screw - The Helicopter Precursor</title>
+ <link rel="stylesheet" href="leonardo_design_system.css">
+ <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+ <style>
+ body {
+ margin: 0;
+ padding: 0;
+ background: linear-gradient(135deg, #F4E4C1 0%, #E8D4A8 100%);
+ font-family: var(--font-leonardo-body);
+ min-height: 100vh;
+ }
 
-        .aerial-container {
-            max-width: 1800px;
-            margin: 0 auto;
-            padding: var(--space-golden-xl);
-        }
+ .aerial-container {
+ max-width: 1800px;
+ margin: 0 auto;
+ padding: var(--space-golden-xl);
+ }
 
-        /* Header Section */
-        .header-section {
-            text-align: center;
-            margin-bottom: var(--space-golden-xxl);
-            padding: var(--space-golden-xxl);
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: var(--space-golden-lg);
-            box-shadow: var(--shadow-leonardo-elevated);
-            position: relative;
-            overflow: hidden;
-        }
+ /* Header Section */
+ .header-section {
+ text-align: center;
+ margin-bottom: var(--space-golden-xxl);
+ padding: var(--space-golden-xxl);
+ background: rgba(255, 255, 255, 0.9);
+ border-radius: var(--space-golden-lg);
+ box-shadow: var(--shadow-leonardo-elevated);
+ position: relative;
+ overflow: hidden;
+ }
 
-        .header-section::before {
-            content: '🚁';
-            position: absolute;
-            font-size: 15em;
-            opacity: 0.05;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation: gentleRotate 20s linear infinite;
-        }
+ .header-section::before {
+ content: '';
+ position: absolute;
+ font-size: 15em;
+ opacity: 0.05;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+ animation: gentleRotate 20s linear infinite;
+ }
 
-        @keyframes gentleRotate {
-            from { transform: translate(-50%, -50%) rotate(0deg); }
-            to { transform: translate(-50%, -50%) rotate(360deg); }
-        }
+ @keyframes gentleRotate {
+ from { transform: translate(-50%, -50%) rotate(0deg); }
+ to { transform: translate(-50%, -50%) rotate(360deg); }
+ }
 
-        .main-title {
-            font-family: var(--font-leonardo-display);
-            font-size: 4em;
-            color: var(--leonardo-ink);
-            margin-bottom: var(--space-golden-md);
-            text-shadow: 3px 3px 6px rgba(44, 24, 16, 0.2);
-            position: relative;
-            z-index: 1;
-        }
+ .main-title {
+ font-family: var(--font-leonardo-display);
+ font-size: 4em;
+ color: var(--leonardo-ink);
+ margin-bottom: var(--space-golden-md);
+ text-shadow: 3px 3px 6px rgba(44, 24, 16, 0.2);
+ position: relative;
+ z-index: 1;
+ }
 
-        .subtitle {
-            font-size: 1.5em;
-            color: var(--leonardo-umber);
-            font-style: italic;
-            margin-bottom: var(--space-golden-lg);
-        }
+ .subtitle {
+ font-size: 1.5em;
+ color: var(--leonardo-umber);
+ font-style: italic;
+ margin-bottom: var(--space-golden-lg);
+ }
 
-        .breakthrough-badge {
-            display: inline-block;
-            background: linear-gradient(45deg, var(--leonardo-crimson), var(--leonardo-crimson-light));
-            color: var(--leonardo-parchment);
-            padding: var(--space-golden-sm) var(--space-golden-lg);
-            border-radius: var(--space-golden-lg);
-            font-family: var(--font-leonardo-display);
-            font-size: 1.2em;
-            letter-spacing: 0.05em;
-            box-shadow: var(--glow-leonardo-strong);
-            animation: leonardoPulse 2s infinite;
-            margin: var(--space-golden-md) 0;
-        }
+ .breakthrough-badge {
+ display: inline-block;
+ background: linear-gradient(45deg, var(--leonardo-crimson), var(--leonardo-crimson-light));
+ color: var(--leonardo-parchment);
+ padding: var(--space-golden-sm) var(--space-golden-lg);
+ border-radius: var(--space-golden-lg);
+ font-family: var(--font-leonardo-display);
+ font-size: 1.2em;
+ letter-spacing: 0.05em;
+ box-shadow: var(--glow-leonardo-strong);
+ animation: leonardoPulse 2s infinite;
+ margin: var(--space-golden-md) 0;
+ }
 
-        /* Leonardo's Wisdom Quote */
-        .leonardo-quote {
-            background: rgba(135, 169, 107, 0.15);
-            border: 2px solid var(--leonardo-sage);
-            border-radius: var(--space-golden-md);
-            padding: var(--space-golden-lg);
-            margin: var(--space-golden-xl) auto;
-            max-width: 900px;
-            font-style: italic;
-            position: relative;
-        }
+ /* Leonardo's Wisdom Quote */
+ .leonardo-quote {
+ background: rgba(135, 169, 107, 0.15);
+ border: 2px solid var(--leonardo-sage);
+ border-radius: var(--space-golden-md);
+ padding: var(--space-golden-lg);
+ margin: var(--space-golden-xl) auto;
+ max-width: 900px;
+ font-style: italic;
+ position: relative;
+ }
 
-        .quote-icon {
-            font-size: 3em;
-            color: var(--leonardo-gold);
-            position: absolute;
-            top: -20px;
-            left: 20px;
-            background: var(--leonardo-parchment);
-            padding: 0 10px;
-        }
+ .quote-icon {
+ font-size: 3em;
+ color: var(--leonardo-gold);
+ position: absolute;
+ top: -20px;
+ left: 20px;
+ background: var(--leonardo-parchment);
+ padding: 0 10px;
+ }
 
-        .quote-text {
-            font-size: 1.4em;
-            margin-bottom: var(--space-golden-md);
-            line-height: 1.618;
-        }
+ .quote-text {
+ font-size: 1.4em;
+ margin-bottom: var(--space-golden-md);
+ line-height: 1.618;
+ }
 
-        .quote-attribution {
-            font-size: 1em;
-            color: var(--leonardo-umber);
-            text-align: right;
-            font-weight: 600;
-        }
+ .quote-attribution {
+ font-size: 1em;
+ color: var(--leonardo-umber);
+ text-align: right;
+ font-weight: 600;
+ }
 
-        /* Main Layout */
-        .aerial-layout {
-            display: grid;
-            grid-template-columns: 350px 1fr 320px;
-            gap: var(--space-golden-xl);
-            margin-bottom: var(--space-golden-xxl);
-        }
+ /* Main Layout */
+ .aerial-layout {
+ display: grid;
+ grid-template-columns: 350px 1fr 320px;
+ gap: var(--space-golden-xl);
+ margin-bottom: var(--space-golden-xxl);
+ }
 
-        .control-panel, .analysis-panel {
-            background: rgba(255, 255, 255, 0.85);
-            padding: var(--space-golden-lg);
-            border-radius: var(--space-golden-md);
-            box-shadow: var(--shadow-leonardo-manuscript);
-            height: fit-content;
-        }
+ .control-panel, .analysis-panel {
+ background: rgba(255, 255, 255, 0.85);
+ padding: var(--space-golden-lg);
+ border-radius: var(--space-golden-md);
+ box-shadow: var(--shadow-leonardo-manuscript);
+ height: fit-content;
+ }
 
-        .simulation-workspace {
-            background: rgba(255, 255, 255, 0.95);
-            padding: var(--space-golden-xl);
-            border-radius: var(--space-golden-lg);
-            box-shadow: var(--shadow-leonardo-elevated);
-            min-height: 700px;
-        }
+ .simulation-workspace {
+ background: rgba(255, 255, 255, 0.95);
+ padding: var(--space-golden-xl);
+ border-radius: var(--space-golden-lg);
+ box-shadow: var(--shadow-leonardo-elevated);
+ min-height: 700px;
+ }
 
-        .panel-title {
-            font-family: var(--font-leonardo-display);
-            font-size: 1.8em;
-            color: var(--leonardo-crimson);
-            margin-bottom: var(--space-golden-lg);
-            text-align: center;
-            border-bottom: 2px solid var(--leonardo-gold);
-            padding-bottom: var(--space-golden-sm);
-        }
+ .panel-title {
+ font-family: var(--font-leonardo-display);
+ font-size: 1.8em;
+ color: var(--leonardo-crimson);
+ margin-bottom: var(--space-golden-lg);
+ text-align: center;
+ border-bottom: 2px solid var(--leonardo-gold);
+ padding-bottom: var(--space-golden-sm);
+ }
 
-        /* Control Panel */
-        .control-group {
-            margin-bottom: var(--space-golden-lg);
-            padding: var(--space-golden-md);
-            background: rgba(135, 169, 107, 0.1);
-            border-radius: var(--space-golden-sm);
-            border: 1px solid var(--leonardo-sage-light);
-        }
+ /* Control Panel */
+ .control-group {
+ margin-bottom: var(--space-golden-lg);
+ padding: var(--space-golden-md);
+ background: rgba(135, 169, 107, 0.1);
+ border-radius: var(--space-golden-sm);
+ border: 1px solid var(--leonardo-sage-light);
+ }
 
-        .control-label {
-            font-family: var(--font-leonardo-display);
-            font-size: 1.1em;
-            color: var(--leonardo-umber);
-            margin-bottom: var(--space-golden-sm);
-            display: block;
-        }
+ .control-label {
+ font-family: var(--font-leonardo-display);
+ font-size: 1.1em;
+ color: var(--leonardo-umber);
+ margin-bottom: var(--space-golden-sm);
+ display: block;
+ }
 
-        .control-value {
-            font-size: 1.5em;
-            color: var(--leonardo-crimson);
-            font-weight: 600;
-            text-align: center;
-            margin: var(--space-golden-sm) 0;
-        }
+ .control-value {
+ font-size: 1.5em;
+ color: var(--leonardo-crimson);
+ font-weight: 600;
+ text-align: center;
+ margin: var(--space-golden-sm) 0;
+ }
 
-        .slider {
-            width: 100%;
-            height: 8px;
-            border-radius: 4px;
-            background: linear-gradient(90deg, var(--leonardo-sage), var(--leonardo-gold));
-            outline: none;
-            opacity: 0.9;
-            transition: opacity var(--anim-leonardo-fast);
-            cursor: pointer;
-        }
+ .slider {
+ width: 100%;
+ height: 8px;
+ border-radius: 4px;
+ background: linear-gradient(90deg, var(--leonardo-sage), var(--leonardo-gold));
+ outline: none;
+ opacity: 0.9;
+ transition: opacity var(--anim-leonardo-fast);
+ cursor: pointer;
+ }
 
-        .slider:hover {
-            opacity: 1;
-        }
+ .slider:hover {
+ opacity: 1;
+ }
 
-        .slider::-webkit-slider-thumb {
-            appearance: none;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: var(--leonardo-crimson);
-            cursor: pointer;
-            box-shadow: 0 2px 5px rgba(139, 0, 0, 0.3);
-        }
+ .slider::-webkit-slider-thumb {
+ appearance: none;
+ width: 20px;
+ height: 20px;
+ border-radius: 50%;
+ background: var(--leonardo-crimson);
+ cursor: pointer;
+ box-shadow: 0 2px 5px rgba(139, 0, 0, 0.3);
+ }
 
-        /* Rotor Visualization */
-        .rotor-canvas {
-            width: 100%;
-            height: 500px;
-            background: radial-gradient(circle, rgba(135, 169, 107, 0.1), transparent);
-            border: 2px solid var(--leonardo-sage);
-            border-radius: var(--space-golden-md);
-            position: relative;
-            overflow: hidden;
-            margin-bottom: var(--space-golden-lg);
-        }
+ /* Rotor Visualization */
+ .rotor-canvas {
+ width: 100%;
+ height: 500px;
+ background: radial-gradient(circle, rgba(135, 169, 107, 0.1), transparent);
+ border: 2px solid var(--leonardo-sage);
+ border-radius: var(--space-golden-md);
+ position: relative;
+ overflow: hidden;
+ margin-bottom: var(--space-golden-lg);
+ }
 
-        #rotorCanvas {
-            width: 100%;
-            height: 100%;
-        }
+ #rotorCanvas {
+ width: 100%;
+ height: 100%;
+ }
 
-        /* Performance Metrics */
-        .metric-card {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(135, 169, 107, 0.1));
-            border: 2px solid var(--leonardo-gold);
-            border-radius: var(--space-golden-sm);
-            padding: var(--space-golden-md);
-            margin-bottom: var(--space-golden-md);
-            text-align: center;
-            transition: all var(--anim-leonardo-medium);
-        }
+ /* Performance Metrics */
+ .metric-card {
+ background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(135, 169, 107, 0.1));
+ border: 2px solid var(--leonardo-gold);
+ border-radius: var(--space-golden-sm);
+ padding: var(--space-golden-md);
+ margin-bottom: var(--space-golden-md);
+ text-align: center;
+ transition: all var(--anim-leonardo-medium);
+ }
 
-        .metric-card:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--glow-leonardo);
-        }
+ .metric-card:hover {
+ transform: translateY(-3px);
+ box-shadow: var(--glow-leonardo);
+ }
 
-        .metric-label {
-            font-size: 0.9em;
-            color: var(--leonardo-umber);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: var(--space-golden-xs);
-        }
+ .metric-label {
+ font-size: 0.9em;
+ color: var(--leonardo-umber);
+ text-transform: uppercase;
+ letter-spacing: 0.05em;
+ margin-bottom: var(--space-golden-xs);
+ }
 
-        .metric-value {
-            font-size: 2em;
-            color: var(--leonardo-crimson);
-            font-weight: 700;
-            font-family: var(--font-leonardo-display);
-        }
+ .metric-value {
+ font-size: 2em;
+ color: var(--leonardo-crimson);
+ font-weight: 700;
+ font-family: var(--font-leonardo-display);
+ }
 
-        .metric-unit {
-            font-size: 0.7em;
-            color: var(--leonardo-ink);
-            opacity: 0.7;
-        }
+ .metric-unit {
+ font-size: 0.7em;
+ color: var(--leonardo-ink);
+ opacity: 0.7;
+ }
 
-        /* Tab System */
-        .tab-navigation {
-            display: flex;
-            gap: var(--space-golden-sm);
-            margin-bottom: var(--space-golden-lg);
-            border-bottom: 2px solid var(--leonardo-gold);
-        }
+ /* Tab System */
+ .tab-navigation {
+ display: flex;
+ gap: var(--space-golden-sm);
+ margin-bottom: var(--space-golden-lg);
+ border-bottom: 2px solid var(--leonardo-gold);
+ }
 
-        .tab-button {
-            background: transparent;
-            border: none;
-            padding: var(--space-golden-sm) var(--space-golden-md);
-            font-family: var(--font-leonardo-display);
-            font-size: 1.1em;
-            color: var(--leonardo-umber);
-            cursor: pointer;
-            transition: all var(--anim-leonardo-fast);
-            border-bottom: 3px solid transparent;
-            position: relative;
-            bottom: -2px;
-        }
+ .tab-button {
+ background: transparent;
+ border: none;
+ padding: var(--space-golden-sm) var(--space-golden-md);
+ font-family: var(--font-leonardo-display);
+ font-size: 1.1em;
+ color: var(--leonardo-umber);
+ cursor: pointer;
+ transition: all var(--anim-leonardo-fast);
+ border-bottom: 3px solid transparent;
+ position: relative;
+ bottom: -2px;
+ }
 
-        .tab-button:hover {
-            color: var(--leonardo-crimson);
-        }
+ .tab-button:hover {
+ color: var(--leonardo-crimson);
+ }
 
-        .tab-button.active {
-            color: var(--leonardo-crimson);
-            border-bottom-color: var(--leonardo-crimson);
-        }
+ .tab-button.active {
+ color: var(--leonardo-crimson);
+ border-bottom-color: var(--leonardo-crimson);
+ }
 
-        .tab-content {
-            display: none;
-        }
+ .tab-content {
+ display: none;
+ }
 
-        .tab-content.active {
-            display: block;
-            animation: leonardoReveal 0.618s ease-out;
-        }
+ .tab-content.active {
+ display: block;
+ animation: leonardoReveal 0.618s ease-out;
+ }
 
-        /* Technical Specifications */
-        .spec-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: var(--space-golden-md);
-            margin-top: var(--space-golden-md);
-        }
+ /* Technical Specifications */
+ .spec-grid {
+ display: grid;
+ grid-template-columns: repeat(2, 1fr);
+ gap: var(--space-golden-md);
+ margin-top: var(--space-golden-md);
+ }
 
-        .spec-item {
-            background: rgba(244, 228, 193, 0.5);
-            border: 1px solid var(--leonardo-umber-light);
-            border-radius: var(--space-golden-xs);
-            padding: var(--space-golden-sm);
-        }
+ .spec-item {
+ background: rgba(244, 228, 193, 0.5);
+ border: 1px solid var(--leonardo-umber-light);
+ border-radius: var(--space-golden-xs);
+ padding: var(--space-golden-sm);
+ }
 
-        .spec-name {
-            font-size: 0.85em;
-            color: var(--leonardo-umber);
-            margin-bottom: 4px;
-        }
+ .spec-name {
+ font-size: 0.85em;
+ color: var(--leonardo-umber);
+ margin-bottom: 4px;
+ }
 
-        .spec-value {
-            font-size: 1.1em;
-            font-weight: 600;
-            color: var(--leonardo-ink);
-        }
+ .spec-value {
+ font-size: 1.1em;
+ font-weight: 600;
+ color: var(--leonardo-ink);
+ }
 
-        /* Historical Context */
-        .historical-section {
-            background: rgba(255, 255, 255, 0.9);
-            padding: var(--space-golden-xl);
-            border-radius: var(--space-golden-lg);
-            box-shadow: var(--shadow-leonardo-manuscript);
-            margin-bottom: var(--space-golden-xxl);
-        }
+ /* Historical Context */
+ .historical-section {
+ background: rgba(255, 255, 255, 0.9);
+ padding: var(--space-golden-xl);
+ border-radius: var(--space-golden-lg);
+ box-shadow: var(--shadow-leonardo-manuscript);
+ margin-bottom: var(--space-golden-xxl);
+ }
 
-        .folio-reference {
-            background: rgba(139, 69, 19, 0.1);
-            border-left: 4px solid var(--leonardo-umber);
-            padding: var(--space-golden-md);
-            margin: var(--space-golden-lg) 0;
-            font-family: var(--font-leonardo-marginalia);
-            font-style: italic;
-        }
+ .folio-reference {
+ background: rgba(139, 69, 19, 0.1);
+ border-left: 4px solid var(--leonardo-umber);
+ padding: var(--space-golden-md);
+ margin: var(--space-golden-lg) 0;
+ font-family: var(--font-leonardo-marginalia);
+ font-style: italic;
+ }
 
-        /* Safety Section */
-        .safety-warning {
-            background: rgba(139, 0, 0, 0.1);
-            border: 2px solid var(--leonardo-crimson);
-            border-radius: var(--space-golden-sm);
-            padding: var(--space-golden-md);
-            margin: var(--space-golden-md) 0;
-        }
+ /* Safety Section */
+ .safety-warning {
+ background: rgba(139, 0, 0, 0.1);
+ border: 2px solid var(--leonardo-crimson);
+ border-radius: var(--space-golden-sm);
+ padding: var(--space-golden-md);
+ margin: var(--space-golden-md) 0;
+ }
 
-        .safety-icon {
-            font-size: 2em;
-            float: left;
-            margin-right: var(--space-golden-sm);
-        }
+ .safety-icon {
+ font-size: 2em;
+ float: left;
+ margin-right: var(--space-golden-sm);
+ }
 
-        /* Responsive Design */
-        @media (max-width: 1200px) {
-            .aerial-layout {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+ /* Responsive Design */
+ @media (max-width: 1200px) {
+ .aerial-layout {
+ grid-template-columns: 1fr;
+ }
+ }
+ </style>
 </head>
 <body>
-    <div class="aerial-container">
-        <!-- Header -->
-        <div class="header-section">
-            <h1 class="main-title">🚁 Leonardo's Aerial Screw</h1>
-            <p class="subtitle">La Vite Aerea - The Helicopter Precursor</p>
-            <div class="breakthrough-badge">⚡ MAJOR BREAKTHROUGH: 1,416N LIFT ACHIEVED ⚡</div>
-            <p style="font-size: 1.2em; color: var(--leonardo-ink); margin-top: var(--space-golden-lg);">
-                <strong>4× Performance Improvement</strong> through optimized 15° helix angle and variable pitch control
-            </p>
-        </div>
+ <div class="aerial-container">
+ <!-- Header -->
+ <div class="header-section">
+ <h1 class="main-title">Leonardo's Aerial Screw</h1>
+ <p class="subtitle">La Vite Aerea - The Helicopter Precursor</p>
+ <div class="breakthrough-badge">MAJOR BREAKTHROUGH: 1,416N LIFT ACHIEVED </div>
+ <p style="font-size: 1.2em; color: var(--leonardo-ink); margin-top: var(--space-golden-lg);">
+ <strong>4× Performance Improvement</strong> through optimized 15° helix angle and variable pitch control
+ </p>
+ </div>
 
-        <!-- Leonardo's Wisdom -->
-        <div class="leonardo-quote">
-            <span class="quote-icon">"</span>
-            <p class="quote-text">
-                "If this instrument made with a screw be well made—that is to say, made of linen of which the pores are stopped up with starch—and be turned swiftly, the said screw will make its spiral in the air and it will rise high."
-            </p>
-            <p class="quote-attribution">— Leonardo da Vinci, Codex Atlanticus (1487-1490), folio 83v</p>
-        </div>
+ <!-- Leonardo's Wisdom -->
+ <div class="leonardo-quote">
+ <span class="quote-icon">"</span>
+ <p class="quote-text">
+ "If this instrument made with a screw be well made—that is to say, made of linen of which the pores are stopped up with starch—and be turned swiftly, the said screw will make its spiral in the air and it will rise high."
+ </p>
+ <p class="quote-attribution">— Leonardo da Vinci, Codex Atlanticus (1487-1490), folio 83v</p>
+ </div>
 
-        <!-- Main Workspace -->
-        <div class="aerial-layout">
-            <!-- Control Panel -->
-            <div class="control-panel">
-                <h2 class="panel-title">⚙️ Flight Controls</h2>
+ <!-- Main Workspace -->
+ <div class="aerial-layout">
+ <!-- Control Panel -->
+ <div class="control-panel">
+ <h2 class="panel-title">Flight Controls</h2>
 
-                <div class="control-group">
-                    <label class="control-label">Blade Pitch Angle</label>
-                    <div class="control-value" id="pitchValue">15°</div>
-                    <input type="range" class="slider" id="pitchSlider" min="15" max="45" value="15" step="1">
-                    <p style="font-size: 0.85em; margin-top: var(--space-golden-sm); color: var(--leonardo-umber);">
-                        Optimal: 15° (Maximum Lift)
-                    </p>
-                </div>
+ <div class="control-group">
+ <label class="control-label">Blade Pitch Angle</label>
+ <div class="control-value" id="pitchValue">15°</div>
+ <input type="range" class="slider" id="pitchSlider" min="15" max="45" value="15" step="1">
+ <p style="font-size: 0.85em; margin-top: var(--space-golden-sm); color: var(--leonardo-umber);">Optimal: 15° (Maximum Lift)
+ </p>
+ </div>
 
-                <div class="control-group">
-                    <label class="control-label">Rotation Speed (RPM)</label>
-                    <div class="control-value" id="rpmValue">120 RPM</div>
-                    <input type="range" class="slider" id="rpmSlider" min="60" max="180" value="120" step="10">
-                    <p style="font-size: 0.85em; margin-top: var(--space-golden-sm); color: var(--leonardo-umber);">
-                        Target: 120-150 RPM for sustained lift
-                    </p>
-                </div>
+ <div class="control-group">
+ <label class="control-label">Rotation Speed (RPM)</label>
+ <div class="control-value" id="rpmValue">120 RPM</div>
+ <input type="range" class="slider" id="rpmSlider" min="60" max="180" value="120" step="10">
+ <p style="font-size: 0.85em; margin-top: var(--space-golden-sm); color: var(--leonardo-umber);">Target: 120-150 RPM for sustained lift
+ </p>
+ </div>
 
-                <div class="control-group">
-                    <label class="control-label">Power Input</label>
-                    <div class="control-value" id="powerValue">10.8 kW</div>
-                    <input type="range" class="slider" id="powerSlider" min="5" max="20" value="10.8" step="0.2">
-                    <p style="font-size: 0.85em; margin-top: var(--space-golden-sm); color: var(--leonardo-umber);">
-                        Modern electric motor simulation
-                    </p>
-                </div>
+ <div class="control-group">
+ <label class="control-label">Power Input</label>
+ <div class="control-value" id="powerValue">10.8 kW</div>
+ <input type="range" class="slider" id="powerSlider" min="5" max="20" value="10.8" step="0.2">
+ <p style="font-size: 0.85em; margin-top: var(--space-golden-sm); color: var(--leonardo-umber);">Modern electric motor simulation
+ </p>
+ </div>
 
-                <button class="leonardo-button" onclick="resetControls()" style="width: 100%; margin-top: var(--space-golden-md);">
-                    🔄 Reset to Optimal
-                </button>
-            </div>
+ <button class="leonardo-button" onclick="resetControls()" style="width: 100%; margin-top: var(--space-golden-md);">Reset to Optimal
+ </button>
+ </div>
 
-            <!-- Simulation Workspace -->
-            <div class="simulation-workspace">
-                <div class="tab-navigation">
-                    <button class="tab-button active" onclick="switchTab('simulation')">🌀 Rotor Simulation</button>
-                    <button class="tab-button" onclick="switchTab('performance')">📊 Performance Analysis</button>
-                    <button class="tab-button" onclick="switchTab('specifications')">📐 Technical Specs</button>
-                    <button class="tab-button" onclick="switchTab('manufacturing')">🔧 Manufacturing</button>
-                </div>
+ <!-- Simulation Workspace -->
+ <div class="simulation-workspace">
+ <div class="tab-navigation">
+ <button class="tab-button active" onclick="switchTab('simulation')">Rotor Simulation</button>
+ <button class="tab-button" onclick="switchTab('performance')">Performance Analysis</button>
+ <button class="tab-button" onclick="switchTab('specifications')">Technical Specs</button>
+ <button class="tab-button" onclick="switchTab('manufacturing')">Manufacturing</button>
+ </div>
 
-                <!-- Simulation Tab -->
-                <div id="simulation" class="tab-content active">
-                    <h3 style="font-family: var(--font-leonardo-display); text-align: center; color: var(--leonardo-crimson);">
-                        Interactive Rotor Visualization
-                    </h3>
-                    <div class="rotor-canvas">
-                        <canvas id="rotorCanvas"></canvas>
-                    </div>
-                    <p style="text-align: center; font-style: italic; color: var(--leonardo-umber);">
-                        Adjust controls to see real-time performance changes. The rotor spins at the specified RPM with variable pitch.
-                    </p>
-                </div>
+ <!-- Simulation Tab -->
+ <div id="simulation" class="tab-content active">
+ <h3 style="font-family: var(--font-leonardo-display); text-align: center; color: var(--leonardo-crimson);">Interactive Rotor Visualization
+ </h3>
+ <div class="rotor-canvas">
+ <canvas id="rotorCanvas"></canvas>
+ </div>
+ <p style="text-align: center; font-style: italic; color: var(--leonardo-umber);">Adjust controls to see real-time performance changes. The rotor spins at the specified RPM with variable pitch.
+ </p>
+ </div>
 
-                <!-- Performance Tab -->
-                <div id="performance" class="tab-content">
-                    <h3 style="font-family: var(--font-leonardo-display); text-align: center; color: var(--leonardo-crimson); margin-bottom: var(--space-golden-lg);">
-                        Performance Breakthrough Analysis
-                    </h3>
+ <!-- Performance Tab -->
+ <div id="performance" class="tab-content">
+ <h3 style="font-family: var(--font-leonardo-display); text-align: center; color: var(--leonardo-crimson); margin-bottom: var(--space-golden-lg);">Performance Breakthrough Analysis
+ </h3>
 
-                    <div class="spec-grid">
-                        <div class="metric-card">
-                            <div class="metric-label">Lift Force Generated</div>
-                            <div class="metric-value" id="liftDisplay">1,416<span class="metric-unit"> N</span></div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-label">Improvement Factor</div>
-                            <div class="metric-value">4.0<span class="metric-unit">×</span></div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-label">Aerodynamic Efficiency</div>
-                            <div class="metric-value">82<span class="metric-unit">%</span></div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-label">Safety Factor</div>
-                            <div class="metric-value">2.0<span class="metric-unit">×</span></div>
-                        </div>
-                    </div>
+ <div class="spec-grid">
+ <div class="metric-card">
+ <div class="metric-label">Lift Force Generated</div>
+ <div class="metric-value" id="liftDisplay">1,416<span class="metric-unit">N</span></div>
+ </div>
+ <div class="metric-card">
+ <div class="metric-label">Improvement Factor</div>
+ <div class="metric-value">4.0<span class="metric-unit">×</span></div>
+ </div>
+ <div class="metric-card">
+ <div class="metric-label">Aerodynamic Efficiency</div>
+ <div class="metric-value">82<span class="metric-unit">%</span></div>
+ </div>
+ <div class="metric-card">
+ <div class="metric-label">Safety Factor</div>
+ <div class="metric-value">2.0<span class="metric-unit">×</span></div>
+ </div>
+ </div>
 
-                    <div style="margin-top: var(--space-golden-xl);">
-                        <h4 style="font-family: var(--font-leonardo-display); color: var(--leonardo-umber);">Key Innovations:</h4>
-                        <ul style="line-height: 1.8; font-size: 1.1em;">
-                            <li><strong>15° Optimized Helix:</strong> Through computational analysis, we discovered Leonardo's ideal angle</li>
-                            <li><strong>Variable Pitch Control:</strong> Swashplate mechanism enables 15°-45° pitch range</li>
-                            <li><strong>Eagle-Inspired Taper:</strong> Biomimetic blade design increases efficiency</li>
-                            <li><strong>Modern Materials:</strong> Carbon fiber and aluminum reduce weight by 47%</li>
-                            <li><strong>Response Time:</strong> < 0.5 seconds pitch adjustment for maneuverability</li>
-                        </ul>
-                    </div>
-                </div>
+ <div style="margin-top: var(--space-golden-xl);">
+ <h4 style="font-family: var(--font-leonardo-display); color: var(--leonardo-umber);">Key Innovations:</h4>
+ <ul style="line-height: 1.8; font-size: 1.1em;">
+ <li><strong>15° Optimized Helix:</strong> Through computational analysis, we discovered Leonardo's ideal angle</li>
+ <li><strong>Variable Pitch Control:</strong> Swashplate mechanism enables 15°-45° pitch range</li>
+ <li><strong>Eagle-Inspired Taper:</strong> Biomimetic blade design increases efficiency</li>
+ <li><strong>Modern Materials:</strong> Carbon fiber and aluminum reduce weight by 47%</li>
+ <li><strong>Response Time:</strong> < 0.5 seconds pitch adjustment for maneuverability</li>
+ </ul>
+ </div>
+ </div>
 
-                <!-- Specifications Tab -->
-                <div id="specifications" class="tab-content">
-                    <h3 style="font-family: var(--font-leonardo-display); text-align: center; color: var(--leonardo-crimson); margin-bottom: var(--space-golden-lg);">
-                        Complete Technical Specifications
-                    </h3>
+ <!-- Specifications Tab -->
+ <div id="specifications" class="tab-content">
+ <h3 style="font-family: var(--font-leonardo-display); text-align: center; color: var(--leonardo-crimson); margin-bottom: var(--space-golden-lg);">Complete Technical Specifications
+ </h3>
 
-                    <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Rotor System:</h4>
-                    <div class="spec-grid">
-                        <div class="spec-item">
-                            <div class="spec-name">Rotor Diameter</div>
-                            <div class="spec-value">4.8 m</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-name">Blade Count</div>
-                            <div class="spec-value">4 blades</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-name">Helix Angle</div>
-                            <div class="spec-value">15° (optimized)</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-name">Pitch Range</div>
-                            <div class="spec-value">15° - 45°</div>
-                        </div>
-                    </div>
+ <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Rotor System:</h4>
+ <div class="spec-grid">
+ <div class="spec-item">
+ <div class="spec-name">Rotor Diameter</div>
+ <div class="spec-value">4.8 m</div>
+ </div>
+ <div class="spec-item">
+ <div class="spec-name">Blade Count</div>
+ <div class="spec-value">4 blades</div>
+ </div>
+ <div class="spec-item">
+ <div class="spec-name">Helix Angle</div>
+ <div class="spec-value">15° (optimized)</div>
+ </div>
+ <div class="spec-item">
+ <div class="spec-name">Pitch Range</div>
+ <div class="spec-value">15° - 45°</div>
+ </div>
+ </div>
 
-                    <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Materials (Modern Adaptation):</h4>
-                    <div class="spec-grid">
-                        <div class="spec-item">
-                            <div class="spec-name">Blade Structure</div>
-                            <div class="spec-value">Carbon Fiber Shell</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-name">Central Mast</div>
-                            <div class="spec-value">Aluminum 6061-T6</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-name">Swashplate</div>
-                            <div class="spec-value">Bronze Bearings</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-name">Total Weight</div>
-                            <div class="spec-value">145 kg (47% lighter)</div>
-                        </div>
-                    </div>
+ <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Materials (Modern Adaptation):</h4>
+ <div class="spec-grid">
+ <div class="spec-item">
+ <div class="spec-name">Blade Structure</div>
+ <div class="spec-value">Carbon Fiber Shell</div>
+ </div>
+ <div class="spec-item">
+ <div class="spec-name">Central Mast</div>
+ <div class="spec-value">Aluminum 6061-T6</div>
+ </div>
+ <div class="spec-item">
+ <div class="spec-name">Swashplate</div>
+ <div class="spec-value">Bronze Bearings</div>
+ </div>
+ <div class="spec-item">
+ <div class="spec-name">Total Weight</div>
+ <div class="spec-value">145 kg (47% lighter)</div>
+ </div>
+ </div>
 
-                    <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Performance Envelope:</h4>
-                    <div class="spec-grid">
-                        <div class="spec-item">
-                            <div class="spec-name">Maximum Lift</div>
-                            <div class="spec-value">1,416 N</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-name">Power Required</div>
-                            <div class="spec-value">10.8 kW</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-name">Tip Speed</div>
-                            <div class="spec-value">60 m/s</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-name">Thrust-to-Weight</div>
-                            <div class="spec-value">1.0 (hovering)</div>
-                        </div>
-                    </div>
-                </div>
+ <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Performance Envelope:</h4>
+ <div class="spec-grid">
+ <div class="spec-item">
+ <div class="spec-name">Maximum Lift</div>
+ <div class="spec-value">1,416 N</div>
+ </div>
+ <div class="spec-item">
+ <div class="spec-name">Power Required</div>
+ <div class="spec-value">10.8 kW</div>
+ </div>
+ <div class="spec-item">
+ <div class="spec-name">Tip Speed</div>
+ <div class="spec-value">60 m/s</div>
+ </div>
+ <div class="spec-item">
+ <div class="spec-name">Thrust-to-Weight</div>
+ <div class="spec-value">1.0 (hovering)</div>
+ </div>
+ </div>
+ </div>
 
-                <!-- Manufacturing Tab -->
-                <div id="manufacturing" class="tab-content">
-                    <h3 style="font-family: var(--font-leonardo-display); text-align: center; color: var(--leonardo-crimson); margin-bottom: var(--space-golden-lg);">
-                        Manufacturing & Assembly Guide
-                    </h3>
+ <!-- Manufacturing Tab -->
+ <div id="manufacturing" class="tab-content">
+ <h3 style="font-family: var(--font-leonardo-display); text-align: center; color: var(--leonardo-crimson); margin-bottom: var(--space-golden-lg);">Manufacturing & Assembly Guide
+ </h3>
 
-                    <div class="safety-warning">
-                        <span class="safety-icon">⚠️</span>
-                        <p><strong>Safety Notice:</strong> This is a high-speed rotating system. Professional supervision required. Follow all safety protocols.</p>
-                    </div>
+ <div class="safety-warning">
+ <span class="safety-icon"></span>
+ <p><strong>Safety Notice:</strong> This is a high-speed rotating system. Professional supervision required. Follow all safety protocols.</p>
+ </div>
 
-                    <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">CAD Models Available:</h4>
-                    <ul style="line-height: 1.8; font-size: 1.1em;">
-                        <li>📦 Complete blade assembly (4x blades with taper)</li>
-                        <li>⚙️ Swashplate control mechanism</li>
-                        <li>🔩 Central mast and bearing system</li>
-                        <li>🔧 Linkage system for pitch control</li>
-                        <li>📐 All components with ±0.05mm tolerances</li>
-                    </ul>
+ <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">CAD Models Available:</h4>
+ <ul style="line-height: 1.8; font-size: 1.1em;">
+ <li> Complete blade assembly (4x blades with taper)</li>
+ <li> Swashplate control mechanism</li>
+ <li> Central mast and bearing system</li>
+ <li> Linkage system for pitch control</li>
+ <li> All components with ±0.05mm tolerances</li>
+ </ul>
 
-                    <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">3D Printing Profiles:</h4>
-                    <div class="spec-item" style="margin: var(--space-golden-md) 0;">
-                        <div class="spec-name">Material</div>
-                        <div class="spec-value">PETG (food-safe, structural)</div>
-                    </div>
-                    <div class="spec-item" style="margin: var(--space-golden-md) 0;">
-                        <div class="spec-name">Layer Height</div>
-                        <div class="spec-value">0.2mm (0.1mm for critical parts)</div>
-                    </div>
-                    <div class="spec-item" style="margin: var(--space-golden-md) 0;">
-                        <div class="spec-name">Infill</div>
-                        <div class="spec-value">30% gyroid (structural components)</div>
-                    </div>
+ <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">3D Printing Profiles:</h4>
+ <div class="spec-item" style="margin: var(--space-golden-md) 0;">
+ <div class="spec-name">Material</div>
+ <div class="spec-value">PETG (food-safe, structural)</div>
+ </div>
+ <div class="spec-item" style="margin: var(--space-golden-md) 0;">
+ <div class="spec-name">Layer Height</div>
+ <div class="spec-value">0.2mm (0.1mm for critical parts)</div>
+ </div>
+ <div class="spec-item" style="margin: var(--space-golden-md) 0;">
+ <div class="spec-name">Infill</div>
+ <div class="spec-value">30% gyroid (structural components)</div>
+ </div>
 
-                    <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Assembly Steps:</h4>
-                    <ol style="line-height: 1.8; font-size: 1.1em;">
-                        <li>Print all blade components with specified orientation</li>
-                        <li>Assemble central mast with bearing system</li>
-                        <li>Install swashplate mechanism at base</li>
-                        <li>Attach blade arms to rotor hub (evenly spaced 90°)</li>
-                        <li>Connect pitch control linkages</li>
-                        <li>Test rotation balance before power application</li>
-                        <li>Calibrate pitch range (15° - 45°)</li>
-                        <li>Conduct safety checks and test at low RPM</li>
-                    </ol>
-                </div>
-            </div>
+ <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Assembly Steps:</h4>
+ <ol style="line-height: 1.8; font-size: 1.1em;">
+ <li>Print all blade components with specified orientation</li>
+ <li>Assemble central mast with bearing system</li>
+ <li>Install swashplate mechanism at base</li>
+ <li>Attach blade arms to rotor hub (evenly spaced 90°)</li>
+ <li>Connect pitch control linkages</li>
+ <li>Test rotation balance before power application</li>
+ <li>Calibrate pitch range (15° - 45°)</li>
+ <li>Conduct safety checks and test at low RPM</li>
+ </ol>
+ </div>
+ </div>
 
-            <!-- Analysis Panel -->
-            <div class="analysis-panel">
-                <h2 class="panel-title">📊 Live Metrics</h2>
+ <!-- Analysis Panel -->
+ <div class="analysis-panel">
+ <h2 class="panel-title">Live Metrics</h2>
 
-                <div class="metric-card">
-                    <div class="metric-label">Current Lift</div>
-                    <div class="metric-value" id="currentLift">1,416<span class="metric-unit"> N</span></div>
-                </div>
+ <div class="metric-card">
+ <div class="metric-label">Current Lift</div>
+ <div class="metric-value" id="currentLift">1,416<span class="metric-unit">N</span></div>
+ </div>
 
-                <div class="metric-card">
-                    <div class="metric-label">Rotor Speed</div>
-                    <div class="metric-value" id="currentRPM">120<span class="metric-unit"> RPM</span></div>
-                </div>
+ <div class="metric-card">
+ <div class="metric-label">Rotor Speed</div>
+ <div class="metric-value" id="currentRPM">120<span class="metric-unit">RPM</span></div>
+ </div>
 
-                <div class="metric-card">
-                    <div class="metric-label">Power Draw</div>
-                    <div class="metric-value" id="currentPower">10.8<span class="metric-unit"> kW</span></div>
-                </div>
+ <div class="metric-card">
+ <div class="metric-label">Power Draw</div>
+ <div class="metric-value" id="currentPower">10.8<span class="metric-unit"> kW</span></div>
+ </div>
 
-                <div class="metric-card">
-                    <div class="metric-label">Efficiency</div>
-                    <div class="metric-value" id="currentEfficiency">82<span class="metric-unit">%</span></div>
-                </div>
+ <div class="metric-card">
+ <div class="metric-label">Efficiency</div>
+ <div class="metric-value" id="currentEfficiency">82<span class="metric-unit">%</span></div>
+ </div>
 
-                <div style="margin-top: var(--space-golden-xl); padding: var(--space-golden-md); background: rgba(135, 169, 107, 0.1); border-radius: var(--space-golden-sm);">
-                    <h4 style="font-family: var(--font-leonardo-display); color: var(--leonardo-crimson); margin-bottom: var(--space-golden-sm);">
-                        Flight Status
-                    </h4>
-                    <p id="flightStatus" style="font-size: 1.1em; color: var(--leonardo-ink);">
-                        ✅ <strong>Hovering Capable</strong><br>
-                        Lift exceeds weight threshold
-                    </p>
-                </div>
-            </div>
-        </div>
+ <div style="margin-top: var(--space-golden-xl); padding: var(--space-golden-md); background: rgba(135, 169, 107, 0.1); border-radius: var(--space-golden-sm);">
+ <h4 style="font-family: var(--font-leonardo-display); color: var(--leonardo-crimson); margin-bottom: var(--space-golden-sm);">Flight Status
+ </h4>
+ <p id="flightStatus" style="font-size: 1.1em; color: var(--leonardo-ink);">
+ <strong>Hovering Capable</strong><br>
+ Lift exceeds weight threshold
+ </p>
+ </div>
+ </div>
+ </div>
 
-        <!-- Historical Context Section -->
-        <div class="historical-section">
-            <h2 style="font-family: var(--font-leonardo-display); font-size: 2.5em; color: var(--leonardo-crimson); text-align: center; margin-bottom: var(--space-golden-xl);">
-                📜 Historical Context & Provenance
-            </h2>
+ <!-- Historical Context Section -->
+ <div class="historical-section">
+ <h2 style="font-family: var(--font-leonardo-display); font-size: 2.5em; color: var(--leonardo-crimson); text-align: center; margin-bottom: var(--space-golden-xl);">Historical Context & Provenance
+ </h2>
 
-            <div class="folio-reference">
-                <strong>Primary Source:</strong> Codex Atlanticus, folio 83v (c. 1487-1490)<br>
-                <strong>Location:</strong> Biblioteca Ambrosiana, Milan<br>
-                <strong>Description:</strong> Leonardo's sketch shows a helical screw mechanism with the note that if made of starched linen and turned rapidly, it would "make its spiral in the air and rise high."
-            </div>
+ <div class="folio-reference">
+ <strong>Primary Source:</strong> Codex Atlanticus, folio 83v (c. 1487-1490)<br>
+ <strong>Location:</strong> Biblioteca Ambrosiana, Milan<br>
+ <strong>Description:</strong> Leonardo's sketch shows a helical screw mechanism with the note that if made of starched linen and turned rapidly, it would "make its spiral in the air and rise high."
+ </div>
 
-            <p style="font-size: 1.2em; line-height: 1.8;">
-                Leonardo da Vinci conceived the Aerial Screw (Vite Aerea) around 1487-1490, during his first Milanese period under the patronage of Ludovico Sforza. The design represents one of his most ambitious attempts to achieve human flight through mechanical means.
-            </p>
+ <p style="font-size: 1.2em; line-height: 1.8;">Leonardo da Vinci conceived the Aerial Screw (Vite Aerea) around 1487-1490, during his first Milanese period under the patronage of Ludovico Sforza. The design represents one of his most ambitious attempts to achieve human flight through mechanical means.
+ </p>
 
-            <h3 style="font-family: var(--font-leonardo-display); color: var(--leonardo-umber); margin-top: var(--space-golden-xl);">
-                Leonardo's Original Intent:
-            </h3>
-            <ul style="font-size: 1.1em; line-height: 1.8;">
-                <li><strong>Archimedes Screw Inspiration:</strong> Leonardo adapted the water-lifting screw principle to air</li>
-                <li><strong>Continuous Rotation:</strong> Unlike his flapping ornithopter, this design used continuous rotation</li>
-                <li><strong>Material Challenges:</strong> Leonardo specified starched linen to create an airtight surface</li>
-                <li><strong>Power Requirements:</strong> Originally conceived for human-powered operation (impossible with 1490s technology)</li>
-                <li><strong>Scale:</strong> Leonardo's sketch suggests a diameter of approximately 5 meters</li>
-            </ul>
+ <h3 style="font-family: var(--font-leonardo-display); color: var(--leonardo-umber); margin-top: var(--space-golden-xl);">Leonardo's Original Intent:
+ </h3>
+ <ul style="font-size: 1.1em; line-height: 1.8;">
+ <li><strong>Archimedes Screw Inspiration:</strong> Leonardo adapted the water-lifting screw principle to air</li>
+ <li><strong>Continuous Rotation:</strong> Unlike his flapping ornithopter, this design used continuous rotation</li>
+ <li><strong>Material Challenges:</strong> Leonardo specified starched linen to create an airtight surface</li>
+ <li><strong>Power Requirements:</strong> Originally conceived for human-powered operation (impossible with 1490s technology)</li>
+ <li><strong>Scale:</strong> Leonardo's sketch suggests a diameter of approximately 5 meters</li>
+ </ul>
 
-            <h3 style="font-family: var(--font-leonardo-display); color: var(--leonardo-umber); margin-top: var(--space-golden-xl);">
-                Modern Computational Completion:
-            </h3>
-            <ul style="font-size: 1.1em; line-height: 1.8;">
-                <li><strong>Helix Angle Optimization:</strong> Computational fluid dynamics revealed 15° as optimal (Leonardo used ~30°)</li>
-                <li><strong>Variable Pitch Control:</strong> Modern swashplate mechanism enables maneuverability</li>
-                <li><strong>Material Science:</strong> Carbon fiber provides strength at 47% less weight than Renaissance materials</li>
-                <li><strong>Power Source:</strong> Electric motors make sustained flight feasible</li>
-                <li><strong>Safety Factors:</strong> 2.0× structural margins ensure safe operation</li>
-            </ul>
-        </div>
+ <h3 style="font-family: var(--font-leonardo-display); color: var(--leonardo-umber); margin-top: var(--space-golden-xl);">Modern Computational Completion:
+ </h3>
+ <ul style="font-size: 1.1em; line-height: 1.8;">
+ <li><strong>Helix Angle Optimization:</strong> Computational fluid dynamics revealed 15° as optimal (Leonardo used ~30°)</li>
+ <li><strong>Variable Pitch Control:</strong> Modern swashplate mechanism enables maneuverability</li>
+ <li><strong>Material Science:</strong> Carbon fiber provides strength at 47% less weight than Renaissance materials</li>
+ <li><strong>Power Source:</strong> Electric motors make sustained flight feasible</li>
+ <li><strong>Safety Factors:</strong> 2.0× structural margins ensure safe operation</li>
+ </ul>
+ </div>
 
-    </div>
+ </div>
 
-    <script>
-        // Canvas setup for rotor visualization
-        const canvas = document.getElementById('rotorCanvas');
-        const ctx = canvas.getContext('2d');
+ <script>
+ // Canvas setup for rotor visualization
+ const canvas = document.getElementById('rotorCanvas');
+ const ctx = canvas.getContext('2d');
 
-        // Set canvas size
-        function resizeCanvas() {
-            canvas.width = canvas.offsetWidth;
-            canvas.height = canvas.offsetHeight;
-        }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
+ // Set canvas size
+ function resizeCanvas() {
+ canvas.width = canvas.offsetWidth;
+ canvas.height = canvas.offsetHeight;
+ }
+ resizeCanvas();
+ window.addEventListener('resize', resizeCanvas);
 
-        // Rotor animation state
-        let rotorAngle = 0;
-        let pitchAngle = 15;
-        let rpmValue = 120;
-        let powerValue = 10.8;
+ // Rotor animation state
+ let rotorAngle = 0;
+ let pitchAngle = 15;
+ let rpmValue = 120;
+ let powerValue = 10.8;
 
-        // Update controls
-        document.getElementById('pitchSlider').addEventListener('input', function(e) {
-            pitchAngle = parseInt(e.target.value);
-            document.getElementById('pitchValue').textContent = pitchAngle + '°';
-            updateMetrics();
-        });
+ // Update controls
+ document.getElementById('pitchSlider').addEventListener('input', function(e) {
+ pitchAngle = parseInt(e.target.value);
+ document.getElementById('pitchValue').textContent = pitchAngle + '°';
+ updateMetrics();
+ });
 
-        document.getElementById('rpmSlider').addEventListener('input', function(e) {
-            rpmValue = parseInt(e.target.value);
-            document.getElementById('rpmValue').textContent = rpmValue + ' RPM';
-            document.getElementById('currentRPM').innerHTML = rpmValue + '<span class="metric-unit"> RPM</span>';
-            updateMetrics();
-        });
+ document.getElementById('rpmSlider').addEventListener('input', function(e) {
+ rpmValue = parseInt(e.target.value);
+ document.getElementById('rpmValue').textContent = rpmValue + ' RPM';
+ document.getElementById('currentRPM').innerHTML = rpmValue + '<span class="metric-unit">RPM</span>';
+ updateMetrics();
+ });
 
-        document.getElementById('powerSlider').addEventListener('input', function(e) {
-            powerValue = parseFloat(e.target.value);
-            document.getElementById('powerValue').textContent = powerValue.toFixed(1) + ' kW';
-            document.getElementById('currentPower').innerHTML = powerValue.toFixed(1) + '<span class="metric-unit"> kW</span>';
-            updateMetrics();
-        });
+ document.getElementById('powerSlider').addEventListener('input', function(e) {
+ powerValue = parseFloat(e.target.value);
+ document.getElementById('powerValue').textContent = powerValue.toFixed(1) + ' kW';
+ document.getElementById('currentPower').innerHTML = powerValue.toFixed(1) + '<span class="metric-unit"> kW</span>';
+ updateMetrics();
+ });
 
-        function resetControls() {
-            document.getElementById('pitchSlider').value = 15;
-            document.getElementById('rpmSlider').value = 120;
-            document.getElementById('powerSlider').value = 10.8;
-            pitchAngle = 15;
-            rpmValue = 120;
-            powerValue = 10.8;
-            document.getElementById('pitchValue').textContent = '15°';
-            document.getElementById('rpmValue').textContent = '120 RPM';
-            document.getElementById('powerValue').textContent = '10.8 kW';
-            updateMetrics();
-        }
+ function resetControls() {
+ document.getElementById('pitchSlider').value = 15;
+ document.getElementById('rpmSlider').value = 120;
+ document.getElementById('powerSlider').value = 10.8;
+ pitchAngle = 15;
+ rpmValue = 120;
+ powerValue = 10.8;
+ document.getElementById('pitchValue').textContent = '15°';
+ document.getElementById('rpmValue').textContent = '120 RPM';
+ document.getElementById('powerValue').textContent = '10.8 kW';
+ updateMetrics();
+ }
 
-        function updateMetrics() {
-            // Simplified lift calculation (proportional to pitch angle and RPM^2)
-            const baseLift = 1416;
-            const pitchFactor = pitchAngle / 15.0; // Normalized to optimal
-            const rpmFactor = Math.pow(rpmValue / 120, 2);
-            const lift = Math.round(baseLift * pitchFactor * rpmFactor * 0.8); // 0.8 accounts for non-linear effects
+ function updateMetrics() {
+ // Simplified lift calculation (proportional to pitch angle and RPM^2)
+ const baseLift = 1416;
+ const pitchFactor = pitchAngle / 15.0; // Normalized to optimal
+ const rpmFactor = Math.pow(rpmValue / 120, 2);
+ const lift = Math.round(baseLift * pitchFactor * rpmFactor * 0.8); // 0.8 accounts for non-linear effects
 
-            document.getElementById('currentLift').innerHTML = lift + '<span class="metric-unit"> N</span>';
-            document.getElementById('liftDisplay').innerHTML = lift + '<span class="metric-unit"> N</span>';
+ document.getElementById('currentLift').innerHTML = lift + '<span class="metric-unit">N</span>';
+ document.getElementById('liftDisplay').innerHTML = lift + '<span class="metric-unit">N</span>';
 
-            // Update efficiency (optimal at 15° pitch)
-            const efficiency = Math.max(60, 82 - Math.abs(pitchAngle - 15) * 1.5);
-            document.getElementById('currentEfficiency').innerHTML = Math.round(efficiency) + '<span class="metric-unit">%</span>';
+ // Update efficiency (optimal at 15° pitch)
+ const efficiency = Math.max(60, 82 - Math.abs(pitchAngle - 15) * 1.5);
+ document.getElementById('currentEfficiency').innerHTML = Math.round(efficiency) + '<span class="metric-unit">%</span>';
 
-            // Update flight status
-            const weight = 145 * 9.81; // kg to N
-            const statusEl = document.getElementById('flightStatus');
-            if (lift > weight * 1.2) {
-                statusEl.innerHTML = '🚀 <strong>Ascending</strong><br>Lift significantly exceeds weight';
-            } else if (lift > weight) {
-                statusEl.innerHTML = '✅ <strong>Hovering Capable</strong><br>Lift exceeds weight threshold';
-            } else if (lift > weight * 0.8) {
-                statusEl.innerHTML = '⚠️ <strong>Marginal Lift</strong><br>Approaching hover threshold';
-            } else {
-                statusEl.innerHTML = '❌ <strong>Insufficient Lift</strong><br>Increase pitch or RPM';
-            }
-        }
+ // Update flight status
+ const weight = 145 * 9.81; // kg to N
+ const statusEl = document.getElementById('flightStatus');
+ if (lift > weight * 1.2) {
+ statusEl.innerHTML = ' <strong>Ascending</strong><br>Lift significantly exceeds weight';
+ } else if (lift > weight) {
+ statusEl.innerHTML = ' <strong>Hovering Capable</strong><br>Lift exceeds weight threshold';
+ } else if (lift > weight * 0.8) {
+ statusEl.innerHTML = ' <strong>Marginal Lift</strong><br>Approaching hover threshold';
+ } else {
+ statusEl.innerHTML = ' <strong>Insufficient Lift</strong><br>Increase pitch or RPM';
+ }
+ }
 
-        // Draw rotor
-        function drawRotor() {
-            const centerX = canvas.width / 2;
-            const centerY = canvas.height / 2;
-            const rotorRadius = Math.min(canvas.width, canvas.height) * 0.35;
+ // Draw rotor
+ function drawRotor() {
+ const centerX = canvas.width / 2;
+ const centerY = canvas.height / 2;
+ const rotorRadius = Math.min(canvas.width, canvas.height) * 0.35;
 
-            // Clear canvas
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+ // Clear canvas
+ ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Draw center hub
-            ctx.beginPath();
-            ctx.arc(centerX, centerY, 20, 0, Math.PI * 2);
-            ctx.fillStyle = '#8B4513';
-            ctx.fill();
-            ctx.strokeStyle = '#2C1810';
-            ctx.lineWidth = 2;
-            ctx.stroke();
+ // Draw center hub
+ ctx.beginPath();
+ ctx.arc(centerX, centerY, 20, 0, Math.PI * 2);
+ ctx.fillStyle = '#8B4513';
+ ctx.fill();
+ ctx.strokeStyle = '#2C1810';
+ ctx.lineWidth = 2;
+ ctx.stroke();
 
-            // Draw 4 blades
-            for (let i = 0; i < 4; i++) {
-                const angle = rotorAngle + (i * Math.PI / 2);
-                ctx.save();
-                ctx.translate(centerX, centerY);
-                ctx.rotate(angle);
+ // Draw 4 blades
+ for (let i = 0; i < 4; i++) {
+ const angle = rotorAngle + (i * Math.PI / 2);
+ ctx.save();
+ ctx.translate(centerX, centerY);
+ ctx.rotate(angle);
 
-                // Blade path
-                ctx.beginPath();
-                ctx.moveTo(0, 0);
+ // Blade path
+ ctx.beginPath();
+ ctx.moveTo(0, 0);
 
-                // Create helical blade shape
-                for (let r = 0; r <= rotorRadius; r += 10) {
-                    const twist = (r / rotorRadius) * (pitchAngle * Math.PI / 180);
-                    const x = r;
-                    const y = Math.sin(twist) * 30;
-                    ctx.lineTo(x, y);
-                }
+ // Create helical blade shape
+ for (let r = 0; r <= rotorRadius; r += 10) {
+ const twist = (r / rotorRadius) * (pitchAngle * Math.PI / 180);
+ const x = r;
+ const y = Math.sin(twist) * 30;
+ ctx.lineTo(x, y);
+ }
 
-                // Return path
-                for (let r = rotorRadius; r >= 0; r -= 10) {
-                    const twist = (r / rotorRadius) * (pitchAngle * Math.PI / 180);
-                    const x = r;
-                    const y = Math.sin(twist) * 30 - 15;
-                    ctx.lineTo(x, y);
-                }
+ // Return path
+ for (let r = rotorRadius; r >= 0; r -= 10) {
+ const twist = (r / rotorRadius) * (pitchAngle * Math.PI / 180);
+ const x = r;
+ const y = Math.sin(twist) * 30 - 15;
+ ctx.lineTo(x, y);
+ }
 
-                ctx.closePath();
+ ctx.closePath();
 
-                // Gradient fill
-                const gradient = ctx.createLinearGradient(0, 0, rotorRadius, 0);
-                gradient.addColorStop(0, 'rgba(135, 169, 107, 0.7)');
-                gradient.addColorStop(1, 'rgba(135, 169, 107, 0.3)');
-                ctx.fillStyle = gradient;
-                ctx.fill();
+ // Gradient fill
+ const gradient = ctx.createLinearGradient(0, 0, rotorRadius, 0);
+ gradient.addColorStop(0, 'rgba(135, 169, 107, 0.7)');
+ gradient.addColorStop(1, 'rgba(135, 169, 107, 0.3)');
+ ctx.fillStyle = gradient;
+ ctx.fill();
 
-                ctx.strokeStyle = '#87A96B';
-                ctx.lineWidth = 2;
-                ctx.stroke();
+ ctx.strokeStyle = '#87A96B';
+ ctx.lineWidth = 2;
+ ctx.stroke();
 
-                ctx.restore();
-            }
+ ctx.restore();
+ }
 
-            // Update rotation angle
-            rotorAngle += (rpmValue / 60) * 0.1; // Rotation speed
-        }
+ // Update rotation angle
+ rotorAngle += (rpmValue / 60) * 0.1; // Rotation speed
+ }
 
-        // Animation loop
-        function animate() {
-            drawRotor();
-            requestAnimationFrame(animate);
-        }
-        animate();
+ // Animation loop
+ function animate() {
+ drawRotor();
+ requestAnimationFrame(animate);
+ }
+ animate();
 
-        // Tab switching
-        function switchTab(tabName) {
-            // Hide all tabs
-            const tabs = document.querySelectorAll('.tab-content');
-            tabs.forEach(tab => tab.classList.remove('active'));
+ // Tab switching
+ function switchTab(tabName) {
+ // Hide all tabs
+ const tabs = document.querySelectorAll('.tab-content');
+ tabs.forEach(tab => tab.classList.remove('active'));
 
-            // Remove active from all buttons
-            const buttons = document.querySelectorAll('.tab-button');
-            buttons.forEach(btn => btn.classList.remove('active'));
+ // Remove active from all buttons
+ const buttons = document.querySelectorAll('.tab-button');
+ buttons.forEach(btn => btn.classList.remove('active'));
 
-            // Show selected tab
-            document.getElementById(tabName).classList.add('active');
-            event.target.classList.add('active');
-        }
+ // Show selected tab
+ document.getElementById(tabName).classList.add('active');
+ event.target.classList.add('active');
+ }
 
-        // Initialize
-        updateMetrics();
-    </script>
+ // Initialize
+ updateMetrics();
+ </script>
 </body>
 </html>

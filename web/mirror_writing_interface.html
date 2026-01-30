@@ -329,6 +329,12 @@
     </style>
 </head>
 <body>
+    <!-- Manuscript Aging Overlays -->
+    <div class="manuscript-aging">
+        <div class="wormholes"></div>
+        <div class="water-stains"></div>
+    </div>
+
     <div class="mirror-writing-container">
         <header class="header-section leonardo-reveal">
             <h1 class="main-title">Leonardo's Mirror Writing</h1>
@@ -405,7 +411,7 @@
                 </div>
 
                 <div class="decoder-tool">
-                    <h3 class="decoder-title">🔍 Interactive Decoder</h3>
+                    <h3 class="decoder-title">Interactive Decoder</h3>
                     <p style="text-align: center; margin-bottom: var(--space-golden-md); color: var(--leonardo-umber);">
                         Hover over the mirror writing samples below to reveal their secrets:
                     </p>
@@ -467,8 +473,39 @@
     </div>
 
     <script>
+        // Quill Scratch Sound Synthesis
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        function playQuillScratch() {
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            const bufferSize = audioCtx.sampleRate * 0.05;
+            const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+            const data = buffer.getChannelData(0);
+            for (let i = 0; i < bufferSize; i++) {
+                data[i] = Math.random() * 2 - 1;
+            }
+            const noise = audioCtx.createBufferSource();
+            noise.buffer = buffer;
+            
+            const filter = audioCtx.createBiquadFilter();
+            filter.type = 'highpass';
+            filter.frequency.value = 2000;
+            filter.Q.value = 0.5;
+            
+            const gain = audioCtx.createGain();
+            gain.gain.setValueAtTime(0.02, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.05);
+            
+            noise.connect(filter);
+            filter.connect(gain);
+            gain.connect(audioCtx.destination);
+            noise.start();
+        }
+
         // Mirror Writing Functions
         function updateMirrorWriting() {
+            playQuillScratch();
             const input = document.getElementById('text-input');
             const output = document.getElementById('mirror-output');
             const text = input.value;

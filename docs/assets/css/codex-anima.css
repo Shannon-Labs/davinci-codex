@@ -1,0 +1,86 @@
+/* Codex Anima — Visual Refinements */
+
+/* 1. Sfumato Interface */
+#sfumato-overlay {
+    mix-blend-mode: multiply;
+    transition: opacity 1s ease-in-out;
+}
+
+/* 2. 3D Folio Engine */
+#folio-container {
+    perspective: 1000px;
+    background: var(--parchment-aged);
+    overflow: hidden;
+}
+
+/* 3. Generative Marginalia */
+#marginalia-canvas {
+    opacity: 0.6;
+    filter: blur(0.5px);
+    mix-blend-mode: multiply;
+}
+
+/* 5. X-Ray Layer (Multispectral Imaging) */
+.multispectral-active {
+    filter: invert(0.1) sepia(0.2) contrast(1.1);
+}
+
+.multispectral-active .manuscript-aging {
+    opacity: 0.8;
+}
+
+.multispectral-active .parchment-bg::before {
+    opacity: 0.2;
+}
+
+/* Reveal underdrawings when multispectral is active */
+.multispectral-active .geometric-deco {
+    opacity: 0.4 !important;
+    stroke: var(--vermillion) !important;
+}
+
+.multispectral-active .annotation-sketch {
+    opacity: 0.8 !important;
+    stroke-dasharray: none !important;
+}
+
+/* X-Ray specific UI elements */
+#xray-toggle {
+    background: var(--ink-walnut);
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    box-shadow: 0 0 10px rgba(201, 162, 39, 0.3);
+}
+
+#xray-toggle:hover {
+    background: var(--gold);
+    color: var(--ink-walnut);
+}
+
+/* Global Aerial Perspective Simulation */
+body {
+    transition: background-color 0.5s ease;
+}
+
+.aerial-recede {
+    filter: blur(2px) grayscale(0.5);
+    opacity: 0.7;
+    transition: all 0.5s ease;
+}
+
+/* Charcoal Dust Particles (Fallback if WebGL fails) */
+@keyframes dust-float {
+    0% { transform: translate(0, 0); opacity: 0; }
+    50% { opacity: 0.1; }
+    100% { transform: translate(100px, -100px); opacity: 0; }
+}
+
+.dust-particle {
+    position: fixed;
+    width: 2px;
+    height: 2px;
+    background: #000;
+    pointer-events: none;
+    z-index: 9999;
+    animation: dust-float 10s infinite;
+}

@@ -143,16 +143,16 @@
               <div class="interactive-links">
                 {% if page.has_3d_model %}
                 <a href="#" class="interactive-btn" onclick="launch3DViewer('{{ page.slug }}')">
-                  <span class="btn-icon">🎮</span> 3D Model Viewer
+                  3D Model Viewer
                 </a>
                 {% endif %}
                 {% if page.has_simulation %}
                 <a href="#" class="interactive-btn" onclick="launchSimulation('{{ page.slug }}')">
-                  <span class="btn-icon">🔬</span> Run Simulation
+                  Run Simulation
                 </a>
                 {% endif %}
                 <a href="/dashboard/" class="interactive-btn">
-                  <span class="btn-icon">📊</span> Compare Inventions
+                  Compare Inventions
                 </a>
               </div>
             </div>
@@ -167,7 +167,7 @@
                   <span class="share-icon">in</span> LinkedIn
                 </a>
                 <a href="https://github.com/Shannon-Labs/davinci-codex/blob/main/docs/{{ page.path }}" target="_blank" class="share-btn github">
-                  <span class="share-icon">⚡</span> View Source
+                  <span class="share-icon">&lt;/&gt;</span> View Source
                 </a>
               </div>
             </div>
@@ -194,18 +194,10 @@
             <div class="invention-footer">
               <h4>Explore More Inventions</h4>
               <div class="related-inventions">
-                <a href="/inventions/" class="related-link">
-                  <span class="link-icon">🔧</span> All Inventions
-                </a>
-                <a href="/dashboard/" class="related-link">
-                  <span class="link-icon">📊</span> Compare Inventions
-                </a>
-                <a href="/education/" class="related-link">
-                  <span class="link-icon">🎓</span> Educational Resources
-                </a>
-                <a href="/3d-models/" class="related-link">
-                  <span class="link-icon">🎮</span> 3D Models
-                </a>
+                <a href="/inventions/" class="related-link">All Inventions</a>
+                <a href="/dashboard/" class="related-link">Compare Inventions</a>
+                <a href="/education/" class="related-link">Educational Resources</a>
+                <a href="/3d-models/" class="related-link">3D Models</a>
               </div>
             </div>
           </div>

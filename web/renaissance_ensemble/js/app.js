@@ -37,6 +37,16 @@ LeonardoEnsemble.App = class {
                 this.audioEngine = new LeonardoEnsemble.AudioEngine();
             }
 
+            // Initialize Instruments
+            this.instruments = {
+                viola: new LeonardoEnsemble.Viola(this.elements.canvasViola),
+                organ: new LeonardoEnsemble.Organ(this.elements.canvasOrgan),
+                flute: new LeonardoEnsemble.Flute(this.elements.canvasFlute),
+                carillon: new LeonardoEnsemble.Carillon(this.elements.canvasCarillon),
+                trumpeter: new LeonardoEnsemble.Trumpeter(this.elements.canvasTrumpeter),
+                drum: new LeonardoEnsemble.Drum(this.elements.canvasDrum)
+            };
+
             this.showLoading(false);
             this.isInitialized = true;
             console.log("Leonardo's Mechanical Ensemble initialized successfully");
@@ -64,7 +74,15 @@ LeonardoEnsemble.App = class {
             audioVisualizer: LeonardoEnsemble.Utils.dom.get('#audio-visualizer'),
             trackSelect: LeonardoEnsemble.Utils.dom.get('#track-select'),
             audioPlayer: LeonardoEnsemble.Utils.dom.get('.audio-player'),
-            timbreCards: LeonardoEnsemble.Utils.dom.getAll('.timbre-card[data-instrument]')
+            timbreCards: LeonardoEnsemble.Utils.dom.getAll('.timbre-card[data-instrument]'),
+
+            // Canvases
+            canvasViola: LeonardoEnsemble.Utils.dom.get('#canvas-viola'),
+            canvasOrgan: LeonardoEnsemble.Utils.dom.get('#canvas-organ'),
+            canvasFlute: LeonardoEnsemble.Utils.dom.get('#canvas-flute'),
+            canvasCarillon: LeonardoEnsemble.Utils.dom.get('#canvas-carillon'),
+            canvasTrumpeter: LeonardoEnsemble.Utils.dom.get('#canvas-trumpeter'),
+            canvasDrum: LeonardoEnsemble.Utils.dom.get('#canvas-drum')
         };
     }
 
@@ -125,19 +143,55 @@ LeonardoEnsemble.App = class {
         if (!audioEl.paused) {
             audioEl.pause();
             this.audioEngine.stopVisualizer();
-            if (btn) btn.textContent = '\u25b6 Play';
+            if (btn) btn.textContent = 'ENTER COURT';
+            
+            // Stop instrument animations
+            Object.values(this.instruments).forEach(inst => inst.stop());
             return;
         }
 
-        this.audioEngine.playDemo(audioEl);
-        if (canvas) this.audioEngine.startVisualizer(canvas);
-        if (btn) btn.textContent = '\u23f8 Pause';
+        if (this.audioEngine.ctx && this.audioEngine.ctx.state === 'running') {
+            // If already playing, we would need a stop mechanism for generative
+            // For now, let's just trigger the concert
+            this.audioEngine.playGenerativeConcert();
+            if (btn) btn.textContent = 'STOP CONCERT';
+        } else {
+            this.audioEngine.playGenerativeConcert();
+            if (canvas) this.audioEngine.startVisualizer(canvas);
+            if (btn) btn.textContent = 'STOP CONCERT';
+        }
+
+        // Start instrument animations
+        Object.values(this.instruments).forEach(inst => inst.start());
+
+        // Simulate periodic notes for visual movement while demo plays
+        this._startVisualSync(audioEl);
 
         // Reset button when track ends
         audioEl.addEventListener('ended', () => {
             this.audioEngine.stopVisualizer();
-            if (btn) btn.textContent = '\u25b6 Play';
+            if (btn) btn.textContent = 'ENTER COURT';
+            Object.values(this.instruments).forEach(inst => inst.stop());
+            this._stopVisualSync();
         }, { once: true });
+    }
+
+    _startVisualSync(audioEl) {
+        this._stopVisualSync();
+        this._visualSyncInterval = setInterval(() => {
+            if (audioEl.paused) return;
+            // Randomly trigger instrument visuals to match "performance"
+            const ids = Object.keys(this.instruments);
+            const randomId = ids[Math.floor(Math.random() * ids.length)];
+            this.instruments[randomId].playNote({});
+        }, 400);
+    }
+
+    _stopVisualSync() {
+        if (this._visualSyncInterval) {
+            clearInterval(this._visualSyncInterval);
+            this._visualSyncInterval = null;
+        }
     }
 
     /**
@@ -181,7 +235,7 @@ LeonardoEnsemble.App = class {
 
         // Reset play button
         const btn = this.elements.playBtn;
-        if (btn) btn.textContent = '\u25b6 Play';
+        if (btn) btn.textContent = 'ENTER COURT';
 
         // Resume if was playing
         if (wasPlaying && this.audioEngine) {
@@ -199,6 +253,21 @@ LeonardoEnsemble.App = class {
     handleTimbreCardClick(id, card) {
         if (!this.audioEngine) return;
         this.audioEngine.playNote(id);
+
+        // Also trigger the visual animation for this instrument
+        const instrument = this.instruments[id];
+        if (instrument) {
+            // Ensure instrument animation is "running" for this one shot if it wasn't
+            if (!instrument.isPlaying) {
+                instrument.start();
+                setTimeout(() => {
+                    if (this.elements.audioPlayer.paused) {
+                        instrument.stop();
+                    }
+                }, 1000);
+            }
+            instrument.playNote({});
+        }
 
         // Brief visual flash
         card.style.borderColor = 'var(--leonardo-gold)';

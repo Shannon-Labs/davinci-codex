@@ -100,7 +100,7 @@
         <div class="education-content">
           <aside class="education-sidebar">
             <div class="sidebar-section">
-              <h4>🎓 Educational Focus</h4>
+              <h4>Educational Focus</h4>
               <div class="focus-areas">
                 {% if page.subject_areas %}
                 {% for subject in page.subject_areas %}
@@ -116,7 +116,7 @@
 
             {% if page.grade_levels %}
             <div class="sidebar-section">
-              <h4>📚 Grade Levels</h4>
+              <h4>Grade Levels</h4>
               <div class="grade-levels">
                 {% for grade in page.grade_levels %}
                 <div class="grade-level">
@@ -130,7 +130,7 @@
 
             {% if page.learning_objectives %}
             <div class="sidebar-section">
-              <h4>🎯 Learning Objectives</h4>
+              <h4>Learning Objectives</h4>
               <ul class="learning-objectives">
                 {% for objective in page.learning_objectives %}
                 <li>{{ objective }}</li>
@@ -140,46 +140,38 @@
             {% endif %}
 
             <div class="sidebar-section">
-              <h4>📋 Download Resources</h4>
+              <h4>Download Resources</h4>
               <div class="resource-downloads">
                 {% if page.has_teacher_guide %}
                 <a href="#" class="download-btn" onclick="downloadResource('teacher-guide')">
-                  <span class="btn-icon">📖</span> Teacher Guide (PDF)
+                  Teacher Guide (PDF)
                 </a>
                 {% endif %}
                 {% if page.has_student_worksheets %}
                 <a href="#" class="download-btn" onclick="downloadResource('worksheets')">
-                  <span class="btn-icon">📝</span> Student Worksheets
+                  Student Worksheets
                 </a>
                 {% endif %}
                 {% if page.has_assessment_tools %}
                 <a href="#" class="download-btn" onclick="downloadResource('assessment')">
-                  <span class="btn-icon">✅</span> Assessment Tools
+                  Assessment Tools
                 </a>
                 {% endif %}
                 <a href="#" class="download-btn" onclick="downloadResource('complete')">
-                  <span class="btn-icon">📦</span> Complete Package
+                  Complete Package
                 </a>
               </div>
             </div>
 
             <div class="sidebar-section">
-              <h4>🔗 Related Resources</h4>
+              <h4>Related Resources</h4>
               <div class="related-links">
-                <a href="/education/" class="related-link">
-                  <span class="link-icon">🎓</span> All Educational Resources
-                </a>
-                <a href="/dashboard/" class="related-link">
-                  <span class="link-icon">📊</span> Invention Dashboard
-                </a>
-                <a href="/inventions/" class="related-link">
-                  <span class="link-icon">🔧</span> Browse Inventions
-                </a>
+                <a href="/education/" class="related-link">All Educational Resources</a>
+                <a href="/dashboard/" class="related-link">Invention Dashboard</a>
+                <a href="/inventions/" class="related-link">Browse Inventions</a>
                 {% if page.related_modules %}
                 {% for module in page.related_modules %}
-                <a href="{{ module.url }}" class="related-link">
-                  <span class="link-icon">{{ module.icon | default: '📚' }}</span> {{ module.title }}
-                </a>
+                <a href="{{ module.url }}" class="related-link">{{ module.title }}</a>
                 {% endfor %}
                 {% endif %}
               </div>
@@ -191,7 +183,7 @@
 
             {% if page.interactive_elements %}
             <div class="interactive-section">
-              <h3>🎮 Interactive Learning Tools</h3>
+              <h3>Interactive Learning Tools</h3>
               <div class="interactive-grid">
                 {% for element in page.interactive_elements %}
                 <div class="interactive-element">
@@ -208,7 +200,7 @@
 
             {% if page.teacher_notes %}
             <div class="teacher-notes">
-              <h3>👨‍🏫 Teacher Notes</h3>
+              <h3>Teacher Notes</h3>
               <div class="notes-content">
                 {{ page.teacher_notes }}
               </div>
@@ -217,7 +209,7 @@
 
             {% if page.assessment_rubric %}
             <div class="assessment-section">
-              <h3>📊 Assessment Rubric</h3>
+              <h3>Assessment Rubric</h3>
               <div class="rubric-content">
                 {{ page.assessment_rubric }}
               </div>
@@ -287,7 +279,7 @@
       document.addEventListener('DOMContentLoaded', function() {
         if (document.body.classList.contains('page-education')) {
           const printBtn = document.createElement('button');
-          printBtn.innerHTML = '🖨️ Print Resources';
+          printBtn.innerHTML = 'Print Resources';
           printBtn.className = 'print-btn';
           printBtn.onclick = printEducationalContent;
 

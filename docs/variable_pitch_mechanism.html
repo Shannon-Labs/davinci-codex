@@ -1,118 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leonardo's Variable Pitch Mechanism - Swashplate Flight Control</title>
-    <link rel="stylesheet" href="leonardo_design_system.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <style>
-        body { margin: 0; padding: 0; background: linear-gradient(135deg, #00CED1 0%, #F4E4C1 100%); font-family: var(--font-leonardo-body); min-height: 100vh; }
-        .main-container { max-width: 1400px; margin: 0 auto; padding: var(--space-golden-xl); }
-        .header { text-align: center; padding: var(--space-golden-xxl); background: rgba(255, 255, 255, 0.9); border-radius: var(--space-golden-lg); box-shadow: var(--shadow-leonardo-elevated); margin-bottom: var(--space-golden-xxl); }
-        .main-title { font-family: var(--font-leonardo-display); font-size: 3.5em; color: var(--leonardo-ink); margin-bottom: var(--space-golden-md); }
-        .canvas-area { width: 100%; height: 500px; background: rgba(255, 255, 255, 0.9); border: 2px solid #00CED1; border-radius: var(--space-golden-md); margin: var(--space-golden-lg) 0; }
-        .content { background: rgba(255, 255, 255, 0.9); padding: var(--space-golden-xl); border-radius: var(--space-golden-lg); margin-bottom: var(--space-golden-lg); }
-    </style>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Leonardo's Variable Pitch Mechanism - Swashplate Flight Control</title>
+ <link rel="stylesheet" href="leonardo_design_system.css">
+ <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+ <style>
+ body { margin: 0; padding: 0; background: linear-gradient(135deg, #00CED1 0%, #F4E4C1 100%); font-family: var(--font-leonardo-body); min-height: 100vh; }
+ .main-container { max-width: 1400px; margin: 0 auto; padding: var(--space-golden-xl); }
+ .header { text-align: center; padding: var(--space-golden-xxl); background: rgba(255, 255, 255, 0.9); border-radius: var(--space-golden-lg); box-shadow: var(--shadow-leonardo-elevated); margin-bottom: var(--space-golden-xxl); }
+ .main-title { font-family: var(--font-leonardo-display); font-size: 3.5em; color: var(--leonardo-ink); margin-bottom: var(--space-golden-md); }
+ .canvas-area { width: 100%; height: 500px; background: rgba(255, 255, 255, 0.9); border: 2px solid #00CED1; border-radius: var(--space-golden-md); margin: var(--space-golden-lg) 0; }
+ .content { background: rgba(255, 255, 255, 0.9); padding: var(--space-golden-xl); border-radius: var(--space-golden-lg); margin-bottom: var(--space-golden-lg); }
+ </style>
 </head>
 <body>
-    <div class="main-container">
-        <div class="header">
-            <h1 class="main-title">🚁 Variable Pitch Mechanism</h1>
-            <p style="font-size: 1.3em; color: var(--leonardo-umber); font-style: italic;">Swashplate Control for Aerial Screw</p>
-            <div style="display: inline-block; background: linear-gradient(45deg, #00CED1, #48D1CC); color: white; padding: var(--space-golden-sm) var(--space-golden-lg); border-radius: var(--space-golden-lg); font-family: var(--font-leonardo-display); font-size: 1.1em; margin-top: var(--space-golden-md);">⚡ 15°-45° PITCH RANGE ⚡</div>
-        </div>
+ <div class="main-container">
+ <div class="header">
+ <h1 class="main-title">Variable Pitch Mechanism</h1>
+ <p style="font-size: 1.3em; color: var(--leonardo-umber); font-style: italic;">Swashplate Control for Aerial Screw</p>
+ <div style="display: inline-block; background: linear-gradient(45deg, #00CED1, #48D1CC); color: white; padding: var(--space-golden-sm) var(--space-golden-lg); border-radius: var(--space-golden-lg); font-family: var(--font-leonardo-display); font-size: 1.1em; margin-top: var(--space-golden-md);">15°-45° Pitch Range</div>
+ </div>
 
-        <div class="canvas-area"><canvas id="pitchCanvas"></canvas></div>
+ <div class="canvas-area"><canvas id="pitchCanvas"></canvas></div>
 
-        <div style="text-align: center; margin: var(--space-golden-lg) 0;">
-            <label style="font-size: 1.2em; margin-right: var(--space-golden-md);">Pitch Angle:</label>
-            <input type="range" id="pitchSlider" min="15" max="45" value="15" step="1" style="width: 300px;">
-            <span id="pitchValue" style="font-size: 1.5em; margin-left: var(--space-golden-md); font-weight: 700; color: var(--leonardo-crimson);">15°</span>
-        </div>
+ <div style="text-align: center; margin: var(--space-golden-lg) 0;">
+ <label style="font-size: 1.2em; margin-right: var(--space-golden-md);">Pitch Angle:</label>
+ <input type="range" id="pitchSlider" min="15" max="45" value="15" step="1" style="width: 300px;">
+ <span id="pitchValue" style="font-size: 1.5em; margin-left: var(--space-golden-md); font-weight: 700; color: var(--leonardo-crimson);">15°</span>
+ </div>
 
-        <div class="content">
-            <h2 style="font-family: var(--font-leonardo-display); color: var(--leonardo-crimson); text-align: center; margin-bottom: var(--space-golden-lg);">Control Innovation</h2>
-            <ul style="font-size: 1.1em; line-height: 1.8;">
-                <li><strong>Swashplate Mechanism:</strong> Tilting plate converts control input to blade pitch changes</li>
-                <li><strong>Cyclic Control:</strong> Enables directional control by varying pitch around rotation</li>
-                <li><strong>Collective Control:</strong> Simultaneous pitch adjustment for altitude control</li>
-                <li><strong>Response Time:</strong> < 0.5 seconds for full pitch range transition</li>
-                <li><strong>Modern Application:</strong> Forms basis of all helicopter rotor controls</li>
-            </ul>
-        </div>
+ <div class="content">
+ <h2 style="font-family: var(--font-leonardo-display); color: var(--leonardo-crimson); text-align: center; margin-bottom: var(--space-golden-lg);">Control Innovation</h2>
+ <ul style="font-size: 1.1em; line-height: 1.8;">
+ <li><strong>Swashplate Mechanism:</strong> Tilting plate converts control input to blade pitch changes</li>
+ <li><strong>Cyclic Control:</strong> Enables directional control by varying pitch around rotation</li>
+ <li><strong>Collective Control:</strong> Simultaneous pitch adjustment for altitude control</li>
+ <li><strong>Response Time:</strong> < 0.5 seconds for full pitch range transition</li>
+ <li><strong>Modern Application:</strong> Forms basis of all helicopter rotor controls</li>
+ </ul>
+ </div>
 
-        <div class="content">
-            <h2 style="font-family: var(--font-leonardo-display); color: var(--leonardo-crimson); text-align: center; margin-bottom: var(--space-golden-lg);">Engineering Genius</h2>
-            <p style="font-size: 1.2em; line-height: 1.8;">
-                Leonardo's variable pitch mechanism solved the critical problem of controlling rotary-wing flight. By enabling real-time blade angle adjustment, pilots could control lift, thrust, and direction—a principle that remains fundamental to helicopter design 500 years later.
-            </p>
-        </div>
-    </div>
+ <div class="content">
+ <h2 style="font-family: var(--font-leonardo-display); color: var(--leonardo-crimson); text-align: center; margin-bottom: var(--space-golden-lg);">Engineering Genius</h2>
+ <p style="font-size: 1.2em; line-height: 1.8;">
+ Leonardo's variable pitch mechanism solved the critical problem of controlling rotary-wing flight. By enabling real-time blade angle adjustment, pilots could control lift, thrust, and direction—a principle that remains fundamental to helicopter design 500 years later.
+ </p>
+ </div>
+ </div>
 
-    <script>
-        const canvas = document.getElementById('pitchCanvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
+ <script>
+ const canvas = document.getElementById('pitchCanvas');
+ const ctx = canvas.getContext('2d');
+ canvas.width = canvas.offsetWidth;
+ canvas.height = canvas.offsetHeight;
 
-        let pitchAngle = 15;
+ let pitchAngle = 15;
 
-        document.getElementById('pitchSlider').addEventListener('input', function(e) {
-            pitchAngle = parseInt(e.target.value);
-            document.getElementById('pitchValue').textContent = pitchAngle + '°';
-        });
+ document.getElementById('pitchSlider').addEventListener('input', function(e) {
+ pitchAngle = parseInt(e.target.value);
+ document.getElementById('pitchValue').textContent = pitchAngle + '°';
+ });
 
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+ function animate() {
+ ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            const centerX = canvas.width / 2;
-            const centerY = canvas.height / 2;
-            const bladeLength = 150;
+ const centerX = canvas.width / 2;
+ const centerY = canvas.height / 2;
+ const bladeLength = 150;
 
-            // Draw 4 blades with variable pitch
-            for (let i = 0; i < 4; i++) {
-                const angle = (i * Math.PI / 2) + Date.now() * 0.001;
-                const pitchRad = pitchAngle * Math.PI / 180;
+ // Draw 4 blades with variable pitch
+ for (let i = 0; i < 4; i++) {
+ const angle = (i * Math.PI / 2) + Date.now() * 0.001;
+ const pitchRad = pitchAngle * Math.PI / 180;
 
-                ctx.save();
-                ctx.translate(centerX, centerY);
-                ctx.rotate(angle);
+ ctx.save();
+ ctx.translate(centerX, centerY);
+ ctx.rotate(angle);
 
-                ctx.fillStyle = 'rgba(0, 206, 209, 0.5)';
-                ctx.strokeStyle = '#00CED1';
-                ctx.lineWidth = 3;
+ ctx.fillStyle = 'rgba(0, 206, 209, 0.5)';
+ ctx.strokeStyle = '#00CED1';
+ ctx.lineWidth = 3;
 
-                ctx.beginPath();
-                ctx.moveTo(0, 0);
-                for (let r = 0; r <= bladeLength; r += 10) {
-                    const twist = (r / bladeLength) * pitchRad;
-                    const x = r;
-                    const y = Math.sin(twist) * 30;
-                    ctx.lineTo(x, y);
-                }
-                for (let r = bladeLength; r >= 0; r -= 10) {
-                    const twist = (r / bladeLength) * pitchRad;
-                    const x = r;
-                    const y = Math.sin(twist) * 30 - 15;
-                    ctx.lineTo(x, y);
-                }
-                ctx.closePath();
-                ctx.fill();
-                ctx.stroke();
+ ctx.beginPath();
+ ctx.moveTo(0, 0);
+ for (let r = 0; r <= bladeLength; r += 10) {
+ const twist = (r / bladeLength) * pitchRad;
+ const x = r;
+ const y = Math.sin(twist) * 30;
+ ctx.lineTo(x, y);
+ }
+ for (let r = bladeLength; r >= 0; r -= 10) {
+ const twist = (r / bladeLength) * pitchRad;
+ const x = r;
+ const y = Math.sin(twist) * 30 - 15;
+ ctx.lineTo(x, y);
+ }
+ ctx.closePath();
+ ctx.fill();
+ ctx.stroke();
 
-                ctx.restore();
-            }
+ ctx.restore();
+ }
 
-            // Center hub
-            ctx.fillStyle = '#696969';
-            ctx.beginPath();
-            ctx.arc(centerX, centerY, 20, 0, Math.PI * 2);
-            ctx.fill();
+ // Center hub
+ ctx.fillStyle = '#696969';
+ ctx.beginPath();
+ ctx.arc(centerX, centerY, 20, 0, Math.PI * 2);
+ ctx.fill();
 
-            requestAnimationFrame(animate);
-        }
-        animate();
-    </script>
+ requestAnimationFrame(animate);
+ }
+ animate();
+ </script>
 </body>
 </html>

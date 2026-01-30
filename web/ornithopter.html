@@ -1,946 +1,927 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leonardo's Ornithopter - Biomimetic Flight</title>
-    <link rel="stylesheet" href="leonardo_design_system.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #87CEEB 0%, #F4E4C1 100%);
-            font-family: var(--font-leonardo-body);
-            min-height: 100vh;
-        }
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Leonardo's Ornithopter - Biomimetic Flight</title>
+ <link rel="stylesheet" href="leonardo_design_system.css">
+ <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+ <style>
+ body {
+ margin: 0;
+ padding: 0;
+ background: linear-gradient(135deg, #87CEEB 0%, #F4E4C1 100%);
+ font-family: var(--font-leonardo-body);
+ min-height: 100vh;
+ }
 
-        .orni-container {
-            max-width: 1800px;
-            margin: 0 auto;
-            padding: var(--space-golden-xl);
-        }
+ .orni-container {
+ max-width: 1800px;
+ margin: 0 auto;
+ padding: var(--space-golden-xl);
+ }
 
-        .header-section {
-            text-align: center;
-            margin-bottom: var(--space-golden-xxl);
-            padding: var(--space-golden-xxl);
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: var(--space-golden-lg);
-            box-shadow: var(--shadow-leonardo-elevated);
-            position: relative;
-            overflow: hidden;
-        }
+ .header-section {
+ text-align: center;
+ margin-bottom: var(--space-golden-xxl);
+ padding: var(--space-golden-xxl);
+ background: rgba(255, 255, 255, 0.9);
+ border-radius: var(--space-golden-lg);
+ box-shadow: var(--shadow-leonardo-elevated);
+ position: relative;
+ overflow: hidden;
+ }
 
-        .header-section::before {
-            content: '🦅';
-            position: absolute;
-            font-size: 15em;
-            opacity: 0.05;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
+ .header-section::before {
+ content: '';
+ position: absolute;
+ font-size: 15em;
+ opacity: 0.05;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+ }
 
-        .main-title {
-            font-family: var(--font-leonardo-display);
-            font-size: 4em;
-            color: var(--leonardo-ink);
-            margin-bottom: var(--space-golden-md);
-            text-shadow: 3px 3px 6px rgba(44, 24, 16, 0.2);
-            position: relative;
-            z-index: 1;
-        }
+ .main-title {
+ font-family: var(--font-leonardo-display);
+ font-size: 4em;
+ color: var(--leonardo-ink);
+ margin-bottom: var(--space-golden-md);
+ text-shadow: 3px 3px 6px rgba(44, 24, 16, 0.2);
+ position: relative;
+ z-index: 1;
+ }
 
-        .subtitle {
-            font-size: 1.5em;
-            color: var(--leonardo-umber);
-            font-style: italic;
-            margin-bottom: var(--space-golden-lg);
-        }
+ .subtitle {
+ font-size: 1.5em;
+ color: var(--leonardo-umber);
+ font-style: italic;
+ margin-bottom: var(--space-golden-lg);
+ }
 
-        .flight-badge {
-            display: inline-block;
-            background: linear-gradient(45deg, #87CEEB, #4682B4);
-            color: white;
-            padding: var(--space-golden-sm) var(--space-golden-lg);
-            border-radius: var(--space-golden-lg);
-            font-family: var(--font-leonardo-display);
-            font-size: 1.2em;
-            letter-spacing: 0.05em;
-            box-shadow: 0 0 30px rgba(70, 130, 180, 0.6);
-            animation: leonardoPulse 2s infinite;
-            margin: var(--space-golden-md) 0;
-        }
+ .flight-badge {
+ display: inline-block;
+ background: linear-gradient(45deg, #87CEEB, #4682B4);
+ color: white;
+ padding: var(--space-golden-sm) var(--space-golden-lg);
+ border-radius: var(--space-golden-lg);
+ font-family: var(--font-leonardo-display);
+ font-size: 1.2em;
+ letter-spacing: 0.05em;
+ box-shadow: 0 0 30px rgba(70, 130, 180, 0.6);
+ animation: leonardoPulse 2s infinite;
+ margin: var(--space-golden-md) 0;
+ }
 
-        .leonardo-quote {
-            background: rgba(135, 169, 107, 0.15);
-            border: 2px solid var(--leonardo-sage);
-            border-radius: var(--space-golden-md);
-            padding: var(--space-golden-lg);
-            margin: var(--space-golden-xl) auto;
-            max-width: 900px;
-            font-style: italic;
-            position: relative;
-        }
+ .leonardo-quote {
+ background: rgba(135, 169, 107, 0.15);
+ border: 2px solid var(--leonardo-sage);
+ border-radius: var(--space-golden-md);
+ padding: var(--space-golden-lg);
+ margin: var(--space-golden-xl) auto;
+ max-width: 900px;
+ font-style: italic;
+ position: relative;
+ }
 
-        .quote-icon {
-            font-size: 3em;
-            color: var(--leonardo-gold);
-            position: absolute;
-            top: -20px;
-            left: 20px;
-            background: var(--leonardo-parchment);
-            padding: 0 10px;
-        }
+ .quote-icon {
+ font-size: 3em;
+ color: var(--leonardo-gold);
+ position: absolute;
+ top: -20px;
+ left: 20px;
+ background: var(--leonardo-parchment);
+ padding: 0 10px;
+ }
 
-        .quote-text {
-            font-size: 1.4em;
-            margin-bottom: var(--space-golden-md);
-            line-height: 1.618;
-        }
+ .quote-text {
+ font-size: 1.4em;
+ margin-bottom: var(--space-golden-md);
+ line-height: 1.618;
+ }
 
-        .quote-attribution {
-            font-size: 1em;
-            color: var(--leonardo-umber);
-            text-align: right;
-            font-weight: 600;
-        }
+ .quote-attribution {
+ font-size: 1em;
+ color: var(--leonardo-umber);
+ text-align: right;
+ font-weight: 600;
+ }
 
-        .orni-layout {
-            display: grid;
-            grid-template-columns: 350px 1fr 320px;
-            gap: var(--space-golden-xl);
-            margin-bottom: var(--space-golden-xxl);
-        }
+ .orni-layout {
+ display: grid;
+ grid-template-columns: 350px 1fr 320px;
+ gap: var(--space-golden-xl);
+ margin-bottom: var(--space-golden-xxl);
+ }
 
-        .control-panel, .analysis-panel {
-            background: rgba(255, 255, 255, 0.85);
-            padding: var(--space-golden-lg);
-            border-radius: var(--space-golden-md);
-            box-shadow: var(--shadow-leonardo-manuscript);
-            height: fit-content;
-        }
+ .control-panel, .analysis-panel {
+ background: rgba(255, 255, 255, 0.85);
+ padding: var(--space-golden-lg);
+ border-radius: var(--space-golden-md);
+ box-shadow: var(--shadow-leonardo-manuscript);
+ height: fit-content;
+ }
 
-        .simulation-workspace {
-            background: rgba(255, 255, 255, 0.95);
-            padding: var(--space-golden-xl);
-            border-radius: var(--space-golden-lg);
-            box-shadow: var(--shadow-leonardo-elevated);
-            min-height: 700px;
-        }
+ .simulation-workspace {
+ background: rgba(255, 255, 255, 0.95);
+ padding: var(--space-golden-xl);
+ border-radius: var(--space-golden-lg);
+ box-shadow: var(--shadow-leonardo-elevated);
+ min-height: 700px;
+ }
 
-        .panel-title {
-            font-family: var(--font-leonardo-display);
-            font-size: 1.8em;
-            color: var(--leonardo-crimson);
-            margin-bottom: var(--space-golden-lg);
-            text-align: center;
-            border-bottom: 2px solid var(--leonardo-gold);
-            padding-bottom: var(--space-golden-sm);
-        }
+ .panel-title {
+ font-family: var(--font-leonardo-display);
+ font-size: 1.8em;
+ color: var(--leonardo-crimson);
+ margin-bottom: var(--space-golden-lg);
+ text-align: center;
+ border-bottom: 2px solid var(--leonardo-gold);
+ padding-bottom: var(--space-golden-sm);
+ }
 
-        .control-group {
-            margin-bottom: var(--space-golden-lg);
-            padding: var(--space-golden-md);
-            background: rgba(135, 206, 235, 0.1);
-            border-radius: var(--space-golden-sm);
-            border: 1px solid #87CEEB;
-        }
+ .control-group {
+ margin-bottom: var(--space-golden-lg);
+ padding: var(--space-golden-md);
+ background: rgba(135, 206, 235, 0.1);
+ border-radius: var(--space-golden-sm);
+ border: 1px solid #87CEEB;
+ }
 
-        .control-label {
-            font-family: var(--font-leonardo-display);
-            font-size: 1.1em;
-            color: var(--leonardo-umber);
-            margin-bottom: var(--space-golden-sm);
-            display: block;
-        }
+ .control-label {
+ font-family: var(--font-leonardo-display);
+ font-size: 1.1em;
+ color: var(--leonardo-umber);
+ margin-bottom: var(--space-golden-sm);
+ display: block;
+ }
 
-        .control-value {
-            font-size: 1.5em;
-            color: var(--leonardo-crimson);
-            font-weight: 600;
-            text-align: center;
-            margin: var(--space-golden-sm) 0;
-        }
+ .control-value {
+ font-size: 1.5em;
+ color: var(--leonardo-crimson);
+ font-weight: 600;
+ text-align: center;
+ margin: var(--space-golden-sm) 0;
+ }
 
-        .slider {
-            width: 100%;
-            height: 8px;
-            border-radius: 4px;
-            background: linear-gradient(90deg, #87CEEB, var(--leonardo-gold));
-            outline: none;
-            opacity: 0.9;
-            transition: opacity var(--anim-leonardo-fast);
-            cursor: pointer;
-        }
+ .slider {
+ width: 100%;
+ height: 8px;
+ border-radius: 4px;
+ background: linear-gradient(90deg, #87CEEB, var(--leonardo-gold));
+ outline: none;
+ opacity: 0.9;
+ transition: opacity var(--anim-leonardo-fast);
+ cursor: pointer;
+ }
 
-        .slider:hover {
-            opacity: 1;
-        }
+ .slider:hover {
+ opacity: 1;
+ }
 
-        .slider::-webkit-slider-thumb {
-            appearance: none;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: var(--leonardo-crimson);
-            cursor: pointer;
-            box-shadow: 0 2px 5px rgba(139, 0, 0, 0.3);
-        }
+ .slider::-webkit-slider-thumb {
+ appearance: none;
+ width: 20px;
+ height: 20px;
+ border-radius: 50%;
+ background: var(--leonardo-crimson);
+ cursor: pointer;
+ box-shadow: 0 2px 5px rgba(139, 0, 0, 0.3);
+ }
 
-        .flight-canvas {
-            width: 100%;
-            height: 500px;
-            background: radial-gradient(circle, rgba(135, 206, 235, 0.2), transparent);
-            border: 2px solid #87CEEB;
-            border-radius: var(--space-golden-md);
-            position: relative;
-            overflow: hidden;
-            margin-bottom: var(--space-golden-lg);
-        }
+ .flight-canvas {
+ width: 100%;
+ height: 500px;
+ background: radial-gradient(circle, rgba(135, 206, 235, 0.2), transparent);
+ border: 2px solid #87CEEB;
+ border-radius: var(--space-golden-md);
+ position: relative;
+ overflow: hidden;
+ margin-bottom: var(--space-golden-lg);
+ }
 
-        #flightCanvas {
-            width: 100%;
-            height: 100%;
-        }
+ #flightCanvas {
+ width: 100%;
+ height: 100%;
+ }
 
-        .metric-card {
-            background: linear-gradient(135deg, rgba(135, 206, 235, 0.2), rgba(255, 215, 0, 0.1));
-            border: 2px solid #4682B4;
-            border-radius: var(--space-golden-sm);
-            padding: var(--space-golden-md);
-            margin-bottom: var(--space-golden-md);
-            text-align: center;
-            transition: all var(--anim-leonardo-medium);
-        }
+ .metric-card {
+ background: linear-gradient(135deg, rgba(135, 206, 235, 0.2), rgba(255, 215, 0, 0.1));
+ border: 2px solid #4682B4;
+ border-radius: var(--space-golden-sm);
+ padding: var(--space-golden-md);
+ margin-bottom: var(--space-golden-md);
+ text-align: center;
+ transition: all var(--anim-leonardo-medium);
+ }
 
-        .metric-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 20px rgba(70, 130, 180, 0.4);
-        }
+ .metric-card:hover {
+ transform: translateY(-3px);
+ box-shadow: 0 0 20px rgba(70, 130, 180, 0.4);
+ }
 
-        .metric-label {
-            font-size: 0.9em;
-            color: var(--leonardo-umber);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: var(--space-golden-xs);
-        }
+ .metric-label {
+ font-size: 0.9em;
+ color: var(--leonardo-umber);
+ text-transform: uppercase;
+ letter-spacing: 0.05em;
+ margin-bottom: var(--space-golden-xs);
+ }
 
-        .metric-value {
-            font-size: 2em;
-            color: var(--leonardo-crimson);
-            font-weight: 700;
-            font-family: var(--font-leonardo-display);
-        }
+ .metric-value {
+ font-size: 2em;
+ color: var(--leonardo-crimson);
+ font-weight: 700;
+ font-family: var(--font-leonardo-display);
+ }
 
-        .metric-unit {
-            font-size: 0.7em;
-            color: var(--leonardo-ink);
-            opacity: 0.7;
-        }
+ .metric-unit {
+ font-size: 0.7em;
+ color: var(--leonardo-ink);
+ opacity: 0.7;
+ }
 
-        .tab-navigation {
-            display: flex;
-            gap: var(--space-golden-sm);
-            margin-bottom: var(--space-golden-lg);
-            border-bottom: 2px solid var(--leonardo-gold);
-            flex-wrap: wrap;
-        }
+ .tab-navigation {
+ display: flex;
+ gap: var(--space-golden-sm);
+ margin-bottom: var(--space-golden-lg);
+ border-bottom: 2px solid var(--leonardo-gold);
+ flex-wrap: wrap;
+ }
 
-        .tab-button {
-            background: transparent;
-            border: none;
-            padding: var(--space-golden-sm) var(--space-golden-md);
-            font-family: var(--font-leonardo-display);
-            font-size: 1.1em;
-            color: var(--leonardo-umber);
-            cursor: pointer;
-            transition: all var(--anim-leonardo-fast);
-            border-bottom: 3px solid transparent;
-            position: relative;
-            bottom: -2px;
-        }
+ .tab-button {
+ background: transparent;
+ border: none;
+ padding: var(--space-golden-sm) var(--space-golden-md);
+ font-family: var(--font-leonardo-display);
+ font-size: 1.1em;
+ color: var(--leonardo-umber);
+ cursor: pointer;
+ transition: all var(--anim-leonardo-fast);
+ border-bottom: 3px solid transparent;
+ position: relative;
+ bottom: -2px;
+ }
 
-        .tab-button:hover {
-            color: var(--leonardo-crimson);
-        }
+ .tab-button:hover {
+ color: var(--leonardo-crimson);
+ }
 
-        .tab-button.active {
-            color: var(--leonardo-crimson);
-            border-bottom-color: var(--leonardo-crimson);
-        }
+ .tab-button.active {
+ color: var(--leonardo-crimson);
+ border-bottom-color: var(--leonardo-crimson);
+ }
 
-        .tab-content {
-            display: none;
-        }
+ .tab-content {
+ display: none;
+ }
 
-        .tab-content.active {
-            display: block;
-            animation: leonardoReveal 0.618s ease-out;
-        }
+ .tab-content.active {
+ display: block;
+ animation: leonardoReveal 0.618s ease-out;
+ }
 
-        .spec-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: var(--space-golden-md);
-            margin-top: var(--space-golden-md);
-        }
+ .spec-grid {
+ display: grid;
+ grid-template-columns: repeat(2, 1fr);
+ gap: var(--space-golden-md);
+ margin-top: var(--space-golden-md);
+ }
 
-        .spec-item {
-            background: rgba(135, 206, 235, 0.1);
-            border: 1px solid #87CEEB;
-            border-radius: var(--space-golden-xs);
-            padding: var(--space-golden-sm);
-        }
+ .spec-item {
+ background: rgba(135, 206, 235, 0.1);
+ border: 1px solid #87CEEB;
+ border-radius: var(--space-golden-xs);
+ padding: var(--space-golden-sm);
+ }
 
-        .spec-name {
-            font-size: 0.85em;
-            color: var(--leonardo-umber);
-            margin-bottom: 4px;
-        }
+ .spec-name {
+ font-size: 0.85em;
+ color: var(--leonardo-umber);
+ margin-bottom: 4px;
+ }
 
-        .spec-value {
-            font-size: 1.1em;
-            font-weight: 600;
-            color: var(--leonardo-ink);
-        }
+ .spec-value {
+ font-size: 1.1em;
+ font-weight: 600;
+ color: var(--leonardo-ink);
+ }
 
-        .historical-section {
-            background: rgba(255, 255, 255, 0.9);
-            padding: var(--space-golden-xl);
-            border-radius: var(--space-golden-lg);
-            box-shadow: var(--shadow-leonardo-manuscript);
-            margin-bottom: var(--space-golden-xxl);
-        }
+ .historical-section {
+ background: rgba(255, 255, 255, 0.9);
+ padding: var(--space-golden-xl);
+ border-radius: var(--space-golden-lg);
+ box-shadow: var(--shadow-leonardo-manuscript);
+ margin-bottom: var(--space-golden-xxl);
+ }
 
-        .folio-reference {
-            background: rgba(139, 69, 19, 0.1);
-            border-left: 4px solid var(--leonardo-umber);
-            padding: var(--space-golden-md);
-            margin: var(--space-golden-lg) 0;
-            font-family: var(--font-leonardo-marginalia);
-            font-style: italic;
-        }
+ .folio-reference {
+ background: rgba(139, 69, 19, 0.1);
+ border-left: 4px solid var(--leonardo-umber);
+ padding: var(--space-golden-md);
+ margin: var(--space-golden-lg) 0;
+ font-family: var(--font-leonardo-marginalia);
+ font-style: italic;
+ }
 
-        .safety-warning {
-            background: rgba(139, 0, 0, 0.1);
-            border: 2px solid var(--leonardo-crimson);
-            border-radius: var(--space-golden-sm);
-            padding: var(--space-golden-md);
-            margin: var(--space-golden-md) 0;
-        }
+ .safety-warning {
+ background: rgba(139, 0, 0, 0.1);
+ border: 2px solid var(--leonardo-crimson);
+ border-radius: var(--space-golden-sm);
+ padding: var(--space-golden-md);
+ margin: var(--space-golden-md) 0;
+ }
 
-        .safety-icon {
-            font-size: 2em;
-            float: left;
-            margin-right: var(--space-golden-sm);
-        }
+ .safety-icon {
+ font-size: 2em;
+ float: left;
+ margin-right: var(--space-golden-sm);
+ }
 
-        @media (max-width: 1200px) {
-            .orni-layout {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+ @media (max-width: 1200px) {
+ .orni-layout {
+ grid-template-columns: 1fr;
+ }
+ }
+ </style>
 </head>
 <body>
-    <div class="orni-container">
-        <!-- Header -->
-        <div class="header-section">
-            <h1 class="main-title">🦅 Leonardo's Ornithopter</h1>
-            <p class="subtitle">Il Niccio - Biomimetic Flapping Wing Aircraft</p>
-            <div class="flight-badge">⚡ 72% POWER REDUCTION WITH MODERN MATERIALS ⚡</div>
-            <p style="font-size: 1.2em; color: var(--leonardo-ink); margin-top: var(--space-golden-lg);">
-                <strong>From 14.7 kW to 4.1 kW</strong> - Making Leonardo's Dream of Flight Reality
-            </p>
-        </div>
-
-        <!-- Leonardo's Wisdom -->
-        <div class="leonardo-quote">
-            <span class="quote-icon">"</span>
-            <p class="quote-text">
-                "A bird is an instrument working according to mathematical law, which instrument it is within the capacity of man to reproduce with all its movements, but not with a corresponding degree of strength."
-            </p>
-            <p class="quote-attribution">— Leonardo da Vinci, Codex on the Flight of Birds (c. 1505), folio 12v</p>
-        </div>
-
-        <!-- Main Workspace -->
-        <div class="orni-layout">
-            <!-- Control Panel -->
-            <div class="control-panel">
-                <h2 class="panel-title">⚙️ Flight Controls</h2>
-
-                <div class="control-group">
-                    <label class="control-label">Flapping Frequency</label>
-                    <div class="control-value" id="frequencyValue">2.4 Hz</div>
-                    <input type="range" class="slider" id="frequencySlider" min="1.5" max="3.5" value="2.4" step="0.1">
-                    <p style="font-size: 0.85em; margin-top: var(--space-golden-sm); color: var(--leonardo-umber);">
-                        Bird-like flapping rate
-                    </p>
-                </div>
-
-                <div class="control-group">
-                    <label class="control-label">Stroke Amplitude</label>
-                    <div class="control-value" id="strokeValue">60°</div>
-                    <input type="range" class="slider" id="strokeSlider" min="40" max="80" value="60" step="5">
-                    <p style="font-size: 0.85em; margin-top: var(--space-golden-sm); color: var(--leonardo-umber);">
-                        Wing sweep angle
-                    </p>
-                </div>
-
-                <div class="control-group">
-                    <label class="control-label">Forward Speed</label>
-                    <div class="control-value" id="speedValue">5.0 m/s</div>
-                    <input type="range" class="slider" id="speedSlider" min="0" max="10" value="5.0" step="0.5">
-                    <p style="font-size: 0.85em; margin-top: var(--space-golden-sm); color: var(--leonardo-umber);">
-                        Cruise velocity
-                    </p>
-                </div>
-
-                <div class="control-group">
-                    <label class="control-label">Wing Rotation</label>
-                    <div class="control-value" id="rotationValue">45°</div>
-                    <input type="range" class="slider" id="rotationSlider" min="20" max="70" value="45" step="5">
-                    <p style="font-size: 0.85em; margin-top: var(--space-golden-sm); color: var(--leonardo-umber);">
-                        Feathering angle
-                    </p>
-                </div>
-
-                <button class="leonardo-button" onclick="resetControls()" style="width: 100%; margin-top: var(--space-golden-md);">
-                    🔄 Reset to Optimal
-                </button>
-            </div>
-
-            <!-- Simulation Workspace -->
-            <div class="simulation-workspace">
-                <div class="tab-navigation">
-                    <button class="tab-button active" onclick="switchTab('simulation')">🦅 Flapping Simulation</button>
-                    <button class="tab-button" onclick="switchTab('performance')">📊 Aerodynamics</button>
-                    <button class="tab-button" onclick="switchTab('specifications')">📐 Technical Specs</button>
-                    <button class="tab-button" onclick="switchTab('materials')">🔧 Materials</button>
-                </div>
-
-                <!-- Simulation Tab -->
-                <div id="simulation" class="tab-content active">
-                    <h3 style="font-family: var(--font-leonardo-display); text-align: center; color: var(--leonardo-crimson);">
-                        Interactive Wing Dynamics
-                    </h3>
-                    <div class="flight-canvas">
-                        <canvas id="flightCanvas"></canvas>
-                    </div>
-                    <p style="text-align: center; font-style: italic; color: var(--leonardo-umber);">
-                        Watch the biomimetic wing motion with figure-8 tip trajectory, clap-and-fling mechanism, and unsteady lift generation.
-                    </p>
-                </div>
-
-                <!-- Performance Tab -->
-                <div id="performance" class="tab-content">
-                    <h3 style="font-family: var(--font-leonardo-display); text-align: center; color: var(--leonardo-crimson); margin-bottom: var(--space-golden-lg);">
-                        Unsteady Aerodynamics Analysis
-                    </h3>
-
-                    <div class="spec-grid">
-                        <div class="metric-card">
-                            <div class="metric-label">Lift Force</div>
-                            <div class="metric-value" id="liftDisplay">125<span class="metric-unit"> N</span></div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-label">Thrust Generated</div>
-                            <div class="metric-value" id="thrustDisplay">18<span class="metric-unit"> N</span></div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-label">Power Required</div>
-                            <div class="metric-value">4.1<span class="metric-unit"> kW</span></div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-label">Endurance</div>
-                            <div class="metric-value">12<span class="metric-unit"> min</span></div>
-                        </div>
-                    </div>
-
-                    <div style="margin-top: var(--space-golden-xl);">
-                        <h4 style="font-family: var(--font-leonardo-display); color: var(--leonardo-umber);">Bio-Inspired Mechanisms:</h4>
-                        <ul style="line-height: 1.8; font-size: 1.1em;">
-                            <li><strong>Figure-8 Wing Motion:</strong> Wing tips trace elliptical path for maximum efficiency</li>
-                            <li><strong>Clap-and-Fling:</strong> Wings meet at top of stroke for lift enhancement</li>
-                            <li><strong>Wake Capture:</strong> Wing encounters vortices from previous stroke</li>
-                            <li><strong>Delayed Stall:</strong> Unsteady flow allows 25° angle before stall</li>
-                            <li><strong>Theodorsen's Function:</strong> Accounts for lag between wing motion and lift response</li>
-                        </ul>
-
-                        <h4 style="font-family: var(--font-leonardo-display); color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">
-                            Aerodynamic Innovations:
-                        </h4>
-                        <ul style="line-height: 1.8; font-size: 1.1em;">
-                            <li><strong>Unsteady Lift Theory:</strong> Reduced frequency k = 0.5 for optimal efficiency</li>
-                            <li><strong>Added Mass Effect:</strong> Non-circulatory lift from wing acceleration</li>
-                            <li><strong>Membrane Deformation:</strong> Elastic wing surface adapts to loading</li>
-                            <li><strong>Porosity Effect:</strong> Feathers separate on upstroke, seal on downstroke</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Specifications Tab -->
-                <div id="specifications" class="tab-content">
-                    <h3 style="font-family: var(--font-leonardo-display); text-align: center; color: var(--leonardo-crimson); margin-bottom: var(--space-golden-lg);">
-                        Complete Technical Specifications
-                    </h3>
-
-                    <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Wing Configuration:</h4>
-                    <div class="spec-grid">
-                        <div class="spec-item">
-                            <div class="spec-name">Wing Span</div>
-                            <div class="spec-value">4.0 m</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-name">Wing Area</div>
-                            <div class="spec-value">4.0 m²</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-name">Mean Chord</div>
-                            <div class="spec-value">1.0 m</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-name">Aspect Ratio</div>
-                            <div class="spec-value">4.0</div>
-                        </div>
-                    </div>
-
-                    <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Kinematic Parameters:</h4>
-                    <div class="spec-grid">
-                        <div class="spec-item">
-                            <div class="spec-name">Stroke Amplitude</div>
-                            <div class="spec-value">60° (1.05 rad)</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-name">Stroke Plane Angle</div>
-                            <div class="spec-value">15° tilt</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-name">Deviation Amplitude</div>
-                            <div class="spec-value">8° vertical</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-name">Rotation Amplitude</div>
-                            <div class="spec-value">45° feathering</div>
-                        </div>
-                    </div>
-
-                    <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Performance Envelope:</h4>
-                    <div class="spec-grid">
-                        <div class="spec-item">
-                            <div class="spec-name">Total Mass</div>
-                            <div class="spec-value">12 kg</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-name">Lift-to-Weight</div>
-                            <div class="spec-value">1.2×</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-name">Cruise Speed</div>
-                            <div class="spec-value">5-8 m/s</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-name">Battery Capacity</div>
-                            <div class="spec-value">500 Wh</div>
-                        </div>
-                    </div>
-
-                    <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Structural Properties:</h4>
-                    <div class="spec-grid">
-                        <div class="spec-item">
-                            <div class="spec-name">Membrane Stiffness</div>
-                            <div class="spec-value">500 N/m</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-name">Spar Stiffness</div>
-                            <div class="spec-value">1000 N·m²</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-name">Wing Mass</div>
-                            <div class="spec-value">1.8 kg (15%)</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-name">Damping Ratio</div>
-                            <div class="spec-value">10%</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Materials Tab -->
-                <div id="materials" class="tab-content">
-                    <h3 style="font-family: var(--font-leonardo-display); text-align: center; color: var(--leonardo-crimson); margin-bottom: var(--space-golden-lg);">
-                        Renaissance vs. Modern Materials
-                    </h3>
-
-                    <div class="safety-warning">
-                        <span class="safety-icon">⚠️</span>
-                        <p><strong>Historical Reality:</strong> Leonardo's original design required 14.7 kW of power - impossible for human muscle power (0.42 kW sustained). Modern materials reduce this by 72%.</p>
-                    </div>
-
-                    <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Historical Materials (1490s):</h4>
-                    <ul style="line-height: 1.8; font-size: 1.1em;">
-                        <li>🌲 <strong>Fir Wood Spars:</strong> Structural mass 42 kg, fatigue life ~50 cycles</li>
-                        <li>📜 <strong>Rawhide Hinges:</strong> Flexible joints with high friction</li>
-                        <li>🧵 <strong>Linen Membrane:</strong> Heavy, porous, poor aerodynamic properties</li>
-                        <li>⚙️ <strong>Bronze Gears:</strong> Heavy drivetrain with binding issues</li>
-                        <li>💪 <strong>Human Power:</strong> 0.42 kW sustained (galley rower benchmark)</li>
-                    </ul>
-
-                    <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Modern Materials (2025):</h4>
-                    <ul style="line-height: 1.8; font-size: 1.1em;">
-                        <li>⚫ <strong>Carbon Fiber Spars:</strong> Structural mass 28.5 kg (-32% lighter)</li>
-                        <li>🔩 <strong>7075-T6 Aluminum:</strong> Root fittings with high strength-to-weight</li>
-                        <li>🦸 <strong>Kevlar Hinge Strips:</strong> Flexible, durable, low friction</li>
-                        <li>✨ <strong>FlexLam Skin:</strong> Aeroelastic membrane with optimal porosity</li>
-                        <li>🔋 <strong>Brushless Motors:</strong> 2× 2 kW motors with Li-ion battery pack</li>
-                    </ul>
-
-                    <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Performance Comparison:</h4>
-                    <div class="spec-grid" style="grid-template-columns: 1fr;">
-                        <div class="spec-item">
-                            <div class="spec-name">Structural Mass Reduction</div>
-                            <div class="spec-value">42.0 kg → 28.5 kg (32% lighter)</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-name">Power Required Reduction</div>
-                            <div class="spec-value">14.7 kW → 4.1 kW (72% reduction)</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-name">Endurance Improvement</div>
-                            <div class="spec-value">0.5 min → 12 min (+2300%)</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-name">Fatigue Life</div>
-                            <div class="spec-value">50 cycles → 500+ cycles</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Analysis Panel -->
-            <div class="analysis-panel">
-                <h2 class="panel-title">📊 Flight Metrics</h2>
-
-                <div class="metric-card">
-                    <div class="metric-label">Lift Coefficient</div>
-                    <div class="metric-value" id="clValue">1.2</div>
-                </div>
-
-                <div class="metric-card">
-                    <div class="metric-label">Reynolds Number</div>
-                    <div class="metric-value" id="reValue">33k</div>
-                </div>
-
-                <div class="metric-card">
-                    <div class="metric-label">Reduced Frequency</div>
-                    <div class="metric-value" id="kValue">0.50</div>
-                </div>
-
-                <div class="metric-card">
-                    <div class="metric-label">Theodorsen Factor</div>
-                    <div class="metric-value" id="theodorsenValue">0.80</div>
-                </div>
-
-                <div style="margin-top: var(--space-golden-xl); padding: var(--space-golden-md); background: rgba(135, 206, 235, 0.15); border-radius: var(--space-golden-sm);">
-                    <h4 style="font-family: var(--font-leonardo-display); color: var(--leonardo-crimson); margin-bottom: var(--space-golden-sm);">
-                        Unsteady Flow
-                    </h4>
-                    <p style="font-size: 0.95em; line-height: 1.6; color: var(--leonardo-ink);">
-                        <strong>Theodorsen's Theory</strong><br>
-                        Accounts for lag between wing motion and aerodynamic response in flapping flight.
-                    </p>
-                </div>
-
-                <div style="margin-top: var(--space-golden-lg); padding: var(--space-golden-md); background: rgba(135, 169, 107, 0.1); border-radius: var(--space-golden-sm);">
-                    <h4 style="font-family: var(--font-leonardo-display); color: var(--leonardo-sage); margin-bottom: var(--space-golden-sm);">
-                        Bio-Inspiration
-                    </h4>
-                    <p style="font-size: 0.95em; line-height: 1.6; color: var(--leonardo-ink);">
-                        <strong>Bird Flight Study</strong><br>
-                        Leonardo spent years observing bird wing motion to inform his design.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Historical Context Section -->
-        <div class="historical-section">
-            <h2 style="font-family: var(--font-leonardo-display); font-size: 2.5em; color: var(--leonardo-crimson); text-align: center; margin-bottom: var(--space-golden-xl);">
-                📜 Historical Provenance & Engineering
-            </h2>
-
-            <div class="folio-reference">
-                <strong>Primary Sources:</strong><br>
-                • Codex Atlanticus, Folio 846r - Annotated planform with twin flapping wings<br>
-                • Manuscript B (Institut de France), Folio 70r - Side elevation with torsion springs<br>
-                • Codex on the Flight of Birds, Folio 12v - Aerodynamic observations on wing camber
-            </div>
-
-            <p style="font-size: 1.2em; line-height: 1.8;">
-                Leonardo da Vinci's ornithopter represents his most ambitious attempt to achieve human flight through biomimicry. Between 1487 and 1505, he filled hundreds of pages with observations of bird flight, wing mechanics, and aerodynamic principles. His design combined deep anatomical study with innovative mechanical engineering.
-            </p>
-
-            <h3 style="font-family: var(--font-leonardo-display); color: var(--leonardo-umber); margin-top: var(--space-golden-xl);">
-                Leonardo's Bird Flight Studies:
-            </h3>
-            <ul style="font-size: 1.1em; line-height: 1.8;">
-                <li><strong>Wing Geometry:</strong> Observed how birds adjust wing camber and angle during flight</li>
-                <li><strong>Feather Articulation:</strong> Noted how feathers separate on upstroke, seal on downstroke</li>
-                <li><strong>Figure-8 Motion:</strong> Recognized elliptical wing tip trajectories</li>
-                <li><strong>Balance and Control:</strong> Studied tail movements for pitch and yaw control</li>
-                <li><strong>Wind Utilization:</strong> Documented how birds exploit air currents</li>
-            </ul>
-
-            <h3 style="font-family: var(--font-leonardo-display); color: var(--leonardo-umber); margin-top: var(--space-golden-xl);">
-                Renaissance Engineering Challenges:
-            </h3>
-            <ul style="font-size: 1.1em; line-height: 1.8;">
-                <li><strong>Power Deficit:</strong> Required 14.7 kW but humans produce only 0.42 kW sustained</li>
-                <li><strong>Material Fatigue:</strong> Fir spars failed after ~50 cycles under cyclic bending</li>
-                <li><strong>Control Authority:</strong> No real-time feedback system for stability</li>
-                <li><strong>Manufacturing Precision:</strong> Gear tolerances unattainable with 16th-century tools</li>
-                <li><strong>Weight-to-Power Ratio:</strong> Impossible with available materials and human power</li>
-            </ul>
-
-            <h3 style="font-family: var(--font-leonardo-display); color: var(--leonardo-umber); margin-top: var(--space-golden-xl);">
-                Modern Computational Completion:
-            </h3>
-            <ul style="font-size: 1.1em; line-height: 1.8;">
-                <li><strong>Unsteady Aerodynamics:</strong> Theodorsen's theory explains lag in lift generation</li>
-                <li><strong>Carbon Fiber Structure:</strong> 32% lighter than Renaissance materials</li>
-                <li><strong>Electric Motors:</strong> Deliver 4.1 kW with 12-minute endurance</li>
-                <li><strong>Embedded Flight Computer:</strong> PX4 autopilot provides stability augmentation</li>
-                <li><strong>Membrane Dynamics:</strong> FlexLam skin deforms elastically for optimal aerodynamics</li>
-            </ul>
-
-            <h3 style="font-family: var(--font-leonardo-display); color: var(--leonardo-umber); margin-top: var(--space-golden-xl);">
-                Biomimetic Design Principles:
-            </h3>
-            <ul style="font-size: 1.1em; line-height: 1.8;">
-                <li><strong>Three-DOF Wing Motion:</strong> Stroke, deviation, and rotation mimic bird flight</li>
-                <li><strong>Clap-and-Fling Mechanism:</strong> Wing-wing interaction enhances lift at reversal</li>
-                <li><strong>Wake Capture:</strong> Wing encounters vorticity from previous stroke</li>
-                <li><strong>Delayed Stall:</strong> Unsteady effects allow 25° angle before stall</li>
-                <li><strong>Porosity Control:</strong> Membrane opens on upstroke, seals on downstroke</li>
-            </ul>
-        </div>
-
-    </div>
-
-    <script>
-        const canvas = document.getElementById('flightCanvas');
-        const ctx = canvas.getContext('2d');
-
-        function resizeCanvas() {
-            canvas.width = canvas.offsetWidth;
-            canvas.height = canvas.offsetHeight;
-        }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-
-        let animationTime = 0;
-        let flapFrequency = 2.4;
-        let strokeAmplitude = 60;
-        let forwardSpeed = 5.0;
-        let rotationAmplitude = 45;
-
-        document.getElementById('frequencySlider').addEventListener('input', function(e) {
-            flapFrequency = parseFloat(e.target.value);
-            document.getElementById('frequencyValue').textContent = flapFrequency.toFixed(1) + ' Hz';
-            updateMetrics();
-        });
-
-        document.getElementById('strokeSlider').addEventListener('input', function(e) {
-            strokeAmplitude = parseFloat(e.target.value);
-            document.getElementById('strokeValue').textContent = strokeAmplitude + '°';
-            updateMetrics();
-        });
-
-        document.getElementById('speedSlider').addEventListener('input', function(e) {
-            forwardSpeed = parseFloat(e.target.value);
-            document.getElementById('speedValue').textContent = forwardSpeed.toFixed(1) + ' m/s';
-            updateMetrics();
-        });
-
-        document.getElementById('rotationSlider').addEventListener('input', function(e) {
-            rotationAmplitude = parseFloat(e.target.value);
-            document.getElementById('rotationValue').textContent = rotationAmplitude + '°';
-            updateMetrics();
-        });
-
-        function resetControls() {
-            flapFrequency = 2.4;
-            strokeAmplitude = 60;
-            forwardSpeed = 5.0;
-            rotationAmplitude = 45;
-            document.getElementById('frequencySlider').value = 2.4;
-            document.getElementById('strokeSlider').value = 60;
-            document.getElementById('speedSlider').value = 5.0;
-            document.getElementById('rotationSlider').value = 45;
-            document.getElementById('frequencyValue').textContent = '2.4 Hz';
-            document.getElementById('strokeValue').textContent = '60°';
-            document.getElementById('speedValue').textContent = '5.0 m/s';
-            document.getElementById('rotationValue').textContent = '45°';
-            updateMetrics();
-        }
-
-        function updateMetrics() {
-            // Simplified metrics calculation
-            const strokeRad = strokeAmplitude * Math.PI / 180;
-            const wingSpan = 4.0;
-            const wingArea = 4.0;
-            const meanChord = 1.0;
-
-            // Wing velocity
-            const vWing = Math.abs(Math.cos(animationTime * flapFrequency * 2 * Math.PI)) * strokeRad * flapFrequency * wingSpan / 2;
-            const vTotal = Math.sqrt(vWing * vWing + forwardSpeed * forwardSpeed);
-
-            // Reynolds number
-            const nu = 1.5e-5;
-            const Re = vTotal * meanChord / nu;
-
-            // Reduced frequency
-            const k = forwardSpeed > 0.1 ? Math.PI * flapFrequency * meanChord / forwardSpeed : 2.0;
-
-            // Lift coefficient (simplified)
-            const cl = 0.8 + 0.4 * Math.sin(animationTime * flapFrequency * 2 * Math.PI);
-
-            // Theodorsen factor approximation
-            const theodorsen = k < 0.01 ? 1.0 : 0.8;
-
-            // Update displays
-            document.getElementById('clValue').textContent = cl.toFixed(2);
-            document.getElementById('reValue').textContent = (Re / 1000).toFixed(0) + 'k';
-            document.getElementById('kValue').textContent = k.toFixed(2);
-            document.getElementById('theodorsenValue').textContent = theodorsen.toFixed(2);
-
-            // Lift force (simplified)
-            const rho = 1.225;
-            const q = 0.5 * rho * vTotal * vTotal;
-            const lift = q * wingArea * cl;
-
-            document.getElementById('liftDisplay').innerHTML = Math.round(lift) + '<span class="metric-unit"> N</span>';
-            document.getElementById('thrustDisplay').innerHTML = Math.round(lift * 0.15) + '<span class="metric-unit"> N</span>';
-        }
-
-        function drawOrnithopter() {
-            const centerX = canvas.width / 2;
-            const centerY = canvas.height / 2;
-            const scale = Math.min(canvas.width, canvas.height) / 500;
-
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.save();
-            ctx.translate(centerX, centerY);
-            ctx.scale(scale, scale);
-
-            // Body
-            ctx.fillStyle = '#8B4513';
-            ctx.strokeStyle = '#654321';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.ellipse(0, 0, 30, 15, 0, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.stroke();
-
-            // Wings
-            const omega = 2 * Math.PI * flapFrequency;
-            const strokeRad = strokeAmplitude * Math.PI / 180;
-            const rotationRad = rotationAmplitude * Math.PI / 180;
-
-            // Left and right wing angles
-            const strokeAngle = strokeRad * Math.sin(omega * animationTime);
-            const deviation = 0.14 * Math.sin(omega * animationTime + Math.PI / 2);
-            const rotation = rotationRad * Math.sin(omega * animationTime - Math.PI / 4);
-
-            // Figure-8 motion
-            const lateralMotion = 0.15 * 200 * Math.sin(2 * omega * animationTime);
-
-            // Draw left wing
-            drawWing(-1, strokeAngle, deviation, rotation, lateralMotion);
-
-            // Draw right wing
-            drawWing(1, strokeAngle, deviation, rotation, -lateralMotion);
-
-            ctx.restore();
-        }
-
-        function drawWing(side, strokeAngle, deviation, rotation, lateralMotion) {
-            ctx.save();
-
-            const baseX = side * 30;
-            const wingLength = 150;
-
-            // Apply stroke angle
-            ctx.translate(baseX, 0);
-            ctx.rotate(side * strokeAngle);
-            ctx.translate(0, deviation * 50);
-            ctx.translate(lateralMotion, 0);
-
-            // Wing path with rotation
-            ctx.strokeStyle = '#87CEEB';
-            ctx.fillStyle = 'rgba(135, 206, 235, 0.3)';
-            ctx.lineWidth = 3;
-
-            ctx.beginPath();
-            ctx.moveTo(0, 0);
-
-            // Wing leading edge
-            for (let i = 0; i <= wingLength; i += 10) {
-                const progress = i / wingLength;
-                const twist = rotation * progress;
-                const x = i * side;
-                const y = Math.sin(twist) * 20;
-                ctx.lineTo(x, y);
-            }
-
-            // Wing trailing edge
-            for (let i = wingLength; i >= 0; i -= 10) {
-                const progress = i / wingLength;
-                const twist = rotation * progress;
-                const x = i * side;
-                const y = Math.sin(twist) * 20 + 30;
-                ctx.lineTo(x, y);
-            }
-
-            ctx.closePath();
-            ctx.fill();
-            ctx.stroke();
-
-            // Wing tip marker
-            ctx.fillStyle = '#4682B4';
-            ctx.beginPath();
-            ctx.arc(wingLength * side, Math.sin(rotation) * 20, 5, 0, Math.PI * 2);
-            ctx.fill();
-
-            ctx.restore();
-        }
-
-        function animate() {
-            const dt = 0.016; // ~60fps
-            animationTime += dt;
-
-            updateMetrics();
-            drawOrnithopter();
-
-            requestAnimationFrame(animate);
-        }
-        animate();
-
-        function switchTab(tabName) {
-            const tabs = document.querySelectorAll('.tab-content');
-            tabs.forEach(tab => tab.classList.remove('active'));
-
-            const buttons = document.querySelectorAll('.tab-button');
-            buttons.forEach(btn => btn.classList.remove('active'));
-
-            document.getElementById(tabName).classList.add('active');
-            event.target.classList.add('active');
-        }
-
-        updateMetrics();
-    </script>
+ <div class="orni-container">
+ <!-- Header -->
+ <div class="header-section">
+ <h1 class="main-title">Leonardo's Ornithopter</h1>
+ <p class="subtitle">Il Niccio - Biomimetic Flapping Wing Aircraft</p>
+ <div class="flight-badge"> 72% POWER REDUCTION WITH MODERN MATERIALS </div>
+ <p style="font-size: 1.2em; color: var(--leonardo-ink); margin-top: var(--space-golden-lg);">
+ <strong>From 14.7 kW to 4.1 kW</strong> - Making Leonardo's Dream of Flight Reality
+ </p>
+ </div>
+
+ <!-- Leonardo's Wisdom -->
+ <div class="leonardo-quote">
+ <span class="quote-icon">"</span>
+ <p class="quote-text">
+ "A bird is an instrument working according to mathematical law, which instrument it is within the capacity of man to reproduce with all its movements, but not with a corresponding degree of strength."
+ </p>
+ <p class="quote-attribution">— Leonardo da Vinci, Codex on the Flight of Birds (c. 1505), folio 12v</p>
+ </div>
+
+ <!-- Main Workspace -->
+ <div class="orni-layout">
+ <!-- Control Panel -->
+ <div class="control-panel">
+ <h2 class="panel-title">Flight Controls</h2>
+
+ <div class="control-group">
+ <label class="control-label">Flapping Frequency</label>
+ <div class="control-value" id="frequencyValue">2.4 Hz</div>
+ <input type="range" class="slider" id="frequencySlider" min="1.5" max="3.5" value="2.4" step="0.1">
+ <p style="font-size: 0.85em; margin-top: var(--space-golden-sm); color: var(--leonardo-umber);">Bird-like flapping rate
+ </p>
+ </div>
+
+ <div class="control-group">
+ <label class="control-label">Stroke Amplitude</label>
+ <div class="control-value" id="strokeValue">60°</div>
+ <input type="range" class="slider" id="strokeSlider" min="40" max="80" value="60" step="5">
+ <p style="font-size: 0.85em; margin-top: var(--space-golden-sm); color: var(--leonardo-umber);">Wing sweep angle
+ </p>
+ </div>
+
+ <div class="control-group">
+ <label class="control-label">Forward Speed</label>
+ <div class="control-value" id="speedValue">5.0 m/s</div>
+ <input type="range" class="slider" id="speedSlider" min="0" max="10" value="5.0" step="0.5">
+ <p style="font-size: 0.85em; margin-top: var(--space-golden-sm); color: var(--leonardo-umber);">Cruise velocity
+ </p>
+ </div>
+
+ <div class="control-group">
+ <label class="control-label">Wing Rotation</label>
+ <div class="control-value" id="rotationValue">45°</div>
+ <input type="range" class="slider" id="rotationSlider" min="20" max="70" value="45" step="5">
+ <p style="font-size: 0.85em; margin-top: var(--space-golden-sm); color: var(--leonardo-umber);">Feathering angle
+ </p>
+ </div>
+
+ <button class="leonardo-button" onclick="resetControls()" style="width: 100%; margin-top: var(--space-golden-md);">Reset to Optimal
+ </button>
+ </div>
+
+ <!-- Simulation Workspace -->
+ <div class="simulation-workspace">
+ <div class="tab-navigation">
+ <button class="tab-button active" onclick="switchTab('simulation')">Flapping Simulation</button>
+ <button class="tab-button" onclick="switchTab('performance')">Aerodynamics</button>
+ <button class="tab-button" onclick="switchTab('specifications')">Technical Specs</button>
+ <button class="tab-button" onclick="switchTab('materials')">Materials</button>
+ </div>
+
+ <!-- Simulation Tab -->
+ <div id="simulation" class="tab-content active">
+ <h3 style="font-family: var(--font-leonardo-display); text-align: center; color: var(--leonardo-crimson);">Interactive Wing Dynamics
+ </h3>
+ <div class="flight-canvas">
+ <canvas id="flightCanvas"></canvas>
+ </div>
+ <p style="text-align: center; font-style: italic; color: var(--leonardo-umber);">Watch the biomimetic wing motion with figure-8 tip trajectory, clap-and-fling mechanism, and unsteady lift generation.
+ </p>
+ </div>
+
+ <!-- Performance Tab -->
+ <div id="performance" class="tab-content">
+ <h3 style="font-family: var(--font-leonardo-display); text-align: center; color: var(--leonardo-crimson); margin-bottom: var(--space-golden-lg);">Unsteady Aerodynamics Analysis
+ </h3>
+
+ <div class="spec-grid">
+ <div class="metric-card">
+ <div class="metric-label">Lift Force</div>
+ <div class="metric-value" id="liftDisplay">125<span class="metric-unit">N</span></div>
+ </div>
+ <div class="metric-card">
+ <div class="metric-label">Thrust Generated</div>
+ <div class="metric-value" id="thrustDisplay">18<span class="metric-unit">N</span></div>
+ </div>
+ <div class="metric-card">
+ <div class="metric-label">Power Required</div>
+ <div class="metric-value">4.1<span class="metric-unit"> kW</span></div>
+ </div>
+ <div class="metric-card">
+ <div class="metric-label">Endurance</div>
+ <div class="metric-value">12<span class="metric-unit"> min</span></div>
+ </div>
+ </div>
+
+ <div style="margin-top: var(--space-golden-xl);">
+ <h4 style="font-family: var(--font-leonardo-display); color: var(--leonardo-umber);">Bio-Inspired Mechanisms:</h4>
+ <ul style="line-height: 1.8; font-size: 1.1em;">
+ <li><strong>Figure-8 Wing Motion:</strong> Wing tips trace elliptical path for maximum efficiency</li>
+ <li><strong>Clap-and-Fling:</strong> Wings meet at top of stroke for lift enhancement</li>
+ <li><strong>Wake Capture:</strong> Wing encounters vortices from previous stroke</li>
+ <li><strong>Delayed Stall:</strong> Unsteady flow allows 25° angle before stall</li>
+ <li><strong>Theodorsen's Function:</strong> Accounts for lag between wing motion and lift response</li>
+ </ul>
+
+ <h4 style="font-family: var(--font-leonardo-display); color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Aerodynamic Innovations:
+ </h4>
+ <ul style="line-height: 1.8; font-size: 1.1em;">
+ <li><strong>Unsteady Lift Theory:</strong> Reduced frequency k = 0.5 for optimal efficiency</li>
+ <li><strong>Added Mass Effect:</strong> Non-circulatory lift from wing acceleration</li>
+ <li><strong>Membrane Deformation:</strong> Elastic wing surface adapts to loading</li>
+ <li><strong>Porosity Effect:</strong> Feathers separate on upstroke, seal on downstroke</li>
+ </ul>
+ </div>
+ </div>
+
+ <!-- Specifications Tab -->
+ <div id="specifications" class="tab-content">
+ <h3 style="font-family: var(--font-leonardo-display); text-align: center; color: var(--leonardo-crimson); margin-bottom: var(--space-golden-lg);">Complete Technical Specifications
+ </h3>
+
+ <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Wing Configuration:</h4>
+ <div class="spec-grid">
+ <div class="spec-item">
+ <div class="spec-name">Wing Span</div>
+ <div class="spec-value">4.0 m</div>
+ </div>
+ <div class="spec-item">
+ <div class="spec-name">Wing Area</div>
+ <div class="spec-value">4.0 m²</div>
+ </div>
+ <div class="spec-item">
+ <div class="spec-name">Mean Chord</div>
+ <div class="spec-value">1.0 m</div>
+ </div>
+ <div class="spec-item">
+ <div class="spec-name">Aspect Ratio</div>
+ <div class="spec-value">4.0</div>
+ </div>
+ </div>
+
+ <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Kinematic Parameters:</h4>
+ <div class="spec-grid">
+ <div class="spec-item">
+ <div class="spec-name">Stroke Amplitude</div>
+ <div class="spec-value">60° (1.05 rad)</div>
+ </div>
+ <div class="spec-item">
+ <div class="spec-name">Stroke Plane Angle</div>
+ <div class="spec-value">15° tilt</div>
+ </div>
+ <div class="spec-item">
+ <div class="spec-name">Deviation Amplitude</div>
+ <div class="spec-value">8° vertical</div>
+ </div>
+ <div class="spec-item">
+ <div class="spec-name">Rotation Amplitude</div>
+ <div class="spec-value">45° feathering</div>
+ </div>
+ </div>
+
+ <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Performance Envelope:</h4>
+ <div class="spec-grid">
+ <div class="spec-item">
+ <div class="spec-name">Total Mass</div>
+ <div class="spec-value">12 kg</div>
+ </div>
+ <div class="spec-item">
+ <div class="spec-name">Lift-to-Weight</div>
+ <div class="spec-value">1.2×</div>
+ </div>
+ <div class="spec-item">
+ <div class="spec-name">Cruise Speed</div>
+ <div class="spec-value">5-8 m/s</div>
+ </div>
+ <div class="spec-item">
+ <div class="spec-name">Battery Capacity</div>
+ <div class="spec-value">500 Wh</div>
+ </div>
+ </div>
+
+ <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Structural Properties:</h4>
+ <div class="spec-grid">
+ <div class="spec-item">
+ <div class="spec-name">Membrane Stiffness</div>
+ <div class="spec-value">500 N/m</div>
+ </div>
+ <div class="spec-item">
+ <div class="spec-name">Spar Stiffness</div>
+ <div class="spec-value">1000 N·m²</div>
+ </div>
+ <div class="spec-item">
+ <div class="spec-name">Wing Mass</div>
+ <div class="spec-value">1.8 kg (15%)</div>
+ </div>
+ <div class="spec-item">
+ <div class="spec-name">Damping Ratio</div>
+ <div class="spec-value">10%</div>
+ </div>
+ </div>
+ </div>
+
+ <!-- Materials Tab -->
+ <div id="materials" class="tab-content">
+ <h3 style="font-family: var(--font-leonardo-display); text-align: center; color: var(--leonardo-crimson); margin-bottom: var(--space-golden-lg);">Renaissance vs. Modern Materials
+ </h3>
+
+ <div class="safety-warning">
+ <span class="safety-icon"></span>
+ <p><strong>Historical Reality:</strong> Leonardo's original design required 14.7 kW of power - impossible for human muscle power (0.42 kW sustained). Modern materials reduce this by 72%.</p>
+ </div>
+
+ <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Historical Materials (1490s):</h4>
+ <ul style="line-height: 1.8; font-size: 1.1em;">
+ <li> <strong>Fir Wood Spars:</strong> Structural mass 42 kg, fatigue life ~50 cycles</li>
+ <li> <strong>Rawhide Hinges:</strong> Flexible joints with high friction</li>
+ <li> <strong>Linen Membrane:</strong> Heavy, porous, poor aerodynamic properties</li>
+ <li> <strong>Bronze Gears:</strong> Heavy drivetrain with binding issues</li>
+ <li> <strong>Human Power:</strong> 0.42 kW sustained (galley rower benchmark)</li>
+ </ul>
+
+ <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Modern Materials (2025):</h4>
+ <ul style="line-height: 1.8; font-size: 1.1em;">
+ <li> <strong>Carbon Fiber Spars:</strong> Structural mass 28.5 kg (-32% lighter)</li>
+ <li> <strong>7075-T6 Aluminum:</strong> Root fittings with high strength-to-weight</li>
+ <li> <strong>Kevlar Hinge Strips:</strong> Flexible, durable, low friction</li>
+ <li> <strong>FlexLam Skin:</strong> Aeroelastic membrane with optimal porosity</li>
+ <li> <strong>Brushless Motors:</strong> 2× 2 kW motors with Li-ion battery pack</li>
+ </ul>
+
+ <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Performance Comparison:</h4>
+ <div class="spec-grid" style="grid-template-columns: 1fr;">
+ <div class="spec-item">
+ <div class="spec-name">Structural Mass Reduction</div>
+ <div class="spec-value">42.0 kg → 28.5 kg (32% lighter)</div>
+ </div>
+ <div class="spec-item">
+ <div class="spec-name">Power Required Reduction</div>
+ <div class="spec-value">14.7 kW → 4.1 kW (72% reduction)</div>
+ </div>
+ <div class="spec-item">
+ <div class="spec-name">Endurance Improvement</div>
+ <div class="spec-value">0.5 min → 12 min (+2300%)</div>
+ </div>
+ <div class="spec-item">
+ <div class="spec-name">Fatigue Life</div>
+ <div class="spec-value">50 cycles → 500+ cycles</div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <!-- Analysis Panel -->
+ <div class="analysis-panel">
+ <h2 class="panel-title">Flight Metrics</h2>
+
+ <div class="metric-card">
+ <div class="metric-label">Lift Coefficient</div>
+ <div class="metric-value" id="clValue">1.2</div>
+ </div>
+
+ <div class="metric-card">
+ <div class="metric-label">Reynolds Number</div>
+ <div class="metric-value" id="reValue">33k</div>
+ </div>
+
+ <div class="metric-card">
+ <div class="metric-label">Reduced Frequency</div>
+ <div class="metric-value" id="kValue">0.50</div>
+ </div>
+
+ <div class="metric-card">
+ <div class="metric-label">Theodorsen Factor</div>
+ <div class="metric-value" id="theodorsenValue">0.80</div>
+ </div>
+
+ <div style="margin-top: var(--space-golden-xl); padding: var(--space-golden-md); background: rgba(135, 206, 235, 0.15); border-radius: var(--space-golden-sm);">
+ <h4 style="font-family: var(--font-leonardo-display); color: var(--leonardo-crimson); margin-bottom: var(--space-golden-sm);">Unsteady Flow
+ </h4>
+ <p style="font-size: 0.95em; line-height: 1.6; color: var(--leonardo-ink);">
+ <strong>Theodorsen's Theory</strong><br>
+ Accounts for lag between wing motion and aerodynamic response in flapping flight.
+ </p>
+ </div>
+
+ <div style="margin-top: var(--space-golden-lg); padding: var(--space-golden-md); background: rgba(135, 169, 107, 0.1); border-radius: var(--space-golden-sm);">
+ <h4 style="font-family: var(--font-leonardo-display); color: var(--leonardo-sage); margin-bottom: var(--space-golden-sm);">Bio-Inspiration
+ </h4>
+ <p style="font-size: 0.95em; line-height: 1.6; color: var(--leonardo-ink);">
+ <strong>Bird Flight Study</strong><br>
+ Leonardo spent years observing bird wing motion to inform his design.
+ </p>
+ </div>
+ </div>
+ </div>
+
+ <!-- Historical Context Section -->
+ <div class="historical-section">
+ <h2 style="font-family: var(--font-leonardo-display); font-size: 2.5em; color: var(--leonardo-crimson); text-align: center; margin-bottom: var(--space-golden-xl);">Historical Provenance & Engineering
+ </h2>
+
+ <div class="folio-reference">
+ <strong>Primary Sources:</strong><br>
+ • Codex Atlanticus, Folio 846r - Annotated planform with twin flapping wings<br>
+ • Manuscript B (Institut de France), Folio 70r - Side elevation with torsion springs<br>
+ • Codex on the Flight of Birds, Folio 12v - Aerodynamic observations on wing camber
+ </div>
+
+ <p style="font-size: 1.2em; line-height: 1.8;">Leonardo da Vinci's ornithopter represents his most ambitious attempt to achieve human flight through biomimicry. Between 1487 and 1505, he filled hundreds of pages with observations of bird flight, wing mechanics, and aerodynamic principles. His design combined deep anatomical study with innovative mechanical engineering.
+ </p>
+
+ <h3 style="font-family: var(--font-leonardo-display); color: var(--leonardo-umber); margin-top: var(--space-golden-xl);">Leonardo's Bird Flight Studies:
+ </h3>
+ <ul style="font-size: 1.1em; line-height: 1.8;">
+ <li><strong>Wing Geometry:</strong> Observed how birds adjust wing camber and angle during flight</li>
+ <li><strong>Feather Articulation:</strong> Noted how feathers separate on upstroke, seal on downstroke</li>
+ <li><strong>Figure-8 Motion:</strong> Recognized elliptical wing tip trajectories</li>
+ <li><strong>Balance and Control:</strong> Studied tail movements for pitch and yaw control</li>
+ <li><strong>Wind Utilization:</strong> Documented how birds exploit air currents</li>
+ </ul>
+
+ <h3 style="font-family: var(--font-leonardo-display); color: var(--leonardo-umber); margin-top: var(--space-golden-xl);">Renaissance Engineering Challenges:
+ </h3>
+ <ul style="font-size: 1.1em; line-height: 1.8;">
+ <li><strong>Power Deficit:</strong> Required 14.7 kW but humans produce only 0.42 kW sustained</li>
+ <li><strong>Material Fatigue:</strong> Fir spars failed after ~50 cycles under cyclic bending</li>
+ <li><strong>Control Authority:</strong> No real-time feedback system for stability</li>
+ <li><strong>Manufacturing Precision:</strong> Gear tolerances unattainable with 16th-century tools</li>
+ <li><strong>Weight-to-Power Ratio:</strong> Impossible with available materials and human power</li>
+ </ul>
+
+ <h3 style="font-family: var(--font-leonardo-display); color: var(--leonardo-umber); margin-top: var(--space-golden-xl);">Modern Computational Completion:
+ </h3>
+ <ul style="font-size: 1.1em; line-height: 1.8;">
+ <li><strong>Unsteady Aerodynamics:</strong> Theodorsen's theory explains lag in lift generation</li>
+ <li><strong>Carbon Fiber Structure:</strong> 32% lighter than Renaissance materials</li>
+ <li><strong>Electric Motors:</strong> Deliver 4.1 kW with 12-minute endurance</li>
+ <li><strong>Embedded Flight Computer:</strong> PX4 autopilot provides stability augmentation</li>
+ <li><strong>Membrane Dynamics:</strong> FlexLam skin deforms elastically for optimal aerodynamics</li>
+ </ul>
+
+ <h3 style="font-family: var(--font-leonardo-display); color: var(--leonardo-umber); margin-top: var(--space-golden-xl);">Biomimetic Design Principles:
+ </h3>
+ <ul style="font-size: 1.1em; line-height: 1.8;">
+ <li><strong>Three-DOF Wing Motion:</strong> Stroke, deviation, and rotation mimic bird flight</li>
+ <li><strong>Clap-and-Fling Mechanism:</strong> Wing-wing interaction enhances lift at reversal</li>
+ <li><strong>Wake Capture:</strong> Wing encounters vorticity from previous stroke</li>
+ <li><strong>Delayed Stall:</strong> Unsteady effects allow 25° angle before stall</li>
+ <li><strong>Porosity Control:</strong> Membrane opens on upstroke, seals on downstroke</li>
+ </ul>
+ </div>
+
+ </div>
+
+ <script>
+ const canvas = document.getElementById('flightCanvas');
+ const ctx = canvas.getContext('2d');
+
+ function resizeCanvas() {
+ canvas.width = canvas.offsetWidth;
+ canvas.height = canvas.offsetHeight;
+ }
+ resizeCanvas();
+ window.addEventListener('resize', resizeCanvas);
+
+ let animationTime = 0;
+ let flapFrequency = 2.4;
+ let strokeAmplitude = 60;
+ let forwardSpeed = 5.0;
+ let rotationAmplitude = 45;
+
+ document.getElementById('frequencySlider').addEventListener('input', function(e) {
+ flapFrequency = parseFloat(e.target.value);
+ document.getElementById('frequencyValue').textContent = flapFrequency.toFixed(1) + ' Hz';
+ updateMetrics();
+ });
+
+ document.getElementById('strokeSlider').addEventListener('input', function(e) {
+ strokeAmplitude = parseFloat(e.target.value);
+ document.getElementById('strokeValue').textContent = strokeAmplitude + '°';
+ updateMetrics();
+ });
+
+ document.getElementById('speedSlider').addEventListener('input', function(e) {
+ forwardSpeed = parseFloat(e.target.value);
+ document.getElementById('speedValue').textContent = forwardSpeed.toFixed(1) + ' m/s';
+ updateMetrics();
+ });
+
+ document.getElementById('rotationSlider').addEventListener('input', function(e) {
+ rotationAmplitude = parseFloat(e.target.value);
+ document.getElementById('rotationValue').textContent = rotationAmplitude + '°';
+ updateMetrics();
+ });
+
+ function resetControls() {
+ flapFrequency = 2.4;
+ strokeAmplitude = 60;
+ forwardSpeed = 5.0;
+ rotationAmplitude = 45;
+ document.getElementById('frequencySlider').value = 2.4;
+ document.getElementById('strokeSlider').value = 60;
+ document.getElementById('speedSlider').value = 5.0;
+ document.getElementById('rotationSlider').value = 45;
+ document.getElementById('frequencyValue').textContent = '2.4 Hz';
+ document.getElementById('strokeValue').textContent = '60°';
+ document.getElementById('speedValue').textContent = '5.0 m/s';
+ document.getElementById('rotationValue').textContent = '45°';
+ updateMetrics();
+ }
+
+ function updateMetrics() {
+ // Simplified metrics calculation
+ const strokeRad = strokeAmplitude * Math.PI / 180;
+ const wingSpan = 4.0;
+ const wingArea = 4.0;
+ const meanChord = 1.0;
+
+ // Wing velocity
+ const vWing = Math.abs(Math.cos(animationTime * flapFrequency * 2 * Math.PI)) * strokeRad * flapFrequency * wingSpan / 2;
+ const vTotal = Math.sqrt(vWing * vWing + forwardSpeed * forwardSpeed);
+
+ // Reynolds number
+ const nu = 1.5e-5;
+ const Re = vTotal * meanChord / nu;
+
+ // Reduced frequency
+ const k = forwardSpeed > 0.1 ? Math.PI * flapFrequency * meanChord / forwardSpeed : 2.0;
+
+ // Lift coefficient (simplified)
+ const cl = 0.8 + 0.4 * Math.sin(animationTime * flapFrequency * 2 * Math.PI);
+
+ // Theodorsen factor approximation
+ const theodorsen = k < 0.01 ? 1.0 : 0.8;
+
+ // Update displays
+ document.getElementById('clValue').textContent = cl.toFixed(2);
+ document.getElementById('reValue').textContent = (Re / 1000).toFixed(0) + 'k';
+ document.getElementById('kValue').textContent = k.toFixed(2);
+ document.getElementById('theodorsenValue').textContent = theodorsen.toFixed(2);
+
+ // Lift force (simplified)
+ const rho = 1.225;
+ const q = 0.5 * rho * vTotal * vTotal;
+ const lift = q * wingArea * cl;
+
+ document.getElementById('liftDisplay').innerHTML = Math.round(lift) + '<span class="metric-unit">N</span>';
+ document.getElementById('thrustDisplay').innerHTML = Math.round(lift * 0.15) + '<span class="metric-unit">N</span>';
+ }
+
+ function drawOrnithopter() {
+ const centerX = canvas.width / 2;
+ const centerY = canvas.height / 2;
+ const scale = Math.min(canvas.width, canvas.height) / 500;
+
+ ctx.clearRect(0, 0, canvas.width, canvas.height);
+ ctx.save();
+ ctx.translate(centerX, centerY);
+ ctx.scale(scale, scale);
+
+ // Body
+ ctx.fillStyle = '#8B4513';
+ ctx.strokeStyle = '#654321';
+ ctx.lineWidth = 2;
+ ctx.beginPath();
+ ctx.ellipse(0, 0, 30, 15, 0, 0, Math.PI * 2);
+ ctx.fill();
+ ctx.stroke();
+
+ // Wings
+ const omega = 2 * Math.PI * flapFrequency;
+ const strokeRad = strokeAmplitude * Math.PI / 180;
+ const rotationRad = rotationAmplitude * Math.PI / 180;
+
+ // Left and right wing angles
+ const strokeAngle = strokeRad * Math.sin(omega * animationTime);
+ const deviation = 0.14 * Math.sin(omega * animationTime + Math.PI / 2);
+ const rotation = rotationRad * Math.sin(omega * animationTime - Math.PI / 4);
+
+ // Figure-8 motion
+ const lateralMotion = 0.15 * 200 * Math.sin(2 * omega * animationTime);
+
+ // Draw left wing
+ drawWing(-1, strokeAngle, deviation, rotation, lateralMotion);
+
+ // Draw right wing
+ drawWing(1, strokeAngle, deviation, rotation, -lateralMotion);
+
+ ctx.restore();
+ }
+
+ function drawWing(side, strokeAngle, deviation, rotation, lateralMotion) {
+ ctx.save();
+
+ const baseX = side * 30;
+ const wingLength = 150;
+
+ // Apply stroke angle
+ ctx.translate(baseX, 0);
+ ctx.rotate(side * strokeAngle);
+ ctx.translate(0, deviation * 50);
+ ctx.translate(lateralMotion, 0);
+
+ // Wing path with rotation
+ ctx.strokeStyle = '#87CEEB';
+ ctx.fillStyle = 'rgba(135, 206, 235, 0.3)';
+ ctx.lineWidth = 3;
+
+ ctx.beginPath();
+ ctx.moveTo(0, 0);
+
+ // Wing leading edge
+ for (let i = 0; i <= wingLength; i += 10) {
+ const progress = i / wingLength;
+ const twist = rotation * progress;
+ const x = i * side;
+ const y = Math.sin(twist) * 20;
+ ctx.lineTo(x, y);
+ }
+
+ // Wing trailing edge
+ for (let i = wingLength; i >= 0; i -= 10) {
+ const progress = i / wingLength;
+ const twist = rotation * progress;
+ const x = i * side;
+ const y = Math.sin(twist) * 20 + 30;
+ ctx.lineTo(x, y);
+ }
+
+ ctx.closePath();
+ ctx.fill();
+ ctx.stroke();
+
+ // Wing tip marker
+ ctx.fillStyle = '#4682B4';
+ ctx.beginPath();
+ ctx.arc(wingLength * side, Math.sin(rotation) * 20, 5, 0, Math.PI * 2);
+ ctx.fill();
+
+ ctx.restore();
+ }
+
+ function animate() {
+ const dt = 0.016; // ~60fps
+ animationTime += dt;
+
+ updateMetrics();
+ drawOrnithopter();
+
+ requestAnimationFrame(animate);
+ }
+ animate();
+
+ function switchTab(tabName) {
+ const tabs = document.querySelectorAll('.tab-content');
+ tabs.forEach(tab => tab.classList.remove('active'));
+
+ const buttons = document.querySelectorAll('.tab-button');
+ buttons.forEach(btn => btn.classList.remove('active'));
+
+ document.getElementById(tabName).classList.add('active');
+ event.target.classList.add('active');
+ }
+
+ updateMetrics();
+ </script>
 </body>
 </html>

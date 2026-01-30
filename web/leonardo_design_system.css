@@ -1,295 +1,1040 @@
-/* 🎨 Leonardo's Design System - Renaissance Digital Workshop */
+/* ═══════════════════════════════════════════════════════════════════════════════
+   Leonardo's Design System — Authentic Codex Aesthetic
+   Inspired by the manuscripts of Leonardo da Vinci (1452-1519)
+   ═══════════════════════════════════════════════════════════════════════════════ */
 
-/* CSS Custom Properties - The Master's Palette */
+/* ───────────────────────────────────────────────────────────────────────────────
+   CSS Custom Properties — The Master's Palette
+   Colors derived from actual Renaissance manuscripts and pigments
+   ─────────────────────────────────────────────────────────────────────────────── */
 :root {
-    /* 🎨 Renaissance Color Palette - Inspired by Leonardo's manuscripts */
-    --leonardo-ink: #2C1810;          /* Leonardo's walnut ink */
-    --leonardo-parchment: #F4E4C1;    /* Aged manuscript parchment */
-    --leonardo-parchment-dark: #E8D4A8;
-    --leonardo-gold: #FFD700;         /* Renaissance gold leaf */
-    --leonardo-gold-dark: #B8860B;    /* Burnished gold */
-    --leonardo-crimson: #8B0000;      /* Cardinal's crimson */
-    --leonardo-crimson-light: #CD5C5C;
-    --leonardo-sage: #87A96B;         /* Tuscan sage */
-    --leonardo-sage-light: #A4C2A5;
-    --leonardo-umber: #8B4513;        /* Raw umber */
-    --leonardo-umber-light: #D2691E;
-    --leonardo-shadow: rgba(44, 24, 16, 0.8);
-    --leonardo-shadow-light: rgba(44, 24, 16, 0.4);
+    /* Inks — Walnut gall, carbon, and iron-based */
+    --ink-walnut: #2d1f16;
+    --ink-walnut-light: #4a3d32;
+    --ink-faded: #6b5d52;
+    --ink-carbon: #1a1510;
     
-    /* 🖋️ Typography - The Master's Hand */
-    --font-leonardo-display: 'Cinzel', serif;        /* Renaissance display */
-    --font-leonardo-body: 'Crimson Text', serif;     /* Manuscript body */
-    --font-leonardo-mirror: 'Cinzel', serif;         /* Mirror writing */
-    --font-leonardo-marginalia: 'Courier New', monospace; /* Technical notes */
-    --font-leonardo-modern: 'Georgia', serif;        /* Contemporary clarity */
+    /* Parchment — Vellum and aged paper tones */
+    --parchment: #f8f3e8;
+    --parchment-warm: #f5ecd8;
+    --parchment-aged: #ebe0c8;
+    --parchment-dark: #d9cbb0;
+    --vellum: #faf6ed;
     
-    /* 📐 Spacing - Golden Ratio Proportions */
-    --space-golden-sm: 0.618rem;   /* φ/2 */
-    --space-golden-md: 1rem;       /* Base */
-    --space-golden-lg: 1.618rem;   /* φ */
-    --space-golden-xl: 2.618rem;   /* φ² */
-    --space-golden-xxl: 4.236rem;  /* φ³ */
+    /* Pigments — Period-accurate colors */
+    --vermillion: #c73e1d;
+    --vermillion-dark: #9a2e14;
+    --ochre: #cca43b;
+    --ochre-dark: #9a7b2c;
+    --umber: #5c4033;
+    --umber-light: #8b6914;
+    --indigo: #2c3e50;
+    --terre-verte: #5f7a6a;
+    --lead-tin-yellow: #e8d440;
     
-    /* ✨ Animations - Renaissance Theatrics */
-    --anim-leonardo-slow: 1.618s ease-in-out;
-    --anim-leonardo-medium: 1s ease-in-out;
-    --anim-leonardo-fast: 0.618s ease-in-out;
-    --anim-leonardo-bounce: 0.618s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    /* Gold — Tarnished leaf and highlights */
+    --gold: #c9a227;
+    --gold-pale: #d4af37;
+    --gold-dark: #9a7b2c;
+    --bronze: #8b7355;
     
-    /* 🌟 Effects - Manuscript Illumination */
-    --glow-leonardo: 0 0 20px rgba(255, 215, 0, 0.3);
-    --glow-leonardo-strong: 0 0 30px rgba(255, 215, 0, 0.6);
-    --shadow-leonardo-manuscript: 3px 3px 10px rgba(44, 24, 16, 0.3);
-    --shadow-leonardo-elevated: 5px 5px 15px rgba(44, 24, 16, 0.4);
+    /* Renaissance Typography */
+    --font-display: 'Cinzel', 'Trajan Pro', 'Times New Roman', serif;
+    --font-body: 'Cormorant Garamond', 'Garamond', 'EB Garamond', Georgia, serif;
+    --font-notes: 'Crimson Pro', 'Times New Roman', serif;
+    --font-mirror: 'Cinzel', serif;
+    
+    /* Spacing — Golden Ratio approximations */
+    --space-xs: 0.382rem;
+    --space-sm: 0.618rem;
+    --space-md: 1rem;
+    --space-lg: 1.618rem;
+    --space-xl: 2.618rem;
+    --space-xxl: 4.236rem;
+    
+    /* Transitions */
+    --transition-swift: 0.2s ease;
+    --transition-measured: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Shadows — Subtle, like ink wash */
+    --shadow-soft: 0 1px 3px rgba(45, 31, 22, 0.08);
+    --shadow-medium: 0 3px 8px rgba(45, 31, 22, 0.12);
+    --shadow-deep: 0 8px 24px rgba(45, 31, 22, 0.15);
+    
+    /* Borders */
+    --border-hairline: 1px solid rgba(45, 31, 22, 0.12);
+    --border-medium: 1px solid rgba(45, 31, 22, 0.2);
+    --border-gold: 1px solid var(--gold);
 }
 
-/* 🖋️ Leonardo's Hand - Typography System */
-.leonardo-display {
-    font-family: var(--font-leonardo-display);
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--leonardo-ink);
-    text-shadow: 1px 1px 2px rgba(44, 24, 16, 0.2);
+/* ───────────────────────────────────────────────────────────────────────────────
+   Base Reset
+   ─────────────────────────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.leonardo-body {
-    font-family: var(--font-leonardo-body);
-    font-weight: 400;
-    line-height: 1.618;
-    color: var(--leonardo-ink);
+html {
+    scroll-behavior: smooth;
 }
 
-.leonardo-mirror {
-    font-family: var(--font-leonardo-mirror);
-    font-weight: 400;
-    letter-spacing: 0.1em;
-    transform: scaleX(-1);
-    direction: rtl;
-    unicode-bidi: bidi-override;
-    opacity: 0.7;
-    transition: all var(--anim-leonardo-medium);
+body {
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--ink-walnut);
+    background: var(--parchment);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-.leonardo-mirror:hover {
-    opacity: 1;
-    transform: scaleX(-1) scale(1.05);
-    color: var(--leonardo-gold);
-}
-
-.leonardo-marginalia {
-    font-family: var(--font-leonardo-marginalia);
-    font-size: 0.875rem;
-    color: var(--leonardo-ink);
-    opacity: 0.8;
-    font-style: italic;
-    border-left: 2px solid var(--leonardo-gold);
-    padding-left: var(--space-golden-sm);
-    margin: var(--space-golden-md) 0;
-}
-
-/* 🎨 Color Utilities */
-.leonardo-bg-parchment {
-    background: linear-gradient(135deg, var(--leonardo-parchment), var(--leonardo-parchment-dark));
-}
-
-.leonardo-bg-ink {
-    background: var(--leonardo-ink);
-    color: var(--leonardo-parchment);
-}
-
-.leonardo-glow {
-    box-shadow: var(--glow-leonardo);
-}
-
-.leonardo-glow-strong {
-    box-shadow: var(--glow-leonardo-strong);
-}
-
-/* ✨ Interactive Elements - Leonardo's Touch */
-.leonardo-button {
-    background: linear-gradient(45deg, var(--leonardo-crimson), var(--leonardo-crimson-light));
-    color: var(--leonardo-parchment);
-    border: none;
-    padding: var(--space-golden-sm) var(--space-golden-lg);
-    border-radius: var(--space-golden-sm);
-    font-family: var(--font-leonardo-display);
-    font-size: 0.9rem;
-    letter-spacing: 0.05em;
-    cursor: pointer;
-    transition: all var(--anim-leonardo-medium);
-    box-shadow: var(--shadow-leonardo-manuscript);
+/* ───────────────────────────────────────────────────────────────────────────────
+   Parchment Textures & Aging Simulation
+   ─────────────────────────────────────────────────────────────────────────────── */
+.parchment-bg {
+    background: 
+        linear-gradient(180deg, 
+            var(--vellum) 0%, 
+            var(--parchment) 50%,
+            var(--parchment-warm) 100%);
     position: relative;
     overflow: hidden;
 }
 
-.leonardo-button::before {
+.parchment-bg::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
-    transition: left var(--anim-leonardo-slow);
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='parchment'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='5' stitchTiles='stitch'/%3E%3CfeDiffuseLighting lighting-color='%23f8f3e8' surfaceScale='2' result='noise'%3E%3CfeDistantLight azimuth='45' elevation='60'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23parchment)' opacity='0.4'/%3E%3C/svg%3E");
+    opacity: 0.6;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+    z-index: 0;
 }
 
-.leonardo-button:hover::before {
-    left: 100%;
+/* Wormholes - Random small holes in the vellum */
+.manuscript-aging {
+    position: fixed; /* Fixed to follow scroll and create depth */
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.4;
+    will-change: transform;
 }
 
-.leonardo-button:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-leonardo-elevated);
+.wormholes {
+    position: absolute;
+    inset: -50px;
+    background-image: radial-gradient(circle at 10% 20%, rgba(0,0,0,0.15) 1px, transparent 1px),
+                      radial-gradient(circle at 85% 15%, rgba(0,0,0,0.1) 1.5px, transparent 1.5px),
+                      radial-gradient(circle at 45% 75%, rgba(0,0,0,0.12) 1.2px, transparent 1.2px),
+                      radial-gradient(circle at 92% 88%, rgba(0,0,0,0.08) 2px, transparent 2px);
+    background-size: 300px 400px;
+    transform: translateZ(0);
 }
 
-/* 📚 Manuscript Layout - Golden Ratio Grids */
-.leonardo-manuscript {
-    display: grid;
-    grid-template-columns: 1fr 1.618fr 1fr;
-    gap: var(--space-golden-lg);
-    padding: var(--space-golden-xl);
-    background: var(--leonardo-bg-parchment);
-    border-radius: var(--space-golden-md);
-    box-shadow: var(--shadow-leonardo-manuscript);
+/* Water Stains - Large organic tea-colored blotches */
+.water-stains {
+    position: absolute;
+    inset: -100px;
+    background: 
+        radial-gradient(ellipse at 15% 10%, rgba(139, 105, 20, 0.05) 0%, transparent 40%),
+        radial-gradient(ellipse at 85% 85%, rgba(139, 105, 20, 0.04) 0%, transparent 35%),
+        radial-gradient(ellipse at 50% 50%, rgba(139, 105, 20, 0.02) 0%, transparent 60%);
+    filter: blur(20px);
+    transform: translateZ(0) scale(1.1);
 }
 
-.leonardo-main-content {
-    grid-column: 2;
-    background: rgba(255, 255, 255, 0.7);
-    padding: var(--space-golden-lg);
-    border-radius: var(--space-golden-sm);
-    border: 1px solid rgba(139, 69, 19, 0.1);
-}
-
-.leonardo-marginalia-left,
-.leonardo-marginalia-right {
-    font-family: var(--font-leonardo-marginalia);
-    font-size: 0.8rem;
-    line-height: 1.4;
-    opacity: 0.8;
-}
-
-.leonardo-marginalia-left {
-    text-align: right;
-    border-right: 1px solid var(--leonardo-gold);
-    padding-right: var(--space-golden-sm);
-}
-
-.leonardo-marginalia-right {
-    text-align: left;
-    border-left: 1px solid var(--leonardo-gold);
-    padding-left: var(--space-golden-sm);
-}
-
-/* 🔍 Mirror Writing Decoder - Interactive Tool */
-.leonardo-mirror-decoder {
+/* Ink Bleed - Subtle halo around text blocks */
+.ink-bleed-container {
     position: relative;
-    display: inline-block;
-    cursor: pointer;
-    transition: all var(--anim-leonardo-medium);
+    z-index: 2;
 }
 
-.leonardo-mirror-decoder .mirror-text {
-    display: inline-block;
+.ink-bleed-container::after {
+    content: '';
+    position: absolute;
+    inset: -10px;
+    background: radial-gradient(circle at center, rgba(45, 31, 22, 0.015) 0%, transparent 80%);
+    pointer-events: none;
+    mix-blend-mode: multiply;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────────
+   Typography — Display & Headings
+   ─────────────────────────────────────────────────────────────────────────────── */
+.codex-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--parchment);
+    text-align: center;
+    line-height: 1.3;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+.codex-subtitle {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: var(--space-lg);
+}
+
+.codex-section-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-walnut);
+    text-align: center;
+    margin-bottom: var(--space-sm);
+}
+
+.codex-section-subtitle {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--ink-faded);
+    text-align: center;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────────
+   Body Text Styles
+   ─────────────────────────────────────────────────────────────────────────────── */
+.codex-body {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--ink-walnut);
+}
+
+.codex-body-emphasis {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-weight: 500;
+    color: var(--ink-walnut);
+}
+
+.codex-marginalia {
+    font-family: var(--font-notes);
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--ink-faded);
+    border-left: 2px solid var(--gold);
+    padding-left: var(--space-sm);
+    opacity: 0.9;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────────
+   Mirror Writing — Leonardo's Signature Style
+   ─────────────────────────────────────────────────────────────────────────────── */
+.mirror-script {
+    font-family: var(--font-mirror);
+    letter-spacing: 0.08em;
     transform: scaleX(-1);
-    filter: blur(1px);
+    direction: rtl;
+    unicode-bidi: bidi-override;
+    opacity: 0.75;
+    transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+    cursor: help;
+    display: inline-block;
+    position: relative;
+}
+
+.mirror-script:hover {
+    opacity: 1;
+    transform: scaleX(1);
+    color: var(--vermillion);
+    text-shadow: 0 0 15px rgba(199, 62, 29, 0.2);
+}
+
+.mirror-script::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--vermillion);
+    transition: width 0.6s ease;
+}
+
+.mirror-script:hover::after {
+    width: 100%;
+}
+
+/* Red chalk annotations - The "Marginalia of Genius" */
+.red-chalk-layer {
+    position: absolute;
+    pointer-events: none;
+    font-family: var(--font-notes);
+    color: var(--vermillion);
+    opacity: 0.8;
+    line-height: 1.2;
+    z-index: 5;
+    filter: drop-shadow(1px 1px 0px rgba(45, 31, 22, 0.1));
+}
+
+.annotation-sketch {
+    position: absolute;
+    stroke: var(--vermillion);
+    stroke-width: 0.8;
+    fill: none;
+    opacity: 0.6;
+    transition: opacity 1s ease;
+}
+
+.sketch-visible {
+    opacity: 1;
+    animation: handDrawn 2s ease-out forwards;
+}
+
+@keyframes handDrawn {
+    from { stroke-dashoffset: 500; }
+    to { stroke-dashoffset: 0; }
+}
+
+@keyframes jitter {
+    0% { transform: translate(0,0); }
+    25% { transform: translate(0.5px, -0.5px); }
+    50% { transform: translate(-0.5px, 0.5px); }
+    75% { transform: translate(0.5px, 0.5px); }
+    100% { transform: translate(0,0); }
+}
+
+.living-sketch {
+    animation: jitter 5s infinite;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────────
+   Decorative Elements
+   ─────────────────────────────────────────────────────────────────────────────── */
+
+/* Flourish Divider */
+.flourish-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    margin: var(--space-xl) 0;
+    position: relative;
+}
+
+.flourish-divider::before,
+.flourish-divider::after {
+    content: '';
+    flex: 1;
+    max-width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        var(--gold) 30%,
+        var(--gold) 70%,
+        transparent 100%);
+}
+
+.flourish-divider .flourish-symbol {
+    width: 24px;
+    height: 24px;
+    color: var(--gold);
+}
+
+/* Classical Ornament */
+.ornament {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto var(--space-lg);
     opacity: 0.7;
 }
 
-.leonardo-mirror-decoder:hover .mirror-text {
-    transform: scaleX(1);
-    filter: blur(0);
-    opacity: 1;
-    color: var(--leonardo-gold);
-}
-
-.leonardo-mirror-decoder .decoder-hint {
-    position: absolute;
-    bottom: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 0.7rem;
-    opacity: 0;
-    transition: opacity var(--anim-leonardo-fast);
-    white-space: nowrap;
-}
-
-.leonardo-mirror-decoder:hover .decoder-hint {
-    opacity: 0.8;
-}
-
-/* 🎭 Theatrical Elements - Renaissance Drama */
-.leonardo-reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: leonardoReveal var(--anim-leonardo-slow) forwards;
-}
-
-@keyframes leonardoReveal {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.leonardo-pulse {
-    animation: leonardoPulse 2s infinite;
-}
-
-@keyframes leonardoPulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.6; }
-}
-
-/* 🖼️ Illuminated Capitals - Manuscript Art */
-.leonardo-illuminated-capital {
-    font-family: var(--font-leonardo-display);
-    font-size: 3em;
-    font-weight: 700;
-    color: var(--leonardo-crimson);
-    text-shadow: 2px 2px 4px rgba(139, 0, 0, 0.3);
+/* ───────────────────────────────────────────────────────────────────────────────
+   Illuminated Initial (Drop Cap)
+   ─────────────────────────────────────────────────────────────────────────────── */
+.illuminated-capital {
     float: left;
-    line-height: 0.8;
-    margin: 0.1em 0.1em 0 0;
-    padding: 0.1em;
-    border: 2px solid var(--leonardo-gold);
-    border-radius: 4px;
-    background: linear-gradient(45deg, var(--leonardo-parchment), rgba(255, 215, 0, 0.1));
+    font-family: var(--font-display);
+    font-size: 4rem;
+    line-height: 0.85;
+    padding: 0.1em 0.15em;
+    margin: 0.05em 0.1em 0 0;
+    color: var(--vermillion);
+    border: 2px solid var(--gold);
+    background: 
+        linear-gradient(135deg, 
+            rgba(201, 162, 39, 0.15) 0%, 
+            rgba(248, 243, 232, 0.5) 50%,
+            rgba(201, 162, 39, 0.1) 100%);
+    box-shadow: inset 0 0 20px rgba(201, 162, 39, 0.1);
 }
 
-/* 📱 Responsive Design - Modern Renaissance */
+.illuminated-capital.decorated {
+    position: relative;
+}
+
+.illuminated-capital.decorated::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border: 1px solid var(--gold);
+    opacity: 0.5;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────────
+   Cards — Manuscript Style
+   ─────────────────────────────────────────────────────────────────────────────── */
+.codex-card {
+    background: rgba(255, 255, 255, 0.5);
+    border: var(--border-hairline);
+    padding: var(--space-lg);
+    transition: all var(--transition-measured);
+    position: relative;
+}
+
+.codex-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, 
+        transparent 0%,
+        var(--gold) 20%,
+        var(--gold) 80%,
+        transparent 100%);
+    opacity: 0;
+    transition: opacity var(--transition-swift);
+}
+
+.codex-card:hover {
+    box-shadow: var(--shadow-medium);
+    border-color: rgba(201, 162, 39, 0.3);
+    transform: translateY(-3px);
+}
+
+.codex-card:hover::before {
+    opacity: 1;
+}
+
+.codex-card.featured {
+    border-color: var(--gold);
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.codex-card.featured::before {
+    opacity: 1;
+}
+
+.codex-card h3 {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink-walnut);
+    margin-bottom: var(--space-sm);
+}
+
+.codex-card p {
+    font-size: 0.95rem;
+    color: var(--ink-faded);
+    line-height: 1.6;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────────
+   Buttons — Classical Style
+   ─────────────────────────────────────────────────────────────────────────────── */
+.btn-codex {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: 0.875rem 2rem;
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1.5px solid;
+    transition: all var(--transition-swift);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-codex-primary {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--ink-walnut);
+}
+
+.btn-codex-primary:hover {
+    background: var(--gold-pale);
+    border-color: var(--gold-pale);
+    box-shadow: 0 4px 12px rgba(201, 162, 39, 0.3);
+}
+
+.btn-codex-secondary {
+    background: transparent;
+    border-color: rgba(245, 240, 225, 0.4);
+    color: var(--parchment);
+}
+
+.btn-codex-secondary:hover {
+    border-color: var(--parchment);
+    background: rgba(245, 240, 225, 0.08);
+}
+
+.btn-codex-outline {
+    background: transparent;
+    border-color: var(--ink-walnut);
+    color: var(--ink-walnut);
+}
+
+.btn-codex-outline:hover {
+    background: var(--ink-walnut);
+    color: var(--parchment);
+}
+
+/* ───────────────────────────────────────────────────────────────────────────────
+   Badges & Status
+   ─────────────────────────────────────────────────────────────────────────────── */
+.badge-codex {
+    display: inline-block;
+    font-family: var(--font-notes);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid;
+    vertical-align: middle;
+}
+
+.badge-new {
+    color: var(--vermillion);
+    border-color: var(--vermillion);
+}
+
+.badge-validated {
+    color: var(--umber-light);
+    border-color: var(--umber-light);
+    background: rgba(139, 105, 20, 0.06);
+}
+
+.badge-progress {
+    color: var(--ochre-dark);
+    border-color: var(--ochre-dark);
+    background: rgba(204, 164, 59, 0.06);
+}
+
+.badge-prototype {
+    color: var(--indigo);
+    border-color: var(--indigo);
+    background: rgba(44, 62, 80, 0.06);
+}
+
+/* ───────────────────────────────────────────────────────────────────────────────
+   Quote Block — Classical Style
+   ─────────────────────────────────────────────────────────────────────────────── */
+.codex-quote {
+    margin: var(--space-xl) 0;
+    padding: var(--space-lg) var(--space-xl);
+    border-left: 3px solid var(--gold);
+    background: rgba(201, 162, 39, 0.05);
+    position: relative;
+}
+
+.codex-quote::before {
+    content: '"';
+    position: absolute;
+    top: -0.2em;
+    left: 0.3em;
+    font-family: var(--font-display);
+    font-size: 4rem;
+    color: var(--gold);
+    opacity: 0.3;
+    line-height: 1;
+}
+
+.codex-quote p {
+    font-family: var(--font-body);
+    font-size: 1.35rem;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--ink-walnut);
+    margin-bottom: var(--space-sm);
+    position: relative;
+    z-index: 1;
+}
+
+.codex-quote cite {
+    font-family: var(--font-notes);
+    font-size: 0.9rem;
+    font-style: normal;
+    color: var(--ink-faded);
+    letter-spacing: 0.03em;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────────
+   Grids & Layouts — The Golden Proportion (φ)
+   ─────────────────────────────────────────────────────────────────────────────── */
+.codex-grid {
+    display: grid;
+    gap: var(--space-lg);
+}
+
+.codex-grid-golden {
+    display: grid;
+    grid-template-columns: 1.618fr 1fr;
+    gap: var(--space-xl);
+}
+
+.codex-grid-2 {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
+
+/* Invention Card Ghost Sketches */
+.invention-card-ghost {
+    position: relative;
+    overflow: hidden;
+}
+
+.invention-card-ghost::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10,100 Q50,20 190,100' stroke='rgba(199, 62, 29, 0.05)' stroke-width='0.5' fill='none' /%3E%3Ccircle cx='100' cy='100' r='80' stroke='rgba(201, 162, 39, 0.03)' stroke-width='0.3' fill='none' /%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 150%;
+    opacity: 0;
+    transition: opacity 1s ease;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.invention-card-ghost:hover::after {
+    opacity: 1;
+    animation: jitter 10s infinite;
+}
+
+.card-body {
+    position: relative;
+    z-index: 1;
+}
+/* ───────────────────────────────────────────────────────────────────────────────
+   Section Styling
+   ─────────────────────────────────────────────────────────────────────────────── */
+.codex-section {
+    padding: var(--space-xxl) var(--space-lg);
+    position: relative;
+}
+
+.codex-section-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.codex-section-header {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+}
+
+/* ───────────────────────────────────────────────────────────────────────────────
+   Hero Section — Dark
+   ─────────────────────────────────────────────────────────────────────────────── */
+.codex-hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: var(--space-xxl) var(--space-lg);
+    background: 
+        radial-gradient(ellipse at 30% 20%, rgba(139, 105, 20, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 80%, rgba(201, 162, 39, 0.1) 0%, transparent 40%),
+        linear-gradient(180deg, 
+            var(--ink-carbon) 0%, 
+            #1f1610 30%,
+            #2d1f16 70%,
+            var(--ink-walnut) 100%);
+    color: var(--parchment);
+    position: relative;
+    overflow: hidden;
+}
+
+.codex-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M100,100 Q300,50 500,100 T900,100' stroke='rgba(201,162,39,0.03)' stroke-width='0.5' fill='none'/%3E%3Ccircle cx='800' cy='200' r='100' stroke='rgba(201,162,39,0.02)' stroke-width='0.5' fill='none'/%3E%3Crect x='50' y='600' width='200' height='200' stroke='rgba(201,162,39,0.02)' stroke-width='0.5' fill='none' transform='rotate(15, 150, 700)'/%3E%3C/svg%3E");
+    pointer-events: none;
+}
+
+.codex-hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: linear-gradient(to top, var(--parchment) 0%, transparent 100%);
+}
+
+.codex-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+}
+
+.codex-hero-description {
+    font-size: 1.25rem;
+    max-width: 600px;
+    margin: 0 auto var(--space-xl);
+    opacity: 0.9;
+    line-height: 1.7;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────────
+   Technical Drawing Elements
+   ─────────────────────────────────────────────────────────────────────────────── */
+.tech-grid {
+    background-image: 
+        linear-gradient(rgba(201, 162, 39, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201, 162, 39, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+.dimension-line {
+    position: relative;
+    height: 1px;
+    background: var(--ink-faded);
+}
+
+.dimension-line::before,
+.dimension-line::after {
+    content: '';
+    position: absolute;
+    top: -3px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+.dimension-line::before {
+    left: 0;
+    border-width: 4px 6px 4px 0;
+    border-color: transparent var(--ink-faded) transparent transparent;
+}
+
+.dimension-line::after {
+    right: 0;
+    border-width: 4px 0 4px 6px;
+    border-color: transparent transparent transparent var(--ink-faded);
+}
+
+/* ───────────────────────────────────────────────────────────────────────────────
+   Navigation
+   ─────────────────────────────────────────────────────────────────────────────── */
+.codex-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    justify-content: center;
+}
+
+.codex-nav a {
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--parchment);
+    text-decoration: none;
+    padding: var(--space-sm) var(--space-md);
+    border: 1px solid rgba(245, 240, 225, 0.25);
+    transition: all var(--transition-swift);
+}
+
+.codex-nav a:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(201, 162, 39, 0.08);
+}
+
+/* ───────────────────────────────────────────────────────────────────────────────
+   Footer
+   ─────────────────────────────────────────────────────────────────────────────── */
+.codex-footer {
+    background: var(--ink-walnut);
+    color: var(--parchment);
+    padding: var(--space-xl) var(--space-lg);
+    text-align: center;
+}
+
+.codex-footer a {
+    color: var(--gold);
+    text-decoration: none;
+    transition: opacity var(--transition-swift);
+}
+
+.codex-footer a:hover {
+    opacity: 0.7;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────────
+   Link Styling
+   ─────────────────────────────────────────────────────────────────────────────── */
+.codex-link {
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--umber);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: all var(--transition-swift);
+}
+
+.codex-link:hover {
+    color: var(--vermillion);
+    gap: 0.6rem;
+}
+
+.codex-link::after {
+    content: '→';
+    transition: transform var(--transition-swift);
+}
+
+.codex-link:hover::after {
+    transform: translateX(3px);
+}
+
+/* ───────────────────────────────────────────────────────────────────────────────
+   Utility Classes
+   ─────────────────────────────────────────────────────────────────────────────── */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: var(--space-sm); }
+.mt-2 { margin-top: var(--space-md); }
+.mt-3 { margin-top: var(--space-lg); }
+.mt-4 { margin-top: var(--space-xl); }
+
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: var(--space-sm); }
+.mb-2 { margin-bottom: var(--space-md); }
+.mb-3 { margin-bottom: var(--space-lg); }
+.mb-4 { margin-bottom: var(--space-xl); }
+
+/* ───────────────────────────────────────────────────────────────────────────────
+   Responsive Adjustments
+   ─────────────────────────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
-    .leonardo-manuscript {
+    :root {
+        --space-lg: 1.25rem;
+        --space-xl: 2rem;
+        --space-xxl: 3rem;
+    }
+    
+    .codex-title {
+        font-size: 1.75rem;
+        letter-spacing: 0.08em;
+    }
+    
+    .codex-grid-2,
+    .codex-grid-3,
+    .codex-grid-4 {
         grid-template-columns: 1fr;
-        gap: var(--space-golden-md);
     }
     
-    .leonardo-main-content {
-        grid-column: 1;
+    .codex-hero-description {
+        font-size: 1.1rem;
     }
     
-    .leonardo-marginalia-left,
-    .leonardo-marginalia-right {
-        text-align: center;
-        border: none;
-        border-top: 1px solid var(--leonardo-gold);
-        border-bottom: 1px solid var(--leonardo-gold);
-        padding: var(--space-golden-sm) 0;
+    .btn-codex {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .illuminated-capital {
+        font-size: 3rem;
+    }
+    
+    .codex-quote p {
+        font-size: 1.15rem;
     }
 }
 
-/* 🎨 Print Styles - Physical Manuscript */
+/* ───────────────────────────────────────────────────────────────────────────────
+   Print Styles
+   ─────────────────────────────────────────────────────────────────────────────── */
 @media print {
-    .leonardo-manuscript {
+    body {
         background: white;
-        box-shadow: none;
+        color: black;
     }
     
-    .leonardo-button {
-        border: 2px solid var(--leonardo-crimson);
-        background: none;
-        color: var(--leonardo-crimson);
+    .codex-card {
+        box-shadow: none;
+        border: 1px solid #ccc;
+        break-inside: avoid;
+    }
+    
+    .btn-codex {
+        display: none;
     }
 }
+
+/* ───────────────────────────────────────────────────────────────────────────────
+   Animation Keyframes
+   ─────────────────────────────────────────────────────────────────────────────── */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes drawLine {
+    from { stroke-dashoffset: 1000; }
+    to { stroke-dashoffset: 0; }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animate-draw {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: drawLine 2s ease-out forwards;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────────
+   Special Effects — Ink Bleed, Paper Aging
+   ─────────────────────────────────────────────────────────────────────────────── */
+.ink-bleed {
+    position: relative;
+}
+
+.ink-bleed::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: radial-gradient(ellipse at center, 
+        rgba(45, 31, 22, 0.03) 0%, 
+        transparent 70%);
+    pointer-events: none;
+}
+
+.paper-stain {
+    position: relative;
+}
+
+.paper-stain::before {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at center,
+        rgba(139, 105, 20, 0.08) 0%,
+        rgba(139, 105, 20, 0.03) 40%,
+        transparent 70%);
+    pointer-events: none;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────────
+   Codex Page Numbers & Marginalia Markers
+   ─────────────────────────────────────────────────────────────────────────────── */
+.folio-number {
+    font-family: var(--font-notes);
+    font-size: 0.8rem;
+    color: var(--ink-faded);
+    position: absolute;
+    bottom: var(--space-md);
+    opacity: 0.6;
+    transition: all var(--transition-measured);
+}
+
+.folio-marker {
+    font-family: var(--font-notes);
+    font-size: 0.75rem;
+    color: var(--ink-faded);
+    opacity: 0.5;
+    transition: all var(--transition-measured);
+    cursor: pointer;
+    border-bottom: 1px dashed transparent;
+}
+
+.folio-marker:hover {
+    opacity: 1;
+    color: var(--vermillion);
+    border-color: var(--vermillion);
+}
+
+/* Page Curl Effect - Subtle corner shadow to suggest depth */
+.page-curl {
+    position: relative;
+}
+
+.page-curl::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 40px 40px;
+    border-color: transparent transparent var(--parchment-dark) transparent;
+    box-shadow: -5px -5px 15px rgba(45, 31, 22, 0.1);
+    transition: all 0.5s ease;
+    opacity: 0.3;
+}
+
+.page-curl:hover::after {
+    border-width: 0 0 60px 60px;
+    opacity: 0.6;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────────
+   Codex Anima Refinements
+   ─────────────────────────────────────────────────────────────────────────────── */
+.aerial-recede {
+    filter: blur(var(--recede-blur, 0px)) grayscale(var(--recede-gray, 0));
+    opacity: var(--recede-opacity, 1);
+    transition: all var(--transition-measured);
+}
+
+.multispectral-active .codex-title {
+    color: var(--vermillion);
+    text-shadow: 0 0 20px rgba(199, 62, 29, 0.4);
+}
+
+.multispectral-active .codex-hero {
+    background: radial-gradient(circle at center, #1a1510 0%, #000 100%);
+}
+
+/* Scroll-based aerial perspective */
+[data-recede="true"] {
+    --recede-blur: 2px;
+    --recede-gray: 0.5;
+    --recede-opacity: 0.6;
+}
+

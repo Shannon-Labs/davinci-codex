@@ -146,14 +146,7 @@
                     <a href="{{ invention.href }}" class="invention-card">
                       <div class="invention-image" {% if invention.image %}style="background-image: url('{{ invention.image | relative_url }}'); background-size: cover; background-position: center;"{% endif %}>
                         <div class="invention-status-icon">
-                          {% case invention.status %}
-                            {% when 'validated' %}🏆
-                            {% when 'prototype_ready' %}🔧
-                            {% when 'in_progress' %}⚡
-                            {% when 'simulation_prototype' %}🔬
-                            {% when 'concept_reconstruction' %}📐
-                            {% else %}🔬
-                          {% endcase %}
+                          {{ invention.status | replace: '_', ' ' | capitalize }}
                         </div>
                       </div>
                       <div class="invention-content">
@@ -222,15 +215,7 @@
               <div class="contact-grid">
                 {% for contact in section.contact_info %}
                 <div class="contact-card fade-in">
-                  <div class="contact-type">
-                    {% case contact.type %}
-                      {% when 'email' %}📧
-                      {% when 'github' %}🐙
-                      {% when 'twitter' %}🐦
-                      {% when 'web' %}🌐
-                      {% else %}📞
-                    {% endcase %}
-                  </div>
+                  <div class="contact-type">{{ contact.type | capitalize }}</div>
                   <div class="contact-label">{{ contact.label }}</div>
                   <div class="contact-value">
                     {% if contact.type == 'email' %}

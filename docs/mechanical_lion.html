@@ -1,1038 +1,1019 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leonardo's Mechanical Lion - Royal Automaton</title>
-    <link rel="stylesheet" href="leonardo_design_system.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #F4E4C1 0%, #E8D4A8 100%);
-            font-family: var(--font-leonardo-body);
-            min-height: 100vh;
-        }
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Leonardo's Mechanical Lion - Royal Automaton</title>
+ <link rel="stylesheet" href="leonardo_design_system.css">
+ <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+ <style>
+ body {
+ margin: 0;
+ padding: 0;
+ background: linear-gradient(135deg, #F4E4C1 0%, #E8D4A8 100%);
+ font-family: var(--font-leonardo-body);
+ min-height: 100vh;
+ }
 
-        .lion-container {
-            max-width: 1800px;
-            margin: 0 auto;
-            padding: var(--space-golden-xl);
-        }
+ .lion-container {
+ max-width: 1800px;
+ margin: 0 auto;
+ padding: var(--space-golden-xl);
+ }
 
-        /* Header Section */
-        .header-section {
-            text-align: center;
-            margin-bottom: var(--space-golden-xxl);
-            padding: var(--space-golden-xxl);
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: var(--space-golden-lg);
-            box-shadow: var(--shadow-leonardo-elevated);
-            position: relative;
-            overflow: hidden;
-        }
+ /* Header Section */
+ .header-section {
+ text-align: center;
+ margin-bottom: var(--space-golden-xxl);
+ padding: var(--space-golden-xxl);
+ background: rgba(255, 255, 255, 0.9);
+ border-radius: var(--space-golden-lg);
+ box-shadow: var(--shadow-leonardo-elevated);
+ position: relative;
+ overflow: hidden;
+ }
 
-        .header-section::before {
-            content: '🦁';
-            position: absolute;
-            font-size: 15em;
-            opacity: 0.05;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
+ .header-section::before {
+ content: '';
+ position: absolute;
+ font-size: 15em;
+ opacity: 0.05;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+ }
 
-        .main-title {
-            font-family: var(--font-leonardo-display);
-            font-size: 4em;
-            color: var(--leonardo-ink);
-            margin-bottom: var(--space-golden-md);
-            text-shadow: 3px 3px 6px rgba(44, 24, 16, 0.2);
-            position: relative;
-            z-index: 1;
-        }
+ .main-title {
+ font-family: var(--font-leonardo-display);
+ font-size: 4em;
+ color: var(--leonardo-ink);
+ margin-bottom: var(--space-golden-md);
+ text-shadow: 3px 3px 6px rgba(44, 24, 16, 0.2);
+ position: relative;
+ z-index: 1;
+ }
 
-        .subtitle {
-            font-size: 1.5em;
-            color: var(--leonardo-umber);
-            font-style: italic;
-            margin-bottom: var(--space-golden-lg);
-        }
+ .subtitle {
+ font-size: 1.5em;
+ color: var(--leonardo-umber);
+ font-style: italic;
+ margin-bottom: var(--space-golden-lg);
+ }
 
-        .royal-badge {
-            display: inline-block;
-            background: linear-gradient(45deg, var(--leonardo-gold), var(--leonardo-gold-dark));
-            color: var(--leonardo-ink);
-            padding: var(--space-golden-sm) var(--space-golden-lg);
-            border-radius: var(--space-golden-lg);
-            font-family: var(--font-leonardo-display);
-            font-size: 1.2em;
-            letter-spacing: 0.05em;
-            box-shadow: var(--glow-leonardo-strong);
-            animation: leonardoPulse 2s infinite;
-            margin: var(--space-golden-md) 0;
-        }
+ .royal-badge {
+ display: inline-block;
+ background: linear-gradient(45deg, var(--leonardo-gold), var(--leonardo-gold-dark));
+ color: var(--leonardo-ink);
+ padding: var(--space-golden-sm) var(--space-golden-lg);
+ border-radius: var(--space-golden-lg);
+ font-family: var(--font-leonardo-display);
+ font-size: 1.2em;
+ letter-spacing: 0.05em;
+ box-shadow: var(--glow-leonardo-strong);
+ animation: leonardoPulse 2s infinite;
+ margin: var(--space-golden-md) 0;
+ }
 
-        /* Leonardo's Wisdom Quote */
-        .leonardo-quote {
-            background: rgba(135, 169, 107, 0.15);
-            border: 2px solid var(--leonardo-sage);
-            border-radius: var(--space-golden-md);
-            padding: var(--space-golden-lg);
-            margin: var(--space-golden-xl) auto;
-            max-width: 900px;
-            font-style: italic;
-            position: relative;
-        }
+ /* Leonardo's Wisdom Quote */
+ .leonardo-quote {
+ background: rgba(135, 169, 107, 0.15);
+ border: 2px solid var(--leonardo-sage);
+ border-radius: var(--space-golden-md);
+ padding: var(--space-golden-lg);
+ margin: var(--space-golden-xl) auto;
+ max-width: 900px;
+ font-style: italic;
+ position: relative;
+ }
 
-        .quote-icon {
-            font-size: 3em;
-            color: var(--leonardo-gold);
-            position: absolute;
-            top: -20px;
-            left: 20px;
-            background: var(--leonardo-parchment);
-            padding: 0 10px;
-        }
+ .quote-icon {
+ font-size: 3em;
+ color: var(--leonardo-gold);
+ position: absolute;
+ top: -20px;
+ left: 20px;
+ background: var(--leonardo-parchment);
+ padding: 0 10px;
+ }
 
-        .quote-text {
-            font-size: 1.4em;
-            margin-bottom: var(--space-golden-md);
-            line-height: 1.618;
-        }
+ .quote-text {
+ font-size: 1.4em;
+ margin-bottom: var(--space-golden-md);
+ line-height: 1.618;
+ }
 
-        .quote-attribution {
-            font-size: 1em;
-            color: var(--leonardo-umber);
-            text-align: right;
-            font-weight: 600;
-        }
+ .quote-attribution {
+ font-size: 1em;
+ color: var(--leonardo-umber);
+ text-align: right;
+ font-weight: 600;
+ }
 
-        /* Main Layout */
-        .lion-layout {
-            display: grid;
-            grid-template-columns: 350px 1fr 320px;
-            gap: var(--space-golden-xl);
-            margin-bottom: var(--space-golden-xxl);
-        }
+ /* Main Layout */
+ .lion-layout {
+ display: grid;
+ grid-template-columns: 350px 1fr 320px;
+ gap: var(--space-golden-xl);
+ margin-bottom: var(--space-golden-xxl);
+ }
 
-        .control-panel, .analysis-panel {
-            background: rgba(255, 255, 255, 0.85);
-            padding: var(--space-golden-lg);
-            border-radius: var(--space-golden-md);
-            box-shadow: var(--shadow-leonardo-manuscript);
-            height: fit-content;
-        }
+ .control-panel, .analysis-panel {
+ background: rgba(255, 255, 255, 0.85);
+ padding: var(--space-golden-lg);
+ border-radius: var(--space-golden-md);
+ box-shadow: var(--shadow-leonardo-manuscript);
+ height: fit-content;
+ }
 
-        .simulation-workspace {
-            background: rgba(255, 255, 255, 0.95);
-            padding: var(--space-golden-xl);
-            border-radius: var(--space-golden-lg);
-            box-shadow: var(--shadow-leonardo-elevated);
-            min-height: 700px;
-        }
+ .simulation-workspace {
+ background: rgba(255, 255, 255, 0.95);
+ padding: var(--space-golden-xl);
+ border-radius: var(--space-golden-lg);
+ box-shadow: var(--shadow-leonardo-elevated);
+ min-height: 700px;
+ }
 
-        .panel-title {
-            font-family: var(--font-leonardo-display);
-            font-size: 1.8em;
-            color: var(--leonardo-crimson);
-            margin-bottom: var(--space-golden-lg);
-            text-align: center;
-            border-bottom: 2px solid var(--leonardo-gold);
-            padding-bottom: var(--space-golden-sm);
-        }
+ .panel-title {
+ font-family: var(--font-leonardo-display);
+ font-size: 1.8em;
+ color: var(--leonardo-crimson);
+ margin-bottom: var(--space-golden-lg);
+ text-align: center;
+ border-bottom: 2px solid var(--leonardo-gold);
+ padding-bottom: var(--space-golden-sm);
+ }
 
-        /* Control Panel */
-        .control-group {
-            margin-bottom: var(--space-golden-lg);
-            padding: var(--space-golden-md);
-            background: rgba(135, 169, 107, 0.1);
-            border-radius: var(--space-golden-sm);
-            border: 1px solid var(--leonardo-sage-light);
-        }
+ /* Control Panel */
+ .control-group {
+ margin-bottom: var(--space-golden-lg);
+ padding: var(--space-golden-md);
+ background: rgba(135, 169, 107, 0.1);
+ border-radius: var(--space-golden-sm);
+ border: 1px solid var(--leonardo-sage-light);
+ }
 
-        .control-label {
-            font-family: var(--font-leonardo-display);
-            font-size: 1.1em;
-            color: var(--leonardo-umber);
-            margin-bottom: var(--space-golden-sm);
-            display: block;
-        }
+ .control-label {
+ font-family: var(--font-leonardo-display);
+ font-size: 1.1em;
+ color: var(--leonardo-umber);
+ margin-bottom: var(--space-golden-sm);
+ display: block;
+ }
 
-        .control-value {
-            font-size: 1.5em;
-            color: var(--leonardo-crimson);
-            font-weight: 600;
-            text-align: center;
-            margin: var(--space-golden-sm) 0;
-        }
+ .control-value {
+ font-size: 1.5em;
+ color: var(--leonardo-crimson);
+ font-weight: 600;
+ text-align: center;
+ margin: var(--space-golden-sm) 0;
+ }
 
-        .slider {
-            width: 100%;
-            height: 8px;
-            border-radius: 4px;
-            background: linear-gradient(90deg, var(--leonardo-sage), var(--leonardo-gold));
-            outline: none;
-            opacity: 0.9;
-            transition: opacity var(--anim-leonardo-fast);
-            cursor: pointer;
-        }
+ .slider {
+ width: 100%;
+ height: 8px;
+ border-radius: 4px;
+ background: linear-gradient(90deg, var(--leonardo-sage), var(--leonardo-gold));
+ outline: none;
+ opacity: 0.9;
+ transition: opacity var(--anim-leonardo-fast);
+ cursor: pointer;
+ }
 
-        .slider:hover {
-            opacity: 1;
-        }
+ .slider:hover {
+ opacity: 1;
+ }
 
-        .slider::-webkit-slider-thumb {
-            appearance: none;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: var(--leonardo-crimson);
-            cursor: pointer;
-            box-shadow: 0 2px 5px rgba(139, 0, 0, 0.3);
-        }
+ .slider::-webkit-slider-thumb {
+ appearance: none;
+ width: 20px;
+ height: 20px;
+ border-radius: 50%;
+ background: var(--leonardo-crimson);
+ cursor: pointer;
+ box-shadow: 0 2px 5px rgba(139, 0, 0, 0.3);
+ }
 
-        /* Lion Visualization */
-        .lion-canvas {
-            width: 100%;
-            height: 500px;
-            background: radial-gradient(circle, rgba(135, 169, 107, 0.1), transparent);
-            border: 2px solid var(--leonardo-sage);
-            border-radius: var(--space-golden-md);
-            position: relative;
-            overflow: hidden;
-            margin-bottom: var(--space-golden-lg);
-        }
+ /* Lion Visualization */
+ .lion-canvas {
+ width: 100%;
+ height: 500px;
+ background: radial-gradient(circle, rgba(135, 169, 107, 0.1), transparent);
+ border: 2px solid var(--leonardo-sage);
+ border-radius: var(--space-golden-md);
+ position: relative;
+ overflow: hidden;
+ margin-bottom: var(--space-golden-lg);
+ }
 
-        #lionCanvas {
-            width: 100%;
-            height: 100%;
-        }
+ #lionCanvas {
+ width: 100%;
+ height: 100%;
+ }
 
-        /* Performance Metrics */
-        .metric-card {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(135, 169, 107, 0.1));
-            border: 2px solid var(--leonardo-gold);
-            border-radius: var(--space-golden-sm);
-            padding: var(--space-golden-md);
-            margin-bottom: var(--space-golden-md);
-            text-align: center;
-            transition: all var(--anim-leonardo-medium);
-        }
+ /* Performance Metrics */
+ .metric-card {
+ background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(135, 169, 107, 0.1));
+ border: 2px solid var(--leonardo-gold);
+ border-radius: var(--space-golden-sm);
+ padding: var(--space-golden-md);
+ margin-bottom: var(--space-golden-md);
+ text-align: center;
+ transition: all var(--anim-leonardo-medium);
+ }
 
-        .metric-card:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--glow-leonardo);
-        }
+ .metric-card:hover {
+ transform: translateY(-3px);
+ box-shadow: var(--glow-leonardo);
+ }
 
-        .metric-label {
-            font-size: 0.9em;
-            color: var(--leonardo-umber);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: var(--space-golden-xs);
-        }
+ .metric-label {
+ font-size: 0.9em;
+ color: var(--leonardo-umber);
+ text-transform: uppercase;
+ letter-spacing: 0.05em;
+ margin-bottom: var(--space-golden-xs);
+ }
 
-        .metric-value {
-            font-size: 2em;
-            color: var(--leonardo-crimson);
-            font-weight: 700;
-            font-family: var(--font-leonardo-display);
-        }
+ .metric-value {
+ font-size: 2em;
+ color: var(--leonardo-crimson);
+ font-weight: 700;
+ font-family: var(--font-leonardo-display);
+ }
 
-        .metric-unit {
-            font-size: 0.7em;
-            color: var(--leonardo-ink);
-            opacity: 0.7;
-        }
+ .metric-unit {
+ font-size: 0.7em;
+ color: var(--leonardo-ink);
+ opacity: 0.7;
+ }
 
-        /* Tab System */
-        .tab-navigation {
-            display: flex;
-            gap: var(--space-golden-sm);
-            margin-bottom: var(--space-golden-lg);
-            border-bottom: 2px solid var(--leonardo-gold);
-            flex-wrap: wrap;
-        }
+ /* Tab System */
+ .tab-navigation {
+ display: flex;
+ gap: var(--space-golden-sm);
+ margin-bottom: var(--space-golden-lg);
+ border-bottom: 2px solid var(--leonardo-gold);
+ flex-wrap: wrap;
+ }
 
-        .tab-button {
-            background: transparent;
-            border: none;
-            padding: var(--space-golden-sm) var(--space-golden-md);
-            font-family: var(--font-leonardo-display);
-            font-size: 1.1em;
-            color: var(--leonardo-umber);
-            cursor: pointer;
-            transition: all var(--anim-leonardo-fast);
-            border-bottom: 3px solid transparent;
-            position: relative;
-            bottom: -2px;
-        }
+ .tab-button {
+ background: transparent;
+ border: none;
+ padding: var(--space-golden-sm) var(--space-golden-md);
+ font-family: var(--font-leonardo-display);
+ font-size: 1.1em;
+ color: var(--leonardo-umber);
+ cursor: pointer;
+ transition: all var(--anim-leonardo-fast);
+ border-bottom: 3px solid transparent;
+ position: relative;
+ bottom: -2px;
+ }
 
-        .tab-button:hover {
-            color: var(--leonardo-crimson);
-        }
+ .tab-button:hover {
+ color: var(--leonardo-crimson);
+ }
 
-        .tab-button.active {
-            color: var(--leonardo-crimson);
-            border-bottom-color: var(--leonardo-crimson);
-        }
+ .tab-button.active {
+ color: var(--leonardo-crimson);
+ border-bottom-color: var(--leonardo-crimson);
+ }
 
-        .tab-content {
-            display: none;
-        }
+ .tab-content {
+ display: none;
+ }
 
-        .tab-content.active {
-            display: block;
-            animation: leonardoReveal 0.618s ease-out;
-        }
+ .tab-content.active {
+ display: block;
+ animation: leonardoReveal 0.618s ease-out;
+ }
 
-        /* Technical Specifications */
-        .spec-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: var(--space-golden-md);
-            margin-top: var(--space-golden-md);
-        }
+ /* Technical Specifications */
+ .spec-grid {
+ display: grid;
+ grid-template-columns: repeat(2, 1fr);
+ gap: var(--space-golden-md);
+ margin-top: var(--space-golden-md);
+ }
 
-        .spec-item {
-            background: rgba(244, 228, 193, 0.5);
-            border: 1px solid var(--leonardo-umber-light);
-            border-radius: var(--space-golden-xs);
-            padding: var(--space-golden-sm);
-        }
+ .spec-item {
+ background: rgba(244, 228, 193, 0.5);
+ border: 1px solid var(--leonardo-umber-light);
+ border-radius: var(--space-golden-xs);
+ padding: var(--space-golden-sm);
+ }
 
-        .spec-name {
-            font-size: 0.85em;
-            color: var(--leonardo-umber);
-            margin-bottom: 4px;
-        }
+ .spec-name {
+ font-size: 0.85em;
+ color: var(--leonardo-umber);
+ margin-bottom: 4px;
+ }
 
-        .spec-value {
-            font-size: 1.1em;
-            font-weight: 600;
-            color: var(--leonardo-ink);
-        }
+ .spec-value {
+ font-size: 1.1em;
+ font-weight: 600;
+ color: var(--leonardo-ink);
+ }
 
-        /* Historical Context */
-        .historical-section {
-            background: rgba(255, 255, 255, 0.9);
-            padding: var(--space-golden-xl);
-            border-radius: var(--space-golden-lg);
-            box-shadow: var(--shadow-leonardo-manuscript);
-            margin-bottom: var(--space-golden-xxl);
-        }
+ /* Historical Context */
+ .historical-section {
+ background: rgba(255, 255, 255, 0.9);
+ padding: var(--space-golden-xl);
+ border-radius: var(--space-golden-lg);
+ box-shadow: var(--shadow-leonardo-manuscript);
+ margin-bottom: var(--space-golden-xxl);
+ }
 
-        .folio-reference {
-            background: rgba(139, 69, 19, 0.1);
-            border-left: 4px solid var(--leonardo-umber);
-            padding: var(--space-golden-md);
-            margin: var(--space-golden-lg) 0;
-            font-family: var(--font-leonardo-marginalia);
-            font-style: italic;
-        }
+ .folio-reference {
+ background: rgba(139, 69, 19, 0.1);
+ border-left: 4px solid var(--leonardo-umber);
+ padding: var(--space-golden-md);
+ margin: var(--space-golden-lg) 0;
+ font-family: var(--font-leonardo-marginalia);
+ font-style: italic;
+ }
 
-        /* Safety Section */
-        .safety-warning {
-            background: rgba(139, 0, 0, 0.1);
-            border: 2px solid var(--leonardo-crimson);
-            border-radius: var(--space-golden-sm);
-            padding: var(--space-golden-md);
-            margin: var(--space-golden-md) 0;
-        }
+ /* Safety Section */
+ .safety-warning {
+ background: rgba(139, 0, 0, 0.1);
+ border: 2px solid var(--leonardo-crimson);
+ border-radius: var(--space-golden-sm);
+ padding: var(--space-golden-md);
+ margin: var(--space-golden-md) 0;
+ }
 
-        .safety-icon {
-            font-size: 2em;
-            float: left;
-            margin-right: var(--space-golden-sm);
-        }
+ .safety-icon {
+ font-size: 2em;
+ float: left;
+ margin-right: var(--space-golden-sm);
+ }
 
-        /* Timeline */
-        .timeline {
-            background: rgba(135, 169, 107, 0.1);
-            border: 1px solid var(--leonardo-sage);
-            border-radius: var(--space-golden-sm);
-            padding: var(--space-golden-md);
-            margin: var(--space-golden-md) 0;
-        }
+ /* Timeline */
+ .timeline {
+ background: rgba(135, 169, 107, 0.1);
+ border: 1px solid var(--leonardo-sage);
+ border-radius: var(--space-golden-sm);
+ padding: var(--space-golden-md);
+ margin: var(--space-golden-md) 0;
+ }
 
-        .timeline-bar {
-            height: 30px;
-            background: linear-gradient(90deg, var(--leonardo-sage), var(--leonardo-gold), var(--leonardo-crimson));
-            border-radius: var(--space-golden-xs);
-            position: relative;
-            margin: var(--space-golden-sm) 0;
-        }
+ .timeline-bar {
+ height: 30px;
+ background: linear-gradient(90deg, var(--leonardo-sage), var(--leonardo-gold), var(--leonardo-crimson));
+ border-radius: var(--space-golden-xs);
+ position: relative;
+ margin: var(--space-golden-sm) 0;
+ }
 
-        .timeline-marker {
-            position: absolute;
-            width: 3px;
-            height: 40px;
-            background: var(--leonardo-ink);
-            top: -5px;
-            transition: left var(--anim-leonardo-fast);
-        }
+ .timeline-marker {
+ position: absolute;
+ width: 3px;
+ height: 40px;
+ background: var(--leonardo-ink);
+ top: -5px;
+ transition: left var(--anim-leonardo-fast);
+ }
 
-        /* Responsive Design */
-        @media (max-width: 1200px) {
-            .lion-layout {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+ /* Responsive Design */
+ @media (max-width: 1200px) {
+ .lion-layout {
+ grid-template-columns: 1fr;
+ }
+ }
+ </style>
 </head>
 <body>
-    <div class="lion-container">
-        <!-- Header -->
-        <div class="header-section">
-            <h1 class="main-title">🦁 Leonardo's Mechanical Lion</h1>
-            <p class="subtitle">Il Leone Meccanico - Royal Automaton of 1515</p>
-            <div class="royal-badge">⚜️ FIRST PROGRAMMABLE WALKING AUTOMATON ⚜️</div>
-            <p style="font-size: 1.2em; color: var(--leonardo-ink); margin-top: var(--space-golden-lg);">
-                <strong>Built for King Francis I</strong> - Franco-Florentine Alliance Celebration
-            </p>
-        </div>
-
-        <!-- Leonardo's Wisdom -->
-        <div class="leonardo-quote">
-            <span class="quote-icon">"</span>
-            <p class="quote-text">
-                "The lion walked forward with majestic grace before the royal court, then opened its chest cavity to reveal the fleurs-de-lis - a spectacular demonstration of mechanical programming that astonished all who witnessed it."
-            </p>
-            <p class="quote-attribution">— Court Chronicles, Lyon 1515</p>
-        </div>
-
-        <!-- Main Workspace -->
-        <div class="lion-layout">
-            <!-- Control Panel -->
-            <div class="control-panel">
-                <h2 class="panel-title">⚙️ Automaton Controls</h2>
-
-                <div class="control-group">
-                    <label class="control-label">Walking Speed</label>
-                    <div class="control-value" id="speedValue">0.8 m/s</div>
-                    <input type="range" class="slider" id="speedSlider" min="0.5" max="1.2" value="0.8" step="0.1">
-                    <p style="font-size: 0.85em; margin-top: var(--space-golden-sm); color: var(--leonardo-umber);">
-                        Stately royal court pace
-                    </p>
-                </div>
-
-                <div class="control-group">
-                    <label class="control-label">Gait Phase Offset</label>
-                    <div class="control-value" id="phaseValue">0.25</div>
-                    <input type="range" class="slider" id="phaseSlider" min="0.1" max="0.5" value="0.25" step="0.05">
-                    <p style="font-size: 0.85em; margin-top: var(--space-golden-sm); color: var(--leonardo-umber);">
-                        Lateral sequence gait pattern
-                    </p>
-                </div>
-
-                <div class="control-group">
-                    <label class="control-label">Performance Sequence</label>
-                    <div class="control-value" id="sequenceValue">Idle</div>
-                    <button class="leonardo-button" onclick="startPerformance()" style="width: 100%; margin-top: var(--space-golden-sm);">
-                        🎭 Start Performance
-                    </button>
-                    <button class="leonardo-button" onclick="resetPerformance()" style="width: 100%; margin-top: var(--space-golden-sm); background: linear-gradient(45deg, var(--leonardo-sage), var(--leonardo-sage-light));">
-                        🔄 Reset
-                    </button>
-                </div>
-
-                <div class="timeline">
-                    <h4 style="font-family: var(--font-leonardo-display); margin-bottom: var(--space-golden-sm);">
-                        30-Second Choreography
-                    </h4>
-                    <div class="timeline-bar">
-                        <div class="timeline-marker" id="timelineMarker"></div>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; font-size: 0.8em; margin-top: var(--space-golden-xs);">
-                        <span>Walk</span>
-                        <span>Pause</span>
-                        <span>Reveal</span>
-                        <span>Display</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Simulation Workspace -->
-            <div class="simulation-workspace">
-                <div class="tab-navigation">
-                    <button class="tab-button active" onclick="switchTab('simulation')">🦁 Walking Simulation</button>
-                    <button class="tab-button" onclick="switchTab('performance')">📊 Biomechanics</button>
-                    <button class="tab-button" onclick="switchTab('specifications')">📐 Technical Specs</button>
-                    <button class="tab-button" onclick="switchTab('manufacturing')">🔧 Assembly</button>
-                </div>
-
-                <!-- Simulation Tab -->
-                <div id="simulation" class="tab-content active">
-                    <h3 style="font-family: var(--font-leonardo-display); text-align: center; color: var(--leonardo-crimson);">
-                        Interactive Lion Automaton
-                    </h3>
-                    <div class="lion-canvas">
-                        <canvas id="lionCanvas"></canvas>
-                    </div>
-                    <p style="text-align: center; font-style: italic; color: var(--leonardo-umber);">
-                        Watch the mechanical lion walk with natural gait, pause majestically, and reveal the fleurs-de-lis from its chest cavity.
-                    </p>
-                </div>
-
-                <!-- Performance Tab -->
-                <div id="performance" class="tab-content">
-                    <h3 style="font-family: var(--font-leonardo-display); text-align: center; color: var(--leonardo-crimson); margin-bottom: var(--space-golden-lg);">
-                        Biomechanical Analysis
-                    </h3>
-
-                    <div class="spec-grid">
-                        <div class="metric-card">
-                            <div class="metric-label">Walking Speed</div>
-                            <div class="metric-value">0.8<span class="metric-unit"> m/s</span></div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-label">Stride Length</div>
-                            <div class="metric-value">0.8<span class="metric-unit"> m</span></div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-label">Stability Margin</div>
-                            <div class="metric-value">18<span class="metric-unit"> cm</span></div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-label">Safety Factor</div>
-                            <div class="metric-value">3.8<span class="metric-unit">×</span></div>
-                        </div>
-                    </div>
-
-                    <div style="margin-top: var(--space-golden-xl);">
-                        <h4 style="font-family: var(--font-leonardo-display); color: var(--leonardo-umber);">Gait Analysis:</h4>
-                        <ul style="line-height: 1.8; font-size: 1.1em;">
-                            <li><strong>Lateral Sequence Walk:</strong> LF → RH → RF → LH coordination pattern</li>
-                            <li><strong>Phase Relationships:</strong> 180° front-rear offset, 90° left-right offset</li>
-                            <li><strong>Swing/Stance Ratio:</strong> 60% swing phase, 40% stance phase</li>
-                            <li><strong>Dynamic Stability:</strong> 95.4% stable throughout complete gait cycle</li>
-                            <li><strong>Center of Mass:</strong> Maintained within support polygon at all times</li>
-                        </ul>
-
-                        <h4 style="font-family: var(--font-leonardo-display); color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">
-                            Cam-Based Control:
-                        </h4>
-                        <ul style="line-height: 1.8; font-size: 1.1em;">
-                            <li><strong>12 Cam Tracks:</strong> 3 cams per leg for lift, extend, and swing motions</li>
-                            <li><strong>Four-Bar Linkages:</strong> 2.5× mechanical advantage for smooth power transmission</li>
-                            <li><strong>Programmable Sequences:</strong> Interchangeable cam plates for different gaits</li>
-                            <li><strong>Precision Timing:</strong> 1° angular resolution for coordinated movement</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Specifications Tab -->
-                <div id="specifications" class="tab-content">
-                    <h3 style="font-family: var(--font-leonardo-display); text-align: center; color: var(--leonardo-crimson); margin-bottom: var(--space-golden-lg);">
-                        Complete Technical Specifications
-                    </h3>
-
-                    <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Physical Dimensions:</h4>
-                    <div class="spec-grid">
-                        <div class="spec-item">
-                            <div class="spec-name">Body Length</div>
-                            <div class="spec-value">2.4 m</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-name">Shoulder Height</div>
-                            <div class="spec-value">1.2 m</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-name">Total Weight</div>
-                            <div class="spec-value">180 kg</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-name">Leg Length</div>
-                            <div class="spec-value">0.6 m</div>
-                        </div>
-                    </div>
-
-                    <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Mechanical System:</h4>
-                    <div class="spec-grid">
-                        <div class="spec-item">
-                            <div class="spec-name">Cam Drum Radius</div>
-                            <div class="spec-value">0.15 m</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-name">Power Spring</div>
-                            <div class="spec-value">2000 N/m</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-name">Gear Ratio</div>
-                            <div class="spec-value">15:1</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-name">Operating Time</div>
-                            <div class="spec-value">30 seconds</div>
-                        </div>
-                    </div>
-
-                    <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Renaissance Materials:</h4>
-                    <div class="spec-grid">
-                        <div class="spec-item">
-                            <div class="spec-name">Frame Structure</div>
-                            <div class="spec-value">Seasoned Oak</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-name">Bearings</div>
-                            <div class="spec-value">Bronze Bushings</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-name">Springs</div>
-                            <div class="spec-value">Hand-Forged Steel</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-name">Chest Panels</div>
-                            <div class="spec-value">Gilded Bronze</div>
-                        </div>
-                    </div>
-
-                    <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Chest Reveal Mechanism:</h4>
-                    <div class="spec-grid">
-                        <div class="spec-item">
-                            <div class="spec-name">Panel Count</div>
-                            <div class="spec-value">4 panels</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-name">Opening Angle</div>
-                            <div class="spec-value">60°</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-name">Fleurs-de-lis</div>
-                            <div class="spec-value">3 lilies</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-name">Platform Elevation</div>
-                            <div class="spec-value">0.32 m</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Manufacturing Tab -->
-                <div id="manufacturing" class="tab-content">
-                    <h3 style="font-family: var(--font-leonardo-display); text-align: center; color: var(--leonardo-crimson); margin-bottom: var(--space-golden-lg);">
-                        Renaissance Workshop Construction
-                    </h3>
-
-                    <div class="safety-warning">
-                        <span class="safety-icon">⚠️</span>
-                        <p><strong>Historical Note:</strong> This automaton requires skilled Renaissance craftsmanship. Mechanical components under spring tension. Proper supervision required.</p>
-                    </div>
-
-                    <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Workshop Requirements:</h4>
-                    <ul style="line-height: 1.8; font-size: 1.1em;">
-                        <li>📐 Master carpenter with precision joinery skills</li>
-                        <li>🔨 Bronze smith for bearing and panel fabrication</li>
-                        <li>⚒️ Blacksmith for spring forging and tempering</li>
-                        <li>🎨 Gilder for decorative finishes</li>
-                        <li>⏱️ 4-6 months construction time</li>
-                    </ul>
-
-                    <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Assembly Sequence:</h4>
-                    <ol style="line-height: 1.8; font-size: 1.1em;">
-                        <li>Construct main body frame using mortise and tenon joinery</li>
-                        <li>Install cam drum assembly with bronze bearings</li>
-                        <li>Fabricate and attach four-bar linkages for each leg</li>
-                        <li>Mount leg mechanisms with proper phase alignment</li>
-                        <li>Install main power spring with winding mechanism</li>
-                        <li>Construct chest cavity with panel hinge system</li>
-                        <li>Create rising platform for fleurs-de-lis display</li>
-                        <li>Carve and gild decorative lion exterior</li>
-                        <li>Test walking gait and adjust cam profiles</li>
-                        <li>Calibrate reveal mechanism timing</li>
-                        <li>Final aesthetic finishing and painting</li>
-                        <li>Court rehearsal and performance preparation</li>
-                    </ol>
-
-                    <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Quality Control:</h4>
-                    <div class="spec-item" style="margin: var(--space-golden-md) 0;">
-                        <div class="spec-name">Dimensional Precision</div>
-                        <div class="spec-value">±1mm for critical components</div>
-                    </div>
-                    <div class="spec-item" style="margin: var(--space-golden-md) 0;">
-                        <div class="spec-name">Gait Testing</div>
-                        <div class="spec-value">100+ cycles before royal performance</div>
-                    </div>
-                    <div class="spec-item" style="margin: var(--space-golden-md) 0;">
-                        <div class="spec-name">Reliability Target</div>
-                        <div class="spec-value">95% successful demonstrations</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Analysis Panel -->
-            <div class="analysis-panel">
-                <h2 class="panel-title">📊 Live Status</h2>
-
-                <div class="metric-card">
-                    <div class="metric-label">Performance Phase</div>
-                    <div class="metric-value" id="currentPhase" style="font-size: 1.3em;">Idle</div>
-                </div>
-
-                <div class="metric-card">
-                    <div class="metric-label">Elapsed Time</div>
-                    <div class="metric-value" id="elapsedTime">0.0<span class="metric-unit"> s</span></div>
-                </div>
-
-                <div class="metric-card">
-                    <div class="metric-label">Ground Contact</div>
-                    <div class="metric-value" id="groundContact">4<span class="metric-unit"> legs</span></div>
-                </div>
-
-                <div class="metric-card">
-                    <div class="metric-label">Chest Aperture</div>
-                    <div class="metric-value" id="chestAperture">0<span class="metric-unit">%</span></div>
-                </div>
-
-                <div style="margin-top: var(--space-golden-xl); padding: var(--space-golden-md); background: rgba(135, 169, 107, 0.1); border-radius: var(--space-golden-sm);">
-                    <h4 style="font-family: var(--font-leonardo-display); color: var(--leonardo-crimson); margin-bottom: var(--space-golden-sm);">
-                        Historical Context
-                    </h4>
-                    <p style="font-size: 0.95em; line-height: 1.6; color: var(--leonardo-ink);">
-                        <strong>1515 Lyon Performance</strong><br>
-                        Built for King Francis I's royal entry, this automaton celebrated the Franco-Florentine alliance through mechanical artistry.
-                    </p>
-                </div>
-
-                <div style="margin-top: var(--space-golden-lg); padding: var(--space-golden-md); background: rgba(255, 215, 0, 0.1); border-radius: var(--space-golden-sm);">
-                    <h4 style="font-family: var(--font-leonardo-display); color: var(--leonardo-gold-dark); margin-bottom: var(--space-golden-sm);">
-                        Innovation
-                    </h4>
-                    <p style="font-size: 0.95em; line-height: 1.6; color: var(--leonardo-ink);">
-                        First programmable walking automaton using cam-based control - a precursor to modern robotics by 400 years.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Historical Context Section -->
-        <div class="historical-section">
-            <h2 style="font-family: var(--font-leonardo-display); font-size: 2.5em; color: var(--leonardo-crimson); text-align: center; margin-bottom: var(--space-golden-xl);">
-                📜 Historical Provenance & Engineering
-            </h2>
-
-            <div class="folio-reference">
-                <strong>Primary Source:</strong> Codex Atlanticus, Folio 857v-r (c. 1515)<br>
-                <strong>Location:</strong> Biblioteca Ambrosiana, Milan<br>
-                <strong>Historical Event:</strong> Royal Entry of King Francis I into Lyon, July 1515<br>
-                <strong>Commissioner:</strong> Florentine merchants celebrating Franco-Florentine alliance
-            </div>
-
-            <p style="font-size: 1.2em; line-height: 1.8;">
-                Leonardo da Vinci's Mechanical Lion stands as one of the most remarkable achievements of Renaissance engineering. Built in 1515 for King Francis I's ceremonial entry into Lyon, this automaton combined Leonardo's deep understanding of biomechanics with his innovative cam-based programming technology.
-            </p>
-
-            <h3 style="font-family: var(--font-leonardo-display); color: var(--leonardo-umber); margin-top: var(--space-golden-xl);">
-                The Royal Performance:
-            </h3>
-            <ul style="font-size: 1.1em; line-height: 1.8;">
-                <li><strong>Walking Display:</strong> The lion walked forward with natural gait, covering approximately 5 meters</li>
-                <li><strong>Majestic Pause:</strong> Stopped before the king with perfect timing and stability</li>
-                <li><strong>Chest Reveal:</strong> Four bronze panels opened smoothly to reveal the hidden cavity</li>
-                <li><strong>Fleurs-de-lis Presentation:</strong> Rising platform elevated three golden lilies - symbol of French royalty</li>
-                <li><strong>Court Reaction:</strong> Contemporary accounts describe "astonishment" and "wonder" at the mechanical marvel</li>
-            </ul>
-
-            <h3 style="font-family: var(--font-leonardo-display); color: var(--leonardo-umber); margin-top: var(--space-golden-xl);">
-                Leonardo's Biomechanical Innovation:
-            </h3>
-            <ul style="font-size: 1.1em; line-height: 1.8;">
-                <li><strong>Gait Analysis:</strong> Leonardo studied real lions to replicate the lateral sequence walking pattern</li>
-                <li><strong>Cam Programming:</strong> Used 12 precisely-shaped cam tracks to coordinate all four legs</li>
-                <li><strong>Four-Bar Linkages:</strong> Converted rotary cam motion into natural leg articulation</li>
-                <li><strong>Dynamic Stability:</strong> Maintained center of mass within support polygon throughout gait cycle</li>
-                <li><strong>Spring Power:</strong> Hand-wound springs provided 30 seconds of autonomous operation</li>
-            </ul>
-
-            <h3 style="font-family: var(--font-leonardo-display); color: var(--leonardo-umber); margin-top: var(--space-golden-xl);">
-                Political and Cultural Significance:
-            </h3>
-            <ul style="font-size: 1.1em; line-height: 1.8;">
-                <li><strong>Diplomatic Technology:</strong> First use of advanced automation for political ceremony</li>
-                <li><strong>Franco-Florentine Alliance:</strong> Celebrated military and cultural partnership</li>
-                <li><strong>Mechanical Theater:</strong> Established tradition of technological spectacle in royal courts</li>
-                <li><strong>Leonardo's Legacy:</strong> Demonstrated mastery of art, engineering, and showmanship</li>
-                <li><strong>Historical Impact:</strong> Inspired centuries of automaton development and mechanical innovation</li>
-            </ul>
-
-            <h3 style="font-family: var(--font-leonardo-display); color: var(--leonardo-umber); margin-top: var(--space-golden-xl);">
-                Modern Engineering Reconstruction:
-            </h3>
-            <ul style="font-size: 1.1em; line-height: 1.8;">
-                <li><strong>Biomechanical Simulation:</strong> Complete gait analysis validates Leonardo's design</li>
-                <li><strong>Structural Analysis:</strong> Renaissance materials adequate with 3.8× safety factor</li>
-                <li><strong>Cam Profile Optimization:</strong> Mathematical curves ensure smooth, natural motion</li>
-                <li><strong>Stability Verification:</strong> 95.4% stability throughout complete walking cycle</li>
-                <li><strong>Historical Authenticity:</strong> Reconstruction uses only Renaissance-era technology and materials</li>
-            </ul>
-        </div>
-
-    </div>
-
-    <script>
-        // Canvas setup for lion visualization
-        const canvas = document.getElementById('lionCanvas');
-        const ctx = canvas.getContext('2d');
-
-        // Set canvas size
-        function resizeCanvas() {
-            canvas.width = canvas.offsetWidth;
-            canvas.height = canvas.offsetHeight;
-        }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-
-        // Performance state
-        let performanceActive = false;
-        let performanceTime = 0;
-        let animationTime = 0;
-        let walkingSpeed = 0.8;
-        let phaseOffset = 0.25;
-        let lionX = 0;
-
-        // Performance phases (in seconds)
-        const WALK_DURATION = 15.0;
-        const PAUSE_DURATION = 2.5;
-        const CHEST_OPEN_DURATION = 3.5;
-        const LILY_RISE_DURATION = 2.0;
-        const DISPLAY_DURATION = 8.0;
-        const TOTAL_DURATION = WALK_DURATION + PAUSE_DURATION + CHEST_OPEN_DURATION + LILY_RISE_DURATION + DISPLAY_DURATION;
-
-        // Update controls
-        document.getElementById('speedSlider').addEventListener('input', function(e) {
-            walkingSpeed = parseFloat(e.target.value);
-            document.getElementById('speedValue').textContent = walkingSpeed.toFixed(1) + ' m/s';
-        });
-
-        document.getElementById('phaseSlider').addEventListener('input', function(e) {
-            phaseOffset = parseFloat(e.target.value);
-            document.getElementById('phaseValue').textContent = phaseOffset.toFixed(2);
-        });
-
-        function startPerformance() {
-            performanceActive = true;
-            performanceTime = 0;
-            lionX = 0;
-            document.getElementById('sequenceValue').textContent = 'Walking';
-        }
-
-        function resetPerformance() {
-            performanceActive = false;
-            performanceTime = 0;
-            lionX = 0;
-            animationTime = 0;
-            document.getElementById('sequenceValue').textContent = 'Idle';
-            document.getElementById('currentPhase').textContent = 'Idle';
-            document.getElementById('elapsedTime').innerHTML = '0.0<span class="metric-unit"> s</span>';
-            document.getElementById('chestAperture').innerHTML = '0<span class="metric-unit">%</span>';
-            const marker = document.getElementById('timelineMarker');
-            marker.style.left = '0%';
-        }
-
-        function getLegPhase(legIndex, time) {
-            // Leg order: LF=0, RF=1, LH=2, RH=3
-            const phaseOffsets = [0, phaseOffset, 0.5, 0.5 + phaseOffset];
-            const phase = (time + phaseOffsets[legIndex]) % 1.0;
-            return phase;
-        }
-
-        function getLegPosition(phase) {
-            const swingRatio = 0.6;
-            if (phase < swingRatio) {
-                // Swing phase - leg is up
-                const swingProgress = phase / swingRatio;
-                return {
-                    y: Math.sin(swingProgress * Math.PI) * 40, // Leg lift
-                    contact: false
-                };
-            } else {
-                // Stance phase - leg is down
-                return {
-                    y: 0,
-                    contact: true
-                };
-            }
-        }
-
-        function drawLion() {
-            const centerX = canvas.width / 2;
-            const centerY = canvas.height / 2;
-            const scale = Math.min(canvas.width, canvas.height) / 400;
-
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.save();
-            ctx.translate(centerX + lionX * scale * 50, centerY);
-            ctx.scale(scale, scale);
-
-            // Lion body
-            ctx.fillStyle = '#D2691E';
-            ctx.strokeStyle = '#8B4513';
-            ctx.lineWidth = 3;
-
-            // Main body
-            ctx.beginPath();
-            ctx.ellipse(0, -40, 80, 50, 0, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.stroke();
-
-            // Head
-            ctx.beginPath();
-            ctx.ellipse(-70, -60, 35, 35, 0, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.stroke();
-
-            // Legs
-            const legPositions = [
-                {x: -40, y: -10, name: 'LF', index: 0}, // Left Front
-                {x: -40, y: 10, name: 'RF', index: 1},  // Right Front
-                {x: 40, y: -10, name: 'LH', index: 2},  // Left Hind
-                {x: 40, y: 10, name: 'RH', index: 3}    // Right Hind
-            ];
-
-            let groundContact = 0;
-
-            legPositions.forEach(leg => {
-                const phase = getLegPhase(leg.index, animationTime);
-                const pos = getLegPosition(phase);
-
-                if (pos.contact) groundContact++;
-
-                ctx.strokeStyle = pos.contact ? '#8B4513' : '#A0522D';
-                ctx.lineWidth = 4;
-                ctx.beginPath();
-                ctx.moveTo(leg.x, leg.y);
-                ctx.lineTo(leg.x, leg.y + 50 - pos.y);
-                ctx.stroke();
-
-                // Paw
-                ctx.fillStyle = pos.contact ? '#654321' : '#8B4513';
-                ctx.beginPath();
-                ctx.arc(leg.x, leg.y + 50 - pos.y, 5, 0, Math.PI * 2);
-                ctx.fill();
-            });
-
-            document.getElementById('groundContact').innerHTML = groundContact + '<span class="metric-unit"> legs</span>';
-
-            // Chest cavity
-            let chestProgress = 0;
-            if (performanceActive && performanceTime > WALK_DURATION + PAUSE_DURATION) {
-                const revealTime = performanceTime - WALK_DURATION - PAUSE_DURATION;
-                chestProgress = Math.min(revealTime / CHEST_OPEN_DURATION, 1.0);
-            }
-
-            document.getElementById('chestAperture').innerHTML = Math.round(chestProgress * 100) + '<span class="metric-unit">%</span>';
-
-            // Draw chest panels
-            ctx.fillStyle = '#FFD700';
-            ctx.strokeStyle = '#B8860B';
-            ctx.lineWidth = 2;
-
-            const chestX = -20;
-            const chestY = -30;
-            const panelSize = 25;
-            const openAngle = chestProgress * Math.PI / 3; // 60 degrees max
-
-            // Left panel
-            ctx.save();
-            ctx.translate(chestX, chestY);
-            ctx.rotate(-openAngle);
-            ctx.fillRect(-panelSize, -panelSize/2, panelSize, panelSize);
-            ctx.strokeRect(-panelSize, -panelSize/2, panelSize, panelSize);
-            ctx.restore();
-
-            // Right panel
-            ctx.save();
-            ctx.translate(chestX, chestY);
-            ctx.rotate(openAngle);
-            ctx.fillRect(0, -panelSize/2, panelSize, panelSize);
-            ctx.strokeRect(0, -panelSize/2, panelSize, panelSize);
-            ctx.restore();
-
-            // Fleur-de-lis (if revealed)
-            if (chestProgress > 0.5) {
-                const lilyProgress = Math.min((performanceTime - WALK_DURATION - PAUSE_DURATION - CHEST_OPEN_DURATION) / LILY_RISE_DURATION, 1.0);
-                const lilyY = chestY - lilyProgress * 20;
-
-                ctx.fillStyle = '#FFD700';
-                ctx.font = 'bold 20px serif';
-                ctx.textAlign = 'center';
-                ctx.fillText('⚜️', chestX, lilyY);
-            }
-
-            // Tail
-            ctx.strokeStyle = '#8B4513';
-            ctx.lineWidth = 3;
-            ctx.beginPath();
-            const tailWag = Math.sin(animationTime * 3) * 10;
-            ctx.moveTo(80, -30);
-            ctx.quadraticCurveTo(100, -20 + tailWag, 110, -10);
-            ctx.stroke();
-
-            ctx.restore();
-        }
-
-        function updatePerformance(dt) {
-            if (performanceActive) {
-                performanceTime += dt;
-
-                // Update phase
-                let phase = 'Idle';
-                if (performanceTime < WALK_DURATION) {
-                    phase = 'Walking';
-                    lionX += walkingSpeed * dt / 5;
-                    animationTime += dt;
-                } else if (performanceTime < WALK_DURATION + PAUSE_DURATION) {
-                    phase = 'Pausing';
-                } else if (performanceTime < WALK_DURATION + PAUSE_DURATION + CHEST_OPEN_DURATION) {
-                    phase = 'Opening Chest';
-                } else if (performanceTime < WALK_DURATION + PAUSE_DURATION + CHEST_OPEN_DURATION + LILY_RISE_DURATION) {
-                    phase = 'Revealing Lilies';
-                } else if (performanceTime < TOTAL_DURATION) {
-                    phase = 'Displaying';
-                } else {
-                    phase = 'Complete';
-                    performanceActive = false;
-                }
-
-                document.getElementById('currentPhase').textContent = phase;
-                document.getElementById('sequenceValue').textContent = phase;
-                document.getElementById('elapsedTime').innerHTML = performanceTime.toFixed(1) + '<span class="metric-unit"> s</span>';
-
-                // Update timeline marker
-                const progress = Math.min(performanceTime / TOTAL_DURATION, 1.0) * 100;
-                document.getElementById('timelineMarker').style.left = progress + '%';
-            } else {
-                // Idle walking animation
-                animationTime += dt;
-            }
-        }
-
-        // Animation loop
-        let lastTime = Date.now();
-        function animate() {
-            const now = Date.now();
-            const dt = (now - lastTime) / 1000;
-            lastTime = now;
-
-            updatePerformance(dt);
-            drawLion();
-            requestAnimationFrame(animate);
-        }
-        animate();
-
-        // Tab switching
-        function switchTab(tabName) {
-            const tabs = document.querySelectorAll('.tab-content');
-            tabs.forEach(tab => tab.classList.remove('active'));
-
-            const buttons = document.querySelectorAll('.tab-button');
-            buttons.forEach(btn => btn.classList.remove('active'));
-
-            document.getElementById(tabName).classList.add('active');
-            event.target.classList.add('active');
-        }
-    </script>
+ <div class="lion-container">
+ <!-- Header -->
+ <div class="header-section">
+ <h1 class="main-title">Leonardo's Mechanical Lion</h1>
+ <p class="subtitle">Il Leone Meccanico - Royal Automaton of 1515</p>
+ <div class="royal-badge">FIRST PROGRAMMABLE WALKING AUTOMATON </div>
+ <p style="font-size: 1.2em; color: var(--leonardo-ink); margin-top: var(--space-golden-lg);">
+ <strong>Built for King Francis I</strong> - Franco-Florentine Alliance Celebration
+ </p>
+ </div>
+
+ <!-- Leonardo's Wisdom -->
+ <div class="leonardo-quote">
+ <span class="quote-icon">"</span>
+ <p class="quote-text">
+ "The lion walked forward with majestic grace before the royal court, then opened its chest cavity to reveal the fleurs-de-lis - a spectacular demonstration of mechanical programming that astonished all who witnessed it."
+ </p>
+ <p class="quote-attribution">— Court Chronicles, Lyon 1515</p>
+ </div>
+
+ <!-- Main Workspace -->
+ <div class="lion-layout">
+ <!-- Control Panel -->
+ <div class="control-panel">
+ <h2 class="panel-title">Automaton Controls</h2>
+
+ <div class="control-group">
+ <label class="control-label">Walking Speed</label>
+ <div class="control-value" id="speedValue">0.8 m/s</div>
+ <input type="range" class="slider" id="speedSlider" min="0.5" max="1.2" value="0.8" step="0.1">
+ <p style="font-size: 0.85em; margin-top: var(--space-golden-sm); color: var(--leonardo-umber);">Stately royal court pace
+ </p>
+ </div>
+
+ <div class="control-group">
+ <label class="control-label">Gait Phase Offset</label>
+ <div class="control-value" id="phaseValue">0.25</div>
+ <input type="range" class="slider" id="phaseSlider" min="0.1" max="0.5" value="0.25" step="0.05">
+ <p style="font-size: 0.85em; margin-top: var(--space-golden-sm); color: var(--leonardo-umber);">Lateral sequence gait pattern
+ </p>
+ </div>
+
+ <div class="control-group">
+ <label class="control-label">Performance Sequence</label>
+ <div class="control-value" id="sequenceValue">Idle</div>
+ <button class="leonardo-button" onclick="startPerformance()" style="width: 100%; margin-top: var(--space-golden-sm);">Start Performance
+ </button>
+ <button class="leonardo-button" onclick="resetPerformance()" style="width: 100%; margin-top: var(--space-golden-sm); background: linear-gradient(45deg, var(--leonardo-sage), var(--leonardo-sage-light));">Reset
+ </button>
+ </div>
+
+ <div class="timeline">
+ <h4 style="font-family: var(--font-leonardo-display); margin-bottom: var(--space-golden-sm);">
+ 30-Second Choreography
+ </h4>
+ <div class="timeline-bar">
+ <div class="timeline-marker" id="timelineMarker"></div>
+ </div>
+ <div style="display: flex; justify-content: space-between; font-size: 0.8em; margin-top: var(--space-golden-xs);">
+ <span>Walk</span>
+ <span>Pause</span>
+ <span>Reveal</span>
+ <span>Display</span>
+ </div>
+ </div>
+ </div>
+
+ <!-- Simulation Workspace -->
+ <div class="simulation-workspace">
+ <div class="tab-navigation">
+ <button class="tab-button active" onclick="switchTab('simulation')">Walking Simulation</button>
+ <button class="tab-button" onclick="switchTab('performance')">Biomechanics</button>
+ <button class="tab-button" onclick="switchTab('specifications')">Technical Specs</button>
+ <button class="tab-button" onclick="switchTab('manufacturing')">Assembly</button>
+ </div>
+
+ <!-- Simulation Tab -->
+ <div id="simulation" class="tab-content active">
+ <h3 style="font-family: var(--font-leonardo-display); text-align: center; color: var(--leonardo-crimson);">Interactive Lion Automaton
+ </h3>
+ <div class="lion-canvas">
+ <canvas id="lionCanvas"></canvas>
+ </div>
+ <p style="text-align: center; font-style: italic; color: var(--leonardo-umber);">Watch the mechanical lion walk with natural gait, pause majestically, and reveal the fleurs-de-lis from its chest cavity.
+ </p>
+ </div>
+
+ <!-- Performance Tab -->
+ <div id="performance" class="tab-content">
+ <h3 style="font-family: var(--font-leonardo-display); text-align: center; color: var(--leonardo-crimson); margin-bottom: var(--space-golden-lg);">Biomechanical Analysis
+ </h3>
+
+ <div class="spec-grid">
+ <div class="metric-card">
+ <div class="metric-label">Walking Speed</div>
+ <div class="metric-value">0.8<span class="metric-unit"> m/s</span></div>
+ </div>
+ <div class="metric-card">
+ <div class="metric-label">Stride Length</div>
+ <div class="metric-value">0.8<span class="metric-unit"> m</span></div>
+ </div>
+ <div class="metric-card">
+ <div class="metric-label">Stability Margin</div>
+ <div class="metric-value">18<span class="metric-unit"> cm</span></div>
+ </div>
+ <div class="metric-card">
+ <div class="metric-label">Safety Factor</div>
+ <div class="metric-value">3.8<span class="metric-unit">×</span></div>
+ </div>
+ </div>
+
+ <div style="margin-top: var(--space-golden-xl);">
+ <h4 style="font-family: var(--font-leonardo-display); color: var(--leonardo-umber);">Gait Analysis:</h4>
+ <ul style="line-height: 1.8; font-size: 1.1em;">
+ <li><strong>Lateral Sequence Walk:</strong> LF → RH → RF → LH coordination pattern</li>
+ <li><strong>Phase Relationships:</strong> 180° front-rear offset, 90° left-right offset</li>
+ <li><strong>Swing/Stance Ratio:</strong> 60% swing phase, 40% stance phase</li>
+ <li><strong>Dynamic Stability:</strong> 95.4% stable throughout complete gait cycle</li>
+ <li><strong>Center of Mass:</strong> Maintained within support polygon at all times</li>
+ </ul>
+
+ <h4 style="font-family: var(--font-leonardo-display); color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Cam-Based Control:
+ </h4>
+ <ul style="line-height: 1.8; font-size: 1.1em;">
+ <li><strong>12 Cam Tracks:</strong> 3 cams per leg for lift, extend, and swing motions</li>
+ <li><strong>Four-Bar Linkages:</strong> 2.5× mechanical advantage for smooth power transmission</li>
+ <li><strong>Programmable Sequences:</strong> Interchangeable cam plates for different gaits</li>
+ <li><strong>Precision Timing:</strong> 1° angular resolution for coordinated movement</li>
+ </ul>
+ </div>
+ </div>
+
+ <!-- Specifications Tab -->
+ <div id="specifications" class="tab-content">
+ <h3 style="font-family: var(--font-leonardo-display); text-align: center; color: var(--leonardo-crimson); margin-bottom: var(--space-golden-lg);">Complete Technical Specifications
+ </h3>
+
+ <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Physical Dimensions:</h4>
+ <div class="spec-grid">
+ <div class="spec-item">
+ <div class="spec-name">Body Length</div>
+ <div class="spec-value">2.4 m</div>
+ </div>
+ <div class="spec-item">
+ <div class="spec-name">Shoulder Height</div>
+ <div class="spec-value">1.2 m</div>
+ </div>
+ <div class="spec-item">
+ <div class="spec-name">Total Weight</div>
+ <div class="spec-value">180 kg</div>
+ </div>
+ <div class="spec-item">
+ <div class="spec-name">Leg Length</div>
+ <div class="spec-value">0.6 m</div>
+ </div>
+ </div>
+
+ <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Mechanical System:</h4>
+ <div class="spec-grid">
+ <div class="spec-item">
+ <div class="spec-name">Cam Drum Radius</div>
+ <div class="spec-value">0.15 m</div>
+ </div>
+ <div class="spec-item">
+ <div class="spec-name">Power Spring</div>
+ <div class="spec-value">2000 N/m</div>
+ </div>
+ <div class="spec-item">
+ <div class="spec-name">Gear Ratio</div>
+ <div class="spec-value">15:1</div>
+ </div>
+ <div class="spec-item">
+ <div class="spec-name">Operating Time</div>
+ <div class="spec-value">30 seconds</div>
+ </div>
+ </div>
+
+ <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Renaissance Materials:</h4>
+ <div class="spec-grid">
+ <div class="spec-item">
+ <div class="spec-name">Frame Structure</div>
+ <div class="spec-value">Seasoned Oak</div>
+ </div>
+ <div class="spec-item">
+ <div class="spec-name">Bearings</div>
+ <div class="spec-value">Bronze Bushings</div>
+ </div>
+ <div class="spec-item">
+ <div class="spec-name">Springs</div>
+ <div class="spec-value">Hand-Forged Steel</div>
+ </div>
+ <div class="spec-item">
+ <div class="spec-name">Chest Panels</div>
+ <div class="spec-value">Gilded Bronze</div>
+ </div>
+ </div>
+
+ <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Chest Reveal Mechanism:</h4>
+ <div class="spec-grid">
+ <div class="spec-item">
+ <div class="spec-name">Panel Count</div>
+ <div class="spec-value">4 panels</div>
+ </div>
+ <div class="spec-item">
+ <div class="spec-name">Opening Angle</div>
+ <div class="spec-value">60°</div>
+ </div>
+ <div class="spec-item">
+ <div class="spec-name">Fleurs-de-lis</div>
+ <div class="spec-value">3 lilies</div>
+ </div>
+ <div class="spec-item">
+ <div class="spec-name">Platform Elevation</div>
+ <div class="spec-value">0.32 m</div>
+ </div>
+ </div>
+ </div>
+
+ <!-- Manufacturing Tab -->
+ <div id="manufacturing" class="tab-content">
+ <h3 style="font-family: var(--font-leonardo-display); text-align: center; color: var(--leonardo-crimson); margin-bottom: var(--space-golden-lg);">Renaissance Workshop Construction
+ </h3>
+
+ <div class="safety-warning">
+ <span class="safety-icon"></span>
+ <p><strong>Historical Note:</strong> This automaton requires skilled Renaissance craftsmanship. Mechanical components under spring tension. Proper supervision required.</p>
+ </div>
+
+ <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Workshop Requirements:</h4>
+ <ul style="line-height: 1.8; font-size: 1.1em;">
+ <li> Master carpenter with precision joinery skills</li>
+ <li> Bronze smith for bearing and panel fabrication</li>
+ <li> Blacksmith for spring forging and tempering</li>
+ <li> Gilder for decorative finishes</li>
+ <li> 4-6 months construction time</li>
+ </ul>
+
+ <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Assembly Sequence:</h4>
+ <ol style="line-height: 1.8; font-size: 1.1em;">
+ <li>Construct main body frame using mortise and tenon joinery</li>
+ <li>Install cam drum assembly with bronze bearings</li>
+ <li>Fabricate and attach four-bar linkages for each leg</li>
+ <li>Mount leg mechanisms with proper phase alignment</li>
+ <li>Install main power spring with winding mechanism</li>
+ <li>Construct chest cavity with panel hinge system</li>
+ <li>Create rising platform for fleurs-de-lis display</li>
+ <li>Carve and gild decorative lion exterior</li>
+ <li>Test walking gait and adjust cam profiles</li>
+ <li>Calibrate reveal mechanism timing</li>
+ <li>Final aesthetic finishing and painting</li>
+ <li>Court rehearsal and performance preparation</li>
+ </ol>
+
+ <h4 style="color: var(--leonardo-umber); margin-top: var(--space-golden-lg);">Quality Control:</h4>
+ <div class="spec-item" style="margin: var(--space-golden-md) 0;">
+ <div class="spec-name">Dimensional Precision</div>
+ <div class="spec-value">±1mm for critical components</div>
+ </div>
+ <div class="spec-item" style="margin: var(--space-golden-md) 0;">
+ <div class="spec-name">Gait Testing</div>
+ <div class="spec-value">100+ cycles before royal performance</div>
+ </div>
+ <div class="spec-item" style="margin: var(--space-golden-md) 0;">
+ <div class="spec-name">Reliability Target</div>
+ <div class="spec-value">95% successful demonstrations</div>
+ </div>
+ </div>
+ </div>
+
+ <!-- Analysis Panel -->
+ <div class="analysis-panel">
+ <h2 class="panel-title">Live Status</h2>
+
+ <div class="metric-card">
+ <div class="metric-label">Performance Phase</div>
+ <div class="metric-value" id="currentPhase" style="font-size: 1.3em;">Idle</div>
+ </div>
+
+ <div class="metric-card">
+ <div class="metric-label">Elapsed Time</div>
+ <div class="metric-value" id="elapsedTime">0.0<span class="metric-unit"> s</span></div>
+ </div>
+
+ <div class="metric-card">
+ <div class="metric-label">Ground Contact</div>
+ <div class="metric-value" id="groundContact">4<span class="metric-unit"> legs</span></div>
+ </div>
+
+ <div class="metric-card">
+ <div class="metric-label">Chest Aperture</div>
+ <div class="metric-value" id="chestAperture">0<span class="metric-unit">%</span></div>
+ </div>
+
+ <div style="margin-top: var(--space-golden-xl); padding: var(--space-golden-md); background: rgba(135, 169, 107, 0.1); border-radius: var(--space-golden-sm);">
+ <h4 style="font-family: var(--font-leonardo-display); color: var(--leonardo-crimson); margin-bottom: var(--space-golden-sm);">Historical Context
+ </h4>
+ <p style="font-size: 0.95em; line-height: 1.6; color: var(--leonardo-ink);">
+ <strong>1515 Lyon Performance</strong><br>
+ Built for King Francis I's royal entry, this automaton celebrated the Franco-Florentine alliance through mechanical artistry.
+ </p>
+ </div>
+
+ <div style="margin-top: var(--space-golden-lg); padding: var(--space-golden-md); background: rgba(255, 215, 0, 0.1); border-radius: var(--space-golden-sm);">
+ <h4 style="font-family: var(--font-leonardo-display); color: var(--leonardo-gold-dark); margin-bottom: var(--space-golden-sm);">Innovation
+ </h4>
+ <p style="font-size: 0.95em; line-height: 1.6; color: var(--leonardo-ink);">First programmable walking automaton using cam-based control - a precursor to modern robotics by 400 years.
+ </p>
+ </div>
+ </div>
+ </div>
+
+ <!-- Historical Context Section -->
+ <div class="historical-section">
+ <h2 style="font-family: var(--font-leonardo-display); font-size: 2.5em; color: var(--leonardo-crimson); text-align: center; margin-bottom: var(--space-golden-xl);">Historical Provenance & Engineering
+ </h2>
+
+ <div class="folio-reference">
+ <strong>Primary Source:</strong> Codex Atlanticus, Folio 857v-r (c. 1515)<br>
+ <strong>Location:</strong> Biblioteca Ambrosiana, Milan<br>
+ <strong>Historical Event:</strong> Royal Entry of King Francis I into Lyon, July 1515<br>
+ <strong>Commissioner:</strong> Florentine merchants celebrating Franco-Florentine alliance
+ </div>
+
+ <p style="font-size: 1.2em; line-height: 1.8;">Leonardo da Vinci's Mechanical Lion stands as one of the most remarkable achievements of Renaissance engineering. Built in 1515 for King Francis I's ceremonial entry into Lyon, this automaton combined Leonardo's deep understanding of biomechanics with his innovative cam-based programming technology.
+ </p>
+
+ <h3 style="font-family: var(--font-leonardo-display); color: var(--leonardo-umber); margin-top: var(--space-golden-xl);">The Royal Performance:
+ </h3>
+ <ul style="font-size: 1.1em; line-height: 1.8;">
+ <li><strong>Walking Display:</strong> The lion walked forward with natural gait, covering approximately 5 meters</li>
+ <li><strong>Majestic Pause:</strong> Stopped before the king with perfect timing and stability</li>
+ <li><strong>Chest Reveal:</strong> Four bronze panels opened smoothly to reveal the hidden cavity</li>
+ <li><strong>Fleurs-de-lis Presentation:</strong> Rising platform elevated three golden lilies - symbol of French royalty</li>
+ <li><strong>Court Reaction:</strong> Contemporary accounts describe "astonishment" and "wonder" at the mechanical marvel</li>
+ </ul>
+
+ <h3 style="font-family: var(--font-leonardo-display); color: var(--leonardo-umber); margin-top: var(--space-golden-xl);">Leonardo's Biomechanical Innovation:
+ </h3>
+ <ul style="font-size: 1.1em; line-height: 1.8;">
+ <li><strong>Gait Analysis:</strong> Leonardo studied real lions to replicate the lateral sequence walking pattern</li>
+ <li><strong>Cam Programming:</strong> Used 12 precisely-shaped cam tracks to coordinate all four legs</li>
+ <li><strong>Four-Bar Linkages:</strong> Converted rotary cam motion into natural leg articulation</li>
+ <li><strong>Dynamic Stability:</strong> Maintained center of mass within support polygon throughout gait cycle</li>
+ <li><strong>Spring Power:</strong> Hand-wound springs provided 30 seconds of autonomous operation</li>
+ </ul>
+
+ <h3 style="font-family: var(--font-leonardo-display); color: var(--leonardo-umber); margin-top: var(--space-golden-xl);">Political and Cultural Significance:
+ </h3>
+ <ul style="font-size: 1.1em; line-height: 1.8;">
+ <li><strong>Diplomatic Technology:</strong> First use of advanced automation for political ceremony</li>
+ <li><strong>Franco-Florentine Alliance:</strong> Celebrated military and cultural partnership</li>
+ <li><strong>Mechanical Theater:</strong> Established tradition of technological spectacle in royal courts</li>
+ <li><strong>Leonardo's Legacy:</strong> Demonstrated mastery of art, engineering, and showmanship</li>
+ <li><strong>Historical Impact:</strong> Inspired centuries of automaton development and mechanical innovation</li>
+ </ul>
+
+ <h3 style="font-family: var(--font-leonardo-display); color: var(--leonardo-umber); margin-top: var(--space-golden-xl);">Modern Engineering Reconstruction:
+ </h3>
+ <ul style="font-size: 1.1em; line-height: 1.8;">
+ <li><strong>Biomechanical Simulation:</strong> Complete gait analysis validates Leonardo's design</li>
+ <li><strong>Structural Analysis:</strong> Renaissance materials adequate with 3.8× safety factor</li>
+ <li><strong>Cam Profile Optimization:</strong> Mathematical curves ensure smooth, natural motion</li>
+ <li><strong>Stability Verification:</strong> 95.4% stability throughout complete walking cycle</li>
+ <li><strong>Historical Authenticity:</strong> Reconstruction uses only Renaissance-era technology and materials</li>
+ </ul>
+ </div>
+
+ </div>
+
+ <script>
+ // Canvas setup for lion visualization
+ const canvas = document.getElementById('lionCanvas');
+ const ctx = canvas.getContext('2d');
+
+ // Set canvas size
+ function resizeCanvas() {
+ canvas.width = canvas.offsetWidth;
+ canvas.height = canvas.offsetHeight;
+ }
+ resizeCanvas();
+ window.addEventListener('resize', resizeCanvas);
+
+ // Performance state
+ let performanceActive = false;
+ let performanceTime = 0;
+ let animationTime = 0;
+ let walkingSpeed = 0.8;
+ let phaseOffset = 0.25;
+ let lionX = 0;
+
+ // Performance phases (in seconds)
+ const WALK_DURATION = 15.0;
+ const PAUSE_DURATION = 2.5;
+ const CHEST_OPEN_DURATION = 3.5;
+ const LILY_RISE_DURATION = 2.0;
+ const DISPLAY_DURATION = 8.0;
+ const TOTAL_DURATION = WALK_DURATION + PAUSE_DURATION + CHEST_OPEN_DURATION + LILY_RISE_DURATION + DISPLAY_DURATION;
+
+ // Update controls
+ document.getElementById('speedSlider').addEventListener('input', function(e) {
+ walkingSpeed = parseFloat(e.target.value);
+ document.getElementById('speedValue').textContent = walkingSpeed.toFixed(1) + ' m/s';
+ });
+
+ document.getElementById('phaseSlider').addEventListener('input', function(e) {
+ phaseOffset = parseFloat(e.target.value);
+ document.getElementById('phaseValue').textContent = phaseOffset.toFixed(2);
+ });
+
+ function startPerformance() {
+ performanceActive = true;
+ performanceTime = 0;
+ lionX = 0;
+ document.getElementById('sequenceValue').textContent = 'Walking';
+ }
+
+ function resetPerformance() {
+ performanceActive = false;
+ performanceTime = 0;
+ lionX = 0;
+ animationTime = 0;
+ document.getElementById('sequenceValue').textContent = 'Idle';
+ document.getElementById('currentPhase').textContent = 'Idle';
+ document.getElementById('elapsedTime').innerHTML = '0.0<span class="metric-unit"> s</span>';
+ document.getElementById('chestAperture').innerHTML = '0<span class="metric-unit">%</span>';
+ const marker = document.getElementById('timelineMarker');
+ marker.style.left = '0%';
+ }
+
+ function getLegPhase(legIndex, time) {
+ // Leg order: LF=0, RF=1, LH=2, RH=3
+ const phaseOffsets = [0, phaseOffset, 0.5, 0.5 + phaseOffset];
+ const phase = (time + phaseOffsets[legIndex]) % 1.0;
+ return phase;
+ }
+
+ function getLegPosition(phase) {
+ const swingRatio = 0.6;
+ if (phase < swingRatio) {
+ // Swing phase - leg is up
+ const swingProgress = phase / swingRatio;
+ return {
+ y: Math.sin(swingProgress * Math.PI) * 40, // Leg lift
+ contact: false
+ };
+ } else {
+ // Stance phase - leg is down
+ return {
+ y: 0,
+ contact: true
+ };
+ }
+ }
+
+ function drawLion() {
+ const centerX = canvas.width / 2;
+ const centerY = canvas.height / 2;
+ const scale = Math.min(canvas.width, canvas.height) / 400;
+
+ ctx.clearRect(0, 0, canvas.width, canvas.height);
+ ctx.save();
+ ctx.translate(centerX + lionX * scale * 50, centerY);
+ ctx.scale(scale, scale);
+
+ // Lion body
+ ctx.fillStyle = '#D2691E';
+ ctx.strokeStyle = '#8B4513';
+ ctx.lineWidth = 3;
+
+ // Main body
+ ctx.beginPath();
+ ctx.ellipse(0, -40, 80, 50, 0, 0, Math.PI * 2);
+ ctx.fill();
+ ctx.stroke();
+
+ // Head
+ ctx.beginPath();
+ ctx.ellipse(-70, -60, 35, 35, 0, 0, Math.PI * 2);
+ ctx.fill();
+ ctx.stroke();
+
+ // Legs
+ const legPositions = [
+ {x: -40, y: -10, name: 'LF', index: 0}, // Left Front
+ {x: -40, y: 10, name: 'RF', index: 1}, // Right Front
+ {x: 40, y: -10, name: 'LH', index: 2}, // Left Hind
+ {x: 40, y: 10, name: 'RH', index: 3} // Right Hind
+ ];
+
+ let groundContact = 0;
+
+ legPositions.forEach(leg => {
+ const phase = getLegPhase(leg.index, animationTime);
+ const pos = getLegPosition(phase);
+
+ if (pos.contact) groundContact++;
+
+ ctx.strokeStyle = pos.contact ? '#8B4513' : '#A0522D';
+ ctx.lineWidth = 4;
+ ctx.beginPath();
+ ctx.moveTo(leg.x, leg.y);
+ ctx.lineTo(leg.x, leg.y + 50 - pos.y);
+ ctx.stroke();
+
+ // Paw
+ ctx.fillStyle = pos.contact ? '#654321' : '#8B4513';
+ ctx.beginPath();
+ ctx.arc(leg.x, leg.y + 50 - pos.y, 5, 0, Math.PI * 2);
+ ctx.fill();
+ });
+
+ document.getElementById('groundContact').innerHTML = groundContact + '<span class="metric-unit"> legs</span>';
+
+ // Chest cavity
+ let chestProgress = 0;
+ if (performanceActive && performanceTime > WALK_DURATION + PAUSE_DURATION) {
+ const revealTime = performanceTime - WALK_DURATION - PAUSE_DURATION;
+ chestProgress = Math.min(revealTime / CHEST_OPEN_DURATION, 1.0);
+ }
+
+ document.getElementById('chestAperture').innerHTML = Math.round(chestProgress * 100) + '<span class="metric-unit">%</span>';
+
+ // Draw chest panels
+ ctx.fillStyle = '#FFD700';
+ ctx.strokeStyle = '#B8860B';
+ ctx.lineWidth = 2;
+
+ const chestX = -20;
+ const chestY = -30;
+ const panelSize = 25;
+ const openAngle = chestProgress * Math.PI / 3; // 60 degrees max
+
+ // Left panel
+ ctx.save();
+ ctx.translate(chestX, chestY);
+ ctx.rotate(-openAngle);
+ ctx.fillRect(-panelSize, -panelSize/2, panelSize, panelSize);
+ ctx.strokeRect(-panelSize, -panelSize/2, panelSize, panelSize);
+ ctx.restore();
+
+ // Right panel
+ ctx.save();
+ ctx.translate(chestX, chestY);
+ ctx.rotate(openAngle);
+ ctx.fillRect(0, -panelSize/2, panelSize, panelSize);
+ ctx.strokeRect(0, -panelSize/2, panelSize, panelSize);
+ ctx.restore();
+
+ // Fleur-de-lis (if revealed)
+ if (chestProgress > 0.5) {
+ const lilyProgress = Math.min((performanceTime - WALK_DURATION - PAUSE_DURATION - CHEST_OPEN_DURATION) / LILY_RISE_DURATION, 1.0);
+ const lilyY = chestY - lilyProgress * 20;
+
+ ctx.fillStyle = '#FFD700';
+ ctx.font = 'bold 20px serif';
+ ctx.textAlign = 'center';
+ ctx.fillText('', chestX, lilyY);
+ }
+
+ // Tail
+ ctx.strokeStyle = '#8B4513';
+ ctx.lineWidth = 3;
+ ctx.beginPath();
+ const tailWag = Math.sin(animationTime * 3) * 10;
+ ctx.moveTo(80, -30);
+ ctx.quadraticCurveTo(100, -20 + tailWag, 110, -10);
+ ctx.stroke();
+
+ ctx.restore();
+ }
+
+ function updatePerformance(dt) {
+ if (performanceActive) {
+ performanceTime += dt;
+
+ // Update phase
+ let phase = 'Idle';
+ if (performanceTime < WALK_DURATION) {
+ phase = 'Walking';
+ lionX += walkingSpeed * dt / 5;
+ animationTime += dt;
+ } else if (performanceTime < WALK_DURATION + PAUSE_DURATION) {
+ phase = 'Pausing';
+ } else if (performanceTime < WALK_DURATION + PAUSE_DURATION + CHEST_OPEN_DURATION) {
+ phase = 'Opening Chest';
+ } else if (performanceTime < WALK_DURATION + PAUSE_DURATION + CHEST_OPEN_DURATION + LILY_RISE_DURATION) {
+ phase = 'Revealing Lilies';
+ } else if (performanceTime < TOTAL_DURATION) {
+ phase = 'Displaying';
+ } else {
+ phase = 'Complete';
+ performanceActive = false;
+ }
+
+ document.getElementById('currentPhase').textContent = phase;
+ document.getElementById('sequenceValue').textContent = phase;
+ document.getElementById('elapsedTime').innerHTML = performanceTime.toFixed(1) + '<span class="metric-unit"> s</span>';
+
+ // Update timeline marker
+ const progress = Math.min(performanceTime / TOTAL_DURATION, 1.0) * 100;
+ document.getElementById('timelineMarker').style.left = progress + '%';
+ } else {
+ // Idle walking animation
+ animationTime += dt;
+ }
+ }
+
+ // Animation loop
+ let lastTime = Date.now();
+ function animate() {
+ const now = Date.now();
+ const dt = (now - lastTime) / 1000;
+ lastTime = now;
+
+ updatePerformance(dt);
+ drawLion();
+ requestAnimationFrame(animate);
+ }
+ animate();
+
+ // Tab switching
+ function switchTab(tabName) {
+ const tabs = document.querySelectorAll('.tab-content');
+ tabs.forEach(tab => tab.classList.remove('active'));
+
+ const buttons = document.querySelectorAll('.tab-button');
+ buttons.forEach(btn => btn.classList.remove('active'));
+
+ document.getElementById(tabName).classList.add('active');
+ event.target.classList.add('active');
+ }
+ </script>
 </body>
 </html>

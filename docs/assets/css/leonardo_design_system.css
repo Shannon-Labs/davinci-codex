@@ -1,59 +1,56 @@
-/* 🎨 Leonardo's Design System - Renaissance Digital Workshop */
+/* Leonardo Design System -- Renaissance Aesthetic */
 
-/* CSS Custom Properties - The Master's Palette */
+/* Custom Properties */
 :root {
-    /* 🎨 Renaissance Color Palette - Inspired by Leonardo's manuscripts */
-    --leonardo-ink: #2C1810;          /* Leonardo's walnut ink */
-    --leonardo-parchment: #F4E4C1;    /* Aged manuscript parchment */
+    /* Color Palette -- from manuscript pigments */
+    --leonardo-ink: #2C1810;
+    --leonardo-parchment: #F4E4C1;
     --leonardo-parchment-dark: #E8D4A8;
-    --leonardo-gold: #FFD700;         /* Renaissance gold leaf */
-    --leonardo-gold-dark: #B8860B;    /* Burnished gold */
-    --leonardo-crimson: #8B0000;      /* Cardinal's crimson */
+    --leonardo-gold: #c9a227;
+    --leonardo-gold-dark: #a38420;
+    --leonardo-crimson: #8B0000;
     --leonardo-crimson-light: #CD5C5C;
-    --leonardo-sage: #87A96B;         /* Tuscan sage */
+    --leonardo-sage: #87A96B;
     --leonardo-sage-light: #A4C2A5;
-    --leonardo-umber: #8B4513;        /* Raw umber */
+    --leonardo-umber: #8B4513;
     --leonardo-umber-light: #D2691E;
     --leonardo-shadow: rgba(44, 24, 16, 0.8);
     --leonardo-shadow-light: rgba(44, 24, 16, 0.4);
-    
-    /* 🖋️ Typography - The Master's Hand */
-    --font-leonardo-display: 'Cinzel', serif;        /* Renaissance display */
-    --font-leonardo-body: 'Crimson Text', serif;     /* Manuscript body */
-    --font-leonardo-mirror: 'Cinzel', serif;         /* Mirror writing */
-    --font-leonardo-marginalia: 'Courier New', monospace; /* Technical notes */
-    --font-leonardo-modern: 'Georgia', serif;        /* Contemporary clarity */
-    
-    /* 📐 Spacing - Golden Ratio Proportions */
-    --space-golden-sm: 0.618rem;   /* φ/2 */
-    --space-golden-md: 1rem;       /* Base */
-    --space-golden-lg: 1.618rem;   /* φ */
-    --space-golden-xl: 2.618rem;   /* φ² */
-    --space-golden-xxl: 4.236rem;  /* φ³ */
-    
-    /* ✨ Animations - Renaissance Theatrics */
+
+    /* Typography */
+    --font-leonardo-display: 'Cinzel', serif;
+    --font-leonardo-body: 'Crimson Text', serif;
+    --font-leonardo-mirror: 'Cinzel', serif;
+    --font-leonardo-marginalia: 'Courier New', monospace;
+    --font-leonardo-modern: 'Georgia', serif;
+
+    /* Spacing */
+    --space-golden-sm: 0.618rem;
+    --space-golden-md: 1rem;
+    --space-golden-lg: 1.618rem;
+    --space-golden-xl: 2.618rem;
+    --space-golden-xxl: 4.236rem;
+
+    /* Transitions */
     --anim-leonardo-slow: 1.618s ease-in-out;
-    --anim-leonardo-medium: 1s ease-in-out;
-    --anim-leonardo-fast: 0.618s ease-in-out;
-    --anim-leonardo-bounce: 0.618s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    
-    /* 🌟 Effects - Manuscript Illumination */
-    --glow-leonardo: 0 0 20px rgba(255, 215, 0, 0.3);
-    --glow-leonardo-strong: 0 0 30px rgba(255, 215, 0, 0.6);
-    --shadow-leonardo-manuscript: 3px 3px 10px rgba(44, 24, 16, 0.3);
-    --shadow-leonardo-elevated: 5px 5px 15px rgba(44, 24, 16, 0.4);
+    --anim-leonardo-medium: 0.35s ease;
+    --anim-leonardo-fast: 0.2s ease;
+
+    /* Shadows */
+    --shadow-leonardo-manuscript: 2px 2px 8px rgba(44, 24, 16, 0.15);
+    --shadow-leonardo-elevated: 4px 4px 12px rgba(44, 24, 16, 0.2);
 }
 
-/* 🖋️ Leonardo's Hand - Typography System */
+/* Display Typography */
 .leonardo-display {
     font-family: var(--font-leonardo-display);
-    font-weight: 600;
-    letter-spacing: 0.05em;
+    font-weight: 400;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--leonardo-ink);
-    text-shadow: 1px 1px 2px rgba(44, 24, 16, 0.2);
 }
 
+/* Body Text */
 .leonardo-body {
     font-family: var(--font-leonardo-body);
     font-weight: 400;
@@ -61,6 +58,7 @@
     color: var(--leonardo-ink);
 }
 
+/* Mirror Writing */
 .leonardo-mirror {
     font-family: var(--font-leonardo-mirror);
     font-weight: 400;
@@ -74,10 +72,11 @@
 
 .leonardo-mirror:hover {
     opacity: 1;
-    transform: scaleX(-1) scale(1.05);
+    transform: scaleX(-1) scale(1.02);
     color: var(--leonardo-gold);
 }
 
+/* Marginalia */
 .leonardo-marginalia {
     font-family: var(--font-leonardo-marginalia);
     font-size: 0.875rem;
@@ -89,7 +88,7 @@
     margin: var(--space-golden-md) 0;
 }
 
-/* 🎨 Color Utilities */
+/* Background Utilities */
 .leonardo-bg-parchment {
     background: linear-gradient(135deg, var(--leonardo-parchment), var(--leonardo-parchment-dark));
 }
@@ -99,44 +98,18 @@
     color: var(--leonardo-parchment);
 }
 
-.leonardo-glow {
-    box-shadow: var(--glow-leonardo);
-}
-
-.leonardo-glow-strong {
-    box-shadow: var(--glow-leonardo-strong);
-}
-
-/* ✨ Interactive Elements - Leonardo's Touch */
+/* Button */
 .leonardo-button {
-    background: linear-gradient(45deg, var(--leonardo-crimson), var(--leonardo-crimson-light));
+    background: var(--leonardo-crimson);
     color: var(--leonardo-parchment);
     border: none;
     padding: var(--space-golden-sm) var(--space-golden-lg);
-    border-radius: var(--space-golden-sm);
     font-family: var(--font-leonardo-display);
     font-size: 0.9rem;
     letter-spacing: 0.05em;
     cursor: pointer;
     transition: all var(--anim-leonardo-medium);
     box-shadow: var(--shadow-leonardo-manuscript);
-    position: relative;
-    overflow: hidden;
-}
-
-.leonardo-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
-    transition: left var(--anim-leonardo-slow);
-}
-
-.leonardo-button:hover::before {
-    left: 100%;
 }
 
 .leonardo-button:hover {
@@ -144,14 +117,13 @@
     box-shadow: var(--shadow-leonardo-elevated);
 }
 
-/* 📚 Manuscript Layout - Golden Ratio Grids */
+/* Manuscript Layout */
 .leonardo-manuscript {
     display: grid;
     grid-template-columns: 1fr 1.618fr 1fr;
     gap: var(--space-golden-lg);
     padding: var(--space-golden-xl);
     background: var(--leonardo-bg-parchment);
-    border-radius: var(--space-golden-md);
     box-shadow: var(--shadow-leonardo-manuscript);
 }
 
@@ -159,7 +131,6 @@
     grid-column: 2;
     background: rgba(255, 255, 255, 0.7);
     padding: var(--space-golden-lg);
-    border-radius: var(--space-golden-sm);
     border: 1px solid rgba(139, 69, 19, 0.1);
 }
 
@@ -183,7 +154,7 @@
     padding-left: var(--space-golden-sm);
 }
 
-/* 🔍 Mirror Writing Decoder - Interactive Tool */
+/* Mirror Writing Decoder */
 .leonardo-mirror-decoder {
     position: relative;
     display: inline-block;
@@ -220,7 +191,7 @@
     opacity: 0.8;
 }
 
-/* 🎭 Theatrical Elements - Renaissance Drama */
+/* Reveal Animation */
 .leonardo-reveal {
     opacity: 0;
     transform: translateY(20px);
@@ -234,42 +205,34 @@
     }
 }
 
-.leonardo-pulse {
-    animation: leonardoPulse 2s infinite;
-}
-
-@keyframes leonardoPulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.6; }
-}
-
-/* 🖼️ Illuminated Capitals - Manuscript Art */
+/* Illuminated Capital */
 .leonardo-illuminated-capital {
     font-family: var(--font-leonardo-display);
     font-size: 3em;
-    font-weight: 700;
+    font-weight: 400;
     color: var(--leonardo-crimson);
-    text-shadow: 2px 2px 4px rgba(139, 0, 0, 0.3);
     float: left;
     line-height: 0.8;
     margin: 0.1em 0.1em 0 0;
     padding: 0.1em;
-    border: 2px solid var(--leonardo-gold);
-    border-radius: 4px;
-    background: linear-gradient(45deg, var(--leonardo-parchment), rgba(255, 215, 0, 0.1));
+    border: 1px solid var(--leonardo-gold);
+    background: linear-gradient(135deg,
+        rgba(201, 162, 39, 0.08) 0%,
+        rgba(244, 228, 193, 0.4) 50%,
+        rgba(201, 162, 39, 0.08) 100%);
 }
 
-/* 📱 Responsive Design - Modern Renaissance */
+/* Responsive */
 @media (max-width: 768px) {
     .leonardo-manuscript {
         grid-template-columns: 1fr;
         gap: var(--space-golden-md);
     }
-    
+
     .leonardo-main-content {
         grid-column: 1;
     }
-    
+
     .leonardo-marginalia-left,
     .leonardo-marginalia-right {
         text-align: center;
@@ -280,13 +243,13 @@
     }
 }
 
-/* 🎨 Print Styles - Physical Manuscript */
+/* Print */
 @media print {
     .leonardo-manuscript {
         background: white;
         box-shadow: none;
     }
-    
+
     .leonardo-button {
         border: 2px solid var(--leonardo-crimson);
         background: none;

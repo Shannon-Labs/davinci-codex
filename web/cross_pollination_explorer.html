@@ -1,1107 +1,1106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leonardo's Cross-Pollination Explorer - Innovation Network</title>
-    <link rel="stylesheet" href="leonardo_design_system.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: var(--leonardo-bg-parchment);
-            font-family: var(--font-leonardo-body);
-            min-height: 100vh;
-            overflow: hidden;
-        }
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Leonardo's Cross-Pollination Explorer - Innovation Network</title>
+ <link rel="stylesheet" href="leonardo_design_system.css">
+ <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+ <style>
+ body {
+ margin: 0;
+ padding: 0;
+ background: var(--leonardo-bg-parchment);
+ font-family: var(--font-leonardo-body);
+ min-height: 100vh;
+ overflow: hidden;
+ }
 
-        .cross-pollination-container {
-            max-width: 100vw;
-            margin: 0 auto;
-            padding: var(--space-golden-lg);
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
+ .cross-pollination-container {
+ max-width: 100vw;
+ margin: 0 auto;
+ padding: var(--space-golden-lg);
+ height: 100vh;
+ display: flex;
+ flex-direction: column;
+ }
 
-        .header-section {
-            text-align: center;
-            margin-bottom: var(--space-golden-lg);
-            padding: var(--space-golden-lg);
-            background: rgba(255, 255, 255, 0.7);
-            border-radius: var(--space-golden-lg);
-            box-shadow: var(--shadow-leonardo-manuscript);
-        }
+ .header-section {
+ text-align: center;
+ margin-bottom: var(--space-golden-lg);
+ padding: var(--space-golden-lg);
+ background: rgba(255, 255, 255, 0.7);
+ border-radius: var(--space-golden-lg);
+ box-shadow: var(--shadow-leonardo-manuscript);
+ }
 
-        .main-title {
-            font-family: var(--font-leonardo-display);
-            font-size: 3em;
-            color: var(--leonardo-ink);
-            margin-bottom: var(--space-golden-md);
-            text-shadow: 2px 2px 4px rgba(44, 24, 16, 0.2);
-        }
+ .main-title {
+ font-family: var(--font-leonardo-display);
+ font-size: 3em;
+ color: var(--leonardo-ink);
+ margin-bottom: var(--space-golden-md);
+ text-shadow: 2px 2px 4px rgba(44, 24, 16, 0.2);
+ }
 
-        .subtitle {
-            font-size: 1.3em;
-            color: var(--leonardo-umber);
-            font-style: italic;
-            margin-bottom: var(--space-golden-lg);
-        }
+ .subtitle {
+ font-size: 1.3em;
+ color: var(--leonardo-umber);
+ font-style: italic;
+ margin-bottom: var(--space-golden-lg);
+ }
 
-        .leonardo-quote {
-            background: rgba(139, 0, 0, 0.05);
-            border: 1px solid var(--leonardo-crimson);
-            border-radius: var(--space-golden-sm);
-            padding: var(--space-golden-md);
-            margin: var(--space-golden-lg) auto;
-            max-width: 700px;
-            font-style: italic;
-            position: relative;
-        }
+ .leonardo-quote {
+ background: rgba(139, 0, 0, 0.05);
+ border: 1px solid var(--leonardo-crimson);
+ border-radius: var(--space-golden-sm);
+ padding: var(--space-golden-md);
+ margin: var(--space-golden-lg) auto;
+ max-width: 700px;
+ font-style: italic;
+ position: relative;
+ }
 
-        .quote-text {
-            font-size: 1.2em;
-            margin-bottom: var(--space-golden-sm);
-        }
+ .quote-text {
+ font-size: 1.2em;
+ margin-bottom: var(--space-golden-sm);
+ }
 
-        .quote-attribution {
-            font-size: 0.9em;
-            color: var(--leonardo-umber);
-            text-align: right;
-        }
+ .quote-attribution {
+ font-size: 0.9em;
+ color: var(--leonardo-umber);
+ text-align: right;
+ }
 
-        .explorer-layout {
-            display: grid;
-            grid-template-columns: 300px 1fr 280px;
-            gap: var(--space-golden-lg);
-            flex: 1;
-            min-height: 0;
-        }
+ .explorer-layout {
+ display: grid;
+ grid-template-columns: 300px 1fr 280px;
+ gap: var(--space-golden-lg);
+ flex: 1;
+ min-height: 0;
+ }
 
-        .inventions-panel {
-            background: rgba(255, 255, 255, 0.8);
-            padding: var(--space-golden-lg);
-            border-radius: var(--space-golden-md);
-            box-shadow: var(--shadow-leonardo-manuscript);
-            overflow-y: auto;
-        }
+ .inventions-panel {
+ background: rgba(255, 255, 255, 0.8);
+ padding: var(--space-golden-lg);
+ border-radius: var(--space-golden-md);
+ box-shadow: var(--shadow-leonardo-manuscript);
+ overflow-y: auto;
+ }
 
-        .network-canvas-container {
-            background: rgba(255, 255, 255, 0.9);
-            padding: var(--space-golden-lg);
-            border-radius: var(--space-golden-lg);
-            box-shadow: var(--shadow-leonardo-elevated);
-            position: relative;
-            overflow: hidden;
-        }
+ .network-canvas-container {
+ background: rgba(255, 255, 255, 0.9);
+ padding: var(--space-golden-lg);
+ border-radius: var(--space-golden-lg);
+ box-shadow: var(--shadow-leonardo-elevated);
+ position: relative;
+ overflow: hidden;
+ }
 
-        .details-panel {
-            background: rgba(255, 255, 255, 0.8);
-            padding: var(--space-golden-lg);
-            border-radius: var(--space-golden-md);
-            box-shadow: var(--shadow-leonardo-manuscript);
-            overflow-y: auto;
-        }
+ .details-panel {
+ background: rgba(255, 255, 255, 0.8);
+ padding: var(--space-golden-lg);
+ border-radius: var(--space-golden-md);
+ box-shadow: var(--shadow-leonardo-manuscript);
+ overflow-y: auto;
+ }
 
-        .panel-title {
-            font-family: var(--font-leonardo-display);
-            font-size: 1.5em;
-            color: var(--leonardo-crimson);
-            margin-bottom: var(--space-golden-md);
-            text-align: center;
-        }
+ .panel-title {
+ font-family: var(--font-leonardo-display);
+ font-size: 1.5em;
+ color: var(--leonardo-crimson);
+ margin-bottom: var(--space-golden-md);
+ text-align: center;
+ }
 
-        .invention-category {
-            margin-bottom: var(--space-golden-lg);
-        }
+ .invention-category {
+ margin-bottom: var(--space-golden-lg);
+ }
 
-        .category-title {
-            font-family: var(--font-leonardo-display);
-            font-size: 1.2em;
-            color: var(--leonardo-umber);
-            margin-bottom: var(--space-golden-sm);
-            border-bottom: 2px solid var(--leonardo-gold);
-            padding-bottom: var(--space-golden-xs);
-        }
+ .category-title {
+ font-family: var(--font-leonardo-display);
+ font-size: 1.2em;
+ color: var(--leonardo-umber);
+ margin-bottom: var(--space-golden-sm);
+ border-bottom: 2px solid var(--leonardo-gold);
+ padding-bottom: var(--space-golden-xs);
+ }
 
-        .invention-item {
-            background: rgba(255, 255, 255, 0.7);
-            border: 2px solid var(--leonardo-umber-light);
-            border-radius: var(--space-golden-sm);
-            padding: var(--space-golden-md);
-            margin: var(--space-golden-sm) 0;
-            cursor: pointer;
-            transition: all var(--anim-leonardo-medium);
-            position: relative;
-        }
+ .invention-item {
+ background: rgba(255, 255, 255, 0.7);
+ border: 2px solid var(--leonardo-umber-light);
+ border-radius: var(--space-golden-sm);
+ padding: var(--space-golden-md);
+ margin: var(--space-golden-sm) 0;
+ cursor: pointer;
+ transition: all var(--anim-leonardo-medium);
+ position: relative;
+ }
 
-        .invention-item:hover {
-            border-color: var(--leonardo-gold);
-            background: rgba(255, 215, 0, 0.1);
-            transform: translateX(5px);
-        }
+ .invention-item:hover {
+ border-color: var(--leonardo-gold);
+ background: rgba(255, 215, 0, 0.1);
+ transform: translateX(5px);
+ }
 
-        .invention-item.active {
-            border-color: var(--leonardo-crimson);
-            background: rgba(139, 0, 0, 0.1);
-        }
+ .invention-item.active {
+ border-color: var(--leonardo-crimson);
+ background: rgba(139, 0, 0, 0.1);
+ }
 
-        .invention-icon {
-            font-size: 1.5em;
-            text-align: center;
-            margin-bottom: var(--space-golden-sm);
-        }
+ .invention-icon {
+ font-size: 1.5em;
+ text-align: center;
+ margin-bottom: var(--space-golden-sm);
+ }
 
-        .invention-name {
-            font-family: var(--font-leonardo-display);
-            font-size: 1.1em;
-            color: var(--leonardo-ink);
-            text-align: center;
-            margin-bottom: var(--space-golden-xs);
-        }
+ .invention-name {
+ font-family: var(--font-leonardo-display);
+ font-size: 1.1em;
+ color: var(--leonardo-ink);
+ text-align: center;
+ margin-bottom: var(--space-golden-xs);
+ }
 
-        .invention-date {
-            font-size: 0.8em;
-            color: var(--leonardo-umber);
-            text-align: center;
-            font-style: italic;
-        }
+ .invention-date {
+ font-size: 0.8em;
+ color: var(--leonardo-umber);
+ text-align: center;
+ font-style: italic;
+ }
 
-        .network-canvas {
-            width: 100%;
-            height: 100%;
-            min-height: 500px;
-            border-radius: var(--space-golden-md);
-        }
+ .network-canvas {
+ width: 100%;
+ height: 100%;
+ min-height: 500px;
+ border-radius: var(--space-golden-md);
+ }
 
-        .network-controls {
-            position: absolute;
-            top: var(--space-golden-lg);
-            right: var(--space-golden-lg);
-            background: rgba(255, 255, 255, 0.95);
-            border: 2px solid var(--leonardo-gold);
-            border-radius: var(--space-golden-sm);
-            padding: var(--space-golden-md);
-            box-shadow: var(--shadow-leonardo-elevated);
-        }
+ .network-controls {
+ position: absolute;
+ top: var(--space-golden-lg);
+ right: var(--space-golden-lg);
+ background: rgba(255, 255, 255, 0.95);
+ border: 2px solid var(--leonardo-gold);
+ border-radius: var(--space-golden-sm);
+ padding: var(--space-golden-md);
+ box-shadow: var(--shadow-leonardo-elevated);
+ }
 
-        .control-group {
-            margin-bottom: var(--space-golden-md);
-        }
+ .control-group {
+ margin-bottom: var(--space-golden-md);
+ }
 
-        .control-label {
-            font-family: var(--font-leonardo-display);
-            font-size: 0.9em;
-            color: var(--leonardo-umber);
-            margin-bottom: var(--space-golden-xs);
-            display: block;
-        }
+ .control-label {
+ font-family: var(--font-leonardo-display);
+ font-size: 0.9em;
+ color: var(--leonardo-umber);
+ margin-bottom: var(--space-golden-xs);
+ display: block;
+ }
 
-        .control-button {
-            background: linear-gradient(45deg, var(--leonardo-umber), var(--leonardo-umber-light));
-            color: var(--leonardo-parchment);
-            border: none;
-            padding: var(--space-golden-xs) var(--space-golden-sm);
-            border-radius: var(--space-golden-xs);
-            font-family: var(--font-leonardo-display);
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: all var(--anim-leonardo-medium);
-            margin: 2px;
-        }
+ .control-button {
+ background: linear-gradient(45deg, var(--leonardo-umber), var(--leonardo-umber-light));
+ color: var(--leonardo-parchment);
+ border: none;
+ padding: var(--space-golden-xs) var(--space-golden-sm);
+ border-radius: var(--space-golden-xs);
+ font-family: var(--font-leonardo-display);
+ font-size: 0.8rem;
+ cursor: pointer;
+ transition: all var(--anim-leonardo-medium);
+ margin: 2px;
+ }
 
-        .control-button:hover {
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-leonardo-manuscript);
-        }
+ .control-button:hover {
+ transform: translateY(-1px);
+ box-shadow: var(--shadow-leonardo-manuscript);
+ }
 
-        .control-button.active {
-            background: linear-gradient(45deg, var(--leonardo-crimson), var(--leonardo-crimson-light));
-        }
+ .control-button.active {
+ background: linear-gradient(45deg, var(--leonardo-crimson), var(--leonardo-crimson-light));
+ }
 
-        .detail-section {
-            margin-bottom: var(--space-golden-lg);
-        }
+ .detail-section {
+ margin-bottom: var(--space-golden-lg);
+ }
 
-        .detail-title {
-            font-family: var(--font-leonardo-display);
-            font-size: 1.2em;
-            color: var(--leonardo-crimson);
-            margin-bottom: var(--space-golden-sm);
-        }
+ .detail-title {
+ font-family: var(--font-leonardo-display);
+ font-size: 1.2em;
+ color: var(--leonardo-crimson);
+ margin-bottom: var(--space-golden-sm);
+ }
 
-        .detail-content {
-            color: var(--leonardo-umber);
-            line-height: 1.6;
-        }
+ .detail-content {
+ color: var(--leonardo-umber);
+ line-height: 1.6;
+ }
 
-        .connection-list {
-            list-style: none;
-            padding: 0;
-        }
+ .connection-list {
+ list-style: none;
+ padding: 0;
+ }
 
-        .connection-item {
-            background: rgba(255, 215, 0, 0.1);
-            border-left: 4px solid var(--leonardo-gold);
-            padding: var(--space-golden-sm);
-            margin: var(--space-golden-xs) 0;
-            border-radius: 0 var(--space-golden-xs) var(--space-golden-xs) 0;
-            font-size: 0.9em;
-            color: var(--leonardo-umber);
-        }
+ .connection-item {
+ background: rgba(255, 215, 0, 0.1);
+ border-left: 4px solid var(--leonardo-gold);
+ padding: var(--space-golden-sm);
+ margin: var(--space-golden-xs) 0;
+ border-radius: 0 var(--space-golden-xs) var(--space-golden-xs) 0;
+ font-size: 0.9em;
+ color: var(--leonardo-umber);
+ }
 
-        .connection-type {
-            font-weight: bold;
-            color: var(--leonardo-crimson);
-        }
+ .connection-type {
+ font-weight: bold;
+ color: var(--leonardo-crimson);
+ }
 
-        .influence-strength {
-            display: inline-block;
-            width: 20px;
-            height: 8px;
-            background: var(--leonardo-gold);
-            border-radius: 4px;
-            margin-left: var(--space-golden-xs);
-        }
+ .influence-strength {
+ display: inline-block;
+ width: 20px;
+ height: 8px;
+ background: var(--leonardo-gold);
+ border-radius: 4px;
+ margin-left: var(--space-golden-xs);
+ }
 
-        .influence-strength.strong {
-            width: 30px;
-            background: var(--leonardo-crimson);
-        }
+ .influence-strength.strong {
+ width: 30px;
+ background: var(--leonardo-crimson);
+ }
 
-        .influence-strength.medium {
-            width: 20px;
-            background: var(--leonardo-gold);
-        }
+ .influence-strength.medium {
+ width: 20px;
+ background: var(--leonardo-gold);
+ }
 
-        .influence-strength.weak {
-            width: 10px;
-            background: var(--leonardo-umber-light);
-        }
+ .influence-strength.weak {
+ width: 10px;
+ background: var(--leonardo-umber-light);
+ }
 
-        .legend {
-            background: rgba(255, 255, 255, 0.9);
-            border: 2px solid var(--leonardo-gold);
-            border-radius: var(--space-golden-sm);
-            padding: var(--space-golden-md);
-            margin-top: var(--space-golden-lg);
-        }
+ .legend {
+ background: rgba(255, 255, 255, 0.9);
+ border: 2px solid var(--leonardo-gold);
+ border-radius: var(--space-golden-sm);
+ padding: var(--space-golden-md);
+ margin-top: var(--space-golden-lg);
+ }
 
-        .legend-title {
-            font-family: var(--font-leonardo-display);
-            font-size: 1em;
-            color: var(--leonardo-crimson);
-            margin-bottom: var(--space-golden-sm);
-            text-align: center;
-        }
+ .legend-title {
+ font-family: var(--font-leonardo-display);
+ font-size: 1em;
+ color: var(--leonardo-crimson);
+ margin-bottom: var(--space-golden-sm);
+ text-align: center;
+ }
 
-        .legend-item {
-            display: flex;
-            align-items: center;
-            margin: var(--space-golden-xs) 0;
-            font-size: 0.8em;
-            color: var(--leonardo-umber);
-        }
+ .legend-item {
+ display: flex;
+ align-items: center;
+ margin: var(--space-golden-xs) 0;
+ font-size: 0.8em;
+ color: var(--leonardo-umber);
+ }
 
-        .legend-color {
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            margin-right: var(--space-golden-xs);
-        }
+ .legend-color {
+ width: 16px;
+ height: 16px;
+ border-radius: 50%;
+ margin-right: var(--space-golden-xs);
+ }
 
-        .footer {
-            text-align: center;
-            padding: var(--space-golden-xl);
-            background: rgba(44, 24, 16, 0.9);
-            color: var(--leonardo-parchment);
-            border-radius: var(--space-golden-lg);
-            margin-top: var(--space-golden-xl);
-        }
+ .footer {
+ text-align: center;
+ padding: var(--space-golden-xl);
+ background: rgba(44, 24, 16, 0.9);
+ color: var(--leonardo-parchment);
+ border-radius: var(--space-golden-lg);
+ margin-top: var(--space-golden-xl);
+ }
 
-        .footer-text {
-            font-style: italic;
-            opacity: 0.8;
-        }
+ .footer-text {
+ font-style: italic;
+ opacity: 0.8;
+ }
 
-        @media (max-width: 1200px) {
-            .explorer-layout {
-                grid-template-columns: 1fr;
-                gap: var(--space-golden-md);
-            }
-            
-            .inventions-panel,
-            .details-panel {
-                order: 2;
-                max-height: 300px;
-            }
-            
-            .network-canvas-container {
-                order: 1;
-                min-height: 400px;
-            }
-        }
+ @media (max-width: 1200px) {
+ .explorer-layout {
+ grid-template-columns: 1fr;
+ gap: var(--space-golden-md);
+ }
+ 
+ .inventions-panel,
+ .details-panel {
+ order: 2;
+ max-height: 300px;
+ }
+ 
+ .network-canvas-container {
+ order: 1;
+ min-height: 400px;
+ }
+ }
 
-        @media (max-width: 768px) {
-            .main-title {
-                font-size: 2.5em;
-            }
-            
-            .cross-pollination-container {
-                padding: var(--space-golden-md);
-            }
-        }
-    </style>
+ @media (max-width: 768px) {
+ .main-title {
+ font-size: 2.5em;
+ }
+ 
+ .cross-pollination-container {
+ padding: var(--space-golden-md);
+ }
+ }
+ </style>
 </head>
 <body>
-    <div class="cross-pollination-container">
-        <header class="header-section leonardo-reveal">
-            <h1 class="main-title">Cross-Pollination Explorer</h1>
-            <p class="subtitle">Discover how Leonardo's inventions influenced and inspired each other</p>
-            
-            <div class="leonardo-quote">
-                <div class="quote-text">Obstacles do not bend me. Every obstacle yields to stern resolve. Learning never exhausts the mind.</div>
-                <div class="quote-attribution">— Leonardo da Vinci, Codex Atlanticus</div>
-            </div>
-        </header>
+ <div class="cross-pollination-container">
+ <header class="header-section leonardo-reveal">
+ <h1 class="main-title">Cross-Pollination Explorer</h1>
+ <p class="subtitle">Discover how Leonardo's inventions influenced and inspired each other</p>
+ 
+ <div class="leonardo-quote">
+ <div class="quote-text">Obstacles do not bend me. Every obstacle yields to stern resolve. Learning never exhausts the mind.</div>
+ <div class="quote-attribution">— Leonardo da Vinci, Codex Atlanticus</div>
+ </div>
+ </header>
 
-        <div class="explorer-layout">
-            <aside class="inventions-panel">
-                <h2 class="panel-title">Leonardo's Inventions</h2>
-                
-                <div class="invention-category">
-                    <h3 class="category-title">🎨 Musical Instruments</h3>
-                    
-                    <div class="invention-item" data-invention="viola-organista" onclick="selectInvention('viola-organista')">
-                        <div class="invention-icon">🎻</div>
-                        <div class="invention-name">Viola Organista</div>
-                        <div class="invention-date">c. 1488-1490</div>
-                    </div>
-                    
-                    <div class="invention-item" data-invention="mechanical-drum" onclick="selectInvention('mechanical-drum')">
-                        <div class="invention-icon">🥁</div>
-                        <div class="invention-name">Mechanical Drum</div>
-                        <div class="invention-date">c. 1490-1495</div>
-                    </div>
-                    
-                    <div class="invention-item" data-invention="programmable-flute" onclick="selectInvention('programmable-flute')">
-                        <div class="invention-icon">🎵</div>
-                        <div class="invention-name">Programmable Flute</div>
-                        <div class="invention-date">c. 1502</div>
-                    </div>
-                </div>
+ <div class="explorer-layout">
+ <aside class="inventions-panel">
+ <h2 class="panel-title">Leonardo's Inventions</h2>
+ 
+ <div class="invention-category">
+ <h3 class="category-title">Musical Instruments</h3>
+ 
+ <div class="invention-item" data-invention="viola-organista" onclick="selectInvention('viola-organista')">
+ <div class="invention-icon"></div>
+ <div class="invention-name">Viola Organista</div>
+ <div class="invention-date">c. 1488-1490</div>
+ </div>
+ 
+ <div class="invention-item" data-invention="mechanical-drum" onclick="selectInvention('mechanical-drum')">
+ <div class="invention-icon"></div>
+ <div class="invention-name">Mechanical Drum</div>
+ <div class="invention-date">c. 1490-1495</div>
+ </div>
+ 
+ <div class="invention-item" data-invention="programmable-flute" onclick="selectInvention('programmable-flute')">
+ <div class="invention-icon"></div>
+ <div class="invention-name">Programmable Flute</div>
+ <div class="invention-date">c. 1502</div>
+ </div>
+ </div>
 
-                <div class="invention-category">
-                    <h3 class="category-title">🕊️ Flying Machines</h3>
-                    
-                    <div class="invention-item" data-invention="ornithopter" onclick="selectInvention('ornithopter')">
-                        <div class="invention-icon">🪽</div>
-                        <div class="invention-name">Ornithopter</div>
-                        <div class="invention-date">c. 1485-1490</div>
-                    </div>
-                    
-                    <div class="invention-item" data-invention="aerial-screw" onclick="selectInvention('aerial-screw')">
-                        <div class="invention-icon">🚁</div>
-                        <div class="invention-name">Aerial Screw</div>
-                        <div class="invention-date">c. 1489</div>
-                    </div>
-                    
-                    <div class="invention-item" data-invention="parachute" onclick="selectInvention('parachute')">
-                        <div class="invention-icon">🪂</div>
-                        <div class="invention-name">Pyramid Parachute</div>
-                        <div class="invention-date">c. 1485</div>
-                    </div>
-                </div>
+ <div class="invention-category">
+ <h3 class="category-title">Flying Machines</h3>
+ 
+ <div class="invention-item" data-invention="ornithopter" onclick="selectInvention('ornithopter')">
+ <div class="invention-icon"></div>
+ <div class="invention-name">Ornithopter</div>
+ <div class="invention-date">c. 1485-1490</div>
+ </div>
+ 
+ <div class="invention-item" data-invention="aerial-screw" onclick="selectInvention('aerial-screw')">
+ <div class="invention-icon"></div>
+ <div class="invention-name">Aerial Screw</div>
+ <div class="invention-date">c. 1489</div>
+ </div>
+ 
+ <div class="invention-item" data-invention="parachute" onclick="selectInvention('parachute')">
+ <div class="invention-icon"></div>
+ <div class="invention-name">Pyramid Parachute</div>
+ <div class="invention-date">c. 1485</div>
+ </div>
+ </div>
 
-                <div class="invention-category">
-                    <h3 class="category-title">⚙️ Mechanical Devices</h3>
-                    
-                    <div class="invention-item" data-invention="automobile" onclick="selectInvention('automobile')">
-                        <div class="invention-icon">🚗</div>
-                        <div class="invention-name">Self-Propelled Cart</div>
-                        <div class="invention-date">c. 1478</div>
-                    </div>
-                    
-                    <div class="invention-item" data-invention="robotic-knight" onclick="selectInvention('robotic-knight')">
-                        <div class="invention-icon">🤖</div>
-                        <div class="invention-name">Mechanical Knight</div>
-                        <div class="invention-date">c. 1495</div>
-                    </div>
-                    
-                    <div class="invention-item" data-invention="calculator" onclick="selectInvention('calculator')">
-                        <div class="invention-icon">🧮</div>
-                        <div class="invention-name">Mechanical Calculator</div>
-                        <div class="invention-date">c. 1504</div>
-                    </div>
-                </div>
+ <div class="invention-category">
+ <h3 class="category-title">Mechanical Devices</h3>
+ 
+ <div class="invention-item" data-invention="automobile" onclick="selectInvention('automobile')">
+ <div class="invention-icon"></div>
+ <div class="invention-name">Self-Propelled Cart</div>
+ <div class="invention-date">c. 1478</div>
+ </div>
+ 
+ <div class="invention-item" data-invention="robotic-knight" onclick="selectInvention('robotic-knight')">
+ <div class="invention-icon"></div>
+ <div class="invention-name">Mechanical Knight</div>
+ <div class="invention-date">c. 1495</div>
+ </div>
+ 
+ <div class="invention-item" data-invention="calculator" onclick="selectInvention('calculator')">
+ <div class="invention-icon"></div>
+ <div class="invention-name">Mechanical Calculator</div>
+ <div class="invention-date">c. 1504</div>
+ </div>
+ </div>
 
-                <div class="invention-category">
-                    <h3 class="category-title">🏛️ Military Engineering</h3>
-                    
-                    <div class="invention-item" data-invention="giant-crossbow" onclick="selectInvention('giant-crossbow')">
-                        <div class="invention-icon">🏹</div>
-                        <div class="invention-name">Giant Crossbow</div>
-                        <div class="invention-date">c. 1485</div>
-                    </div>
-                    
-                    <div class="invention-item" data-invention="tank" onclick="selectInvention('tank')">
-                        <div class="invention-icon">🛡️</div>
-                        <div class="invention-name">Armored Vehicle</div>
-                        <div class="invention-date">c. 1487</div>
-                    </div>
-                    
-                    <div class="invention-item" data-invention="siege-tower" onclick="selectInvention('siege-tower')">
-                        <div class="invention-icon">🏰</div>
-                        <div class="invention-name">Scaling Ladder</div>
-                        <div class="invention-date">c. 1480</div>
-                    </div>
-                </div>
-            </aside>
+ <div class="invention-category">
+ <h3 class="category-title">Military Engineering</h3>
+ 
+ <div class="invention-item" data-invention="giant-crossbow" onclick="selectInvention('giant-crossbow')">
+ <div class="invention-icon"></div>
+ <div class="invention-name">Giant Crossbow</div>
+ <div class="invention-date">c. 1485</div>
+ </div>
+ 
+ <div class="invention-item" data-invention="tank" onclick="selectInvention('tank')">
+ <div class="invention-icon"></div>
+ <div class="invention-name">Armored Vehicle</div>
+ <div class="invention-date">c. 1487</div>
+ </div>
+ 
+ <div class="invention-item" data-invention="siege-tower" onclick="selectInvention('siege-tower')">
+ <div class="invention-icon"></div>
+ <div class="invention-name">Scaling Ladder</div>
+ <div class="invention-date">c. 1480</div>
+ </div>
+ </div>
+ </aside>
 
-            <main class="network-canvas-container">
-                <h2 class="panel-title">Innovation Network</h2>
-                
-                <canvas id="network-canvas" class="network-canvas"></canvas>
-                
-                <div class="network-controls">
-                    <div class="control-group">
-                        <label class="control-label">View Mode:</label>
-                        <button class="control-button active" onclick="setViewMode('all')">All Connections</button>
-                        <button class="control-button" onclick="setViewMode('strong')">Strong Only</button>
-                        <button class="control-button" onclick="setViewMode('timeline')">Timeline</button>
-                    </div>
-                    
-                    <div class="control-group">
-                        <label class="control-label">Layout:</label>
-                        <button class="control-button" onclick="setLayout('force')">Force-Directed</button>
-                        <button class="control-button" onclick="setLayout('circular')">Circular</button>
-                        <button class="control-button" onclick="setLayout('spiral')">Spiral</button>
-                    </div>
-                    
-                    <div class="control-group">
-                        <label class="control-label">Animation:</label>
-                        <button class="control-button" onclick="toggleAnimation()">Play/Pause</button>
-                        <button class="control-button" onclick="resetNetwork()">Reset</button>
-                    </div>
-                </div>
-            </main>
+ <main class="network-canvas-container">
+ <h2 class="panel-title">Innovation Network</h2>
+ 
+ <canvas id="network-canvas" class="network-canvas"></canvas>
+ 
+ <div class="network-controls">
+ <div class="control-group">
+ <label class="control-label">View Mode:</label>
+ <button class="control-button active" onclick="setViewMode('all')">All Connections</button>
+ <button class="control-button" onclick="setViewMode('strong')">Strong Only</button>
+ <button class="control-button" onclick="setViewMode('timeline')">Timeline</button>
+ </div>
+ 
+ <div class="control-group">
+ <label class="control-label">Layout:</label>
+ <button class="control-button" onclick="setLayout('force')">Force-Directed</button>
+ <button class="control-button" onclick="setLayout('circular')">Circular</button>
+ <button class="control-button" onclick="setLayout('spiral')">Spiral</button>
+ </div>
+ 
+ <div class="control-group">
+ <label class="control-label">Animation:</label>
+ <button class="control-button" onclick="toggleAnimation()">Play/Pause</button>
+ <button class="control-button" onclick="resetNetwork()">Reset</button>
+ </div>
+ </div>
+ </main>
 
-            <aside class="details-panel">
-                <h2 class="panel-title">Connection Details</h2>
-                
-                <div id="invention-details">
-                    <div class="detail-section">
-                        <h3 class="detail-title">Select an Invention</h3>
-                        <div class="detail-content">
-                            Click on any invention in the left panel to explore its connections with Leonardo's other works.
-                        </div>
-                    </div>
-                </div>
+ <aside class="details-panel">
+ <h2 class="panel-title">Connection Details</h2>
+ 
+ <div id="invention-details">
+ <div class="detail-section">
+ <h3 class="detail-title">Select an Invention</h3>
+ <div class="detail-content">Click on any invention in the left panel to explore its connections with Leonardo's other works.
+ </div>
+ </div>
+ </div>
 
-                <div class="leonardo-insights">
-                    <h3 class="insight-title">💡 Leonardo's Insight</h3>
-                    <div class="insight-text" id="leonardo-insight">
-                        Each invention is a node in the network of my understanding. Observe how the flying machine connects to the musical instruments through the mathematics of harmony.
-                    </div>
-                </div>
+ <div class="leonardo-insights">
+ <h3 class="insight-title">Leonardo's Insight</h3>
+ <div class="insight-text" id="leonardo-insight">
+ Each invention is a node in the network of my understanding. Observe how the flying machine connects to the musical instruments through the mathematics of harmony.
+ </div>
+ </div>
 
-                <div class="legend">
-                    <h3 class="legend-title">Connection Legend</h3>
-                    
-                    <div class="legend-item">
-                        <div class="legend-color" style="background: var(--leonardo-crimson);"></div>
-                        <span>Strong Influence</span>
-                    </div>
-                    
-                    <div class="legend-item">
-                        <div class="legend-color" style="background: var(--leonardo-gold);"></div>
-                        <span>Medium Influence</span>
-                    </div>
-                    
-                    <div class="legend-item">
-                        <div class="legend-color" style="background: var(--leonardo-umber-light);"></div>
-                        <span>Weak Influence</span>
-                    </div>
-                    
-                    <div class="legend-item">
-                        <div class="legend-color" style="background: var(--leonardo-sage);"></div>
-                        <span>Shared Principles</span>
-                    </div>
-                </div>
-            </aside>
-        </div>
+ <div class="legend">
+ <h3 class="legend-title">Connection Legend</h3>
+ 
+ <div class="legend-item">
+ <div class="legend-color" style="background: var(--leonardo-crimson);"></div>
+ <span>Strong Influence</span>
+ </div>
+ 
+ <div class="legend-item">
+ <div class="legend-color" style="background: var(--leonardo-gold);"></div>
+ <span>Medium Influence</span>
+ </div>
+ 
+ <div class="legend-item">
+ <div class="legend-color" style="background: var(--leonardo-umber-light);"></div>
+ <span>Weak Influence</span>
+ </div>
+ 
+ <div class="legend-item">
+ <div class="legend-color" style="background: var(--leonardo-sage);"></div>
+ <span>Shared Principles</span>
+ </div>
+ </div>
+ </aside>
+ </div>
 
-        <footer class="footer">
-            <p class="footer-text">
-                "Learning never exhausts the mind. Each discovery leads to new questions, each invention to new possibilities."
-            </p>
-            <p style="margin-top: var(--space-golden-sm);">
-                — Leonardo da Vinci, 1452-1519
-            </p>
-        </footer>
-    </div>
+ <footer class="footer">
+ <p class="footer-text">
+ "Learning never exhausts the mind. Each discovery leads to new questions, each invention to new possibilities."
+ </p>
+ <p style="margin-top: var(--space-golden-sm);">
+ — Leonardo da Vinci, 1452-1519
+ </p>
+ </footer>
+ </div>
 
-    <script>
-        // Cross-Pollination Explorer JavaScript
-        let networkData = {};
-        let selectedInvention = null;
-        let viewMode = 'all';
-        let currentLayout = 'force';
-        let isAnimating = false;
-        let animationId = null;
+ <script>
+ // Cross-Pollination Explorer JavaScript
+ let networkData = {};
+ let selectedInvention = null;
+ let viewMode = 'all';
+ let currentLayout = 'force';
+ let isAnimating = false;
+ let animationId = null;
 
-        // Leonardo's invention network data
-        const inventionsData = {
-            'viola-organista': {
-                name: 'Viola Organista',
-                icon: '🎻',
-                date: '1488-1490',
-                category: 'music',
-                description: 'A bowed keyboard instrument that combines the polyphony of a keyboard with the expressiveness of string instruments.',
-                principles: ['continuous_sound', 'string_vibration', 'bow_mechanism', 'keyboard_interface'],
-                influences: {
-                    'mechanical-drum': 'medium',
-                    'programmable-flute': 'strong',
-                    'ornithopter': 'weak'
-                }
-            },
-            'mechanical-drum': {
-                name: 'Mechanical Drum',
-                icon: '🥁',
-                date: '1490-1495',
-                category: 'music',
-                description: 'An automated percussion device using a pinned cylinder to create rhythmic patterns.',
-                principles: ['automated_rhythm', 'cylinder_mechanism', 'percussion', 'programmable'],
-                influences: {
-                    'viola-organista': 'medium',
-                    'programmable-flute': 'strong',
-                    'robotic-knight': 'medium'
-                }
-            },
-            'programmable-flute': {
-                name: 'Programmable Flute',
-                icon: '🎵',
-                date: '1502',
-                category: 'music',
-                description: 'A cam-driven recorder with automated fingering system for playing melodies.',
-                principles: ['automated_melody', 'cam_mechanism', 'wind_instrument', 'programmable'],
-                influences: {
-                    'viola-organista': 'strong',
-                    'mechanical-drum': 'strong',
-                    'calculator': 'medium'
-                }
-            },
-            'ornithopter': {
-                name: 'Ornithopter',
-                icon: '🪽',
-                date: '1485-1490',
-                category: 'flight',
-                description: 'A human-powered flying machine with flapping wings inspired by bird flight.',
-                principles: ['biomimicry', 'flapping_motion', 'human_power', 'aerodynamics'],
-                influences: {
-                    'aerial-screw': 'strong',
-                    'parachute': 'medium',
-                    'viola-organista': 'weak'
-                }
-            },
-            'aerial-screw': {
-                name: 'Aerial Screw',
-                icon: '🚁',
-                date: '1489',
-                category: 'flight',
-                description: 'A helical rotor designed to lift a vehicle through vertical flight.',
-                principles: ['helical_lift', 'rotor_mechanism', 'vertical_flight', 'screw_principle'],
-                influences: {
-                    'ornithopter': 'strong',
-                    'parachute': 'weak',
-                    'giant-crossbow': 'weak'
-                }
-            },
-            'parachute': {
-                name: 'Pyramid Parachute',
-                icon: '🪂',
-                date: '1485',
-                category: 'flight',
-                description: 'A pyramid-shaped device for controlled descent from heights.',
-                principles: ['controlled_descent', 'aerodynamic_drag', 'pyramid_geometry', 'safety_device'],
-                influences: {
-                    'ornithopter': 'medium',
-                    'aerial-screw': 'weak'
-                }
-            },
-            'automobile': {
-                name: 'Self-Propelled Cart',
-                icon: '🚗',
-                date: '1478',
-                category: 'mechanical',
-                description: 'A spring-powered vehicle capable of autonomous movement.',
-                principles: ['automated_movement', 'spring_power', 'programmable_path', 'mechanical_computation'],
-                influences: {
-                    'robotic-knight': 'strong',
-                    'calculator': 'medium',
-                    'tank': 'medium'
-                }
-            },
-            'robotic-knight': {
-                name: 'Mechanical Knight',
-                icon: '🤖',
-                date: '1495',
-                category: 'mechanical',
-                description: 'A programmable humanoid automaton capable of movement.',
-                principles: ['automaton', 'programmable_movement', 'humanoid_mechanics', 'cam_programming'],
-                influences: {
-                    'automobile': 'strong',
-                    'mechanical-drum': 'medium',
-                    'calculator': 'strong'
-                }
-            },
-            'calculator': {
-                name: 'Mechanical Calculator',
-                icon: '🧮',
-                date: '1504',
-                category: 'mechanical',
-                description: 'A device for performing arithmetic operations mechanically.',
-                principles: ['mechanical_computation', 'gear_ratios', 'positional_notation', 'automated_calculation'],
-                influences: {
-                    'programmable-flute': 'medium',
-                    'automobile': 'medium',
-                    'robotic-knight': 'strong'
-                }
-            },
-            'giant-crossbow': {
-                name: 'Giant Crossbow',
-                icon: '🏹',
-                date: '1485',
-                category: 'military',
-                description: 'A massive crossbow designed for siege warfare.',
-                principles: ['stored_energy', 'lever_mechanism', 'projectile_physics', 'military_engineering'],
-                influences: {
-                    'tank': 'weak',
-                    'aerial-screw': 'weak',
-                    'siege-tower': 'medium'
-                }
-            },
-            'tank': {
-                name: 'Armored Vehicle',
-                icon: '🛡️',
-                date: '1487',
-                category: 'military',
-                description: 'A conical armored vehicle for battlefield use.',
-                principles: ['armor_protection', 'conical_geometry', 'mobility', 'crew_protection'],
-                influences: {
-                    'automobile': 'medium',
-                    'giant-crossbow': 'weak',
-                    'siege-tower': 'medium'
-                }
-            },
-            'siege-tower': {
-                name: 'Scaling Ladder',
-                icon: '🏰',
-                date: '1480',
-                category: 'military',
-                description: 'A mobile ladder system for scaling walls.',
-                principles: ['mobile_structure', 'height_advantage', 'mechanical_advantage', 'siege_warfare'],
-                influences: {
-                    'tank': 'medium',
-                    'giant-crossbow': 'medium'
-                }
-            }
-        };
+ // Leonardo's invention network data
+ const inventionsData = {
+ 'viola-organista': {
+ name: 'Viola Organista',
+ icon: '',
+ date: '1488-1490',
+ category: 'music',
+ description: 'A bowed keyboard instrument that combines the polyphony of a keyboard with the expressiveness of string instruments.',
+ principles: ['continuous_sound', 'string_vibration', 'bow_mechanism', 'keyboard_interface'],
+ influences: {
+ 'mechanical-drum': 'medium',
+ 'programmable-flute': 'strong',
+ 'ornithopter': 'weak'
+ }
+ },
+ 'mechanical-drum': {
+ name: 'Mechanical Drum',
+ icon: '',
+ date: '1490-1495',
+ category: 'music',
+ description: 'An automated percussion device using a pinned cylinder to create rhythmic patterns.',
+ principles: ['automated_rhythm', 'cylinder_mechanism', 'percussion', 'programmable'],
+ influences: {
+ 'viola-organista': 'medium',
+ 'programmable-flute': 'strong',
+ 'robotic-knight': 'medium'
+ }
+ },
+ 'programmable-flute': {
+ name: 'Programmable Flute',
+ icon: '',
+ date: '1502',
+ category: 'music',
+ description: 'A cam-driven recorder with automated fingering system for playing melodies.',
+ principles: ['automated_melody', 'cam_mechanism', 'wind_instrument', 'programmable'],
+ influences: {
+ 'viola-organista': 'strong',
+ 'mechanical-drum': 'strong',
+ 'calculator': 'medium'
+ }
+ },
+ 'ornithopter': {
+ name: 'Ornithopter',
+ icon: '',
+ date: '1485-1490',
+ category: 'flight',
+ description: 'A human-powered flying machine with flapping wings inspired by bird flight.',
+ principles: ['biomimicry', 'flapping_motion', 'human_power', 'aerodynamics'],
+ influences: {
+ 'aerial-screw': 'strong',
+ 'parachute': 'medium',
+ 'viola-organista': 'weak'
+ }
+ },
+ 'aerial-screw': {
+ name: 'Aerial Screw',
+ icon: '',
+ date: '1489',
+ category: 'flight',
+ description: 'A helical rotor designed to lift a vehicle through vertical flight.',
+ principles: ['helical_lift', 'rotor_mechanism', 'vertical_flight', 'screw_principle'],
+ influences: {
+ 'ornithopter': 'strong',
+ 'parachute': 'weak',
+ 'giant-crossbow': 'weak'
+ }
+ },
+ 'parachute': {
+ name: 'Pyramid Parachute',
+ icon: '',
+ date: '1485',
+ category: 'flight',
+ description: 'A pyramid-shaped device for controlled descent from heights.',
+ principles: ['controlled_descent', 'aerodynamic_drag', 'pyramid_geometry', 'safety_device'],
+ influences: {
+ 'ornithopter': 'medium',
+ 'aerial-screw': 'weak'
+ }
+ },
+ 'automobile': {
+ name: 'Self-Propelled Cart',
+ icon: '',
+ date: '1478',
+ category: 'mechanical',
+ description: 'A spring-powered vehicle capable of autonomous movement.',
+ principles: ['automated_movement', 'spring_power', 'programmable_path', 'mechanical_computation'],
+ influences: {
+ 'robotic-knight': 'strong',
+ 'calculator': 'medium',
+ 'tank': 'medium'
+ }
+ },
+ 'robotic-knight': {
+ name: 'Mechanical Knight',
+ icon: '',
+ date: '1495',
+ category: 'mechanical',
+ description: 'A programmable humanoid automaton capable of movement.',
+ principles: ['automaton', 'programmable_movement', 'humanoid_mechanics', 'cam_programming'],
+ influences: {
+ 'automobile': 'strong',
+ 'mechanical-drum': 'medium',
+ 'calculator': 'strong'
+ }
+ },
+ 'calculator': {
+ name: 'Mechanical Calculator',
+ icon: '',
+ date: '1504',
+ category: 'mechanical',
+ description: 'A device for performing arithmetic operations mechanically.',
+ principles: ['mechanical_computation', 'gear_ratios', 'positional_notation', 'automated_calculation'],
+ influences: {
+ 'programmable-flute': 'medium',
+ 'automobile': 'medium',
+ 'robotic-knight': 'strong'
+ }
+ },
+ 'giant-crossbow': {
+ name: 'Giant Crossbow',
+ icon: '',
+ date: '1485',
+ category: 'military',
+ description: 'A massive crossbow designed for siege warfare.',
+ principles: ['stored_energy', 'lever_mechanism', 'projectile_physics', 'military_engineering'],
+ influences: {
+ 'tank': 'weak',
+ 'aerial-screw': 'weak',
+ 'siege-tower': 'medium'
+ }
+ },
+ 'tank': {
+ name: 'Armored Vehicle',
+ icon: '',
+ date: '1487',
+ category: 'military',
+ description: 'A conical armored vehicle for battlefield use.',
+ principles: ['armor_protection', 'conical_geometry', 'mobility', 'crew_protection'],
+ influences: {
+ 'automobile': 'medium',
+ 'giant-crossbow': 'weak',
+ 'siege-tower': 'medium'
+ }
+ },
+ 'siege-tower': {
+ name: 'Scaling Ladder',
+ icon: '',
+ date: '1480',
+ category: 'military',
+ description: 'A mobile ladder system for scaling walls.',
+ principles: ['mobile_structure', 'height_advantage', 'mechanical_advantage', 'siege_warfare'],
+ influences: {
+ 'tank': 'medium',
+ 'giant-crossbow': 'medium'
+ }
+ }
+ };
 
-        // Network visualization
-        class NetworkVisualizer {
-            constructor(canvas) {
-                this.canvas = canvas;
-                this.ctx = canvas.getContext('2d');
-                this.nodes = [];
-                this.edges = [];
-                this.animationTime = 0;
-                this.selectedNode = null;
-                this.hoveredNode = null;
-                
-                this.setupCanvas();
-                this.generateNetwork();
-                this.setupInteractions();
-            }
+ // Network visualization
+ class NetworkVisualizer {
+ constructor(canvas) {
+ this.canvas = canvas;
+ this.ctx = canvas.getContext('2d');
+ this.nodes = [];
+ this.edges = [];
+ this.animationTime = 0;
+ this.selectedNode = null;
+ this.hoveredNode = null;
+ 
+ this.setupCanvas();
+ this.generateNetwork();
+ this.setupInteractions();
+ }
 
-            setupCanvas() {
-                this.resizeCanvas();
-                window.addEventListener('resize', () => this.resizeCanvas());
-            }
+ setupCanvas() {
+ this.resizeCanvas();
+ window.addEventListener('resize', () => this.resizeCanvas());
+ }
 
-            resizeCanvas() {
-                const rect = this.canvas.getBoundingClientRect();
-                this.canvas.width = rect.width * window.devicePixelRatio;
-                this.canvas.height = rect.height * window.devicePixelRatio;
-                this.ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-                this.canvas.style.width = rect.width + 'px';
-                this.canvas.style.height = rect.height + 'px';
-            }
+ resizeCanvas() {
+ const rect = this.canvas.getBoundingClientRect();
+ this.canvas.width = rect.width * window.devicePixelRatio;
+ this.canvas.height = rect.height * window.devicePixelRatio;
+ this.ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+ this.canvas.style.width = rect.width + 'px';
+ this.canvas.style.height = rect.height + 'px';
+ }
 
-            generateNetwork() {
-                this.nodes = [];
-                this.edges = [];
+ generateNetwork() {
+ this.nodes = [];
+ this.edges = [];
 
-                // Create nodes
-                const inventions = Object.keys(inventionsData);
-                const centerX = this.canvas.clientWidth / 2;
-                const centerY = this.canvas.clientHeight / 2;
-                const radius = Math.min(centerX, centerY) * 0.7;
+ // Create nodes
+ const inventions = Object.keys(inventionsData);
+ const centerX = this.canvas.clientWidth / 2;
+ const centerY = this.canvas.clientHeight / 2;
+ const radius = Math.min(centerX, centerY) * 0.7;
 
-                inventions.forEach((invention, index) => {
-                    const angle = (index / inventions.length) * 2 * Math.PI;
-                    const x = centerX + Math.cos(angle) * radius;
-                    const y = centerY + Math.sin(angle) * radius;
+ inventions.forEach((invention, index) => {
+ const angle = (index / inventions.length) * 2 * Math.PI;
+ const x = centerX + Math.cos(angle) * radius;
+ const y = centerY + Math.sin(angle) * radius;
 
-                    this.nodes.push({
-                        id: invention,
-                        x: x,
-                        y: y,
-                        vx: 0,
-                        vy: 0,
-                        data: inventionsData[invention]
-                    });
-                });
+ this.nodes.push({
+ id: invention,
+ x: x,
+ y: y,
+ vx: 0,
+ vy: 0,
+ data: inventionsData[invention]
+ });
+ });
 
-                // Create edges based on influences
-                this.nodes.forEach(node => {
-                    const influences = node.data.influences;
-                    Object.keys(influences).forEach(targetId => {
-                        const targetNode = this.nodes.find(n => n.id === targetId);
-                        if (targetNode) {
-                            this.edges.push({
-                                source: node,
-                                target: targetNode,
-                                strength: influences[targetId],
-                                animatedOffset: Math.random() * Math.PI * 2
-                            });
-                        }
-                    });
-                });
-            }
+ // Create edges based on influences
+ this.nodes.forEach(node => {
+ const influences = node.data.influences;
+ Object.keys(influences).forEach(targetId => {
+ const targetNode = this.nodes.find(n => n.id === targetId);
+ if (targetNode) {
+ this.edges.push({
+ source: node,
+ target: targetNode,
+ strength: influences[targetId],
+ animatedOffset: Math.random() * Math.PI * 2
+ });
+ }
+ });
+ });
+ }
 
-            setupInteractions() {
-                this.canvas.addEventListener('mousemove', (e) => this.handleMouseMove(e));
-                this.canvas.addEventListener('click', (e) => this.handleClick(e));
-            }
+ setupInteractions() {
+ this.canvas.addEventListener('mousemove', (e) => this.handleMouseMove(e));
+ this.canvas.addEventListener('click', (e) => this.handleClick(e));
+ }
 
-            handleMouseMove(e) {
-                const rect = this.canvas.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
+ handleMouseMove(e) {
+ const rect = this.canvas.getBoundingClientRect();
+ const x = e.clientX - rect.left;
+ const y = e.clientY - rect.top;
 
-                this.hoveredNode = null;
-                this.nodes.forEach(node => {
-                    const distance = Math.sqrt(Math.pow(x - node.x, 2) + Math.pow(y - node.y, 2));
-                    if (distance < 30) {
-                        this.hoveredNode = node;
-                        this.canvas.style.cursor = 'pointer';
-                        return;
-                    }
-                });
+ this.hoveredNode = null;
+ this.nodes.forEach(node => {
+ const distance = Math.sqrt(Math.pow(x - node.x, 2) + Math.pow(y - node.y, 2));
+ if (distance < 30) {
+ this.hoveredNode = node;
+ this.canvas.style.cursor = 'pointer';
+ return;
+ }
+ });
 
-                if (!this.hoveredNode) {
-                    this.canvas.style.cursor = 'default';
-                }
-            }
+ if (!this.hoveredNode) {
+ this.canvas.style.cursor = 'default';
+ }
+ }
 
-            handleClick(e) {
-                if (this.hoveredNode) {
-                    this.selectedNode = this.hoveredNode;
-                    selectInvention(this.hoveredNode.id);
-                }
-            }
+ handleClick(e) {
+ if (this.hoveredNode) {
+ this.selectedNode = this.hoveredNode;
+ selectInvention(this.hoveredNode.id);
+ }
+ }
 
-            draw() {
-                this.ctx.clearRect(0, 0, this.canvas.clientWidth, this.canvas.clientHeight);
+ draw() {
+ this.ctx.clearRect(0, 0, this.canvas.clientWidth, this.canvas.clientHeight);
 
-                // Draw edges
-                this.edges.forEach(edge => {
-                    this.drawEdge(edge);
-                });
+ // Draw edges
+ this.edges.forEach(edge => {
+ this.drawEdge(edge);
+ });
 
-                // Draw nodes
-                this.nodes.forEach(node => {
-                    this.drawNode(node);
-                });
-            }
+ // Draw nodes
+ this.nodes.forEach(node => {
+ this.drawNode(node);
+ });
+ }
 
-            drawEdge(edge) {
-                const { source, target, strength, animatedOffset } = edge;
-                
-                this.ctx.save();
-                this.ctx.beginPath();
-                this.ctx.moveTo(source.x, source.y);
-                
-                // Add some curve for visual appeal
-                const midX = (source.x + target.x) / 2;
-                const midY = (source.y + target.y) / 2;
-                const offset = Math.sin(this.animationTime * 0.001 + animatedOffset) * 20;
-                
-                this.ctx.quadraticCurveTo(
-                    midX + offset, midY + offset,
-                    target.x, target.y
-                );
-                
-                // Set color based on strength
-                let color;
-                switch (strength) {
-                    case 'strong':
-                        color = 'rgba(139, 0, 0, 0.7)';
-                        break;
-                    case 'medium':
-                        color = 'rgba(255, 215, 0, 0.7)';
-                        break;
-                    case 'weak':
-                        color = 'rgba(210, 105, 30, 0.5)';
-                        break;
-                    default:
-                        color = 'rgba(135, 169, 107, 0.5)';
-                }
-                
-                this.ctx.strokeStyle = color;
-                this.ctx.lineWidth = strength === 'strong' ? 3 : strength === 'medium' ? 2 : 1;
-                this.ctx.stroke();
-                
-                this.ctx.restore();
-            }
+ drawEdge(edge) {
+ const { source, target, strength, animatedOffset } = edge;
+ 
+ this.ctx.save();
+ this.ctx.beginPath();
+ this.ctx.moveTo(source.x, source.y);
+ 
+ // Add some curve for visual appeal
+ const midX = (source.x + target.x) / 2;
+ const midY = (source.y + target.y) / 2;
+ const offset = Math.sin(this.animationTime * 0.001 + animatedOffset) * 20;
+ 
+ this.ctx.quadraticCurveTo(
+ midX + offset, midY + offset,
+ target.x, target.y
+ );
+ 
+ // Set color based on strength
+ let color;
+ switch (strength) {
+ case 'strong':
+ color = 'rgba(139, 0, 0, 0.7)';
+ break;
+ case 'medium':
+ color = 'rgba(255, 215, 0, 0.7)';
+ break;
+ case 'weak':
+ color = 'rgba(210, 105, 30, 0.5)';
+ break;
+ default:
+ color = 'rgba(135, 169, 107, 0.5)';
+ }
+ 
+ this.ctx.strokeStyle = color;
+ this.ctx.lineWidth = strength === 'strong' ? 3 : strength === 'medium' ? 2 : 1;
+ this.ctx.stroke();
+ 
+ this.ctx.restore();
+ }
 
-            drawNode(node) {
-                const { x, y, data } = node;
-                const isSelected = this.selectedNode === node;
-                const isHovered = this.hoveredNode === node;
-                
-                this.ctx.save();
-                
-                // Draw node circle
-                this.ctx.beginPath();
-                this.ctx.arc(x, y, isSelected ? 35 : isHovered ? 32 : 30, 0, 2 * Math.PI);
-                
-                // Set color based on category
-                let fillColor;
-                switch (data.category) {
-                    case 'music':
-                        fillColor = 'rgba(255, 215, 0, 0.8)';
-                        break;
-                    case 'flight':
-                        fillColor = 'rgba(135, 169, 107, 0.8)';
-                        break;
-                    case 'mechanical':
-                        fillColor = 'rgba(210, 105, 30, 0.8)';
-                        break;
-                    case 'military':
-                        fillColor = 'rgba(139, 0, 0, 0.8)';
-                        break;
-                    default:
-                        fillColor = 'rgba(44, 24, 16, 0.8)';
-                }
-                
-                this.ctx.fillStyle = fillColor;
-                this.ctx.fill();
-                
-                if (isSelected) {
-                    this.ctx.strokeStyle = 'rgba(139, 0, 0, 1)';
-                    this.ctx.lineWidth = 3;
-                    this.ctx.stroke();
-                }
-                
-                // Draw icon
-                this.ctx.font = '24px Arial';
-                this.ctx.textAlign = 'center';
-                this.ctx.textBaseline = 'middle';
-                this.ctx.fillStyle = 'white';
-                this.ctx.fillText(data.icon, x, y);
-                
-                // Draw name
-                this.ctx.font = '12px Cinzel';
-                this.ctx.fillStyle = 'black';
-                this.ctx.fillText(data.name, x, y + 45);
-                
-                this.ctx.restore();
-            }
+ drawNode(node) {
+ const { x, y, data } = node;
+ const isSelected = this.selectedNode === node;
+ const isHovered = this.hoveredNode === node;
+ 
+ this.ctx.save();
+ 
+ // Draw node circle
+ this.ctx.beginPath();
+ this.ctx.arc(x, y, isSelected ? 35 : isHovered ? 32 : 30, 0, 2 * Math.PI);
+ 
+ // Set color based on category
+ let fillColor;
+ switch (data.category) {
+ case 'music':
+ fillColor = 'rgba(255, 215, 0, 0.8)';
+ break;
+ case 'flight':
+ fillColor = 'rgba(135, 169, 107, 0.8)';
+ break;
+ case 'mechanical':
+ fillColor = 'rgba(210, 105, 30, 0.8)';
+ break;
+ case 'military':
+ fillColor = 'rgba(139, 0, 0, 0.8)';
+ break;
+ default:
+ fillColor = 'rgba(44, 24, 16, 0.8)';
+ }
+ 
+ this.ctx.fillStyle = fillColor;
+ this.ctx.fill();
+ 
+ if (isSelected) {
+ this.ctx.strokeStyle = 'rgba(139, 0, 0, 1)';
+ this.ctx.lineWidth = 3;
+ this.ctx.stroke();
+ }
+ 
+ // Draw icon
+ this.ctx.font = '24px Arial';
+ this.ctx.textAlign = 'center';
+ this.ctx.textBaseline = 'middle';
+ this.ctx.fillStyle = 'white';
+ this.ctx.fillText(data.icon, x, y);
+ 
+ // Draw name
+ this.ctx.font = '12px Cinzel';
+ this.ctx.fillStyle = 'black';
+ this.ctx.fillText(data.name, x, y + 45);
+ 
+ this.ctx.restore();
+ }
 
-            animate() {
-                if (isAnimating) {
-                    this.animationTime += 16; // Approximate 60fps
-                    this.draw();
-                    animationId = requestAnimationFrame(() => this.animate());
-                }
-            }
+ animate() {
+ if (isAnimating) {
+ this.animationTime += 16; // Approximate 60fps
+ this.draw();
+ animationId = requestAnimationFrame(() => this.animate());
+ }
+ }
 
-            startAnimation() {
-                isAnimating = true;
-                this.animate();
-            }
+ startAnimation() {
+ isAnimating = true;
+ this.animate();
+ }
 
-            stopAnimation() {
-                isAnimating = false;
-                if (animationId) {
-                    cancelAnimationFrame(animationId);
-                    animationId = null;
-                }
-            }
-        }
+ stopAnimation() {
+ isAnimating = false;
+ if (animationId) {
+ cancelAnimationFrame(animationId);
+ animationId = null;
+ }
+ }
+ }
 
-        // Global functions
-        function selectInvention(inventionId) {
-            selectedInvention = inventionId;
-            
-            // Update UI
-            document.querySelectorAll('.invention-item').forEach(item => {
-                item.classList.remove('active');
-            });
-            
-            const selectedItem = document.querySelector(`[data-invention="${inventionId}"]`);
-            if (selectedItem) {
-                selectedItem.classList.add('active');
-            }
-            
-            // Update details panel
-            updateDetailsPanel(inventionId);
-            
-            // Update network visualization
-            if (window.networkVisualizer) {
-                window.networkVisualizer.selectedNode = window.networkVisualizer.nodes.find(n => n.id === inventionId);
-                window.networkVisualizer.draw();
-            }
-            
-            // Update Leonardo insight
-            updateLeonardoInsight(inventionId);
-        }
+ // Global functions
+ function selectInvention(inventionId) {
+ selectedInvention = inventionId;
+ 
+ // Update UI
+ document.querySelectorAll('.invention-item').forEach(item => {
+ item.classList.remove('active');
+ });
+ 
+ const selectedItem = document.querySelector(`[data-invention="${inventionId}"]`);
+ if (selectedItem) {
+ selectedItem.classList.add('active');
+ }
+ 
+ // Update details panel
+ updateDetailsPanel(inventionId);
+ 
+ // Update network visualization
+ if (window.networkVisualizer) {
+ window.networkVisualizer.selectedNode = window.networkVisualizer.nodes.find(n => n.id === inventionId);
+ window.networkVisualizer.draw();
+ }
+ 
+ // Update Leonardo insight
+ updateLeonardoInsight(inventionId);
+ }
 
-        function updateDetailsPanel(inventionId) {
-            const invention = inventionsData[inventionId];
-            if (!invention) return;
-            
-            const detailsHtml = `
-                <div class="detail-section">
-                    <h3 class="detail-title">${invention.icon} ${invention.name}</h3>
-                    <div class="detail-content">
-                        <strong>Date:</strong> ${invention.date}<br>
-                        <strong>Category:</strong> ${invention.category}<br>
-                        <p style="margin-top: var(--space-golden-sm);">${invention.description}</p>
-                    </div>
-                </div>
-                
-                <div class="detail-section">
-                    <h3 class="detail-title">Core Principles</h3>
-                    <div class="detail-content">
-                        <ul style="margin: 0; padding-left: var(--space-golden-md);">
-                            ${invention.principles.map(principle => `<li>${principle.replace(/_/g, ' ')}</li>`).join('')}
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="detail-section">
-                    <h3 class="detail-title">Influences On Other Inventions</h3>
-                    <ul class="connection-list">
-                        ${Object.entries(invention.influences).map(([targetId, strength]) => {
-                            const target = inventionsData[targetId];
-                            return `
-                                <li class="connection-item">
-                                    <span class="connection-type">${target.icon} ${target.name}</span>
-                                    <span class="influence-strength ${strength}"></span>
-                                </li>
-                            `;
-                        }).join('')}
-                    </ul>
-                </div>
-            `;
-            
-            document.getElementById('invention-details').innerHTML = detailsHtml;
-        }
+ function updateDetailsPanel(inventionId) {
+ const invention = inventionsData[inventionId];
+ if (!invention) return;
+ 
+ const detailsHtml = `
+ <div class="detail-section">
+ <h3 class="detail-title">${invention.name}</h3>
+ <div class="detail-content">
+ <strong>Date:</strong> ${invention.date}<br>
+ <strong>Category:</strong> ${invention.category}<br>
+ <p style="margin-top: var(--space-golden-sm);">${invention.description}</p>
+ </div>
+ </div>
+ 
+ <div class="detail-section">
+ <h3 class="detail-title">Core Principles</h3>
+ <div class="detail-content">
+ <ul style="margin: 0; padding-left: var(--space-golden-md);">
+ ${invention.principles.map(principle => `<li>${principle.replace(/_/g, ' ')}</li>`).join('')}
+ </ul>
+ </div>
+ </div>
+ 
+ <div class="detail-section">
+ <h3 class="detail-title">Influences On Other Inventions</h3>
+ <ul class="connection-list">
+ ${Object.entries(invention.influences).map(([targetId, strength]) => {
+ const target = inventionsData[targetId];
+ return `
+ <li class="connection-item">
+ <span class="connection-type">${target.name}</span>
+ <span class="influence-strength ${strength}"></span>
+ </li>
+ `;
+ }).join('')}
+ </ul>
+ </div>
+ `;
+ 
+ document.getElementById('invention-details').innerHTML = detailsHtml;
+ }
 
-        function updateLeonardoInsight(inventionId) {
-            const insights = {
-                'viola-organista': "Music teaches us that harmony emerges from the careful arrangement of individual elements. Each note must know its place in the greater composition.",
-                'mechanical-drum': "Rhythm is the heartbeat of the universe. Through automation, we capture time itself and make it dance to our command.",
-                'programmable-flute': "To program music is to capture the song of the soul in mechanical form. The flute becomes a voice that never tires.",
-                'ornithopter': "The bird teaches us that flight is not magic but mathematics - the precise coordination of force, angle, and timing.",
-                'aerial-screw': "The screw shows us that lift can be generated through rotation, that the spiral is one of nature's fundamental forms.",
-                'parachute': "In seeking to rise, we must also prepare to fall. The parachute is wisdom made manifest - preparation for the inevitable.",
-                'automobile': "Self-propulsion is the dream of every creature that walks. To move without being pushed is to assert one's will upon the world.",
-                'robotic-knight': "To create artificial life is to understand life itself. The mechanical knight is humanity's reflection in polished metal.",
-                'calculator': "Numbers are the language of the universe. To calculate mechanically is to speak this language without error or fatigue.",
-                'giant-crossbow': "Power stored and released at will - this is the principle of all great machines, from the bow to the heart.",
-                'tank': "Protection and mobility combined - the turtle teaches us that defense need not mean immobility.",
-                'siege-tower': "Sometimes progress requires overcoming obstacles. The siege tower is determination made mechanical."
-            };
-            
-            const insightElement = document.getElementById('leonardo-insight');
-            if (insights[inventionId]) {
-                insightElement.textContent = insights[inventionId];
-            }
-        }
+ function updateLeonardoInsight(inventionId) {
+ const insights = {
+ 'viola-organista': "Music teaches us that harmony emerges from the careful arrangement of individual elements. Each note must know its place in the greater composition.",
+ 'mechanical-drum': "Rhythm is the heartbeat of the universe. Through automation, we capture time itself and make it dance to our command.",
+ 'programmable-flute': "To program music is to capture the song of the soul in mechanical form. The flute becomes a voice that never tires.",
+ 'ornithopter': "The bird teaches us that flight is not magic but mathematics - the precise coordination of force, angle, and timing.",
+ 'aerial-screw': "The screw shows us that lift can be generated through rotation, that the spiral is one of nature's fundamental forms.",
+ 'parachute': "In seeking to rise, we must also prepare to fall. The parachute is wisdom made manifest - preparation for the inevitable.",
+ 'automobile': "Self-propulsion is the dream of every creature that walks. To move without being pushed is to assert one's will upon the world.",
+ 'robotic-knight': "To create artificial life is to understand life itself. The mechanical knight is humanity's reflection in polished metal.",
+ 'calculator': "Numbers are the language of the universe. To calculate mechanically is to speak this language without error or fatigue.",
+ 'giant-crossbow': "Power stored and released at will - this is the principle of all great machines, from the bow to the heart.",
+ 'tank': "Protection and mobility combined - the turtle teaches us that defense need not mean immobility.",
+ 'siege-tower': "Sometimes progress requires overcoming obstacles. The siege tower is determination made mechanical."
+ };
+ 
+ const insightElement = document.getElementById('leonardo-insight');
+ if (insights[inventionId]) {
+ insightElement.textContent = insights[inventionId];
+ }
+ }
 
-        function setViewMode(mode) {
-            viewMode = mode;
-            
-            // Update button states
-            document.querySelectorAll('.network-controls .control-button').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-            
-            // Update network visualization
-            if (window.networkVisualizer) {
-                window.networkVisualizer.draw();
-            }
-        }
+ function setViewMode(mode) {
+ viewMode = mode;
+ 
+ // Update button states
+ document.querySelectorAll('.network-controls .control-button').forEach(btn => {
+ btn.classList.remove('active');
+ });
+ event.target.classList.add('active');
+ 
+ // Update network visualization
+ if (window.networkVisualizer) {
+ window.networkVisualizer.draw();
+ }
+ }
 
-        function setLayout(layout) {
-            currentLayout = layout;
-            
-            // Update button states
-            document.querySelectorAll('.network-controls .control-button').forEach(btn => {
-                if (btn.textContent.includes('Force') || btn.textContent.includes('Circular') || btn.textContent.includes('Spiral')) {
-                    btn.classList.remove('active');
-                }
-            });
-            event.target.classList.add('active');
-            
-            // Regenerate network with new layout
-            if (window.networkVisualizer) {
-                window.networkVisualizer.generateNetwork();
-                window.networkVisualizer.draw();
-            }
-        }
+ function setLayout(layout) {
+ currentLayout = layout;
+ 
+ // Update button states
+ document.querySelectorAll('.network-controls .control-button').forEach(btn => {
+ if (btn.textContent.includes('Force') || btn.textContent.includes('Circular') || btn.textContent.includes('Spiral')) {
+ btn.classList.remove('active');
+ }
+ });
+ event.target.classList.add('active');
+ 
+ // Regenerate network with new layout
+ if (window.networkVisualizer) {
+ window.networkVisualizer.generateNetwork();
+ window.networkVisualizer.draw();
+ }
+ }
 
-        function toggleAnimation() {
-            if (isAnimating) {
-                window.networkVisualizer.stopAnimation();
-                event.target.textContent = 'Play Animation';
-            } else {
-                window.networkVisualizer.startAnimation();
-                event.target.textContent = 'Stop Animation';
-            }
-        }
+ function toggleAnimation() {
+ if (isAnimating) {
+ window.networkVisualizer.stopAnimation();
+ event.target.textContent = 'Play Animation';
+ } else {
+ window.networkVisualizer.startAnimation();
+ event.target.textContent = 'Stop Animation';
+ }
+ }
 
-        function resetNetwork() {
-            if (window.networkVisualizer) {
-                window.networkVisualizer.generateNetwork();
-                window.networkVisualizer.draw();
-            }
-        }
+ function resetNetwork() {
+ if (window.networkVisualizer) {
+ window.networkVisualizer.generateNetwork();
+ window.networkVisualizer.draw();
+ }
+ }
 
-        // Initialize network visualizer
-        document.addEventListener('DOMContentLoaded', function() {
-            const canvas = document.getElementById('network-canvas');
-            window.networkVisualizer = new NetworkVisualizer(canvas);
-            window.networkVisualizer.draw();
-            
-            // Add some interactive wisdom
-            const wisdoms = [
-                "Each invention is a node in the network of my understanding. Observe how the flying machine connects to the musical instruments through the mathematics of harmony.",
-                "Innovation is not isolated - the mechanical knight learns from the automaton, the calculator from the programmable flute. All knowledge is connected.",
-                "The network reveals what individual inventions hide: that creativity builds upon itself, that each breakthrough enables the next.",
-                "See how military engineering informs musical automation, how flight research influences mechanical computation. Nature knows no boundaries between disciplines."
-            ];
-            
-            // Randomly display wisdom
-            const randomWisdom = wisdoms[Math.floor(Math.random() * wisdoms.length)];
-            document.getElementById('leonardo-insight').textContent = randomWisdom;
-        });
-    </script>
+ // Initialize network visualizer
+ document.addEventListener('DOMContentLoaded', function() {
+ const canvas = document.getElementById('network-canvas');
+ window.networkVisualizer = new NetworkVisualizer(canvas);
+ window.networkVisualizer.draw();
+ 
+ // Add some interactive wisdom
+ const wisdoms = [
+ "Each invention is a node in the network of my understanding. Observe how the flying machine connects to the musical instruments through the mathematics of harmony.",
+ "Innovation is not isolated - the mechanical knight learns from the automaton, the calculator from the programmable flute. All knowledge is connected.",
+ "The network reveals what individual inventions hide: that creativity builds upon itself, that each breakthrough enables the next.",
+ "See how military engineering informs musical automation, how flight research influences mechanical computation. Nature knows no boundaries between disciplines."
+ ];
+ 
+ // Randomly display wisdom
+ const randomWisdom = wisdoms[Math.floor(Math.random() * wisdoms.length)];
+ document.getElementById('leonardo-insight').textContent = randomWisdom;
+ });
+ </script>
 </body>
 </html>

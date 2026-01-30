@@ -337,6 +337,12 @@
     </style>
 </head>
 <body>
+    <!-- Manuscript Aging Overlays -->
+    <div class="manuscript-aging">
+        <div class="wormholes"></div>
+        <div class="water-stains"></div>
+    </div>
+
     <a href="../gallery.html" class="back-to-gallery">← Back to Gallery</a>
 
     <div id="app" class="renaissance-court">
@@ -365,22 +371,22 @@
         <!-- Feature Highlights -->
         <section class="feature-highlights" style="max-width: 1400px; margin: 0 auto; padding: var(--space-golden-xl);">
             <div class="feature-highlight">
-                <div class="feature-highlight-icon">🎼</div>
+                <div class="feature-highlight-icon" style="font-size: 1.2rem; font-family: var(--font-primary);">COMPOSIZIONE</div>
                 <div class="feature-highlight-title">Algorithmic Composition</div>
                 <div class="feature-highlight-desc">Renaissance music composed in period church modes using algorithmic voice-leading rules</div>
             </div>
             <div class="feature-highlight">
-                <div class="feature-highlight-icon">🔬</div>
+                <div class="feature-highlight-icon" style="font-size: 1.2rem; font-family: var(--font-primary);">FISICA</div>
                 <div class="feature-highlight-title">Physics Timbres</div>
                 <div class="feature-highlight-desc">6 instruments with authentic harmonic profiles & ADSR envelopes</div>
             </div>
             <div class="feature-highlight">
-                <div class="feature-highlight-icon">🏛️</div>
+                <div class="feature-highlight-icon" style="font-size: 1.2rem; font-family: var(--font-primary);">RIVERBERO</div>
                 <div class="feature-highlight-title">Hall Reverb</div>
                 <div class="feature-highlight-desc">Schroeder reverb simulation for immersive court acoustics</div>
             </div>
             <div class="feature-highlight">
-                <div class="feature-highlight-icon">📊</div>
+                <div class="feature-highlight-icon" style="font-size: 1.2rem; font-family: var(--font-primary);">VISUALE</div>
                 <div class="feature-highlight-title">Visualizations</div>
                 <div class="feature-highlight-desc">Waveform, spectrogram & score roll analysis of generated audio</div>
             </div>
@@ -389,7 +395,7 @@
         <!-- Audio Showcase -->
         <section class="audio-showcase" style="max-width: 1400px; margin: 0 auto;">
             <div class="audio-showcase-header">
-                <h2 class="audio-showcase-title">🎵 Demo: Pavane in Dorian Mode</h2>
+                <h2 class="audio-showcase-title">Demo: Pavane in Dorian Mode</h2>
                 <p class="audio-showcase-subtitle">Algorithmically composed Renaissance music performed by 6 physics-based mechanical instruments</p>
             </div>
             
@@ -402,7 +408,7 @@
                                border-radius: var(--space-golden-sm); cursor:pointer;
                                box-shadow: var(--shadow-leonardo-manuscript);
                                transition: all var(--anim-leonardo-fast);">
-                    ▶ Play
+                    ENTER COURT
                 </button>
                 <canvas id="audio-visualizer" width="800" height="160"
                         style="display:block; width:100%; max-width:800px; margin: var(--space-golden-md) auto 0;
@@ -465,7 +471,7 @@
         <!-- Timbre Showcase -->
         <section class="timbre-showcase" style="max-width: 1400px; margin: var(--space-golden-xl) auto;">
             <h2 style="text-align: center; font-family: var(--font-leonardo-display); color: var(--leonardo-crimson); margin-bottom: var(--space-golden-sm);">
-                🎹 Physics-Based Instrument Timbres
+                Physics-Based Instrument Timbres
             </h2>
             <p style="text-align: center; color: var(--leonardo-umber); max-width: 800px; margin: 0 auto;">
                 Each instrument is synthesized from physical principles, not samples. Authentic harmonic profiles, ADSR envelopes, and mechanical noise characteristics.
@@ -473,7 +479,8 @@
 
             <div class="timbre-grid">
                 <div class="timbre-card" data-instrument="viola" role="button" tabindex="0">
-                    <div class="timbre-icon">🎻</div>
+                    <span class="red-chalk" style="position:absolute; top:5px; right:10px; transform:rotate(-5deg);">sonoro</span>
+                    <div class="timbre-icon">V.O.</div>
                     <div class="timbre-name">Viola Organista</div>
                     <div class="timbre-type">Bowed String Keyboard</div>
                     <div class="timbre-specs">
@@ -486,7 +493,8 @@
                 </div>
 
                 <div class="timbre-card" data-instrument="organ" role="button" tabindex="0">
-                    <div class="timbre-icon">🎹</div>
+                    <span class="red-chalk" style="position:absolute; top:5px; right:10px; transform:rotate(-5deg);">spirto</span>
+                    <div class="timbre-icon">Org.</div>
                     <div class="timbre-name">Mechanical Organ</div>
                     <div class="timbre-type">Pipe Organ</div>
                     <div class="timbre-specs">
@@ -499,7 +507,8 @@
                 </div>
 
                 <div class="timbre-card" data-instrument="flute" role="button" tabindex="0">
-                    <div class="timbre-icon">🎵</div>
+                    <span class="red-chalk" style="position:absolute; top:5px; right:10px; transform:rotate(-15deg);">dolce</span>
+                    <div class="timbre-icon">Fl.</div>
                     <div class="timbre-name">Programmable Flute</div>
                     <div class="timbre-type">Recorder / Flauto</div>
                     <div class="timbre-specs">
@@ -512,7 +521,8 @@
                 </div>
 
                 <div class="timbre-card" data-instrument="carillon" role="button" tabindex="0">
-                    <div class="timbre-icon">🔔</div>
+                    <span class="red-chalk" style="position:absolute; top:5px; right:10px; transform:rotate(5deg);">campana</span>
+                    <div class="timbre-icon">Car.</div>
                     <div class="timbre-name">Mechanical Carillon</div>
                     <div class="timbre-type">Bell System</div>
                     <div class="timbre-specs">
@@ -525,7 +535,8 @@
                 </div>
 
                 <div class="timbre-card" data-instrument="trumpeter" role="button" tabindex="0">
-                    <div class="timbre-icon">🎺</div>
+                    <span class="red-chalk" style="position:absolute; top:5px; right:10px; transform:rotate(-2deg);">chiaro</span>
+                    <div class="timbre-icon">Tr.</div>
                     <div class="timbre-name">Mechanical Trumpeter</div>
                     <div class="timbre-type">Brass Automaton</div>
                     <div class="timbre-specs">
@@ -538,7 +549,8 @@
                 </div>
 
                 <div class="timbre-card" data-instrument="drum" role="button" tabindex="0">
-                    <div class="timbre-icon">🥁</div>
+                    <span class="red-chalk" style="position:absolute; top:5px; right:10px; transform:rotate(10deg);">ritmo</span>
+                    <div class="timbre-icon">Dr.</div>
                     <div class="timbre-name">Mechanical Drum</div>
                     <div class="timbre-type">Percussion</div>
                     <div class="timbre-specs">
@@ -554,7 +566,7 @@
 
         <!-- CLI Demo -->
         <section class="cli-demo" style="max-width: 1400px; margin: var(--space-golden-xl) auto;">
-            <div class="cli-header">💻 Command-Line Interface</div>
+            <div class="cli-header">Command-Line Interface</div>
             <p style="color: #a8e6cf; margin-bottom: var(--space-golden-md);">
                 Generate your own Renaissance concerts with the davinci-codex CLI:
             </p>
@@ -585,6 +597,76 @@
         </section>
 
         <main class="court-main" style="max-width: 1400px; margin: 0 auto;">
+            <!-- Court Scene - The Mechanical Stage -->
+            <section class="court-scene">
+                <div class="court-walls"></div>
+                <div class="left-tapestry tapestry"></div>
+                <div class="right-tapestry tapestry"></div>
+                <div class="court-floor"></div>
+                
+                <div class="instruments-stage" id="instruments-stage">
+                    <!-- Viola Organista -->
+                    <div class="instrument-container viola-container" data-instrument="viola">
+                        <div class="instrument-leonardo-note">V.O.</div>
+                        <canvas class="instrument-canvas" id="canvas-viola"></canvas>
+                        <div class="instrument-label">
+                            <h3>Viola Organista</h3>
+                            <span class="instrument-status">Ready</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Mechanical Organ -->
+                    <div class="instrument-container organ-container" data-instrument="organ">
+                        <div class="instrument-leonardo-note">Org.</div>
+                        <canvas class="instrument-canvas" id="canvas-organ"></canvas>
+                        <div class="instrument-label">
+                            <h3>Mechanical Organ</h3>
+                            <span class="instrument-status">Ready</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Programmable Flute -->
+                    <div class="instrument-container flute-container" data-instrument="flute">
+                        <div class="instrument-leonardo-note">Fl.</div>
+                        <canvas class="instrument-canvas" id="canvas-flute"></canvas>
+                        <div class="instrument-label">
+                            <h3>Programmable Flute</h3>
+                            <span class="instrument-status">Ready</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Mechanical Carillon -->
+                    <div class="instrument-container carillon-container" data-instrument="carillon">
+                        <div class="instrument-leonardo-note">Car.</div>
+                        <canvas class="instrument-canvas" id="canvas-carillon"></canvas>
+                        <div class="instrument-label">
+                            <h3>Mechanical Carillon</h3>
+                            <span class="instrument-status">Ready</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Mechanical Trumpeter -->
+                    <div class="instrument-container trumpeter-container" data-instrument="trumpeter">
+                        <div class="instrument-leonardo-note">Tr.</div>
+                        <canvas class="instrument-canvas" id="canvas-trumpeter"></canvas>
+                        <div class="instrument-label">
+                            <h3>Mechanical Trumpeter</h3>
+                            <span class="instrument-status">Ready</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Mechanical Drum -->
+                    <div class="instrument-container drum-container" data-instrument="drum">
+                        <div class="instrument-leonardo-note">Dr.</div>
+                        <canvas class="instrument-canvas" id="canvas-drum"></canvas>
+                        <div class="instrument-label">
+                            <h3>Mechanical Drum</h3>
+                            <span class="instrument-status">Ready</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- Educational information panels -->
             <section class="education-panels" aria-label="Educational information">
                 <div class="info-tabs">
@@ -672,7 +754,11 @@
     <!-- Scripts -->
     <script src="js/utils.js"></script>
     <script src="js/instrument-base.js"></script>
+    <script src="js/viola.js"></script>
+    <script src="js/organ.js"></script>
+    <script src="js/flute.js"></script>
     <script src="js/carillon.js"></script>
+    <script src="js/trumpeter.js"></script>
     <script src="js/drum.js"></script>
     <script src="js/audio-engine.js"></script>
     <script src="js/app.js"></script>

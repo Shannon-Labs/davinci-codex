@@ -214,7 +214,7 @@ body {
 }
 
 .tapestry::before {
-    content: '🏰';
+    content: '\2756';
     position: absolute;
     top: 50%;
     left: 50%;
@@ -600,7 +600,7 @@ body {
     }
 }
 
-/* 🎭 Leonardo's Voice Panel - Theatrical Elements */
+/* Voice Panel */
 .leonardo-voice-panel {
     position: absolute;
     top: 20px;
@@ -678,7 +678,7 @@ body {
     opacity: 1;
 }
 
-/* ✨ Enhanced Instrument Cards with Leonardo's Notes */
+/* Instrument Cards */
 .instrument-leonardo-note {
     position: absolute;
     top: 10px;
@@ -702,7 +702,7 @@ body {
     transform: scale(1);
 }
 
-/* 🎨 Enhanced Loading Screen with Renaissance Theatrics */
+/* Loading Screen */
 .loading-overlay {
     position: fixed;
     top: 0;
@@ -759,7 +759,7 @@ body {
     opacity: 0.8;
 }
 
-/* 📚 Enhanced Educational Panels */
+/* Educational Panels */
 .education-panels {
     background: var(--bg-panel);
     border: 2px solid var(--color-secondary);
@@ -840,7 +840,7 @@ body {
     font-weight: bold;
 }
 
-/* 🎭 Responsive Design for Enhanced Elements */
+/* Responsive Design */
 @media (max-width: 768px) {
     .leonardo-voice-panel {
         position: relative;
@@ -870,7 +870,7 @@ body {
         text-align: center;
     }
 }
-/* 🎭 Enhanced Loading Progress */
+/* Loading Progress */
 .loading-progress {
     margin-top: var(--spacing-lg);
 }
