@@ -12,9 +12,12 @@ hero:
     **Historical Sources** • **Simulation Evidence** • **Safety First** • **Open Source**
   background: images/leonardo-workshop-bg.jpg
   cta:
+    - label: "🎵 Renaissance Ensemble"
+      href: "/renaissance_ensemble/"
+      style: primary
     - label: "Explore da Vinci's Workshop"
       href: "#renaissance-workshop"
-      style: primary
+      style: secondary
     - label: "Interactive Simulations"
       href: "book/index.html"
       style: secondary
@@ -31,6 +34,26 @@ social:
   email: hunter@shannonlabs.dev
 
 sections:
+  - id: renaissance-ensemble-featured
+    title: "🎵 NEW: Renaissance Ensemble"
+    subtitle: "Physics-Based Mechanical Orchestra"
+    layout: featured-highlight
+    style: 
+      background: "linear-gradient(135deg, #8B4513 0%, #DAA520 50%, #8B4513 100%)"
+      color: "#fff"
+    intro: |
+      Experience Leonardo's mechanical instruments with revolutionary physics-based audio synthesis. 
+      Six authentic instrument timbres, AI-generated Renaissance compositions, and immersive court acoustics.
+    features:
+      - "🎼 AI Composition: Pavane, Galliard, Basse Danse in church modes"
+      - "🔬 Physics Timbres: ADSR envelopes, harmonic profiles, mechanical noise"
+      - "🏛️ Schroeder Reverb: Hall acoustics simulation"
+      - "📊 Visualizations: Waveform, spectrogram, score roll"
+      - "🎵 CD Quality: 44.1kHz WAV export with deterministic seeds"
+    cta:
+      label: "Enter the Renaissance Court →"
+      href: "/renaissance_ensemble/"
+    
   - id: renaissance-workshop
     title: "Welcome to Leonardo's Digital Workshop"
     layout: hero-split
@@ -165,9 +188,12 @@ sections:
       - id: artistic-automata
         title: "Act III: Artistic Automata"
         subtitle: "Where Art Meets Engineering"
-        description: "Theatrical machines that blur the line between engineering marvel and artistic masterpiece."
+        description: "Theatrical machines that blur the line between engineering marvel and artistic masterpiece. Now with physics-based audio synthesis for the complete mechanical orchestra experience."
         color: "#9B59B6"
         gradient: "linear-gradient(135deg, #9B59B6, #8E44AD)"
+        featured_link:
+          label: "🎵 Experience the Full Ensemble →"
+          href: "/renaissance_ensemble/"
         inventions:
           - name: "Mechanical Lion"
             status: "validated"
