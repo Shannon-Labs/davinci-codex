@@ -393,11 +393,41 @@
                 <p class="audio-showcase-subtitle">AI-generated Renaissance composition performed by 6 physics-based mechanical instruments</p>
             </div>
             
+            <div style="text-align:center; margin-bottom: var(--space-golden-lg);">
+                <button id="enter-court-btn"
+                        style="font-family: var(--font-leonardo-display); font-size:1.2em;
+                               background: linear-gradient(45deg, var(--leonardo-crimson), var(--leonardo-crimson-light));
+                               color: var(--leonardo-parchment); border:2px solid var(--leonardo-gold);
+                               padding: var(--space-golden-sm) var(--space-golden-xl);
+                               border-radius: var(--space-golden-sm); cursor:pointer;
+                               box-shadow: var(--shadow-leonardo-manuscript);
+                               transition: all var(--anim-leonardo-fast);">
+                    Enter the Court
+                </button>
+                <canvas id="audio-visualizer" width="800" height="160"
+                        style="display:block; width:100%; max-width:800px; margin: var(--space-golden-md) auto 0;
+                               background:rgba(0,0,0,0.4); border-radius: var(--space-golden-sm);">
+                </canvas>
+            </div>
+
             <div class="audio-player-container">
                 <audio class="audio-player" controls>
                     <source src="assets/demo_pavane.mp3" type="audio/mpeg">
                     Your browser does not support the audio element.
                 </audio>
+
+                <div style="margin-top: var(--space-golden-sm);">
+                    <label for="track-select" style="color: var(--leonardo-parchment); font-family: var(--font-leonardo-display); margin-right: var(--space-golden-sm);">Track:</label>
+                    <select id="track-select" style="font-family: var(--font-leonardo-display); padding:4px 8px;
+                                                     background: var(--leonardo-umber); color: var(--leonardo-parchment);
+                                                     border:1px solid var(--leonardo-gold); border-radius:4px;">
+                        <option value="pavane"      data-title="Pavane for Mechanical Ensemble" data-meta="16 measures • 72 BPM • Dorian mode • Seed 42">Pavane in Dorian</option>
+                        <option value="galliard"    data-title="Galliard for Six Instruments"   data-meta="16 measures • 100 BPM • Mixolydian mode • Seed 7">Galliard in Mixolydian</option>
+                        <option value="madrigal"    data-title="Madrigal in Phrygian Mode"      data-meta="16 measures • 68 BPM • Phrygian mode • Seed 13">Madrigal in Phrygian</option>
+                        <option value="basse_danse" data-title="Basse Danse in Lydian Mode"     data-meta="16 measures • 60 BPM • Lydian mode • Seed 21">Basse Danse in Lydian</option>
+                    </select>
+                </div>
+
                 <div class="track-info">
                     <span class="track-title">"Pavane for Mechanical Ensemble"</span>
                     <span class="track-meta">16 measures • 72 BPM • Dorian mode • Seed 42</span>
@@ -442,7 +472,7 @@
             </p>
 
             <div class="timbre-grid">
-                <div class="timbre-card">
+                <div class="timbre-card" data-instrument="viola" role="button" tabindex="0">
                     <div class="timbre-icon">🎻</div>
                     <div class="timbre-name">Viola Organista</div>
                     <div class="timbre-type">Bowed String Keyboard</div>
@@ -452,9 +482,10 @@
                         <strong>ADSR:</strong> Attack 80ms, Decay 60ms, Sustain 75%, Release 150ms<br>
                         <strong>Effects:</strong> 5Hz vibrato (12 cents), 3% pink noise
                     </div>
+                    <div style="text-align:center; margin-top:var(--space-golden-sm); color:var(--leonardo-gold); font-size:0.8em; font-style:italic;">Click to hear</div>
                 </div>
 
-                <div class="timbre-card">
+                <div class="timbre-card" data-instrument="organ" role="button" tabindex="0">
                     <div class="timbre-icon">🎹</div>
                     <div class="timbre-name">Mechanical Organ</div>
                     <div class="timbre-type">Pipe Organ</div>
@@ -464,9 +495,10 @@
                         <strong>ADSR:</strong> Attack 50ms, Decay 30ms, Sustain 95%, Release 80ms<br>
                         <strong>Effects:</strong> 2% breath noise, steady pipe character
                     </div>
+                    <div style="text-align:center; margin-top:var(--space-golden-sm); color:var(--leonardo-gold); font-size:0.8em; font-style:italic;">Click to hear</div>
                 </div>
 
-                <div class="timbre-card">
+                <div class="timbre-card" data-instrument="flute" role="button" tabindex="0">
                     <div class="timbre-icon">🎵</div>
                     <div class="timbre-name">Programmable Flute</div>
                     <div class="timbre-type">Recorder / Flauto</div>
@@ -476,9 +508,10 @@
                         <strong>ADSR:</strong> Attack 40ms, Decay 50ms, Sustain 70%, Release 120ms<br>
                         <strong>Effects:</strong> 4.5Hz vibrato (8 cents), 8% breath noise
                     </div>
+                    <div style="text-align:center; margin-top:var(--space-golden-sm); color:var(--leonardo-gold); font-size:0.8em; font-style:italic;">Click to hear</div>
                 </div>
 
-                <div class="timbre-card">
+                <div class="timbre-card" data-instrument="carillon" role="button" tabindex="0">
                     <div class="timbre-icon">🔔</div>
                     <div class="timbre-name">Mechanical Carillon</div>
                     <div class="timbre-type">Bell System</div>
@@ -488,9 +521,10 @@
                         <strong>ADSR:</strong> Attack 1ms, Decay 300ms, Sustain 15%, Release 1.5s<br>
                         <strong>Effects:</strong> Inharmonic bell partials, long release
                     </div>
+                    <div style="text-align:center; margin-top:var(--space-golden-sm); color:var(--leonardo-gold); font-size:0.8em; font-style:italic;">Click to hear</div>
                 </div>
 
-                <div class="timbre-card">
+                <div class="timbre-card" data-instrument="trumpeter" role="button" tabindex="0">
                     <div class="timbre-icon">🎺</div>
                     <div class="timbre-name">Mechanical Trumpeter</div>
                     <div class="timbre-type">Brass Automaton</div>
@@ -500,9 +534,10 @@
                         <strong>ADSR:</strong> Attack 30ms, Decay 40ms, Sustain 85%, Release 100ms<br>
                         <strong>Effects:</strong> 5.5Hz vibrato (15 cents), 4% breath noise
                     </div>
+                    <div style="text-align:center; margin-top:var(--space-golden-sm); color:var(--leonardo-gold); font-size:0.8em; font-style:italic;">Click to hear</div>
                 </div>
 
-                <div class="timbre-card">
+                <div class="timbre-card" data-instrument="drum" role="button" tabindex="0">
                     <div class="timbre-icon">🥁</div>
                     <div class="timbre-name">Mechanical Drum</div>
                     <div class="timbre-type">Percussion</div>
@@ -512,6 +547,7 @@
                         <strong>ADSR:</strong> Attack 2ms, Decay 150ms, Sustain 0%, Release 200ms<br>
                         <strong>Effects:</strong> 60% white noise burst, drumhead modes
                     </div>
+                    <div style="text-align:center; margin-top:var(--space-golden-sm); color:var(--leonardo-gold); font-size:0.8em; font-style:italic;">Click to hear</div>
                 </div>
             </div>
         </section>
@@ -866,6 +902,7 @@
     <script src="js/instrument-base.js"></script>
     <script src="js/carillon.js"></script>
     <script src="js/drum.js"></script>
+    <script src="js/audio-engine.js"></script>
     <script>
         // Placeholder organ, trumpeter, flute, and viola scripts since they don't exist yet
         // These will use the base instrument class

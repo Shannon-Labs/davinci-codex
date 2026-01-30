@@ -117,7 +117,14 @@ LeonardoEnsemble.App = class {
             violaCanvas: LeonardoEnsemble.Utils.dom.get('#viola-canvas'),
             
             // Notation canvas
-            notationCanvas: LeonardoEnsemble.Utils.dom.get('#notation-canvas')
+            notationCanvas: LeonardoEnsemble.Utils.dom.get('#notation-canvas'),
+
+            // Audio engine elements
+            enterCourtBtn: LeonardoEnsemble.Utils.dom.get('#enter-court-btn'),
+            audioVisualizer: LeonardoEnsemble.Utils.dom.get('#audio-visualizer'),
+            trackSelect: LeonardoEnsemble.Utils.dom.get('#track-select'),
+            audioPlayer: LeonardoEnsemble.Utils.dom.get('.audio-player'),
+            timbreCards: LeonardoEnsemble.Utils.dom.getAll('.timbre-card[data-instrument]')
         };
     }
     
@@ -164,6 +171,31 @@ LeonardoEnsemble.App = class {
         
         // Instrument controls
         this.setupInstrumentControls();
+
+        // --- Audio engine controls ---
+        // Enter the Court button
+        if (this.elements.enterCourtBtn) {
+            LeonardoEnsemble.Utils.dom.on(this.elements.enterCourtBtn, 'click', () => this.handleEnterCourt());
+        }
+
+        // Track selector
+        if (this.elements.trackSelect) {
+            LeonardoEnsemble.Utils.dom.on(this.elements.trackSelect, 'change', (e) => this.handleTrackChange(e));
+        }
+
+        // Timbre card clicks + keyboard (Enter/Space)
+        if (this.elements.timbreCards) {
+            this.elements.timbreCards.forEach(card => {
+                const id = card.dataset.instrument;
+                LeonardoEnsemble.Utils.dom.on(card, 'click', () => this.handleTimbreCardClick(id, card));
+                LeonardoEnsemble.Utils.dom.on(card, 'keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.handleTimbreCardClick(id, card);
+                    }
+                });
+            });
+        }
     }
     
     /**
@@ -266,23 +298,28 @@ LeonardoEnsemble.App = class {
         // Set initial tempo
         this.elements.tempoSlider.value = this.currentTempo;
         this.elements.tempoDisplay.textContent = `${this.currentTempo} BPM`;
-        
+
         // Set initial composition
         this.elements.compositionSelect.value = this.currentComposition;
-        
+
         // Set initial view mode
         this.setViewMode(this.viewMode);
-        
-        // Initialize notation renderer
-        if (this.elements.notationCanvas) {
-            this.notationRenderer = new LeonardoEnsemble.NotationRenderer(this.elements.notationCanvas);
+
+        // Stub notation renderer (class not yet implemented)
+        const noOp = () => {};
+        const stubMethods = { loadComposition: noOp, highlightNote: noOp, resize: noOp };
+        this.notationRenderer = this.elements.notationCanvas ? stubMethods : null;
+
+        // Stub music engine & ensemble controller (classes not yet implemented)
+        const engineStub = { start: noOp, pause: noOp, stop: noOp, setTempo: noOp,
+                             loadComposition: noOp, getDuration: () => 225, hasPlayed: false };
+        this.musicEngine = engineStub;
+        this.ensembleController = { start: noOp, pause: noOp, stop: noOp, loadComposition: noOp };
+
+        // Initialize AudioEngine (Web Audio API)
+        if (LeonardoEnsemble.AudioEngine) {
+            this.audioEngine = new LeonardoEnsemble.AudioEngine();
         }
-        
-        // Initialize music engine
-        this.musicEngine = new LeonardoEnsemble.MusicEngine();
-        
-        // Initialize ensemble controller
-        this.ensembleController = new LeonardoEnsemble.EnsembleController(this.instruments);
     }
     
     /**
@@ -793,6 +830,103 @@ LeonardoEnsemble.App = class {
         console.log(`Instrument ${instrumentId} stopped`);
     }
     
+    // ---- Audio-engine handlers ----
+
+    /**
+     * Handle "Enter the Court" button click — start demo playback + visualizer.
+     */
+    handleEnterCourt() {
+        if (!this.audioEngine) return;
+
+        const audioEl = this.elements.audioPlayer;
+        const canvas  = this.elements.audioVisualizer;
+        const btn     = this.elements.enterCourtBtn;
+
+        if (!audioEl) return;
+
+        // If already playing, stop
+        if (!audioEl.paused) {
+            this.audioEngine.stopDemo(audioEl);
+            this.audioEngine.stopVisualizer();
+            if (btn) btn.textContent = 'Enter the Court';
+            return;
+        }
+
+        this.audioEngine.playDemo(audioEl);
+        if (canvas) this.audioEngine.startVisualizer(canvas);
+        if (btn) btn.textContent = 'Leave the Court';
+        // Reset button when track ends
+        audioEl.addEventListener('ended', () => {
+            this.audioEngine.stopVisualizer();
+            if (btn) btn.textContent = 'Enter the Court';
+        }, { once: true });
+    }
+
+    /**
+     * Handle track selector change — swap the <audio> source and update info.
+     * @param {Event} e
+     */
+    handleTrackChange(e) {
+        const sel = e.target;
+        const value = sel.value;  // e.g. "pavane", "galliard"
+        const opt = sel.options[sel.selectedIndex];
+
+        const audioEl = this.elements.audioPlayer;
+        if (!audioEl) return;
+
+        // Pause current playback
+        const wasPlaying = !audioEl.paused;
+        if (wasPlaying && this.audioEngine) {
+            this.audioEngine.stopDemo(audioEl);
+            this.audioEngine.stopVisualizer();
+        }
+
+        // Swap source
+        const sourceEl = audioEl.querySelector('source');
+        if (sourceEl) {
+            sourceEl.src = `assets/demo_${value}.mp3`;
+        }
+        audioEl.load();
+
+        // Update track info
+        const titleEl = document.querySelector('.track-title');
+        const metaEl  = document.querySelector('.track-meta');
+        if (titleEl && opt) titleEl.textContent = `"${opt.dataset.title}"`;
+        if (metaEl && opt)  metaEl.textContent  = opt.dataset.meta;
+
+        // Update showcase header
+        const showcaseTitle = document.querySelector('.audio-showcase-title');
+        if (showcaseTitle && opt) {
+            const formName = opt.textContent.trim();
+            showcaseTitle.textContent = `Demo: ${formName}`;
+        }
+
+        // Resume if was playing
+        if (wasPlaying && this.audioEngine) {
+            audioEl.addEventListener('canplay', () => {
+                this.handleEnterCourt();
+            }, { once: true });
+        }
+    }
+
+    /**
+     * Handle timbre card click — synthesize the instrument's note.
+     * @param {string} id    - instrument key
+     * @param {HTMLElement} card
+     */
+    handleTimbreCardClick(id, card) {
+        if (!this.audioEngine) return;
+        this.audioEngine.playNote(id);
+
+        // Brief visual flash
+        card.style.borderColor = 'var(--leonardo-gold)';
+        card.style.boxShadow = 'var(--glow-leonardo-strong)';
+        setTimeout(() => {
+            card.style.borderColor = '';
+            card.style.boxShadow = '';
+        }, 400);
+    }
+
     /**
      * Show/hide loading overlay with Leonardo's theatrical touch
      * @param {boolean} show - Whether to show loading overlay
