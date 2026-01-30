@@ -139,6 +139,14 @@ davinci-codex/
   - Moved invention source markdowns to `docs/_sources/`
   - Removed: `index.md.backup`
 
+### 2025-01-29 Additional Consolidation
+- ✅ Consolidated `tools/` → `scripts/tools/`
+  - Moved: `manuscript_scanner.py`, `analysis/`, `development/`
+- ✅ Consolidated `materials_analysis/` → `analysis/materials/`
+  - Preserved all analysis scripts and documentation in new location
+- ✅ Enhanced `.gitignore`
+  - Added: `.claude/settings.local.json`
+
 ### Enhanced Organization
 - ✅ Professional `.gitignore` with comprehensive exclusions
 - ✅ Standardized directory naming (snake_case)
@@ -158,7 +166,8 @@ davinci-codex/
 | `materials/` | Historical data | Renaissance material properties |
 | `education/` | Learning resources | Curricula, worksheets, tutorials |
 | `examples/` | Usage demonstrations | Sample code, tutorials, guides |
-| `tools/` | Development utilities | Scripts, generators, validators |
+| `scripts/` | Development utilities | Scripts, generators, validators |
+| `analysis/` | Engineering studies | Performance analysis, materials research |
 | `research/` | Academic work | Papers, studies, methodologies |
 
 ## Target File Naming Conventions
