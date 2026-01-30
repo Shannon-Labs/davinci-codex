@@ -26,54 +26,60 @@ LeonardoEnsemble.AudioEngine = class {
                 label: 'Viola Organista',
                 harmonics:   [1, 2, 3, 4, 5, 6, 7, 8],
                 weights:     [1.0, 0.3, 0.7, 0.15, 0.5, 0.1, 0.35, 0.08],
-                attack: 0.08, decay: 0.06, sustain: 0.75, release: 0.15,
-                vibrato: { rate: 5, cents: 12 },
-                noise: { type: 'pink', amount: 0.03 },
+                attack: 0.12, decay: 0.10, sustain: 0.75, release: 0.30,
+                vibrato: { rate: 5, cents: 10 },
+                noise: { type: 'pink', amount: 0.015 },
+                filterFreq: 3000,
                 baseFreq: 293.66  // D4
             },
             organ: {
                 label: 'Mechanical Organ',
                 harmonics:   [1, 2, 3, 4, 5, 6, 7, 8],
                 weights:     [1.0, 0.5, 0.333, 0.25, 0.2, 0.167, 0.143, 0.125],
-                attack: 0.05, decay: 0.03, sustain: 0.95, release: 0.08,
+                attack: 0.06, decay: 0.04, sustain: 0.90, release: 0.15,
                 vibrato: null,
-                noise: { type: 'white', amount: 0.02 },
+                noise: { type: 'white', amount: 0.008 },
+                filterFreq: 4000,
                 baseFreq: 261.63  // C4
             },
             flute: {
                 label: 'Programmable Flute',
                 harmonics:   [1, 2, 3, 4, 5],
                 weights:     [1.0, 0.35, 0.15, 0.08, 0.03],
-                attack: 0.04, decay: 0.05, sustain: 0.70, release: 0.12,
-                vibrato: { rate: 4.5, cents: 8 },
-                noise: { type: 'white', amount: 0.08 },
+                attack: 0.06, decay: 0.06, sustain: 0.70, release: 0.20,
+                vibrato: { rate: 4.5, cents: 6 },
+                noise: { type: 'white', amount: 0.025 },
+                filterFreq: 5000,
                 baseFreq: 523.25  // C5
             },
             carillon: {
                 label: 'Mechanical Carillon',
                 harmonics:   [1, 2.4, 3.9, 5.4, 6.7, 8.2],
                 weights:     [1.0, 0.6, 0.4, 0.25, 0.15, 0.08],
-                attack: 0.001, decay: 0.3, sustain: 0.15, release: 1.5,
+                attack: 0.002, decay: 0.4, sustain: 0.10, release: 2.0,
                 vibrato: null,
                 noise: null,
+                filterFreq: 6000,
                 baseFreq: 587.33  // D5
             },
             trumpeter: {
                 label: 'Mechanical Trumpeter',
                 harmonics:   [1, 2, 3, 4, 5, 6, 7, 8],
                 weights:     [1.0, 0.8, 0.6, 0.55, 0.5, 0.4, 0.3, 0.2],
-                attack: 0.03, decay: 0.04, sustain: 0.85, release: 0.10,
-                vibrato: { rate: 5.5, cents: 15 },
-                noise: { type: 'white', amount: 0.04 },
+                attack: 0.05, decay: 0.06, sustain: 0.80, release: 0.15,
+                vibrato: { rate: 5.5, cents: 10 },
+                noise: { type: 'white', amount: 0.015 },
+                filterFreq: 3500,
                 baseFreq: 349.23  // F4
             },
             drum: {
                 label: 'Mechanical Drum',
                 harmonics:   [1, 1.59, 2.14, 2.30, 2.65, 2.92],
                 weights:     [1.0, 0.7, 0.5, 0.35, 0.2, 0.1],
-                attack: 0.002, decay: 0.15, sustain: 0.0, release: 0.20,
+                attack: 0.003, decay: 0.18, sustain: 0.0, release: 0.25,
                 vibrato: null,
-                noise: { type: 'white', amount: 0.60 },
+                noise: { type: 'white', amount: 0.35 },
+                filterFreq: 2500,
                 baseFreq: 110.0   // A2
             }
         };
@@ -89,18 +95,16 @@ LeonardoEnsemble.AudioEngine = class {
         if (!this.ctx) {
             this.ctx = new (window.AudioContext || window.webkitAudioContext)();
 
-            // master gain -> destination
+            // master gain
             this.masterGain = this.ctx.createGain();
-            this.masterGain.gain.value = 0.7;
-            this.masterGain.connect(this.ctx.destination);
+            this.masterGain.gain.value = 0.55;
 
-            // analyser between masterGain and destination
+            // analyser for visualization
             this.analyser = this.ctx.createAnalyser();
             this.analyser.fftSize = 2048;
             this.analyser.smoothingTimeConstant = 0.8;
 
-            // Re-route: masterGain -> analyser -> destination
-            this.masterGain.disconnect();
+            // Route: masterGain -> analyser -> destination
             this.masterGain.connect(this.analyser);
             this.analyser.connect(this.ctx.destination);
         }
@@ -162,7 +166,7 @@ LeonardoEnsemble.AudioEngine = class {
             const H = canvas.height;
             ctx2d.clearRect(0, 0, W, H);
 
-            // --- Frequency bars (bottom half) ---
+            // --- Frequency bars (bottom portion) ---
             analyser.getByteFrequencyData(freqData);
             const barCount = Math.min(bufferLength, 128);
             const barW = W / barCount;
@@ -177,7 +181,7 @@ LeonardoEnsemble.AudioEngine = class {
                 ctx2d.fillRect(i * barW, H - barH, barW - 1, barH);
             }
 
-            // --- Waveform (top half) ---
+            // --- Waveform (top portion) ---
             analyser.getByteTimeDomainData(waveData);
             ctx2d.beginPath();
             ctx2d.strokeStyle = 'rgba(255,215,0,0.7)';
@@ -186,7 +190,7 @@ LeonardoEnsemble.AudioEngine = class {
             let x = 0;
             for (let i = 0; i < bufferLength; i++) {
                 const v = waveData[i] / 128.0;
-                const y = (v * H * 0.25);  // top quarter
+                const y = (v * H * 0.25);
                 if (i === 0) ctx2d.moveTo(x, y);
                 else ctx2d.lineTo(x, y);
                 x += sliceW;
@@ -222,33 +226,49 @@ LeonardoEnsemble.AudioEngine = class {
         if (!timbre) return;
 
         const f0 = freq || timbre.baseFreq;
-        const dur = duration || (timbre.attack + timbre.decay + 0.4 + timbre.release);
+        const dur = duration || (timbre.attack + timbre.decay + 0.6 + timbre.release);
         const now = ctx.currentTime;
+        const EPS = 0.001; // floor for exponential ramps (can't ramp to 0)
 
-        // Note-level gain (ADSR envelope)
+        // Normalize weights so they sum to 1.0
+        const weightSum = timbre.weights.reduce((s, w) => s + w, 0);
+
+        // Peak amplitude for the note (after normalization, this is the
+        // loudest the combined oscillators will be).
+        const peakGain = 0.28;
+
+        // --- Note-level gain (ADSR envelope using exponential ramps) ---
         const noteGain = ctx.createGain();
-        noteGain.gain.setValueAtTime(0, now);
+        noteGain.gain.setValueAtTime(EPS, now);
         // Attack
-        noteGain.gain.linearRampToValueAtTime(0.35, now + timbre.attack);
+        noteGain.gain.exponentialRampToValueAtTime(peakGain, now + timbre.attack);
         // Decay -> sustain
-        noteGain.gain.linearRampToValueAtTime(0.35 * timbre.sustain, now + timbre.attack + timbre.decay);
+        const sustainLevel = Math.max(peakGain * timbre.sustain, EPS);
+        noteGain.gain.exponentialRampToValueAtTime(sustainLevel, now + timbre.attack + timbre.decay);
         // Sustain hold
         const sustainEnd = now + dur - timbre.release;
-        noteGain.gain.setValueAtTime(0.35 * timbre.sustain, sustainEnd);
+        noteGain.gain.setValueAtTime(sustainLevel, sustainEnd);
         // Release
-        noteGain.gain.linearRampToValueAtTime(0, now + dur);
+        noteGain.gain.exponentialRampToValueAtTime(EPS, now + dur);
 
-        noteGain.connect(this.masterGain);
+        // --- Lowpass filter to warm the tone ---
+        const filter = ctx.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.value = timbre.filterFreq || 4000;
+        filter.Q.value = 0.7;
 
-        // --- Oscillators per harmonic ---
-        const oscillators = [];
+        // Route: noteGain -> filter -> masterGain
+        noteGain.connect(filter);
+        filter.connect(this.masterGain);
+
+        // --- Oscillators per harmonic (normalized weights) ---
         for (let i = 0; i < timbre.harmonics.length; i++) {
             const osc = ctx.createOscillator();
             osc.type = 'sine';
             osc.frequency.setValueAtTime(f0 * timbre.harmonics[i], now);
 
             const harmGain = ctx.createGain();
-            harmGain.gain.value = timbre.weights[i];
+            harmGain.gain.value = timbre.weights[i] / weightSum;
             osc.connect(harmGain);
             harmGain.connect(noteGain);
 
@@ -259,7 +279,7 @@ LeonardoEnsemble.AudioEngine = class {
                 lfo.frequency.value = timbre.vibrato.rate;
 
                 const lfoGain = ctx.createGain();
-                // cents -> Hz deviation: f * (2^(cents/1200) - 1)
+                // cents -> Hz deviation
                 lfoGain.gain.value = f0 * timbre.harmonics[i] * (Math.pow(2, timbre.vibrato.cents / 1200) - 1);
                 lfo.connect(lfoGain);
                 lfoGain.connect(osc.frequency);
@@ -270,10 +290,9 @@ LeonardoEnsemble.AudioEngine = class {
 
             osc.start(now);
             osc.stop(now + dur + 0.05);
-            oscillators.push(osc);
         }
 
-        // --- Optional noise burst ---
+        // --- Optional noise layer (scaled relative to normalized signal) ---
         if (timbre.noise && timbre.noise.amount > 0) {
             const noiseNode = this._createNoiseNode(timbre.noise.type, dur);
             const noiseGain = ctx.createGain();
