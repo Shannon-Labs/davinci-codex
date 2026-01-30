@@ -197,6 +197,7 @@ data/generated/
 .qoder/
 .benchmarks/
 .ruff_cache/
+.claude/settings.local.json
 
 # Jekyll / Ruby (GitHub Pages)
 .bundle/
